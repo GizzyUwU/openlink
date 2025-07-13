@@ -1,0 +1,177 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    background-image:
+        url("../img/bg-login.png"),
+        linear-gradient(170deg, rgb(124, 140, 202), rgb(77, 157, 205));
+    background-position: 50%;
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-login {
+    background: rgba(51, 74, 122, 0.6);
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 55px;
+    padding: 42px 20px 0;
+    position: relative;
+    width: 400px;
+}
+
+.f-login .__row {
+    display: block;
+    margin-bottom: 13px;
+    position: relative;
+}
+
+.f-login .__field {
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
+    color: #fff;
+    font-size: 20px;
+    height: 40px;
+    transition:
+        background 9999s linear,
+        color 9999s linear;
+    width: 100%;
+    animation: autofill both;
+}
+
+.f-login ._field:focus + .__label-text {
+    bottom: 36px;
+}
+
+.f-login .__field:focus {
+    outline: none;
+}
+
+.f-login .__label-text {
+    bottom: 16px;
+    color: hsla(0, 0%, 100%, 0.6);
+    font-size: 12px;
+    font-weight: 500;
+    left: 0;
+    position: absolute;
+    text-transform: uppercase;
+    transition: all 0.2s ease-out;
+}
+
+.f-login .__button {
+    margin: 0 auto;
+}
+
+.f-login .__submit {
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    border-radius: 75px;
+    background: linear-gradient(0deg, #8c97a5, #bfc6ce);
+    border: 0;
+    bottom: -23px;
+    position: relative;
+    max-width: 260px;
+    color: white;
+}
+
+.f-login .__field:focus + .__label-text,
+.f-login .__field:not(:placeholder-shown) + .__label-text {
+    bottom: 36px;
+    font-size: 10px;
+}
+
+.f-login.has-text .__submit {
+    background: linear-gradient(0deg, #fd746c, #ff9168);
+}
+
+.f-login .__checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0px;
+}
+
+.f-login .__checkbox label {
+    color: hsla(0, 0%, 100%, 0.6);
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.f-login .__checkbox input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: transparent !important;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid hsla(0, 0%, 100%, 0.5);
+    border-radius: 2px;
+    position: relative;
+}
+
+.f-login .__checkbox input[type="checkbox"]:checked {
+    background: transparent !important;
+}
+
+.f-login .__checkbox input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+    top: -9px;
+    left: 0px;
+    color: white;
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.f-login .__checkbox a {
+    color: hsla(0, 0%, 100%, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.f-login .__checkbox a:hover {
+    text-decoration: underline;
+}
+
+.__school-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200px);
+    text-align: center;
+    z-index: 10;
+}
+
+.__logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -350px);
+    z-index: 11;
+    height: 140px;
+    width: 140px;
+    border-radius: 100%;
+    background-color: white;
+}
