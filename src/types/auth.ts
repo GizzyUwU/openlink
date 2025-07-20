@@ -30,15 +30,15 @@ type StatusParams = {
 
 export type FromCodeRequest = ApiRequest<"School.FromCode", FromCodeParams>;
 export type SchoolDetailsRequest = ApiRequest<
-  "Edulink.SchoolDetails",
+  "EduLink.SchoolDetails",
   SchoolDetailsParams
 >;
-export type LoginRequest = ApiRequest<"Edulink.Login", LoginParams>;
-export type StatusRequest = ApiRequest<"Edulink.Status", StatusParams>;
+export type LoginRequest = ApiRequest<"EduLink.Login", LoginParams>;
+export type StatusRequest = ApiRequest<"EduLink.Status", StatusParams>;
 
 export type FromCodeResponse = SchoolApiResponse<{
   school: {
-    id: number;
+    school_id: number;
     server: string;
   };
 }>;

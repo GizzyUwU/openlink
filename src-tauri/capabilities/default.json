@@ -2,14 +2,27 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": ["main"],
+  "windows": [
+    "main"
+  ],
   "permissions": [
     "core:default",
     "opener:default",
     {
       "identifier": "http:default",
-      "allow": [{ "url": "https://*.edulinkone.com" }],
-      "deny": [{ "url": "*" }]
-    }
+      "allow": [
+        {
+          "url": "https://*.edulinkone.com"
+        }
+      ],
+      "deny": [
+        {
+          "url": "*"
+        }
+      ]
+    },
+    "keyring:default",
+    "store:default",
+    "store:default"
   ]
 }

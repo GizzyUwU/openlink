@@ -9,7 +9,7 @@ body {
     height: 100vh;
 }
 
-.container {
+.login-container {
     background-image:
         url("../img/bg-login.png"),
         linear-gradient(170deg, rgb(124, 140, 202), rgb(77, 157, 205));

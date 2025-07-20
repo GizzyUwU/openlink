@@ -8,15 +8,15 @@ import "./assets/css/index.css";
 import { Edulink } from "./api/edulink.tsx";
 import { Toast } from "./components/toast.tsx";
 const Login = lazy(() => import("./pages/login.tsx"));
-
+const Main = lazy(() => import("./pages/dash.tsx"));
 const App: ParentComponent = (props) => <>{props.children}</>;
-
 render(
   () => (
     <Toast>
       <Edulink>
         <Router root={App}>
           <Route path="/" component={Login} />
+          <Route path="/dash" component={Main} />
         </Router>
       </Edulink>
     </Toast>
