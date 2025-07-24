@@ -4,13 +4,16 @@ import { AiOutlineLineChart, AiOutlineFileText, AiOutlineTrophy, AiOutlineForm }
 import { TbCertificate } from 'solid-icons/tb'
 import { RiSystemErrorWarningLine } from 'solid-icons/ri'
 import { IoBriefcaseOutline } from 'solid-icons/io'
-import { FaSolidPersonRunning } from 'solid-icons/fa'
+import { FaSolidPersonRunning, FaSolidSection } from 'solid-icons/fa'
 import { VsAccount } from 'solid-icons/vs'
 import { Icon } from '@iconify-icon/solid';
 import { makePersisted } from "@solid-primitives/storage";
 import { createEffect, createSignal } from "solid-js";
 import { useEdulink } from "../api/edulink";
-import { Show } from "solid-js";
+import { Show, onCleanup, onMount } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+import { useToast } from "../components/toast";
+import { Transition } from "solid-transition-group";
 
 function Main() {
     const [showBackIcon, setShowBackIcon] = createSignal(false);
@@ -22,7 +25,10 @@ function Main() {
     const [wheelRotation, setWheelRotation] = createSignal(0);
     const [isLogoGone, setIsLogoGone] = createSignal(false);
     const [logoOpacity, setLogoOpacity] = createSignal(1);
-
+    const [navSlid, setNavSlid] = createSignal<boolean>(false);
+    const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
+    const navigate = useNavigate();
+    const toast = useToast();
     createEffect(() => {
         const idx = activeIdx();
         const navActive = isSlid() && isLogoGone() && typeof idx === 'number';
@@ -51,78 +57,66 @@ function Main() {
         name: "apiUrl"
     });
 
-    // createEffect(() => {
-    //     if (!sessionData() || !apiUrl()) {
-    //         setSession(null);
-    //         setApiUrl(null);
-    //         throw navigate("/");
-    //     }
+    onMount(() => {
+        if (!sessionData() || !apiUrl()) {
+            setSession(null);
+            setApiUrl(null);
+            throw navigate("/");
+        }
 
-    //     const fetchStatus = async () => {
-    //         const result = await edulink.getStatus(sessionData()?.authtoken, apiUrl());
-    //         if (result.result.success) {
-    //             setStatus(result.result);
-    //         } else {
-    //             setSession(null);
-    //             setApiUrl(null);
-    //             throw navigate("/");
-    //         }
-    //     };
+        const fetchStatus = async () => {
+            const result = await edulink.getStatus(sessionData()?.authtoken, apiUrl());
+            if (result.result.success) {
+                setStatus(result.result);
+            } else {
+                setSession(null);
+                setApiUrl(null);
+                throw navigate("/");
+            }
+        };
 
-    //     fetchStatus();
-    //     const checkStatus = setInterval(fetchStatus, 60 * 1000);
-    //     onCleanup(() => clearInterval(checkStatus));
-    // });
+        fetchStatus();
+        const checkStatus = setInterval(fetchStatus, 60 * 1000);
+        onCleanup(() => clearInterval(checkStatus));
+    });
 
-    function loadItemPage(page: string) {
-        // Remove any previous box
-        const prev = document.getElementById('item-page-box');
-        if (prev) prev.remove();
-        
-        // Create the box
-        const box = document.createElement('div');
-        box.id = 'item-page-box';
-        Object.assign(box.style, {
-            position: 'absolute',
-            top: '100px',
-            left: '50%',
-            transform: 'translateX(-50%) scale(0)',
-            height: 'calc(100vh - 200px)',
-            maxWidth: '1200px',
-            width: '100%',
-            background: '#fff',
-            borderRadius: '24px',
-            boxShadow: '0 8px 32px 0 rgba(0,0,0,0.10)',
-            zIndex: 10,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '32px',
-            opacity: '0',
-            // Performance optimizations
-            willChange: 'transform, opacity',
-            backfaceVisibility: 'hidden'
-        });
-        
-        // Add content (page name for now)
-        const label = document.createElement('span');
-        label.textContent = page;
-        label.style.color = '#222';
-        label.style.fontSize = '2rem';
-        label.style.fontWeight = '600';
-        box.appendChild(label);
-        
-        // Insert into container
-        const container = document.querySelector('.container');
-        if (container) container.appendChild(box);
-        
-        // Start grow animation after nav wheel slide animation finishes (1.2s)
-        setTimeout(() => {
-            // Use CSS animation instead of transitions
-            box.style.animation = 'growIn 0.7s ease-out forwards';
-        }, 1200);
+    async function loadItemPage(id: string, name: string) {
+        try {
+            const mod = await import(`../components/${id}.tsx`);
+            const waitForSlide = () =>
+                new Promise<void>(resolve => {
+                    const check = () => {
+                        if (navSlid()) {
+                            resolve();
+                        } else {
+                            setTimeout(check, 20);
+                        }
+                    };
+                    check();
+                });
+            await waitForSlide();
+            setLoadedComponent(() => mod.default);
+
+
+            const idx = activeIdx();
+            if (typeof idx === "number") {
+                setShowBackIcon(true);
+            }
+
+        } catch (err) {
+            console.error(`Failed to load component: ../components/${id}.tsx`, err);
+            setIsAnimating(false);
+            setIsSlid(false);
+            setNavSlid(false);
+            setActiveIdx(null);
+            setShowBackIcon(false);
+            setLoadedComponent(null);
+            const prev = document.getElementById('item-box');
+            if (prev) prev.remove();
+            toast.showToast("Error!", `${name} failed to open.`, "error");
+        }
     }
+
 
     const updateSlideX = () => {
         if (navWheelRef) {
@@ -148,17 +142,25 @@ function Main() {
     const [iconOpacities, setIconOpacities] = createSignal(Array(items.length).fill(1));
 
     createEffect(() => {
+        let resizeTimeout: number | undefined;
         if (isSlid()) {
-            updateSlideX();
+            if (!isLogoGone()) updateSlideX();
             setLogoOpacity(0);
             setIconOpacities(Array(items.length).fill(0));
-            setTimeout(() => setIsLogoGone(true), 1200);
-            const handler = () => updateSlideX();
+            setIsLogoGone(false)
+            setTimeout(() => setNavSlid(true), 600);
+            const handler = () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = window.setTimeout(() => {
+                    if (!navSlid()) updateSlideX();
+                }, 100);
+            };
             window.addEventListener('resize', handler);
             return () => window.removeEventListener('resize', handler);
         } else {
             setSlideX(0);
             setIsLogoGone(false);
+            setNavSlid(false)
             setLogoOpacity(0);
             setIconOpacities(Array(items.length).fill(0));
             setTimeout(() => {
@@ -167,7 +169,6 @@ function Main() {
             }, 10);
         }
     });
-
     const spinToIndex = (idx: number) => {
         setWheelRotation(idx * 360 / items.length);
     };
@@ -204,7 +205,8 @@ function Main() {
         const x = radius * Math.cos(angle);
         const y = radius * Math.sin(angle);
         const isActive = activeIdx() === i;
-        const showBack = isSlid() && isActive && showBackIcon();
+        console.log('bombfrance', isActive);
+        const showBack = isActive && showBackIcon() ? true : false;
         return (
             <li class="__item" style={getItemStyle(x, y)}>
                 <div class="__inner">
@@ -214,25 +216,24 @@ function Main() {
                         title={item.name}
                         onClick={e => {
                             e.preventDefault();
-                            console.log(item.name)
-                            
+
                             if (isSlid() && isActive) {
                                 setIsAnimating(false);
                                 setIsSlid(false);
                                 setActiveIdx(null);
-                                const prev = document.getElementById('item-page-box');
+                                setLoadedComponent(null);
+                                const prev = document.getElementById('item-box');
                                 if (prev) prev.remove();
                             } else {
                                 setActiveIdx(i);
                                 setIsAnimating(true);
                                 setIsSlid(true);
                                 spinToIndex(i);
-                                // Load item page - animation will start after nav wheel finishes
-                                loadItemPage(item.name);
+                                loadItemPage(item.id, item.name);
                             }
                         }}
                     >
-                        {!isLogoGone() ? (
+                        {!navSlid() ? (
                             <span
                                 style={{
                                     opacity: iconOpacities()[i],
@@ -317,8 +318,69 @@ function Main() {
                     </ul>
                 </div>
             </div>
-            <div id="item-page-box" class="__item-page-box">
-            </div>
+            <Transition
+                onEnter={(el, done) => {
+                    const a = el.animate(
+                        [
+                            {
+                                opacity: 0,
+                                transform: "translate3d(-50%, 0, 0) scale(0.8)",
+                            },
+                            {
+                                opacity: 1,
+                                transform: "translate3d(-50%, 0, 0) scale(1)",
+                            },
+                        ],
+                        {
+                            duration: 200,
+                            easing: "ease",
+                        }
+                    );
+                    a.finished.then(done);
+                }}
+                onExit={(el, done) => {
+                    const a = el.animate(
+                        [
+                            {
+                                opacity: 1,
+                                transform: "translate3d(-50%, 0, 0) scale(1)",
+                            },
+                            {
+                                opacity: 0,
+                                transform: "translate3d(-50%, 0, 0) scale(0.8)",
+                            },
+                        ],
+                        {
+                            duration: 200,
+                            easing: "ease",
+                        }
+                    );
+                    a.finished.then(done);
+                }}
+            >
+                <Show when={LoadedComponent()}>
+                    {(Comp) => (
+                        <div
+                            id="item-box"
+                            style={{
+                                position: "absolute",
+                                top: "100px",
+                                left: "50%",
+                                transform: "translate3d(-50%, 0, 0)",
+                                height: "100%",
+                                "max-height": "calc(100vh - 200px)",
+                                "max-width": "1200px",
+                                width: "100%",
+                                "z-index": 10,
+                                opacity: "1",
+                            }}
+                        >
+                            <Comp />
+                        </div>
+                    )}
+                </Show>
+            </Transition>
+
             <div class="s-footer">
                 <div class="__container">
                     <div class="__item">

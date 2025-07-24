@@ -19,7 +19,7 @@
     "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.3",
     "@tailwindcss/vite": "^4.1.11",
-    "@tauri-apps/api": "^2",
+    "@tauri-apps/api": "^2.6.0",
     "@tauri-apps/plugin-http": "~2",
     "@tauri-apps/plugin-opener": "^2",
     "@tauri-apps/plugin-store": "~2",
@@ -27,14 +27,15 @@
     "concurrently": "^9.2.0",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.9.3",
+    "solid-transition-group": "^0.3.0",
     "tailwindcss": "^4.1.11",
     "tauri-plugin-keyring-api": "^0.1.1",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.6.2",
-    "typescript": "~5.6.2",
-    "vite": "^6.0.3",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.0",
     "vite-plugin-solid": "^2.11.0",
     "vite-plugin-svgr": "^4.3.0"
   }

@@ -1,0 +1,66 @@
+import { ApiRequest, EdulinkApiResponse } from "../global";
+
+type TimetableParams = {
+  date: string;
+  learner_id: string;
+  format: number;
+}
+
+export type TimetableRequest = ApiRequest<"EduLink.Timetable", TimetableParams>;
+
+export interface TimetablePeriods {
+  id: string;
+  external_id: string;
+  name: string;
+  start_time: string;
+  end_time: string;
+  empty: boolean;
+}
+
+export interface TimetableLessons {
+  description: string;
+  period_id: number
+  room: { 
+    id: number;
+    name: string;
+  }
+  room_id: number;
+  teacher: { 
+    id: number;
+    title: string;
+    forename: string;
+    surname: string;
+  }
+  teaching_group: { 
+    id: number;
+    name: string;
+    subject: string;
+  }
+  teaching_group_id: number;
+}
+
+
+export interface TimetableDay {
+  cycle_day_id: string;
+  name: string;
+  original_name: string;
+  date: string;
+  is_current: boolean;
+  lessons: TimetableLessons[]
+  periods: TimetablePeriods[];
+}
+
+export interface TimetableWeek {
+  name: string;
+  is_current: boolean;
+  days: TimetableDay[];
+}
+
+export type TimetableResponse = EdulinkApiResponse<{
+  method: "EduLink.Timetable";
+  success: boolean;
+  requested_date: string;
+  showing_from: string;
+  showing_to: string;
+  weeks: TimetableWeek[];
+}>;

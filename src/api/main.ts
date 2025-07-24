@@ -8,7 +8,9 @@ import {
   StatusResponse,
   LoginRequest
 } from "../types/auth";
+import  { TimetableRequest, TimetableResponse } from "../types/api/timetable";
 import { v4 as uuid } from "uuid";
+import { DocumentsRequest, DocumentsResponse } from "../types/api/documents";
 
 export class EdulinkAPI {
   private apiUrl: string | null;
@@ -31,11 +33,12 @@ export class EdulinkAPI {
     };
 
     const response = await fetch(
-      "http://192.168.1.171:3000/?method=School.FromCode", // https://provisioning.edulinkone.com?method=School.FromCode"
+      "http://127.0.0.1:3000/?method=School.FromCode", // https://provisioning.edulinkone.com?method=School.FromCode"
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-API-Method": "School.FromCode",
         },
         body: JSON.stringify(requestBody),
       },
@@ -149,6 +152,79 @@ export class EdulinkAPI {
       id: "1",
     };
 
+    const response = await fetch(
+      serverUrl + "?method=" + method,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Method": method,
+          "Authorization": `Bearer ${key}`,
+        },
+        body: JSON.stringify(requestBody),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  }
+
+  async getTimetable(learnerId: string, key: string, apiUrl?: string): Promise<TimetableResponse> {
+    const serverUrl = apiUrl || this.apiUrl;
+    if (!serverUrl) throw new Error("API URL is not set. Please find school first.");
+    if (!learnerId) throw new Error("Learner ID is required for timetable lookup");
+    if (!key) throw new Error("API key is required for timetable lookup");
+    const method = "EduLink.Timetable";
+    const requestBody: TimetableRequest = {
+      jsonrpc: "2.0",
+      method,
+      params: {
+        date: new Date().toISOString().split('T')[0],
+        learner_id: learnerId,
+        format: 2,
+      },
+      uuid: uuid(),
+      id: "1",
+    };
+    const response = await fetch(
+      serverUrl + "?method=" + method,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-Method": method,
+          "Authorization": `Bearer ${key}`,
+        },
+        body: JSON.stringify(requestBody),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  }
+
+  async getDocuments(learnerId: string, key: string, apiUrl?: string): Promise<DocumentsResponse> {
+    const serverUrl = apiUrl || this.apiUrl;
+    if (!serverUrl) throw new Error("API URL is not set. Please find school first.");
+    if (!learnerId) throw new Error("Learner ID is required for documents lookup");
+    if (!key) throw new Error("API key is required for documents lookup");
+    const method = "EduLink.Documents";
+    const requestBody: DocumentsRequest = {
+      jsonrpc: "2.0",
+      method,
+      params: {
+        learner_id: learnerId,
+        format: 2,
+      },
+      uuid: uuid(),
+      id: "1",
+    };
     const response = await fetch(
       serverUrl + "?method=" + method,
       {

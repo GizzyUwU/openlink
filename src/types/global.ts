@@ -27,8 +27,11 @@ export interface EdulinkApiResponse<T = any> {
     method: string;
     error?: string;
     metrics: {
-      elapsed: number;
-      timestamp: number;
+        st: string;
+        sspt: number;
+        sspt_us: number;
+        uniqid: string;
+        be: string;
     };
   };
   uuid: string | null;

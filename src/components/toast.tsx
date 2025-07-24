@@ -37,7 +37,7 @@ export const Toast: ParentComponent = (props) => {
 
   let timeoutId: number | undefined;
   let fadeOutTimeoutId: number | undefined;
-  let remainingTime = 10000; // Track remaining time
+  let remainingTime = 10000;
   let startTime: number;
 
   const showToast = (
@@ -45,7 +45,6 @@ export const Toast: ParentComponent = (props) => {
     message: string,
     type: ToastType = "error",
   ) => {
-    // Clear any existing timeouts
     if (timeoutId) clearTimeout(timeoutId);
     if (fadeOutTimeoutId) clearTimeout(fadeOutTimeoutId);
 
@@ -61,7 +60,6 @@ export const Toast: ParentComponent = (props) => {
     remainingTime = 10000;
     startTime = Date.now();
 
-    // Auto-hide after 10 seconds
     timeoutId = setTimeout(() => {
       hideToast();
     }, remainingTime);
@@ -85,16 +83,13 @@ export const Toast: ParentComponent = (props) => {
   };
 
   const hideToast = () => {
-    // Start fade out
     setToastState((prev) => ({ ...prev, fadingOut: true }));
 
-    // Clear any existing timeout
     if (timeoutId) {
       clearTimeout(timeoutId);
       timeoutId = undefined;
     }
 
-    // After fade animation completes, fully hide
     fadeOutTimeoutId = setTimeout(() => {
       setToastState((prev) => ({ ...prev, visible: false, fadingOut: false }));
     }, 300);
@@ -116,9 +111,9 @@ export const Toast: ParentComponent = (props) => {
   );
 };
 
+
 const ToastContainer = () => {
   const toast = useToast();
-
   return (
     <div
       id="toast-container"
