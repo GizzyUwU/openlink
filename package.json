@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite",
     "dev-server": "vite",
-    "dev": "concurrently \"env GDK_BACKEND=x11 bun run tauri dev\" \"cd ../eduserver && bun run dev\"",
+    "dev": "bun run tauri dev",
     "build": "vite build",
     "serve": "vite preview",
     "tauri": "tauri"
@@ -26,10 +26,7 @@
     "@tauri-apps/plugin-opener": "^2",
     "@tauri-apps/plugin-store": "~2",
     "@types/bun": "^1.2.19",
-    "@types/colorthief": "^2.6.0",
     "@types/uuid": "^10.0.0",
-    "colorthief": "^2.6.0",
-    "concurrently": "^9.2.0",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.9.3",
     "solid-transition-group": "^0.3.0",
