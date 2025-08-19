@@ -4,6 +4,7 @@ import {
   Show,
   For,
   onMount,
+  onCleanup,
   Component,
 } from "solid-js";
 import { createStore } from "solid-js/store";
@@ -37,7 +38,6 @@ export default function Navigation(props: {
   navAnimFinished: (value: boolean) => void;
 }) {
   let navWheelRef: HTMLDivElement | undefined;
-  let wrapRef: HTMLDivElement | undefined;
   const edulink = useEdulink();
   const toast = useToast();
   const [items, setItems] = createSignal<Item[]>([]);
@@ -122,6 +122,7 @@ export default function Navigation(props: {
     isLogoGone: boolean;
     navSlid: boolean;
     itemOpacity: number[];
+    logoBG: string;
   }>({
     showBack: false,
     activeIdx: null,
@@ -133,6 +134,7 @@ export default function Navigation(props: {
     isLogoGone: false,
     navSlid: false,
     itemOpacity: Array(items().length).fill(1),
+    logoBG: "",
   });
 
   function waitForWheelTransition() {
@@ -213,66 +215,71 @@ export default function Navigation(props: {
     }
 
     const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
+    const modulePromises = Object.values(modules).map((loader) => loader());
 
-    const loaded: Item[] = [];
-    for (const path in modules) {
-      const mod: any = await modules[path]();
+    const loadedModules = await Promise.all(modulePromises);
+
+    const loaded: Item[] = loadedModules.map((mod: any) => {
       const def = mod.default;
-
       const iconComponent: Component =
         typeof def.icon === "function" ? def.icon : () => def.icon;
 
-      loaded.push({
+      return {
         id: def.name.toLowerCase().replace(/\s+/g, ""),
         name: def.name,
         icon: iconComponent,
         class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
         component: def.component,
-      });
-    }
+      };
+    });
 
     setItems(loaded);
 
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = `data:image/webp;base64,${props.sessionData().establishment?.logo || ""}`;
+    const logoBase64 = props.sessionData().establishment?.logo;
+    if (!logoBase64) return;
 
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if (!ctx) return;
+    const dominantColor = await new Promise<string | null>((resolve) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = `data:image/webp;base64,${logoBase64}`;
 
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return resolve(null);
 
-      const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
 
-      const colorCounts: Record<string, number> = {};
-      let maxColor = "";
-      let maxCount = 0;
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const colorCounts: Record<string, number> = {};
+        let maxColor = "";
+        let maxCount = 0;
 
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        const a = data[i + 3];
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const a = data[i + 3];
+          if (a === 0) continue;
 
-        if (a === 0) continue;
+          const key = `${r},${g},${b}`;
+          colorCounts[key] = (colorCounts[key] || 0) + 1;
 
-        const key = `${r},${g},${b}`;
-        colorCounts[key] = (colorCounts[key] || 0) + 1;
-
-        if (colorCounts[key] > maxCount) {
-          maxCount = colorCounts[key];
-          maxColor = key;
+          if (colorCounts[key] > maxCount) {
+            maxCount = colorCounts[key];
+            maxColor = key;
+          }
         }
-      }
 
-      if (wrapRef && maxColor) {
-        wrapRef.style.backgroundColor = `rgb(${maxColor})`;
-      }
-    };
+        resolve(maxColor ? `rgb(${maxColor})` : null);
+      };
+
+      img.onerror = () => resolve(null);
+    });
+
+    if (dominantColor) setState("logoBG", dominantColor);
   });
 
   createEffect(() => {
@@ -362,7 +369,7 @@ export default function Navigation(props: {
   }
 
   return (
-    <div class="nav-wheel">
+    <div class="nav-wheel" id="nav-wheel">
       <div
         class="__container __loaded"
         ref={(el) => (navWheelRef = el)}
@@ -395,7 +402,12 @@ export default function Navigation(props: {
           }}
         >
           <Show when={!state.isLogoGone}>
-            <div class="__logo-wrap" ref={wrapRef}>
+            <div
+              class="__logo-wrap"
+              style={{
+                "background-color": state.logoBG,
+              }}
+            >
               <div
                 class="__logo"
                 style={{
@@ -460,23 +472,26 @@ export default function Navigation(props: {
                       ) : state.activeIdx !== i() && state.showBack ? (
                         true
                       ) : (
-                        <svg
-                          width="36"
-                          height="36"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          style={{
-                            opacity: 1,
-                            transition:
-                              "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
-                          }}
-                        >
-                          <path d="M15 18l-6-6 6-6" />
-                        </svg>
+                        <>
+                          <div id="nav-back"></div>
+                          <svg
+                            width="36"
+                            height="36"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            style={{
+                              opacity: 1,
+                              transition:
+                                "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
+                            }}
+                          >
+                            <path d="M15 18l-6-6 6-6" />
+                          </svg>
+                        </>
                       )}
                     </a>
                   </div>
