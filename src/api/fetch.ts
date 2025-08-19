@@ -23,7 +23,6 @@ export async function callApi(url: string, options: ApiOptions = {}) {
     }
 
     if (window.__TAURI_) {
-      const { fetch } = await import("@tauri-apps/plugin-http");
       const { exists, readTextFile } = await import("@tauri-apps/plugin-fs");
       const { resourceDir } = await import("@tauri-apps/api/path");
       const [folder, subfolderCandidate] = apiMethod.split(".");

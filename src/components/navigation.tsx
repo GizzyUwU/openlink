@@ -5,7 +5,6 @@ import {
   For,
   onMount,
   Component,
-  JSXElement,
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import { useToast } from "./toast";
