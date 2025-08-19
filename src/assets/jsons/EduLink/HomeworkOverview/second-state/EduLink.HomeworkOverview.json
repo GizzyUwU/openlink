@@ -1,0 +1,53 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.HomeworkOverview",
+        "success": true,
+        "from": "2021-06-12",
+        "until": "2021-07-12",
+        "data": [
+            {
+                "id": "12597",
+                "name": "7BLU/Sc",
+                "count": 0,
+                "main_class_teacher_name": "Mr J. Smith"
+            },
+            {
+                "id": "12588",
+                "name": "7GRN/Sc",
+                "count": 2,
+                "main_class_teacher_name": "Dr. R. Patel"
+            },
+            {
+                "id": "12619",
+                "name": "7ORG/Sc",
+                "count": 3,
+                "main_class_teacher_name": "Mrs A. Abell"
+            },
+            {
+                "id": "12628",
+                "name": "7PIN/Sc",
+                "count": 1,
+                "main_class_teacher_name": "Mrs A. Abell"
+            },
+            {
+                "id": "12579",
+                "name": "7RED/Sc",
+                "count": 1,
+                "main_class_teacher_name": "Dr. R. Patel"
+            },
+            {
+                "id": "12637",
+                "name": "7YEL/Sc",
+                "count": 4,
+                "main_class_teacher_name": "Mr J. Chambers"
+            }
+        ],
+        "metrics": {
+            "st": "2019-12-12 10:22:02",
+            "sspt": 0.017551898956298828,
+            "uniqid": "5df214ca48876"
+        }
+    },
+    "id": "4"
+}

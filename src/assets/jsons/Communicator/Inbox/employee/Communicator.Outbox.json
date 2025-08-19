@@ -1,0 +1,301 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "Communicator.Outbox",
+        "success": true,
+        "messages": [
+            {
+                "id": 307,
+                "type": "email",
+                "subject": "No PE kit",
+                "body": "<p>Your Son/Daughter,</p><p><br></p><p>Did not bring suitable PE kit to today's lesson please ensure this is rectified before their next PE lesson. If you are unsure what is expected please refer to the attached guidance.</p><p><br></p><p>Regards&nbsp;</p><p><br></p><p>Mrs Abell</p>",
+                "created": "2021-01-19 17:28",
+                "queued_until": "2021-01-19 17:28",
+                "failures": false,
+                "status": "queued",
+                "attachments": [],
+                "recipients": [
+                    {
+                        "id": "1",
+                        "type": "parent",
+                        "name": "Mr Adrian Blacker",
+                        "username": null,
+                        "processed": "2021-05-23 12:46",
+                        "sent_on": "2021-05-23 12:46",
+                        "read": "2021-05-23 13:48",
+                        "school_id": 2,
+                        "status": "Read"
+                    },
+                    {
+                        "id": "8405",
+                        "type": "parent",
+                        "name": "Mrs Louise Abbey",
+                        "username": null,
+                        "processed": "2021-05-23 12:46",
+                        "sent_on": "2021-05-23 12:46",
+                        "read": "2021-05-23 13:48",
+                        "school_id": 2,
+                        "status": "Read"
+                    }
+                ],
+                "regarding": []
+            },
+            {
+                "id": 308,
+                "type": "email",
+                "subject": "Next Lesson",
+                "body": "<p>We will be in the computer room next lesson so you are able to type up the experiment from last lesson please remember to bring you notes.</p><p><br></p><p>We will be in CP2</p><p><br></p><p>Mrs Abell</p>",
+                "created": "2021-01-19 17:36",
+                "queued_until": "2021-01-19 17:36",
+                "failures": false,
+                "status": "complete",
+                "attachments": [],
+                "recipients": [
+                    {
+                        "id": "10009",
+                        "type": "learner",
+                        "name": "Julia Dibney",
+                        "username": null,
+                        "successful": true,
+                        "processed": "2021-05-26 12:43",
+                        "sent_on": "2021-05-26 12:43",
+                        "school_id": 2,
+                        "status": "Sent"
+                    },
+                    {
+                        "id": "10036",
+                        "type": "learner",
+                        "name": "Jane Gartwright",
+                        "username": null,
+                        "last_login": "2021-05-26 11:41:38",
+                        "successful": true,
+                        "processed": "2021-05-26 12:43",
+                        "sent_on": "2021-05-26 12:43",
+                        "read": "2021-05-26 12:44",
+                        "school_id": 2,
+                        "status": "Read"
+                    },
+                    {
+                        "id": "10063",
+                        "type": "learner",
+                        "name": "Theodore Hughes",
+                        "username": null,
+                        "successful": true,
+                        "processed": "2021-05-26 12:43",
+                        "sent_on": "2021-05-26 12:43",
+                        "school_id": 2,
+                        "status": "Sent"
+                    },
+                    {
+                        "id": "10080",
+                        "type": "learner",
+                        "name": "Stephanie Jimpson",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10130",
+                        "type": "learner",
+                        "name": "Graham Lackey",
+                        "username": null,
+                        "last_login": "2021-05-26 11:41:38",
+                        "successful": true,
+                        "processed": "2021-05-26 12:43",
+                        "sent_on": "2021-05-26 12:43",
+                        "read": "2021-05-26 12:44",
+                        "school_id": 2,
+                        "status": "Read"
+                    },
+                    {
+                        "id": "10160",
+                        "type": "learner",
+                        "name": "Edwin Undertown",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10174",
+                        "type": "learner",
+                        "name": "Trevor Onnet",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10199",
+                        "type": "learner",
+                        "name": "Rosanna Amoso",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10202",
+                        "type": "learner",
+                        "name": "Paul Andrews",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10204",
+                        "type": "learner",
+                        "name": "Ben Atkinson",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10206",
+                        "type": "learner",
+                        "name": "James Baker",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10208",
+                        "type": "learner",
+                        "name": "Jonn Bradshaw",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10210",
+                        "type": "learner",
+                        "name": "Emma Buckley",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10212",
+                        "type": "learner",
+                        "name": "Jan Burns",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10214",
+                        "type": "learner",
+                        "name": "Kayleighanne Camps",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10216",
+                        "type": "learner",
+                        "name": "Tayla Carlin",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10218",
+                        "type": "learner",
+                        "name": "Jenny Clarke",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10224",
+                        "type": "learner",
+                        "name": "Alessio Ferrero",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10225",
+                        "type": "learner",
+                        "name": "Lilly Flowers",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10236",
+                        "type": "learner",
+                        "name": "Matthew Griffin",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10237",
+                        "type": "learner",
+                        "name": "Chantelle Hargreaves",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10247",
+                        "type": "learner",
+                        "name": "Amelia Kennedy",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10254",
+                        "type": "learner",
+                        "name": "Ryan Teal",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "10255",
+                        "type": "learner",
+                        "name": "Paris Ventour",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "9910",
+                        "type": "learner",
+                        "name": "Nicholas Appleton",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "9934",
+                        "type": "learner",
+                        "name": "Tricia Borson",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    },
+                    {
+                        "id": "9988",
+                        "type": "learner",
+                        "name": "Terrence Crall",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    }
+                ],
+                "regarding": []
+            }
+        ],
+        "pagination": {
+            "current_page": 1,
+            "total_pages": 1,
+            "total_records": 2
+        },
+        "metrics": {
+            "st": "2018-06-25 17:23:38",
+            "sspt": 0.06346988677978516
+        }
+    },
+    "id": "1"
+}

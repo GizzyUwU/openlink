@@ -1,0 +1,46 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "Communicator.Inbox",
+        "success": true,
+        "messages": [
+            {
+                "id": 302,
+                "type": "email",
+                "subject": "Ski Trip Final Payment",
+                "body": "Mr. Abbey, <p>&nbsp;</p><p>Just a reminder final payment of £75 for the ski trip is due this friday</p><p>&nbsp;</p><p>Thanks</p><p>Mrs. Asher</p>",
+                "date": "2021-01-19 13:28",
+                "sender": {
+                    "id": "45",
+                    "type": "employee",
+                    "name": "Mrs Dawn Asher"
+                },
+                "attachments": []
+            },
+            {
+                "id": 288,
+                "type": "email",
+                "subject": "High School Musical Production",
+                "body": "Mr. Abell,<p>Make sure you don't miss the opportunity to see the stunning production of High School Musical next week. Tickets have sold out for Wednesdays performance but there are still a few avalible for the Wednesday and Thursday performances from reception </p><p>we hope you enjoy the Show</p><p>Mr. Abbey</p>",
+                "date": "2021-01-18 16:03",
+                "read": "2021-01-18 16:18",
+                "sender": {
+                    "id": "26",
+                    "type": "employee",
+                    "name": "Mrs Anita Abell"
+                },
+                "attachments": []
+            }
+        ],
+        "pagination": {
+            "current_page": 1,
+            "total_pages": 1,
+            "total_records": 2
+        },
+        "metrics": {
+            "st": "2018-06-25 17:16:24",
+            "sspt": 0.1710059642791748
+        }
+    },
+    "id": "1"
+}

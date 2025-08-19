@@ -1,0 +1,19 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.MarksheetCommentBankCommentAreas",
+      "success": true,
+      "areas": [
+         {
+            "id": 49,
+            "name": "API Test Area"
+         }
+      ],
+      "metrics": {
+         "st": "2019-07-15 16:00:25",
+         "sspt": 0.01667499542236328,
+         "uniqid": "5d2c9509d8f55"
+      }
+   },
+   "id": "8"
+}

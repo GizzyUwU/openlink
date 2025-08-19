@@ -1,0 +1,33 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventEmailMe",
+        "success": true,
+        "bookings": [
+            {
+                "teacher_id": "32",
+                "learner_id": "12739",
+                "subjects": "Form Tutor",
+                "start_time": "03:25AM",
+                "teacher": "Mr B. Kinross",
+                "learner": "Bubbles \"cat\" walshaw"
+            }
+        ],
+        "message_subject": "Your bookings for Lucy Event 2 on Friday 22nd March 2019",
+        "message_body": "Confirmation of bookings on Friday 22nd March 2019\n(Lucy Event 2)\n\nInformation:\n    \n\nYour bookings:\n    03:25AM with Mr B. Kinross (Bubbles \"cat\" walshaw - Form Tutor)\n",
+        "recipient": {
+            "id": 12738,
+            "type": "parent",
+            "name": "-",
+            "email": "-",
+            "phone": "-"
+        },
+        "message_id": 16010,
+        "metrics": {
+            "st": "2019-03-07 15:39:32",
+            "sspt": 0.0516209602355957,
+            "uniqid": "5c813b34bc5db"
+        }
+    },
+    "id": "1"
+}

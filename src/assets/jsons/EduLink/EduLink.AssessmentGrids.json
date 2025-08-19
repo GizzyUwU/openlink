@@ -1,0 +1,1481 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.AssessmentGrids",
+        "success": true,
+        "assessment": [
+            {
+                "name": "Attainment Summary",
+                "applies_this_year": true,
+                "applies_to_year_id": "",
+                "header": "<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Attainment Summary<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">The information below provides current data on the progress of your child in Attainment Summary The table shows their KS2 attainment level as well as there Attainment grade and Effort grade for each term, the final column shows your child's current target level which is colour coded according to the below key.<\/span><\/p><p><br><\/p><p><br><\/p>",
+                "resultstable": [
+                    [
+                        {
+                            "name": "subject",
+                            "content": "",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "",
+                            "content": "KS2 Level ",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "aut",
+                            "content": "Autumn - Attainment Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "",
+                            "content": "Autumn - Effort Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "spr",
+                            "content": "Spring - Attainment Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "",
+                            "content": "Spring - Effort Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "sum",
+                            "content": "Summer - Attainment Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "",
+                            "content": "Summer - Effort Level",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "target",
+                            "content": "Current Target",
+                            "css": "",
+                            "visible": true
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "English",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "531"
+                        },
+                        {
+                            "name": "",
+                            "content": "3",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 764",
+                            "value": "21.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "3A",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 30, aspect 702",
+                            "value": "23.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1142, result set 30, aspect 705",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 31, aspect 702",
+                            "value": "25.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1142, result set 30, aspect 705",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "4B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 32, aspect 702",
+                            "value": "27.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1142, result set , aspect 705",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5B",
+                            "css": "background-color: #bcffc9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 2459",
+                            "value": "33.0",
+                            "comment": "Formula &gt;sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"4B\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Mathematics",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "545"
+                        },
+                        {
+                            "name": "",
+                            "content": "3",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 760",
+                            "value": "21.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "3B",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 30, aspect 703",
+                            "value": "21.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1588, result set 30, aspect 859",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "3A",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 31, aspect 703",
+                            "value": "23.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1588, result set 30, aspect 859",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "4C",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 32, aspect 703",
+                            "value": "25.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1588, result set , aspect 859",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "4",
+                            "css": "background-color: #bcffc9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 956",
+                            "value": "27.0",
+                            "comment": "Formula &gt;sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"4C\",\"num_value\":\"25.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Science",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "556"
+                        },
+                        {
+                            "name": "",
+                            "content": "2",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set , aspect 762",
+                            "value": "15.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "2A",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 30, aspect 704",
+                            "value": "17.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1589, result set 30, aspect 712",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "3C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 31, aspect 704",
+                            "value": "19.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1589, result set 30, aspect 712",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "3B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 32, aspect 704",
+                            "value": "21.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1589, result set , aspect 712",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3B",
+                            "css": "background-color: #ffff70;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 32, aspect 704",
+                            "value": "21.0",
+                            "comment": "Formula =sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"3B\",\"num_value\":\"21.0\",\"type\":\"r\"},{\"value\":\"=\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"3B\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Geography",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "535"
+                        },
+                        {
+                            "name": "",
+                            "content": "2",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1362",
+                            "value": "15.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "6B",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1523",
+                            "value": "39.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 1212",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "6B",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1523",
+                            "value": "39.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 1212",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "6B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1523",
+                            "value": "39.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 706",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "7",
+                            "css": "background-color: #ffd0d0;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 3321",
+                            "value": "7.0",
+                            "comment": "Formula &lt;sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"7\",\"num_value\":\"7.0\",\"type\":\"r\"},{\"value\":\"<\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"6B\",\"num_value\":\"39.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "French",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "533"
+                        },
+                        {
+                            "name": "",
+                            "content": "4",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 713",
+                            "value": "27.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "A",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template 1820, result set 70, aspect 2776",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 859",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "A",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1820, result set , aspect 2776",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 859",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "A",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template 1820, result set , aspect 2776",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 859",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "A",
+                            "css": "background-color: #ffff70;",
+                            "visible": true,
+                            "resultfoundby": "Template 1820, result set , aspect 2776",
+                            "value": "3.0",
+                            "comment": "Formula =sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"A\",\"num_value\":\"3.0\",\"type\":\"r\"},{\"value\":\"=\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"A\",\"num_value\":\"3.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "History",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "539"
+                        },
+                        {
+                            "name": "",
+                            "content": "2",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1356",
+                            "value": "15.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "3A",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2462",
+                            "value": "23.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1212",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "3A",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2462",
+                            "value": "23.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "C",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1212",
+                            "value": "3.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "3B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1424",
+                            "value": "21.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "D",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 3280",
+                            "value": "34.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3B",
+                            "css": "background-color: #ffff70;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1424",
+                            "value": "21.0",
+                            "comment": "Formula =sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"3B\",\"num_value\":\"21.0\",\"type\":\"r\"},{\"value\":\"=\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"3B\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Art",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "519"
+                        },
+                        {
+                            "name": "",
+                            "content": "2",
+                            "css": "background-color: #ffe09f;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 1356",
+                            "value": "15.0"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5A",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2458",
+                            "value": "35.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #65ffbd;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 1212",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5A",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2458",
+                            "value": "35.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #a5d8ff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 1212",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "3A",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2462",
+                            "value": "23.0"
+                        },
+                        {
+                            "name": "",
+                            "content": "B",
+                            "css": "background-color: #d6bdff;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set 30, aspect 1212",
+                            "value": "4.0"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5A",
+                            "css": "background-color: #bcffc9;",
+                            "visible": true,
+                            "resultfoundby": "Template , result set , aspect 2458",
+                            "value": "35.0",
+                            "comment": "Formula &gt;sum matched. [{\"source\":\"target (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"sum\",\"text_value\":\"3A\",\"num_value\":\"23.0\",\"type\":\"r\"}]"
+                        }
+                    ]
+                ],
+                "footer": "<p><br><\/p><p><br><\/p><table style=\"border: 1px solid grey;\"><tbody><tr><td style=\"background-color: rgb(255, 208, 208); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working below Target<\/span><\/td><\/tr><tr><td style=\"background-color: rgb(255, 255, 112); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working on Target<\/span><\/td><\/tr><tr><td style=\"background-color: rgb(188, 255, 201); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working Above Target<\/span>&nbsp;<br><\/td><\/tr><\/tbody><\/table>",
+                "authorid": null
+            },
+            {
+                "name": "KS4",
+                "applies_this_year": true,
+                "applies_to_year_id": "",
+                "header": "<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">KS4<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">This grid is an example of a straight forward way grids can be displayed with using formula for colour coding<\/span><\/p><p style=\"text-align: center; \"><br><\/p>",
+                "resultstable": [
+                    [
+                        {
+                            "name": "subject",
+                            "content": "",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "aut",
+                            "content": "Autumn",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "spr",
+                            "content": "Spring",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "sum",
+                            "content": "Summer",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "target",
+                            "content": "Target",
+                            "css": "",
+                            "visible": true
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "English",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "531"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "4A",
+                            "css": "background-color: #FFD0D0;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 24, aspect 702",
+                            "value": "29.0",
+                            "comment": "Formula &lt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\"<\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5C",
+                            "css": "background-color: #FFD0D0;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 26, aspect 702",
+                            "value": "31.0",
+                            "comment": "Formula &lt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\"<\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5B",
+                            "css": "background-color: #FFFF70;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 25, aspect 702",
+                            "value": "33.0",
+                            "comment": "Formula =target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\"=\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5B",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 2459",
+                            "value": "33.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Mathematics",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "545"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "4B",
+                            "css": "background-color: #FFFF70;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 24, aspect 703",
+                            "value": "27.0",
+                            "comment": "Formula =target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"4B\",\"num_value\":\"27.0\",\"type\":\"r\"},{\"value\":\"=\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 26, aspect 703",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 25, aspect 703",
+                            "value": "31.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "4",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 956",
+                            "value": "27.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Science",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "556"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "3A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 24, aspect 704",
+                            "value": "23.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"3A\",\"num_value\":\"23.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 25, aspect 704",
+                            "value": "27.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"4B\",\"num_value\":\"27.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "4B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 25, aspect 704",
+                            "value": "27.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"4B\",\"num_value\":\"27.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"4B\",\"num_value\":\"27.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set , aspect 957",
+                            "value": "21.0"
+                        }
+                    ]
+                ],
+                "footer": "<p><br><\/p>",
+                "authorid": null
+            },
+            {
+                "name": "KS3",
+                "applies_this_year": true,
+                "applies_to_year_id": "",
+                "header": "<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">KS3<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">This Grid shows an example of using sub-grids to show additional information if you click on the \"+\" next to the subject name the additional information can be viewed for the subject<\/span><\/p><p><br><\/p>",
+                "resultstable": [
+                    [
+                        {
+                            "name": "subject",
+                            "content": "",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "aut",
+                            "content": "Autumn",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "spr",
+                            "content": "Spring",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "sum",
+                            "content": "Summer",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "target",
+                            "content": "Target",
+                            "css": "",
+                            "visible": true
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "English",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "531"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 29, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 33, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "6C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 34, aspect 702",
+                            "value": "37.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5B",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 2459",
+                            "value": "33.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Mathematics",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "545"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 29, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 33, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 34, aspect 703",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "4",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 956",
+                            "value": "27.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Science",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "556"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 29, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 33, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 34, aspect 704",
+                            "value": "31.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set , aspect 957",
+                            "value": "21.0"
+                        }
+                    ]
+                ],
+                "footer": "<p><br><\/p>",
+                "authorid": null,
+                "subgrids": [
+                    {
+                        "name": "Additional Information",
+                        "applies_this_year": true,
+                        "applies_to_year_id": "",
+                        "header": "<p><br><\/p>",
+                        "resultstable": [
+                            [
+                                {
+                                    "name": "subject",
+                                    "content": "",
+                                    "css": "",
+                                    "visible": true
+                                },
+                                {
+                                    "name": "Homework",
+                                    "content": "Homework",
+                                    "css": "",
+                                    "visible": true
+                                },
+                                {
+                                    "name": "Effort",
+                                    "content": "Effort",
+                                    "css": "",
+                                    "visible": true
+                                },
+                                {
+                                    "name": "Teacher Comment",
+                                    "content": "Teacher Comment",
+                                    "css": "",
+                                    "visible": true
+                                },
+                                {
+                                    "name": "",
+                                    "content": "Assessment Mark",
+                                    "css": "",
+                                    "visible": true
+                                }
+                            ],
+                            [
+                                {
+                                    "name": "subject",
+                                    "content": "English",
+                                    "css": "background-color: #eeeeee;",
+                                    "label": "",
+                                    "visible": true,
+                                    "subjectid": "531"
+                                },
+                                {
+                                    "name": "Homework",
+                                    "content": "B",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 1554",
+                                    "value": "4.0"
+                                },
+                                {
+                                    "name": "Effort",
+                                    "content": "C",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 705",
+                                    "value": "3.0"
+                                },
+                                {
+                                    "name": "Teacher Comment",
+                                    "content": "Jimmy has made an excellent start to the year and his confidence is growing.",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 718",
+                                    "value": "0.0"
+                                },
+                                {
+                                    "name": "",
+                                    "content": "6",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 2780",
+                                    "value": "6.0"
+                                }
+                            ],
+                            [
+                                {
+                                    "name": "subject",
+                                    "content": "Mathematics",
+                                    "css": "background-color: #eeeeee;",
+                                    "label": "",
+                                    "visible": true,
+                                    "subjectid": "545"
+                                },
+                                {
+                                    "name": "Homework",
+                                    "content": "C",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 1548",
+                                    "value": "3.0"
+                                },
+                                {
+                                    "name": "Effort",
+                                    "content": "B",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 859",
+                                    "value": "4.0"
+                                },
+                                {
+                                    "name": "Teacher Comment",
+                                    "content": "A very good start",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 1004",
+                                    "value": "0.0"
+                                },
+                                {
+                                    "name": "",
+                                    "content": "0",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 2756",
+                                    "value": "0.0"
+                                }
+                            ],
+                            [
+                                {
+                                    "name": "subject",
+                                    "content": "Science",
+                                    "css": "background-color: #eeeeee;",
+                                    "label": "",
+                                    "visible": true,
+                                    "subjectid": "556"
+                                },
+                                {
+                                    "name": "Homework",
+                                    "content": "C",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 1544",
+                                    "value": "3.0"
+                                },
+                                {
+                                    "name": "Effort",
+                                    "content": "C",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 712",
+                                    "value": "3.0"
+                                },
+                                {
+                                    "name": "Teacher Comment",
+                                    "content": "Jimmy has shown great interest in this subject,",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 958",
+                                    "value": "0.0"
+                                },
+                                {
+                                    "name": "",
+                                    "content": "0",
+                                    "css": "background-color: #eeeeee;",
+                                    "visible": true,
+                                    "resultfoundby": "Template , result set , aspect 2761",
+                                    "value": "0.0"
+                                }
+                            ]
+                        ],
+                        "footer": "<p><br><\/p>",
+                        "authorid": null,
+                        "linkon": "subject"
+                    }
+                ]
+            },
+            {
+                "name": "Term 1",
+                "applies_this_year": false,
+                "applies_to_year_id": "32",
+                "header": "<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Term 1<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p style=\"text-align: center;\"><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">Grids can also be specified for specific year group<\/span><\/p><p style=\"text-align: center;\"><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\"><br><\/span><\/p><p style=\"text-align: center;\"><br><\/p>",
+                "resultstable": [
+                    [
+                        {
+                            "name": "subject",
+                            "content": "",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "aut",
+                            "content": "Autumn",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "spr",
+                            "content": "Spring",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "sum",
+                            "content": "Summer",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "target",
+                            "content": "Target",
+                            "css": "",
+                            "visible": true
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "English",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "531"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 29, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 33, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "6C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 34, aspect 702",
+                            "value": "37.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5B",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 2459",
+                            "value": "33.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Mathematics",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "545"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 29, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 33, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 34, aspect 703",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "4",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 956",
+                            "value": "27.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Science",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "556"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 29, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 33, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 34, aspect 704",
+                            "value": "31.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set , aspect 957",
+                            "value": "21.0"
+                        }
+                    ]
+                ],
+                "footer": "<p><br><\/p>",
+                "authorid": null
+            },
+            {
+                "name": "Term 2",
+                "applies_this_year": false,
+                "applies_to_year_id": "32",
+                "header": "<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Term 2<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\"><\/span><\/p>",
+                "resultstable": [
+                    [
+                        {
+                            "name": "subject",
+                            "content": "",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "aut",
+                            "content": "Autumn",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "spr",
+                            "content": "Spring",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "sum",
+                            "content": "Summer",
+                            "css": "",
+                            "visible": true
+                        },
+                        {
+                            "name": "target",
+                            "content": "Target",
+                            "css": "",
+                            "visible": true
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "English",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "531"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 29, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 33, aspect 702",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "6C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set 34, aspect 702",
+                            "value": "37.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"6C\",\"num_value\":\"37.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "5B",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1122, result set , aspect 2459",
+                            "value": "33.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Mathematics",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "545"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 29, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "5B",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 33, aspect 703",
+                            "value": "33.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"5B\",\"num_value\":\"33.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set 34, aspect 703",
+                            "value": "35.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5A\",\"num_value\":\"35.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"4\",\"num_value\":\"27.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "4",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1125, result set , aspect 956",
+                            "value": "27.0"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "subject",
+                            "content": "Science",
+                            "css": "background-color: #eeeeee;",
+                            "label": "",
+                            "visible": true,
+                            "subjectid": "556"
+                        },
+                        {
+                            "name": "aut",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 29, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"aut (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "spr",
+                            "content": "4A",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 33, aspect 704",
+                            "value": "29.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"spr (implicit)\",\"text_value\":\"4A\",\"num_value\":\"29.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "sum",
+                            "content": "5C",
+                            "css": "background-color: #BCFFC9;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set 34, aspect 704",
+                            "value": "31.0",
+                            "comment": "Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]Formula &gt;target matched. [{\"source\":\"sum (implicit)\",\"text_value\":\"5C\",\"num_value\":\"31.0\",\"type\":\"r\"},{\"value\":\">\",\"type\":\"c\"},{\"source\":\"target\",\"text_value\":\"3\",\"num_value\":\"21.0\",\"type\":\"r\"}]"
+                        },
+                        {
+                            "name": "target",
+                            "content": "3",
+                            "css": "background-color: #eeeeee;",
+                            "visible": true,
+                            "resultfoundby": "Template 1128, result set , aspect 957",
+                            "value": "21.0"
+                        }
+                    ]
+                ],
+                "footer": "<p><br><\/p>",
+                "authorid": null
+            }
+        ],
+        "html": "<h1>Attainment Summary<\/h1>\n<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Attainment Summary<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">The information below provides current data on the progress of your child in Attainment Summary The table shows their KS2 attainment level as well as there Attainment grade and Effort grade for each term, the final column shows your child's current target level which is colour coded according to the below key.<\/span><\/p><p><br><\/p><p><br><\/p>\n<table>\n<tr><th><\/th><th>KS2 Level <\/th><th>Autumn - Attainment Level<\/th><th>Autumn - Effort Level<\/th><th>Spring - Attainment Level<\/th><th>Spring - Effort Level<\/th><th>Summer - Attainment Level<\/th><th>Summer - Effort Level<\/th><th>Current Target<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<\/td><td style=\"background-color: #ffe09f;\" title=\"21.0\">3<\/td><td style=\"background-color: #65ffbd;\" title=\"23.0\">3A<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">C<\/td><td style=\"background-color: #a5d8ff;\" title=\"25.0\">4C<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">C<\/td><td style=\"background-color: #d6bdff;\" title=\"27.0\">4B<\/td><td style=\"background-color: #d6bdff;\" title=\"3.0\">C<\/td><td style=\"background-color: #bcffc9;\" title=\"33.0\">5B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<\/td><td style=\"background-color: #ffe09f;\" title=\"21.0\">3<\/td><td style=\"background-color: #65ffbd;\" title=\"21.0\">3B<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">C<\/td><td style=\"background-color: #a5d8ff;\" title=\"23.0\">3A<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">C<\/td><td style=\"background-color: #d6bdff;\" title=\"25.0\">4C<\/td><td style=\"background-color: #d6bdff;\" title=\"4.0\">B<\/td><td style=\"background-color: #bcffc9;\" title=\"27.0\">4<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<\/td><td style=\"background-color: #ffe09f;\" title=\"15.0\">2<\/td><td style=\"background-color: #65ffbd;\" title=\"17.0\">2A<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">C<\/td><td style=\"background-color: #a5d8ff;\" title=\"19.0\">3C<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">C<\/td><td style=\"background-color: #d6bdff;\" title=\"21.0\">3B<\/td><td style=\"background-color: #d6bdff;\" title=\"3.0\">C<\/td><td style=\"background-color: #ffff70;\" title=\"21.0\">3B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Geography<\/td><td style=\"background-color: #ffe09f;\" title=\"15.0\">2<\/td><td style=\"background-color: #65ffbd;\" title=\"39.0\">6B<\/td><td style=\"background-color: #65ffbd;\" title=\"4.0\">B<\/td><td style=\"background-color: #a5d8ff;\" title=\"39.0\">6B<\/td><td style=\"background-color: #a5d8ff;\" title=\"4.0\">B<\/td><td style=\"background-color: #d6bdff;\" title=\"39.0\">6B<\/td><td style=\"background-color: #d6bdff;\" title=\"3.0\">C<\/td><td style=\"background-color: #ffd0d0;\" title=\"7.0\">7<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">French<\/td><td style=\"background-color: #ffe09f;\" title=\"27.0\">4<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">A<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">C<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">A<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">C<\/td><td style=\"background-color: #d6bdff;\" title=\"3.0\">A<\/td><td style=\"background-color: #d6bdff;\" title=\"3.0\">C<\/td><td style=\"background-color: #ffff70;\" title=\"3.0\">A<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">History<\/td><td style=\"background-color: #ffe09f;\" title=\"15.0\">2<\/td><td style=\"background-color: #65ffbd;\" title=\"23.0\">3A<\/td><td style=\"background-color: #65ffbd;\" title=\"3.0\">C<\/td><td style=\"background-color: #a5d8ff;\" title=\"23.0\">3A<\/td><td style=\"background-color: #a5d8ff;\" title=\"3.0\">C<\/td><td style=\"background-color: #d6bdff;\" title=\"21.0\">3B<\/td><td style=\"background-color: #d6bdff;\" title=\"34.0\">D<\/td><td style=\"background-color: #ffff70;\" title=\"21.0\">3B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Art<\/td><td style=\"background-color: #ffe09f;\" title=\"15.0\">2<\/td><td style=\"background-color: #65ffbd;\" title=\"35.0\">5A<\/td><td style=\"background-color: #65ffbd;\" title=\"4.0\">B<\/td><td style=\"background-color: #a5d8ff;\" title=\"35.0\">5A<\/td><td style=\"background-color: #a5d8ff;\" title=\"4.0\">B<\/td><td style=\"background-color: #d6bdff;\" title=\"23.0\">3A<\/td><td style=\"background-color: #d6bdff;\" title=\"4.0\">B<\/td><td style=\"background-color: #bcffc9;\" title=\"35.0\">5A<\/td><\/tr>\n<\/table>\n<p><br><\/p><p><br><\/p><table style=\"border: 1px solid grey;\"><tbody><tr><td style=\"background-color: rgb(255, 208, 208); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working below Target<\/span><\/td><\/tr><tr><td style=\"background-color: rgb(255, 255, 112); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working on Target<\/span><\/td><\/tr><tr><td style=\"background-color: rgb(188, 255, 201); width: 50px; border-collapse: collapse; border: 1px solid grey;\"><\/td><td style=\"border-collapse: collapse; border: 1px solid grey; vertical-align: middle;\"><span style=\"font-weight: 700;\">&nbsp;Working Above Target<\/span>&nbsp;<br><\/td><\/tr><\/tbody><\/table>\n<hr>\n<h1>KS4<\/h1>\n<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">KS4<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">This grid is an example of a straight forward way grids can be displayed with using formula for colour coding<\/span><\/p><p style=\"text-align: center; \"><br><\/p>\n<table>\n<tr><th><\/th><th>Autumn<\/th><th>Spring<\/th><th>Summer<\/th><th>Target<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<\/td><td style=\"background-color: #FFD0D0;\" title=\"29.0\">4A<\/td><td style=\"background-color: #FFD0D0;\" title=\"31.0\">5C<\/td><td style=\"background-color: #FFFF70;\" title=\"33.0\">5B<\/td><td style=\"background-color: #eeeeee;\" title=\"33.0\">5B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<\/td><td style=\"background-color: #FFFF70;\" title=\"27.0\">4B<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"31.0\">5C<\/td><td style=\"background-color: #eeeeee;\" title=\"27.0\">4<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<\/td><td style=\"background-color: #BCFFC9;\" title=\"23.0\">3A<\/td><td style=\"background-color: #BCFFC9;\" title=\"27.0\">4B<\/td><td style=\"background-color: #BCFFC9;\" title=\"27.0\">4B<\/td><td style=\"background-color: #eeeeee;\" title=\"21.0\">3<\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<hr>\n<h1>KS3<\/h1>\n<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">KS3<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">This Grid shows an example of using sub-grids to show additional information if you click on the \"+\" next to the subject name the additional information can be viewed for the subject<\/span><\/p><p><br><\/p>\n<table>\n<tr><th><\/th><th>Autumn<\/th><th>Spring<\/th><th>Summer<\/th><th>Target<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<br><p class=\"dtholder\"><span class=\"displaytoggle\" data-id=\"1\">+<\/span><\/p><\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"37.0\">6C<\/td><td style=\"background-color: #eeeeee;\" title=\"33.0\">5B<\/td><\/tr>\n<tr style=\"display:none;\" id=\"1\"><td colspan=\"5\"><h1>Additional Information<\/h1>\n<p><br><\/p>\n<table>\n<tr><th><\/th><th>Homework<\/th><th>Effort<\/th><th>Teacher Comment<\/th><th>Assessment Mark<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<\/td><td style=\"background-color: #eeeeee;\" title=\"4.0\">B<\/td><td style=\"background-color: #eeeeee;\" title=\"3.0\">C<\/td><td style=\"background-color: #eeeeee;\" title=\"0.0\">Jimmy has made an excellent start to the year and his confidence is growing.<\/td><td style=\"background-color: #eeeeee;\" title=\"6.0\">6<\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<br><p class=\"dtholder\"><span class=\"displaytoggle\" data-id=\"2\">+<\/span><\/p><\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #eeeeee;\" title=\"27.0\">4<\/td><\/tr>\n<tr style=\"display:none;\" id=\"2\"><td colspan=\"5\"><h1>Additional Information<\/h1>\n<p><br><\/p>\n<table>\n<tr><th><\/th><th>Homework<\/th><th>Effort<\/th><th>Teacher Comment<\/th><th>Assessment Mark<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<\/td><td style=\"background-color: #eeeeee;\" title=\"3.0\">C<\/td><td style=\"background-color: #eeeeee;\" title=\"4.0\">B<\/td><td style=\"background-color: #eeeeee;\" title=\"0.0\">A very good start<\/td><td style=\"background-color: #eeeeee;\" title=\"0.0\"><\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<br><p class=\"dtholder\"><span class=\"displaytoggle\" data-id=\"3\">+<\/span><\/p><\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"31.0\">5C<\/td><td style=\"background-color: #eeeeee;\" title=\"21.0\">3<\/td><\/tr>\n<tr style=\"display:none;\" id=\"3\"><td colspan=\"5\"><h1>Additional Information<\/h1>\n<p><br><\/p>\n<table>\n<tr><th><\/th><th>Homework<\/th><th>Effort<\/th><th>Teacher Comment<\/th><th>Assessment Mark<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<\/td><td style=\"background-color: #eeeeee;\" title=\"3.0\">C<\/td><td style=\"background-color: #eeeeee;\" title=\"3.0\">C<\/td><td style=\"background-color: #eeeeee;\" title=\"0.0\">Jimmy has shown great interest in this subject,<\/td><td style=\"background-color: #eeeeee;\" title=\"0.0\"><\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<hr>\n<h1>Term 1<\/h1>\n<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Term 1<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p style=\"text-align: center;\"><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\">Grids can also be specified for specific year group<\/span><\/p><p style=\"text-align: center;\"><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\"><br><\/span><\/p><p style=\"text-align: center;\"><br><\/p>\n<table>\n<tr><th><\/th><th>Autumn<\/th><th>Spring<\/th><th>Summer<\/th><th>Target<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"37.0\">6C<\/td><td style=\"background-color: #eeeeee;\" title=\"33.0\">5B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #eeeeee;\" title=\"27.0\">4<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"31.0\">5C<\/td><td style=\"background-color: #eeeeee;\" title=\"21.0\">3<\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<hr>\n<h1>Term 2<\/h1>\n<p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><\/p><h2 style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\">Term 2<\/b><\/h2><p style=\"text-align: center;\"><b style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; text-align: left;\"><br><\/b><br><\/p>\n<p><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;  display: inline !important; float: none;\"><\/span><\/p>\n<table>\n<tr><th><\/th><th>Autumn<\/th><th>Spring<\/th><th>Summer<\/th><th>Target<\/th><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">English<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #BCFFC9;\" title=\"37.0\">6C<\/td><td style=\"background-color: #eeeeee;\" title=\"33.0\">5B<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Mathematics<\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"33.0\">5B<\/td><td style=\"background-color: #BCFFC9;\" title=\"35.0\">5A<\/td><td style=\"background-color: #eeeeee;\" title=\"27.0\">4<\/td><\/tr>\n<tr><td style=\"background-color: #eeeeee;\">Science<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"29.0\">4A<\/td><td style=\"background-color: #BCFFC9;\" title=\"31.0\">5C<\/td><td style=\"background-color: #eeeeee;\" title=\"21.0\">3<\/td><\/tr>\n<\/table>\n<p><br><\/p>\n<hr>\n"
+    },
+    "id": "1"
+}

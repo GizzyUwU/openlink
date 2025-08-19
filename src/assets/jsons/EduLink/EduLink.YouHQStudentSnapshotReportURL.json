@@ -1,0 +1,8 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "success": true,
+    "url": "static/iframeoffline.html"
+  },
+  "id": "1"
+}

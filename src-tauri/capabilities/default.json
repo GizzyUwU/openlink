@@ -2,9 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "core:default",
     "opener:default",
@@ -13,15 +11,15 @@
       "allow": [
         {
           "url": "https://*.edulinkone.com"
-        }
-      ],
-      "deny": [
+        },
         {
-          "url": "*"
+          "url": "http://localhost:*/"
         }
       ]
     },
     "keyring:default",
-    "store:default"
+    "store:default",
+    "fs:allow-resource-read-recursive",
+    "fs:allow-exists"
   ]
 }

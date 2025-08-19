@@ -1,0 +1,17 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventLearnerRemove",
+        "success": true,
+        "removed": {
+            "petpl": 0,
+            "bookings": 0
+        },
+        "metrics": {
+            "st": "2019-03-07 14:18:49",
+            "sspt": 0.016338109970092773,
+            "uniqid": "5c812849a0037"
+        }
+    },
+    "id": "1"
+}

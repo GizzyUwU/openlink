@@ -1,0 +1,38 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.HomeworkOverview",
+        "success": true,
+        "from": "2021-06-12",
+        "until": "2021-07-12",
+        "data": [
+            {
+                "id": 226,
+                "activity": "Water Cycle worksheet",
+                "due_date": "2021-06-15",
+                "duration": 30,
+                "owner_id": "26"
+            },
+            {
+                "id": 242,
+                "activity": "Write up practical experiment",
+                "due_date": "2021-07-06",
+                "duration": 60,
+                "owner_id": "26"
+            },
+            {
+                "id": 242,
+                "activity": "Revise for end of unit test",
+                "due_date": "2021-07-06",
+                "duration": 30,
+                "owner_id": "26"
+            }
+        ],
+        "metrics": {
+            "st": "2021-12-12 10:22:56",
+            "sspt": 0.010376930236816406,
+            "uniqid": "5df2150074c99"
+        }
+    },
+    "id": "5"
+}

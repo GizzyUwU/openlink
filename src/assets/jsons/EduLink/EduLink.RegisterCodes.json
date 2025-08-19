@@ -1,0 +1,630 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.RegisterCodes",
+        "success": true,
+        "tags_autohide": false,
+        "lesson_registers_enabled": true,
+        "lesson_registers_default_mark": "-",
+        "lesson_codes": [
+            {
+                "code": "/",
+                "active": true,
+                "name": "Present (AM)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "$",
+                "active": false,
+                "name": "$ - Removed From Lesson",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "%",
+                "active": false,
+                "name": "Agreed Sixth Form Offsite Study",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "-",
+                "active": false,
+                "name": "All should attend / No mark recorded",
+                "type": "Missing",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": null
+            },
+            {
+                "code": "1",
+                "active": false,
+                "name": "1 - Present And Outstanding A2L",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "2",
+                "active": false,
+                "name": "2 - Present And Good A2L",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "3",
+                "active": false,
+                "name": "3 - Present With Low Level Disruptive A2L",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "4",
+                "active": false,
+                "name": "4 - Present With Persistent Disruptive A2L",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "5",
+                "active": false,
+                "name": "Did Not have the correct equipment",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "6",
+                "active": false,
+                "name": "Old Code - Can Be Used Again In Future",
+                "type": "Missing",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": null
+            },
+            {
+                "code": "@",
+                "active": false,
+                "name": "Old Code",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": true,
+                "present": true
+            },
+            {
+                "code": "A",
+                "active": true,
+                "name": "A - Student Out Of The Classroom",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "B",
+                "active": false,
+                "name": "Educated off site (not Dual reg.)",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "C",
+                "active": false,
+                "name": "Other authorised circumstances",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "D",
+                "active": false,
+                "name": "Dual registration (attending other estab.)",
+                "type": "NotRequired",
+                "is_authorised_absence": false,
+                "is_statistical": false,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "E",
+                "active": false,
+                "name": "Excluded (no alternative provision made)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "F",
+                "active": false,
+                "name": "Extended family holiday (agreed)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "G",
+                "active": false,
+                "name": "Family holiday (not agreed or days in excess)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "H",
+                "active": false,
+                "name": "Family holiday (agreed)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "I",
+                "active": false,
+                "name": "Illness (not med/dental appointments)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "J",
+                "active": false,
+                "name": "Interview",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "L",
+                "active": true,
+                "name": "Late (before registers closed)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": true,
+                "present": true
+            },
+            {
+                "code": "M",
+                "active": false,
+                "name": "Medical/Dental appointments",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "N",
+                "active": true,
+                "name": "No reason yet provided for absence",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "O",
+                "active": false,
+                "name": "Unauthorised absence (not covered by other code)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "P",
+                "active": false,
+                "name": "Approved sporting activity",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "Q",
+                "active": false,
+                "name": "Sixth Form Onsite Study (Independent Study Period)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "R",
+                "active": false,
+                "name": "Religious observance",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "S",
+                "active": false,
+                "name": "Study leave",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "T",
+                "active": false,
+                "name": "Traveller absence",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "U",
+                "active": false,
+                "name": "Late (after registers closed)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": true,
+                "present": true
+            },
+            {
+                "code": "V",
+                "active": false,
+                "name": "Educational visit or trip",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "W",
+                "active": false,
+                "name": "Work Experience",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "X",
+                "active": false,
+                "name": "Non-compulsory school age absence",
+                "type": "NotRequired",
+                "is_authorised_absence": false,
+                "is_statistical": false,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "\\",
+                "active": true,
+                "name": "Present (PM)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            }
+        ],
+        "statutory_registers_enabled": true,
+        "statutory_registers_default_mark_am": "-",
+        "statutory_registers_default_mark_pm": "-",
+        "statutory_codes": [
+            {
+                "code": "/",
+                "active": true,
+                "name": "Present (AM)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            },
+            {
+                "code": "-",
+                "active": false,
+                "name": "All should attend / No mark recorded",
+                "type": "Missing",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": null
+            },
+            {
+                "code": "B",
+                "active": false,
+                "name": "Educated off site (not Dual reg.)",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "C",
+                "active": false,
+                "name": "Other authorised circumstances",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "D",
+                "active": false,
+                "name": "Dual registration (attending other estab.)",
+                "type": "NotRequired",
+                "is_authorised_absence": false,
+                "is_statistical": false,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "E",
+                "active": false,
+                "name": "Excluded (no alternative provision made)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "G",
+                "active": false,
+                "name": "Family holiday (not agreed or days in excess)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "H",
+                "active": false,
+                "name": "Family holiday (agreed)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "I",
+                "active": false,
+                "name": "Illness (not med/dental appointments)",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "J",
+                "active": false,
+                "name": "Interview",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "L",
+                "active": false,
+                "name": "Late (before registers closed)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": true,
+                "present": true
+            },
+            {
+                "code": "M",
+                "active": false,
+                "name": "Medical/Dental appointments",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "N",
+                "active": true,
+                "name": "No reason yet provided for absence",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "O",
+                "active": false,
+                "name": "Unauthorised absence (not covered by other code)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "P",
+                "active": false,
+                "name": "Approved sporting activity",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "R",
+                "active": false,
+                "name": "Religious observance",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "S",
+                "active": false,
+                "name": "Study leave",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "T",
+                "active": false,
+                "name": "Traveller absence",
+                "type": "Absent",
+                "is_authorised_absence": true,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "U",
+                "active": true,
+                "name": "Late (after registers closed)",
+                "type": "Absent",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": true,
+                "present": true
+            },
+            {
+                "code": "V",
+                "active": false,
+                "name": "Educational visit or trip",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "W",
+                "active": false,
+                "name": "Work Experience",
+                "type": "ApprovedActivity",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "X",
+                "active": false,
+                "name": "Non-compulsory school age absence",
+                "type": "NotRequired",
+                "is_authorised_absence": false,
+                "is_statistical": false,
+                "is_late": false,
+                "present": false
+            },
+            {
+                "code": "\\",
+                "active": false,
+                "name": "Present (PM)",
+                "type": "Present",
+                "is_authorised_absence": false,
+                "is_statistical": true,
+                "is_late": false,
+                "present": true
+            }
+        ],
+        "codes_protect_from_flood_fill": [
+            "B",
+            "C",
+            "D",
+            "E",
+            "G",
+            "H",
+            "I",
+            "J",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "#",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "codes_to_prompt_change": [],
+        "metrics": {
+            "st": "2019-09-16 12:05:57",
+            "sspt": 0.028606891632080078,
+            "uniqid": "5d7f6c95891dc"
+        }
+    },
+    "id": "1"
+}

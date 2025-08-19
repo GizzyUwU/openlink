@@ -1,0 +1,39 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DetentionSession",
+    "success": true,
+    "session": {
+      "id": 1462,
+      "date": "2017-09-15",
+      "description": "Lunchtime Detentions",
+      "location": "Maths Room 1",
+      "start_time": "12:00:00",
+      "end_time": "12:30:00",
+      "students": [
+        {
+          "id": "10528",
+          "attended": "Attended",
+          "incident_id": 3797,
+          "employee_id": 1,
+          "staff_comments": "",
+          "incident_date": "2017-09-14",
+          "incident_type": "Verbal Abuse - Pupil"
+        },
+        {
+          "id": "10711",
+          "attended": "Attended",
+          "incident_id": 3798,
+          "employee_id": 1,
+          "staff_comments": "",
+          "incident_date": "2017-09-15",
+          "incident_type": "Disruptive Behaviour Outside the Classroom"
+        }
+      ]
+    },
+    "metrics": {
+      "sspt": 0.066703081130981
+    }
+  },
+  "id": "1"
+}

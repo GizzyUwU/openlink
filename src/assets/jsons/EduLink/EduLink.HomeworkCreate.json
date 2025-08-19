@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.HomeworkCreate",
+    "success": true,
+    "homework_id": 756,
+    "metrics": {
+      "st": "2018-09-17 14:16:22",
+      "sspt": 0.08806800842285156
+    }
+  },
+  "id": "1"
+}

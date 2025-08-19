@@ -1,0 +1,225 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Resources",
+      "success": true,
+      "resources": [
+         {
+            "id": 1,
+            "description": "Minibus 1",
+			"information": "Seats 18",
+            "source": "EduLink",
+            "owner_id": null,
+            "external_id": "37",
+            "is_room": false,
+            "categories": [
+               {
+                  "id": 3,
+                  "name": "Minibus"
+               }
+            ]
+         },
+         {
+            "id": 2,
+            "description": "Minibus 2",
+			"information": "Seats 32",
+            "source": "EduLink",
+            "owner_id": null,
+            "external_id": null,
+            "is_room": false,
+            "categories": [
+               {
+                  "id": 3,
+                  "name": "Minibus"
+               }
+            ]
+         },
+         {
+            "id": 3,
+            "description": "Computer Room 1",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "20",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 4,
+            "description": "Computer Room 2",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "21",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 5,
+            "description": "Computer Room 3",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "2",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 6,
+            "description": "Computer Room 4",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "12",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 7,
+            "description": "Main Hall",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "1",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 8,
+            "description": "Language Room 1",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "38",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 9,
+            "description": "Language Room 2",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "39",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 10,
+            "description": "Language Room 3",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "40",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 11,
+            "description": "Language Room 4",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "41",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 12,
+            "description": "Language Room 5",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "42",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 13,
+            "description": "Language Room 6",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "43",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 14,
+            "description": "Language Room 7",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "6",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         },
+         {
+            "id": 15,
+            "description": "Humanities Room 4",
+            "source": "MISRoom",
+            "owner_id": null,
+            "external_id": "36",
+            "is_room": true,
+            "categories": [
+               {
+                  "id": 2,
+                  "name": "Rooms"
+               }
+            ]
+         }
+      ],
+      "metrics": {
+         "sspt": 0.0055999755859375
+      }
+   },
+   "id": "8"
+}

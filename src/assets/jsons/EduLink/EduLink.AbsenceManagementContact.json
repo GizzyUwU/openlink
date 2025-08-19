@@ -1,0 +1,63 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.AbsenceManagementContact",
+        "success": true,
+        "messages": [
+            {
+                "learner_id": "10401",
+                "sending": [],
+                "problems": [
+                    {
+                        "failure": "Please wait. An Email message has already been queued regarding this learner ID 10401 within the last 10 minutes."
+                    }
+                ]
+            },
+            {
+                "learner_id": "10427",
+                "sending": [
+                    {
+                        "id": "10428",
+                        "title": "Mrs",
+                        "forename": "Lauren",
+                        "surname": "Quaker",
+                        "gender": "Female",
+                        "address": "11 Longleat, Bedford, MK41 0SZ, United Kingdom",
+                        "post_code": "MK41 0SZ",
+                        "email": "Lauren.Quaker@example.com",
+                        "phone": "07370 290000",
+                        "mobile_phone": "07370 290000"
+                    }
+                ],
+                "problems": [],
+                "recipients": [
+                    {
+                        "id": "10428",
+                        "type": "parent",
+                        "name": "Mrs Lauren Quaker",
+                        "email": "Lauren.Quaker@example.com",
+                        "phone": "07370 290000"
+                    }
+                ],
+                "message": {
+                    "body": ""
+                }
+            },
+            {
+                "learner_id": "10459",
+                "sending": [],
+                "problems": [],
+                "recipients": [],
+                "message": {
+                    "body": ""
+                }
+            }
+        ],
+        "metrics": {
+            "st": "2019-12-19 10:08:22",
+            "sspt": 0.10717201232910156,
+            "uniqid": "5dfb4c16970e8"
+        }
+    },
+    "id": "10"
+}

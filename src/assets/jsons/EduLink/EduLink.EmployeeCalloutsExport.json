@@ -1,0 +1,18 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCalloutsExport",
+        "success": true,
+        "result": {
+            "url": "/jsons/reports/employee_callout_export.csv",
+            "mime_type": "text/csv",
+            "filename": "employee_callout_2021_10_28_until_2021_10_28.csv"
+        },
+        "metrics": {
+            "st": "2021_10_28 14:31:35",
+            "sspt": 0.011616945266723633,
+            "uniqid": "5d5aa4b7280ea"
+        }
+    },
+    "id": "1"
+}

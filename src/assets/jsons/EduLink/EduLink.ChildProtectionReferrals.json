@@ -1,0 +1,52 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ChildProtectionReferrals",
+        "success": true,
+        "referrals": [
+            {
+                "id": 5,
+                "created": "2021-01-20 15:31:30",
+                "learner_id": "8404",
+                "referral_employee_id": "78",
+                "referred_to_employee_id": "26",
+                "status_id": null,
+                "acknowledged": false,
+                "status": null
+            },
+            {
+                "id": 4,
+                "created": "2021-01-21 14:49:33",
+                "learner_id": "7338",
+                "referral_employee_id": "1",
+                "referred_to_employee_id": "26",
+                "status_id": 5,
+                "acknowledged": true,
+                "status": "Referred to Child services"
+            }
+        ],
+        "status_options": [
+            {
+                "id": 3,
+                "name": "In Progress",
+                "deleted": false
+            },
+            {
+                "id": 4,
+                "name": "Closed",
+                "deleted": false
+            },
+            {
+                "id": 5,
+                "name": "Referred to Child services",
+                "deleted": false
+            }
+        ],
+        "metrics": {
+            "st": "2019-08-13 14:55:33",
+            "sspt": 0.010404109954833984,
+            "uniqid": "5d52c155cb521"
+        }
+    },
+    "id": "1"
+}

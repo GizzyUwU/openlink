@@ -1,0 +1,82 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ClubSessionAttendance",
+      "success": true,
+      "attendance": [
+         {
+            "learner_id": "8404",
+            "attended": true,
+            "session_id": 15,
+            "tags": {
+               "medical_condition": true
+            }
+         },
+         {
+            "learner_id": "6985",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "7718",
+            "attended": false,
+            "session_id": 15
+         },
+         {
+            "learner_id": "7367",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "8225",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "10198",
+            "attended": false,
+            "session_id": 15
+         },
+         {
+            "learner_id": "7831",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "9441",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "9257",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "7825",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "7281",
+            "attended": true,
+            "session_id": 15
+         },
+         {
+            "learner_id": "9258",
+            "attended": true,
+            "session_id": 15
+         },
+		 {
+            "learner_id": "9742",
+            "attended": false,
+            "session_id": 15
+         }
+      ],
+      "metrics": {
+         "st": "2018-09-18 13:41:49",
+         "sspt": 0.06867003440856934
+      }
+   },
+   "id": "2"
+}

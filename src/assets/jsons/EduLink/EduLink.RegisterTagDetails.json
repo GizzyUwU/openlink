@@ -1,0 +1,232 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.RegisterTagDetails",
+      "success": true,
+      "details": {
+         "eal": false,
+         "sen_start_date": "2015-12-14",
+         "sen_current_needs": [
+            {
+               "ranking": 1,
+               "start_date": "2017-05-02T00:00:00",
+               "description": "From CTF File",
+               "need_type": {
+                  "id": 1,
+                  "code": "DYSL",
+                  "description": "Dyslexia"
+               }
+            }
+         ],
+         "sen_strategies": [
+            {
+               "id": 7,
+               "title": "Strategy 1",
+               "strategy": "Break down tasks, information, instructions into smaller parts"
+            },
+            {
+               "id": 8,
+               "title": "Strategy 2",
+               "strategy": "Repeat instructions"
+            },
+            {
+               "id": 9,
+               "title": "Strategy 3",
+               "strategy": "Give extra time for completing tasks at home and in class"
+            }
+         ],
+         "sen_documents": [
+            {
+               "attachments": [
+                  {
+                     "identifier": "ec62e962_EduLinkSimsAgentAccessReport.pdf",
+                     "name": "EduLinkSimsAgentAccessReport.pdf"
+                  }
+               ],
+               "comments": "SEN linked document note",
+               "date": "2017-09-21",
+               "status_code": "PUBLIC",
+               "document_id": 17082,
+               "summary": "linked SEN Document",
+               "type": "SEN Document"
+            }
+         ],
+         "medical_conditions": [
+            {
+               "information_received_date": "2014-09-15T00:00:00",
+               "notes": [
+                  {
+                     "attachments": [
+                        {
+                           "identifier": "0203034-prescription.pdf",
+                           "name": "Prescription.pdf"
+                        }
+                     ],
+                     "comments": "Last prescription",
+                     "date": "2017-09-21",
+                     "document_id": 11787,
+                     "note": "Inhaler is kept in school bag and a spare at reception",
+                     "status_code": "PUBLIC",
+                     "summary": "Medical condition note document",
+                     "type": "General Document"
+                  }
+               ],
+               "condition": {
+                  "id": 3,
+                  "description": "Asthma"
+               }
+            }
+         ],
+         "parental_consents": [
+            {
+               "id": 1,
+               "description": "Copyright Permission",
+               "granted": false
+            },
+            {
+               "id": 2,
+               "description": "Internet Access",
+               "granted": false
+            },
+            {
+               "id": 3,
+               "description": "Photograph Student",
+               "granted": true
+            },
+            {
+               "id": 4,
+               "description": "Sex Education",
+               "granted": false
+            },
+            {
+               "id": 5,
+               "description": "Data Exchange",
+               "granted": false
+            },
+            {
+               "id": 6,
+               "description": "School Visit",
+               "granted": true
+            }
+         ],
+         "sen_status": {
+            "code": null
+         },
+         "behaviour": {
+            "achievements": [
+               {
+                  "type": 1,
+                  "comments": "full marks on exam",
+                  "date": "2018-03-26T00:00:00",
+                  "recorded_on": "2018-03-26T00:00:00",
+                  "recorded_by_id": 26,
+                  "lesson_information": "Science - 10y/Sc1 - Mon:1",
+                  "additional_types": [
+                     {
+                        "id": 27
+                     },
+                     {
+                        "id": 22
+                     }
+                  ],
+                  "employees": [
+                     {
+                        "id": 26
+                     }
+                  ],
+                  "students": [
+                     {
+                        "points": 20,
+                        "id": 9901
+                     }
+                  ],
+                  "id": 2679
+               }
+            ],
+            "incidents": [
+               {
+                  "type_id": 7,
+                  "comments": "Hit another student with their ruler",
+                  "date": "2018-03-26T00:00:00",
+                  "recorded_on": "2018-03-26T00:00:00",
+                  "recorded_by_id": 26,
+                  "location_id": 27,
+                  "bullying_type_id": 3,
+                  "status_id": 2,
+                  "lesson_information": "Science - 10y/Sc1 - Mon:1",
+                  "additional_types": [
+                     {
+                        "id": 27
+                     },
+                     {
+                        "id": 22
+                     }
+                  ],
+                  "employees": [
+                     {
+                        "id": 26
+                     }
+                  ],
+                  "students": [
+                     {
+                        "points": 50,
+                        "id": 9901
+                     }
+                  ],
+                  "id": 4057
+               },
+               {
+                  "type_id": 11,
+                  "comments": "Would not comply",
+                  "date": "2018-03-26T00:00:00",
+                  "recorded_on": "2018-03-26T00:00:00",
+                  "recorded_by_id": 26,
+                  "status_id": 2,
+                  "lesson_information": "Science - 10y/Sc1 - Mon:1",
+                  "additional_types": [],
+                  "employees": [
+                     {
+                        "id": 26
+                     }
+                  ],
+                  "students": [
+                     {
+                        "points": 10,
+                        "id": 9901
+                     }
+                  ],
+                  "id": 4059
+               }
+            ],
+            "detentions": [
+               {
+                  "id": 1489,
+                  "date": "2018-03-26T13:00:00",
+                  "location": "Art Room 2",
+                  "reason": "For not completing homework",
+                  "attended": "Not Recorded",
+                  "non_attendance_reason": ""
+               }
+            ],
+            "report_cards": []
+         },
+         "quick_note": "Please don't phone between 8am-1pm unless urgent as dad works nights",
+         "youhq_logged_low_mood": "2024-10-24 14:06:19",
+         "custom_tags": [
+            {
+               "name": "Locker",
+               "value": "1234"
+            },
+            {
+               "name": "Pronunciation",
+               "value": "add-I-son"
+            }
+         ]
+      },
+      "metrics": {
+         "st": "2018-03-26 18:38:29",
+         "sspt": 0.19292998313903809
+      }
+   },
+   "id": "13"
+}

@@ -1,0 +1,202 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.Calendar",
+        "success": true,
+        "calendar": [
+            {
+                "start_date": "2025-09-01 09:00:00",
+                "end_date": "2025-09-01 16:59:00",
+                "description": "Staff Training Day",
+                "notes": "INSET",
+                "all_day_event": false,
+                "duration": "07:59"
+            },
+            {
+                "start_date": "2025-09-02 09:00:00",
+                "end_date": "2025-09-02 16:59:00",
+                "description": "Staff Training Day",
+                "notes": "INSET Day",
+                "all_day_event": false,
+                "duration": "07:59"
+            },
+            {
+                "start_date": "2025-10-19 09:00:00",
+                "end_date": "2025-10-23 16:59:00",
+                "description": "Y11 and Y13 Mock Exams ",
+                "notes": "",
+                "all_day_event": false,
+                "duration": "5 days 23:59"
+            },
+            {
+                "start_date": "2025-10-24 00:00:00",
+                "end_date": "2025-11-01 23:59:00",
+                "description": "October Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "9 days 23:59"
+            },
+            {
+                "start_date": "2025-11-02 09:00:00",
+                "end_date": "2025-11-09 16:59:00",
+                "description": "Y11 and Y13 Mock Exam continues",
+                "notes": "",
+                "all_day_event": false,
+                "duration": "7 days 23:59"
+            },
+            {
+                "start_date": "2025-11-30 09:00:00",
+                "end_date": "2025-11-30 16:59:00",
+                "description": "Staff Training Day",
+                "notes": "INSET Day",
+                "all_day_event": false,
+                "duration": "07:59"
+            },
+            {
+                "start_date": "2025-12-22 00:00:00",
+                "end_date": "2023-01-03 23:59:00",
+                "description": "Christmas Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "13 days 23:59"
+            },
+            {
+                "start_date": "2025-01-03 09:00:00",
+                "end_date": "2025-01-03 16:59:00",
+                "description": "Staff Training Day",
+                "notes": "INSET Day",
+                "all_day_event": false,
+                "duration": "07:59"
+            },
+            {
+                "start_date": "2025-03-23 09:00:00",
+                "end_date": "2025-03-23 17:00:00",
+                "description": "Year 7 Warwick Castle Trip",
+                "notes": "",
+                "all_day_event": false,
+                "duration": "08:00"
+            },
+            {
+                "start_date": "2025-01-24 15:00:00",
+                "end_date": "2025-01-24 16:30:00",
+                "description": "Chess Club",
+                "notes": "In Room 1",
+                "all_day_event": false,
+                "duration": "01:30"
+            },
+            {
+                "start_date": "2025-01-22 17:00:00",
+                "end_date": "2025-01-22 19:00:00",
+                "description": "High School Musical - School Production",
+                "notes": "Tickets Avalible from Reception",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-01-24 17:00:00",
+                "end_date": "2025-01-24 19:00:00",
+                "description": "High School Musical - School Production",
+                "notes": "Tickets Avalible from Reception",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-01-25 17:00:00",
+                "end_date": "2025-01-27 19:00:00",
+                "description": "High School Musical - School Production",
+                "notes": "Tickets Avalible from Reception",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-02-11 16:00:00",
+                "end_date": "2025-02-11 18:00:00",
+                "description": "Sixth Form Consulation evening",
+                "notes": "",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-02-13 00:00:00",
+                "end_date": "2025-02-21 23:59:00",
+                "description": "February Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "9 days 23:59"
+            },
+            {
+                "start_date": "2025-03-17 16:00:00",
+                "end_date": "2025-03-17 18:00:00",
+                "description": "Year 9 option evening",
+                "notes": "Options booklet will be sent out a week prior to the evening",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-03-24 16:00:00",
+                "end_date": "2025-03-24 18:00:00",
+                "description": "Year 9 Consulation evening & option selection",
+                "notes": "Please bring your completed booklets",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-04-05 00:00:00",
+                "end_date": "2025-04-19 23:59:00",
+                "description": "Easter Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "15 days 23:59"
+            },
+            {
+                "start_date": "2025-04-30 09:00:00",
+                "end_date": "2025-04-30 16:59:00",
+                "description": "Staff Training Day",
+                "notes": "INSET Day",
+                "all_day_event": false,
+                "duration": "07:59"
+            },
+            {
+                "start_date": "2025-05-03 00:00:00",
+                "end_date": "2025-05-03 23:59:00",
+                "description": "Bank Holiday",
+                "notes": "May Day Bank Holiday",
+                "all_day_event": true,
+                "duration": "23:59"
+            },
+            {
+                "start_date": "2025-05-29 00:00:00",
+                "end_date": "2025-06-07 23:59:00",
+                "description": "Spring Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "8 days 23:59"
+            },
+            {
+                "start_date": "2025-06-25 12:30:00",
+                "end_date": "2025-06-25 15:10:00",
+                "description": "Sixthform Fundraising Event",
+                "notes": "School Hall",
+                "all_day_event": false,
+                "duration": "04:40"
+            },
+            {
+                "start_date": "2025-07-13 16:00:00",
+                "end_date": "2025-07-13 18:00:00",
+                "description": "Year 10 Parents Consultation Evening",
+                "notes": "Meeting Room 2",
+                "all_day_event": false,
+                "duration": "02:00"
+            },
+            {
+                "start_date": "2025-07-22 00:00:00",
+                "end_date": "2025-09-04 23:59:00",
+                "description": "Summer Holiday",
+                "notes": "",
+                "all_day_event": true,
+                "duration": "44 days 23:59"
+            }
+        ]
+    },
+    "id": "1"
+}

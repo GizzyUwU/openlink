@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceTeachingGroupMove",
+      "success": false,
+      "error": "Sorry You can not move bookings in the Demo",
+      "metrics": {
+         "sspt": 0.027691125869751
+      }
+   },
+   "id": "1"
+}

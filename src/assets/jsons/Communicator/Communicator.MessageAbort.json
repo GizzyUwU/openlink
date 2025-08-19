@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "Communicator.MessageAbort",
+    "success": true,
+    "new_messages": 1,
+    "inbox": []
+  },
+  "id": "1"
+}

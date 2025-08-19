@@ -1,0 +1,28 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceCategories",
+      "success": true,
+      "categories": [
+         {
+            "id": 2,
+            "description": "Rooms",
+            "type": "System"
+         },
+         {
+            "id": 3,
+            "description": "Minibus",
+            "type": "Manual"
+         },
+		 {
+            "id": 4,
+            "description": "Computer rooms",
+            "type": "Manual"
+         }
+      ],
+      "metrics": {
+         "sspt": 0.00066781044006348
+      }
+   },
+   "id": "7"
+}

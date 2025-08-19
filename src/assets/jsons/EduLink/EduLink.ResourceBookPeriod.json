@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceBookPeriod",
+      "success": false,
+      "error": "Sorry You can not make bookings in the Demo",
+      "metrics": {
+         "sspt": 0.013571977615356
+      }
+   },
+   "id": "1"
+}

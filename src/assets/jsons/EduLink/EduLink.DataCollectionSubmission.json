@@ -1,0 +1,60 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DataCollectionSubmission",
+    "success": true,
+    "next_method": "EduLink.DataCollectionManageEmployeeField",
+    "param": {
+      "employee_id": "26"
+    },
+    "fields": {
+      "emails": {
+		"type": "bespoke",
+        "label": "Emails",
+        "original": [
+          {
+            "address": "foo@bar.net",
+            "location": "Home",
+            "main": false,
+            "primary": false
+          }
+        ],
+        "new": [
+		  {
+            "address": "lucy@overnetdata.com",
+            "location": "Home",
+            "main": true,
+            "primary": false
+          },
+          {
+            "address": "support@overnetdata.com",
+            "location": "Work",
+            "main": true,
+            "primary": true
+          } 
+        ]
+      },
+      "telephones": {
+		"type": "bespoke",
+        "label": "Telephones",
+        "original": [
+          {
+            "number": "01604 807 545",
+            "location": "Home",
+            "main": false,
+            "primary": false
+          }
+        ],
+        "new": [
+          {
+            "number": "01604 807 545",
+            "location": "Work",
+            "main": true,
+            "primary": true
+          }
+        ]
+      }
+    },
+    "id": 1
+  }
+}

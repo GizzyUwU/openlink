@@ -1,0 +1,17 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventEmployeeSwap",
+        "success": true,
+        "updated": {
+            "petpl": 19,
+            "pest": 11
+        },
+        "metrics": {
+            "st": "2019-03-07 15:20:03",
+            "sspt": 0.028534889221191406,
+            "uniqid": "5c8136a35cc39"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,702 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.SeatingPlan",
+    "success": true,
+    "group": {
+      "id": 445,
+      "register_type": "session",
+      "name": "11D",
+      "type": "form_group"
+    },
+    "room": {
+      "short_name": "E2",
+      "sims_room_id": 26,
+      "long_name": "English Room 2",
+      "height": 6,
+      "width": 7,
+      "blackboard": {
+        "angle": 0,
+        "x": 2.26,
+        "y": 0.01
+      },
+      "tables": [
+        {
+          "angle": 90,
+          "x": 2.4,
+          "y": 1.2,
+          "left": "9447",
+          "right": "9457",
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 1.2,
+          "y": 1.2,
+          "left": "9466",
+          "right": "9474",
+          "type": "table2"
+        },
+        {
+          "angle": 270,
+          "x": 4,
+          "y": 3.4,
+          "left": "9485",
+          "right": "9491",
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 5.8,
+          "y": 4,
+          "left": "9497",
+          "right": "9618",
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 0,
+          "y": 1.2,
+          "left": "9630",
+          "right": "9633",
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 4.6,
+          "y": 4,
+          "left": "9639",
+          "right": "9687",
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 1.2,
+          "y": 1.8,
+          "left": "9702",
+          "right": "9710",
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 4.6,
+          "y": 3.4,
+          "left": "9719",
+          "right": "9730",
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 0,
+          "y": 1.8,
+          "left": "9736",
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 5.8,
+          "y": 3.4,
+          "left": "9748",
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 90,
+          "x": 2.4,
+          "y": 3.4,
+          "left": "9441",
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 1.2,
+          "y": 3.4,
+          "left": "9775",
+          "right": "9800",
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 1.2,
+          "y": 4,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 0,
+          "y": 3.4,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 0,
+          "y": 4,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 4.6,
+          "y": 1.2,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 4.6,
+          "y": 1.8,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 180,
+          "x": 5.8,
+          "y": 1.8,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 0,
+          "x": 5.8,
+          "y": 1.2,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        },
+        {
+          "angle": 270,
+          "x": 4,
+          "y": 1.2,
+          "left": null,
+          "right": null,
+          "type": "table2"
+        }
+      ],
+      "id": 1,
+      "found_by": {
+        ":sims_room_id": 26,
+        ":employee_id": 26,
+        ":group_id": 445,
+        ":group_type": "form_group"
+      },
+      "register_id": 1,
+      "learners": [
+        {
+          "id": "9441",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": null
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9447",
+          "seated": true,
+          "sen": "K",
+          "gifted_talented": true,
+          "medical_condition": true,
+          "pupil_premium": true,
+          "eal": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": null
+            },
+            {
+              "label": "Target",
+              "result": null
+            },
+            {
+              "label": "Effort",
+              "result": null
+            }
+          ]
+        },
+        {
+          "id": "9457",
+          "seated": true,
+          "sen": "K",
+          "gifted_talented": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "B"
+            },
+            {
+              "label": "Target",
+              "result": "3"
+            },
+            {
+              "label": "Effort",
+              "result": "1"
+            }
+          ]
+        },
+        {
+          "id": "9466",
+          "seated": false,
+          "pupil_premium": true,
+          "eal": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "C"
+            },
+            {
+              "label": "Target",
+              "result": "2"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9474",
+          "seated": false,
+          "sen": "K",
+          "gifted_talented": true,
+          "medical_condition": true,
+          "pupil_premium": true,
+          "eal": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "E"
+            },
+            {
+              "label": "Target",
+              "result": "2"
+            },
+            {
+              "label": "Effort",
+              "result": "2"
+            }
+          ]
+        },
+        {
+          "id": "9485",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "2"
+            },
+            {
+              "label": "Effort",
+              "result": "1"
+            }
+          ]
+        },
+        {
+          "id": "9491",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9497",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9618",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9630",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9633",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9639",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9687",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9702",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9710",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9719",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9730",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9736",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9748",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9775",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9800",
+          "seated": true,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9806",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9823",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9826",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9829",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9869",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        },
+        {
+          "id": "9872",
+          "seated": false,
+          "assessment": [
+            {
+              "label": "Current",
+              "result": "A"
+            },
+            {
+              "label": "Target",
+              "result": "1"
+            },
+            {
+              "label": "Effort",
+              "result": "3"
+            }
+          ]
+        }
+      ]
+    },
+    "metrics": {
+      "st": "2018-08-10 12:32:15",
+      "sspt": 0.10306906700134277
+    }
+  },
+  "id": "1"
+}

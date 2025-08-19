@@ -1,0 +1,13 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.DetentionSessionLearnerAdd",
+      "success": true,
+      "detention_session_id": 1526,
+      "metrics": {
+         "st": "2018-09-26 16:23:05",
+         "sspt": 0.21766304969787598
+      }
+   },
+   "id": "1"
+}

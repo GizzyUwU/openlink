@@ -1,0 +1,45 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.EmployeeGroups",
+      "success": true,
+      "groups": [
+         {
+            "id": 3,
+            "name": "SLT",
+            "owner_id": "26",
+            "global": false,
+            "member_count": 2
+         },
+         {
+            "id": 4,
+            "name": "SENCO Team",
+            "owner_id": "26",
+            "global": true,
+            "member_count": 2
+         },
+         {
+            "id": 5,
+            "name": "Parental engagement team",
+            "owner_id": "26",
+            "global": true,
+            "member_count": 2
+         },
+         {
+            "id": 6,
+            "name": "Lunch Duty",
+            "owner_id": "26",
+            "global": true,
+            "member_count": 2
+         },
+         {
+            "id": 7,
+            "name": "first aiders",
+            "owner_id": "26",
+            "global": true,
+            "member_count": 2
+         }
+      ]
+   },
+   "id": "1"
+}

@@ -1,0 +1,629 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventEmployeeLearners",
+        "success": true,
+        "learners": [
+            {
+                "learner_id": "10033",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10198",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10200",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10201",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10203",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10207",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10209",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10211",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10215",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10217",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10219",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10230",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10242",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10252",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10253",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10256",
+                "subjects": "Form Tutor"
+            },
+            {
+                "learner_id": "10425",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10501",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10523",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10528",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10529",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10548",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10549",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10648",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "10656",
+                "subjects": "Food Tech"
+            },
+            {
+                "learner_id": "12107",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12111",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12116",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12118",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12121",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12126",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12132",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12145",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12148",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12152",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12155",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "12158",
+                "subjects": "PSE"
+            },
+            {
+                "learner_id": "8257",
+                "subjects": "Design & Tech"
+            },
+            {
+                "learner_id": "8722",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "8733",
+                "subjects": "Design & Tech"
+            },
+            {
+                "learner_id": "8754",
+                "subjects": "Design & Tech"
+            },
+            {
+                "learner_id": "8756",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "8759",
+                "subjects": "Design & Tech, Recreation"
+            },
+            {
+                "learner_id": "9070",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9259",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9285",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9286",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9288",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9292",
+                "subjects": "Recreation"
+            },
+            {
+                "learner_id": "9440",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9441",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9442",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9443",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9444",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9445",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9446",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9447",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9449",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9451",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9452",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9454",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9456",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9457",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9460",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9462",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9463",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9465",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9466",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9468",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9470",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9474",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9475",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9476",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9477",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9479",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9480",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9484",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9486",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9487",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9488",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9489",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9492",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9496",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9497",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9609",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9612",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9615",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9621",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9624",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9627",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9630",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9636",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9642",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9645",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9648",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9654",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9657",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9665",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9668",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9673",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9676",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9679",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9681",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9687",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9693",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9699",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9702",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9704",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9707",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9713",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9716",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9722",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9725",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9727",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9730",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9733",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9736",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9742",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9745",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9748",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9754",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9757",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9764",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9767",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9770",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9772",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9775",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9783",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9788",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9791",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9793",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9796",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9800",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9803",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9806",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9809",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9815",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9818",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9823",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9826",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9838",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9841",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9849",
+                "subjects": "CDT:Des & Com, Religious Ed"
+            },
+            {
+                "learner_id": "9852",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9854",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9857",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9859",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9862",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9867",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9869",
+                "subjects": "CDT:Des & Com"
+            },
+            {
+                "learner_id": "9881",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9887",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9890",
+                "subjects": "Religious Ed"
+            },
+            {
+                "learner_id": "9919",
+                "subjects": "Form Tutor"
+            }
+        ],
+        "metrics": {
+            "sspt": 0.027961015701294
+        }
+    },
+    "id": "1"
+}

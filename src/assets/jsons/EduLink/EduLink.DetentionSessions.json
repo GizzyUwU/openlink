@@ -1,0 +1,94 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DetentionSessions",
+    "success": true,
+    "sessions": [
+      {
+        "id": 1466,
+        "date": "2017-09-06",
+        "description": "Heads of Year",
+        "location": "Room 17",
+        "start_time": "15:10:00",
+        "end_time": "16:00:00",
+        "type_id": null,
+        "optimum_num_of_attendees": null,
+        "num_of_detainees": 12
+      },
+      {
+        "id": 1466,
+        "date": "2017-09-06",
+        "description": "Head of School",
+        "location": "Room 101",
+        "start_time": "13:00:00",
+        "end_time": "13:45:00",
+        "type_id": null,
+        "optimum_num_of_attendees": null,
+        "num_of_detainees": 0
+      },
+      {
+        "id": 1462,
+        "date": "2017-09-15",
+        "description": "Lunchtime Detentions",
+        "start_time": "12:00:00",
+        "end_time": "12:30:00",
+        "type_id": 4,
+        "location": "Maths Room 1",
+        "optimum_num_of_attendees": 20,
+        "num_of_detainees": 2,
+        "from_cache": true
+      },
+      {
+        "id": 1465,
+        "date": "2017-10-04",
+        "description": "Heads of Year",
+        "start_time": "15:30:00",
+        "end_time": "16:30:00",
+        "type_id": 1,
+        "location": "Room 17",
+        "optimum_num_of_attendees": 5,
+        "num_of_detainees": 5,
+        "from_cache": true
+      },
+      {
+        "id": 1464,
+        "date": "2017-10-13",
+        "description": "SLT Detention",
+        "start_time": "15:30:00",
+        "end_time": "16:30:00",
+        "type_id": 2,
+        "location": "Humanities Room 1",
+        "optimum_num_of_attendees": 30,
+        "num_of_detainees": 5,
+        "from_cache": true
+      },
+      {
+        "id": 3962,
+        "date": "2017-09-22",
+        "description": null,
+        "location": "MFL 15",
+        "start_time": "00:00:00",
+        "end_time": "00:00:00",
+        "type_id": null,
+        "optimum_num_of_attendees": null,
+        "num_of_detainees": 2
+      },
+      {
+        "id": 1463,
+        "date": "2017-10-13",
+        "description": "Lunchtime Detentions",
+        "start_time": "12:00:00",
+        "end_time": "12:30:00",
+        "type_id": 4,
+        "location": "Maths Room 1",
+        "optimum_num_of_attendees": null,
+        "num_of_detainees": 1,
+        "from_cache": true
+      }
+    ],
+    "metrics": {
+      "sspt": 0.50507879257202
+    }
+  },
+  "id": "1"
+}

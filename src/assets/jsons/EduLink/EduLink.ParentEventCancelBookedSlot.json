@@ -1,0 +1,24 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventCancelBookedSlot",
+        "success": true,
+        "slot_cancelled": {
+            "parent_id": "10633",
+            "learner_id": "10549",
+            "teacher_id": "26"
+        },
+        "debug": {
+            "msg": [
+                "Updated parent_event_slot_teacher for id 81796",
+                "Commited transaction"
+            ]
+        },
+        "metrics": {
+            "st": "2019-03-07 16:01:41",
+            "sspt": 0.017663955688476562,
+            "uniqid": "5c814065cf94d"
+        }
+    },
+    "id": "1"
+}

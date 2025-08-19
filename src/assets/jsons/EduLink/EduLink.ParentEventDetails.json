@@ -1,0 +1,214 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventDetails",
+        "success": true,
+        "teachers": [
+            {
+                "teacher_id": "1",
+                "learner_count": 7,
+                "slots_booked": 2,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "26",
+                "learner_count": 5,
+                "slots_booked": 0,
+                "slots_blocked": 3
+            },
+            {
+                "teacher_id": "29",
+                "learner_count": 2,
+                "slots_booked": 1,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "34",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "6",
+                "learner_count": 2,
+                "slots_booked": 1,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "72",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "84",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "86",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "87",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "88",
+                "learner_count": 2,
+                "slots_booked": 1,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "91",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "92",
+                "learner_count": 2,
+                "slots_booked": 1,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "94",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "98",
+                "learner_count": 1,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "19",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "2",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "22",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "23",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "25",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "67",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "75",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            },
+            {
+                "teacher_id": "77",
+                "learner_count": 0,
+                "slots_booked": 0,
+                "slots_blocked": 0
+            }
+        ],
+        "learners": {
+            "total": 5,
+            "parent_booked": {
+                "#dev-info": "These have made a booking",
+                "ids": [
+                    12105,
+                    12106
+                ],
+                "total": 2,
+                "percent_of_total": 40
+            },
+            "parent_absent": {
+                "#dev-info": "These booked but did not turn up",
+                "ids": [
+                    12105,
+                    12106
+                ],
+                "total": 2,
+                "percent_of_booked": 100
+            },
+            "parent_attended": {
+                "ids": [
+                    9445,
+                    9447,
+                    9448,
+                    9457
+                ],
+                "#dev-info": "These booked and attended",
+                "total": 4,
+                "percent_of_total": 80
+            },
+			
+            "without_booking": [
+                7338,
+                12107,
+                8404,
+                9919,
+				8404
+            ]
+        },
+		"parents": {
+            "ids": [
+                12533,
+                10582,
+                12714,
+                10406,
+                12686,
+                12717
+			]
+		},
+		"event": {
+            "name": "Test Event",
+            "information": "",
+            "available_to_parents": "2017-11-01 08:00:00",
+            "closed_to_parents_at": null,
+            "prevent_consecutive_bookings": false,
+            "slot_duration": 10,
+            "buffer_duration": 0,
+            "bookable_slots_per_learner": null,
+            "bookings_closed": false,
+            "sessions": [
+                {
+                    "id": 131,
+                    "start_time": "2017-11-11 16:00:00",
+                    "end_time": "2017-11-11 17:00:00"
+                }
+            ]
+        },
+        "metrics": {
+            "st": "2018-01-19 13:03:00",
+            "sspt": 0.1698038578033447265625
+        }
+    },
+    "id": "1"
+}

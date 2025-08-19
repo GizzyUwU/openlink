@@ -1,0 +1,805 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.HomeworkOverview",
+        "success": true,
+        "from": "2021-06-12",
+        "until": "2021-07-12",
+        "data": [
+            {
+                "id": "37",
+                "name": "Year  7",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 10
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 4
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 4
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 5
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 0
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 7
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 3
+                    },
+                    {
+                        "id": "547",
+                        "name": "Music",
+                        "count": 5
+                    },
+                    {
+                        "id": "551",
+                        "name": "PSE",
+                        "count": 9
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 0
+                    },
+                    {
+                        "id": "553",
+                        "name": "Religious Education",
+                        "count": 1
+                    },
+                    {
+                        "id": "556",
+                        "name": "Science",
+                        "count": 11
+                    },
+                    {
+                        "id": "562",
+                        "name": "Technology",
+                        "count": 2
+                    }
+                ]
+            },
+            {
+                "id": "36",
+                "name": "Year  8",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 1
+                    },
+                    {
+                        "id": "528",
+                        "name": "Drama",
+                        "count": 0
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 5
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 2
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 2
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 0
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 3
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 15
+                    },
+                    {
+                        "id": "547",
+                        "name": "Music",
+                        "count": 0
+                    },
+                    {
+                        "id": "551",
+                        "name": "PSE",
+                        "count": 0
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 0
+                    },
+                    {
+                        "id": "553",
+                        "name": "Religious Education",
+                        "count": 3
+                    },
+                    {
+                        "id": "556",
+                        "name": "Science",
+                        "count": 8
+                    },
+                    {
+                        "id": "562",
+                        "name": "Technology",
+                        "count": 2
+                    }
+                ]
+            },
+            {
+                "id": "35",
+                "name": "Year  9",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 5
+                    },
+                    {
+                        "id": "808",
+                        "name": "Design & Technology",
+                        "count": 3
+                    },
+                    {
+                        "id": "528",
+                        "name": "Drama",
+                        "count": 0
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 5
+                    },
+                    {
+                        "id": "809",
+                        "name": "Food Technology",
+                        "count": 2
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 2
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 2
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 3
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 5
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 6
+                    },
+                    {
+                        "id": "547",
+                        "name": "Music",
+                        "count": 5
+                    },
+                    {
+                        "id": "551",
+                        "name": "PSE",
+                        "count": 0
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 0
+                    },
+                    {
+                        "id": "553",
+                        "name": "Religious Education",
+                        "count": 2
+                    },
+                    {
+                        "id": "810",
+                        "name": "Resistant Materials",
+                        "count": 3
+                    },
+                    {
+                        "id": "556",
+                        "name": "Science",
+                        "count": 6
+                    },
+                    {
+                        "id": "562",
+                        "name": "Technology",
+                        "count": 2
+                    },
+                    {
+                        "id": "811",
+                        "name": "Textiles",
+                        "count": 1
+                    }
+                ]
+            },
+            {
+                "id": "34",
+                "name": "Year 10",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 5
+                    },
+                    {
+                        "id": "2290",
+                        "name": "Astronomy",
+                        "count": 1
+                    },
+                    {
+                        "id": "520",
+                        "name": "Biology",
+                        "count": 5
+                    },
+                    {
+                        "id": "521",
+                        "name": "Business Studies",
+                        "count": 4
+                    },
+                    {
+                        "id": "523",
+                        "name": "Chemistry",
+                        "count": 2
+                    },
+                    {
+                        "id": "2155",
+                        "name": "Computer Studies",
+                        "count": 2
+                    },
+                    {
+                        "id": "528",
+                        "name": "Drama",
+                        "count": 1
+                    },
+                    {
+                        "id": "529",
+                        "name": "Economics",
+                        "count": 1
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 4
+                    },
+                    {
+                        "id": "2157",
+                        "name": "Food & Nutrition",
+                        "count": 2
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 0
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 3
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 2
+                    },
+                    {
+                        "id": "2158",
+                        "name": "Graphics",
+                        "count": 4
+                    },
+                    {
+                        "id": "2159",
+                        "name": "Hair & Beauty",
+                        "count": 1
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 3
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 5
+                    },
+                    {
+                        "id": "547",
+                        "name": "Music",
+                        "count": 3
+                    },
+                    {
+                        "id": "551",
+                        "name": "PSE",
+                        "count": 0
+                    },
+                    {
+                        "id": "2168",
+                        "name": "Photography",
+                        "count": 1
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 0
+                    },
+                    {
+                        "id": "549",
+                        "name": "Physics",
+                        "count": 3
+                    },
+                    {
+                        "id": "553",
+                        "name": "Religious Education",
+                        "count": 0
+                    },
+                    {
+                        "id": "556",
+                        "name": "Science",
+                        "count": 6
+                    },
+                    {
+                        "id": "559",
+                        "name": "Sociology",
+                        "count": 2
+                    },
+                    {
+                        "id": "562",
+                        "name": "Technology",
+                        "count": 2
+                    },
+                    {
+                        "id": "811",
+                        "name": "Textiles",
+                        "count": 0
+                    },
+                    {
+                        "id": "2289",
+                        "name": "Vehicle Maintainance",
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "id": "33",
+                "name": "Year 11",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 5
+                    },
+                    {
+                        "id": "2290",
+                        "name": "Astronomy",
+                        "count": 1
+                    },
+                    {
+                        "id": "520",
+                        "name": "Biology",
+                        "count": 5
+                    },
+                    {
+                        "id": "521",
+                        "name": "Business Studies",
+                        "count": 4
+                    },
+                    {
+                        "id": "523",
+                        "name": "Chemistry",
+                        "count": 2
+                    },
+                    {
+                        "id": "2155",
+                        "name": "Computer Studies",
+                        "count": 2
+                    },
+                    {
+                        "id": "528",
+                        "name": "Drama",
+                        "count": 1
+                    },
+                    {
+                        "id": "529",
+                        "name": "Economics",
+                        "count": 1
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 4
+                    },
+                    {
+                        "id": "2157",
+                        "name": "Food & Nutrition",
+                        "count": 2
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 0
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 7
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 2
+                    },
+                    {
+                        "id": "2158",
+                        "name": "Graphics",
+                        "count": 4
+                    },
+                    {
+                        "id": "2159",
+                        "name": "Hair & Beauty",
+                        "count": 1
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 3
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 5
+                    },
+                    {
+                        "id": "547",
+                        "name": "Music",
+                        "count": 3
+                    },
+                    {
+                        "id": "551",
+                        "name": "PSE",
+                        "count": 0
+                    },
+                    {
+                        "id": "2168",
+                        "name": "Photography",
+                        "count": 1
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 0
+                    },
+                    {
+                        "id": "549",
+                        "name": "Physics",
+                        "count": 3
+                    },
+                    {
+                        "id": "553",
+                        "name": "Religious Education",
+                        "count": 0
+                    },
+                    {
+                        "id": "556",
+                        "name": "Science",
+                        "count": 4
+                    },
+                    {
+                        "id": "559",
+                        "name": "Sociology",
+                        "count": 2
+                    },
+                    {
+                        "id": "562",
+                        "name": "Technology",
+                        "count": 2
+                    },
+                    {
+                        "id": "811",
+                        "name": "Textiles",
+                        "count": 0
+                    },
+                    {
+                        "id": "2289",
+                        "name": "Vehicle Maintainance",
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "id": "32",
+                "name": "Year 12",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 2
+                    },
+                    {
+                        "id": "520",
+                        "name": "Biology",
+                        "count": 3
+                    },
+                    {
+                        "id": "521",
+                        "name": "Business Studies",
+                        "count": 1
+                    },
+                    {
+                        "id": "523",
+                        "name": "Chemistry",
+                        "count": 2
+                    },
+                    {
+                        "id": "2154",
+                        "name": "Construction",
+                        "count": 0
+                    },
+                    {
+                        "id": "529",
+                        "name": "Economics",
+                        "count": 1
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 4
+                    },
+                    {
+                        "id": "809",
+                        "name": "Food Technology",
+                        "count": 0
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 0
+                    },
+                    {
+                        "id": "537",
+                        "name": "General Studies",
+                        "count": 1
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 3
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 2
+                    },
+                    {
+                        "id": "540",
+                        "name": "Health & Social",
+                        "count": 1
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 2
+                    },
+                    {
+                        "id": "2166",
+                        "name": "Land Based Studies",
+                        "count": 0
+                    },
+                    {
+                        "id": "543",
+                        "name": "Law",
+                        "count": 4
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 5
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 1
+                    },
+                    {
+                        "id": "549",
+                        "name": "Physics",
+                        "count": 2
+                    },
+                    {
+                        "id": "2167",
+                        "name": "Product Design",
+                        "count": 2
+                    },
+                    {
+                        "id": "552",
+                        "name": "Recreation",
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "id": "31",
+                "name": "Year 13",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Art",
+                        "count": 2
+                    },
+                    {
+                        "id": "520",
+                        "name": "Biology",
+                        "count": 3
+                    },
+                    {
+                        "id": "521",
+                        "name": "Business Studies",
+                        "count": 1
+                    },
+                    {
+                        "id": "523",
+                        "name": "Chemistry",
+                        "count": 2
+                    },
+                    {
+                        "id": "2154",
+                        "name": "Construction",
+                        "count": 0
+                    },
+                    {
+                        "id": "529",
+                        "name": "Economics",
+                        "count": 1
+                    },
+                    {
+                        "id": "531",
+                        "name": "English",
+                        "count": 4
+                    },
+                    {
+                        "id": "809",
+                        "name": "Food Technology",
+                        "count": 0
+                    },
+                    {
+                        "id": "533",
+                        "name": "French",
+                        "count": 0
+                    },
+                    {
+                        "id": "537",
+                        "name": "General Studies",
+                        "count": 1
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 3
+                    },
+                    {
+                        "id": "534",
+                        "name": "German",
+                        "count": 2
+                    },
+                    {
+                        "id": "540",
+                        "name": "Health & Social",
+                        "count": 1
+                    },
+                    {
+                        "id": "539",
+                        "name": "History",
+                        "count": 2
+                    },
+                    {
+                        "id": "2166",
+                        "name": "Land Based Studies",
+                        "count": 0
+                    },
+                    {
+                        "id": "543",
+                        "name": "Law",
+                        "count": 4
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 5
+                    },
+                    {
+                        "id": "548",
+                        "name": "Physical Ed",
+                        "count": 1
+                    },
+                    {
+                        "id": "549",
+                        "name": "Physics",
+                        "count": 2
+                    },
+                    {
+                        "id": "2167",
+                        "name": "Product Design",
+                        "count": 2
+                    },
+                    {
+                        "id": "552",
+                        "name": "Recreation",
+                        "count": 0
+                    }
+                ]
+            },
+            {
+                "id": "-1",
+                "name": "Unknown (no group set)",
+                "subjects": [
+                    {
+                        "id": "519",
+                        "name": "Other",
+                        "count": 11
+                    },
+                    {
+                        "id": "520",
+                        "name": "Biology",
+                        "count": 1
+                    },
+                    {
+                        "id": "543",
+                        "name": "Law",
+                        "count": 4
+                    },
+                    {
+                        "id": "545",
+                        "name": "Mathematics",
+                        "count": 5
+                    },
+                    {
+                        "id": "535",
+                        "name": "Geography",
+                        "count": 1
+                    }
+                ]
+            }
+        ],
+        "metrics": {
+            "st": "2019-12-12 10:20:17",
+            "sspt": 0.032076120376586914,
+            "uniqid": "5df21461e5b60"
+        }
+    },
+    "id": "3"
+}

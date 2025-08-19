@@ -1,0 +1,42 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "Communicator.Outbox",
+        "success": true,
+        "messages": [
+            {
+                "id": 307,
+                "type": "email",
+                "subject": "Jimmy Abbey - Wrong Shoes",
+                "body": "Mrs. Abell,<p>Unfortunately Jimmy's school shoes have become unwearable, I will be taking him shoe shopping this weekend until then I will be sending him in wearing trainers.</p><p>&nbsp;</p><p>I am aware this is against school policy but the only alternative was his wellington boots.</p><p>&nbsp;</p><p>Thanks in Advance</p><p>&nbsp;</p><p>Mr. Abbey</p>",
+                "created": "2021-01-18 16:03",
+                "read": "2021-01-18 16:18",
+                "queued_until": "2021-01-18 16:03",
+                "failures": false,
+                "status": "queued",
+                "attachments": [],
+                "recipients": [
+                    {
+                        "id": "26",
+                        "type": "employee",
+                        "name": "Mrs Anita Abell",
+                        "username": null,
+                        "school_id": 2,
+                        "status": "Not yet sent"
+                    }
+                ],
+                "regarding": []
+            }
+        ],
+        "pagination": {
+            "current_page": 1,
+            "total_pages": 1,
+            "total_records": 1
+        },
+        "metrics": {
+            "st": "2018-06-25 17:23:38",
+            "sspt": 0.06346988677978516
+        }
+    },
+    "id": "1"
+}

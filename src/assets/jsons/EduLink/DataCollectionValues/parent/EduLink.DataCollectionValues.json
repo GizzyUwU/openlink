@@ -1,0 +1,73 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.DataCollectionValues",
+        "success": true,
+        "fields": {
+            "emails": {
+                "type": "bespoke",
+                "category": "Contact Details",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "address": "David@example.com",
+                        "location": "Home",
+                        "main": true,
+                        "primary": true
+                    }
+                ],
+                "label": "Emails"
+            },
+            "telephones": {
+                "type": "bespoke",
+                "category": "Contact Details",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "number": "01000 100100",
+                        "location": "Home",
+                        "main": true,
+                        "primary": false
+                    }
+                ],
+                "label": "Telephones"
+            },
+            "addresses": {
+                "type": "bespoke",
+                "category": "Addresses",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+				{
+                        "address_id": 4812,
+                        "apartment": "",
+                        "house_name": "",
+                        "house_number": "20",
+                        "street": "Crawley Road",
+                        "district": "Cranfield",
+                        "town": "Bedford",
+                        "county": "",
+                        "post_code": "MK43 0AB",
+                        "country_id": 215,
+                        "type": "Home"
+                    }
+				],
+                "label": "Addresses"
+            }
+        },
+        "category_info": {
+            "Basic": "This is Basic information regarding your child please ensure you change this information carefully"
+        },
+        "next_method": "EduLink.DataCollectionSubmitContact",
+        "param": {
+            "contact_id": "10601"
+        },
+        "metrics": {
+            "st": "2018-04-25 13:10:08",
+            "sspt": 0.13226604461669922
+        }
+    },
+    "id": "1"
+}

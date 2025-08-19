@@ -1,0 +1,5009 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.Homework",
+    "success": true,
+    "homework": {
+     "current": [
+            {
+               "id": 3,
+               "due_date": "2020-01-27",
+			   "available_date": "2020-05-29 09:00:00",
+               "activity": "Water Cycle Diagram",
+               "subject": "Geography",
+			   "status": "Not submitted",
+			   "due_text": "tomorrow",
+			   "icon": "dots",
+               "description": "<p>In your books draw in detail the water cycle, make sure you include the key terms of the process</p><p></p>",
+               "set_by": "Mrs Abell",
+               "link": "http://damoodle.internal.overnetdata.com/blocks/homework/assignment.php?course=10912&amp;id=304",
+			   "learners": [
+                    {
+                       "id": "7338",
+                       "completed": true
+                    },
+                    {
+                       "id": "9925",
+                       "completed": true
+                    },
+                    {
+                       "id": "10437",
+                       "completed": true
+                    },
+                    {
+                       "id": "9260",
+                       "completed": true
+                    },
+                    {
+                       "id": "8404",
+                       "completed": false
+                    },
+                    {
+                       "id": "9919",
+                       "completed": true
+                    }
+               ]
+            },
+            {
+               "id": 4,
+               "due_text": "7 days",
+               "due_date": "2020-01-31",
+			   "available_date": "2020-03-24 09:00:00",
+               "activity": "Write up PH experiment",
+			   "due_reminder": "10:10",
+               "subject": "Science",
+               "icon": "tick",
+               "description": "<p>Write up the PH experiment from last lesson in your books. Remember you should have a hypothesis, method and conclusion</p>",
+               "set_by": "Mrs Abell",
+			   "source": "EduLink",
+			   "deletable": true,
+			   "cloneable": true,
+               "completed": true,
+			   "status": "Submitted",
+			   "learners": [
+                    {
+                       "id": "10437",
+                       "completed": true
+                    },
+                    {
+                       "id": "9260",
+                       "completed": false
+                    },
+                    {
+                       "id": "8404",
+                       "completed": true
+                    },
+					{
+                       "id": "10425",
+                       "completed": true
+                    },
+					{
+                       "id": "9925",
+                       "completed": true
+                    },
+					{
+                       "id": "8911",
+                       "completed": true
+                    },
+					{
+                       "id": "8894",
+                       "completed": true
+                    },
+					{
+                       "id": "7367",
+                       "completed": true
+                    },
+					{
+                       "id": "8926",
+                       "completed": true
+                    },
+					{
+                       "id": "8225",
+                       "completed": false
+                    },
+                    {
+                       "id": "9919",
+                       "completed": true
+                    }
+               ]
+            },
+			{
+               "id": 5,
+               "due_text": "8 days",
+               "due_date": "2020-02-01",
+			   "available_date": "2020-05-15 10:30:00",
+               "activity": "Revise for Mock Exam",
+               "subject": "English",
+               "icon": "cross",
+               "description": "<p>You should revise for the mock exam next week. </p>",
+               "set_by": "Mrs Abell",
+			   "source": "EduLink",
+			   "deletable": true,
+			   "cloneable": true,
+               "status": "No online submission required",
+			   "learners": [
+                    {
+                       "id": "10437",
+                       "completed": true
+                    },
+                    {
+                       "id": "9260",
+                       "completed": false
+                    },
+                    {
+                       "id": "8404",
+                       "completed": true
+                    },
+                    {
+                       "id": "9919",
+                       "completed": true
+                    }
+               ]
+
+            }
+         ],
+         "past": [
+            {
+               "id": 1,
+               "due_text": "yesterday",
+               "due_date": "2020-01-23",
+			   "available_date": "2020-01-15 00:00:00",
+               "activity": "Shakespeare Essay",
+               "subject": "English Lit",
+               "icon": "cross",
+               "description": "<p>Discuss the theme of immortality as presented in the sonnets, citing specific lines as support for your views. (1000 words)</p>",
+               "set_by": "Admin User",
+               "link": "http://damoodle.internal.overnetdata.com/blocks/homework/assignment.php?course=10910&amp;id=306",
+               "status": "No online submission required",
+			   "grade": "B",
+			   "feedback": "Excellent Response, remember to include examples from multiple sonnets",
+			   "learners": [
+                    {
+                       "id": "10437",
+                       "completed": true
+                    },
+                    {
+                       "id": "9260",
+                       "completed": true
+                    },
+                    {
+                       "id": "8404",
+                       "completed": true
+                    },
+                    {
+                       "id": "9919",
+                       "completed": true
+                    }
+               ]
+            }
+         ],
+      "report": [
+        {
+          "group_id": "11840",
+          "name": "13A\/Bi1",
+          "subject": "520",
+          "learners": [
+            {
+              "learner_id": "8197",
+              "homeworks_number": 0,
+              "homeworks_complete": 1,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2020-02-01 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 1
+            },
+            {
+              "learner_id": "8207",
+              "homeworks_number": 0,
+              "homeworks_complete": 1,
+              "completion_percent": 50,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan practical test for photosynthesis",
+                  "description": "Plan practical test for photosynthesis",
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": false,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8359",
+              "homeworks_number": 2,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan practical test for photosynthesis",
+                  "description": "Plan practical test for photosynthesis",
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8377",
+              "homeworks_number": 2,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan practical test for photosynthesis",
+                  "description": "Plan practical test for photosynthesis",
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8431",
+              "homeworks_number": 0,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan practical test for photosynthesis",
+                  "description": "Plan practical test for photosynthesis",
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8467",
+              "homeworks_number": 0,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan practical test for photosynthesis",
+                  "description": "Plan practical test for photosynthesis, ",
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8486",
+              "homeworks_number": 0,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8534",
+              "homeworks_number": 0,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2018-06-14",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8720",
+              "homeworks_number": 0,
+              "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8728",
+              "homeworks_number": 0,
+			  "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8743",
+              "homeworks_number": 0,
+			  "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8748",
+              "homeworks_number": 0,
+			  "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8754",
+              "homeworks_number": 0,
+			  "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            },
+            {
+              "learner_id": "8765",
+              "homeworks_number": 0,
+			  "homeworks_complete": 2,
+              "completion_percent": 100,
+              "homeworks": [
+                {
+                  "id": 189,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                },
+                {
+                  "id": 190,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2018-06-14",
+                  "completed": true
+                }
+              ],
+              "homeworks_count": 2
+            }
+          ]
+        },
+        {
+          "group_id": "11738",
+          "name": "10y\/Sc1",
+          "subject": "556",
+          "learners": [
+            {
+              "learner_id": "10373",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10389",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10391",
+              "homeworks_number": 5,
+              "homeworks_complete": 5,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-21",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-12",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-19",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+			  ],
+              "homeworks_count": 5
+            },
+            {
+              "learner_id": "10415",
+              "homeworks_number": 7,
+              "homeworks_complete": 1,
+              "completion_percent": 14,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": false
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10427",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10451",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10459",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10463",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10469",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10479",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10489",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10495",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10498",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks":[
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10504",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10507",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10514",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10521",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10525",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10530",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10537",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10539",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10662",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10670",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10672",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10698",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10713",
+              "homeworks_number": 7,
+              "homeworks_complete": 3,
+              "completion_percent": 42,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": false
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10717",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            }
+          ]
+        },
+        {
+          "group_id": "11806",
+          "name": "11y\/Sc1",
+          "subject": "556",
+          "learners": [
+            {
+              "learner_id": "10373",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10389",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10391",
+              "homeworks_number": 5,
+              "homeworks_complete": 5,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-21",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-12",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-19",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+			  ],
+              "homeworks_count": 5
+            },
+            {
+              "learner_id": "10415",
+              "homeworks_number": 7,
+              "homeworks_complete": 1,
+              "completion_percent": 14,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": false
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10427",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10451",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10459",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10463",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10469",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10479",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10489",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10495",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10498",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks":[
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10504",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10507",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10514",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10521",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10525",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10530",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10537",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10539",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10662",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10670",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10672",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10698",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10713",
+              "homeworks_number": 7,
+              "homeworks_complete": 3,
+              "completion_percent": 42,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": false
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10717",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            }
+          ]
+        },
+        {
+          "group_id": "11660",
+          "name": "9y\/Sc1",
+          "subject": "556",
+          "learners": [
+            {
+              "learner_id": "10373",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10389",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10391",
+              "homeworks_number": 5,
+              "homeworks_complete": 5,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-14",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+
+                  "subject": "Biology",
+                  "due_date": "2019-11-21",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-12",
+                  "available_date": "2018-08-14 11:52:22",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+
+                  "subject": "Biology",
+                  "due_date": "2019-12-19",
+                  "available_date": "2018-08-14 11:52:00",
+                  "set_by": "A. Abell",
+                  "format": 1,
+                  "cloneable": true,
+                  "subject_id": 520,
+                  "deletable": true,
+                  "due_text": "61 days ago",
+                  "source": "EduLink",
+                  "completed": true,
+                  "attachments": []
+                }
+			  ],
+              "homeworks_count": 5
+            },
+            {
+              "learner_id": "10415",
+              "homeworks_number": 7,
+              "homeworks_complete": 1,
+              "completion_percent": 14,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": false
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10427",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10451",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": false
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10459",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10463",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10469",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10479",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10489",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10495",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10498",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks":[
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10504",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10507",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10514",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10521",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10525",
+              "homeworks_number": 7,
+              "homeworks_complete": 6,
+              "completion_percent": 86,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10530",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10537",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10539",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10662",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10670",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10672",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10698",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10713",
+              "homeworks_number": 7,
+              "homeworks_complete": 3,
+              "completion_percent": 42,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": false
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": false
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": false
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": false
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": false
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            },
+            {
+              "learner_id": "10717",
+              "homeworks_number": 7,
+              "homeworks_complete": 7,
+              "completion_percent": 100,
+              "homeworks": [
+			    {
+                  "id": 1,
+                  "activity": "Plan  practical test for photosynthesis",
+                  "due_date": "2019-11-14",
+                  "completed": true
+                },
+                {
+                  "id": 2,
+                  "activity": "Write up practical test for photosynthesis",
+                  "due_date": "2019-11-21",
+                  "completed": true
+                },
+				{
+                  "id": 3,
+                  "activity": "Life cycle of frogs",
+                  "due_date": "2019-12-05",
+                  "available_date": "2018-08-14 11:52:00",
+                  "completed": true
+                },
+                {
+                  "id": 4,
+                  "activity": "Heart Chambers worksheet",
+                  "due_date": "2019-12-12",
+                  "completed": true
+                },
+				{
+                  "id": 5,
+                  "activity": "Chromosomes, genes and DNA worksheet",
+                  "due_date": "2019-12-19",
+                  "completed": true
+                },
+                {
+                  "id": 6,
+                  "activity": "Water cycle essay",
+                  "due_date": "2020-01-09",
+                  "completed": true
+                },
+				{
+                  "id": 7,
+                  "activity": "End of unit revision ",
+                  "due_date": "2020-01-16",
+                  "completed": true
+                }
+			  ],
+              "homeworks_count": 7
+            }
+          ]
+        }
+      ]
+    },
+    "hidden_fields": [],
+    "metrics": {
+      "st": "2018-08-14 14:09:11",
+      "sspt": 0.25032782554626465
+    }
+  },
+  "id": "1"
+}

@@ -1,0 +1,53 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+		"method": "EduLink.Registers",
+        "success": true,
+		"registers": [
+         {
+            "id": "1",
+            "name": "AM: 9A in A2",
+			"start_time": "08:53:00",
+			"end_time": "09:15:00",
+            "linked": false
+         },
+         {
+            "id": "2",
+            "name": "Mon:1: 7E/En in E4",
+			"start_time": "09:15:00",
+			"end_time": "10:15:00",
+            "linked": false,
+			"missing": true
+         },
+         {
+            "id": "3",
+            "name": "Mon:3: 10x/En2 in E4",
+			"start_time": "10:15:00",
+			"end_time": "11:15:00",
+            "linked": false
+         },
+         {
+            "id": "4",
+            "name": "Mon:4 10x/En2 in E4",
+			"start_time": "11:45:00",
+			"end_time": "12:45:00",
+            "linked": true
+         },
+         {
+            "id": "5",
+            "name": "PM: 9A in A2",
+			"start_time": "12:45:00",
+			"end_time": "13:00:00",
+            "linked": false
+         },
+         {
+            "id": "6",
+            "name": "Mon:5 11x/En2 in E4",
+			"start_time": "14:00:00",
+			"end_time": "15:00:00",
+            "linked": false
+         }
+      ]
+   },
+   "id": 1
+}

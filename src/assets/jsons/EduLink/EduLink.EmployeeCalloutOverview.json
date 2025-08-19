@@ -1,0 +1,115 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCalloutOverview",
+        "success": true,
+        "from": "2019-12-04",
+        "until": "2019-12-18",
+        "days": [
+            {
+                "date": "2019-12-04",
+                "callouts": 20,
+                "responses": 18
+            },
+            {
+                "date": "2019-12-05",
+                "callouts": 5,
+                "responses": 5
+            },
+            {
+                "date": "2019-12-06",
+                "callouts": 7,
+                "responses": 6
+            },
+            {
+                "date": "2019-12-07",
+                "callouts": 0,
+                "responses": 0
+            },
+            {
+                "date": "2019-12-08",
+                "callouts": 0,
+                "responses": 0
+            },
+            {
+                "date": "2019-12-09",
+                "callouts": 1,
+                "responses": 1
+            },
+            {
+                "date": "2019-12-10",
+                "callouts": 3,
+                "responses": 2
+            },
+            {
+                "date": "2019-12-11",
+                "callouts": 6,
+                "responses": 6
+            },
+            {
+                "date": "2019-12-12",
+                "callouts": 23,
+                "responses": 19
+            },
+            {
+                "date": "2019-12-13",
+                "callouts": 3,
+                "responses": 3
+            },
+            {
+                "date": "2019-12-14",
+                "callouts": 0,
+                "responses": 0
+            },
+            {
+                "date": "2019-12-15",
+                "callouts": 0,
+                "responses": 0
+            },
+            {
+                "date": "2019-12-16",
+                "callouts": 4,
+                "responses": 4
+            },
+            {
+                "date": "2019-12-17",
+                "callouts": 4,
+                "responses": 3
+            },
+            {
+                "date": "2019-12-18",
+                "callouts": 1,
+                "responses": 0
+            }
+        ],
+        "callers": [
+            {
+                "employee_id": "1",
+                "callouts": 1,
+                "responses": 1
+            },
+            {
+                "employee_id": "26",
+                "callouts": 1,
+                "responses": 0
+            },
+            {
+                "employee_id": "45",
+                "callouts": 1,
+                "responses": 1
+            }
+        ],
+        "responders": [
+            {
+                "employee_id": "26",
+                "responded": 2
+            }
+        ],
+        "metrics": {
+            "st": "2019-12-18 15:43:42",
+            "sspt": 0.008007049560546875,
+            "uniqid": "5dfa492e0c35c"
+        }
+    },
+    "id": "2"
+}

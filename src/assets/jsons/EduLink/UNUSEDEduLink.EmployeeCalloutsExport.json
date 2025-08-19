@@ -1,0 +1,18 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCalloutsExport",
+        "success": true,
+        "result": {
+            "url": "https://mykola.edulinkone.com/api/download/WlyFaBzZgj2ZQyOQiZrpvVy8Pq7maz93ayu3ocP2ha5Uk3pggj3m5stOdSo3QA5pu5A/4lMX61kvVd7Sdw.csv",
+            "mime_type": "text/csv",
+            "filename": "employee_callout_2021_10_28_until_2021_10_28.csv"
+        },
+        "metrics": {
+            "st": "2021_10_28 14:31:35",
+            "sspt": 0.011616945266723633,
+            "uniqid": "5d5aa4b7280ea"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,100 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Medical",
+      "success": true,
+      "medical": {
+         "have_emergency_consent": true,
+         "is_pregnant": false,
+         "dietary_needs": [
+            "No nuts of any type/quantity"
+         ],
+         "medical_notes": [
+            {
+               "document_id": 11559,
+               "type": "Student Medical Note",
+               "summary": "Scan of Epi-pen user guide",
+               "note": "",
+               "status": "Public",
+               "date": "2017-09-21",
+               "attachments": [
+                  {
+                     "identifier": "id_epi-pen_guide.pdf",
+                     "name": "Epi-pen Guide.pdf"
+                  },
+                  {
+                     "identifier": "id_epi-pen_guide_color.pdf",
+                     "name": "Epi-pen Guide (color).pdf"
+                  }
+               ]
+            },
+            {
+               "document_id": 11560,
+               "type": "Student Medical Note",
+               "summary": "Epi-Pen location",
+               "note": "Epi-pens are located in students bag and at the main office medical cupboard",
+               "status": "Public",
+               "date": "2017-09-21"
+            }
+         ],
+         "medical_conditions": [
+            {
+               "description": "Anaphylaxis",
+               "notes": [
+                  {
+                     "document_id": 11561,
+                     "type": "General Document",
+                     "summary": "list of allergies",
+                     "note": "",
+                     "status": "Public",
+                     "date": "2017-09-21",
+                     "attachments": [
+                        {
+                           "identifier": "id_allergy-list.pdf",
+                           "name": "Allergy list.pdf"
+                        },
+                        {
+                           "identifier": "id_allergy-list-extended.pdf",
+                           "name": "Allergy list (extended).pdf"
+                        }
+                     ]
+                  },
+                  {
+                     "document_id": 11562,
+                     "type": "Not Specified",
+                     "summary": "Epi-Pen Carrier",
+                     "note": "Epi-pens are located in student's bag and at the main office medical cupboard",
+                     "status": "Public",
+                     "date": "2017-09-21"
+                  }
+               ]
+            }
+         ],
+         "medical_practices": [
+            {
+               "name": "Abbey Surgery",
+               "address": "Medical Practice, Treadington Lane, West Park, Barset, Eastshire, United Kingdom",
+               "phone": "01101 961991",
+               "email": "None recorded"
+            }
+         ],
+         "medical_events": [
+            {
+               "description": "Appointment with Dental Surgeon",
+               "type": "Hospital Appointment",
+               "date": "2017-10-01"
+            },
+            {
+               "description": "General Illness",
+               "type": "Illness",
+               "date": "2017-11-19",
+               "followup_date": "2017-09-20"
+            }
+         ]
+      },
+      "metrics": {
+         "sspt": 0.088648080825806
+      }
+   },
+   "id": "2"
+}

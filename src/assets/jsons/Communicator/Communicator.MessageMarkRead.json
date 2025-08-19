@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "Communicator.MessageMarkRead",
+      "success": true,
+      "metrics": {
+         "st": "2018-06-26 08:31:41",
+         "sspt": 0.11322188377380371
+      }
+   },
+   "id": "1"
+}

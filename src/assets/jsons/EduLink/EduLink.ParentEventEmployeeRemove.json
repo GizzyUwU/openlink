@@ -1,0 +1,13 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventEmployeeRemove",
+        "success": true,
+        "metrics": {
+            "st": "2019-03-07 14:37:29",
+            "sspt": 0.32196998596191406,
+            "uniqid": "5c812ca919476"
+        }
+    },
+    "id": "1"
+}

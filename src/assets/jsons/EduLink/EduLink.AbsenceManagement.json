@@ -1,0 +1,167 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.AbsenceManagement",
+        "success": true,
+        "absences": [
+            {
+                "learner_id": "9639",
+                "marks": {
+                    "am": "N",
+                    "pm": "N"
+                },
+                "email": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "push": {
+                    "message": null,
+                    "recipients": [],
+                    "available": false
+                },
+                "sms": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "log": [
+                    {
+                        "time": "2021-06-01 10:52:46",
+                        "message": "Tried phoning mum on her mobile no answer (international dial tone!)",
+                        "employee_id": "26"
+                    }
+                ]
+            },
+            {
+                "learner_id": "9633",
+                "marks": {
+                    "am": "N",
+                    "pm": "/"
+                },
+                "email": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "push": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "sms": {
+                    "message": null,
+                    "recipients": [],
+                    "available": false
+                },
+                "log": [
+                    {
+                        "time": "2021-06-01 09:05:46",
+                        "message": "Dad phoned, car has broken down",
+                        "employee_id": "26"
+                    }
+                ]
+            },
+            {
+                "learner_id": "9630",
+                "marks": {
+                    "am": "N",
+                    "pm": null
+                },
+                "email": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "push": {
+                    "message": null,
+                    "recipients": [],
+                    "available": false
+                },
+                "sms": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "log": [
+                    {
+                        "time": "2021-06-01 09:25:27",
+                        "message": "Overslept",
+                        "employee_id": "26"
+                    }
+                ]
+            },
+            {
+                "learner_id": "9618",
+                "marks": {
+                    "am": "N",
+                    "pm": null
+                },
+                "email": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "push": {
+                    "message": null,
+                    "recipients": [],
+                    "available": false
+                },
+                "sms": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "log": []
+            },
+            {
+                "learner_id": "9441",
+                "marks": {
+                    "am": "N",
+                    "pm": null
+                },
+                "email": {
+                    "message": {
+                        "body": "",
+                        "subject": "Unauthorised absence for Alexis Affleck",
+                        "created": "2021-06-01 12:56:46",
+                        "employee_id": "26"
+                    },
+                    "recipients": [
+                        {
+                            "name": "Mrs Jaqueline Affleck",
+                            "read": null,
+                            "sent": null,
+                            "failure": null,
+                            "email": "Affleck@example.com"
+                        }
+                    ],
+                    "available": false
+                },
+                "push": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "sms": {
+                    "message": null,
+                    "recipients": [],
+                    "available": true
+                },
+                "log": [
+                    {
+                        "time": "2021-06-01 09:30:01",
+                        "message": "Queued Email for delivery to Mrs Jaqueline Affleck (Affleck@example.com) - sent 2021-06-01 09:30:23",
+                        "employee_id": "26"
+                    }
+                ]
+            }
+        ],
+        "age_in_seconds": 27.359396832,
+        "metrics": {
+            "st": "2021-06-01 14:52:54",
+            "sspt": 0.23703694343566895
+        }
+    },
+    "id": "38"
+}

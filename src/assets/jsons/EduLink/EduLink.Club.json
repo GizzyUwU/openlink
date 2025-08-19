@@ -1,0 +1,559 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.Club",
+        "success": true,
+        "club": {
+            "id": 10,
+            "name": "Year 8 Girls Hockey Training",
+            "description": "<p>This club is for girls in year 8 who wish to join our hockey team.<\/p><p><br><\/p><p>Training takes place Wednesday lunch times and Friday's after school.<\/p><p><br><\/p><p>Please make sure that you bring your winter PE kit including shin pads, hockey sticks can be provided for anyone needing one.&nbsp;<\/p>",
+            "capacity": {
+                "maximum": 30,
+                "bookings": 13
+            },
+            "location": "Field",
+            "learners": [
+			{
+                    "id": "8404"
+                },
+                {
+                    "id": "6985"
+                },
+                {
+                    "id": "7718"
+                },
+                {
+                    "id": "7367"
+                },
+                {
+                    "id": "8225"
+                },
+                {
+                    "id": "10198"
+                },
+                {
+                    "id": "7831"
+                },
+                {
+                    "id": "9441"
+                },
+                {
+                    "id": "9257"
+                },
+                {
+                    "id": "7825"
+                },
+                {
+                    "id": "7281"
+                },
+                {
+                    "id": "9258"
+                },
+                {
+                    "id": "9742"
+                }
+			
+			],
+            "learners_available": [
+                {
+                    "id": "12159"
+                },
+                {
+                    "id": "11248"
+                },
+                {
+                    "id": "11423"
+                },
+                {
+                    "id": "12158"
+                },
+                {
+                    "id": "11339"
+                },
+                {
+                    "id": "11214"
+                },
+                {
+                    "id": "12155"
+                },
+                {
+                    "id": "11366"
+                },
+                {
+                    "id": "11388"
+                },
+                {
+                    "id": "11257"
+                },
+                {
+                    "id": "11276"
+                },
+                {
+                    "id": "11449"
+                },
+                {
+                    "id": "12152"
+                },
+                {
+                    "id": "11433"
+                },
+                {
+                    "id": "12151"
+                },
+                {
+                    "id": "11446"
+                },
+                {
+                    "id": "11251"
+                },
+                {
+                    "id": "11401"
+                },
+                {
+                    "id": "11328"
+                },
+                {
+                    "id": "12149"
+                },
+                {
+                    "id": "11488"
+                },
+                {
+                    "id": "12146"
+                },
+                {
+                    "id": "11420"
+                },
+                {
+                    "id": "12143"
+                },
+                {
+                    "id": "11483"
+                },
+                {
+                    "id": "11311"
+                },
+                {
+                    "id": "11319"
+                },
+                {
+                    "id": "12140"
+                },
+                {
+                    "id": "11459"
+                },
+                {
+                    "id": "12139"
+                },
+                {
+                    "id": "11436"
+                },
+                {
+                    "id": "11301"
+                },
+                {
+                    "id": "12258"
+                },
+                {
+                    "id": "12136"
+                },
+                {
+                    "id": "11231"
+                },
+                {
+                    "id": "11202"
+                },
+                {
+                    "id": "11332"
+                },
+                {
+                    "id": "11430"
+                },
+                {
+                    "id": "11466"
+                },
+                {
+                    "id": "12132"
+                },
+                {
+                    "id": "11313"
+                },
+                {
+                    "id": "11287"
+                },
+                {
+                    "id": "11239"
+                },
+                {
+                    "id": "11371"
+                },
+                {
+                    "id": "11383"
+                },
+                {
+                    "id": "11242"
+                },
+                {
+                    "id": "12130"
+                },
+                {
+                    "id": "12129"
+                },
+                {
+                    "id": "11284"
+                },
+                {
+                    "id": "11414"
+                },
+                {
+                    "id": "12127"
+                },
+                {
+                    "id": "11482"
+                },
+                {
+                    "id": "11290"
+                },
+                {
+                    "id": "12126"
+                },
+                {
+                    "id": "12124"
+                },
+                {
+                    "id": "11350"
+                },
+                {
+                    "id": "12123"
+                },
+                {
+                    "id": "11271"
+                },
+                {
+                    "id": "12122"
+                },
+                {
+                    "id": "12121"
+                },
+                {
+                    "id": "11281"
+                },
+                {
+                    "id": "11363"
+                },
+                {
+                    "id": "12118"
+                },
+                {
+                    "id": "12117"
+                },
+                {
+                    "id": "11405"
+                },
+                {
+                    "id": "11424"
+                },
+                {
+                    "id": "11225"
+                },
+                {
+                    "id": "11309"
+                },
+                {
+                    "id": "11298"
+                },
+                {
+                    "id": "11330"
+                },
+                {
+                    "id": "11295"
+                },
+                {
+                    "id": "12115"
+                },
+                {
+                    "id": "12114"
+                },
+                {
+                    "id": "11394"
+                },
+                {
+                    "id": "12111"
+                },
+                {
+                    "id": "12253"
+                },
+                {
+                    "id": "11208"
+                },
+                {
+                    "id": "11217"
+                },
+                {
+                    "id": "12107"
+                },
+                {
+                    "id": "12106"
+                }
+            ],
+            "leaders": [
+                {
+                    "id": "26"
+                }
+            ],
+			"leaders_names": "Mrs A. Abell",
+            "sessions": [
+                {
+                    "id": 35,
+                    "start_time": "2019-02-20 13:00:00",
+                    "end_time": "2019-02-20 13:45:00",
+                    "register_employee_id": "26",
+					"attended": false
+                },
+                {
+                    "id": 36,
+                    "start_time": "2019-02-27 13:00:00",
+                    "end_time": "2019-02-27 13:45:00",
+                    "register_employee_id": null,
+					"attended": true
+                },
+                {
+                    "id": 37,
+                    "start_time": "2019-03-06 13:00:00",
+                    "end_time": "2019-03-06 13:45:00",
+                    "register_employee_id": null,
+					"attended": true
+                },
+                {
+                    "id": 38,
+                    "start_time": "2019-03-13 13:00:00",
+                    "end_time": "2019-03-13 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 39,
+                    "start_time": "2019-03-20 13:00:00",
+                    "end_time": "2019-03-20 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 40,
+                    "start_time": "2019-03-27 13:00:00",
+                    "end_time": "2019-03-27 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 41,
+                    "start_time": "2019-04-03 13:00:00",
+                    "end_time": "2019-04-03 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 42,
+                    "start_time": "2019-04-10 13:00:00",
+                    "end_time": "2019-04-10 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 43,
+                    "start_time": "2019-04-17 13:00:00",
+                    "end_time": "2019-04-17 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 44,
+                    "start_time": "2019-04-24 13:00:00",
+                    "end_time": "2019-04-24 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 45,
+                    "start_time": "2019-05-01 13:00:00",
+                    "end_time": "2019-05-01 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 46,
+                    "start_time": "2019-05-08 13:00:00",
+                    "end_time": "2019-05-08 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 47,
+                    "start_time": "2019-05-15 13:00:00",
+                    "end_time": "2019-05-15 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 48,
+                    "start_time": "2019-05-22 13:00:00",
+                    "end_time": "2019-05-22 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 49,
+                    "start_time": "2019-05-29 13:00:00",
+                    "end_time": "2019-05-29 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 50,
+                    "start_time": "2019-06-05 13:00:00",
+                    "end_time": "2019-06-05 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 51,
+                    "start_time": "2019-06-12 13:00:00",
+                    "end_time": "2019-06-12 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 52,
+                    "start_time": "2019-06-19 13:00:00",
+                    "end_time": "2019-06-19 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 53,
+                    "start_time": "2019-06-26 13:00:00",
+                    "end_time": "2019-06-26 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 54,
+                    "start_time": "2019-07-03 13:00:00",
+                    "end_time": "2019-07-03 13:45:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 55,
+                    "start_time": "2019-02-22 15:10:00",
+                    "end_time": "2019-02-22 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 56,
+                    "start_time": "2019-03-01 15:10:00",
+                    "end_time": "2019-03-01 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 57,
+                    "start_time": "2019-03-08 15:10:00",
+                    "end_time": "2019-03-08 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 58,
+                    "start_time": "2019-03-15 15:10:00",
+                    "end_time": "2019-03-15 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 59,
+                    "start_time": "2019-03-22 15:10:00",
+                    "end_time": "2019-03-22 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 60,
+                    "start_time": "2019-03-29 15:10:00",
+                    "end_time": "2019-03-29 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 61,
+                    "start_time": "2019-04-05 15:10:00",
+                    "end_time": "2019-04-05 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 62,
+                    "start_time": "2019-04-12 15:10:00",
+                    "end_time": "2019-04-12 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 63,
+                    "start_time": "2019-04-19 15:10:00",
+                    "end_time": "2019-04-19 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 64,
+                    "start_time": "2019-04-26 15:10:00",
+                    "end_time": "2019-04-26 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 65,
+                    "start_time": "2019-05-03 15:10:00",
+                    "end_time": "2019-05-03 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 66,
+                    "start_time": "2019-05-10 15:10:00",
+                    "end_time": "2019-05-10 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 67,
+                    "start_time": "2019-05-17 15:10:00",
+                    "end_time": "2019-05-17 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 68,
+                    "start_time": "2019-05-24 15:10:00",
+                    "end_time": "2019-05-24 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 69,
+                    "start_time": "2019-05-31 15:10:00",
+                    "end_time": "2019-05-31 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 70,
+                    "start_time": "2019-06-07 15:10:00",
+                    "end_time": "2019-06-07 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 71,
+                    "start_time": "2019-06-14 15:10:00",
+                    "end_time": "2019-06-14 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 72,
+                    "start_time": "2019-06-21 15:10:00",
+                    "end_time": "2019-06-21 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 73,
+                    "start_time": "2019-06-28 15:10:00",
+                    "end_time": "2019-06-28 16:30:00",
+                    "register_employee_id": null
+                },
+                {
+                    "id": 74,
+                    "start_time": "2019-07-05 15:10:00",
+                    "end_time": "2019-07-05 16:30:00",
+                    "register_employee_id": null
+                }
+            ],
+            "next_session": "2019-02-20 13:00:00"
+        },
+        "metrics": {
+            "st": "2019-02-18 13:21:51",
+            "sspt": 0.015253067016601562,
+            "uniqid": "5c6ab16f41423"
+        }
+    },
+    "id": "1"
+}

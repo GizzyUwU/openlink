@@ -1,0 +1,9 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.LearnerGroupCreate",
+      "success": true,
+      "group_id": 3
+   },
+   "id": "1"
+}

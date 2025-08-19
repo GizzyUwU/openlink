@@ -1,0 +1,18 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+		"method": "EduLink.Marksheets",
+        "success": true,
+		"marksheets": [
+         {
+            "id": "7759",
+            "name": "* Science Year 7 Attainment Data Entry : 7D/Sc 15/16"
+         },
+         {
+            "id": "7773",
+            "name": "* Science Year 9 Attainment Data Entry : 9y/Sc1 15/16"
+         }
+      ]
+   },
+   "id": 1
+}

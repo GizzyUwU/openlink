@@ -1,0 +1,29 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEvents",
+        "success": true,
+        "events": [
+            {
+                "id": 95,
+                "name": "Year 9 Parents Evening",
+                "information": "Spring Year 9 Parents Evening, all appointments are for 5 mins. if attending on site rather than remotly via video call please park behind the sports hall",
+                "slot_duration": 5,
+                "buffer_duration": 5,
+                "prevent_consecutive_bookings": false,
+                "last_session_end": "2020-01-23 19:00:00",
+                "sessions": [
+                    {
+                        "start_time": "2020-01-23 17:00:00",
+                        "end_time": "2020-01-23 19:00:00"
+                    }
+                ]
+            }
+        ],
+        "metrics": {
+            "st": "2018-03-01 14:49:33",
+            "sspt": 0.12801408767700195
+        }
+    },
+    "id": "1"
+}

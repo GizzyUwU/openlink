@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "Communicator.MessageLog",
+    "success": true,
+    "new_messages": 1,
+    "inbox": []
+  },
+  "id": "1"
+}

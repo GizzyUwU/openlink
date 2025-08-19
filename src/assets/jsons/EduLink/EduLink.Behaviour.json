@@ -1,0 +1,422 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.Behaviour",
+    "success": true,
+    "b4l": [
+      {
+        "subject": "Art",
+        "values": {
+          "3": 50,
+          "5": 3,
+          "1": 1
+        }
+      },
+      {
+        "subject": "Design & Technology",
+        "values": {
+          "2": 44,
+          "5": 2,
+          "3": 4
+        }
+      },
+      {
+        "subject": "English",
+        "values": {
+          "2": 97,
+          "1": 10
+        }
+      },
+      {
+        "subject": "French",
+        "values": {
+          "3": 72,
+          "5": 6,
+          "4": 1
+        }
+      },
+      {
+        "subject": "Geography",
+        "values": {
+          "2": 27
+        }
+      },
+      {
+        "subject": "German",
+        "values": {
+          "3": 15,
+          "5": 10
+        }
+      },
+      {
+        "subject": "History",
+        "values": {
+          "2": 24,
+          "5": 1
+        }
+      },
+      {
+        "subject": "Mathematics",
+        "values": {
+          "-": 90,
+          "3": 10,
+          "4": 5
+        }
+      },
+      {
+        "subject": "PSE",
+        "values": {
+          "4": 27
+        }
+      },
+      {
+        "subject": "Physical Ed",
+        "values": {
+          "3": 34,
+          "5": 20
+        }
+      },
+      {
+        "subject": "Religious Education",
+        "values": {
+          "4": 27
+        }
+      },
+      {
+        "subject": "Science",
+        "values": {
+          "2": 77,
+          "4": 2
+        }
+      }
+    ],
+    "report_cards": [
+      {
+        "behaviour_incident_type_id": 10,
+        "start_date": "2024-03-04",
+        "end_date": "2024-03-04",
+        "comments": "Angry, so punched door ",
+        "active": true,
+        "current": true,
+        "id": 70
+      },
+      {
+        "behaviour_incident_type_id": 7,
+        "start_date": "2024-01-27",
+        "end_date": "2024-01-27",
+        "comments": "Persistent disrespect to supply teachers",
+        "active": true,
+        "current": false,
+        "id": 68
+      }
+    ],
+    "detentions": [
+      {
+        "attended": "Not Attended",
+        "non_attendance_reason": "",
+        "id": 2580,
+        "description": "Creative Faculty Detention",
+        "start_time": "09:46:00",
+        "end_time": "16:00:00",
+        "location": "Art Room 1",
+        "date": "2024-03-06"
+      },
+      {
+        "attended": "Attended",
+        "non_attendance_reason": "",
+        "id": 1526,
+        "description": "SLT Detention",
+        "start_time": "12:00:00",
+        "end_time": "12:30:00",
+        "location": "Business Studies 1",
+        "date": "2024-03-02"
+      },
+      {
+        "attended": "Not Attended",
+        "non_attendance_reason": "Did not turn up",
+        "id": 1527,
+        "description": "Business Faculty Detention",
+        "start_time": "12:00:00",
+        "end_time": "12:30:00",
+        "location": "Business Studies 1",
+        "date": "2024-02-25"
+      },
+      {
+        "attended": "Not Recorded",
+        "non_attendance_reason": "",
+        "id": 1561,
+        "description": "Head of Year Detention",
+        "start_time": "17:00:00",
+        "end_time": "18:00:00",
+        "location": "Construction Room 1",
+        "date": "2024-02-28"
+      }
+    ],
+    "behaviour": [
+      {
+        "id": 7809,
+        "type_ids": [
+          "17"
+        ],
+        "activity_id": 6,
+        "date": "2024-03-13",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": "46",
+        "recorded": {
+          "employee_id": "52",
+          "date": "2024-03-13"
+        },
+        "lesson_information": "Science - 10yz/Sc1 - Mon:4",
+        "comments": "Decided that repeatedly discussing Love Island was more important than listening",
+        "points": 5
+      },
+      {
+        "id": 7807,
+        "type_ids": [
+          "4"
+        ],
+        "activity_id": null,
+        "date": "2024-02-28",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": null,
+          "date": null,
+          "employee_id": ""
+        },
+        "recorded": {
+          "employee_id": "26",
+          "date": "2024-02-28"
+        },
+        "points": 3,
+        "lesson_information": " Religious Education - 10X1/Re - Fri:1 "
+      },
+      {
+        "id": 7806,
+        "type_ids": [
+          "18"
+        ],
+        "activity_id": null,
+        "date": "2024-02-28",
+        "time_id": null,
+        "status_id": 1,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": "27",
+          "date": null,
+          "employee_id": ""
+        },
+        "recorded": {
+          "employee_id": "26",
+          "date": "2024-02-28"
+        },
+        "points": 2,
+        "comments": "Interrupting the lesson",
+        "lesson_information": "German - 7YEL/Ge - Tue:5"
+      },
+      {
+        "id": 7796,
+        "type_ids": [
+          "13"
+        ],
+        "activity_id": null,
+        "date": "2024-02-17",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": "52",
+        "action_taken": {
+          "id": 43,
+          "date": "2024-02-17",
+          "employee_id": "1"
+        },
+        "recorded": {
+          "employee_id": "1",
+          "date": "2024-02-17"
+        },
+        "points": 3,
+        "lesson_information": " - "
+      },
+      {
+        "id": 7795,
+        "type_ids": [
+          "16"
+        ],
+        "activity_id": null,
+        "date": "2024-02-14",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": "54",
+        "action_taken": {
+          "id": "27",
+          "date": null,
+          "employee_id": "34"
+        },
+        "recorded": {
+          "employee_id": "34",
+          "date": "2024-02-14"
+        },
+        "points": 10,
+        "lesson_information": " - "
+      },
+      {
+        "id": 7794,
+        "type_ids": [
+          "4"
+        ],
+        "activity_id": null,
+        "date": "2024-02-14",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": 26,
+          "date": "2024-02-14",
+          "employee_id": ""
+        },
+        "recorded": {
+          "employee_id": "26",
+          "date": "2024-02-14"
+        },
+        "points": 2,
+        "comments": "Dog VS homework",
+        "lesson_information": " - "
+      },
+      {
+        "id": 7793,
+        "type_ids": [
+          "14"
+        ],
+        "activity_id": null,
+        "date": "2024-02-14",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": 26,
+          "date": "2024-02-14",
+          "employee_id": "26"
+        },
+        "recorded": {
+          "employee_id": "1",
+          "date": "2024-02-14"
+        },
+        "points": 3,
+        "lesson_information": "Science - 10yz/Sc1 - Mon:4"
+      },
+      {
+        "id": 7793,
+        "type_ids": [
+          "14"
+        ],
+        "activity_id": null,
+        "date": "2024-02-14",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": 26,
+          "date": "2024-02-14",
+          "employee_id": "26"
+        },
+        "recorded": {
+          "employee_id": "1",
+          "date": "2024-02-14"
+        },
+        "points": 3,
+        "lesson_information": "English - 10xy/Sc1 - Tues:2"
+      },
+      {
+        "id": 7793,
+        "type_ids": [
+          "14"
+        ],
+        "activity_id": null,
+        "date": "2024-02-14",
+        "time_id": null,
+        "status_id": 2,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": 26,
+          "date": "2024-02-14",
+          "employee_id": "26"
+        },
+        "recorded": {
+          "employee_id": "1",
+          "date": "2024-02-14"
+        },
+        "points": 3,
+        "lesson_information": "Quack - 10yz/Sc1 - Mon:4"
+      },
+      {
+        "id": 7792,
+        "type_ids": [
+          "10"
+        ],
+        "activity_id": null,
+        "date": "2024-02-07",
+        "time_id": null,
+        "status_id": 1,
+        "bullying_type_id": null,
+        "location_id": null,
+        "action_taken": {
+          "id": null,
+          "date": null,
+          "employee_id": ""
+        },
+        "recorded": {
+          "employee_id": "34",
+          "date": "2024-02-07"
+        },
+        "points": 1,
+        "lesson_information": " - "
+      }
+    ],
+    "employees": [
+      {
+        "id": "1",
+        "title": "Mr",
+        "forename": "A.",
+        "surname": "Blacker"
+      },
+      {
+        "id": "26",
+        "title": "Mrs",
+        "forename": "A.",
+        "surname": "Abell"
+      },
+      {
+        "id": "34",
+        "title": "Mrs",
+        "forename": "S.",
+        "surname": "Andrews"
+      },
+      {
+        "id": "12268",
+        "title": "Miss",
+        "forename": "S.",
+        "surname": "Abdullah"
+      }
+    ],
+    "hide_fields": [
+      "comments"
+    ],
+    "metrics": {
+      "st": "2024-04-07 08:00:04",
+      "sspt": 1.0627150535583496,
+      "sspt_us": 1062715,
+      "uniqid": "5e8c24f4a40fb"
+    }
+  },
+  "id": "1"
+}

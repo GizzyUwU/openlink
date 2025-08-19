@@ -1,0 +1,13 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ExternalLinkFetch",
+      "success": true,
+      "url": "https://www.google.com/",
+      "metrics": {
+         "st": "2018-06-01 14:52:54",
+         "sspt": 0.23703694343566895
+      }
+   },
+   "id": "38"
+}

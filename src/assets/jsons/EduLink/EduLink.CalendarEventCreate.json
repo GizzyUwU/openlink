@@ -1,0 +1,12 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.CalendarEventCreate",
+        "success": true,
+        "event_id": 1,
+        "metrics": {
+            "sspt": 0.0019810199737549
+        }
+    },
+    "id": "4"
+}

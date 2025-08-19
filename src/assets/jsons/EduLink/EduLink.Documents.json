@@ -1,0 +1,51 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+        "method": "EduLink.Documents",
+        "success": true,
+		"documents": [
+		  {
+            "_comment": "id is used to retrieve an individual document. Filtering can be carried out on type, status, published and last_updated fields. note may be present or not, or blank",
+            "id": "bfe6f662_NewLetter.doc",
+            "filename": "",
+            "summary": "School Report Spring - Demo Student",
+            "note": "Created 08/03/2013",
+            "type": "General Document",
+            "status": "Public",
+			"file_extension": "pdf",
+            "last_updated": "2013-03-13",
+            "date": "2024-07-10"
+         },
+		 {
+            "id": "17727",
+            "type": "Attendance letters",
+            "summary": "Absent list.doc",
+            "comments": "Continuous Absence letter for Sessions",
+            "status_code": "PUBLIC",
+            "date": "2024-12-12",
+            "attachments": [
+				{
+                    "identifier": "4a308c98_Absent list.doc",
+                    "name": "Absent list.doc"
+				}
+            ]
+         },
+         {
+            "id": "27f5d1c3_Jimmy_Behaviour_Report.docx",
+            "filename": "",
+            "summary": "Individual Behaviour Report",
+            "type": "General Document",
+            "status": "Public",
+            "date": "2025-01-12",
+            "last_updated": "2013-03-08",
+            "attachments": [
+				{
+                    "identifier": "Demo_student_Report.pdf",
+                    "name": "Student Report.pdf"
+				}
+            ]
+         }
+      ]
+   },
+   "id": 1
+}

@@ -7,6 +7,7 @@ import { ParentComponent } from "solid-js";
 import "./assets/css/index.css";
 import { Edulink } from "./api/edulink.tsx";
 import { Toast } from "./components/toast.tsx";
+const ProtectedRoute = lazy(() => import("./protectRoute.tsx"));
 const Login = lazy(() => import("./pages/login.tsx"));
 const Main = lazy(() => import("./pages/dash.tsx"));
 const App: ParentComponent = (props) => <>{props.children}</>;
@@ -39,8 +40,21 @@ render(
       <Edulink>
         <Suspense fallback={<LoadingFallback />}>
           <Router root={App} preload={true}>
-            <Route path="/" component={Login} />
-            <Route path="/dash" component={Main} />
+            <Route
+              path="/"
+              component={() => (
+                <ProtectedRoute>
+                  <Main />
+                </ProtectedRoute>
+              )}
+            />
+            <Route path="/login" component={Login} />
+            <Route
+              path="*404"
+              component={() => {
+                return "404 not found";
+              }}
+            />
           </Router>
         </Suspense>
       </Edulink>

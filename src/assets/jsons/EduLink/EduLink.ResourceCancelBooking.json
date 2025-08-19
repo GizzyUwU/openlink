@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceCancelBooking",
+      "success": false,
+      "error": "Sorry You can not delete bookings in the Demo",
+      "metrics": {
+         "sspt": 0.002216100692749
+      }
+   },
+   "id": "1"
+}

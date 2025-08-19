@@ -1,0 +1,18 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "Communicator.Outbox",
+      "success": true,
+      "messages": [],
+      "pagination": {
+         "current_page": 1,
+         "total_pages": 1,
+         "total_records": 0
+      },
+      "metrics": {
+         "st": "2018-06-25 17:23:38",
+         "sspt": 0.06346988677978516
+      }
+   },
+   "id": "1"
+}

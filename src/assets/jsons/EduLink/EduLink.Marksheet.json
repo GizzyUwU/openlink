@@ -1,0 +1,4253 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.Marksheet",
+        "success": true,
+        "marksheet": {
+            "id": "14",
+            "name": "KS2 | Y3 | Core Subjects | FAC : 3G",
+            "notes": "GL Assessment Overview showing:\nYear 3's CAT4, PTE\/PTM\/PTS & PASS",
+            "is_complete": false,
+            "columns": [
+                {
+                    "id": 1,
+                    "heading": "Reg Group",
+                    "type": "C",
+                    "is_fixed": true
+                },
+                {
+                    "id": 2,
+                    "heading": "% Attendance",
+                    "type": "N",
+                    "is_fixed": true
+                },
+                {
+                    "id": 3,
+                    "heading": "Gender",
+                    "type": "C",
+                    "is_fixed": true
+                },
+                {
+                    "id": 4,
+                    "heading": "SEN Status",
+                    "type": "C",
+                    "is_fixed": true
+                },
+                {
+                    "id": 5,
+                    "heading": "EAL",
+                    "type": "C",
+                    "is_fixed": true
+                },
+                {
+                    "id": 6,
+                    "heading": "CAT4 Verbal SAS (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 7,
+                    "heading": "CAT4 Quantative SAS (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 8,
+                    "heading": "CAT4 Non-Verbal SAS (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 9,
+                    "heading": "CAT4 Spatial SAS (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 10,
+                    "heading": "CAT4 Mean SAS (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 11,
+                    "heading": "CAT4 Verbal Deficit (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": -200,
+                    "max_value": 200
+                },
+                {
+                    "id": 12,
+                    "heading": "CAT4 Maths Car (KS2 | CAT4 Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": -200,
+                    "max_value": 200
+                },
+                {
+                    "id": 13,
+                    "heading": "PTE SAS (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 14,
+                    "heading": "English Achievement (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": -200,
+                    "max_value": 200
+                },
+                {
+                    "id": 15,
+                    "heading": "PTM SAS (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 16,
+                    "heading": "Maths Achievement (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": -200,
+                    "max_value": 200
+                },
+                {
+                    "id": 17,
+                    "heading": "PTS SAS (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 18,
+                    "heading": "Average Achievement (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": -200,
+                    "max_value": 200
+                },
+                {
+                    "id": 19,
+                    "heading": "PASS Domain 1 - Self (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 20,
+                    "heading": "PASS Domain 2 - Study (KS2 | Y3)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 21,
+                    "heading": "STAR Reading Age (KS2 | Y3 | Data Collection C)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 22,
+                    "heading": "NRSS (KS2 | Y3 | Data Collection C)",
+                    "type": "I",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 200
+                },
+                {
+                    "id": 23,
+                    "heading": "Reading Actual Age (KS2 | Y3 | Data Collection C)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 24,
+                    "heading": "STAR Reading Residual (KS2 | Y3 | Data Collection C)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": -100,
+                    "max_value": 100
+                },
+                {
+                    "id": 25,
+                    "heading": "Attit Behav Rating 1 (KS2 | Y3 | 1 - Mid Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 480
+                },
+                {
+                    "id": 26,
+                    "heading": "Attit Behav Target 1 (KS2 | Y3 | 1 - Mid Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 27,
+                    "heading": "Attit Behav Rating (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 480
+                },
+                {
+                    "id": 28,
+                    "heading": "Attit Behav Target (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 29,
+                    "heading": "KS1-2 | Eng Reading | Att (KS1 | Y2 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 30,
+                    "heading": "Baseline Reading Attainme (KS2 | Y3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 463
+                },
+                {
+                    "id": 31,
+                    "heading": "Eng Reading | Attainment (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 32,
+                    "heading": "Eng Reading | Progress (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 33,
+                    "heading": "KS1-2 | Eng Writing | Att (KS1 | Y2 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 34,
+                    "heading": "Baseline Writing Attainme (KS2 | Y3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 463
+                },
+                {
+                    "id": 35,
+                    "heading": "Eng Writing | Attainment (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 36,
+                    "heading": "Eng Writing | Progress (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 37,
+                    "heading": "KS1-2 | Maths | Attainmen (KS1 | Y2 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 38,
+                    "heading": "Baseline Maths Attainment (KS2 | Y3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 463
+                },
+                {
+                    "id": 39,
+                    "heading": "Maths | Attainment (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 40,
+                    "heading": "Maths | Progress (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 41,
+                    "heading": "KS1-2 | Science | Attainm (KS1 | Y2 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 42,
+                    "heading": "Baseline Science Attainme (KS2 | Y3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 463
+                },
+                {
+                    "id": 43,
+                    "heading": "Science | Attainment (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 44,
+                    "heading": "Science | Progress (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 45,
+                    "heading": "Eng Reading Target (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 46,
+                    "heading": "Eng Writing Target (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 47,
+                    "heading": "Maths Target (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 48,
+                    "heading": "Science Target (KS2 | Y3 | 2 - End Term 1)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 49,
+                    "heading": "Attit Behav Rating~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 480
+                },
+                {
+                    "id": 50,
+                    "heading": "Attit Behav Target~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "C",
+                    "is_editable": true
+                },
+                {
+                    "id": 51,
+                    "heading": "Eng Reading | Attain~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 52,
+                    "heading": "Eng Reading | Progress~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 53,
+                    "heading": "Eng Reading Target~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "C",
+                    "is_editable": true
+                },
+                {
+                    "id": 54,
+                    "heading": "Eng Writing | Attain~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 55,
+                    "heading": "Eng Writing | Progress~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 56,
+                    "heading": "Eng Writing Target~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "C",
+                    "is_editable": true
+                },
+                {
+                    "id": 57,
+                    "heading": "Maths | Attainment~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 58,
+                    "heading": "Maths | Progress~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 59,
+                    "heading": "Maths Target~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "C",
+                    "is_editable": true
+                },
+                {
+                    "id": 60,
+                    "heading": "Science | Attainment~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 61,
+                    "heading": "Science | Progress~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "G",
+                    "is_editable": true,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 62,
+                    "heading": "Science Target~2 (KS2 | Y3 | 4 - End Term 2)",
+                    "type": "C",
+                    "is_editable": true
+                },
+                {
+                    "id": 63,
+                    "heading": "Attit Behav Rating~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 480
+                },
+                {
+                    "id": 64,
+                    "heading": "Eng Reading | Attain~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 65,
+                    "heading": "Eng Reading | Progress~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 66,
+                    "heading": "Eng Writing | Attain~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 67,
+                    "heading": "Eng Writing | Progress~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 68,
+                    "heading": "Maths | Attainment~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 69,
+                    "heading": "Maths | Progress~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 70,
+                    "heading": "Science | Attainment~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 71,
+                    "heading": "Science | Progrress~3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "G",
+                    "is_editable": false,
+                    "gradeset_id": 478
+                },
+                {
+                    "id": 72,
+                    "heading": "Core Subs Comm & Next Ste (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 73,
+                    "heading": "Core Subs Comm & Next St2 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 74,
+                    "heading": "Core Subs Comm & Next St3 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 75,
+                    "heading": "Core Subs Comm & Next St4 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 76,
+                    "heading": "Core Subs Comm & Next St5 (KS2 | Y3 | 6 - End Term 3)",
+                    "type": "C",
+                    "is_editable": false
+                },
+                {
+                    "id": 77,
+                    "heading": "PASS 1 Feelings about Sch (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 78,
+                    "heading": "PASS 2 Learning Capabilit (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 79,
+                    "heading": "PASS 3 Learner Self Worth (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 80,
+                    "heading": "PASS 4 Prepared for Learn (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 81,
+                    "heading": "PASS 5 Attitude to Teache (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 82,
+                    "heading": "PASS 6 General Work Ethic (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 83,
+                    "heading": "PASS 7 Confidence in Lear (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 84,
+                    "heading": "PASS 8 Attitudes to Atten (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                },
+                {
+                    "id": 85,
+                    "heading": "PASS 9 Response to Learni (KS2 | Y3)",
+                    "type": "D",
+                    "is_editable": false,
+                    "min_value": 0,
+                    "max_value": 100
+                }
+            ],
+            "gradesets": [
+                {
+                    "id": 480,
+                    "name": "KS1-2 | Rating",
+                    "grades": [
+                        {
+                            "value": "4",
+                            "numeric_value": 4
+                        },
+                        {
+                            "value": "3",
+                            "numeric_value": 3
+                        },
+                        {
+                            "value": "2",
+                            "numeric_value": 2
+                        },
+                        {
+                            "value": "1",
+                            "numeric_value": 1
+                        },
+                        {
+                            "value": "N\/A",
+                            "numeric_value": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 478,
+                    "name": "KS1-5 | New Assessment Language",
+                    "grades": [
+                        {
+                            "value": "4",
+                            "numeric_value": 4
+                        },
+                        {
+                            "value": "3",
+                            "numeric_value": 3
+                        },
+                        {
+                            "value": "2",
+                            "numeric_value": 2
+                        },
+                        {
+                            "value": "1",
+                            "numeric_value": 1
+                        },
+                        {
+                            "value": "N\/A",
+                            "numeric_value": 0
+                        }
+                    ]
+                },
+                {
+                    "id": 463,
+                    "name": "KS1-5 | Attainment",
+                    "grades": [
+                        {
+                            "value": "4",
+                            "numeric_value": 4
+                        },
+                        {
+                            "value": "3",
+                            "numeric_value": 3
+                        },
+                        {
+                            "value": "2",
+                            "numeric_value": 2
+                        },
+                        {
+                            "value": "1",
+                            "numeric_value": 1
+                        },
+                        {
+                            "value": "N\/A",
+                            "numeric_value": 0
+                        }
+                    ]
+                }
+            ],
+            "learners": [
+                {
+                    "id": "52449",
+                    "forename": "Maya",
+                    "surname": "BADRI",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.5"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To use a dictionary to find the meaning of new vocabulary in texts in order to understand new words. Maya can do this by keeping a dictionary to hand when reading and looking up words as she reads."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Maya can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use written methods to add and subtract so that problems can be solved efficiently and with greater accuracy. Maya can do this by practising using the methods taught in class and watching reminders on Khan Academy and Google Classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Maya can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2",
+                            "formula_colour": "#FF80C0"
+                        },
+                        {
+                            "column_id": 50,
+                            "value": "Excellent work this year",
+                            "formula_colour": "#1180C0"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3",
+                            "formula_colour": "#00FFFF"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "49382",
+                    "forename": "Donnacha",
+                    "surname": "COONE",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.9"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Donnacha can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use powerful verbs when writing so that it is more interesting for the reader. Donnacha can do this by using a thesaurus and finding the synonyms for common verbs."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use written methods to add and subtract so that problems can be solved efficiently and with greater accuracy. Donnacha can do this by practising using the methods taught in class and watching reminders on Khan Academy and Google Classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Donnacha can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "44622",
+                    "forename": "Maya",
+                    "surname": "DISCHE",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student takes on challenge positively."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To ask and answer basic questions about the text so that main facts can be recalled from what has been read. Maya can do this using question words such as what, where, when, who, why and how to structure questions correctly."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To correctly spell the high frequency words. Maya can do this by regularly practising the words in her online reading record."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To add and subtract hundreds, tens and ones mentally to be able to more efficiently and accurately solve more challenging problems. Maya can do this by using dienes and playing addition and subtraction games."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Maya can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "46996",
+                    "forename": "Jonas",
+                    "surname": "ELBERS",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "87.2"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To use a dictionary to find the meaning of new vocabulary in texts in order to understand new words. Jonas can do this by keeping a dictionary to hand when reading and looking up words as he reads."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Jonas can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Jonas can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Jonas can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "41979",
+                    "forename": "Dominic",
+                    "surname": "FERNANDES",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.5"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Dominic can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To consistently use capital letters and full stops in order to make the writing make sense. Dominic can do this by using visual reminders and checking work carefully."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To read questions and problems carefully in order to understand what is required. Dominic can do this by reading the problem out loud, underlining the key vocabulary, and checking that the answer reached seems sensible."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Dominic can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "164"
+                },
+                {
+                    "id": "49241",
+                    "forename": "Pin Jia",
+                    "surname": "FONG",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.9"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To use a dictionary to find the meaning of new vocabulary in texts in order to understand new words. Pin Jia can do this by keeping a dictionary to hand when reading and looking up words as he reads."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Pin Jia can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Pin Jia can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To spot patterns when looking at results, and use these to draw conclusions. Pin Jia can do this by checking results carefully, looking for common points or unusual results."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "164"
+                },
+                {
+                    "id": "51483",
+                    "forename": "Charlotte",
+                    "surname": "HEARSEY",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.5"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistent in their concentration and focus on learning activities set."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To break down longer words in order to read fluently and accurately. Charlotte can do this by segmenting and blending longer words and applying phonics knowledge when reading texts."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To correctly spell the high frequency words. Charlotte can do this by regularly practising the words in their online reading record."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To recall multiplication and division facts for the 3, 4 and 8 times tables so that these can be applied to solving 2 digit x 1 digit problems. Charlotte can do this by practising the times tables using times tables games."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Charlotte can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "164"
+                },
+                {
+                    "id": "49155",
+                    "forename": "Chaea",
+                    "surname": "HWANG",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student can give others feedback that develops both themselves and others."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To use prefixes and suffixes to identify the meaning of new words. Chaea can do this by breaking down the word in order to identify the prefix or suffix and the root of the word, and using a dictionary to check the meaning."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Chaea can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Chaea can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To spot patterns when looking at results, and use these to draw conclusions. Chaea can do this by checking results carefully, looking for common points or unusual results."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "57228",
+                    "forename": "Shaiba",
+                    "surname": "JAMSHEED",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "70.4"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Shaiba has been a bright and sunny addition to our community despite being unable to physically attend school. Throughout the term, she has engaged with the learning set and taken part in all lessons she has been able to, displaying a positive attitude towards learning.\n\nShaiba has enjoyed the variety of lessons and working with a range of teachers in different lessons, but she has shown a particular passion for science, eagerly studying and sharing her knowledge of plants earlier in the term. Occasionally, Shaiba has required further reinforcement with new mathematical concepts, but she has always shown a positive attitude when she is given feedback and support. She is able to ask for help when she needs it.\n\nOverall, Shaiba has been a pleasure to teach and we look forward to seeing her continue to progress and of course welcoming her in person. \n\nMr. King and Mrs. Wright"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "163"
+                },
+                {
+                    "id": "45032",
+                    "forename": "Jun Wei",
+                    "surname": "LEE",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "91.2"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Jun Wei can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Jun Wei can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To read questions and problems carefully in order to understand what is required. Jun Wei can do this by reading the problem out loud and underlining the key vocabulary, and by checking the answer seems sensible."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Jun Wei can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "164"
+                },
+                {
+                    "id": "47972",
+                    "forename": "Jin Bin",
+                    "surname": "LEOW",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.9"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Jin Bin can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use writing scaffolds in order to support the structure of his writing. Jin Bin can do this by using the resources provided in lessons, including the washing line, the modelled text and toolkits."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Jin Bin can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Jin Bin can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "163"
+                },
+                {
+                    "id": "56821",
+                    "forename": "Kaka",
+                    "surname": "LIN",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "Y"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Kaka can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use writing scaffolds in order to support the structure of his writing. Kaka can do this by using the resources provided in lessons, including the washing line, the modelled text and toolkits."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Kaka can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Kaka can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "44452",
+                    "forename": "Eason",
+                    "surname": "LING",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student always communicates clearly and confidently with others."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To make inferences about a character's feelings and thoughts and explain this in his own words. Eason can do this using pictures, the blurb and information from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use writing scaffolds in order to support the structure of his writing. Eason can do this by using the resources provided in lessons, including the washing line, the modelled text and toolkits."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Eason can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Eason can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "163"
+                },
+                {
+                    "id": "48467",
+                    "forename": "Albert",
+                    "surname": "MARSH",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "92.5"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student proactively seeks feedback that is acted upon with tangible improvements made."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To make inferences about a character's feelings and thoughts and explain this in his own words. Albert can do this using pictures, the blurb and information from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Albert can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Albert can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To spot patterns when looking at results, and use these to draw conclusions. Albert can do this by checking results carefully, looking for common points or unusual results."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "4"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "3"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                },
+                {
+                    "id": "51388",
+                    "forename": "Daniella",
+                    "surname": "NARESWARI",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "90.3"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student proactively seeks feedback that is acted upon with tangible improvements made."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To make inferences about a character's feelings and thoughts and explain this in her own words. Daniella can do this using pictures, the blurb and information from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To organise writing into paragraphs that have the same theme. Daniella can do this by identifying the key themes in a text, and by using planning frames."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Daniella can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Daniella can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "163"
+                },
+                {
+                    "id": "54291",
+                    "forename": "Rose",
+                    "surname": "RAHMAT ROSLAN",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "89.8"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student takes on challenge positively."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Rose can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To orally rehearse sentences before writing them in order to check where to place punctuation and end the sentence. Rose can do this by recording her sentence using the iPad and listening to it in order to perfect it and then write it."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To quickly recall number facts to 10 and 20 to be able to answer related mental addition and subtraction calculations. Rose can do this by practising number bonds using games such as Hit the Button."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Rose can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "1"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "162"
+                },
+                {
+                    "id": "47231",
+                    "forename": "Vinayak",
+                    "surname": "RAO",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "88.1"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistent in their concentration and focus on learning activities set."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Vinayak can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To orally rehearse sentences before writing them in order to check for sense. Vinayak can do this by recording his sentence using the iPad and listening to it in order to perfect it and then write it."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To read questions and problems carefully in order to understand what is required. Vinayak can do this by reading the problem out loud and underlining the key vocabulary, and by checking that the answer reached seems sensible."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To draw and label diagrams, with support, in order to record what is happening in scientific investigations. Vinayak can do this by sketching neatly and accurately, labelling key features and using arrows or text to show what is happening."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "1"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "162"
+                },
+                {
+                    "id": "52994",
+                    "forename": "Elizabeth",
+                    "surname": "TAN",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "89.4"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "F"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student takes on challenge positively."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Elizabeth can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use powerful verbs when writing so that it is more interesting for the reader. Elizabeth can do this by using a thesaurus and finding the synonyms for common verbs."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To read questions and problems carefully in order to understand what is required. Elizabeth can do this by reading the problem out loud and underlining the key vocabulary, and by checking that the answer reached seems sensible."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Elizabeth can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "163"
+                },
+                {
+                    "id": "51515",
+                    "forename": "Aron",
+                    "surname": "VOROS",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "90.7"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "Y"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student proactively seeks feedback that is acted upon with tangible improvements made."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Aron can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use powerful verbs when writing so that it is more interesting for the reader. Aron can do this by using a thesaurus and finding the synonyms for common verbs."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To use simple diagrams, such as bar models and words, to explain the thinking process, and clearly communicate how the answer was reached. Aron can do this by referring to modelled examples in the classroom."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Aron can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "3"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "2"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "164"
+                },
+                {
+                    "id": "54462",
+                    "forename": "Mika",
+                    "surname": "YUSOF",
+                    "column_values": [
+                        {
+                            "column_id": 1,
+                            "value": "3G"
+                        },
+                        {
+                            "column_id": 2,
+                            "value": "88.9"
+                        },
+                        {
+                            "column_id": 3,
+                            "value": "M"
+                        },
+                        {
+                            "column_id": 4,
+                            "value": ""
+                        },
+                        {
+                            "column_id": 5,
+                            "value": "N"
+                        },
+                        {
+                            "column_id": 27,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 28,
+                            "value": "Student is consistently reflective on their work and their feedback, exploring different ways to improve it."
+                        },
+                        {
+                            "column_id": 29,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 30,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 31,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 32,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 33,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 34,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 35,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 36,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 37,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 38,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 39,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 40,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 41,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 43,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 44,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": null,
+                            "value": "X"
+                        },
+                        {
+                            "column_id": 45,
+                            "value": "To predict what happens next in a story in order to show an understanding of what has been read. Mika can do this using pictures, clues and the details from the text."
+                        },
+                        {
+                            "column_id": 46,
+                            "value": "To use powerful adjectives when writing so that Mika's writing is more interesting. Mika can do this by identifying adjectives in sentences and replacing them with appropriate synonyms using word mats or a thesaurus."
+                        },
+                        {
+                            "column_id": 47,
+                            "value": "To count in multiples of 3, 4 and 8 in order to be able to solve multiplication and division questions more quickly and accurately. Mika can do this by counting forwards and backwards on a one hundred square or number line, or by using cubes."
+                        },
+                        {
+                            "column_id": 48,
+                            "value": "To learn topic vocabulary for each topic in order to understand questions and use the appropriate scientific language when responding or describing. Mika can do this by referring to posters and word mats, and by revising classroom slides."
+                        },
+                        {
+                            "column_id": 49,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 51,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 52,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 54,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 55,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 57,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 58,
+                            "value": "2"
+                        },
+                        {
+                            "column_id": 60,
+                            "value": "1"
+                        },
+                        {
+                            "column_id": 61,
+                            "value": "1"
+                        }
+                    ],
+                    "year_group_id": "232",
+                    "form_group_id": "233",
+                    "community_group_id": "161"
+                }
+            ]
+        },
+        "metrics": {
+            "st": "2021-03-04 00:07:13",
+            "sspt": 6.755978107452393,
+            "sspt_us": 6755978,
+            "uniqid": "603fb431a41dd"
+        }
+    },
+    "id": 1
+}

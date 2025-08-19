@@ -1,0 +1,60 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.MarksheetCommentBank",
+    "success": true,
+    "variables": {
+      "learner": {
+        "{{learner.forename}}": "Forename",
+        "{{learner.surname}}": "Surname",
+        "{{learner.fullname}}": "Full name",
+        "{{learner.form_group.name}}": "Form group name",
+        "{{learner.form_group.teacher}}": "Form Teacher",
+        "{{learner.house_group.name}}": "House group name",
+        "{{learner.year_group.name}}": "Year group name",
+        "{{learner.he_she}}": "he/she",
+        "{{learner.he_she_upper}}": "He/She",
+        "{{learner.his_her}}": "his/her",
+        "{{learner.his_her_upper}}": "His/Her",
+        "{{learner.him_her}}": "him/her",
+        "{{learner.his_hers}}": "his/hers"
+      }
+    },
+    "year_groups": [
+      {
+        "id": "37",
+        "name": "Year  7"
+      },
+      {
+        "id": "36",
+        "name": "Year  8"
+      },
+      {
+        "id": "35",
+        "name": "Year  9"
+      },
+      {
+        "id": "34",
+        "name": "Year 10"
+      },
+      {
+        "id": "33",
+        "name": "Year 11"
+      },
+      {
+        "id": "32",
+        "name": "Year 12"
+      },
+      {
+        "id": "31",
+        "name": "Year 13"
+      }
+    ],
+    "metrics": {
+      "st": "2019-07-15 15:56:53",
+      "sspt": 0.019455909729003906,
+      "uniqid": "5d2c94356f96c"
+    }
+  },
+  "id": "3"
+}

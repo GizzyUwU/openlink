@@ -1,0 +1,16 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventLearnerUpdate",
+        "success": true,
+        "existing": [],
+        "tpl_inserts": [],
+        "teacher_slots_created": [],
+        "metrics": {
+            "st": "2019-03-07 14:17:26",
+            "sspt": 0.04720592498779297,
+            "uniqid": "5c8127f6d4724"
+        }
+    },
+    "id": "1"
+}

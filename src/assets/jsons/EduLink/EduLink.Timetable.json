@@ -1,0 +1,642 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Timetable",
+      "success": true,
+      "requested_date": "2016-06-14",
+      "start_of_week": "2016-06-13",
+      "day_of_week": "2",
+      "weeks": [
+         {
+            "name": "Current",
+            "days": [
+               {
+                  "id": 186,
+                  "name": "Mon",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 216,
+                        "name": "Mon:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 191,
+                        "name": "Mon:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 192,
+                        "name": "Mon:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 193,
+                        "name": "Mon:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 194,
+                        "name": "Mon:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 195,
+                        "name": "Mon:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 191,
+                        "description": "09:15: Science in Science Lab 1 with 10y/Sc2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8958,
+                        "teaching_group": {
+                           "id": 8958,
+                           "name": "10y/Sc2",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 195,
+                        "description": "14:30: Biology in Science Lab 1 with 13A/Bi1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9083,
+                        "teaching_group": {
+                           "id": 9083,
+                           "name": "13A/Bi1",
+                           "subject": "Biology"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 187,
+                  "name": "Tue",
+                  "is_current": true,
+                  "periods": [
+                     {
+                        "id": 217,
+                        "name": "Tue:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 196,
+                        "name": "Tue:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 197,
+                        "name": "Tue:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 198,
+                        "name": "Tue:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 199,
+                        "name": "Tue:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 200,
+                        "name": "Tue:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 196,
+                        "description": "09:15: Science in Science Lab 1 with 9y/Sc1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8881,
+                        "teaching_group": {
+                           "id": 8881,
+                           "name": "9y/Sc1",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 197,
+                        "description": "10:15: Science in Science Lab 1 with 9y/Sc1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8881,
+                        "teaching_group": {
+                           "id": 8881,
+                           "name": "9y/Sc1",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 198,
+                        "description": "11:35: Science in Science Lab 1 with 10y/Sc2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8958,
+                        "teaching_group": {
+                           "id": 8958,
+                           "name": "10y/Sc2",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 199,
+                        "description": "12:35: Additional Science in Science Lab 1 with 11y/Sa2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9042,
+                        "teaching_group": {
+                           "id": 9042,
+                           "name": "11y/Sa2",
+                           "subject": "Additional Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 188,
+                  "name": "Wed",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 218,
+                        "name": "Wed:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 201,
+                        "name": "Wed:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 202,
+                        "name": "Wed:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 203,
+                        "name": "Wed:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 204,
+                        "name": "Wed:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 205,
+                        "name": "Wed:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 201,
+                        "description": "09:15: Science in Science Lab 1 with 11y/Sc2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9043,
+                        "teaching_group": {
+                           "id": 9043,
+                           "name": "11y/Sc2",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 202,
+                        "description": "10:15: Science in Science Lab 1 with 11y/Sc2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9043,
+                        "teaching_group": {
+                           "id": 9043,
+                           "name": "11y/Sc2",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 203,
+                        "description": "11:35: Science in Science Lab 1 with 7D/Sc",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8690,
+                        "teaching_group": {
+                           "id": 8690,
+                           "name": "7D/Sc",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 204,
+                        "description": "12:35: Science in Science Lab 1 with 7D/Sc",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8690,
+                        "teaching_group": {
+                           "id": 8690,
+                           "name": "7D/Sc",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 189,
+                  "name": "Thu",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 219,
+                        "name": "Thu:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 206,
+                        "name": "Thu:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 207,
+                        "name": "Thu:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 208,
+                        "name": "Thu:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 209,
+                        "name": "Thu:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 210,
+                        "name": "Thu:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 206,
+                        "description": "09:15: Biology in Science Lab 1 with 13A/Bi1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9083,
+                        "teaching_group": {
+                           "id": 9083,
+                           "name": "13A/Bi1",
+                           "subject": "Biology"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 207,
+                        "description": "10:15: Biology in Science Lab 1 with 13A/Bi1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9083,
+                        "teaching_group": {
+                           "id": 9083,
+                           "name": "13A/Bi1",
+                           "subject": "Biology"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 208,
+                        "description": "11:35: Science in Science Lab 1 with 9y/Sc1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8881,
+                        "teaching_group": {
+                           "id": 8881,
+                           "name": "9y/Sc1",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 209,
+                        "description": "12:35: Additional Science in Science Lab 1 with 10y/Sa2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8957,
+                        "teaching_group": {
+                           "id": 8957,
+                           "name": "10y/Sa2",
+                           "subject": "Additional Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 210,
+                        "description": "14:30: PSE in Science Lab 1 with 8F/Ps",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8724,
+                        "teaching_group": {
+                           "id": 8724,
+                           "name": "8F/Ps",
+                           "subject": "PSE"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 190,
+                  "name": "Fri",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 220,
+                        "name": "Fri:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 211,
+                        "name": "Fri:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 212,
+                        "name": "Fri:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 213,
+                        "name": "Fri:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 214,
+                        "name": "Fri:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 215,
+                        "name": "Fri:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 211,
+                        "description": "09:15: Biology in Science Lab 1 with 13A/Bi1",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9083,
+                        "teaching_group": {
+                           "id": 9083,
+                           "name": "13A/Bi1",
+                           "subject": "Biology"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 213,
+                        "description": "11:35: Science in Science Lab 1 with 7D/Sc",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8690,
+                        "teaching_group": {
+                           "id": 8690,
+                           "name": "7D/Sc",
+                           "subject": "Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 214,
+                        "description": "12:35: Additional Science in Science Lab 1 with 11y/Sa2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 9042,
+                        "teaching_group": {
+                           "id": 9042,
+                           "name": "11y/Sa2",
+                           "subject": "Additional Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     },
+                     {
+                        "period_id": 215,
+                        "description": "14:30: Additional Science in Science Lab 1 with 10y/Sa2",
+                        "room_id": 52,
+                        "room": {
+                           "id": 52,
+                           "name": "Science Lab 1"
+                        },
+                        "teaching_group_id": 8957,
+                        "teaching_group": {
+                           "id": 8957,
+                           "name": "10y/Sa2",
+                           "subject": "Additional Science"
+                        },
+                        "teacher": {
+                           "id": 26,
+                           "title": "Mrs",
+                           "forename": "Anita",
+                           "surname": "Abell"
+                        }
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   "id": "3"
+}

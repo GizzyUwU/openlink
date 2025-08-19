@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceTimetableCyclePeriodDelete",
+      "success": true,
+      "moved": true,
+      "metrics": {
+         "sspt": 0.027691125869751
+      }
+   },
+   "id": "1"
+}

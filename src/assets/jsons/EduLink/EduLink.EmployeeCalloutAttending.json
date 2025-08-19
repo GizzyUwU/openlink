@@ -1,0 +1,14 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCalloutAttending",
+        "success": true,
+        "attending": 22,
+        "metrics": {
+            "st": "2019-08-19 14:32:35",
+            "sspt": 0.010410070419311523,
+            "uniqid": "5d5aa4f322463"
+        }
+    },
+    "id": "1"
+}

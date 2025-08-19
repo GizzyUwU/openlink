@@ -35,8 +35,8 @@ export const Toast: ParentComponent = (props) => {
     fadingOut: false,
   });
 
-  let timeoutId: number | undefined;
-  let fadeOutTimeoutId: number | undefined;
+  let timeoutId: any;
+  let fadeOutTimeoutId: any;
   let remainingTime = 10000;
   let startTime: number;
 
@@ -110,7 +110,6 @@ export const Toast: ParentComponent = (props) => {
     </ToastContext.Provider>
   );
 };
-
 
 const ToastContainer = () => {
   const toast = useToast();

@@ -1,0 +1,156 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ResourceUsage",
+        "success": true,
+        "total_periods": 0,
+        "resources": [
+            {
+                "id": 1,
+                "source": "MISRoom",
+                "description": "Art Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "20",
+                "is_room": true,
+                "periods": {
+                    "timetabled": {
+                        "total": 9,
+                        "percent": 66
+                    },
+                    "booked": {
+                        "total": 0,
+                        "percent": 2
+                    },
+                    "used": {
+                        "total": 3,
+                        "percent": 25
+                    }
+                },
+                "employees": [
+                    {
+                        "id": 93,
+                        "name": "Mrs S. Williams",
+                        "timetabled": {
+                            "total": 6
+                        },
+                        "booked": {
+                            "total": 0
+                        },
+                        "percent": 50
+                    },
+                    {
+                        "id": 17,
+                        "name": "Mr V. Stockill",
+                        "timetabled": {
+                            "total": 1
+                        },
+                        "booked": {
+                            "total": 0
+                        },
+                        "percent": 8.3
+                    },
+                    {
+                        "id": 81,
+                        "name": "Mrs W. Harris",
+                        "timetabled": {
+                            "total": 2
+                        },
+                        "booked": {
+                            "total": 0
+                        },
+                        "percent": 16.7
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "source": "MISRoom",
+                "description": "Art Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "20",
+                "is_room": true,
+                "periods": {
+                    "timetabled": {
+                        "total": 9,
+                        "percent": 80
+                    },
+                    "booked": {
+                        "total": 6,
+                        "percent": 0
+                    },
+                    "used": {
+                        "total": 3,
+                        "percent": 25
+                    }
+                },
+                "employees": [
+                    {
+                        "id": 93,
+                        "name": "Mrs S. Williams",
+                        "timetabled": {
+                            "total": 6
+                        },
+                        "booked": {
+                            "total": 8
+                        },
+                        "percent": 50
+                    },
+                    {
+                        "id": 17,
+                        "name": "Mr V. Stockill",
+                        "timetabled": {
+                            "total": 1
+                        },
+                        "booked": {
+                            "total": 1
+                        },
+                        "percent": 8.3
+                    },
+                    {
+                        "id": 81,
+                        "name": "Mrs W. Harris",
+                        "timetabled": {
+                            "total": 2
+                        },
+                        "booked": {
+                            "total": 0
+                        },
+                        "percent": 16.7
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "source": "MISRoom",
+                "description": "Art Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "20",
+                "is_room": true,
+                "periods": {
+                    "timetabled": {
+                        "total": 9,
+                        "percent": 75
+                    },
+                    "booked": {
+                        "total": 0,
+                        "percent": 0
+                    },
+                    "used": {
+                        "total": 3,
+                        "percent": 25
+                    }
+                },
+                "employees": []
+            }
+        ],
+        "metrics": {
+            "st": "2019-04-03 14:03:51",
+            "sspt": 0.9827260971069336,
+            "uniqid": "5ca4af37ad60b"
+        }
+    },
+    "id": "1"
+}

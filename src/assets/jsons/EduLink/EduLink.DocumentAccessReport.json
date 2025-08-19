@@ -1,0 +1,63 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DocumentAccessReport",
+    "success": true,
+    "filter": {
+      "parent": false,
+      "learner": false,
+      "employee": true
+    },
+    "learners": [
+      {
+        "id": 9919,
+        "documents": [
+          {
+            "id": 9919,
+            "summary": "DCW TEST",
+            "status": "Public",
+            "last_updated": "2019-12-03",
+            "accessed": {
+              "employee": true,
+              "learner": false,
+              "parent": false
+            }
+          }
+        ]
+      },
+      {
+        "id": 8404,
+        "documents": [
+          {
+            "id": 12774,
+            "summary": "SEN Linked Document",
+            "status": "Public",
+            "last_updated": "2019-09-12",
+            "accessed": {
+              "employee": true,
+              "learner": false,
+              "parent": false
+            }
+          },
+          {
+            "id": 12798,
+            "summary": "bad document",
+            "status": "Public",
+            "last_updated": "2019-12-09",
+            "accessed": {
+              "employee": true,
+              "learner": false,
+              "parent": false
+            }
+          }
+        ]
+      }
+    ],
+    "metrics": {
+      "st": "2019-12-18 12:03:03",
+      "sspt": 0.010040998458862305,
+      "uniqid": "5dfa15778de80"
+    }
+  },
+  "id": "13"
+}

@@ -1,0 +1,42 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "Communicator.Templates",
+    "success": true,
+    "templates": [
+      {
+        "id": 1,
+        "name": "Example template 1",
+        "global": false,
+        "owner_id": "26",
+        "type": "text"
+      },
+      {
+        "id": 2,
+        "name": "Example template 2",
+        "global": true,
+        "owner_id": "26",
+        "type": "text"
+      },
+      {
+        "id": 3,
+        "name": "Example template 3",
+        "global": true,
+        "owner_id": "0",
+        "type": "html"
+      },
+      {
+        "id": 4,
+        "name": "Example template 4",
+        "global": true,
+        "owner_id": "26",
+        "type": "html"
+      }
+    ],
+    "metrics": {
+      "st": "2018-01-10 15:42:27",
+      "sspt": 0.06793212890625
+    }
+  },
+  "id": "1"
+}

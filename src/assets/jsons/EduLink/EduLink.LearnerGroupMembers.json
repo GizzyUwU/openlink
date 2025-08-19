@@ -1,0 +1,58 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.LearnerGroupMembers",
+      "success": true,
+      "learners": [
+         {
+            "id": "9919",
+            "gender": "Male",
+            "forename": "Graham",
+            "surname": "Abbess",
+            "admission_number": "004504",
+            "unique_pupil_number": "N823432113104",
+            "unique_learner_number": "1111176638",
+            "year_group_id": "36",
+            "community_group_id": "40",
+            "form_group_id": "383",
+            "phone": "01632211117",
+            "email": "graham.abbess@example.com",
+            "achievement_points": 15,
+            "behaviour_points": 160
+         },
+         {
+            "id": "8404",
+            "gender": "Female",
+            "forename": "Grenetta",
+            "surname": "Abbey",
+            "admission_number": "003979",
+            "unique_pupil_number": "B823432110001",
+            "unique_learner_number": "1111171873",
+            "year_group_id": "33",
+            "community_group_id": "43",
+            "form_group_id": "443",
+            "phone": "07333 111111",
+            "email": "grenetta@example.com",
+            "achievement_points": 0,
+            "behaviour_points": 120
+         },
+         {
+            "id": "9925",
+            "gender": "Male",
+            "forename": "Sean",
+            "surname": "Abbey",
+            "admission_number": "004505",
+            "unique_pupil_number": "C823432113105",
+            "unique_learner_number": "1111176611",
+            "year_group_id": "36",
+            "community_group_id": "40",
+            "form_group_id": "393",
+            "phone": "01632211119",
+            "email": "sean.abbey@example.com",
+            "achievement_points": 0,
+            "behaviour_points": 40
+         }
+      ]
+   },
+   "id": "1"
+}

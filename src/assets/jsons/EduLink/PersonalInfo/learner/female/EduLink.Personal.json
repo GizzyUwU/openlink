@@ -1,0 +1,58 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Personal",
+      "success": true,
+      "personal": {
+         "id": "8404",
+         "forename": "Grenetta",
+         "surname": "Abbey",
+         "chosen_name": "Grenetta",
+         "gender": "Female",
+         "admission_number": "003979",
+         "unique_pupil_number": "B823432110001",
+         "unique_learner_number": "1111171873",
+         "date_of_birth": "2000-07-24",
+         "admission_date": "2011-09-01",
+         "email": "grenetta@example.com",
+         "phone": "07333 111111",
+         "address": "20 Radcliffe Road, Huddersfield, HD3 4LX, United Kingdom",
+         "post_code": "HD3 4LX",
+         "room_id": "41",
+         "form_group": {
+            "id": "443",
+            "name": "11F",
+            "room": {
+               "id": "41",
+               "code": "L4",
+               "name": "Language Room 4"
+            },
+            "employee": {
+               "id": "78",
+               "title": "Mr",
+               "forename": "Martin",
+               "surname": "Unwin"
+            }
+         },
+         "house_group": {
+            "id": "43",
+            "name": "Hooke"
+         },
+         "year_group": {
+            "id": "33",
+            "name": "Year 11"
+         }
+      },
+      "whoami": {
+         "establishment_id": 2,
+         "id": 26,
+         "title": "Mrs",
+         "forename": "Anita",
+         "surname": "Abell",
+         "types": [
+            "employee"
+         ]
+      }
+   },
+   "id": "7"
+}

@@ -1,0 +1,68 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ParentEventSlotAttendance",
+      "success": true,
+      "learners": [
+         {
+            "id": "12105",
+            "slots": [
+               {
+                  "start_time": "2017-11-14 04:00:00",
+                  "subjects": "PSE",
+                  "parent": {
+                     "id": "12163",
+                     "name": "Mr Jonas Aaron",
+                     "attended": false
+                  },
+                  "teacher": {
+                     "id": "29",
+                     "name": "Mr R. Tufnell"
+                  }
+               },
+               {
+                  "start_time": "2017-11-14 04:05:00",
+                  "subjects": "Form Tutor",
+                  "parent": {
+                     "id": "12163",
+                     "name": "Mr Jonas Aaron",
+                     "attended": false
+                  },
+                  "teacher": {
+                     "id": "32",
+                     "name": "Mr B. Kinross"
+                  }
+               },
+               {
+                  "start_time": "2017-11-14 04:25:00",
+                  "subjects": "Music",
+                  "parent": {
+                     "id": "12163",
+                     "name": "Mr Jonas Aaron",
+                     "attended": false
+                  },
+                  "teacher": {
+                     "id": "87",
+                     "name": "Mr R. Williams"
+                  }
+               }
+            ],
+            "name": "Chris Aaron (Year  9 - 9A)",
+            "summary": {
+               "bookings": {
+                  "total": 3,
+                  "attended": 0,
+                  "missed": 3
+               },
+               "total_parents": 1
+            }
+         }
+      ],
+      "metrics": {
+         "st": "2020-01-03 08:29:09",
+         "sspt": 0.01230001449584961,
+         "uniqid": "5e0efb55116a5"
+      }
+   },
+   "id": "9"
+}

@@ -1,0 +1,33 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "grouped": [
+      {
+        "label": "PP True EAL False",
+        "count": 77
+      },
+      {
+        "label": "PP False EAL True",
+        "count": 140
+      },
+      {
+        "label": "PP True EAL True",
+        "count": 461
+      },
+      {
+        "label": "PP False EAL False",
+        "count": 243
+      },
+      {
+        "label": "PP True EAL Unknown",
+        "count": 99
+      },
+      {
+        "label": "PP False EAL Unknown",
+        "count": 641
+      }
+    ],
+    "success": true
+  },
+  "id": "1"
+}

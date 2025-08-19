@@ -1,0 +1,87 @@
+{
+  "jsonrpc": "2.0",
+  "id": 12,
+  "result": {
+    "seating_plans": [
+      {
+        "group_name": "11C/Ge1",
+        "teacher_name": "Mr B. Kinross",
+        "room_name": "Language Room 7",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11A/Mu1",
+        "teacher_name": "Mr G. Davies",
+        "room_name": "MUSIC 2",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11A/Ci",
+        "teacher_name": "Mr J. Brown",
+        "room_name": "Art Room 2",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11x/En1",
+        "teacher_name": "Mr J. Atkinson",
+        "room_name": "English Room 5",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11x/Re1",
+        "teacher_name": "Mrs A. Wheeler",
+        "room_name": "Humanities Room 3",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11x/Ma1",
+        "teacher_name": "Mrs L. Vernon",
+        "room_name": "Maths Room 4",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11A/Mu1",
+        "teacher_name": "Mr G. Davies",
+        "room_name": "MUS",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11x/Sc1",
+        "teacher_name": "Mrs L. Chase",
+        "room_name": "Science Lab 6",
+        "room_id": 29,
+        "last_saved": "2021-12-09 11:32:55"
+      },
+      {
+        "group_name": "11x/Pe1",
+        "teacher_name": "Miss J. Young",
+        "room_name": "Sports Hall 1",
+        "room_id": null,
+        "last_saved": null
+      },
+      {
+        "group_name": "11B/Co1",
+        "teacher_name": "Mr V. Stockill",
+        "room_name": "IT 2",
+        "room_id": null,
+        "last_saved": null
+      }
+    ],
+    "method": "EduLink.SeatingPlans",
+    "success": true,
+    "metrics": {
+      "st": "2021-12-09 11:33:00",
+      "sspt": 0.016331988000018782,
+      "sspt_us": 16331,
+      "uniqid": "61b1e96c9cd09",
+      "be": "monty"
+    }
+  }
+}

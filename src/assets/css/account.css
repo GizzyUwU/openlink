@@ -1,0 +1,131 @@
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-personal {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+}
+
+.b-student-info {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.b-student-info__left {
+    background-color: #7061d8;
+    height: 100%;
+    width: 330px;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.b-student-info__left .l-student-title {
+    height: 100%;
+    justify-content: center;
+}
+
+.b-student-info__left .l-student-title .__title {
+    color: white;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.l-student-title {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+}
+
+.l-student-title .__photo {
+    background-position: 50%;
+    background-size: cover;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 160px;
+    margin-bottom: 19px;
+    width: 160px;
+}
+
+.b-student-info__right {
+    background: #fff;
+    height: 100%;
+    width: calc(100% - 330px);
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.__content {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.__content .__row {
+    width: 100%;
+}
+
+.__content .__row:not(:last-child) {
+    border-bottom: 1px solid #e3e9ea;
+}
+
+._col-wrap {
+    display: flex;
+    padding: 0;
+}
+
+.__col {
+    overflow-wrap: break-word;
+    padding: 16px 20px 20px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.__col:first-child {
+    width: 52%;
+}
+
+.__col:last-child {
+    border-left: 1px solid #e3e9ea;
+    width: 48%;
+}
+
+.__col .__title {
+    color: #8c97a5;
+    font-size: 14px;
+}
+.__col .__data {
+    color: #404652;
+    font-size: 17px;
+    padding: 5px 0;
+}

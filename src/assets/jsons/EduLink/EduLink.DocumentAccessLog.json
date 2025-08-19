@@ -1,0 +1,27 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "log": [
+      {
+        "user_id": "26",
+        "accessed": "2025-01-28 12:48:10",
+        "name": "Mrs A Abell",
+        "user_type": "employee"
+      },
+      {
+        "user_id": "26",
+        "accessed": "2024-12-12 12:39:35",
+        "name": "Mrs A Abell",
+        "user_type": "employee"
+      },
+      {
+        "user_id": "12268",
+        "accessed": "2024-12-12 11:56:55",
+        "name": "Mrs Demo Parent",
+        "user_type": "parent"
+      }
+    ],
+    "success": true
+  },
+  "id": "1"
+}

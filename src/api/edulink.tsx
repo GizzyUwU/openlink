@@ -1,15 +1,27 @@
-import { createContext, useContext, ParentComponent } from "solid-js";
-import { EdulinkAPI as API } from "./main";
+import {
+  createContext,
+  useContext,
+  createResource,
+  ParentComponent,
+  Show,
+} from "solid-js";
+import { EdulinkAPI as API } from "./main.ts";
 
 const EdulinkContext = createContext<API>();
 
 export const Edulink: ParentComponent = (props) => {
-  const edulinkAPI = new API();
+  const [edulink] = createResource(async () => {
+    const api = new API();
+    await api.ready;
+    return api;
+  });
 
   return (
-    <EdulinkContext.Provider value={edulinkAPI}>
-      {props.children}
-    </EdulinkContext.Provider>
+    <Show when={edulink()}>
+      <EdulinkContext.Provider value={edulink()!}>
+        {props.children}
+      </EdulinkContext.Provider>
+    </Show>
   );
 };
 

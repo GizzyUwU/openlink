@@ -1,0 +1,11 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "success": true,
+    "exception": null,
+    "metrics": {
+      "uniqid": "6721e0d9f3346"
+    }
+  },
+  "id": "1"
+}

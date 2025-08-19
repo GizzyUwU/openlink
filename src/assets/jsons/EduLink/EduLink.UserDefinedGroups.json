@@ -1,0 +1,38 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.UserDefinedGroups",
+      "success": true,
+      "groups": [
+         {
+            "id": 3037,
+            "description": "Athletics Team"
+         },
+         {
+            "id": 4972,
+            "description": "Often Late"
+         },
+         {
+            "id": 4924,
+            "description": "Poor Attenders"
+         },
+         {
+            "id": 4931,
+            "description": "Sibling Absence"
+         },
+         {
+            "id": 4926,
+            "description": "Traveller"
+         },
+         {
+            "id": 8022,
+            "description": "Year 7 11/12"
+         },
+         {
+            "id": 8023,
+            "description": "Year 7 12/13"
+         }
+      ]
+   },
+   "id": "5"
+}

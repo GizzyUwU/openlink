@@ -1,0 +1,46 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ChildProtectionReferral",
+        "success": true,
+        "referral": {
+            "id": 4,
+            "created": "2021-01-20 14:49:33",
+            "learner_id": "7338",
+            "referral_employee_id": "1",
+            "referred_to_employee_id": "26",
+            "details": "I spotted Jimmy has some cuts on his arms.",
+            "disclosure": null,
+            "location": "Canteen",
+            "occurred": "Lunch today",
+            "referrer_action": null,
+            "decision_description": "Spoken to Jimmy and his father has left home after a argument at the weekend with mum. He is not willing to discuss the cut on his arms so have contacted home to recommend he is taken to his GP.",
+            "decision_reason": "Suspect self harm and currently home life is disrupted",
+            "acknowledged": true,
+            "status_id": 5
+        },
+        "status_options": [
+            {
+                "id": 3,
+                "name": "In Progress",
+                "deleted": false
+            },
+            {
+                "id": 4,
+                "name": "Closed",
+                "deleted": false
+            },
+            {
+                "id": 5,
+                "name": "Referred to Child services",
+                "deleted": false
+            }
+        ],
+        "metrics": {
+            "st": "2019-08-13 14:54:12",
+            "sspt": 0.010931968688964844,
+            "uniqid": "5d52c104de1e6"
+        }
+    },
+    "id": "1"
+}

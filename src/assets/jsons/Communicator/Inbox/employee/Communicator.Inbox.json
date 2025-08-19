@@ -1,0 +1,95 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "Communicator.Inbox",
+        "success": true,
+        "messages": [
+            {
+                "id": 302,
+                "type": "email",
+                "subject": "Jimmy Abbey - UCAS Reference",
+                "body": "Hi Anita, <p>Just a reminder you need to complete Jimmy Abbey's UCAS Reference by end of day <b>tomorrow</b>.</p><p>Thanks</p><p>Dawn</p>",
+                "date": "2021-01-20 13:28",
+                "read": "2021-01-21 16:18",
+                "sender": {
+                    "id": "45",
+                    "type": "employee",
+                    "name": "Mrs Dawn Asher"
+                },
+                "attachments": []
+            },
+			 {
+                "id": "4425875",
+                "type": "email",
+                "subject": "Multiple staff",
+                "body": "<div class=\"editor\"><style>.editor p { margin: 0 }<\/style><p>This is an example email sent in Edulink One by a parent to multiple staff members.<\/p><\/div><br \/>---<br \/>Message sent using EduLink One<br \/><br \/>From: Ms Maria Adam<br \/><br \/>Regarding:<br \/>\t- Briony Adam (9A)<br \/>",
+                "date": "2025-01-28 17:24",
+                "read": "2025-01-28 17:24",
+                "logged": true,
+                "reply_to": null,
+                "sender": {
+                    "id": "4781",
+                    "type": "parent",
+                    "name": "Ms Maria Adam"
+                },
+                "copied": [
+                    {
+                        "id": "3",
+                        "name": "Mr James Brown",
+                        "is_read": false,
+                        "is_reply": false
+                    },
+                    {
+                        "id": "99",
+                        "name": "Mr Paul Brown",
+                        "is_read": true,
+                        "is_reply": false
+                    },
+                    {
+                        "id": "88",
+                        "name": "Miss Katie Burrows",
+                        "is_read": true,
+                        "is_reply": true
+                    },
+                    {
+                        "id": "68",
+                        "name": "Mr Richard Davidson",
+                        "is_read": false,
+                        "is_reply": false
+                    },
+                    {
+                        "id": "14",
+                        "name": "Mrs Ann Zelinskova",
+                        "is_read": true,
+                        "is_reply": false
+                    }
+                ],
+                "attachments": []
+            },
+            {
+                "id": 288,
+                "type": "email",
+                "subject": "Jimmy Abbey - Wrong Shoes",
+                "body": "Mrs. Abell,<p>Unfortunately Jimmy's school shoes have become unwearable, I will be taking him shoe shopping this weekend until then I will be sending him in wearing trainers.</p><p>I am aware this is against school policy but the only alternative was his wellington boots.</p><p>Thanks in Advance</p><p>Mr. Abbey</p>",
+                "date": "2021-01-18 16:03",
+                "logged": null,
+                "sender": {
+                    "id": "7339",
+                    "type": "parent",
+                    "name": "Mr. David Abbey"
+                },
+                "attachments": []
+            }
+        ],
+        "pagination": {
+            "current_page": 1,
+            "total_pages": 1,
+            "total_records": 2
+        },
+        "metrics": {
+            "st": "2018-06-25 17:16:24",
+            "sspt": 0.1710059642791748
+        }
+    },
+    "id": "1"
+}

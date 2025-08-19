@@ -1,0 +1,363 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.Attendance",
+        "success": true,
+        "lesson_end_date": "2018-08-31",
+        "statutory_end_date": "2018-08-31",
+        "show_lesson": true,
+        "show_today": true,
+        "today": {
+            "sessions": [
+                {
+                    "session_mark_code": "/",
+                    "minutes_late": 0,
+                    "date": "2021-06-14",
+                    "session": "AM",
+                    "mark": {
+                        "code": "/",
+                        "active": true,
+                        "name": "Present (AM)",
+                        "type": "Present",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": true
+                    }
+                },
+                {
+                    "session_mark_code": "I",
+                    "minutes_late": 0,
+                    "date": "2021-06-14",
+                    "session": "PM",
+                    "mark": {
+                        "code": "I",
+                        "active": true,
+                        "name": "Illness",
+                        "type": "Absent",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": false
+                    }
+                }
+            ],
+            "lessons": [
+                {
+                    "lesson_mark_code": "/",
+                    "teaching_group": {
+                        "id": "12088",
+                        "name": "8x/Ma1",
+                        "subject": "Mathematics"
+                    },
+                    "period": {
+                        "id": 51336,
+                        "description": "Fri:1",
+                        "start_time": "09:15:00",
+                        "end_time": "10:15:00"
+                    },
+                    "mark": {
+                        "code": "/",
+                        "active": true,
+                        "name": "Present (AM)",
+                        "type": "Present",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": true
+                    },
+                    "teachers": [
+                        {
+                            "id": "19",
+                            "title": "Miss",
+                            "forename": "F.",
+                            "surname": "Burton"
+                        }
+                    ]
+                },
+                {
+                    "lesson_mark_code": "L",
+                    "teaching_group": {
+                        "id": "12070",
+                        "name": "8A/Gg",
+                        "subject": "Geography"
+                    },
+                    "period": {
+                        "id": 51337,
+                        "description": "Fri:2",
+                        "start_time": "10:15:00",
+                        "end_time": "11:15:00"
+                    },
+                    "mark": {
+                        "code": "L",
+                        "active": true,
+                        "name": "Late (before registers closed)",
+                        "type": "Present",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": true,
+                        "present": true
+                    },
+                    "teachers": [
+                        {
+                            "id": "6",
+                            "title": "Mr",
+                            "forename": "A.",
+                            "surname": "Pinkney"
+                        }
+                    ]
+                },
+                {
+                    "lesson_mark_code": "/",
+                    "teaching_group": {
+                        "id": "12082",
+                        "name": "8x/En1",
+                        "subject": "English"
+                    },
+                    "period": {
+                        "id": 51338,
+                        "description": "Fri:3",
+                        "start_time": "11:35:00",
+                        "end_time": "12:35:00"
+                    },
+                    "mark": {
+                        "code": "/",
+                        "active": true,
+                        "name": "Present (AM)",
+                        "type": "Present",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": true
+                    },
+                    "teachers": [
+                        {
+                            "id": "97",
+                            "title": "Mr",
+                            "forename": "J.",
+                            "surname": "Atkinson"
+                        }
+                    ]
+                },
+                {
+                    "lesson_mark_code": "N",
+                    "teaching_group": {
+                        "id": "12085",
+                        "name": "8x/Ar1",
+                        "subject": "Art"
+                    },
+                    "period": {
+                        "id": 51339,
+                        "description": "Fri:4",
+                        "start_time": "12:35:00",
+                        "end_time": "13:35:00"
+                    },
+                    "mark": {
+                        "code": "N",
+                        "active": true,
+                        "name": "No reason yet provided for absence",
+                        "type": "Absent",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": false
+                    },
+                    "teachers": [
+                        {
+                            "id": "75",
+                            "title": "Mr",
+                            "forename": "T.",
+                            "surname": "Smith"
+                        }
+                    ]
+                },
+                {
+                    "lesson_mark_code": "-",
+                    "teaching_group": {
+                        "id": "12072",
+                        "name": "8A/Re",
+                        "subject": "Religious Ed"
+                    },
+                    "period": {
+                        "id": 51340,
+                        "description": "Fri:5",
+                        "start_time": "14:30:00",
+                        "end_time": "15:30:00"
+                    },
+                    "mark": {
+                        "code": "-",
+                        "active": true,
+                        "name": "All should attend / No mark recorded",
+                        "type": "Missing",
+                        "is_authorised_absence": false,
+                        "is_statistical": true,
+                        "is_late": false,
+                        "present": null
+                    },
+                    "teachers": [
+                        {
+                            "id": "73",
+                            "title": "Miss",
+                            "forename": "H.",
+                            "surname": "Green"
+                        }
+                    ]
+                }
+            ],
+            "clubs": [
+                {
+                    "club_id": 29,
+                    "club_name": "Tennis Team",
+                    "club_location": "Tennis Court",
+                    "session_id": 196,
+                    "start_time": "2021-06-14 15:00:00",
+                    "end_time": "2021-06-14 16:30:00",
+                    "present": false
+                },
+                {
+                    "club_id": 30,
+                    "club_name": "Maths Catchup",
+                    "club_location": "M3",
+                    "session_id": 197,
+                    "start_time": "2021-06-14 12:30:00",
+                    "end_time": "2021-06-14 13:15:00",
+                    "present": true
+                }
+            ]
+        },
+        "lesson": [
+            {
+                "subject": "Art",
+                "values": {
+                    "present": 16,
+                    "unauthorised": 3,
+                    "absent": 2,
+                    "late": 5
+                }
+            },
+            {
+                "subject": "English",
+                "values": {
+                    "present": 16,
+                    "unauthorised": 1,
+                    "absent": 0,
+                    "late": 1
+                }
+            },
+            {
+                "subject": "French",
+                "values": {
+                    "present": 16,
+                    "unauthorised": 0,
+                    "absent": 1,
+                    "late": 0
+                }
+            },
+            {
+                "subject": "Geography",
+                "values": {
+                    "present": 6,
+                    "unauthorised": 0,
+                    "absent": 0,
+                    "late": 0
+                }
+            },
+            {
+                "subject": "German",
+                "values": {
+                    "present": 16,
+                    "unauthorised": 0,
+                    "absent": 0,
+                    "late": 1
+                }
+            },
+            {
+                "subject": "History",
+                "values": {
+                    "present": 6,
+                    "unauthorised": 0,
+                    "absent": 0,
+                    "late": 0
+                }
+            },
+            {
+                "subject": "Mathematics",
+                "values": {
+                    "present": 24,
+                    "unauthorised": 0,
+                    "absent": 0,
+                    "late": 0
+                }
+            },
+            {
+                "subject": "Science",
+                "values": {
+                    "present": 18,
+                    "unauthorised": 0,
+                    "absent": 0,
+                    "late": 3
+                }
+            },
+            {
+                "subject": "Technology",
+                "values": {
+                    "present": 18,
+                    "unauthorised": 1,
+                    "absent": 0,
+                    "late": 0
+                }
+            }
+        ],
+        "show_statutory": true,
+        "statutory": [
+            {
+                "month": "2017-09",
+                "values": {
+                    "present": 38,
+                    "unauthorised": 0,
+                    "absent": 2
+                },
+                "exceptions": [
+                    {
+                        "date": "2017-09-18",
+                        "description": "Illness",
+                        "type": "Absent",
+                        "period": "Monday AM"
+                    },
+                    {
+                        "date": "2017-09-18",
+                        "description": "Illness",
+                        "type": "Absent",
+                        "period": "Monday PM"
+                    }
+                ]
+            },
+            {
+                "month": "2017-10",
+                "values": {
+                    "present": 20,
+                    "unauthorised": 3,
+                    "absent": 1
+                },
+                "exceptions": [
+                    {
+                        "date": "2017-10-11",
+                        "description": "Illness",
+                        "type": "Absent",
+                        "period": "Monday AM"
+                    },
+                    {
+                        "date": "2017-10-11",
+                        "description": "Illness",
+                        "type": "Absent",
+                        "period": "Monday PM"
+                    }
+                ]
+            }
+        ],
+        "metrics": {
+            "sspt": 0.095095157623291
+        }
+    },
+    "id": "1"
+}

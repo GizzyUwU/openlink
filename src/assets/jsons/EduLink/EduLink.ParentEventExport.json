@@ -1,0 +1,88 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventExport",
+        "success": true,
+        "bookings": {
+            "rows": [
+                [
+                    "Person",
+                    "2019-03-07 23:00:00",
+                    "2019-03-07 23:05:00",
+                    "2019-03-07 23:10:00",
+                    "2019-03-07 23:15:00",
+                    "2019-03-07 23:20:00",
+                    "2019-03-07 23:25:00",
+                    "2019-03-07 23:30:00",
+                    "2019-03-07 23:35:00",
+                    "2019-03-07 23:40:00",
+                    "2019-03-07 23:45:00",
+                    "2019-03-07 23:50:00"
+                ],
+                [
+                    "Mr A. Blacker",
+                    "",
+                    "",
+                    "Yvonne Mugarisanwa (Sylivia Mugarisanwa - test)",
+                    "Yvonne Anton (Tiger Anton - test)",
+                    "",
+                    "Jake Bond (Jamie Bond - test)",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "Yvonne Anton",
+                    "",
+                    "",
+                    "",
+                    "Mr A. Blacker (Tiger Anton - test)",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "Jake Bond",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "Mr A. Blacker (Jamie Bond - test)",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                [
+                    "Yvonne Mugarisanwa",
+                    "",
+                    "",
+                    "Mr A. Blacker (Sylivia Mugarisanwa - test)",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            ],
+            "csv": "Person,2019-03-07 23:00:00,2019-03-07 23:05:00,2019-03-07 23:10:00,2019-03-07 23:15:00,2019-03-07 23:20:00,2019-03-07 23:25:00,2019-03-07 23:30:00,2019-03-07 23:35:00,2019-03-07 23:40:00,2019-03-07 23:45:00,2019-03-07 23:50:00\r\nMr A. Blacker,,,Yvonne Mugarisanwa (Sylivia Mugarisanwa - test),Yvonne Anton (Tiger Anton - test),,Jake Bond (Jamie Bond - test),,,,,\r\nYvonne Anton,,,,Mr A. Blacker (Tiger Anton - test),,,,,,,\r\nJake Bond,,,,,,Mr A. Blacker (Jamie Bond - test),,,,,\r\nYvonne Mugarisanwa,,,Mr A. Blacker (Sylivia Mugarisanwa - test),,,,,,,,\r\n"
+        },
+        "metrics": {
+            "st": "2019-03-07 14:52:49",
+            "sspt": 0.02161383628845215,
+            "uniqid": "5c81304185032"
+        }
+    },
+    "id": "1"
+}

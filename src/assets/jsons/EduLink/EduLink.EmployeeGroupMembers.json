@@ -1,0 +1,18 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.EmployeeGroupMembers",
+      "success": true,
+      "members": [
+         {
+            "id": "26",
+            "name": "Mrs A. Abell"
+         },
+         {
+            "id": "12268",
+            "name": "Miss S. Abdullah"
+         }
+      ]
+   },
+   "id": "1"
+}

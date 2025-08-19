@@ -1,0 +1,20 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "result": {
+      "url": "https://demo.edulinkone.com/api/download/REriwcXUNr-xLaZqGeSZJqfPQCDxkzVtqsxn-PN-SfsXrvQV2mM9Sq9Hk38J1arL5dI/datacollection_2021-11-08_09_09_05_26yCqAFA.csv",
+      "mime_type": "text/csv",
+      "filename": "datacollection_2021_10_10_until_2021_11_07.csv"
+    },
+    "method": "EduLink.DataCollectionLogExport",
+    "success": true,
+    "metrics": {
+      "st": "2021-11-08 09:09:05",
+      "sspt": 0.05107829702319577,
+      "sspt_us": 51078,
+      "uniqid": "6188e9313626b",
+      "be": "monty"
+    }
+  }
+}

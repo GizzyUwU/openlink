@@ -1,0 +1,44 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.MarksheetCommentBank",
+    "success": true,
+    "variables": {
+      "learner": {
+        "{{learner.forename}}": "Forename",
+        "{{learner.surname}}": "Surname",
+        "{{learner.fullname}}": "Full name",
+        "{{learner.form_group.name}}": "Form group name",
+        "{{learner.form_group.teacher}}": "Form Teacher",
+        "{{learner.house_group.name}}": "House group name",
+        "{{learner.year_group.name}}": "Year group name",
+        "{{learner.he_she}}": "he/she",
+        "{{learner.he_she_upper}}": "He/She",
+        "{{learner.his_her}}": "his/her",
+        "{{learner.his_her_upper}}": "His/Her",
+        "{{learner.him_her}}": "him/her",
+        "{{learner.his_hers}}": "his/hers"
+      }
+    },
+    "comments": [
+      {
+        "id": 5,
+        "comment": "{{learner.forename}} is able to evaluate different sources of evidence, viewpoints and contributions to an argument in an intelligent process which leads to a logical and well-reasoned judgement."
+      },
+      {
+        "id": 6,
+        "comment": "{{learner.forename}} is able to evaluate sources of evidence, viewpoints and contributions to an argument with some confidence and work towards a logical and well-reasoned judgement."
+      },
+      {
+        "id": 7,
+        "comment": "{{learner.forename}} is able to evaluate sources of evidence and different points of view using a simple formula, and is learning to form a reasoned conclusion to a written argument."
+      }
+    ],
+    "metrics": {
+      "st": "2019-07-15 15:59:49",
+      "sspt": 0.02672100067138672,
+      "uniqid": "5d2c94e5bd3d9"
+    }
+  },
+  "id": "7"
+}

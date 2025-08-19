@@ -1,0 +1,720 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEvent",
+        "success": true,
+        "parent": true,
+        "emailme": true,
+        "parent_options": [
+            {
+                "parent_id": "8150",
+                "teacher_id": "15",
+                "learner_id": "10497",
+                "subjects": "French",
+                "notes_to_teacher": null,
+                "booked_slot_id": 4161,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": true,
+                        "booked": true
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": false
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "20",
+                "learner_id": "10497",
+                "subjects": "Mathematics",
+                "notes_to_teacher": "could do with some additional help with pythagoras if there are some good additional resources you could recommend?" ,
+                "booked_slot_id": 4163,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": true,
+                        "booked": true
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "68",
+                "learner_id": "10497",
+                "subjects": "Physical Ed",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                   {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "99",
+                "learner_id": "10497",
+                "subjects": "Technology",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                   {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "32",
+                "learner_id": "10497",
+                "subjects": "German",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "74",
+                "learner_id": "10497",
+                "subjects": "Religious Ed",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "18",
+                "learner_id": "10497",
+                "subjects": "PSE, Form Tutor",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "88",
+                "learner_id": "10497",
+                "subjects": "Art",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "73",
+                "learner_id": "10497",
+                "subjects": "Geography, History",
+                "notes_to_teacher": null,
+                "booked_slot_id": 4164,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": true,
+						"booked": true
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            },
+            {
+                "parent_id": "8150",
+                "teacher_id": "98",
+                "learner_id": "10497",
+                "subjects": "English",
+                "notes_to_teacher": null,
+                "booked_slot_id": 4162,
+                "slots": [
+                    {
+                        "slot_id": 4161,
+                        "start_time": "2018-03-21 17:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4162,
+                        "start_time": "2018-03-21 17:10:00",
+                        "available": true,
+						"booked": true
+                    },
+                    {
+                        "slot_id": 4163,
+                        "start_time": "2018-03-21 17:20:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4164,
+                        "start_time": "2018-03-21 17:30:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 4165,
+                        "start_time": "2018-03-21 17:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4166,
+                        "start_time": "2018-03-21 17:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4167,
+                        "start_time": "2018-03-21 18:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4168,
+                        "start_time": "2018-03-21 18:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4169,
+                        "start_time": "2018-03-21 18:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4170,
+                        "start_time": "2018-03-21 18:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4171,
+                        "start_time": "2018-03-21 18:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 4172,
+                        "start_time": "2018-03-21 18:50:00",
+                        "available": true
+                    }
+                ]
+            }
+        ],
+        "metrics": {
+            "st": "2018-03-01 14:49:54",
+            "sspt": 0.26406407356262207
+        }
+    },
+    "id": "1"
+}

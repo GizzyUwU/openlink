@@ -1,0 +1,18 @@
+{
+   "jsonrpc": "2.0",
+   "id": "9",
+   "result": {
+      "export": null,
+      "grouped": [
+         {
+            "label": "Skyla Avolon",
+            "count": 1
+         },
+         {
+            "label": "Kalifa Onwuatuegwu",
+            "count": 1
+         }
+      ],
+      "success": true
+   }
+}

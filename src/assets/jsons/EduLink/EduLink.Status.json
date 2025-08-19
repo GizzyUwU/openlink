@@ -1,0 +1,58 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Status",
+      "success": true,
+      "new_forms": 1,
+	  "datacollection": {
+            "submissions": 4
+        },
+      "lessons": {
+         "current": {
+            "description": "09:15: Science in Science Lab 1 with 9y/Sc1",
+            "room": {
+               "id": 52,
+               "name": "Science Lab 1"
+            },
+            "teaching_group": {
+               "id": 8881,
+               "name": "9y/Sc1",
+               "subject": "Science"
+            },
+            "teacher": {
+               "id": 26,
+               "title": "Mrs",
+               "forename": "Anita",
+               "surname": "Abell"
+            },
+            "start_time": "09:15",
+            "end_time": "10:15",
+            "period_name": "Tue:1",
+            "register_id": "1"
+         },
+         "next": {
+            "description": "10:15: Science in Science Lab 1 with 9y/Sc1",
+            "room": {
+               "id": 52,
+               "name": "Science Lab 1"
+            },
+            "teaching_group": {
+               "id": 8881,
+               "name": "9y/Sc1",
+               "subject": "Science"
+            },
+            "teacher": {
+               "id": 26,
+               "title": "Mrs",
+               "forename": "Anita",
+               "surname": "Abell"
+            },
+            "start_time": "10:15",
+            "end_time": "11:15",
+            "period_name": "Tue:2"
+         }
+      },
+      "new_messages": 1
+   },
+   "id": "4"
+}

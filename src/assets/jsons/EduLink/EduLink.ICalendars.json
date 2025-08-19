@@ -1,0 +1,41 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ICalendars",
+        "success": true,
+        "exports": {
+            "personal": [
+                {
+                    "type": "timetable",
+                    "description": "Timetable",
+                    "enabled": true,
+                    "url": "https:\/\/ondsupportteam.edulinkone.com\/api\/iCalendar\/?type=timetable&identifier=YFlM1XKO0q9QSz0mHpDSjfP1KJojcVbFmxeSDshprOvZ7XbRAoucTZlVHhbx69c6sBSCtcMMoO1gK1QUKJd0eDvN2rWfS3yMe32H5XCcgoi4HlHTNm28hkwmfv2nWSHSAw"
+                },
+                {
+                    "type": "calendar",
+                    "description": "Calendar",
+                    "enabled": false
+                }
+            ],
+            "children": []
+        },
+        "imports": [
+            {
+                "id": 60,
+                "description": "testing",
+                "owner": "system",
+                "url": "https://calendar.google.com/calendar/ical/lucywalshaw%40gmail.com/public/basic.ics",
+                "fetch_completed": "2018-08-01 16:17:35",
+                "user_types": [
+                    "parent",
+                    "learner"
+                ]
+            }
+        ],
+        "metrics": {
+            "st": "2017-12-15 13:08:31",
+            "sspt": 0.095757007598876953125
+        }
+    },
+    "id": "1"
+}

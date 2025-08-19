@@ -1,0 +1,1186 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.AchievementBehaviourLookups",
+      "success": true,
+      "achievement_types": [
+         {
+            "id": "1",
+            "active": true,
+            "code": "AA",
+            "description": "Academic Achievement",
+            "position": 1,
+            "points": 20,
+            "system": false
+         },
+         {
+            "id": "27",
+            "active": true,
+            "code": "BRO",
+            "description": "Bronze Award",
+            "position": 2,
+            "points": 10,
+            "system": false
+         },
+         {
+            "id": "22",
+            "active": true,
+            "code": "COM",
+            "description": "Community Event",
+            "position": 3,
+            "points": 10,
+            "system": false
+         },
+         {
+            "id": "8",
+            "active": true,
+            "code": "EE",
+            "description": "Excellent Effort",
+            "position": 4,
+            "points": 15,
+            "system": false
+         },
+         {
+            "id": "24",
+            "active": true,
+            "code": "EXC",
+            "description": "Extra-curricular Activity",
+            "position": 5,
+            "points": 10,
+            "system": false
+         },
+         {
+            "id": "25",
+            "active": true,
+            "code": "EXE",
+            "description": "Excellent Attendance",
+            "position": 6,
+            "points": 50,
+            "system": false
+         },
+         {
+            "id": "28",
+            "active": true,
+            "code": "GOL",
+            "description": "Gold Award",
+            "position": 7,
+            "points": 30,
+            "system": false
+         },
+         {
+            "id": "23",
+            "active": true,
+            "code": "MUS",
+            "description": "Musical Activity",
+            "position": 8,
+            "points": 10,
+            "system": false
+         },
+         {
+            "id": "30",
+            "active": true,
+            "code": "NYPA",
+            "description": "New Year Points Award",
+            "position": 9,
+            "points": 99,
+            "system": false
+         },
+         {
+            "id": "10",
+            "active": true,
+            "code": "OTH",
+            "description": "Other",
+            "position": 10,
+            "points": 5,
+            "system": false
+         },
+         {
+            "id": "9",
+            "active": true,
+            "code": "OW",
+            "description": "Outstanding Work",
+            "position": 11,
+            "points": 25,
+            "system": false
+         },
+         {
+            "id": "29",
+            "active": true,
+            "code": "SIL",
+            "description": "Silver Award",
+            "position": 12,
+            "points": 20,
+            "system": false
+         },
+         {
+            "id": "20",
+            "active": true,
+            "code": "SPOR",
+            "description": "Sporting Representation",
+            "position": 13,
+            "points": 10,
+            "system": true
+         },
+         {
+            "id": "11",
+            "active": false,
+            "code": "ACAD",
+            "description": "Academic",
+            "position": 14,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "14",
+            "active": false,
+            "code": "CHOI",
+            "description": "Choir",
+            "position": 15,
+            "points": 0,
+            "system": true
+         },
+         {
+            "id": "18",
+            "active": false,
+            "code": "PHON",
+            "description": "Phone Call",
+            "position": 16,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "13",
+            "active": false,
+            "code": "BAND",
+            "description": "School Band",
+            "position": 17,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "17",
+            "active": false,
+            "code": "ORCH",
+            "description": "School Orchestra",
+            "position": 18,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "21",
+            "active": false,
+            "code": "VISI",
+            "description": "Visit to school",
+            "position": 19,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "12",
+            "active": false,
+            "code": "ACCI",
+            "description": "Accident",
+            "position": 20,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "19",
+            "active": false,
+            "code": "PREF",
+            "description": "Prefect",
+            "position": 21,
+            "points": 1,
+            "system": false
+         },
+         {
+            "id": "15",
+            "active": false,
+            "code": "CLUB",
+            "description": "Club",
+            "position": 22,
+            "points": 1,
+            "system": true
+         },
+         {
+            "id": "16",
+            "active": false,
+            "code": "NA",
+            "description": "Not Applicable",
+            "position": 23,
+            "points": 1,
+            "system": false
+         }
+      ],
+      "achievement_activity_types": [
+         {
+            "id": "13",
+            "code": "ART",
+            "description": "Art",
+            "active": true
+         },
+         {
+            "id": "14",
+            "code": "DRAMA",
+            "description": "Drama",
+            "active": true
+         },
+         {
+            "id": "15",
+            "code": "ENG",
+            "description": "English",
+            "active": true
+         },
+         {
+            "id": "29",
+            "code": "EXT",
+            "description": "Extra-curricular activity",
+            "active": true
+         },
+         {
+            "id": "16",
+            "code": "FRA",
+            "description": "French",
+            "active": false
+         },
+         {
+            "id": "17",
+            "code": "GEOG",
+            "description": "Geography",
+            "active": true
+         },
+         {
+            "id": "18",
+            "code": "GER",
+            "description": "German",
+            "active": false
+         },
+         {
+            "id": "19",
+            "code": "HIST",
+            "description": "History",
+            "active": true
+         },
+         {
+            "id": "30",
+            "code": "ICT",
+            "description": "Information & Communication Technology",
+            "active": true
+         },
+         {
+            "id": "8",
+            "code": "IT",
+            "description": "IT",
+            "active": false
+         },
+         {
+            "id": "25",
+            "code": "MATH",
+            "description": "Mathematics",
+            "active": true
+         },
+         {
+            "id": "20",
+            "code": "MATHS",
+            "description": "Maths",
+            "active": false
+         },
+         {
+            "id": "31",
+            "code": "MFL",
+            "description": "Modern Languages",
+            "active": true
+         },
+         {
+            "id": "21",
+            "code": "MUS",
+            "description": "Music",
+            "active": true
+         },
+         {
+            "id": "26",
+            "code": "NC",
+            "description": "National Curriculum",
+            "active": false
+         },
+         {
+            "id": "28",
+            "code": "OTH",
+            "description": "Other curriculum area",
+            "active": true
+         },
+         {
+            "id": "24",
+            "code": "PE",
+            "description": "Physical Education",
+            "active": true
+         },
+         {
+            "id": "27",
+            "code": "RE",
+            "description": "Religious Education",
+            "active": true
+         },
+         {
+            "id": "22",
+            "code": "SCI",
+            "description": "Science",
+            "active": true
+         },
+         {
+            "id": "23",
+            "code": "TECH",
+            "description": "Technology",
+            "active": true
+         }
+      ],
+      "achievement_award_types": [
+         {
+            "id": "18",
+            "name": "Certificate"
+         },
+         {
+            "id": "1",
+            "name": "Commended"
+         },
+         {
+            "id": "21",
+            "name": "Letter sent to Parent or Guardian"
+         },
+         {
+            "id": "2",
+            "name": "Merit Points"
+         },
+         {
+            "id": "20",
+            "name": "Not Applicable"
+         },
+         {
+            "id": "17",
+            "name": "Other"
+         },
+         {
+            "id": "23",
+            "name": "Prize"
+         },
+         {
+            "id": "5",
+            "name": "Sports Certificate"
+         },
+         {
+            "id": "16",
+            "name": "Subject Referral"
+         },
+         {
+            "id": "24",
+            "name": "Trophy"
+         }
+      ],
+      "achievement_points_editable": true,
+      "detentionmanagement_enabled": true,
+      "behaviour_types": [
+         {
+            "id": "7",
+            "active": true,
+            "code": "ASS",
+            "description": "Assault",
+            "position": 2,
+            "points": 50,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": true
+         },
+         {
+            "id": "26",
+            "active": true,
+            "code": "BULL",
+            "description": "Bullying",
+            "position": 3,
+            "points": 50,
+            "system": true,
+            "include_in_register": true,
+            "is_bullying_type": true
+         },
+         {
+            "id": "10",
+            "active": true,
+            "code": "DP",
+            "description": "Damage to Property",
+            "position": 4,
+            "points": 25,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "11",
+            "active": true,
+            "code": "DF",
+            "description": "Defiance",
+            "position": 5,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "28",
+            "active": true,
+            "code": "DISR",
+            "description": "Disruptive Behaviour in Class",
+            "position": 6,
+            "points": 10,
+            "system": true,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "12",
+            "active": true,
+            "code": "DRPT",
+            "description": "Disruptive Behaviour Outside the Classroom",
+            "position": 7,
+            "points": 20,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "14",
+            "active": true,
+            "code": "FT",
+            "description": "Fighting",
+            "position": 8,
+            "points": 20,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "15",
+            "active": true,
+            "code": "HW",
+            "description": "Homework Issue",
+            "position": 9,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "16",
+            "active": true,
+            "code": "IS",
+            "description": "Illicit Substances",
+            "position": 10,
+            "points": 50,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "17",
+            "active": true,
+            "code": "IW",
+            "description": "Inadequate Work in Class",
+            "position": 11,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "4",
+            "active": true,
+            "code": "LI",
+            "description": "Lunchtime Incident",
+            "position": 12,
+            "points": 10,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "18",
+            "active": true,
+            "code": "MD",
+            "description": "Missed Detention",
+            "position": 13,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "13",
+            "active": true,
+            "code": "EQ",
+            "description": "Not Equipped for Lesson",
+            "position": 14,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "25",
+            "active": true,
+            "code": "OTH",
+            "description": "Other",
+            "position": 15,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "40",
+            "active": true,
+            "code": "PAST",
+            "description": "Pastoral Record Note",
+            "position": 16,
+            "points": 0,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "33",
+            "active": true,
+            "code": "PLAL",
+            "description": "Persistent Lateness to Lessons",
+            "position": 17,
+            "points": 10,
+            "system": true,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "34",
+            "active": true,
+            "code": "PLAS",
+            "description": "Persistent Lateness to School",
+            "position": 18,
+            "points": 10,
+            "system": true,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "35",
+            "active": true,
+            "code": "RACI",
+            "description": "Racist Incident",
+            "position": 19,
+            "points": 50,
+            "system": true,
+            "include_in_register": true,
+            "is_bullying_type": true
+         },
+         {
+            "id": "39",
+            "active": true,
+            "code": "RUDE",
+            "description": "Rudeness",
+            "position": 20,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "36",
+            "active": true,
+            "code": "SMOK",
+            "description": "Smoking",
+            "position": 21,
+            "points": 25,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "20",
+            "active": true,
+            "code": "TH",
+            "description": "Theft",
+            "position": 22,
+            "points": 25,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "21",
+            "active": true,
+            "code": "TR",
+            "description": "Truancy",
+            "position": 23,
+            "points": 25,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "22",
+            "active": true,
+            "code": "UJ",
+            "description": "Incorrect Uniform\/Jewellery etc",
+            "position": 24,
+            "points": 10,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "24",
+            "active": true,
+            "code": "VP",
+            "description": "Verbal Abuse - Pupil",
+            "position": 25,
+            "points": 35,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": true
+         },
+         {
+            "id": "23",
+            "active": true,
+            "code": "VT",
+            "description": "Verbal Abuse - Teacher",
+            "position": 26,
+            "points": 35,
+            "system": false,
+            "include_in_register": true,
+            "is_bullying_type": false
+         },
+         {
+            "id": "29",
+            "active": false,
+            "code": "INSO",
+            "description": "Insolence",
+            "position": 27,
+            "points": 1,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "31",
+            "active": false,
+            "code": "NA",
+            "description": "Not Applicable",
+            "position": 28,
+            "points": 1,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "30",
+            "active": false,
+            "code": "LINC",
+            "description": "Lunch Time Incident",
+            "position": 29,
+            "points": 1,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "32",
+            "active": false,
+            "code": "PHKF",
+            "description": "Persistent Homework Failure",
+            "position": 30,
+            "points": 1,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "19",
+            "active": false,
+            "code": "OS",
+            "description": "Other (Severe)",
+            "position": 31,
+            "points": 1,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "37",
+            "active": false,
+            "code": "<NONE>",
+            "description": "&lt;None&gt;",
+            "position": 32,
+            "points": 1,
+            "system": true,
+            "include_in_register": false,
+            "is_bullying_type": false
+         },
+         {
+            "id": "41",
+            "active": true,
+            "code": "DT",
+            "description": "Detention",
+            "position": 33,
+            "points": 0,
+            "system": false,
+            "include_in_register": false,
+            "is_bullying_type": false
+         }
+      ],
+      "behaviour_activity_types": [
+         {
+            "id": "7",
+            "code": "ART",
+            "description": "Art",
+            "active": true
+         },
+         {
+            "id": "1",
+            "code": "ENG",
+            "description": "English",
+            "active": true
+         },
+         {
+            "id": "15",
+            "code": "EXT",
+            "description": "Extra-curricular Activity",
+            "active": true
+         },
+         {
+            "id": "8",
+            "code": "GEOG",
+            "description": "Geography",
+            "active": true
+         },
+         {
+            "id": "9",
+            "code": "HIST",
+            "description": "History",
+            "active": true
+         },
+         {
+            "id": "10",
+            "code": "ICT",
+            "description": "Information & Communication Technology",
+            "active": true
+         },
+         {
+            "id": "2",
+            "code": "MATH",
+            "description": "Mathematics",
+            "active": true
+         },
+         {
+            "id": "11",
+            "code": "MFL",
+            "description": "Modern Languages",
+            "active": true
+         },
+         {
+            "id": "12",
+            "code": "MUS",
+            "description": "Music",
+            "active": true
+         },
+         {
+            "id": "3",
+            "code": "NC",
+            "description": "National Curriculum",
+            "active": false
+         },
+         {
+            "id": "14",
+            "code": "OTH",
+            "description": "Other Subject",
+            "active": true
+         },
+         {
+            "id": "4",
+            "code": "PE",
+            "description": "Physical Education",
+            "active": true
+         },
+         {
+            "id": "5",
+            "code": "RE",
+            "description": "Religious Education",
+            "active": true
+         },
+         {
+            "id": "6",
+            "code": "SCI",
+            "description": "Science",
+            "active": true
+         },
+         {
+            "id": "13",
+            "code": "TECH",
+            "description": "Technology",
+            "active": true
+         }
+      ],
+      "behaviour_actions_taken": [
+         {
+            "id": "43",
+            "name": "Actions Agreed"
+         },
+         {
+            "id": "44",
+            "name": "Additional Internal Support"
+         },
+         {
+            "id": "26",
+            "name": "Cooling Off Period"
+         },
+         {
+            "id": "27",
+            "name": "Detention"
+         },
+         {
+            "id": "45",
+            "name": "Discussed with Aggressor"
+         },
+         {
+            "id": "46",
+            "name": "Discussed with Other Pupils"
+         },
+         {
+            "id": "47",
+            "name": "Discussed with Parents"
+         },
+         {
+            "id": "5",
+            "name": "Discussed with Pupil"
+         },
+         {
+            "id": "49",
+            "name": "Discussed with bully\/pupil\/student Target"
+         },
+         {
+            "id": "48",
+            "name": "Discussion of Incident with Peers\/Class"
+         },
+         {
+            "id": "51",
+            "name": "Follow Up Date Set"
+         },
+         {
+            "id": "50",
+            "name": "Further Intervention Required"
+         },
+         {
+            "id": "52",
+            "name": "Internal Exclusion"
+         },
+         {
+            "id": "53",
+            "name": "Involved Outside Agency"
+         },
+         {
+            "id": "6",
+            "name": "Isolation"
+         },
+         {
+            "id": "42",
+            "name": "Lunchtime Detention"
+         },
+         {
+            "id": "2",
+            "name": "On Report"
+         },
+         {
+            "id": "54",
+            "name": "Other"
+         },
+         {
+            "id": "30",
+            "name": "Permanent Exclusion"
+         },
+         {
+            "id": "41",
+            "name": "Refer to Head of Department"
+         },
+         {
+            "id": "11",
+            "name": "Referred to Leadership Group"
+         },
+         {
+            "id": "55",
+            "name": "Report on File"
+         },
+         {
+            "id": "56",
+            "name": "Sanctions Applied in line with school's behaviour policy"
+         },
+         {
+            "id": "40",
+            "name": "Suspended from school"
+         },
+         {
+            "id": "14",
+            "name": "Written Punishment"
+         }
+      ],
+      "behaviour_bullying_types": [
+         {
+            "id": "2",
+            "name": "Bullying-Appearance or Health Condition"
+         },
+         {
+            "id": "3",
+            "name": "Bullying-Intimidation"
+         },
+         {
+            "id": "4",
+            "name": "Bullying-Other"
+         },
+         {
+            "id": "5",
+            "name": "Bullying-Race, Religion or Culture"
+         },
+         {
+            "id": "6",
+            "name": "Bullying-SEN or Disabilities"
+         },
+         {
+            "id": "7",
+            "name": "Bullying-Sexist or sexual bullying"
+         },
+         {
+            "id": "8",
+            "name": "Bullying-Sexual Orientation"
+         },
+         {
+            "id": "1",
+            "name": "Bullying-Young carers, looked after children"
+         },
+         {
+            "id": "9",
+            "name": "Cyberbullying"
+         },
+         {
+            "id": "10",
+            "name": "Discrimination"
+         },
+         {
+            "id": "11",
+            "name": "Emotional"
+         },
+         {
+            "id": "17",
+            "name": "Multiple Bullying Types Selected"
+         },
+         {
+            "id": "12",
+            "name": "Name Calling"
+         },
+         {
+            "id": "13",
+            "name": "Physical Violence"
+         },
+         {
+            "id": "14",
+            "name": "Teasing"
+         },
+         {
+            "id": "15",
+            "name": "Threatened"
+         },
+         {
+            "id": "16",
+            "name": "Written Derogatory Comments"
+         }
+      ],
+      "behaviour_detention_attendance": [
+         {
+            "code": "ATT",
+            "description": "Attended",
+            "absent": false
+         },
+         {
+            "code": "NAT",
+            "description": "Not Attended",
+            "absent": true
+         },
+         {
+            "code": "NOR",
+            "description": "Not Recorded",
+            "absent": false
+         }
+      ],
+      "behaviour_locations": [
+         {
+            "id": "27",
+            "name": "Bus"
+         },
+         {
+            "id": "45",
+            "name": "Classroom"
+         },
+         {
+            "id": "52",
+            "name": "Corridor or Circulation Area"
+         },
+         {
+            "id": "28",
+            "name": "Detention"
+         },
+         {
+            "id": "46",
+            "name": "Dining Hall"
+         },
+         {
+            "id": "53",
+            "name": "Gym\/Sports Hall\/Pool"
+         },
+         {
+            "id": "18",
+            "name": "Outside School Grounds"
+         },
+         {
+            "id": "51",
+            "name": "Playground"
+         },
+         {
+            "id": "49",
+            "name": "Playing Field"
+         },
+         {
+            "id": "54",
+            "name": "School Visit"
+         },
+         {
+            "id": "23",
+            "name": "To\/From School"
+         },
+         {
+            "id": "44",
+            "name": "Toilets"
+         },
+         {
+            "id": "25",
+            "name": "Tutor Base"
+         }
+      ],
+      "behaviour_statuses": [
+         {
+            "id": "11",
+            "name": "Detention (C2 - 20 minutes)"
+         },
+         {
+            "id": "5",
+            "name": "Further Intervention Required"
+         },
+         {
+            "id": "6",
+            "name": "Monitor conduct"
+         },
+         {
+            "id": "2",
+            "name": "Resolved"
+         },
+         {
+            "id": "7",
+            "name": "Review in 1 Week"
+         },
+         {
+            "id": "8",
+            "name": "Review in 2 Weeks"
+         },
+         {
+            "id": "9",
+            "name": "Review in 3 Weeks"
+         },
+         {
+            "id": "10",
+            "name": "Review in 6 Weeks"
+         },
+         {
+            "id": "1",
+            "name": "Unresolved"
+         }
+      ],
+      "behaviour_times": [
+         {
+            "id": "14",
+            "name": "AM Break"
+         },
+         {
+            "id": "15",
+            "name": "AM Registration"
+         },
+         {
+            "id": "27",
+            "name": "After School"
+         },
+         {
+            "id": "16",
+            "name": "Before School Hours"
+         },
+         {
+            "id": "17",
+            "name": "Between Lessons"
+         },
+         {
+            "id": "18",
+            "name": "End of School"
+         },
+         {
+            "id": "19",
+            "name": "Lesson 1"
+         },
+         {
+            "id": "20",
+            "name": "Lesson 2"
+         },
+         {
+            "id": "21",
+            "name": "Lesson 3"
+         },
+         {
+            "id": "22",
+            "name": "Lesson 4"
+         },
+         {
+            "id": "23",
+            "name": "Lesson 5"
+         },
+         {
+            "id": "25",
+            "name": "Lunch"
+         },
+         {
+            "id": "28",
+            "name": "Out of School"
+         },
+         {
+            "id": "26",
+            "name": "PM Registration"
+         }
+      ],
+      "behaviour_points_editable": true,
+      "behaviour_hidden_fields_on_entry": [],
+      "achievement_hidden_fields_on_entry": [],
+      "behaviour_require_fields": [
+         "activity_id",
+         "location_id",
+         "status"
+      ],
+      "achievement_require_fields": [
+         "comments",
+         "activity_id"
+      ],
+      "metrics": {
+         "st": "2023-03-21 15:19:31",
+         "sspt": 0.0446779727935791,
+         "sspt_us": 44677,
+         "uniqid": "6419cb037097a"
+      }
+   },
+   "id": "1"
+}

@@ -1,0 +1,207 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ResourceChanges",
+        "success": true,
+        "date": "Tuesday 19th March 2019",
+        "closures": [
+            {
+                "reason": "Out of Use",
+                "resource": {
+                    "id": 2,
+                    "description": "Art Room 2"
+                },
+                "start_time": "08:45 AM",
+                "end_time": "02:00 PM"
+            },
+            {
+                "reason": "Out of Use",
+                "resource": {
+                    "id": 1,
+                    "description": "Art Room 1"
+                },
+                "start_time": "08:45 AM",
+                "end_time": "03:30 PM"
+            }
+        ],
+        "periods": [
+            {
+                "start_time": "09:15:00",
+                "end_time": "10:15:00",
+                "description": "Tue:1",
+                "sims_id": 263,
+                "cycle_day_id": 254,
+                "changes": [
+                    {
+                        "source": "SIMS Cover",
+                        "teaching_group": {
+                            "id": 12223,
+                            "teacher": {
+                                "id": 26,
+                                "name": "Mrs A. Abell"
+                            },
+                            "name": "9y\/Sc1"
+                        },
+                        "from": {
+                            "id": 49,
+                            "description": "Science Lab 1"
+                        },
+                        "to": {
+                            "id": 28,
+                            "description": "Language Room 1"
+                        }
+                    },
+                    {
+                        "source": "SIMS Cover",
+                        "teaching_group": {
+                            "id": 12333,
+                            "teacher": {
+                                "id": 99,
+                                "name": "Mr P. Brown"
+                            },
+                            "name": "11A\/Gr1"
+                        },
+                        "from": {
+                            "id": 2,
+                            "description": "Art Room 2"
+                        },
+                        "to": {
+                            "id": 11,
+                            "description": "English Room 4"
+                        }
+                    }
+                ]
+            },
+            {
+                "start_time": "11:35:00",
+                "end_time": "12:35:00",
+                "description": "Tue:3",
+                "sims_id": 265,
+                "cycle_day_id": 254,
+                "changes": [
+                    {
+                        "source": "SIMS Cover",
+                        "teaching_group": {
+                            "id": 12418,
+                            "teacher": {
+                                "id": 93,
+                                "name": "Mrs S. Williams"
+                            },
+                            "name": "13C\/La1"
+                        },
+                        "from": {
+                            "id": 1,
+                            "description": "Art Room 1"
+                        },
+                        "to": {
+                            "id": 20,
+                            "description": "Humanities Room 1"
+                        }
+                    }
+                ]
+            },
+            {
+                "start_time": "12:35:00",
+                "end_time": "13:35:00",
+                "description": "Tue:4",
+                "sims_id": 266,
+                "cycle_day_id": 254,
+                "changes": [
+                    {
+                        "source": "SIMS Cover",
+                        "teaching_group": {
+                            "id": 12297,
+                            "teacher": {
+                                "id": 26,
+                                "name": "Mrs A. Abell"
+                            },
+                            "name": "10y\/Sc1"
+                        },
+                        "from": {
+                            "id": 49,
+                            "description": "Science Lab 1"
+                        },
+                        "to": {
+                            "id": 10,
+                            "description": "English Room 3"
+                        }
+                    }
+                ]
+            },
+            {
+                "start_time": "14:30:00",
+                "end_time": "15:30:00",
+                "description": "Tue:5",
+                "sims_id": 267,
+                "cycle_day_id": 254,
+                "changes": [
+                    {
+                        "source": "EduLink One",
+                        "teaching_group": {
+                            "id": 12383,
+                            "teacher": {
+                                "id": 6,
+                                "name": "Mr A. Pinkney"
+                            },
+                            "name": "12B\/Gg1"
+                        },
+                        "from": {
+                            "id": 5,
+                            "sims_id": 23,
+                            "description": "Business Studies 2"
+                        },
+                        "to": {
+                            "id": 13,
+                            "description": "English Room 6"
+                        }
+                    },
+                    {
+                        "source": "EduLink One",
+                        "teaching_group": {
+                            "id": 12208,
+                            "teacher": {
+                                "id": 10,
+                                "name": "Mr A. Simmons"
+                            },
+                            "name": "9Y3\/Gg"
+                        },
+                        "from": {
+                            "id": 21,
+                            "sims_id": 34,
+                            "description": "Humanities Room 2"
+                        },
+                        "to": {
+                            "id": 16,
+                            "description": "GYM 2"
+                        }
+                    },
+                    {
+                        "source": "SIMS Cover",
+                        "teaching_group": {
+                            "id": 12030,
+                            "teacher": {
+                                "id": 75,
+                                "name": "Mr T. Smith"
+                            },
+                            "name": "7D\/Mu"
+                        },
+                        "from": {
+                            "id": 1,
+                            "description": "Art Room 1"
+                        },
+                        "to": {
+                            "id": 53,
+                            "description": "Science Lab 5"
+                        }
+                    }
+                ]
+            }
+        ],
+        "metrics": {
+            "st": "2019-03-20 18:22:34",
+            "sspt": 0.04893803596496582,
+            "uniqid": "5c9284ea5f6cc"
+        }
+    },
+    "id": "5"
+}

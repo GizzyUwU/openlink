@@ -1,0 +1,948 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ParentEventCreate",
+      "success": true,
+      "learners": {
+         "8926": {
+            "teachers": {
+               "66": "Physical Ed",
+               "73": "English",
+               "76": "French",
+               "77": "Physics",
+               "79": "Physical Ed",
+               "81": "Recreation",
+               "86": "General Studies",
+               "89": "English",
+               "95": "English"
+            },
+            "parents": [
+               "8928"
+            ]
+         },
+         "9919": {
+            "teachers": {
+               "9": "History",
+               "15": "PSE",
+               "16": "German",
+               "21": "Music",
+               "23": "Technology",
+               "28": "Biology, Chemistry, Physics",
+               "68": "Physical Ed",
+               "86": "Mathematics",
+               "97": "English"
+            },
+            "parents": [
+               "9920"
+            ]
+         },
+         "10198": {
+            "teachers": {
+               "15": "PSE",
+               "16": "German",
+               "21": "Music",
+               "27": "Science",
+               "33": "Photography",
+               "68": "Physical Ed",
+               "74": "History",
+               "86": "Mathematics",
+               "88": "Art, Photography",
+               "97": "English"
+            },
+            "parents": [
+               "10312",
+               "10266"
+            ]
+         },
+         "10200": {
+            "teachers": {
+               "15": "PSE, French, German",
+               "28": "Biology, Chemistry, Physics",
+               "29": "Computer Studies",
+               "68": "Physical Ed",
+               "73": "Religious Ed",
+               "82": "Religious Ed",
+               "86": "Mathematics",
+               "87": "Drama",
+               "97": "English"
+            },
+            "parents": [
+               "10313",
+               "10267"
+            ]
+         },
+         "10201": {
+            "teachers": {
+               "5": "English",
+               "10": "Geography",
+               "15": "PSE, French, German",
+               "18": "Mathematics",
+               "21": "Music",
+               "33": "Photography",
+               "62": "Mathematics",
+               "68": "Physical Ed",
+               "77": "Additional Science, Science",
+               "88": "Art, Photography"
+            },
+            "parents": [
+               "10313",
+               "10267"
+            ]
+         },
+         "10203": {
+            "teachers": {
+               "2": "French",
+               "15": "PSE",
+               "19": "Mathematics",
+               "23": "Technology",
+               "68": "Physical Ed",
+               "73": "Computer Studies",
+               "74": "History",
+               "77": "Additional Science, Science",
+               "89": "English"
+            },
+            "parents": [
+               "10269",
+               "10315"
+            ]
+         }
+      },
+      "parents": [
+         {
+            "id": "10312",
+            "title": "Mrs",
+            "forename": "Jayne",
+            "surname": "Acton",
+            "gender": "Female",
+            "address": "22 Gordon Road, Harborne, Birmingham, B17 9HB, United Kingdom",
+            "post_code": "B17 9HB",
+            "email": null,
+            "phone": "01632 775566",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "10198",
+                  "relationship": "Mother",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "10266",
+            "title": "Mr",
+            "forename": "Robert",
+            "surname": "Acton",
+            "gender": "Male",
+            "address": "22 Gordon Road, Harborne, Birmingham, B17 9HB, United Kingdom",
+            "post_code": "B17 9HB",
+            "email": "Acton@example.com",
+            "phone": "07110200900",
+            "mobile_phone": "07110200900",
+            "learners": [
+               {
+                  "id": "10198",
+                  "relationship": "Father",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 2
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "10313",
+            "title": "Mrs",
+            "forename": "Maria",
+            "surname": "Amoso",
+            "gender": "Female",
+            "address": "45 Stanley Street, Northampton, NN2 6DD, United Kingdom",
+            "post_code": "NN2 6DD",
+            "email": "Amoso@example.com",
+            "phone": "01632 598099",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "10200",
+                  "relationship": "Mother",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               },
+               {
+                  "id": "10201",
+                  "relationship": "Mother",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "10267",
+            "title": "Mr",
+            "forename": "Pep",
+            "surname": "Amoso",
+            "gender": "Male",
+            "address": "45 Stanley Street, Northampton, NN2 6DD, United Kingdom",
+            "post_code": "NN2 6DD",
+            "email": "Amoso@example.com",
+            "phone": "01632 598099",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "10200",
+                  "relationship": "Father",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 2
+               },
+               {
+                  "id": "10201",
+                  "relationship": "Father",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 2
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "10269",
+            "title": "Mr",
+            "forename": "Tommy",
+            "surname": "Angler",
+            "gender": "Male",
+            "address": "2 Alpine Crescent, Torksey, Lincoln, LN1 2EX, United Kingdom",
+            "post_code": "LN1 2EX",
+            "email": "Angler@example.com",
+            "phone": "01632 334478",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "10203",
+                  "relationship": "Father",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "10315",
+            "title": "Mrs",
+            "forename": "Hannah",
+            "surname": "Angler",
+            "gender": "Female",
+            "address": "2 Alpine Crescent, Torksey, Lincoln, LN1 2EX, United Kingdom",
+            "post_code": "LN1 2EX",
+            "email": "Angler@example.com",
+            "phone": "01632 334478",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "10203",
+                  "relationship": "Mother",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "8928",
+            "title": "Mr",
+            "forename": "Andrew",
+            "surname": "Able",
+            "gender": "Male",
+            "address": "26 Fortescue Drive, Shenley Church End, Milton Keynes, MK5 6AU, United Kingdom",
+            "post_code": "MK5 6AU",
+            "email": null,
+            "phone": null,
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "8926",
+                  "relationship": "Father",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 1
+               }
+            ],
+            "app_active": null
+         },
+         {
+            "id": "9920",
+            "title": "Mrs",
+            "forename": "Hilda",
+            "surname": "Abbess",
+            "gender": "Female",
+            "address": "22 Winchester Circle, Kingston, Milton Keynes, MK10 0BA, United Kingdom",
+            "post_code": "MK10 0BA",
+            "email": null,
+            "phone": "01632211117",
+            "mobile_phone": null,
+            "learners": [
+               {
+                  "id": "9919",
+                  "relationship": "Mother",
+                  "parental_responsibility": true,
+                  "court_order": false,
+                  "priority": 2
+               }
+            ],
+            "app_active": null
+         }
+      ],
+      "teaching_groups": [
+         {
+            "id": "11700",
+            "name": "10A/Co1",
+            "subject": "Computer Studies",
+            "subject_id": "2155",
+            "main_teacher_id": "73",
+            "teacher_ids": [
+               "73"
+            ]
+         },
+         {
+            "id": "11695",
+            "name": "10A/Dr1",
+            "subject": "Drama",
+            "subject_id": "528",
+            "main_teacher_id": "87",
+            "teacher_ids": [
+               "87"
+            ]
+         },
+         {
+            "id": "11689",
+            "name": "10x/Sc2",
+            "subject": "Science",
+            "subject_id": "556",
+            "main_teacher_id": "27",
+            "teacher_ids": [
+               "27"
+            ]
+         },
+         {
+            "id": "11696",
+            "name": "10A/Mu1",
+            "subject": "Music",
+            "subject_id": "547",
+            "main_teacher_id": "21",
+            "teacher_ids": [
+               "21"
+            ]
+         },
+         {
+            "id": "11667",
+            "name": "10A/Ps",
+            "subject": "PSE",
+            "subject_id": "551",
+            "main_teacher_id": "15",
+            "teacher_ids": [
+               "15"
+            ]
+         },
+         {
+            "id": "11708",
+            "name": "10B/Ar1a",
+            "subject": "Art",
+            "subject_id": "519",
+            "main_teacher_id": "88",
+            "teacher_ids": [
+               "88"
+            ]
+         },
+         {
+            "id": "11706",
+            "name": "10B/Co1",
+            "subject": "Computer Studies",
+            "subject_id": "2155",
+            "main_teacher_id": "29",
+            "teacher_ids": [
+               "29"
+            ]
+         },
+         {
+            "id": "11878",
+            "name": "10B/Fn1",
+            "subject": "Food & Nutrition",
+            "subject_id": "2157",
+            "main_teacher_id": "99",
+            "teacher_ids": [
+               "99"
+            ]
+         },
+         {
+            "id": "11709",
+            "name": "10B/Pt1",
+            "subject": "Photography",
+            "subject_id": "2168",
+            "main_teacher_id": "33",
+            "teacher_ids": [
+               "88",
+               "33"
+            ]
+         },
+         {
+            "id": "11704",
+            "name": "10B/Te1",
+            "subject": "Technology",
+            "subject_id": "562",
+            "main_teacher_id": "23",
+            "teacher_ids": [
+               "23"
+            ]
+         },
+         {
+            "id": "11713",
+            "name": "10C/Gg1",
+            "subject": "Geography",
+            "subject_id": "535",
+            "main_teacher_id": "10",
+            "teacher_ids": [
+               "10"
+            ]
+         },
+         {
+            "id": "11711",
+            "name": "10C/Hi1",
+            "subject": "History",
+            "subject_id": "539",
+            "main_teacher_id": "74",
+            "teacher_ids": [
+               "74"
+            ]
+         },
+         {
+            "id": "11712",
+            "name": "10C/Hi2",
+            "subject": "History",
+            "subject_id": "539",
+            "main_teacher_id": "9",
+            "teacher_ids": [
+               "9"
+            ]
+         },
+         {
+            "id": "11716",
+            "name": "10C/Re2",
+            "subject": "Religious Ed",
+            "subject_id": "553",
+            "main_teacher_id": "73",
+            "teacher_ids": [
+               "82"
+            ]
+         },
+         {
+            "id": "11690",
+            "name": "10x/Bi1",
+            "subject": "Biology",
+            "subject_id": "520",
+            "main_teacher_id": "28",
+            "teacher_ids": [
+               "28"
+            ]
+         },
+         {
+            "id": "11691",
+            "name": "10x/Ch1",
+            "subject": "Chemistry",
+            "subject_id": "523",
+            "main_teacher_id": "28",
+            "teacher_ids": [
+               "28"
+            ]
+         },
+         {
+            "id": "11673",
+            "name": "10x/En1",
+            "subject": "English",
+            "subject_id": "531",
+            "main_teacher_id": "97",
+            "teacher_ids": [
+               "97"
+            ]
+         },
+         {
+            "id": "11674",
+            "name": "10x/En2",
+            "subject": "English",
+            "subject_id": "531",
+            "main_teacher_id": "5",
+            "teacher_ids": [
+               "5"
+            ]
+         },
+         {
+            "id": "11675",
+            "name": "10x/En3",
+            "subject": "English",
+            "subject_id": "531",
+            "main_teacher_id": "89",
+            "teacher_ids": [
+               "89"
+            ]
+         },
+         {
+            "id": "11679",
+            "name": "10x/Fr1",
+            "subject": "French",
+            "subject_id": "533",
+            "main_teacher_id": "15",
+            "teacher_ids": [
+               "15"
+            ]
+         },
+         {
+            "id": "11680",
+            "name": "10x/Ge1",
+            "subject": "German",
+            "subject_id": "534",
+            "main_teacher_id": "15",
+            "teacher_ids": [
+               "15"
+            ]
+         },
+         {
+            "id": "11678",
+            "name": "10x/Ge2",
+            "subject": "German",
+            "subject_id": "534",
+            "main_teacher_id": "16",
+            "teacher_ids": [
+               "16"
+            ]
+         },
+         {
+            "id": "11681",
+            "name": "10x/Ma1",
+            "subject": "Mathematics",
+            "subject_id": "545",
+            "main_teacher_id": "86",
+            "teacher_ids": [
+               "86"
+            ]
+         },
+         {
+            "id": "11682",
+            "name": "10x/Ma2",
+            "subject": "Mathematics",
+            "subject_id": "545",
+            "main_teacher_id": "62",
+            "teacher_ids": [
+               "18",
+               "62"
+            ]
+         },
+         {
+            "id": "11683",
+            "name": "10x/Ma3",
+            "subject": "Mathematics",
+            "subject_id": "545",
+            "main_teacher_id": "19",
+            "teacher_ids": [
+               "19"
+            ]
+         },
+         {
+            "id": "11692",
+            "name": "10x/Ph1",
+            "subject": "Physics",
+            "subject_id": "549",
+            "main_teacher_id": "28",
+            "teacher_ids": [
+               "28"
+            ]
+         },
+         {
+            "id": "11693",
+            "name": "10x/Sa1",
+            "subject": "Additional Science",
+            "subject_id": "799",
+            "main_teacher_id": "77",
+            "teacher_ids": [
+               "77"
+            ]
+         },
+         {
+            "id": "11694",
+            "name": "10x/Sc1",
+            "subject": "Science",
+            "subject_id": "556",
+            "main_teacher_id": "77",
+            "teacher_ids": [
+               "77"
+            ]
+         },
+         {
+            "id": "11882",
+            "name": "12a/En1",
+            "subject": "English",
+            "subject_id": "531",
+            "main_teacher_id": "89",
+            "teacher_ids": [
+               "73",
+               "89"
+            ]
+         },
+         {
+            "id": "11811",
+            "name": "12A/Pe1",
+            "subject": "Physical Ed",
+            "subject_id": "548",
+            "main_teacher_id": "66",
+            "teacher_ids": [
+               "79",
+               "66"
+            ]
+         },
+         {
+            "id": "11820",
+            "name": "12B/Fr1",
+            "subject": "French",
+            "subject_id": "533",
+            "main_teacher_id": "76",
+            "teacher_ids": [
+               "76"
+            ]
+         },
+         {
+            "id": "11827",
+            "name": "12C/Ph1",
+            "subject": "Physics",
+            "subject_id": "549",
+            "main_teacher_id": "77",
+            "teacher_ids": [
+               "77"
+            ]
+         },
+         {
+            "id": "11829",
+            "name": "12D/En1",
+            "subject": "English",
+            "subject_id": "531",
+            "main_teacher_id": "95",
+            "teacher_ids": [
+               "95"
+            ]
+         },
+         {
+            "id": "11835",
+            "name": "12G/Gs3",
+            "subject": "General Studies",
+            "subject_id": "537",
+            "main_teacher_id": "86",
+            "teacher_ids": [
+               "86"
+            ]
+         },
+         {
+            "id": "11876",
+            "name": "C6R/Rc6",
+            "subject": "Recreation",
+            "subject_id": "552",
+            "main_teacher_id": "81",
+            "teacher_ids": [
+               "81"
+            ]
+         },
+         {
+            "id": "11677",
+            "name": "10x/Fr2",
+            "subject": "French",
+            "subject_id": "533",
+            "main_teacher_id": "2",
+            "teacher_ids": [
+               "2"
+            ]
+         },
+         {
+            "id": "11684",
+            "name": "10x/Pe1",
+            "subject": "Physical Ed",
+            "subject_id": "548",
+            "main_teacher_id": "68",
+            "teacher_ids": [
+               "68"
+            ]
+         }
+      ],
+      "id": null,
+      "sessions": [
+         {
+            "start_time": "2018-02-02 01:00",
+            "end_time": "2018-02-02 22:00",
+            "parent_event_id": null,
+            "slots": [
+               "2018-02-02 01:00:00",
+               "2018-02-02 01:05:00",
+               "2018-02-02 01:10:00",
+               "2018-02-02 01:15:00",
+               "2018-02-02 01:20:00",
+               "2018-02-02 01:25:00",
+               "2018-02-02 01:30:00",
+               "2018-02-02 01:35:00",
+               "2018-02-02 01:40:00",
+               "2018-02-02 01:45:00",
+               "2018-02-02 01:50:00",
+               "2018-02-02 01:55:00",
+               "2018-02-02 02:00:00",
+               "2018-02-02 02:05:00",
+               "2018-02-02 02:10:00",
+               "2018-02-02 02:15:00",
+               "2018-02-02 02:20:00",
+               "2018-02-02 02:25:00",
+               "2018-02-02 02:30:00",
+               "2018-02-02 02:35:00",
+               "2018-02-02 02:40:00",
+               "2018-02-02 02:45:00",
+               "2018-02-02 02:50:00",
+               "2018-02-02 02:55:00",
+               "2018-02-02 03:00:00",
+               "2018-02-02 03:05:00",
+               "2018-02-02 03:10:00",
+               "2018-02-02 03:15:00",
+               "2018-02-02 03:20:00",
+               "2018-02-02 03:25:00",
+               "2018-02-02 03:30:00",
+               "2018-02-02 03:35:00",
+               "2018-02-02 03:40:00",
+               "2018-02-02 03:45:00",
+               "2018-02-02 03:50:00",
+               "2018-02-02 03:55:00",
+               "2018-02-02 04:00:00",
+               "2018-02-02 04:05:00",
+               "2018-02-02 04:10:00",
+               "2018-02-02 04:15:00",
+               "2018-02-02 04:20:00",
+               "2018-02-02 04:25:00",
+               "2018-02-02 04:30:00",
+               "2018-02-02 04:35:00",
+               "2018-02-02 04:40:00",
+               "2018-02-02 04:45:00",
+               "2018-02-02 04:50:00",
+               "2018-02-02 04:55:00",
+               "2018-02-02 05:00:00",
+               "2018-02-02 05:05:00",
+               "2018-02-02 05:10:00",
+               "2018-02-02 05:15:00",
+               "2018-02-02 05:20:00",
+               "2018-02-02 05:25:00",
+               "2018-02-02 05:30:00",
+               "2018-02-02 05:35:00",
+               "2018-02-02 05:40:00",
+               "2018-02-02 05:45:00",
+               "2018-02-02 05:50:00",
+               "2018-02-02 05:55:00",
+               "2018-02-02 06:00:00",
+               "2018-02-02 06:05:00",
+               "2018-02-02 06:10:00",
+               "2018-02-02 06:15:00",
+               "2018-02-02 06:20:00",
+               "2018-02-02 06:25:00",
+               "2018-02-02 06:30:00",
+               "2018-02-02 06:35:00",
+               "2018-02-02 06:40:00",
+               "2018-02-02 06:45:00",
+               "2018-02-02 06:50:00",
+               "2018-02-02 06:55:00",
+               "2018-02-02 07:00:00",
+               "2018-02-02 07:05:00",
+               "2018-02-02 07:10:00",
+               "2018-02-02 07:15:00",
+               "2018-02-02 07:20:00",
+               "2018-02-02 07:25:00",
+               "2018-02-02 07:30:00",
+               "2018-02-02 07:35:00",
+               "2018-02-02 07:40:00",
+               "2018-02-02 07:45:00",
+               "2018-02-02 07:50:00",
+               "2018-02-02 07:55:00",
+               "2018-02-02 08:00:00",
+               "2018-02-02 08:05:00",
+               "2018-02-02 08:10:00",
+               "2018-02-02 08:15:00",
+               "2018-02-02 08:20:00",
+               "2018-02-02 08:25:00",
+               "2018-02-02 08:30:00",
+               "2018-02-02 08:35:00",
+               "2018-02-02 08:40:00",
+               "2018-02-02 08:45:00",
+               "2018-02-02 08:50:00",
+               "2018-02-02 08:55:00",
+               "2018-02-02 09:00:00",
+               "2018-02-02 09:05:00",
+               "2018-02-02 09:10:00",
+               "2018-02-02 09:15:00",
+               "2018-02-02 09:20:00",
+               "2018-02-02 09:25:00",
+               "2018-02-02 09:30:00",
+               "2018-02-02 09:35:00",
+               "2018-02-02 09:40:00",
+               "2018-02-02 09:45:00",
+               "2018-02-02 09:50:00",
+               "2018-02-02 09:55:00",
+               "2018-02-02 10:00:00",
+               "2018-02-02 10:05:00",
+               "2018-02-02 10:10:00",
+               "2018-02-02 10:15:00",
+               "2018-02-02 10:20:00",
+               "2018-02-02 10:25:00",
+               "2018-02-02 10:30:00",
+               "2018-02-02 10:35:00",
+               "2018-02-02 10:40:00",
+               "2018-02-02 10:45:00",
+               "2018-02-02 10:50:00",
+               "2018-02-02 10:55:00",
+               "2018-02-02 11:00:00",
+               "2018-02-02 11:05:00",
+               "2018-02-02 11:10:00",
+               "2018-02-02 11:15:00",
+               "2018-02-02 11:20:00",
+               "2018-02-02 11:25:00",
+               "2018-02-02 11:30:00",
+               "2018-02-02 11:35:00",
+               "2018-02-02 11:40:00",
+               "2018-02-02 11:45:00",
+               "2018-02-02 11:50:00",
+               "2018-02-02 11:55:00",
+               "2018-02-02 12:00:00",
+               "2018-02-02 12:05:00",
+               "2018-02-02 12:10:00",
+               "2018-02-02 12:15:00",
+               "2018-02-02 12:20:00",
+               "2018-02-02 12:25:00",
+               "2018-02-02 12:30:00",
+               "2018-02-02 12:35:00",
+               "2018-02-02 12:40:00",
+               "2018-02-02 12:45:00",
+               "2018-02-02 12:50:00",
+               "2018-02-02 12:55:00",
+               "2018-02-02 13:00:00",
+               "2018-02-02 13:05:00",
+               "2018-02-02 13:10:00",
+               "2018-02-02 13:15:00",
+               "2018-02-02 13:20:00",
+               "2018-02-02 13:25:00",
+               "2018-02-02 13:30:00",
+               "2018-02-02 13:35:00",
+               "2018-02-02 13:40:00",
+               "2018-02-02 13:45:00",
+               "2018-02-02 13:50:00",
+               "2018-02-02 13:55:00",
+               "2018-02-02 14:00:00",
+               "2018-02-02 14:05:00",
+               "2018-02-02 14:10:00",
+               "2018-02-02 14:15:00",
+               "2018-02-02 14:20:00",
+               "2018-02-02 14:25:00",
+               "2018-02-02 14:30:00",
+               "2018-02-02 14:35:00",
+               "2018-02-02 14:40:00",
+               "2018-02-02 14:45:00",
+               "2018-02-02 14:50:00",
+               "2018-02-02 14:55:00",
+               "2018-02-02 15:00:00",
+               "2018-02-02 15:05:00",
+               "2018-02-02 15:10:00",
+               "2018-02-02 15:15:00",
+               "2018-02-02 15:20:00",
+               "2018-02-02 15:25:00",
+               "2018-02-02 15:30:00",
+               "2018-02-02 15:35:00",
+               "2018-02-02 15:40:00",
+               "2018-02-02 15:45:00",
+               "2018-02-02 15:50:00",
+               "2018-02-02 15:55:00",
+               "2018-02-02 16:00:00",
+               "2018-02-02 16:05:00",
+               "2018-02-02 16:10:00",
+               "2018-02-02 16:15:00",
+               "2018-02-02 16:20:00",
+               "2018-02-02 16:25:00",
+               "2018-02-02 16:30:00",
+               "2018-02-02 16:35:00",
+               "2018-02-02 16:40:00",
+               "2018-02-02 16:45:00",
+               "2018-02-02 16:50:00",
+               "2018-02-02 16:55:00",
+               "2018-02-02 17:00:00",
+               "2018-02-02 17:05:00",
+               "2018-02-02 17:10:00",
+               "2018-02-02 17:15:00",
+               "2018-02-02 17:20:00",
+               "2018-02-02 17:25:00",
+               "2018-02-02 17:30:00",
+               "2018-02-02 17:35:00",
+               "2018-02-02 17:40:00",
+               "2018-02-02 17:45:00",
+               "2018-02-02 17:50:00",
+               "2018-02-02 17:55:00",
+               "2018-02-02 18:00:00",
+               "2018-02-02 18:05:00",
+               "2018-02-02 18:10:00",
+               "2018-02-02 18:15:00",
+               "2018-02-02 18:20:00",
+               "2018-02-02 18:25:00",
+               "2018-02-02 18:30:00",
+               "2018-02-02 18:35:00",
+               "2018-02-02 18:40:00",
+               "2018-02-02 18:45:00",
+               "2018-02-02 18:50:00",
+               "2018-02-02 18:55:00",
+               "2018-02-02 19:00:00",
+               "2018-02-02 19:05:00",
+               "2018-02-02 19:10:00",
+               "2018-02-02 19:15:00",
+               "2018-02-02 19:20:00",
+               "2018-02-02 19:25:00",
+               "2018-02-02 19:30:00",
+               "2018-02-02 19:35:00",
+               "2018-02-02 19:40:00",
+               "2018-02-02 19:45:00",
+               "2018-02-02 19:50:00",
+               "2018-02-02 19:55:00",
+               "2018-02-02 20:00:00",
+               "2018-02-02 20:05:00",
+               "2018-02-02 20:10:00",
+               "2018-02-02 20:15:00",
+               "2018-02-02 20:20:00",
+               "2018-02-02 20:25:00",
+               "2018-02-02 20:30:00",
+               "2018-02-02 20:35:00",
+               "2018-02-02 20:40:00",
+               "2018-02-02 20:45:00",
+               "2018-02-02 20:50:00",
+               "2018-02-02 20:55:00",
+               "2018-02-02 21:00:00",
+               "2018-02-02 21:05:00",
+               "2018-02-02 21:10:00",
+               "2018-02-02 21:15:00",
+               "2018-02-02 21:20:00",
+               "2018-02-02 21:25:00",
+               "2018-02-02 21:30:00",
+               "2018-02-02 21:35:00",
+               "2018-02-02 21:40:00",
+               "2018-02-02 21:45:00",
+               "2018-02-02 21:50:00",
+               "2018-02-02 21:55:00"
+            ]
+         }
+      ],
+      "total_slots": 252,
+      "teachers_overallocated_by": [],
+      "metrics": {
+         "st": "2018-02-01 19:19:17",
+         "sspt": 0.08358407020568848
+      }
+   },
+   "id": "10"
+}

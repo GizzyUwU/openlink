@@ -1,0 +1,96 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.DataCollectionValues",
+        "success": true,
+        "fields": {
+            "emails": {
+                "in_review": false,
+                "label": "Emails",
+                "read_only": false,
+                "type": "bespoke",
+                "data": [
+                    {
+                        "address": "support@overnetdata.com",
+                        "location": "Home",
+                        "main": true,
+                        "primary": false
+                    },
+                    {
+                        "address": "lucy@overnetdata.com",
+                        "location": "Work",
+                        "main": true,
+                        "primary": true
+                    }
+                ],
+                "category": "Contact Details"
+            },
+            "telephones": {
+                "in_review": true,
+                "label": "Telephones",
+                "read_only": false,
+                "type": "bespoke",
+                "data": [
+                    {
+                        "number": "01832000000",
+                        "location": "Home",
+                        "main": true,
+                        "primary": false
+                    },
+                    {
+                        "number": "01832000001",
+                        "location": "Work",
+                        "main": false,
+                        "primary": false
+                    }
+                ],
+                "category": "Contact Details"
+            },
+            "cars": {
+                "type": "bespoke",
+                "category": "Cars",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "model": "Testing",
+                        "colour": "Red",
+                        "registration": "RN99 ABC"
+                    }
+                ],
+                "label": "Cars"
+            },
+            "addresses": {
+                "type": "bespoke",
+                "category": "Addresses",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "address_id": 4799,
+                        "apartment": "",
+                        "house_name": "",
+                        "house_number": "1",
+                        "street": "Ely Road",
+                        "district": "Milton",
+                        "town": "Cambridge",
+                        "county": "",
+                        "post_code": "CB24 6DD",
+                        "country_id": 215,
+                        "type": "Home"
+                    }
+                ],
+                "label": "Addresses"
+            }
+        },
+        "next_method": "EduLink.DataCollectionSubmitEmployee",
+        "param": {
+            "employee_id": "26"
+        },
+        "metrics": {
+            "st": "2018-03-14 16:15:31",
+            "sspt": 2.9417879581451416
+        }
+    },
+    "id": "1"
+}

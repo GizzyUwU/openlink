@@ -1,0 +1,49 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "grouped": [
+      {
+        "label": "Luke McKewan 10A",
+        "present": 125,
+        "absent": 179,
+        "missing": 96,
+        "total_possible": 400,
+        "present_percent": 31.25
+      },
+      {
+        "label": "Joshua Lowe 10A",
+        "present": 138,
+        "absent": 166,
+        "missing": 96,
+        "total_possible": 400,
+        "present_percent": 34.5
+      },
+      {
+        "label": "Scarlett Erickson 10A",
+        "present": 140,
+        "absent": 164,
+        "missing": 96,
+        "total_possible": 400,
+        "present_percent": 35
+      },
+      {
+        "label": "Evie Simons 10A",
+        "present": 142,
+        "absent": 162,
+        "missing": 96,
+        "total_possible": 400,
+        "present_percent": 35.5
+      },
+      {
+        "label": "Aurelia Hamnet 10A",
+        "present": 141,
+        "absent": 163,
+        "missing": 96,
+        "total_possible": 400,
+        "present_percent": 35.25
+      }
+    ],
+    "success": true
+  },
+  "id": "1"
+}

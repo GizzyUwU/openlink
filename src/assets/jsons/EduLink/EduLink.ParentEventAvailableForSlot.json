@@ -1,0 +1,18 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventAvailableForSlot",
+        "success": true,
+        "slot": {
+            "teacher_id": "26",
+            "slot_id": 3690,
+            "available": false
+        },
+        "metrics": {
+            "st": "2019-03-07 15:57:52",
+            "sspt": 0.014238834381103516,
+            "uniqid": "5c813f80cc16b"
+        }
+    },
+    "id": "1"
+}

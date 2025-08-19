@@ -1,0 +1,335 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEvent",
+        "success": true,
+        "parent": false,
+        "employee": true,
+        "personal_slots": [
+            {
+                "slot_id": 45,
+                "start_time": "2017-10-15 16:00:00",
+                "teacher_available": false,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 46,
+                "start_time": "2017-10-15 16:10:00",
+                "teacher_available": false,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": false
+            },
+            {
+                "slot_id": 47,
+                "start_time": "2017-10-15 16:20:00",
+                "teacher_available": true,
+                "learner_id": "7338",
+                "parent_id": "8150",
+                "notes_to_teacher": "I am concerned with the latest mock results and would like to discuss if you could recommend what else I could do to help Jimmy",
+                "parent_attended": true
+            },
+            {
+                "slot_id": 48,
+                "start_time": "2017-10-15 16:30:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 49,
+                "start_time": "2017-10-15 16:40:00",
+                "teacher_available": true,
+                "learner_id": "7338",
+                "parent_id": "7341",
+                "notes_to_teacher": "My husband and myself are separated so will be attending separately",
+                "parent_attended": null
+            },
+            {
+                "slot_id": 50,
+                "start_time": "2017-10-15 16:50:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 51,
+                "start_time": "2017-10-15 17:00:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            }
+        ],
+        "parent_options": [
+            {
+                "parent_id": "10601",
+                "teacher_id": "1",
+                "learner_id": "10497",
+                "subjects": "Maths",
+                "notes_to_teacher": null,
+                "booked_slot_id": null,
+                "slots": [
+                    {
+                        "slot_id": 983,
+                        "start_time": "2017-11-10 08:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 984,
+                        "start_time": "2017-11-10 08:10:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 985,
+                        "start_time": "2017-11-10 08:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 986,
+                        "start_time": "2017-11-10 08:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 987,
+                        "start_time": "2017-11-10 08:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 988,
+                        "start_time": "2017-11-10 08:50:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 989,
+                        "start_time": "2017-11-10 09:00:00",
+                        "available": false
+                    },
+                    {
+                        "slot_id": 990,
+                        "start_time": "2017-11-10 09:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 991,
+                        "start_time": "2017-11-10 09:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 992,
+                        "start_time": "2017-11-10 09:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 993,
+                        "start_time": "2017-11-10 09:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 994,
+                        "start_time": "2017-11-10 09:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 995,
+                        "start_time": "2017-11-10 10:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 996,
+                        "start_time": "2017-11-10 10:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 997,
+                        "start_time": "2017-11-10 10:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 998,
+                        "start_time": "2017-11-10 10:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 999,
+                        "start_time": "2017-11-10 10:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1000,
+                        "start_time": "2017-11-10 10:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1001,
+                        "start_time": "2017-11-10 11:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1002,
+                        "start_time": "2017-11-10 11:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1003,
+                        "start_time": "2017-11-10 11:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1004,
+                        "start_time": "2017-11-10 11:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1005,
+                        "start_time": "2017-11-10 11:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1006,
+                        "start_time": "2017-11-10 11:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1007,
+                        "start_time": "2017-11-10 12:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1008,
+                        "start_time": "2017-11-10 12:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1009,
+                        "start_time": "2017-11-10 12:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1010,
+                        "start_time": "2017-11-10 12:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1011,
+                        "start_time": "2017-11-10 12:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1012,
+                        "start_time": "2017-11-10 12:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1013,
+                        "start_time": "2017-11-10 13:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1014,
+                        "start_time": "2017-11-10 13:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1015,
+                        "start_time": "2017-11-10 13:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1016,
+                        "start_time": "2017-11-10 13:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1017,
+                        "start_time": "2017-11-10 13:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1018,
+                        "start_time": "2017-11-10 13:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1019,
+                        "start_time": "2017-11-10 14:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1020,
+                        "start_time": "2017-11-10 14:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1021,
+                        "start_time": "2017-11-10 14:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1022,
+                        "start_time": "2017-11-10 14:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1023,
+                        "start_time": "2017-11-10 14:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1024,
+                        "start_time": "2017-11-10 14:50:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1025,
+                        "start_time": "2017-11-10 15:00:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1026,
+                        "start_time": "2017-11-10 15:10:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1027,
+                        "start_time": "2017-11-10 15:20:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1028,
+                        "start_time": "2017-11-10 15:30:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1029,
+                        "start_time": "2017-11-10 15:40:00",
+                        "available": true
+                    },
+                    {
+                        "slot_id": 1030,
+                        "start_time": "2017-11-10 15:50:00",
+                        "available": true
+                    }
+                ]
+            }
+        ],
+        "event_learner_ids": [
+            7338,
+            8894,
+            9925
+        ],
+        "metrics": {
+            "sspt": 0.026317834854126
+        }
+    },
+    "id": "1"
+}

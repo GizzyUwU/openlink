@@ -1,0 +1,1592 @@
+{
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": {
+    "learners": [
+      {
+        "id": "12107",
+        "first_name": "Sophie",
+        "surname": "Aaron",
+        "form_group": "11D",
+        "house": "Boyle",
+        "medical": true,
+        "pp": true,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 335,
+            "comment": "Formula >10 matched. Formula >50 matched. Formula >100 matched. ",
+            "css": " background-color: #ff0000; color: #000000;"
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 230,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "8",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "94.44",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "12109",
+        "first_name": "Mohammed",
+        "surname": "Adasheji",
+        "form_group": "11F",
+        "house": "Curie",
+        "medical": false,
+        "pp": false,
+        "eal": true,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 40,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "94.44",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "11208",
+        "first_name": "Tina",
+        "surname": "Angel",
+        "form_group": "11D",
+        "house": "Newton",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 80,
+            "comment": "Formula >10 matched. Formula >50 matched. ",
+            "css": " background-color: #fa8072; color: #000000;"
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 270,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "93.06",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "11417",
+        "first_name": "Candice",
+        "surname": "Appleby",
+        "form_group": "11A",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 10,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "98.61",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11394",
+        "first_name": "Louisa",
+        "surname": "Bartholomew",
+        "form_group": "11F",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 85,
+            "comment": "Formula >10 matched. Formula >50 matched. ",
+            "css": " background-color: #fa8072; color: #000000;"
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 150,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11298",
+        "first_name": "Belle",
+        "surname": "Catlin",
+        "form_group": "11F",
+        "house": "Hooke",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11309",
+        "first_name": "Angela",
+        "surname": "Chang",
+        "form_group": "11E",
+        "house": "Newton",
+        "medical": false,
+        "pp": false,
+        "eal": true,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 30,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11405",
+        "first_name": "Anna",
+        "surname": "Cortez",
+        "form_group": "11A",
+        "house": "Curie",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "3",
+            "comment": "Formula =3 matched. ",
+            "css": " background-color: #fa8072; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11303",
+        "first_name": "Stephen",
+        "surname": "Davis",
+        "form_group": "11B",
+        "house": "Fleming",
+        "medical": true,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "4",
+            "comment": "Formula =4 matched. ",
+            "css": " background-color: #ffa500; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "94.44",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "12121",
+        "first_name": "Ruby",
+        "surname": "Eagle",
+        "form_group": "11D",
+        "house": "Curie",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 70,
+            "comment": "Formula >10 matched. Formula >50 matched. ",
+            "css": " background-color: #fa8072; color: #000000;"
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 75,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11345",
+        "first_name": "Stuart",
+        "surname": "Frankwell",
+        "form_group": "11F",
+        "house": "Curie",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 55,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "2",
+            "comment": "Formula >=2 matched. ",
+            "css": " background-color: #ff0000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "3",
+            "comment": "Formula =3 matched. ",
+            "css": " background-color: #ffc0cb; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "96.53",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11217",
+        "first_name": "Amelia",
+        "surname": "Goss",
+        "form_group": "11F",
+        "house": "Boyle",
+        "medical": false,
+        "pp": true,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 70,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "3",
+            "comment": "Formula >=2 matched. ",
+            "css": " background-color: #ff0000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "4",
+            "comment": "Formula =4 matched. ",
+            "css": " background-color: #ffa500; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11376",
+        "first_name": "Paul",
+        "surname": "Grant",
+        "form_group": "11D",
+        "house": "Boyle",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 25,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "12130",
+        "first_name": "Ellie",
+        "surname": "Harrison",
+        "form_group": "11E",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 10,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 110,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11239",
+        "first_name": "Amanda",
+        "surname": "Jackson",
+        "form_group": "11E",
+        "house": "Boyle",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 40,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.92",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11234",
+        "first_name": "Luke",
+        "surname": "Kernstein",
+        "form_group": "11D",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 25,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "7",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. Formula >6 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11332",
+        "first_name": "Rujina",
+        "surname": "Khan",
+        "form_group": "11E",
+        "house": "Newton",
+        "medical": false,
+        "pp": false,
+        "eal": true,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 135,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "2",
+            "comment": "Formula >=2 matched. ",
+            "css": " background-color: #ff0000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "3",
+            "comment": "Formula =3 matched. ",
+            "css": " background-color: #ffc0cb; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11301",
+        "first_name": "Chloe",
+        "surname": "Maddison",
+        "form_group": "11C",
+        "house": "Newton",
+        "medical": false,
+        "pp": true,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "1",
+            "comment": "Formula <2 matched. ",
+            "css": " background-color: #800080; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "2",
+            "comment": "Formula =2 matched. ",
+            "css": " background-color: #ff0000; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "1",
+            "comment": "Formula =1 matched. ",
+            "css": " background-color: #ff0000; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.92",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11459",
+        "first_name": "Milly",
+        "surname": "Miller",
+        "form_group": "11F",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 15,
+            "comment": "Formula >5 matched. ",
+            "css": " background-color: #f0e68c; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "4",
+            "comment": "Formula >=2 matched. Formula >3 matched. ",
+            "css": " background-color: #ffa500; color: #030303;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "4",
+            "comment": "Formula =4 matched. ",
+            "css": " background-color: #ffa500; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "96.53",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "12140",
+        "first_name": "Kathryn",
+        "surname": "Milton-Jones",
+        "form_group": "11E",
+        "house": "Boyle",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 25,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "7",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. Formula >6 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "98.61",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11483",
+        "first_name": "Hallie",
+        "surname": "O'Leary",
+        "form_group": "11E",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 25,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.22",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11237",
+        "first_name": "Nicholas",
+        "surname": "Oakham",
+        "form_group": "11D",
+        "house": "Newton",
+        "medical": false,
+        "pp": true,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 20,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "4",
+            "comment": "Formula >=2 matched. Formula >3 matched. ",
+            "css": " background-color: #ffa500; color: #030303;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "3",
+            "comment": "Formula =3 matched. ",
+            "css": " background-color: #ffc0cb; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "94.44",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "12143",
+        "first_name": "Amanda",
+        "surname": "Oval",
+        "form_group": "11F",
+        "house": "Boyle",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "7",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. Formula >6 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "98.61",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "12148",
+        "first_name": "Gaetano",
+        "surname": "Polita",
+        "form_group": "11D",
+        "house": "Boyle",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 55,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "94.44",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "11400",
+        "first_name": "Carl",
+        "surname": "Radley",
+        "form_group": "11F",
+        "house": "Curie",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 85,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "98.61",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "11251",
+        "first_name": "Anna",
+        "surname": "Sahonta",
+        "form_group": "11B",
+        "house": "Hooke",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "7",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. Formula >6 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "99.31",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. Formula >99 matched. ",
+            "css": " background-color: #ffffff; color: #008000;"
+          }
+        ]
+      },
+      {
+        "id": "11305",
+        "first_name": "Bryan",
+        "surname": "Stephenson",
+        "form_group": "11F",
+        "house": "Fleming",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 35,
+            "comment": "Formula >5 matched. Formula >15 matched. ",
+            "css": " background-color: #7eea7e; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "97.92",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. ",
+            "css": " background-color: #ffffff; color: #10c510;"
+          }
+        ]
+      },
+      {
+        "id": "12156",
+        "first_name": "Reggie",
+        "surname": "Varney",
+        "form_group": "11E",
+        "house": "Newton",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 65,
+            "comment": "Formula >5 matched. Formula >15 matched. Formula >50 matched. ",
+            "css": " background-color: #adff2f; color: #000000;"
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "5",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "8",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "95.14",
+            "comment": "Formula >=93 matched. Formula >=95 matched. ",
+            "css": " background-color: #ffffff; color: #d2d20e;"
+          }
+        ]
+      },
+      {
+        "id": "11214",
+        "first_name": "Edith",
+        "surname": "Warrington",
+        "form_group": "11F",
+        "house": "Hooke",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "7",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. Formula >6 matched. ",
+            "css": " background-color: #008000; color: #ffffff;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "7",
+            "comment": "Formula >=7 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "99.31",
+            "comment": "Formula >=93 matched. Formula >=95 matched. Formula >97 matched. Formula >99 matched. ",
+            "css": " background-color: #ffffff; color: #008000;"
+          }
+        ]
+      },
+      {
+        "id": "11339",
+        "first_name": "Kirstie",
+        "surname": "Warrington",
+        "form_group": "11E",
+        "house": "Newton",
+        "medical": false,
+        "pp": false,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "6",
+            "comment": "Formula >=2 matched. Formula >3 matched. Formula >4 matched. Formula >5 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Target",
+            "result": "6",
+            "comment": "Formula =6 matched. ",
+            "css": " background-color: #00ff00; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "5",
+            "comment": "Formula =5 matched. ",
+            "css": " background-color: #ffff00; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "93.06",
+            "comment": "Formula >=93 matched. ",
+            "css": " background-color: #ffffff; color: #ffa500;"
+          }
+        ]
+      },
+      {
+        "id": "11444",
+        "first_name": "Stephen",
+        "surname": "Weir",
+        "form_group": "11C",
+        "house": "Boyle",
+        "medical": false,
+        "pp": true,
+        "eal": false,
+        "sen_code": "",
+        "behaviour_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "achievement_count": [
+          {
+            "result": 0,
+            "comment": ""
+          }
+        ],
+        "assessment_areas": [
+          {
+            "label": "Current",
+            "result": "4",
+            "comment": "Formula >=2 matched. Formula >3 matched. ",
+            "css": " background-color: #ffa500; color: #030303;"
+          },
+          {
+            "label": "Target",
+            "result": "4",
+            "comment": "Formula =4 matched. ",
+            "css": " background-color: #ffc0cb; color: #000000;"
+          },
+          {
+            "label": "Effort",
+            "result": "4",
+            "comment": "Formula =4 matched. ",
+            "css": " background-color: #ffa500; color: #000000;"
+          }
+        ],
+        "attendance": [
+          {
+            "result": "92.36",
+            "comment": "Formula <93 matched. ",
+            "css": " background-color: #ffffff; color: #ff0000;"
+          }
+        ]
+      }
+    ],
+    "method": "EduLink.ClassDashboard",
+    "success": true,
+    "metrics": {
+      "st": "2022-01-07 17:02:42",
+      "sspt": 0.8185514479998801,
+      "sspt_us": 818551,
+      "uniqid": "61d872314c538",
+      "be": "monty"
+    }
+  }
+}

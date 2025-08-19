@@ -1,0 +1,32 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCallouts",
+        "success": true,
+        "sent": [],
+        "received": [
+            {
+                "id": 22,
+                "from_employee_id": "1",
+                "created": "2019-08-19 14:31:25",
+                "message": "Urgent assistance required for: Mr A. Blacker, there is a fight on the main field by reception more staff required please",
+                "acknowledged": null,
+                "attending_employee_id": null
+            },
+            {
+                "id": 21,
+                "from_employee_id": "32",
+                "created": "2019-08-19 14:30:18",
+                "message": "Urgent assistance required for: Mr B. Kinross\nLocation M2\nClass: 11y\/Ma2",
+                "acknowledged": "2019-08-19 14:30:27",
+                "attending_employee_id": "26"
+            }
+        ],
+        "metrics": {
+            "st": "2019-08-19 14:31:35",
+            "sspt": 0.011616945266723633,
+            "uniqid": "5d5aa4b7280ea"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,14 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ChildProtectionReferralStatusDelete",
+        "success": true,
+        "deleted_id": 4,
+        "metrics": {
+            "st": "2020-08-13 14:57:40",
+            "sspt": 0.010136842727661133,
+            "uniqid": "5d52c1d40419a"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,9 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.BehaviourWrite",
+      "success": true,
+      "id": 3615
+   },
+   "id": "1"
+}

@@ -1,0 +1,14 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "Communicator.MessageCreate",
+    "success": true,
+    "message_id": 615,
+    "using_variables": false,
+    "metrics": {
+      "st": "2018-09-20 15:58:25",
+      "sspt": 0.13947081565856934
+    }
+  },
+  "id": "1"
+}

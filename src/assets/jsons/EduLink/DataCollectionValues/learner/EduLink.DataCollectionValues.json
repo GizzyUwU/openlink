@@ -1,0 +1,358 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.DataCollectionValues",
+        "success": true,
+        "fields": {
+            "legal_surname": {
+                "type": "string",
+                "category": "Basic",
+                "read_only": true,
+                "in_review": false,
+                "data": "Abbey",
+                "label": "Legal surname"
+            },
+            "legal_forename": {
+                "type": "string",
+                "category": "Basic",
+                "read_only": true,
+                "in_review": false,
+                "data": "Jimmy",
+                "label": "Legal forename"
+            },
+            "preferred_forename": {
+                "type": "string",
+                "category": "Basic",
+                "read_only": false,
+                "in_review": false,
+                "data": "Jim",
+                "label": "Preferred forename"
+            },
+            "preferred_surname": {
+                "type": "string",
+                "category": "Basic",
+                "read_only": false,
+                "in_review": false,
+                "data": "Abbey",
+                "label": "Preferred surname"
+            },
+            "date_of_birth": {
+                "type": "date",
+                "category": "Basic",
+                "read_only": true,
+                "in_review": false,
+                "data": "2004-01-30",
+                "label": "Date of birth"
+            },
+            "emails": {
+                "type": "bespoke",
+                "category": "Contact Details",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "address": "jimmy@example.com",
+                        "location": "Home",
+                        "main": true,
+                        "primary": true
+                    }
+                ],
+                "label": "Emails"
+            },
+            "telephones": {
+                "type": "bespoke",
+                "category": "Contact Details",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "number": "01632 765011",
+                        "location": "Home",
+                        "main": true,
+                        "primary": false
+                    }
+                ],
+                "label": "Telephones"
+            },
+            "family_contacts": {
+                "type": "bespoke",
+                "category": "Family\/Home",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "id": 12285,
+                        "relationship": {
+                            "id": 13,
+                            "description": "Father"
+                        },
+                        "parental_responsibility": true,
+                        "priority": 1,
+                        "forename": "John",
+                        "surname": "Walshaw",
+                        "correspondence": true,
+                        "main_telephone": false
+                    },
+                    {
+                        "id": 12283,
+                        "relationship": {
+                            "id": 14,
+                            "description": "Mother"
+                        },
+                        "parental_responsibility": true,
+                        "priority": 2,
+                        "forename": "Pip",
+                        "surname": "Walshaw",
+                        "correspondence": true,
+                        "main_telephone": true
+                    }
+                ],
+                "label": "Family contacts"
+            },
+            "addresses": {
+                "type": "bespoke",
+                "category": "Addresses",
+                "read_only": false,
+                "in_review": false,
+                "data": [
+                    {
+                        "address_id": 4812,
+                        "apartment": "",
+                        "house_name": "",
+                        "house_number": "20",
+                        "street": "Crawley Road",
+                        "district": "Cranfield",
+                        "town": "Bedford",
+                        "county": "",
+                        "post_code": "MK43 0AB",
+                        "country_id": 215,
+                        "type": "Home"
+                    }
+                ],
+                "label": "Addresses"
+            },
+            "dietary_needs": {
+                "type": "id-lookup-array",
+                "category": "Dietary",
+                "read_only": false,
+                "lookup_key": "dietary_need",
+                "in_review": false,
+                "data": [
+                    {
+                        "id": 66
+                    },
+                    {
+                        "id": 3059
+                    }
+                ],
+                "label": "Dietary needs"
+            },
+            "weekly_meal_pattern": {
+                "type": "bespoke",
+                "category": "Dietary",
+                "read_only": false,
+                "lookup_key": "meal_type",
+                "in_review": false,
+                "data": [
+                    {
+                        "day_of_week": "Monday",
+                        "meal_type_id": null
+                    },
+                    {
+                        "day_of_week": "Tuesday",
+                        "meal_type_id": null
+                    },
+                    {
+                        "day_of_week": "Wednesday",
+                        "meal_type_id": null
+                    },
+                    {
+                        "day_of_week": "Thursday",
+                        "meal_type_id": null
+                    },
+                    {
+                        "day_of_week": "Friday",
+                        "meal_type_id": null
+                    }
+                ],
+                "label": "Weekly meal pattern"
+            },
+            "medical_practices": {
+                "type": "id-lookup-array",
+                "category": "Medical",
+                "read_only": false,
+                "lookup_key": "medical_practice",
+                "in_review": false,
+                "data": [],
+                "label": "Medical practices"
+            },
+            "medical_conditions": {
+                "type": "id-lookup-array",
+                "category": "Medical",
+                "read_only": false,
+                "lookup_key": "medical_condition",
+                "in_review": false,
+                "data": [
+                    {
+                        "id": 9
+                    },
+                    {
+                        "id": 16
+                    },
+                    {
+                        "id": 5
+                    },
+                    {
+                        "id": 3
+                    },
+                    {
+                        "id": 13
+                    },
+                    {
+                        "id": 2
+                    },
+                    {
+                        "id": 4
+                    },
+                    {
+                        "id": 1
+                    },
+                    {
+                        "id": 11
+                    },
+                    {
+                        "id": 6
+                    },
+                    {
+                        "id": 12
+                    },
+                    {
+                        "id": 10
+                    },
+                    {
+                        "id": 15
+                    },
+                    {
+                        "id": 14
+                    },
+                    {
+                        "id": 7
+                    }
+                ],
+                "label": "Medical conditions"
+            },
+            "disabilities": {
+                "type": "id-lookup-array",
+                "category": "Medical",
+                "read_only": false,
+                "lookup_key": "disability_type",
+                "in_review": false,
+                "data": [],
+                "label": "Disabilities"
+            },
+            "ethnicity_id": {
+                "type": "id-lookup",
+                "category": "Ethnic\/Cultural",
+                "read_only": false,
+                "lookup_key": "ethnicity",
+                "in_review": false,
+                "data": 297,
+                "label": "Ethnicity"
+            },
+            "national_identity_id": {
+                "type": "id-lookup",
+                "category": "Ethnic\/Cultural",
+                "read_only": false,
+                "lookup_key": "national_identity",
+                "in_review": false,
+                "data": 2,
+                "label": "National identity"
+            },
+            "religion_id": {
+                "type": "id-lookup",
+                "category": "Ethnic\/Cultural",
+                "read_only": false,
+                "lookup_key": "religion",
+                "in_review": false,
+                "data": null,
+                "label": "Religion"
+            },
+            "home_language_id": {
+                "type": "id-lookup",
+                "category": "Ethnic\/Cultural",
+                "read_only": false,
+                "lookup_key": "home_language",
+                "in_review": false,
+                "data": 366,
+                "label": "Home language"
+            },
+            "first_language_id": {
+                "type": "id-lookup",
+                "category": "Ethnic\/Cultural",
+                "read_only": false,
+                "lookup_key": "first_language",
+                "in_review": false,
+                "data": 2027,
+                "label": "First language"
+            },
+            "travel_mode_id": {
+                "type": "id-lookup",
+                "category": "Travel",
+                "read_only": false,
+                "lookup_key": "travel_mode",
+                "in_review": false,
+                "data": 3569,
+                "label": "Travel mode"
+            },
+            "route_id": {
+                "type": "id-lookup",
+                "category": "Travel",
+                "read_only": false,
+                "lookup_key": "route",
+                "in_review": false,
+                "data": 76,
+                "label": "Route"
+            },
+            "parental_consents": {
+                "type": "id-lookup-array",
+                "category": "Parental Consent",
+                "read_only": false,
+                "lookup_key": "parental_consent",
+                "in_review": false,
+                "data": [
+                    {
+                        "id": 1
+                    },
+                    {
+                        "id": 2
+                    },
+                    {
+                        "id": 3
+                    },
+                    {
+                        "id": 4
+                    },
+                    {
+                        "id": 5
+                    },
+                    {
+                        "id": 6
+                    }
+                ],
+                "label": "Parental consents"
+            }
+        },
+        "category_info": {
+            "Basic": "This is Basic information regarding your child please ensure you change this information carefully"
+        },
+        "next_method": "EduLink.DataCollectionSubmitLearner",
+        "param": {
+            "learner_id": "10497"
+        },
+        "metrics": {
+            "st": "2018-04-25 13:09:39",
+            "sspt": 0.4647998809814453
+        }
+    },
+    "id": "1"
+}

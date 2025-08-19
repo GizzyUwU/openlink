@@ -1,0 +1,115 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.SEN",
+        "success": true,
+        "details": {
+            "status_code": "K",
+            "status_code_description": "SEN Support",
+            "start_date": "2017-09-06",
+            "current_needs": [
+                {
+                    "ranking": 1,
+                    "start_date": "2017-09-06",
+                    "description": "",
+                    "type_id": 23,
+                    "type_description": "Specific Learning Difficulty",
+                    "type_code": "SPLD"
+                },
+                {
+                    "ranking": 2,
+                    "start_date": "2017-11-07",
+                    "description": "Needs glasses",
+                    "type_id": 25,
+                    "type_description": "Visual Impairment",
+                    "type_code": "VI"
+                }
+            ],
+            "full_descriptions": [
+                {
+                    "document_id": 11569
+                },
+                {
+                    "document_id": 11570
+                },
+                {
+                    "document_id": 11573
+                },
+                {
+                    "document_id": 11574
+                },
+                {
+                    "document_id": 11579
+                },
+                {
+                    "document_id": 11580
+                }
+            ],
+            "documents": [
+                {
+                    "document_id": 11569,
+                    "type": "SEN Document",
+                    "summary": "Test SEN Document",
+                    "note": "note with document",
+                    "status": "Public",
+                    "date": "2017-10-24",
+                    "attachments": [
+                        {
+                            "identifier": "3ab0357e_EduLinkSimsAgentAccessReport.pdf",
+                            "name": "EduLinkSimsAgentAccessReport.pdf"
+                        },
+                        {
+                            "identifier": "3ab0357e_EduLinkSimsAgentAccessReport_explanations.pdf",
+                            "name": "EduLinkSimsAgentAccessReport explanations.pdf"
+                        }
+                    ]
+                },
+                {
+                    "document_id": 11570,
+                    "type": "SEN Full Description",
+                    "summary": "Laptop with large display",
+                    "note": "Has issues with her eye sight and computer work needs to be completed on her school issued laptop",
+                    "status": "Public",
+                    "date": "2017-11-07",
+                    "attachments": []
+                }
+            ],
+            "sen_events": [
+                {
+                    "code": "MEET1",
+                    "description": "Meeting 1-1",
+                    "date": "2017-12-19",
+                    "comments": "Had a team meeting today"
+                },
+                {
+                    "code": "SOC",
+                    "description": "Social Worker",
+                    "date": "2017-12-19",
+                    "comments": "meeting with social worker"
+                }
+			],
+			"strategies": [
+                {
+                    "id": 7,
+                    "title": "Strategy 1",
+                    "strategy": "Break down tasks, information, instructions into smaller parts"
+                },
+                {
+                    "id": 8,
+                    "title": "Strategy 2",
+                    "strategy": "Repeat instructions"
+                },
+                {
+                    "id": 9,
+                    "title": "Strategy 3",
+                    "strategy": "Give extra time for completing tasks at home and in class"
+                }
+            ]
+        },
+        "metrics": {
+            "st": "2018-01-02 11:46:19",
+            "sspt": 0.070106029510498046875
+        }
+    },
+    "id": "1"
+}

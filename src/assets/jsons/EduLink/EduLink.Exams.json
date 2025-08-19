@@ -1,0 +1,314 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Exams",
+      "success": true,
+      "show_countdown": true,
+      "show_timetable": true,
+      "show_results": true,
+      "show_entries": true,
+      "countdown": {
+         "minutes_to_go": 1442,
+         "exam": "CHEM4 GCE Chemistry Unit 4",
+         "template": "{a.days} days, {a.hours} hours and {a.minutes} minutes until the start of {a.exam} exam"
+      },
+      "timetable": [
+         {
+            "datetime": "2016-06-14 14:00",
+            "board": "AQA",
+            "level": "GCE\/A",
+            "code": "CHEM4",
+            "title": "GCE Chemistry Unit 4",
+            "room": "Hall",
+            "seat": "H2",
+            "duration": "1hr 45m"
+         },
+         {
+            "datetime": "2016-06-14 13:00",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "CHEM4",
+            "title": "GCE Chemistry Unit 4",
+            "room": "Hall",
+            "seat": "H2",
+            "duration": "1hr 45m"
+         },
+         {
+            "datetime": "TBA",
+            "board": "EDEXL\/GCSE",
+            "level": "GCSE\/B",
+            "code": "5IT02F",
+            "title": "Ict 2 Option F (Prom MAY2015)",
+            "room": "TBA",
+            "seat": "TBA",
+            "duration": ""
+         },
+         {
+            "datetime": "2016-06-16 13:00",
+            "board": "OCR",
+            "level": "GCE\/B",
+            "code": "F214",
+            "title": "Biology",
+            "room": "Gymnasium",
+            "seat": "E8",
+            "duration": "1hr 15m"
+         },
+         {
+            "datetime": "2016-06-20 09:00",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "PHYA4",
+            "title": "GCE Physics A Unit 4 (GCE Physics A Unit 4 Written and OT)",
+            "room": "Gymnasium",
+            "seat": "E2",
+            "duration": "1hr 45m"
+         },
+         {
+            "datetime": "2016-06-22 09:00",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "CHEM5",
+            "title": "GCE Chemistry Unit 5",
+            "room": "Gymnasium",
+            "seat": "G3",
+            "duration": "1hr 45m"
+         },
+         {
+            "datetime": "2016-06-23 09:00",
+            "board": "OCR",
+            "level": "GCE\/B",
+            "code": "F215",
+            "title": "Biology",
+            "room": "Gymnasium",
+            "seat": "E6",
+            "duration": "2hr 00m"
+         },
+         {
+            "datetime": "2016-06-28 09:00",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "PHA5A",
+            "title": "GCE Physics A Unit 5A",
+            "room": "Sports Hall",
+            "seat": "E19",
+            "duration": "1hr 45m"
+         }
+      ],
+      "results": [
+         {
+            "date": "2015-02-01",
+            "board": "WJEC",
+            "level": "GCE/ASB",
+            "code": "220101",
+            "title": "Geography   AS Cash-in",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2015-02-01",
+            "board": "WJEC",
+            "level": "GCE/ASB",
+            "code": "217101",
+            "title": "English Litera AS Cash-in",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2015-02-01",
+            "board": "WJEC",
+            "level": "GCE/ASB",
+            "code": "212101",
+            "title": "Drama and Thea AS Cash-in",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2015-02-01",
+            "board": "WJEC",
+            "level": "GCE/ASB",
+            "code": "260101",
+            "title": "Applied Busine AS Cash-in (Single)",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "OCR",
+            "level": "GCSE/FC",
+            "code": "J241",
+            "title": "Science A",
+            "result": "C",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "OCR",
+            "level": "GCSE/FC",
+            "code": "J382",
+            "title": "Geography A",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "OCR",
+            "level": "GCSE/FC",
+            "code": "J730",
+            "title": "French",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "OCR",
+            "level": "GCSE/FC",
+            "code": "J303",
+            "title": "Design & Tech: Graphics",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "AQA",
+            "level": "GCSE/FC",
+            "code": "4365F",
+            "title": "Mathematics (Linear) Tier F",
+            "result": "D",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "AQA",
+            "level": "GCSE/FC",
+            "code": "8710FW",
+            "title": "English Lit Tier F (Written)",
+            "result": "C",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "AQA",
+            "level": "GCSE/FC",
+            "code": "8705FW",
+            "title": "English Lang Tier F (Written)",
+            "result": "C",
+            "equivalent": "",
+            "certificate": true
+         },
+         {
+            "date": "2014-06-01",
+            "board": "OCR",
+            "level": "CNAT/1&2",
+            "code": "J804",
+            "title": "Business",
+            "result": "M2",
+            "equivalent": "",
+            "certificate": true
+         }
+      ],
+      "entries": [
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/A",
+            "code": "2421",
+            "title": "GCE Chemistry ADV"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/A",
+            "code": "2451",
+            "title": "GCE Physics A ADV"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "EXPJ\/B",
+            "code": "7993",
+            "title": "Extended Project"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "CHEM4",
+            "title": "GCE Chemistry Unit 4"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "CHEM5",
+            "title": "GCE Chemistry Unit 5"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "CHM6X",
+            "title": "GCE Chemistry Unit 6X"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "PHA5A",
+            "title": "GCE Physics A Unit 5A"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "PHA6X",
+            "title": "GCE Physics A Unit 6X"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "AQA",
+            "level": "GCE\/B",
+            "code": "PHYA4",
+            "title": "GCE Physics A Unit 4"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "OCR",
+            "level": "GCE\/B",
+            "code": "F214",
+            "title": "Biology: Commnctn, Hmstss & Enrgy"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "OCR",
+            "level": "GCE\/B",
+            "code": "F215",
+            "title": "Biology: Control, Genomes & Envrnmnt"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "OCR",
+            "level": "GCE\/B",
+            "code": "F216",
+            "title": "Biology: Prctcl Skills in Biology 2"
+         },
+         {
+            "season": "2016 Summer Exams",
+            "board": "OCR",
+            "level": "GCE\/A",
+            "code": "H421",
+            "title": "Biology"
+         }
+      ]
+   },
+   "id": "8"
+}

@@ -1,0 +1,299 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ResourceTimetableCyclePeriods",
+      "success": true,
+      "days": [
+         {
+            "id": 186,
+            "description": "Mon",
+            "day_of_week": "Monday",
+            "periods": [
+               {
+                  "id": 8286,
+                  "start_time": "14:30:00",
+                  "end_time": "15:30:00",
+                  "description": "Mon:5",
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8314,
+                  "start_time": "15:30:00",
+                  "end_time": "15:45:00",
+                  "description": "6",
+                  "cycle_day_id": 186,
+                  "source": "EduLink"
+               },
+               {
+                  "id": 8281,
+                  "start_time": "08:45:00",
+                  "end_time": "09:15:00",
+                  "description": "Mon:Reg",
+                  "cycle_day_id": 186,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8282,
+                  "start_time": "09:15:00",
+                  "end_time": "10:15:00",
+                  "description": "Mon:1",
+                  "cycle_day_id": 186,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8283,
+                  "start_time": "10:15:00",
+                  "end_time": "11:15:00",
+                  "description": "Mon:2",
+                  "cycle_day_id": 186,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8284,
+                  "start_time": "11:35:00",
+                  "end_time": "12:35:00",
+                  "description": "Mon:3",
+                  "cycle_day_id": 186,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8285,
+                  "start_time": "12:35:00",
+                  "end_time": "13:35:00",
+                  "description": "Mon:4",
+                  "cycle_day_id": 186,
+                  "source": "SIMS"
+               }
+            ]
+         },
+         {
+            "id": 187,
+            "description": "Tue",
+            "day_of_week": "Tuesday",
+            "periods": [
+               {
+                  "id": 8291,
+                  "start_time": "12:35:00",
+                  "end_time": "13:35:00",
+                  "description": "Tue:4",
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8287,
+                  "start_time": "08:45:00",
+                  "end_time": "09:15:00",
+                  "description": "Tue:Reg",
+                  "cycle_day_id": 187,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8313,
+                  "start_time": "08:00:00",
+                  "end_time": "08:10:00",
+                  "description": "Tuv",
+                  "cycle_day_id": 187,
+                  "source": "EduLink"
+               },
+               {
+                  "id": 8292,
+                  "start_time": "14:30:00",
+                  "end_time": "15:30:00",
+                  "description": "Tue:5",
+                  "cycle_day_id": 187,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8288,
+                  "start_time": "09:15:00",
+                  "end_time": "10:15:00",
+                  "description": "Tue:1",
+                  "cycle_day_id": 187,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8289,
+                  "start_time": "10:15:00",
+                  "end_time": "11:15:00",
+                  "description": "Tue:2",
+                  "cycle_day_id": 187,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8290,
+                  "start_time": "11:35:00",
+                  "end_time": "12:35:00",
+                  "description": "Tue:3",
+                  "cycle_day_id": 187,
+                  "source": "SIMS"
+               }
+            ]
+         },
+         {
+            "id": 188,
+            "description": "Wed",
+            "day_of_week": "Wednesday",
+            "periods": [
+               {
+                  "id": 8295,
+                  "start_time": "10:15:00",
+                  "end_time": "11:15:00",
+                  "description": "Wed:2",
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8293,
+                  "start_time": "08:45:00",
+                  "end_time": "09:15:00",
+                  "description": "Wed:Reg",
+                  "cycle_day_id": 188,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8294,
+                  "start_time": "09:15:00",
+                  "end_time": "10:15:00",
+                  "description": "Wed:1",
+                  "cycle_day_id": 188,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8296,
+                  "start_time": "11:35:00",
+                  "end_time": "12:35:00",
+                  "description": "Wed:3",
+                  "cycle_day_id": 188,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8297,
+                  "start_time": "12:35:00",
+                  "end_time": "13:35:00",
+                  "description": "Wed:4",
+                  "cycle_day_id": 188,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8298,
+                  "start_time": "14:30:00",
+                  "end_time": "15:30:00",
+                  "description": "Wed:5",
+                  "cycle_day_id": 188,
+                  "source": "SIMS"
+               }
+            ]
+         },
+         {
+            "id": 189,
+            "description": "Thu",
+            "day_of_week": "Thursday",
+            "periods": [
+               {
+                  "id": 8299,
+                  "start_time": "08:45:00",
+                  "end_time": "09:15:00",
+                  "description": "Thu:Reg",
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8300,
+                  "start_time": "09:15:00",
+                  "end_time": "10:15:00",
+                  "description": "Thu:1",
+                  "cycle_day_id": 189,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8301,
+                  "start_time": "10:15:00",
+                  "end_time": "11:15:00",
+                  "description": "Thu:2",
+                  "cycle_day_id": 189,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8302,
+                  "start_time": "11:35:00",
+                  "end_time": "12:35:00",
+                  "description": "Thu:3",
+                  "cycle_day_id": 189,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8303,
+                  "start_time": "12:35:00",
+                  "end_time": "13:35:00",
+                  "description": "Thu:4",
+                  "cycle_day_id": 189,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8304,
+                  "start_time": "14:30:00",
+                  "end_time": "15:30:00",
+                  "description": "Thu:5",
+                  "cycle_day_id": 189,
+                  "source": "SIMS"
+               }
+            ]
+         },
+         {
+            "id": 190,
+            "description": "Fri",
+            "day_of_week": "Friday",
+            "periods": [
+               {
+                  "id": 8305,
+                  "start_time": "08:45:00",
+                  "end_time": "09:15:00",
+                  "description": "Fri:Reg",
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8306,
+                  "start_time": "09:15:00",
+                  "end_time": "10:15:00",
+                  "description": "Fri:1",
+                  "cycle_day_id": 190,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8307,
+                  "start_time": "10:15:00",
+                  "end_time": "11:15:00",
+                  "description": "Fri:2",
+                  "cycle_day_id": 190,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8308,
+                  "start_time": "11:35:00",
+                  "end_time": "12:35:00",
+                  "description": "Fri:3",
+                  "cycle_day_id": 190,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8309,
+                  "start_time": "12:35:00",
+                  "end_time": "13:35:00",
+                  "description": "Fri:4",
+                  "cycle_day_id": 190,
+                  "source": "SIMS"
+               },
+               {
+                  "id": 8310,
+                  "start_time": "14:30:00",
+                  "end_time": "15:30:00",
+                  "description": "Fri:5",
+                  "cycle_day_id": 190,
+                  "source": "SIMS"
+               }
+            ]
+         }
+      ],
+      "metrics": {
+         "sspt": 0.0026988983154297
+      }
+   },
+   "id": "6"
+}

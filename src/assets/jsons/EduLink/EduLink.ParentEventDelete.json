@@ -1,0 +1,14 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventDelete",
+        "success": true,
+        "deleted": true,
+        "metrics": {
+            "st": "2019-03-07 14:49:48",
+            "sspt": 0.013137102127075195,
+            "uniqid": "5c812f8cdf037"
+        }
+    },
+    "id": "1"
+}

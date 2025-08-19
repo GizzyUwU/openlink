@@ -1,0 +1,19 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "profile_session_groups": [
+         {
+            "id": "426",
+            "name": "Class 10A",
+            "learners": [
+                {
+                    "id": "8926",
+                    "forename": "Cameron",
+                    "surname": "Able"
+                }
+            ]
+         }
+     ]
+   },
+   "id": 1
+}

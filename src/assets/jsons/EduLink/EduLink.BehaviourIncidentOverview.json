@@ -1,0 +1,47 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "grouped": null,
+    "line_graph": {
+      "labels": [
+        "Week 1 January 2023",
+        "Week 2 January 2023",
+        "Week 3 January 2023",
+        "Week 4 January 2023",
+        "Week 5 January 2023",
+        "Week 1 February 2023",
+        "Week 2 February 2023",
+        "Week 3 February 2023",
+        "Week 4 February 2023",
+        "Week 1 March 2023",
+        "Week 2 March 2023",
+        "Week 3 March 2023",
+        "Week 4 March 2023"
+      ],
+      "datasets": [
+        {
+          "label": "PP False Education, Health and Care Plan",
+          "data": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+          "label": "PP True None",
+          "data": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 1]
+        },
+        {
+          "label": "PP False SEN Support",
+          "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 1, 0]
+        },
+        {
+          "label": "PP False None",
+          "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0]
+        },
+        {
+          "label": "PP True SEN Support",
+          "data": [0, 1, 0, 1, 0, 2, 1, 0, 0, 0, 1, 1, 0]
+        }
+      ]
+    },
+    "success": true
+  },
+  "id": "1"
+}

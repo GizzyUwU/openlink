@@ -1,0 +1,1314 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Timetable",
+      "success": true,
+      "requested_date": "2016-06-16",
+      "start_of_week": "2016-06-13",
+      "day_of_week": "4",
+      "weeks": [
+         {
+            "name": "Current",
+            "days": [
+               {
+                  "id": 186,
+                  "name": "Mon",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 216,
+                        "name": "Mon:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 191,
+                        "name": "Mon:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 192,
+                        "name": "Mon:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 193,
+                        "name": "Mon:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 194,
+                        "name": "Mon:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 195,
+                        "name": "Mon:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 192,
+                        "description": "10:15: General Studies in Language Room 2 with Mrs Darby",
+                        "room_id": 39,
+                        "room": {
+                           "id": 39,
+                           "name": "Language Room 2"
+                        },
+                        "teaching_group_id": 9103,
+                        "teaching_group": {
+                           "id": 9103,
+                           "name": "13G/Gs4",
+                           "subject": "General Studies"
+                        },
+                        "teacher": 
+						{
+                           "id": 91,
+                           "title": "Mrs",
+                           "forename": "J",
+                           "surname": "Darby"
+                        }
+                     },
+                     {
+                        "period_id": 193,
+                        "description": "11:35: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 194,
+                        "description": "12:35: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 195,
+                        "description": "14:30: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 187,
+                  "name": "Tue",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 217,
+                        "name": "Tue:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 196,
+                        "name": "Tue:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 197,
+                        "name": "Tue:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 198,
+                        "name": "Tue:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 199,
+                        "name": "Tue:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 200,
+                        "name": "Tue:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 197,
+                        "description": "10:15: Sports L'Ship in Gym with Mr Kinross",
+                        "room_id": 31,
+                        "room": {
+                           "id": 31,
+                           "name": "Gym"
+                        },
+                        "teaching_group_id": 9105,
+                        "teaching_group": {
+                           "id": 9105,
+                           "name": "13X/Sl1",
+                           "subject": "Sports L'Ship"
+                        },
+                        "teacher": {
+                           "id": 32,
+                           "title": "Mr",
+                           "forename": "B",
+                           "surname": "Kinross"
+                        }
+                     },
+                     {
+                        "period_id": 198,
+                        "description": "11:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 199,
+                        "description": "12:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 200,
+                        "description": "14:30: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 188,
+                  "name": "Wed",
+                  "is_current": true,
+                  "periods": [
+                     {
+                        "id": 218,
+                        "name": "Wed:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 201,
+                        "name": "Wed:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 202,
+                        "name": "Wed:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 203,
+                        "name": "Wed:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 204,
+                        "name": "Wed:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 205,
+                        "name": "Wed:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 203,
+                        "description": "11:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 204,
+                        "description": "12:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 205,
+                        "description": "14:30: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 189,
+                  "name": "Thu",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 219,
+                        "name": "Thu:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 206,
+                        "name": "Thu:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 207,
+                        "name": "Thu:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 208,
+                        "name": "Thu:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 209,
+                        "name": "Thu:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 210,
+                        "name": "Thu:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 206,
+                        "description": "09:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 207,
+                        "description": "10:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 208,
+                        "description": "11:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 210,
+                        "description": "14:30: General Studies in Business Studies 2 with Mrs Darby",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9103,
+                        "teaching_group": {
+                           "id": 9103,
+                           "name": "13G/Gs4",
+                           "subject": "General Studies"
+                        },
+                        "teacher": {
+                           "id": 91,
+                           "title": "Mrs",
+                           "forename": "J",
+                           "surname": "Darby"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 190,
+                  "name": "Fri",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 220,
+                        "name": "Fri:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 211,
+                        "name": "Fri:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 212,
+                        "name": "Fri:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 213,
+                        "name": "Fri:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 214,
+                        "name": "Fri:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 215,
+                        "name": "Fri:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 211,
+                        "description": "09:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 212,
+                        "description": "10:15: Sports L'Ship in Gym with Mr Kinross",
+                        "room_id": 31,
+                        "room": {
+                           "id": 31,
+                           "name": "Gym"
+                        },
+                        "teaching_group_id": 9105,
+                        "teaching_group": {
+                           "id": 9105,
+                           "name": "13X/Sl1",
+                           "subject": "Sports L'Ship"
+                        },
+                        "teacher": {
+                           "id": 32,
+                           "title": "Mr",
+                           "forename": "B",
+                           "surname": "Kinross"
+                        }
+                     },
+                     {
+                        "period_id": 213,
+                        "description": "11:35: Business Studies in MUS with Mr Brown",
+                        "room_id": 50,
+                        "room": {
+                           "id": 50,
+                           "name": "MUS"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 214,
+                        "description": "12:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 215,
+                        "description": "14:30: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "name": "Next week",
+            "days": [
+               {
+                  "id": 186,
+                  "name": "Mon",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 217,
+                        "name": "Tue:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 196,
+                        "name": "Tue:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 197,
+                        "name": "Tue:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 198,
+                        "name": "Tue:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 199,
+                        "name": "Tue:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 200,
+                        "name": "Tue:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 197,
+                        "description": "10:15: Sports L'Ship in Gym with Mr Kinross",
+                        "room_id": 31,
+                        "room": {
+                           "id": 31,
+                           "name": "Gym"
+                        },
+                        "teaching_group_id": 9105,
+                        "teaching_group": {
+                           "id": 9105,
+                           "name": "13X/Sl1",
+                           "subject": "Sports L'Ship"
+                        },
+                        "teacher": {
+                           "id": 32,
+                           "title": "Mr",
+                           "forename": "B",
+                           "surname": "Kinross"
+                        }
+                     },
+                     {
+                        "period_id": 198,
+                        "description": "11:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 199,
+                        "description": "12:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 200,
+                        "description": "14:30: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 187,
+                  "name": "Tue",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 216,
+                        "name": "Mon:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 191,
+                        "name": "Mon:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 192,
+                        "name": "Mon:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 193,
+                        "name": "Mon:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 194,
+                        "name": "Mon:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 195,
+                        "name": "Mon:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 192,
+                        "description": "10:15: General Studies in Language Room 2 with Mrs Darby",
+                        "room_id": 39,
+                        "room": {
+                           "id": 39,
+                           "name": "Language Room 2"
+                        },
+                        "teaching_group_id": 9103,
+                        "teaching_group": {
+                           "id": 9103,
+                           "name": "13G/Gs4",
+                           "subject": "General Studies"
+                        },
+                        "teacher": {
+                           "id": 91,
+                           "title": "Mrs",
+                           "forename": "J",
+                           "surname": "Darby"
+                        }
+                     },
+                     {
+                        "period_id": 193,
+                        "description": "11:35: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 194,
+                        "description": "12:35: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 195,
+                        "description": "14:30: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 188,
+                  "name": "Wed",
+                  "is_current": true,
+                  "periods": [
+                     {
+                        "id": 219,
+                        "name": "Thu:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 206,
+                        "name": "Thu:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 207,
+                        "name": "Thu:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 208,
+                        "name": "Thu:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 209,
+                        "name": "Thu:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 210,
+                        "name": "Thu:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 206,
+                        "description": "09:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 207,
+                        "description": "10:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 208,
+                        "description": "11:35: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     },
+                     {
+                        "period_id": 210,
+                        "description": "14:30: General Studies in Business Studies 2 with Mrs Darby",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9103,
+                        "teaching_group": {
+                           "id": 9103,
+                           "name": "13G/Gs4",
+                           "subject": "General Studies"
+                        },
+                        "teacher": {
+                           "id": 91,
+                           "title": "Mrs",
+                           "forename": "J",
+                           "surname": "Darby"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 189,
+                  "name": "Thu",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 218,
+                        "name": "Wed:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 201,
+                        "name": "Wed:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 202,
+                        "name": "Wed:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 203,
+                        "name": "Wed:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 204,
+                        "name": "Wed:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 205,
+                        "name": "Wed:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 203,
+                        "description": "11:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 204,
+                        "description": "12:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 205,
+                        "description": "14:30: Business Studies in Language Room 7 with Mr Brown",
+                        "room_id": 6,
+                        "room": {
+                           "id": 6,
+                           "name": "Language Room 7"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     }
+                  ]
+               },
+               {
+                  "id": 190,
+                  "name": "Fri",
+                  "is_current": false,
+                  "periods": [
+                     {
+                        "id": 220,
+                        "name": "Fri:Reg",
+                        "start_time": "08:45",
+                        "end_time": "09:15"
+                     },
+                     {
+                        "id": 211,
+                        "name": "Fri:1",
+                        "start_time": "09:15",
+                        "end_time": "10:15"
+                     },
+                     {
+                        "id": 212,
+                        "name": "Fri:2",
+                        "start_time": "10:15",
+                        "end_time": "11:15"
+                     },
+                     {
+                        "id": 213,
+                        "name": "Fri:3",
+                        "start_time": "11:35",
+                        "end_time": "12:35"
+                     },
+                     {
+                        "id": 214,
+                        "name": "Fri:4",
+                        "start_time": "12:35",
+                        "end_time": "13:35"
+                     },
+                     {
+                        "id": 215,
+                        "name": "Fri:5",
+                        "start_time": "14:30",
+                        "end_time": "15:30"
+                     }
+                  ],
+                  "lessons": [
+                     {
+                        "period_id": 211,
+                        "description": "09:15: Theatre Studies in Art Room 1 with Mrs Williams",
+                        "room_id": 20,
+                        "room": {
+                           "id": 20,
+                           "name": "Art Room 1"
+                        },
+                        "teaching_group_id": 9084,
+                        "teaching_group": {
+                           "id": 9084,
+                           "name": "13A/Ts1",
+                           "subject": "Theatre Studies"
+                        },
+                        "teacher": {
+                           "id": 93,
+                           "title": "Mrs",
+                           "forename": "S",
+                           "surname": "Williams"
+                        }
+                     },
+                     {
+                        "period_id": 212,
+                        "description": "10:15: Sports L'Ship in Gym with Mr Kinross",
+                        "room_id": 31,
+                        "room": {
+                           "id": 31,
+                           "name": "Gym"
+                        },
+                        "teaching_group_id": 9105,
+                        "teaching_group": {
+                           "id": 9105,
+                           "name": "13X/Sl1",
+                           "subject": "Sports L'Ship"
+                        },
+                        "teacher": {
+                           "id": 32,
+                           "title": "Mr",
+                           "forename": "B",
+                           "surname": "Kinross"
+                        }
+                     },
+                     {
+                        "period_id": 213,
+                        "description": "11:35: Business Studies in MUS with Mr Brown",
+                        "room_id": 50,
+                        "room": {
+                           "id": 50,
+                           "name": "MUS"
+                        },
+                        "teaching_group_id": 9099,
+                        "teaching_group": {
+                           "id": 9099,
+                           "name": "13D/Bs1",
+                           "subject": "Business Studies"
+                        },
+                        "teacher": {
+                           "id": 99,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Brown"
+                        }
+                     },
+                     {
+                        "period_id": 214,
+                        "description": "12:35: Geography in Business Studies 2 with Mr Hall",
+                        "room_id": 23,
+                        "room": {
+                           "id": 23,
+                           "name": "Business Studies 2"
+                        },
+                        "teaching_group_id": 9085,
+                        "teaching_group": {
+                           "id": 9085,
+                           "name": "13B/Gg1",
+                           "subject": "Geography"
+                        },
+                        "teacher": {
+                           "id": 66,
+                           "title": "Mr",
+                           "forename": "P",
+                           "surname": "Hall"
+                        }
+                     },
+                     {
+                        "period_id": 215,
+                        "description": "14:30: English Lit in Humanities Room 2 with Mrs Wheeler",
+                        "room_id": 34,
+                        "room": {
+                           "id": 34,
+                           "name": "Humanities Room 2"
+                        },
+                        "teaching_group_id": 9093,
+                        "teaching_group": {
+                           "id": 9093,
+                           "name": "13C/Et1",
+                           "subject": "English Lit"
+                        },
+                        "teacher": {
+                           "id": 67,
+                           "title": "Mrs",
+                           "forename": "A",
+                           "surname": "Wheeler"
+                        }
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   "id": "4"
+}

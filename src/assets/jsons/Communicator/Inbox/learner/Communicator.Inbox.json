@@ -1,0 +1,33 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "Communicator.Inbox",
+        "success": true,
+        "messages": [
+            {
+                "id": 302,
+                "type": "email",
+                "subject": "Next Lesson",
+                "body": "<p>We Will be in the computer room next lesson so you are able to type up the experiment from last lesson please remember to bring you notes.</p><p><br></p><p>We will be in CP2</p><p><br></p><p>Mrs Abell</p>",
+                "date": "2021-01-18 13:28",
+                "read": "2021-01-18 16:18",
+                "sender": {
+                    "id": "26",
+                    "type": "employee",
+                    "name": "Mrs Anita Abell"
+                },
+                "attachments": []
+            }
+        ],
+        "pagination": {
+            "current_page": 1,
+            "total_pages": 1,
+            "total_records": 1
+        },
+        "metrics": {
+            "st": "2018-06-25 17:16:24",
+            "sspt": 0.1710059642791748
+        }
+    },
+    "id": "1"
+}

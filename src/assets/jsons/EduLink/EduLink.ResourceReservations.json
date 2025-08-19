@@ -1,0 +1,46 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "bookable_hours": {
+            "from": "07:00:00",
+            "until": "17:00:00"
+        },
+        "periods": [],
+        "reservations": [
+            {
+                "id": "1",
+                "start_time": "2024-09-09 08:00:00",
+                "end_time": "2024-09-09 09:00:00",
+                "employee_id": "26",
+                "information": "lw test",
+                "resource_id": "210"
+            },
+            {
+                "id": "2",
+                "start_time": "2024-09-09 09:15:00",
+                "end_time": "2024-09-09 09:45:00",
+                "employee_id": "26",
+                "information": "lw test 2",
+                "resource_id": "90"
+            },
+            {
+                "id": "3",
+                "start_time": "2024-09-09 11:00:00",
+                "end_time": "2024-09-09 13:45:00",
+                "employee_id": "26",
+                "information": "lw test 3",
+                "resource_id": "100"
+            },
+            {
+                "id": "4",
+                "start_time": "2024-09-09 08:00:00",
+                "end_time": "2024-09-09 10:00:00",
+                "employee_id": "26",
+                "information": "lw test 4",
+                "resource_id": "75"
+            }
+        ],
+        "success": true
+    },
+    "id": "1"
+}

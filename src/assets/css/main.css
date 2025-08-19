@@ -15,7 +15,11 @@
 }
 
 .s-header .__inner .__gradient {
-    background-image: linear-gradient(to left, rgb(130, 130, 198), rgb(73, 150, 205));
+    background-image: linear-gradient(
+        to left,
+        rgb(130, 130, 198),
+        rgb(73, 150, 205)
+    );
     height: 100%;
     width: 100%;
 }
@@ -60,6 +64,24 @@
     z-index: 6;
 }
 
+.progress-wrapper {
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #00bcd4;
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 1000ms ease;
+    z-index: 10;
+}
+
 .pr-user ._animated {
     opacity: 1;
 }
@@ -68,7 +90,7 @@
     align-items: center;
     display: flex;
     position: relative;
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
     justify-content: flex-end;
 }
 
@@ -148,7 +170,7 @@
 }
 
 .nav-wheel .__container .__artboard {
-    background: rgba(0, 0, 0, .3);
+    background: rgba(0, 0, 0, 0.3);
     height: 332px;
     width: 332px;
 }
@@ -156,9 +178,7 @@
 .nav-wheel .__container .__artboard,
 .nav-wheel .__container .__logo-wrap {
     border-radius: 50%;
-    opacity: 1;
     position: absolute;
-    transform: matrix(1, 0, 0, 1, 0, 0);
 }
 
 .nav-wheel .__container .__logo-wrap {
@@ -174,7 +194,6 @@
 }
 
 .nav-wheel .__container .__logo-wrap .__logo {
-    background-color: #fff;
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: 70%;
@@ -195,7 +214,6 @@ ul {
 
 .nav-wheel .__container .__list .__item {
     cursor: pointer;
-    opacity: 1;
     padding: 8px;
     position: absolute;
     transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 166, 0);
@@ -234,96 +252,96 @@ ul {
     background-image: linear-gradient(to top left, #e85858, #eb6f6f);
 }
 
-.nav-wheel .__item .__inner ._clubs  {
+.nav-wheel .__item .__inner ._clubs {
     background-color: #ecab39;
-    background-image: linear-gradient(to top left,#ebb326,#eb9e3d)
+    background-image: linear-gradient(to top left, #ebb326, #eb9e3d);
 }
 
 .nav-wheel .__item .__inner ._attendance_absencemanagement,
-.nav-wheel .__item .__inner ._parentevent  {
+.nav-wheel .__item .__inner ._parentevent {
     background-color: #ec9443;
-    background-image: linear-gradient(to top left,#eb913d,#eb9e3d)
+    background-image: linear-gradient(to top left, #eb913d, #eb9e3d);
 }
 
 .nav-wheel .__item .__inner ._medical,
 .nav-wheel .__item .__inner ._youhq_studentsnapshotreport {
     background-color: #d74190;
-    background-image: linear-gradient(to top left,#d63b77,#d63b8d)
+    background-image: linear-gradient(to top left, #d63b77, #d63b8d);
 }
 
 .nav-wheel .__item .__inner ._calendar {
     background-color: #20c1ae;
-    background-image: linear-gradient(to top left,#1db09f,#21c6b2)
+    background-image: linear-gradient(to top left, #1db09f, #21c6b2);
 }
 
 .nav-wheel .__item .__inner ._behaviour_detentionmanagement,
-.nav-wheel .__item .__inner ._communicator, 
+.nav-wheel .__item .__inner ._communicator,
 .nav-wheel .__item .__inner ._marksheets,
 .nav-wheel .__item .__inner ._timetable {
     background-color: #ea6767;
-    background-image: linear-gradient(to top left,#e85858,#eb6f6f)
+    background-image: linear-gradient(to top left, #e85858, #eb6f6f);
 }
 
 .nav-wheel .__item .__inner ._catering {
     background-color: #ff7662;
-    background-image: linear-gradient(to top left,#368242,#66af4e)
+    background-image: linear-gradient(to top left, #368242, #66af4e);
 }
 
 .nav-wheel .__item .__inner ._account {
     background-color: #7b60d8;
-    background-image: linear-gradient(to top left,#5f62d8,#845fd8)
+    background-image: linear-gradient(to top left, #5f62d8, #845fd8);
 }
 
 .nav-wheel .__item .__inner ._medicaltest {
     background-color: #dd4732;
-    background-image: linear-gradient(to top left,#d73924,#de4b37)
+    background-image: linear-gradient(to top left, #d73924, #de4b37);
 }
 
 .nav-wheel .__item .__inner ._attendance_absencereporting {
     background-color: #8b77d2;
-    background-image: linear-gradient(to top left,#585984,#7965a9)
+    background-image: linear-gradient(to top left, #585984, #7965a9);
 }
 
 .nav-wheel .__item .__inner ._contact,
 .nav-wheel .__item .__inner ._profiles {
     background-color: #51c288;
-    background-image: linear-gradient(to top left,#42bc7d,#55c38a)
+    background-image: linear-gradient(to top left, #42bc7d, #55c38a);
 }
 
 .nav-wheel .__item .__inner ._employeecallout,
 .nav-wheel .__item .__inner ._links {
     background-color: #1fd6f3;
-    background-image: linear-gradient(to top left,#3f8662,#18d5f3)
+    background-image: linear-gradient(to top left, #3f8662, #18d5f3);
 }
 
 .nav-wheel .__item .__inner ._documents {
     background-color: #ab599a;
-    background-image: linear-gradient(to top left,#a0518f,#ad5d9d)
+    background-image: linear-gradient(to top left, #a0518f, #ad5d9d);
 }
 
 .nav-wheel .__item .__inner ._analytics,
 .nav-wheel .__item .__inner ._assessment {
     background-color: #d74188;
-    background-image: linear-gradient(to top left,#d4307d,#d8458a)
+    background-image: linear-gradient(to top left, #d4307d, #d8458a);
 }
 
 .nav-wheel .__item .__inner ._documents_message,
 .nav-wheel .__item .__inner ._learners {
     background-color: #55aed6;
-    background-image: linear-gradient(to top left,#44a5d2,#59afd7)
+    background-image: linear-gradient(to top left, #44a5d2, #59afd7);
 }
 
 .nav-wheel .__item .__inner ._achievement,
- .nav-wheel .__item .__inner ._exams {
+.nav-wheel .__item .__inner ._exams {
     background-color: #fb6d60;
-    background-image: linear-gradient(to top left,#509dd5,#50b2d5)
+    background-image: linear-gradient(to top left, #509dd5, #50b2d5);
 }
 
 .nav-wheel .__item .__inner ._attainment,
 .nav-wheel .__item .__inner ._behaviour,
 .nav-wheel .__item .__inner ._resourcebooking {
     background-color: #a7589c;
-    background-image: linear-gradient(to top left,#985599,#ab5596)
+    background-image: linear-gradient(to top left, #985599, #ab5596);
 }
 
 .nav-wheel .__item .__inner ._childprotection,
@@ -332,65 +350,65 @@ ul {
 .nav-wheel .__item .__inner ._noticeboard,
 .nav-wheel .__item .__inner ._registers {
     background-color: #5883c5;
-    background-image: linear-gradient(to top left,#6e76c0,#3988c6)
+    background-image: linear-gradient(to top left, #6e76c0, #3988c6);
 }
 
 .nav-wheel .__item .__inner ._sen {
     background-color: #7b60d8;
-    background-image: linear-gradient(to top left,#5f62d8,#3988c6)
+    background-image: linear-gradient(to top left, #5f62d8, #3988c6);
 }
 
 .nav-wheel .__item .__inner ._forms {
     background-color: #02af71;
-    background-image: linear-gradient(to top left,#029661,#02af71)
+    background-image: linear-gradient(to top left, #029661, #02af71);
 }
 
 .nav-wheel .__item .__inner ._back button,
 .nav-wheel .__item .__inner ._submenu button {
     background-color: #7b60d8;
-    background-image: linear-gradient(to top left,#dca424,#ffc33b)
+    background-image: linear-gradient(to top left, #dca424, #ffc33b);
 }
 
 .nav-wheel .__item .__inner ._datacollection,
 .nav-wheel .__item .__inner ._datacollection_manage {
-    background-color: #8b56ad
+    background-color: #8b56ad;
 }
 
 .nav-wheel .__item .__inner ._seating_viewall {
-    background-color: #8282c6
+    background-color: #8282c6;
 }
 
 .nav-wheel .__item .__inner ._payments_squid {
-    background-color: #e07
+    background-color: #e07;
 }
 
 .nav-wheel .__item .__inner ._payments_ipayimpact {
-    background-color: #5b7cc2
+    background-color: #5b7cc2;
 }
 
 .fade-out {
-  opacity: 0;
-  transition: opacity 0.2s cubic-bezier(0.77,0,0.175,1);
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .fade-in {
-  opacity: 1 !important;
-  transition: opacity 0.2s cubic-bezier(0.77,0,0.175,1) !important;
+    opacity: 1 !important;
+    transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1) !important;
 }
 
 @keyframes growIn {
-  from {
-    transform: translateX(-50%) scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(-50%) scale(1);
-    opacity: 1;
-  }
+    from {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .s-footer {
-    background: rgba(81, 191, 187, .1);
+    background: rgba(81, 191, 187, 0.1);
     padding: 5px 0;
     position: relative;
     z-index: 2;
@@ -413,7 +431,7 @@ ul {
     flex-grow: 1;
     max-width: 40%;
     padding: 0 20px;
-    transition: opacity .2s ease-out;
+    transition: opacity 0.2s ease-out;
     align-items: center;
     display: flex;
 }
@@ -445,10 +463,9 @@ ul {
     height: 100%;
 }
 
-
 .s-footer .pr-couple .__content .__title {
     font-size: 10px;
-    opacity: .5;
+    opacity: 0.5;
     font-weight: 700;
     text-transform: uppercase;
     color: #e0e6f6;
@@ -465,5 +482,4 @@ ul {
     font-weight: 400;
     opacity: 0.8;
     color: #e3eaf6;
-
 }

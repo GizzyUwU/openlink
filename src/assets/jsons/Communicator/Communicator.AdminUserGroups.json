@@ -1,0 +1,64 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "groups": [
+      {
+        "id": "4",
+        "type": "employee",
+        "name": "LW group "
+      },
+      {
+        "id": "5",
+        "type": "parent",
+        "name": "lw parents"
+      },
+      {
+        "id": "6",
+        "type": "learner",
+        "name": "lw learners"
+      },
+      {
+        "id": "3",
+        "type": "learner",
+        "name": "MWC Learner Group"
+      }
+    ],
+    "group": {
+      "id": "6",
+      "type": "learner",
+      "name": "lw learners",
+      "recipients": [
+        {
+          "id": "9919",
+          "name": "Graham Abbess",
+          "email_available": false,
+          "phone_available": false,
+          "app_active": null
+        },
+        {
+          "id": "8404",
+          "name": "Grenetta Abbey",
+          "email_available": false,
+          "phone_available": true,
+          "app_active": null
+        },
+        {
+          "id": "7338",
+          "name": "Jimmy Abbey",
+          "email_available": true,
+          "phone_available": false,
+          "app_active": null
+        },
+        {
+          "id": "8911",
+          "name": "Andrew Abbot",
+          "email_available": false,
+          "phone_available": false,
+          "app_active": null
+        }
+      ]
+    },
+    "success": true
+  },
+  "id": "1"
+}

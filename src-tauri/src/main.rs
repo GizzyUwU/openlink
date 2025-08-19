@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    edudesk_lib::run()
+    edudesk_lib::run();
 }

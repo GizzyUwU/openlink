@@ -1,0 +1,28 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.SeatingPlanUpdate",
+    "success": true,
+    "done": true,
+    "ident": {
+      "sims_room_id": 26,
+      "employee_id": 26,
+      "group_id": 445,
+      "group_type": "form_group"
+    },
+    "room": {
+      "id": 1,
+      "sims_room_id": 26,
+      "employee_id": "26",
+      "group_id": 445,
+      "group_type": "form_group",
+      "height": 8,
+      "width": 7
+    },
+    "metrics": {
+      "st": "2018-08-10 12:34:52",
+      "sspt": 0.10875988006591797
+    }
+  },
+  "id": "1"
+}

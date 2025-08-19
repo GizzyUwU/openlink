@@ -1,0 +1,29 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DataCollectionExistingContacts",
+    "success": true,
+    "contacts": [
+      {
+        "id": 12288,
+        "name": " Claudio Dinardo",
+        "court_order": false
+      },
+      {
+        "id": 12285,
+        "name": "Mr John Walshaw",
+        "court_order": false
+      },
+      {
+        "id": 1,
+        "name": "Mr Adrian Blacker",
+        "court_order": false
+      }
+    ],
+    "metrics": {
+      "st": "2018-08-01 09:52:57",
+      "sspt": 0.019001007080078125
+    }
+  },
+  "id": "4"
+}

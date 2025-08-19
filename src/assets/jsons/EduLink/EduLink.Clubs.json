@@ -1,0 +1,59 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.Clubs",
+        "success": true,
+        "clubs": [
+            {
+                "id": 10,
+                "name": "Year 8 Girls Hockey Training",
+                "description": "<p>This club is for girls in year 8 who wish to join our hockey team.<\/p><p><br><\/p><p>Training takes place Wednesday lunch times and Friday's after school.<\/p><p><br><\/p><p>Please make sure that you bring your winter PE kit including shin pads, hockey sticks can be provided for anyone needing one.&nbsp;<\/p>",
+                "capacity": {
+                    "maximum": 30,
+                    "bookings": 13
+                },
+                "location": "Field",
+                "next_session": "2019-02-20 13:00:00"
+            },
+            {
+                "id": 11,
+                "name": "Chess Club",
+                "description": "<p>Open to students of all year groups who wish to improve their chess skills. Students who excel will be invited to join the school chess team.<\/p>",
+                "capacity": {
+                    "maximum": null,
+                    "bookings": 12
+                },
+                "location": "Room 2",
+                "next_session": "2019-02-21 13:10:00"
+            },
+            {
+                "id": 12,
+                "name": "Science Revision",
+                "description": "<p>Students of year 11 who would like additional help with science are welcome to come to our Thursday after school revision club<\/p>",
+                "capacity": {
+                    "maximum": 35,
+                    "bookings": 5
+                },
+                "location": "S4",
+                "next_session": "2019-02-21 15:10:00"
+            },
+            {
+                "id": 13,
+                "name": "Year 10 Reward Trip",
+                "description": "<p>Year 10 students with 100% attendance are invited to attend the end of year reward trip to go and see the latest avengers film at Kettering cinema. there is no requirement for payment for the trip but students may wish to bring some money to purchase snacks at the cinema.<\/p><p><br><\/p><p>Students should be ready to depart at the front of school at 3.10pm and be dressed in there school uniform. we are expected to return back to school at 7pm where it is requested parents collect their child.<\/p>",
+                "capacity": {
+                    "maximum": 32,
+                    "bookings": 30
+                },
+                "location": "Kettering Cinema",
+                "next_session": "2019-02-22 17:10:00"
+            }
+        ],
+        "metrics": {
+            "st": "2019-02-18 13:10:40",
+            "sspt": 0.014759063720703125,
+            "uniqid": "5c6aaed096319"
+        }
+    },
+    "id": "1"
+}

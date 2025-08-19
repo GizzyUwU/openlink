@@ -1,0 +1,36 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Personal",
+      "success": true,
+      "personal": {
+         "id": "26",
+         "forename": "Anita",
+         "surname": "Abell",
+         "title": "Mrs",
+         "gender": "Female",
+         "email": "Abell@example.com",
+         "phone": "01632 853922",
+         "admission_date": "2009-09-01",
+         "ethnicity": "White European",
+         "national_identity": "British",
+         "languages": {
+            "home": "English",
+            "first": "Turkish"
+         },
+         "address": "10 Dudmore Road, Swindon, SN3 1AF, United Kingdom",
+         "post_code": "SN3 1AF"
+      },
+      "whoami": {
+         "establishment_id": 2,
+         "id": 26,
+         "title": "Mrs",
+         "forename": "Anita",
+         "surname": "Abell",
+         "types": [
+            "employee"
+         ]
+      }
+   },
+   "id": "2"
+}

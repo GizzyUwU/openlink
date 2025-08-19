@@ -1,0 +1,227 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DocumentFind",
+    "success": true,
+    "learners": [
+      {
+        "matches": 1,
+        "document": {
+          "id": 7338,
+          "summary": "Autumn Report 17/18",
+          "status": "Public",
+          "last_updated": "2017-01-03"
+        },
+        "learner_id": "7338"
+      },
+      {
+        "matches": 2,
+        "document": {
+          "id": 8404,
+          "summary": "Exclusion Letter for Garham Abbess",
+          "status": "Public",
+          "last_updated": "2013-03-14"
+        },
+        "learner_id": "9919"
+      },
+      {
+        "matches": 10,
+        "document": {
+          "id": 9919,
+          "summary": "Individual Achievement Listing Report",
+          "status": "Public",
+          "last_updated": "2014-10-28"
+        },
+        "learner_id": "8911"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 9925,
+          "summary": "Plan Doc",
+          "status": "Public",
+          "last_updated": "2014-07-24"
+        },
+        "learner_id": "8404"
+      },
+      {
+        "matches": 9,
+        "document": {
+          "id": 8911,
+          "summary": "Review Invitation",
+          "status": "Public",
+          "last_updated": "2012-06-18"
+        },
+        "learner_id": "8894"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 5509,
+          "summary": "Review Invitation",
+          "status": "Public",
+          "last_updated": "2012-04-10"
+        },
+        "learner_id": "6985"
+      },
+      {
+        "matches": 5,
+        "document": {
+          "id": 5094,
+          "summary": "Quick Letter for Jonathan Dorian",
+          "status": "",
+          "last_updated": "2011-09-07"
+        },
+        "learner_id": "7767"
+      },
+      {
+        "matches": 2,
+        "document": {
+          "id": 9229,
+          "summary": "Year 12 Progress Report",
+          "status": "Public",
+          "last_updated": "2017-02-10"
+        },
+        "learner_id": "7831"
+      },
+      {
+        "matches": 2,
+        "document": {
+          "id": 5979,
+          "summary": "Behaviour Review Letter",
+          "status": "Public",
+          "last_updated": "2013-03-07"
+        },
+        "learner_id": "7891"
+      },
+      {
+        "matches": 5,
+        "document": {
+          "id": 6465,
+          "summary": "IEP May 2015",
+          "status": "Public",
+          "last_updated": "2015-05-26"
+        },
+        "learner_id": "8719"
+      },
+      {
+        "matches": 4,
+        "document": {
+          "id": 5542,
+          "summary": "Review Invitation",
+          "status": "Public",
+          "last_updated": "2012-06-18"
+        },
+        "learner_id": "8727"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 5447,
+          "summary": "PEP Review",
+          "status": "Public",
+          "last_updated": "2015-10-21"
+        },
+        "learner_id": "8743"
+      },
+      {
+        "matches": 4,
+        "document": {
+          "id": 6470,
+          "summary": "IEP May 2015",
+          "status": "Public",
+          "last_updated": "2015-05-26"
+        },
+        "learner_id": "8751"
+      },
+      {
+        "matches": 2,
+        "document": {
+          "id": 5993,
+          "summary": "Individual Behaviour Report",
+          "status": "Public",
+          "last_updated": "2013-03-15"
+        },
+        "learner_id": "8758"
+      },
+      {
+        "matches": 4,
+        "document": {
+          "id": 5521,
+          "summary": "Review Invitation",
+          "status": "Public",
+          "last_updated": "2012-06-06"
+        },
+        "learner_id": "8761"
+      },
+      {
+        "matches": 2,
+        "document": {
+          "id": 5976,
+          "summary": "Individual Behaviour Listing Report",
+          "status": "Public",
+          "last_updated": "2013-03-07"
+        },
+        "learner_id": "9217"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 6469,
+          "summary": "IEP May 2015",
+          "status": "Public",
+          "last_updated": "2015-05-26"
+        },
+        "learner_id": "9456"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 6441,
+          "summary": "Medical Note",
+          "status": "Public",
+          "last_updated": "2015-02-19"
+        },
+        "learner_id": "10024"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 6468,
+          "summary": "IEP May 2015",
+          "status": "Public",
+          "last_updated": "2015-05-26"
+        },
+        "learner_id": "10249"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 7532,
+          "summary": "Doctors note regarding Anaphylaxis",
+          "status": "Public",
+          "last_updated": "2015-07-19"
+        },
+        "learner_id": "10397"
+      },
+      {
+        "matches": 1,
+        "document": {
+          "id": 7531,
+          "summary": "Doctors note regarding Anaphylaxis",
+          "status": "Public",
+          "last_updated": "2015-07-19"
+        },
+        "learner_id": "10407"
+      },
+      {
+        "matches": 0,
+        "learner_id": "7551"
+      }
+    ],
+    "metrics": {
+      "sspt": 0.017245054244995
+    }
+  },
+  "id": "1"
+}

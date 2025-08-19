@@ -1,0 +1,21 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ChildProtectionReferralsFromMe",
+        "success": true,
+        "referrals": [
+            {
+                "id": 5,
+                "created": "2021-01-20 15:31:30",
+                "learner_id": "8404",
+                "acknowledged": true
+            }
+        ],
+        "metrics": {
+            "st": "2020-08-13 14:56:06",
+            "sspt": 0.009340047836303711,
+            "uniqid": "5d52c1768344f"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,26 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.HomeworkDetails",
+    "success": true,
+    "homework": {
+      "id": 1107,
+      "activity": "Test",
+      "description": "<p>fgfghfghg<\/p>",
+      "subject": "519",
+      "due_date": "2019-12-19",
+      "due_reminder": null,
+      "available_date": "2019-12-18 13:22:04",
+      "user_type": "employee",
+      "owner_id": "26",
+      "format": 1,
+      "duration": null
+    },
+    "metrics": {
+      "st": "2020-01-24 14:41:53",
+      "sspt": 0.014049053192138672,
+      "uniqid": "5e2b02310c7e8"
+    }
+  },
+  "id": "1"
+}

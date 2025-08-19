@@ -1,0 +1,16 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.EmployeeCalloutCreate",
+        "success": true,
+        "callout_id": 23,
+        "push_title": "Employee Callout",
+        "push_body": "Urgent assistance required for: Mrs A. Abell",
+        "metrics": {
+            "st": "2019-08-19 14:32:22",
+            "sspt": 0.31208014488220215,
+            "uniqid": "5d5aa4e68c38a"
+        }
+    },
+    "id": "1"
+}

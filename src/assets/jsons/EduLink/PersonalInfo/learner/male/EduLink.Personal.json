@@ -1,0 +1,65 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.Personal",
+      "success": true,
+      "personal": {
+         "id": "7338",
+         "forename": "Demo",
+         "surname": "Student",
+         "chosen_name": "Demo",
+         "gender": "Male",
+         "admission_number": "003599",
+         "unique_pupil_number": "B820432109001",
+         "unique_learner_number": "5142370030",
+         "date_of_birth": "1998-04-17",
+         "admission_date": "2009-09-01",
+         "email": "demo.student@example.com",
+         "phone": "01632 111455",
+         "address": "59 High Street, Bedford, MK40 1RZ, United Kingdom",
+         "ethnicity": "White European",
+         "national_identity": "British",
+         "languages": {
+            "home": "English",
+            "first": "Turkish"
+         },
+         "post_code": "MK40 1RZ",
+		 "note": "Please don't phone between 8am-1pm unless urgent as dad works nights",
+         "room_id": "36",
+         "form_group": {
+            "id": "391",
+            "name": "G",
+            "room": {
+               "id": "36",
+               "code": "H4",
+               "name": "Humanities Room 4"
+            },
+            "employee": {
+               "id": "78",
+               "title": "Mr",
+               "forename": "Martin",
+               "surname": "Unwin"
+            }
+         },
+         "house_group": {
+            "id": "41",
+            "name": "Curie"
+         },
+         "year_group": {
+            "id": "31",
+            "name": "Year 13"
+         }
+      },
+      "whoami": {
+         "establishment_id": 2,
+         "id": 26,
+         "title": "Mrs",
+         "forename": "Anita",
+         "surname": "Abell",
+         "types": [
+            "employee"
+         ]
+      }
+   },
+   "id": "6"
+}

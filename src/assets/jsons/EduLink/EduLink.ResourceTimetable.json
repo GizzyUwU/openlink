@@ -1,0 +1,2262 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ResourceTimetable",
+        "success": true,
+        "resources": [
+            {
+                "id": 210,
+                "source": "EduLink",
+                "description": "ond office",
+                "information": "This has 4 main computers and a number of white boards",
+                "owner_id": "26",
+                "sims_room_id": null,
+                "is_room": true
+            },
+            {
+                "id": 206,
+                "source": "MISRoom",
+                "description": "Salon",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "70",
+                "is_room": true
+            },
+            {
+                "id": 86,
+                "source": "MISRoom",
+                "description": "Weights Gym",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "32",
+                "is_room": true
+            },
+            {
+                "id": 87,
+                "source": "MISRoom",
+                "description": "Weights Gym2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "9",
+                "is_room": true
+            },
+            {
+                "id": 88,
+                "source": "MISRoom",
+                "description": "Humanities Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "33",
+                "is_room": true
+            },
+            {
+                "id": 89,
+                "source": "MISRoom",
+                "description": "Humanities Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "34",
+                "is_room": true
+            },
+            {
+                "id": 205,
+                "source": "MISRoom",
+                "description": "Library",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "69",
+                "is_room": true
+            },
+            {
+                "id": 129,
+                "source": "MISRoom",
+                "description": "Staff Room",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "16",
+                "is_room": true
+            },
+            {
+                "id": 130,
+                "source": "MISRoom",
+                "description": "Technology 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "61",
+                "is_room": true
+            },
+            {
+                "id": 131,
+                "source": "MISRoom",
+                "description": "Technology 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "62",
+                "is_room": true
+            },
+            {
+                "id": 132,
+                "source": "MISRoom",
+                "description": "Technology 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "63",
+                "is_room": true
+            },
+            {
+                "id": 133,
+                "source": "MISRoom",
+                "description": "Technology 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "64",
+                "is_room": true
+            },
+            {
+                "id": 134,
+                "source": "MISRoom",
+                "description": "Technology 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "65",
+                "is_room": true
+            },
+            {
+                "id": 135,
+                "source": "MISRoom",
+                "description": "Technology 6",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "8",
+                "is_room": true
+            },
+            {
+                "id": 136,
+                "source": "MISRoom",
+                "description": "Not in use",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "66",
+                "is_room": true
+            },
+            {
+                "id": 90,
+                "source": "MISRoom",
+                "description": "Humanities Room 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "35",
+                "is_room": true
+            },
+            {
+                "id": 91,
+                "source": "MISRoom",
+                "description": "Humanities Room 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "36",
+                "is_room": true
+            },
+            {
+                "id": 92,
+                "source": "MISRoom",
+                "description": "Humanities Room 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "37",
+                "is_room": true
+            },
+            {
+                "id": 93,
+                "source": "MISRoom",
+                "description": "Humanities Room 6",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "2",
+                "is_room": true
+            },
+            {
+                "id": 94,
+                "source": "MISRoom",
+                "description": "Humanities Room 7",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "12",
+                "is_room": true
+            },
+            {
+                "id": 95,
+                "source": "MISRoom",
+                "description": "Main Hall",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "1",
+                "is_room": true
+            },
+            {
+                "id": 96,
+                "source": "MISRoom",
+                "description": "Language Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "38",
+                "is_room": true
+            },
+            {
+                "id": 97,
+                "source": "MISRoom",
+                "description": "Language Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "39",
+                "is_room": true
+            },
+            {
+                "id": 98,
+                "source": "MISRoom",
+                "description": "Language Room 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "40",
+                "is_room": true
+            },
+            {
+                "id": 99,
+                "source": "MISRoom",
+                "description": "Language Room 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "41",
+                "is_room": true
+            },
+            {
+                "id": 100,
+                "source": "MISRoom",
+                "description": "Language Room 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "42",
+                "is_room": true
+            },
+            {
+                "id": 101,
+                "source": "MISRoom",
+                "description": "Language Room 6",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "43",
+                "is_room": true
+            },
+            {
+                "id": 102,
+                "source": "MISRoom",
+                "description": "Language Room 7",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "6",
+                "is_room": true
+            },
+            {
+                "id": 103,
+                "source": "MISRoom",
+                "description": "Maths Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "44",
+                "is_room": true
+            },
+            {
+                "id": 104,
+                "source": "MISRoom",
+                "description": "Maths Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "45",
+                "is_room": true
+            },
+            {
+                "id": 105,
+                "source": "MISRoom",
+                "description": "Maths Room 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "46",
+                "is_room": true
+            },
+            {
+                "id": 106,
+                "source": "MISRoom",
+                "description": "Maths Room 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "47",
+                "is_room": true
+            },
+            {
+                "id": 107,
+                "source": "MISRoom",
+                "description": "Maths Room 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "48",
+                "is_room": true
+            },
+            {
+                "id": 108,
+                "source": "MISRoom",
+                "description": "Maths Room 6",
+                "information": "",
+                "owner_id": "34",
+                "sims_room_id": "49",
+                "is_room": true
+            },
+            {
+                "id": 109,
+                "source": "MISRoom",
+                "description": "Maths Room 7",
+                "information": "",
+                "owner_id": "6903",
+                "sims_room_id": "4",
+                "is_room": true
+            },
+            {
+                "id": 110,
+                "source": "MISRoom",
+                "description": "MUSIC 2",
+                "information": "",
+                "owner_id": "12269",
+                "sims_room_id": "14",
+                "is_room": true
+            },
+            {
+                "id": 111,
+                "source": "MISRoom",
+                "description": "MUS",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "50",
+                "is_room": true
+            },
+            {
+                "id": 112,
+                "source": "MISRoom",
+                "description": "MUS2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "11",
+                "is_room": true
+            },
+            {
+                "id": 113,
+                "source": "MISRoom",
+                "description": "Playing Fields",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "51",
+                "is_room": true
+            },
+            {
+                "id": 114,
+                "source": "MISRoom",
+                "description": "PF2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "15",
+                "is_room": true
+            },
+            {
+                "id": 115,
+                "source": "MISRoom",
+                "description": "PE Stock Room",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "17",
+                "is_room": true
+            },
+            {
+                "id": 116,
+                "source": "MISRoom",
+                "description": "Science Lab 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "52",
+                "is_room": true
+            },
+            {
+                "id": 117,
+                "source": "MISRoom",
+                "description": "Science Lab 2",
+                "information": "this is information",
+                "owner_id": null,
+                "sims_room_id": "53",
+                "is_room": true
+            },
+            {
+                "id": 118,
+                "source": "MISRoom",
+                "description": "Science lab 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "54",
+                "is_room": true
+            },
+            {
+                "id": 119,
+                "source": "MISRoom",
+                "description": "Science Lab 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "55",
+                "is_room": true
+            },
+            {
+                "id": 120,
+                "source": "MISRoom",
+                "description": "Science Lab 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "56",
+                "is_room": true
+            },
+            {
+                "id": 121,
+                "source": "MISRoom",
+                "description": "Science Lab 6",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "57",
+                "is_room": true
+            },
+            {
+                "id": 122,
+                "source": "MISRoom",
+                "description": "Science Lab 7",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "3",
+                "is_room": true
+            },
+            {
+                "id": 123,
+                "source": "MISRoom",
+                "description": "Science Lab 8",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "5",
+                "is_room": true
+            },
+            {
+                "id": 124,
+                "source": "MISRoom",
+                "description": "Science Lab 9",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "19",
+                "is_room": true
+            },
+            {
+                "id": 125,
+                "source": "MISRoom",
+                "description": "Support Centre",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "68",
+                "is_room": true
+            },
+            {
+                "id": 126,
+                "source": "MISRoom",
+                "description": "Sports Hall",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "58",
+                "is_room": true
+            },
+            {
+                "id": 127,
+                "source": "MISRoom",
+                "description": "Sports Hall 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "59",
+                "is_room": true
+            },
+            {
+                "id": 128,
+                "source": "MISRoom",
+                "description": "Sports Hall 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "60",
+                "is_room": true
+            },
+            {
+                "id": 69,
+                "source": "MISRoom",
+                "description": "Art Room 1",
+                "information": "this is information",
+                "owner_id": null,
+                "sims_room_id": "20",
+                "is_room": true
+            },
+            {
+                "id": 70,
+                "source": "MISRoom",
+                "description": "Art Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "21",
+                "is_room": true
+            },
+            {
+                "id": 71,
+                "source": "MISRoom",
+                "description": "Art Room 3",
+                "information": "information",
+                "owner_id": null,
+                "sims_room_id": "7",
+                "is_room": true
+            },
+            {
+                "id": 72,
+                "source": "MISRoom",
+                "description": "Business Studies 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "22",
+                "is_room": true
+            },
+            {
+                "id": 73,
+                "source": "MISRoom",
+                "description": "Business Studies 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "23",
+                "is_room": true
+            },
+            {
+                "id": 74,
+                "source": "MISRoom",
+                "description": "Caretaker Stock Room",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "18",
+                "is_room": true
+            },
+            {
+                "id": 75,
+                "source": "MISRoom",
+                "description": "Drama Studio",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "24",
+                "is_room": true
+            },
+            {
+                "id": 76,
+                "source": "MISRoom",
+                "description": "English Room 1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "25",
+                "is_room": true
+            },
+            {
+                "id": 77,
+                "source": "MISRoom",
+                "description": "English Room 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "26",
+                "is_room": true
+            },
+            {
+                "id": 78,
+                "source": "MISRoom",
+                "description": "English Room 3",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "27",
+                "is_room": true
+            },
+            {
+                "id": 79,
+                "source": "MISRoom",
+                "description": "English Room 4",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "28",
+                "is_room": true
+            },
+            {
+                "id": 80,
+                "source": "MISRoom",
+                "description": "English Room 5",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "29",
+                "is_room": true
+            },
+            {
+                "id": 81,
+                "source": "MISRoom",
+                "description": "English Room 6",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "30",
+                "is_room": true
+            },
+            {
+                "id": 82,
+                "source": "MISRoom",
+                "description": "English Room 7",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "10",
+                "is_room": true
+            },
+            {
+                "id": 83,
+                "source": "MISRoom",
+                "description": "EX1",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "67",
+                "is_room": true
+            },
+            {
+                "id": 84,
+                "source": "MISRoom",
+                "description": "GYM 2",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "13",
+                "is_room": true
+            },
+            {
+                "id": 85,
+                "source": "MISRoom",
+                "description": "Gym",
+                "information": null,
+                "owner_id": null,
+                "sims_room_id": "31",
+                "is_room": true
+            }
+        ],
+        "day": {
+            "date": "2017-11-27",
+            "cycle_day_id": 186,
+            "name": "Monday",
+            "periods": [
+                {
+                    "id": 2,
+                    "sims_id": 216,
+                    "name": "Reg",
+                    "start_time": "08:45",
+                    "end_time": "09:15",
+                    "bookings": [],
+                    "available": [
+                        69,
+                        70,
+                        71,
+                        72,
+                        73,
+                        74,
+                        75,
+                        76,
+                        77,
+                        78,
+                        79,
+                        80,
+                        81,
+                        82,
+                        83,
+                        84,
+                        85,
+                        86,
+                        87,
+                        88,
+                        89,
+                        90,
+                        91,
+                        92,
+                        93,
+                        94,
+                        95,
+                        96,
+                        97,
+                        98,
+                        99,
+                        100,
+                        101,
+                        102,
+                        103,
+                        104,
+                        105,
+                        106,
+                        107,
+                        108,
+                        109,
+                        110,
+                        111,
+                        112,
+                        113,
+                        114,
+                        115,
+                        116,
+                        117,
+                        118,
+                        119,
+                        120,
+                        121,
+                        122,
+                        123,
+                        124,
+                        125,
+                        126,
+                        127,
+                        128,
+                        129,
+                        130,
+                        131,
+                        132,
+                        133,
+                        134,
+                        135,
+                        136,
+                        205,
+                        206,
+                        210
+                    ]
+                },
+                {
+                    "id": 3,
+                    "sims_id": 191,
+                    "name": "1",
+                    "start_time": "09:15",
+                    "end_time": "10:15",
+                    "bookings": [
+                        {
+                            "resource_id": 123,
+                            "type": "Closed",
+                            "information": "Exam"
+                        },
+                        {
+                            "resource_id": 102,
+                            "type": "SIMS-CoverRoomMove",
+                            "teaching_group_id": 11749,
+                            "employee_id": 76
+                        },
+                        {
+                            "resource_id": 71,
+                            "type": "SIMS",
+                            "teaching_group_id": 11651,
+                            "employee_id": 88
+                        },
+                        {
+                            "resource_id": 135,
+                            "type": "SIMS",
+                            "teaching_group_id": 11627,
+                            "employee_id": 99
+                        },
+                        {
+                            "resource_id": 82,
+                            "type": "SIMS",
+                            "teaching_group_id": 11858,
+                            "employee_id": 84
+                        },
+                        {
+                            "resource_id": 124,
+                            "type": "SIMS",
+                            "teaching_group_id": 11429,
+                            "employee_id": 34
+                        },
+                        {
+                            "resource_id": 69,
+                            "type": "SIMS",
+                            "teaching_group_id": 11629,
+                            "employee_id": 81
+                        },
+                        {
+                            "resource_id": 70,
+                            "type": "SIMS",
+                            "teaching_group_id": 11626,
+                            "employee_id": 3
+                        },
+                        {
+                            "resource_id": 72,
+                            "type": "SIMS",
+                            "teaching_group_id": 11815,
+                            "employee_id": 4
+                        },
+                        {
+                            "resource_id": 73,
+                            "type": "SIMS",
+                            "teaching_group_id": 11811,
+                            "employee_id": 66
+                        },
+                        {
+                            "resource_id": 75,
+                            "type": "SIMS",
+                            "teaching_group_id": 11653,
+                            "employee_id": 87
+                        },
+                        {
+                            "resource_id": 76,
+                            "type": "SIMS",
+                            "teaching_group_id": 11561,
+                            "employee_id": 95
+                        },
+                        {
+                            "resource_id": 77,
+                            "type": "SIMS",
+                            "teaching_group_id": 11559,
+                            "employee_id": 63
+                        },
+                        {
+                            "resource_id": 78,
+                            "type": "SIMS",
+                            "teaching_group_id": 11560,
+                            "employee_id": 98
+                        },
+                        {
+                            "resource_id": 79,
+                            "type": "SIMS",
+                            "teaching_group_id": 11471,
+                            "employee_id": 5
+                        },
+                        {
+                            "resource_id": 85,
+                            "type": "SIMS",
+                            "teaching_group_id": 11686,
+                            "employee_id": 32
+                        },
+                        {
+                            "resource_id": 89,
+                            "type": "SIMS",
+                            "teaching_group_id": 11813,
+                            "employee_id": 67
+                        },
+                        {
+                            "resource_id": 92,
+                            "type": "SIMS",
+                            "teaching_group_id": 11468,
+                            "employee_id": 6
+                        },
+                        {
+                            "resource_id": 96,
+                            "type": "SIMS",
+                            "teaching_group_id": 11750,
+                            "employee_id": 14
+                        },
+                        {
+                            "resource_id": 97,
+                            "type": "SIMS",
+                            "teaching_group_id": 11791,
+                            "employee_id": 72
+                        },
+                        {
+                            "resource_id": 98,
+                            "type": "SIMS",
+                            "teaching_group_id": 11790,
+                            "employee_id": 2
+                        },
+                        {
+                            "resource_id": 99,
+                            "type": "SIMS",
+                            "teaching_group_id": 11748,
+                            "employee_id": 15
+                        },
+                        {
+                            "resource_id": 100,
+                            "type": "SIMS",
+                            "teaching_group_id": 11792,
+                            "employee_id": 16
+                        },
+                        {
+                            "resource_id": 101,
+                            "type": "SIMS",
+                            "teaching_group_id": 11481,
+                            "employee_id": 94
+                        },
+                        {
+                            "resource_id": 103,
+                            "type": "SIMS",
+                            "teaching_group_id": 11527,
+                            "employee_id": 86
+                        },
+                        {
+                            "resource_id": 104,
+                            "type": "SIMS",
+                            "teaching_group_id": 11526,
+                            "employee_id": 18
+                        },
+                        {
+                            "resource_id": 105,
+                            "type": "SIMS",
+                            "teaching_group_id": 11525,
+                            "employee_id": 19
+                        },
+                        {
+                            "resource_id": 111,
+                            "type": "SIMS",
+                            "teaching_group_id": 11652,
+                            "employee_id": 21
+                        },
+                        {
+                            "resource_id": 113,
+                            "type": "SIMS",
+                            "teaching_group_id": 11685,
+                            "employee_id": 91
+                        },
+                        {
+                            "resource_id": 116,
+                            "type": "SIMS",
+                            "teaching_group_id": 11447,
+                            "employee_id": 25
+                        },
+                        {
+                            "resource_id": 117,
+                            "type": "SIMS",
+                            "teaching_group_id": 11734,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 118,
+                            "type": "SIMS",
+                            "teaching_group_id": 11859,
+                            "employee_id": 28
+                        },
+                        {
+                            "resource_id": 119,
+                            "type": "SIMS",
+                            "teaching_group_id": 11812,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 120,
+                            "type": "SIMS",
+                            "teaching_group_id": 11738,
+                            "employee_id": 26
+                        },
+                        {
+                            "resource_id": 121,
+                            "type": "SIMS",
+                            "teaching_group_id": 11438,
+                            "employee_id": 77
+                        },
+                        {
+                            "resource_id": 128,
+                            "type": "SIMS",
+                            "teaching_group_id": 11684,
+                            "employee_id": 68
+                        },
+                        {
+                            "resource_id": 130,
+                            "type": "SIMS",
+                            "teaching_group_id": 11628,
+                            "employee_id": 23
+                        },
+                        {
+                            "resource_id": 131,
+                            "type": "SIMS",
+                            "teaching_group_id": 11816,
+                            "employee_id": 31
+                        },
+                        {
+                            "resource_id": 134,
+                            "type": "SIMS",
+                            "teaching_group_id": 11814,
+                            "employee_id": 65
+                        }
+                    ],
+                    "available": [
+                        74,
+                        80,
+                        81,
+                        83,
+                        84,
+                        86,
+                        87,
+                        88,
+                        90,
+                        91,
+                        93,
+                        94,
+                        95,
+                        106,
+                        107,
+                        108,
+                        109,
+                        110,
+                        112,
+                        114,
+                        115,
+                        122,
+                        125,
+                        126,
+                        127,
+                        129,
+                        132,
+                        133,
+                        136,
+                        205,
+                        206,
+                        210
+                    ]
+                },
+                {
+                    "id": 4,
+                    "sims_id": 192,
+                    "name": "2",
+                    "start_time": "10:15",
+                    "end_time": "11:15",
+                    "bookings": [
+                        {
+                            "resource_id": 93,
+                            "type": "SIMS",
+                            "teaching_group_id": 11781,
+                            "employee_id": 74
+                        },
+                        {
+                            "resource_id": 109,
+                            "type": "SIMS",
+                            "teaching_group_id": 11819,
+                            "employee_id": 82
+                        },
+                        {
+                            "resource_id": 123,
+                            "type": "SIMS",
+                            "teaching_group_id": 11860,
+                            "employee_id": 91
+                        },
+                        {
+                            "resource_id": 102,
+                            "type": "SIMS",
+                            "teaching_group_id": 11820,
+                            "employee_id": 76
+                        },
+                        {
+                            "resource_id": 71,
+                            "type": "SIMS",
+                            "teaching_group_id": 11522,
+                            "employee_id": 88
+                        },
+                        {
+                            "resource_id": 135,
+                            "type": "SIMS",
+                            "teaching_group_id": 11627,
+                            "employee_id": 99
+                        },
+                        {
+                            "resource_id": 94,
+                            "type": "SIMS",
+                            "teaching_group_id": 11857,
+                            "employee_id": 28
+                        },
+                        {
+                            "resource_id": 124,
+                            "type": "SIMS",
+                            "teaching_group_id": 11429,
+                            "employee_id": 34
+                        },
+                        {
+                            "resource_id": 69,
+                            "type": "SIMS",
+                            "teaching_group_id": 11629,
+                            "employee_id": 81
+                        },
+                        {
+                            "resource_id": 70,
+                            "type": "SIMS",
+                            "teaching_group_id": 11626,
+                            "employee_id": 3
+                        },
+                        {
+                            "resource_id": 72,
+                            "type": "SIMS",
+                            "teaching_group_id": 11821,
+                            "employee_id": 4
+                        },
+                        {
+                            "resource_id": 73,
+                            "type": "SIMS",
+                            "teaching_group_id": 11784,
+                            "employee_id": 66
+                        },
+                        {
+                            "resource_id": 75,
+                            "type": "SIMS",
+                            "teaching_group_id": 11523,
+                            "employee_id": 87
+                        },
+                        {
+                            "resource_id": 76,
+                            "type": "SIMS",
+                            "teaching_group_id": 11719,
+                            "employee_id": 95
+                        },
+                        {
+                            "resource_id": 77,
+                            "type": "SIMS",
+                            "teaching_group_id": 11718,
+                            "employee_id": 63
+                        },
+                        {
+                            "resource_id": 78,
+                            "type": "SIMS",
+                            "teaching_group_id": 11717,
+                            "employee_id": 98
+                        },
+                        {
+                            "resource_id": 80,
+                            "type": "SIMS",
+                            "teaching_group_id": 11480,
+                            "employee_id": 97
+                        },
+                        {
+                            "resource_id": 81,
+                            "type": "SIMS",
+                            "teaching_group_id": 11462,
+                            "employee_id": 89
+                        },
+                        {
+                            "resource_id": 88,
+                            "type": "SIMS",
+                            "teaching_group_id": 11782,
+                            "employee_id": 10
+                        },
+                        {
+                            "resource_id": 90,
+                            "type": "SIMS",
+                            "teaching_group_id": 11785,
+                            "employee_id": 79
+                        },
+                        {
+                            "resource_id": 91,
+                            "type": "SIMS",
+                            "teaching_group_id": 11822,
+                            "employee_id": 17,
+                            "main_employee_id": 9,
+                            "employee_count": 1
+                        },
+                        {
+                            "resource_id": 96,
+                            "type": "SIMS",
+                            "teaching_group_id": 11578,
+                            "employee_id": 14
+                        },
+                        {
+                            "resource_id": 98,
+                            "type": "SIMS",
+                            "teaching_group_id": 11576,
+                            "employee_id": 2
+                        },
+                        {
+                            "resource_id": 99,
+                            "type": "SIMS",
+                            "teaching_group_id": 11574,
+                            "employee_id": 15
+                        },
+                        {
+                            "resource_id": 103,
+                            "type": "SIMS",
+                            "teaching_group_id": 11656,
+                            "employee_id": 62
+                        },
+                        {
+                            "resource_id": 104,
+                            "type": "SIMS",
+                            "teaching_group_id": 11682,
+                            "employee_id": 18,
+                            "main_employee_id": 62,
+                            "employee_count": 1
+                        },
+                        {
+                            "resource_id": 105,
+                            "type": "SIMS",
+                            "teaching_group_id": 11683,
+                            "employee_id": 19
+                        },
+                        {
+                            "resource_id": 106,
+                            "type": "SIMS",
+                            "teaching_group_id": 11681,
+                            "employee_id": 86
+                        },
+                        {
+                            "resource_id": 107,
+                            "type": "SIMS",
+                            "teaching_group_id": 11655,
+                            "employee_id": 20
+                        },
+                        {
+                            "resource_id": 108,
+                            "type": "SIMS",
+                            "teaching_group_id": 11654,
+                            "employee_id": 78
+                        },
+                        {
+                            "resource_id": 111,
+                            "type": "SIMS",
+                            "teaching_group_id": 11524,
+                            "employee_id": 21
+                        },
+                        {
+                            "resource_id": 116,
+                            "type": "SIMS",
+                            "teaching_group_id": 11447,
+                            "employee_id": 25
+                        },
+                        {
+                            "resource_id": 117,
+                            "type": "SIMS",
+                            "teaching_group_id": 11478,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 119,
+                            "type": "SIMS",
+                            "teaching_group_id": 11818,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 121,
+                            "type": "SIMS",
+                            "teaching_group_id": 11438,
+                            "employee_id": 77
+                        },
+                        {
+                            "resource_id": 130,
+                            "type": "SIMS",
+                            "teaching_group_id": 11628,
+                            "employee_id": 23
+                        },
+                        {
+                            "resource_id": 131,
+                            "type": "SIMS",
+                            "teaching_group_id": 11816,
+                            "employee_id": 31
+                        },
+                        {
+                            "resource_id": 132,
+                            "type": "SIMS",
+                            "teaching_group_id": 11783,
+                            "employee_id": 65
+                        },
+                        {
+                            "resource_id": 133,
+                            "type": "SIMS",
+                            "teaching_group_id": 11786,
+                            "employee_id": 29
+                        }
+                    ],
+                    "available": [
+                        74,
+                        79,
+                        82,
+                        83,
+                        84,
+                        85,
+                        86,
+                        87,
+                        89,
+                        92,
+                        95,
+                        97,
+                        100,
+                        101,
+                        110,
+                        112,
+                        113,
+                        114,
+                        115,
+                        118,
+                        120,
+                        122,
+                        125,
+                        126,
+                        127,
+                        128,
+                        129,
+                        134,
+                        136,
+                        205,
+                        206,
+                        210
+                    ]
+                },
+                {
+                    "id": 5,
+                    "sims_id": 193,
+                    "name": "3",
+                    "start_time": "11:35",
+                    "end_time": "12:35",
+                    "bookings": [
+                        {
+                            "resource_id": 93,
+                            "type": "SIMS",
+                            "teaching_group_id": 11508,
+                            "employee_id": 74
+                        },
+                        {
+                            "resource_id": 122,
+                            "type": "SIMS",
+                            "teaching_group_id": 11827,
+                            "employee_id": 77
+                        },
+                        {
+                            "resource_id": 109,
+                            "type": "SIMS",
+                            "teaching_group_id": 11726,
+                            "employee_id": 82
+                        },
+                        {
+                            "resource_id": 135,
+                            "type": "SIMS",
+                            "teaching_group_id": 11584,
+                            "employee_id": 84
+                        },
+                        {
+                            "resource_id": 82,
+                            "type": "SIMS",
+                            "teaching_group_id": 11853,
+                            "employee_id": 75
+                        },
+                        {
+                            "resource_id": 94,
+                            "type": "SIMS",
+                            "teaching_group_id": 11515,
+                            "employee_id": 73
+                        },
+                        {
+                            "resource_id": 110,
+                            "type": "SIMS",
+                            "teaching_group_id": 11727,
+                            "employee_id": 17
+                        },
+                        {
+                            "resource_id": 124,
+                            "type": "SIMS",
+                            "teaching_group_id": 11765,
+                            "employee_id": 34
+                        },
+                        {
+                            "resource_id": 69,
+                            "type": "SIMS",
+                            "teaching_group_id": 11825,
+                            "employee_id": 93
+                        },
+                        {
+                            "resource_id": 70,
+                            "type": "SIMS",
+                            "teaching_group_id": 11851,
+                            "employee_id": 3
+                        },
+                        {
+                            "resource_id": 72,
+                            "type": "SIMS",
+                            "teaching_group_id": 11826,
+                            "employee_id": 4
+                        },
+                        {
+                            "resource_id": 73,
+                            "type": "SIMS",
+                            "teaching_group_id": 11854,
+                            "employee_id": 66
+                        },
+                        {
+                            "resource_id": 76,
+                            "type": "SIMS",
+                            "teaching_group_id": 11789,
+                            "employee_id": 95
+                        },
+                        {
+                            "resource_id": 77,
+                            "type": "SIMS",
+                            "teaching_group_id": 11788,
+                            "employee_id": 63
+                        },
+                        {
+                            "resource_id": 78,
+                            "type": "SIMS",
+                            "teaching_group_id": 11787,
+                            "employee_id": 98
+                        },
+                        {
+                            "resource_id": 79,
+                            "type": "SIMS",
+                            "teaching_group_id": 11674,
+                            "employee_id": 5
+                        },
+                        {
+                            "resource_id": 80,
+                            "type": "SIMS",
+                            "teaching_group_id": 11673,
+                            "employee_id": 97
+                        },
+                        {
+                            "resource_id": 81,
+                            "type": "SIMS",
+                            "teaching_group_id": 11675,
+                            "employee_id": 89
+                        },
+                        {
+                            "resource_id": 85,
+                            "type": "SIMS",
+                            "teaching_group_id": 11659,
+                            "employee_id": 32
+                        },
+                        {
+                            "resource_id": 88,
+                            "type": "SIMS",
+                            "teaching_group_id": 11513,
+                            "employee_id": 1
+                        },
+                        {
+                            "resource_id": 90,
+                            "type": "SIMS",
+                            "teaching_group_id": 11426,
+                            "employee_id": 92
+                        },
+                        {
+                            "resource_id": 91,
+                            "type": "SIMS",
+                            "teaching_group_id": 11435,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 92,
+                            "type": "SIMS",
+                            "teaching_group_id": 11824,
+                            "employee_id": 6
+                        },
+                        {
+                            "resource_id": 99,
+                            "type": "SIMS",
+                            "teaching_group_id": 11441,
+                            "employee_id": 15
+                        },
+                        {
+                            "resource_id": 100,
+                            "type": "SIMS",
+                            "teaching_group_id": 11823,
+                            "employee_id": 16
+                        },
+                        {
+                            "resource_id": 101,
+                            "type": "SIMS",
+                            "teaching_group_id": 11725,
+                            "employee_id": 18
+                        },
+                        {
+                            "resource_id": 103,
+                            "type": "SIMS",
+                            "teaching_group_id": 11490,
+                            "employee_id": 62
+                        },
+                        {
+                            "resource_id": 104,
+                            "type": "SIMS",
+                            "teaching_group_id": 11619,
+                            "employee_id": 9,
+                            "main_employee_id": 18,
+                            "employee_count": 1
+                        },
+                        {
+                            "resource_id": 105,
+                            "type": "SIMS",
+                            "teaching_group_id": 11618,
+                            "employee_id": 19
+                        },
+                        {
+                            "resource_id": 106,
+                            "type": "SIMS",
+                            "teaching_group_id": 11617,
+                            "employee_id": 86
+                        },
+                        {
+                            "resource_id": 107,
+                            "type": "SIMS",
+                            "teaching_group_id": 11488,
+                            "employee_id": 20
+                        },
+                        {
+                            "resource_id": 108,
+                            "type": "SIMS",
+                            "teaching_group_id": 11489,
+                            "employee_id": 78
+                        },
+                        {
+                            "resource_id": 117,
+                            "type": "SIMS",
+                            "teaching_group_id": 11852,
+                            "employee_id": 96
+                        },
+                        {
+                            "resource_id": 119,
+                            "type": "SIMS",
+                            "teaching_group_id": 11817,
+                            "employee_id": 27,
+                            "main_employee_id": 33,
+                            "employee_count": 1
+                        },
+                        {
+                            "resource_id": 120,
+                            "type": "SIMS",
+                            "teaching_group_id": 11767,
+                            "employee_id": 25
+                        },
+                        {
+                            "resource_id": 121,
+                            "type": "SIMS",
+                            "teaching_group_id": 11764,
+                            "employee_id": 33
+                        },
+                        {
+                            "resource_id": 126,
+                            "type": "SIMS",
+                            "teaching_group_id": 11658,
+                            "employee_id": 91
+                        },
+                        {
+                            "resource_id": 128,
+                            "type": "SIMS",
+                            "teaching_group_id": 11657,
+                            "employee_id": 68
+                        },
+                        {
+                            "resource_id": 130,
+                            "type": "SIMS",
+                            "teaching_group_id": 11586,
+                            "employee_id": 23
+                        },
+                        {
+                            "resource_id": 131,
+                            "type": "SIMS",
+                            "teaching_group_id": 11867,
+                            "employee_id": 31
+                        },
+                        {
+                            "resource_id": 132,
+                            "type": "SIMS",
+                            "teaching_group_id": 11585,
+                            "employee_id": 65
+                        },
+                        {
+                            "resource_id": 133,
+                            "type": "SIMS",
+                            "teaching_group_id": 11583,
+                            "employee_id": 29
+                        },
+                        {
+                            "resource_id": 134,
+                            "type": "SIMS",
+                            "teaching_group_id": 11856,
+                            "employee_id": 99
+                        },
+                        {
+                            "resource_id": 206,
+                            "type": "SIMS",
+                            "teaching_group_id": 11868,
+                            "employee_id": 67,
+                            "main_employee_id": 25,
+                            "employee_count": 1
+                        }
+                    ],
+                    "available": [
+                        71,
+                        74,
+                        75,
+                        83,
+                        84,
+                        86,
+                        87,
+                        89,
+                        95,
+                        96,
+                        97,
+                        98,
+                        102,
+                        111,
+                        112,
+                        113,
+                        114,
+                        115,
+                        116,
+                        118,
+                        123,
+                        125,
+                        127,
+                        129,
+                        136,
+                        205,
+                        210
+                    ]
+                },
+                {
+                    "id": 6,
+                    "sims_id": 194,
+                    "name": "4",
+                    "start_time": "12:35",
+                    "end_time": "13:35",
+                    "bookings": [
+                        {
+                            "resource_id": 93,
+                            "type": "SIMS",
+                            "teaching_group_id": 11711,
+                            "employee_id": 74
+                        },
+                        {
+                            "resource_id": 122,
+                            "type": "SIMS",
+                            "teaching_group_id": 11827,
+                            "employee_id": 77
+                        },
+                        {
+                            "resource_id": 71,
+                            "type": "SIMS",
+                            "teaching_group_id": 11421,
+                            "employee_id": 88
+                        },
+                        {
+                            "resource_id": 135,
+                            "type": "SIMS",
+                            "teaching_group_id": 11584,
+                            "employee_id": 84
+                        },
+                        {
+                            "resource_id": 82,
+                            "type": "SIMS",
+                            "teaching_group_id": 11853,
+                            "employee_id": 75
+                        },
+                        {
+                            "resource_id": 94,
+                            "type": "SIMS",
+                            "teaching_group_id": 11636,
+                            "employee_id": 73
+                        },
+                        {
+                            "resource_id": 110,
+                            "type": "SIMS",
+                            "teaching_group_id": 11714,
+                            "employee_id": 17
+                        },
+                        {
+                            "resource_id": 69,
+                            "type": "SIMS",
+                            "teaching_group_id": 11825,
+                            "employee_id": 93
+                        },
+                        {
+                            "resource_id": 70,
+                            "type": "SIMS",
+                            "teaching_group_id": 11851,
+                            "employee_id": 3
+                        },
+                        {
+                            "resource_id": 72,
+                            "type": "SIMS",
+                            "teaching_group_id": 11826,
+                            "employee_id": 4
+                        },
+                        {
+                            "resource_id": 73,
+                            "type": "SIMS",
+                            "teaching_group_id": 11854,
+                            "employee_id": 66
+                        },
+                        {
+                            "resource_id": 75,
+                            "type": "SIMS",
+                            "teaching_group_id": 11445,
+                            "employee_id": 87
+                        },
+                        {
+                            "resource_id": 76,
+                            "type": "SIMS",
+                            "teaching_group_id": 11715,
+                            "employee_id": 1
+                        },
+                        {
+                            "resource_id": 77,
+                            "type": "SIMS",
+                            "teaching_group_id": 11716,
+                            "employee_id": 82,
+                            "main_employee_id": 73,
+                            "employee_count": 1
+                        },
+                        {
+                            "resource_id": 79,
+                            "type": "SIMS",
+                            "teaching_group_id": 11521,
+                            "employee_id": 5
+                        },
+                        {
+                            "resource_id": 80,
+                            "type": "SIMS",
+                            "teaching_group_id": 11519,
+                            "employee_id": 97
+                        },
+                        {
+                            "resource_id": 81,
+                            "type": "SIMS",
+                            "teaching_group_id": 11520,
+                            "employee_id": 89
+                        },
+                        {
+                            "resource_id": 88,
+                            "type": "SIMS",
+                            "teaching_group_id": 11713,
+                            "employee_id": 10
+                        },
+                        {
+                            "resource_id": 89,
+                            "type": "SIMS",
+                            "teaching_group_id": 11437,
+                            "employee_id": 67
+                        },
+                        {
+                            "resource_id": 90,
+                            "type": "SIMS",
+                            "teaching_group_id": 11602,
+                            "employee_id": 92
+                        },
+                        {
+                            "resource_id": 91,
+                            "type": "SIMS",
+                            "teaching_group_id": 11712,
+                            "employee_id": 9
+                        },
+                        {
+                            "resource_id": 92,
+                            "type": "SIMS",
+                            "teaching_group_id": 11824,
+                            "employee_id": 6
+                        },
+                        {
+                            "resource_id": 96,
+                            "type": "SIMS",
+                            "teaching_group_id": 11595,
+                            "employee_id": 14
+                        },
+                        {
+                            "resource_id": 97,
+                            "type": "SIMS",
+                            "teaching_group_id": 11643,
+                            "employee_id": 72
+                        },
+                        {
+                            "resource_id": 99,
+                            "type": "SIMS",
+                            "teaching_group_id": 11591,
+                            "employee_id": 15
+                        },
+                        {
+                            "resource_id": 100,
+                            "type": "SIMS",
+                            "teaching_group_id": 11823,
+                            "employee_id": 16
+                        },
+                        {
+                            "resource_id": 101,
+                            "type": "SIMS",
+                            "teaching_group_id": 11638,
+                            "employee_id": 94
+                        },
+                        {
+                            "resource_id": 103,
+                            "type": "SIMS",
+                            "teaching_group_id": 11795,
+                            "employee_id": 62
+                        },
+                        {
+                            "resource_id": 104,
+                            "type": "SIMS",
+                            "teaching_group_id": 11752,
+                            "employee_id": 18
+                        },
+                        {
+                            "resource_id": 105,
+                            "type": "SIMS",
+                            "teaching_group_id": 11753,
+                            "employee_id": 19
+                        },
+                        {
+                            "resource_id": 106,
+                            "type": "SIMS",
+                            "teaching_group_id": 11751,
+                            "employee_id": 86
+                        },
+                        {
+                            "resource_id": 107,
+                            "type": "SIMS",
+                            "teaching_group_id": 11793,
+                            "employee_id": 20
+                        },
+                        {
+                            "resource_id": 108,
+                            "type": "SIMS",
+                            "teaching_group_id": 11794,
+                            "employee_id": 78
+                        },
+                        {
+                            "resource_id": 117,
+                            "type": "SIMS",
+                            "teaching_group_id": 11852,
+                            "employee_id": 96
+                        },
+                        {
+                            "resource_id": 121,
+                            "type": "SIMS",
+                            "teaching_group_id": 11817,
+                            "employee_id": 33
+                        },
+                        {
+                            "resource_id": 126,
+                            "type": "SIMS",
+                            "teaching_group_id": 11492,
+                            "employee_id": 91
+                        },
+                        {
+                            "resource_id": 127,
+                            "type": "SIMS",
+                            "teaching_group_id": 11493,
+                            "employee_id": 22
+                        },
+                        {
+                            "resource_id": 128,
+                            "type": "SIMS",
+                            "teaching_group_id": 11491,
+                            "employee_id": 68
+                        },
+                        {
+                            "resource_id": 130,
+                            "type": "SIMS",
+                            "teaching_group_id": 11586,
+                            "employee_id": 23
+                        },
+                        {
+                            "resource_id": 131,
+                            "type": "SIMS",
+                            "teaching_group_id": 11867,
+                            "employee_id": 31
+                        },
+                        {
+                            "resource_id": 132,
+                            "type": "SIMS",
+                            "teaching_group_id": 11585,
+                            "employee_id": 65
+                        },
+                        {
+                            "resource_id": 133,
+                            "type": "SIMS",
+                            "teaching_group_id": 11583,
+                            "employee_id": 29
+                        },
+                        {
+                            "resource_id": 134,
+                            "type": "SIMS",
+                            "teaching_group_id": 11856,
+                            "employee_id": 99
+                        },
+                        {
+                            "resource_id": 206,
+                            "type": "SIMS",
+                            "teaching_group_id": 11868,
+                            "employee_id": 25
+                        }
+                    ],
+                    "available": [
+                        74,
+                        78,
+                        83,
+                        84,
+                        85,
+                        86,
+                        87,
+                        95,
+                        98,
+                        102,
+                        109,
+                        111,
+                        112,
+                        113,
+                        114,
+                        115,
+                        116,
+                        118,
+                        119,
+                        120,
+                        123,
+                        124,
+                        125,
+                        129,
+                        136,
+                        205,
+                        210
+                    ]
+                },
+                {
+                    "id": 7,
+                    "sims_id": 195,
+                    "name": "5",
+                    "start_time": "14:30",
+                    "end_time": "15:30",
+                    "bookings": [
+                        {
+                            "resource_id": 93,
+                            "type": "SIMS",
+                            "teaching_group_id": 11593,
+                            "employee_id": 74
+                        },
+                        {
+                            "resource_id": 122,
+                            "type": "SIMS",
+                            "teaching_group_id": 11705,
+                            "employee_id": 84
+                        },
+                        {
+                            "resource_id": 123,
+                            "type": "SIMS",
+                            "teaching_group_id": 11703,
+                            "employee_id": 79
+                        },
+                        {
+                            "resource_id": 102,
+                            "type": "SIMS",
+                            "teaching_group_id": 11839,
+                            "employee_id": 76
+                        },
+                        {
+                            "resource_id": 82,
+                            "type": "SIMS",
+                            "teaching_group_id": 11835,
+                            "employee_id": 86
+                        },
+                        {
+                            "resource_id": 94,
+                            "type": "SIMS",
+                            "teaching_group_id": 11512,
+                            "employee_id": 73
+                        },
+                        {
+                            "resource_id": 110,
+                            "type": "SIMS",
+                            "teaching_group_id": 11707,
+                            "employee_id": 81
+                        },
+                        {
+                            "resource_id": 69,
+                            "type": "SIMS",
+                            "teaching_group_id": 11841,
+                            "employee_id": 93
+                        },
+                        {
+                            "resource_id": 70,
+                            "type": "SIMS",
+                            "teaching_group_id": 11802,
+                            "employee_id": 3
+                        },
+                        {
+                            "resource_id": 72,
+                            "type": "SIMS",
+                            "teaching_group_id": 11838,
+                            "employee_id": 4
+                        },
+                        {
+                            "resource_id": 73,
+                            "type": "SIMS",
+                            "teaching_group_id": 11833,
+                            "employee_id": 66
+                        },
+                        {
+                            "resource_id": 75,
+                            "type": "SIMS",
+                            "teaching_group_id": 11439,
+                            "employee_id": 87
+                        },
+                        {
+                            "resource_id": 76,
+                            "type": "SIMS",
+                            "teaching_group_id": 11650,
+                            "employee_id": 95
+                        },
+                        {
+                            "resource_id": 77,
+                            "type": "SIMS",
+                            "teaching_group_id": 11649,
+                            "employee_id": 63
+                        },
+                        {
+                            "resource_id": 78,
+                            "type": "SIMS",
+                            "teaching_group_id": 11648,
+                            "employee_id": 98
+                        },
+                        {
+                            "resource_id": 79,
+                            "type": "SIMS",
+                            "teaching_group_id": 11746,
+                            "employee_id": 5
+                        },
+                        {
+                            "resource_id": 80,
+                            "type": "SIMS",
+                            "teaching_group_id": 11745,
+                            "employee_id": 97
+                        },
+                        {
+                            "resource_id": 81,
+                            "type": "SIMS",
+                            "teaching_group_id": 11747,
+                            "employee_id": 89
+                        },
+                        {
+                            "resource_id": 88,
+                            "type": "SIMS",
+                            "teaching_group_id": 11517,
+                            "employee_id": 92
+                        },
+                        {
+                            "resource_id": 89,
+                            "type": "SIMS",
+                            "teaching_group_id": 11804,
+                            "employee_id": 1
+                        },
+                        {
+                            "resource_id": 90,
+                            "type": "SIMS",
+                            "teaching_group_id": 11603,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 96,
+                            "type": "SIMS",
+                            "teaching_group_id": 11596,
+                            "employee_id": 14
+                        },
+                        {
+                            "resource_id": 97,
+                            "type": "SIMS",
+                            "teaching_group_id": 11423,
+                            "employee_id": 72
+                        },
+                        {
+                            "resource_id": 99,
+                            "type": "SIMS",
+                            "teaching_group_id": 11482,
+                            "employee_id": 15
+                        },
+                        {
+                            "resource_id": 100,
+                            "type": "SIMS",
+                            "teaching_group_id": 11463,
+                            "employee_id": 16
+                        },
+                        {
+                            "resource_id": 101,
+                            "type": "SIMS",
+                            "teaching_group_id": 11431,
+                            "employee_id": 94
+                        },
+                        {
+                            "resource_id": 103,
+                            "type": "SIMS",
+                            "teaching_group_id": 11566,
+                            "employee_id": 62
+                        },
+                        {
+                            "resource_id": 104,
+                            "type": "SIMS",
+                            "teaching_group_id": 11837,
+                            "employee_id": 17
+                        },
+                        {
+                            "resource_id": 107,
+                            "type": "SIMS",
+                            "teaching_group_id": 11565,
+                            "employee_id": 20
+                        },
+                        {
+                            "resource_id": 108,
+                            "type": "SIMS",
+                            "teaching_group_id": 11568,
+                            "employee_id": 78
+                        },
+                        {
+                            "resource_id": 111,
+                            "type": "SIMS",
+                            "teaching_group_id": 11476,
+                            "employee_id": 75
+                        },
+                        {
+                            "resource_id": 116,
+                            "type": "SIMS",
+                            "teaching_group_id": 11840,
+                            "employee_id": 26
+                        },
+                        {
+                            "resource_id": 117,
+                            "type": "SIMS",
+                            "teaching_group_id": 11834,
+                            "employee_id": null
+                        },
+                        {
+                            "resource_id": 118,
+                            "type": "SIMS",
+                            "teaching_group_id": 11836,
+                            "employee_id": 28
+                        },
+                        {
+                            "resource_id": 120,
+                            "type": "SIMS",
+                            "teaching_group_id": 11510,
+                            "employee_id": 25
+                        },
+                        {
+                            "resource_id": 128,
+                            "type": "SIMS",
+                            "teaching_group_id": 11799,
+                            "employee_id": 68
+                        },
+                        {
+                            "resource_id": 130,
+                            "type": "SIMS",
+                            "teaching_group_id": 11704,
+                            "employee_id": 23
+                        }
+                    ],
+                    "available": [
+                        71,
+                        74,
+                        83,
+                        84,
+                        85,
+                        86,
+                        87,
+                        91,
+                        92,
+                        95,
+                        98,
+                        105,
+                        106,
+                        109,
+                        112,
+                        113,
+                        114,
+                        115,
+                        119,
+                        121,
+                        124,
+                        125,
+                        126,
+                        127,
+                        129,
+                        131,
+                        132,
+                        133,
+                        134,
+                        135,
+                        136,
+                        205,
+                        206,
+                        210
+                    ]
+                },
+                {
+                    "id": 23097,
+                    "sims_id": null,
+                    "name": "6",
+                    "start_time": "15:30",
+                    "end_time": "16:00",
+                    "bookings": [],
+                    "available": [
+                        69,
+                        70,
+                        71,
+                        72,
+                        73,
+                        74,
+                        75,
+                        76,
+                        77,
+                        78,
+                        79,
+                        80,
+                        81,
+                        82,
+                        83,
+                        84,
+                        85,
+                        86,
+                        87,
+                        88,
+                        89,
+                        90,
+                        91,
+                        92,
+                        93,
+                        94,
+                        95,
+                        96,
+                        97,
+                        98,
+                        99,
+                        100,
+                        101,
+                        102,
+                        103,
+                        104,
+                        105,
+                        106,
+                        107,
+                        108,
+                        109,
+                        110,
+                        111,
+                        112,
+                        113,
+                        114,
+                        115,
+                        116,
+                        117,
+                        118,
+                        119,
+                        120,
+                        121,
+                        122,
+                        123,
+                        124,
+                        125,
+                        126,
+                        127,
+                        128,
+                        129,
+                        130,
+                        131,
+                        132,
+                        133,
+                        134,
+                        135,
+                        136,
+                        205,
+                        206,
+                        210
+                    ]
+                }
+            ],
+            "taking_bookings": true
+        },
+        "debug": {
+            "total_resources": 71,
+            "avp": null
+        },
+        "metrics": {
+            "sspt": 0.50840616226196
+        }
+    },
+    "id": "1"
+}

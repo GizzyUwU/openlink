@@ -1,0 +1,245 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DataCollectionAddressValidate",
+    "success": true,
+    "addresses": [
+      {
+        "apartment": "",
+        "house_name": "5-7",
+        "house_number": "",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "The Wheatsheaf",
+        "house_number": "",
+        "street": "High Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "24a",
+        "house_number": "",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "1",
+        "street": "North Street",
+        "district": "",
+        "town": "Titchmarsh",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "1",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "The Wheatsheaf Pub",
+        "house_number": "1",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "10",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "12",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "14",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "16",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "18",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "The Horseshoes",
+        "house_number": "2",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "The Post Office",
+        "house_number": "2",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "24",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "26",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "27",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "Turnsloe",
+        "house_number": "27",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "4",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "5",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "6",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      },
+      {
+        "apartment": "",
+        "house_name": "",
+        "house_number": "8",
+        "street": "North Street",
+        "district": "Titchmarsh",
+        "town": "Kettering",
+        "county": "",
+        "post_code": "NN14 3DH",
+        "country_id": 215
+      }
+    ],
+    "metrics": {
+      "st": "2018-04-06 16:53:14",
+      "sspt": 0.3894979953765869
+    }
+  },
+  "id": "25"
+}

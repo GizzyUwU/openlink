@@ -1,0 +1,35 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.NoticeboardDocumentFolders",
+      "success": true,
+      "location": {
+         "text": "Home > lucy",
+         "path": [
+            {
+               "id": 0,
+               "name": "Home"
+            },
+            {
+               "id": 1,
+               "name": "lucy",
+               "parent_folder_id": 0
+            }
+         ]
+      },
+      "folders": [
+         {
+            "id": 2,
+            "name": "lucy 2",
+            "parent_folder_id": 1
+         }
+      ],
+      "metrics": {
+         "st": "2020-03-12 09:48:06",
+         "sspt": 0.038316965103149414,
+         "sspt_us": 38316,
+         "uniqid": "5e6a0556740da"
+      }
+   },
+   "id": "14"
+}

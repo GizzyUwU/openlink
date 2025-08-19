@@ -1,0 +1,17 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.LearnerGroups",
+      "success": true,
+      "groups": [
+         {
+            "id": 2,
+            "name": "Custom Group",
+            "owner_id": "26",
+            "global": false,
+            "member_count": 3
+         }
+      ]
+   },
+   "id": "1"
+}

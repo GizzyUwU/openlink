@@ -1,0 +1,13 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEventEmployeeLearnersUpdate",
+        "success": true,
+        "metrics": {
+            "st": "2019-03-07 15:17:34",
+            "sspt": 0.04387402534484863,
+            "uniqid": "5c81360eaaa88"
+        }
+    },
+    "id": "1"
+}

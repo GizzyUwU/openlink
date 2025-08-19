@@ -1,0 +1,14 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.HomeworkDelete",
+        "success": true,
+        "deleted_id": 189,
+        "metrics": {
+            "st": "2019-06-11 09:31:23",
+            "sspt": 0.016350984573364258,
+            "uniqid": "5cff66dbda7ba"
+        }
+    },
+    "id": "1"
+}

@@ -1,0 +1,101 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ParentEvent",
+        "success": true,
+        "parent": false,
+		"event": {
+            "name": "Year 11 Parents Evening",
+            "information": "",
+            "available_to_parents": "2020-01-10 08:00:00",
+            "closed_to_parents_at": null,
+            "prevent_consecutive_bookings": false,
+            "slot_duration": 8,
+            "buffer_duration": 2,
+            "bookable_slots_per_learner": null,
+            "bookings_closed": false,
+            "sessions": [
+                {
+                    "id": 84,
+                    "start_time": "2020-01-24 16:00:00",
+                    "end_time": "2020-01-24 17:00:00"
+                }
+            ]
+        },
+        "employee": true,
+        "personal_slots": [
+            {
+                "slot_id": 45,
+                "start_time": "2020-01-24 16:00:00",
+                "teacher_available": false,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 46,
+                "start_time": "2020-01-24 16:10:00",
+                "teacher_available": false,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": false
+            },
+            {
+                "slot_id": 47,
+                "start_time": "2020-01-24 16:20:00",
+                "teacher_available": true,
+                "learner_id": "7338",
+                "parent_id": "8150",
+                "notes_to_teacher": "I am concerned with the latest mock results and would like to discuss if you could recommend what else I could do to help Jimmy",
+                "parent_attended": true
+            },
+            {
+                "slot_id": 48,
+                "start_time": "2020-01-24 16:30:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 49,
+                "start_time": "2020-01-24 16:40:00",
+                "teacher_available": true,
+                "learner_id": "7338",
+                "parent_id": "7341",
+                "notes_to_teacher": "My husband and myself are separated so will be attending separately",
+                "parent_attended": null
+            },
+            {
+                "slot_id": 50,
+                "start_time": "2020-01-24 16:50:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            },
+            {
+                "slot_id": 51,
+                "start_time": "2020-01-24 17:00:00",
+                "teacher_available": true,
+                "learner_id": null,
+                "parent_id": null,
+                "notes_to_teacher": null,
+                "parent_attended": null
+            }
+        ],
+        "event_learner_ids": [
+            7338,
+            8894,
+            9925
+        ],
+        "metrics": {
+            "sspt": 0.026317834854126
+        }
+    },
+    "id": "1"
+}

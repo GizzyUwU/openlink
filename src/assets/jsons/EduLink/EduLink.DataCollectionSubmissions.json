@@ -1,0 +1,74 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.DataCollectionSubmissions",
+    "success": true,
+    "next_method": "EduLink.DataCollectionSubmission",
+    "submissions": [
+      {
+        "submitted": "2018-02-28 19:33:19",
+        "for": {
+          "name": "Felicia Zabinski",
+          "type": "Parent",
+          "id": "9607"
+        },
+        "param": {
+          "contact_id": "9607"
+        },
+        "from": {
+          "name": "Felicia Zabinski",
+          "type": "Parent",
+          "id": "9607"
+        }
+      },
+      {
+        "submitted": "2018-02-28 19:32:34",
+        "for": {
+          "name": "Penny Zabriski",
+          "type": "Learner",
+          "id": "9497"
+        },
+        "param": {
+          "learner_id": "9497"
+        },
+        "from": {
+          "name": "Felicia Zabinski",
+          "type": "Parent",
+          "id": "9607"
+        }
+      },
+      {
+        "submitted": "2018-02-28 21:38:39",
+        "for": {
+          "name": "Lucy Delaware",
+          "type": "Learner",
+          "id": "10000"
+        },
+        "param": {
+          "learner_id": "10000"
+        },
+        "from": {
+          "name": "Lucy Delaware",
+          "type": "Learner",
+          "id": "10000"
+        }
+      },
+      {
+        "submitted": "2018-02-28 19:12:40",
+        "for": {
+          "name": "A Abell",
+          "type": "Employee",
+          "id": "26"
+        },
+        "param": {
+          "employee_id": "26"
+        },
+        "from": {
+          "name": "A Abell",
+          "type": "Employee",
+          "id": "26"
+        }
+      }
+    ]
+  }
+}

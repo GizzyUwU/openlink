@@ -1,0 +1,18 @@
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "filename": "childprotection_events_log_y3jAgLdtIycFNQ.csv",
+        "url": "https://demo.edulinkone.com/api/download/WpqREQSQ909WwtTYcgGgwMOgG4xZY_fF20UGMb0nL-1ChRgPHdkZ6YV7MWSuRPeRoBI/childprotection_events_log_y3jAgLdtIycFNQ.csv",
+        "mime_type": "text/csv",
+        "method": "EduLink.ChildProtectionReferralsLog",
+        "success": true,
+        "metrics": {
+            "st": "2021-11-08 09:19:03",
+            "sspt": 0.019698172982316464,
+            "sspt_us": 19698,
+            "uniqid": "6188eb87bd926",
+            "be": "monty"
+        }
+    }
+}

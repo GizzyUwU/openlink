@@ -1,0 +1,13 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ClubSessionAttendance",
+      "success": true,
+      "attendance": [],
+      "metrics": {
+         "st": "2018-09-19 09:04:10",
+         "sspt": 0.07290792465209961
+      }
+   },
+   "id": "1"
+}

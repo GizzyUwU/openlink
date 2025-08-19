@@ -1,0 +1,12 @@
+{
+   "jsonrpc": "2.0",
+   "result": {
+      "method": "EduLink.ClubCreate",
+      "success": true,
+      "metrics": {
+         "st": "2018-09-10 13:19:32",
+         "sspt": 0.06840300559997559
+      }
+   },
+   "id": "1"
+}

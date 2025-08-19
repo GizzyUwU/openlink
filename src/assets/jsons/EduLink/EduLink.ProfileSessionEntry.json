@@ -1,0 +1,505 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "method": "EduLink.ProfileSessionEntry",
+        "success": true,
+        "word_limit": 0,
+        "areas": [
+            {
+                "id": 195,
+                "name": "English",
+                "sections": [
+                    {
+                        "id": 611,
+                        "name": "Targets",
+                        "comment_text": "To develop my range of vocabulary and expression, in both written and oral English.",
+                        "comment_bank": [
+                            {
+                                "id": 1,
+                                "is_selected": false,
+                                "text": "To use standard English in appropriate situations, both written and oral."
+                            },
+                            {
+                                "id": 2,
+                                "is_selected": false,
+                                "text": "To show greater originality of analysis and interpretation when exploring a range of texts."
+                            },
+                            {
+                                "id": 3,
+                                "is_selected": false,
+                                "text": "To develop and sustain interpretations of texts."
+                            },
+                            {
+                                "id": 4,
+                                "is_selected": true,
+                                "text": "To develop my range of vocabulary and expression, in both written and oral English."
+                            },
+                            {
+                                "id": 5,
+                                "is_selected": false,
+                                "text": "To listen, with sensitivity, to the views expressed by others."
+                            },
+                            {
+                                "id": 6,
+                                "is_selected": false,
+                                "text": "To contribute more to small group and whole group discussions."
+                            },
+                            {
+                                "id": 7,
+                                "is_selected": false,
+                                "text": "To develop my reading of a range of literary and non-literary texts."
+                            },
+                            {
+                                "id": 8,
+                                "is_selected": false,
+                                "text": "To read with greater discernment, differentiating between fact and opinion."
+                            },
+                            {
+                                "id": 9,
+                                "is_selected": false,
+                                "text": "To read with greater inference, understanding more than the surface meaning of a text."
+                            },
+                            {
+                                "id": 10,
+                                "is_selected": false,
+                                "text": "To identify implicit and explicit meaning in a range of literary and non-literary texts."
+                            },
+                            {
+                                "id": 11,
+                                "is_selected": false,
+                                "text": "To show greater insight when reading a range of literary and non-literary texts."
+                            },
+                            {
+                                "id": 12,
+                                "is_selected": false,
+                                "text": "To develop greater accuracy in spelling and punctuation."
+                            },
+                            {
+                                "id": 13,
+                                "is_selected": false,
+                                "text": "To develop a greater focus on format when presenting a piece of written work."
+                            },
+                            {
+                                "id": 14,
+                                "is_selected": false,
+                                "text": "To exercise greater control over my use of paragraphs."
+                            },
+                            {
+                                "id": 15,
+                                "is_selected": false,
+                                "text": "To adopt a more sophisticated range of sentence structures."
+                            },
+                            {
+                                "id": 16,
+                                "is_selected": false,
+                                "text": "To show a clearer sense of purpose in transactional writing."
+                            },
+                            {
+                                "id": 17,
+                                "is_selected": false,
+                                "text": "To show a clearer sense of audience in transactional writing."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 200,
+                "name": "Mathematics",
+                "sections": [
+                    {
+                        "id": 621,
+                        "name": "Targets",
+                        "comment_text": "To develop my Mathematical skills by explaining and offering reasons for my work.",
+                        "comment_bank": [
+                            {
+                                "id": 1,
+                                "is_selected": true,
+                                "text": "To develop my Mathematical skills by explaining and offering reasons for my work."
+                            },
+                            {
+                                "id": 2,
+                                "is_selected": false,
+                                "text": "To revise thoroughly for mock examinations."
+                            },
+                            {
+                                "id": 3,
+                                "is_selected": false,
+                                "text": "To improve my application to homework tasks."
+                            },
+                            {
+                                "id": 4,
+                                "is_selected": false,
+                                "text": "To catch up on any work I may have missed."
+                            },
+                            {
+                                "id": 5,
+                                "is_selected": false,
+                                "text": "To meet all deadlines for homework."
+                            },
+                            {
+                                "id": 6,
+                                "is_selected": false,
+                                "text": "To not rely on others for help."
+                            },
+                            {
+                                "id": 7,
+                                "is_selected": false,
+                                "text": "To take more responsibility for my learning."
+                            },
+                            {
+                                "id": 8,
+                                "is_selected": false,
+                                "text": "To not give up on more complex tasks too easily."
+                            },
+                            {
+                                "id": 9,
+                                "is_selected": false,
+                                "text": "To make a consistent effort in class and at home."
+                            },
+                            {
+                                "id": 10,
+                                "is_selected": false,
+                                "text": "To concentrate fully on the task in hand."
+                            },
+                            {
+                                "id": 11,
+                                "is_selected": false,
+                                "text": "To put a more consistent effort into my homework."
+                            },
+                            {
+                                "id": 12,
+                                "is_selected": false,
+                                "text": "To ensure that homework is completed and handed in on time."
+                            },
+                            {
+                                "id": 13,
+                                "is_selected": false,
+                                "text": "To maintain the high quality of my work next year."
+                            },
+                            {
+                                "id": 14,
+                                "is_selected": false,
+                                "text": "To sustain my current interest in and enthusiasm towards Mathematics."
+                            },
+                            {
+                                "id": 15,
+                                "is_selected": false,
+                                "text": "To concentrate and listen more attentively."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 201,
+                "name": "Sciences",
+                "sections": [
+                    {
+                        "id": 623,
+                        "name": "Targets",
+                        "comment_text": "To pay more attention in class to make sure I have a good grasp of the basic scientific principles.",
+                        "comment_bank": [
+                            {
+                                "id": 1,
+                                "is_selected": false,
+                                "text": "To take more time when considering answers to questions to make sure all questions are answered as thoroughly as possible."
+                            },
+                            {
+                                "id": 2,
+                                "is_selected": false,
+                                "text": "To discover the revision style that best suits me and then thoroughly prepare for the GCSE examination."
+                            },
+                            {
+                                "id": 3,
+                                "is_selected": false,
+                                "text": "To pay attention to the presentation of my work.  Often diagrams are unclear and a little time spent here would be beneficial."
+                            },
+                            {
+                                "id": 4,
+                                "is_selected": true,
+                                "text": "To pay more attention in class to make sure I have a good grasp of the basic scientific principles."
+                            },
+                            {
+                                "id": 5,
+                                "is_selected": false,
+                                "text": "To concentrate for longer periods of time if I is to build upon my good basic knowledge and reach my true potential."
+                            },
+                            {
+                                "id": 6,
+                                "is_selected": false,
+                                "text": "To enhance my learning by actively seeking out extension work and asking more questions."
+                            },
+                            {
+                                "id": 7,
+                                "is_selected": false,
+                                "text": "To trust my good scientific knowledge to take more of a part in science lessons by offering answers and engaging in debate."
+                            },
+                            {
+                                "id": 8,
+                                "is_selected": false,
+                                "text": "To trust my scientific knowledge and ask less for reassurance to help me work more independently."
+                            },
+                            {
+                                "id": 9,
+                                "is_selected": false,
+                                "text": "To spend more time learning basic scientific vocabulary so I can communicate more effectively."
+                            },
+                            {
+                                "id": 10,
+                                "is_selected": false,
+                                "text": "To spend less time chatting and more time completing my work to the best of my ability."
+                            },
+                            {
+                                "id": 11,
+                                "is_selected": false,
+                                "text": "To make sure all homework is completed to a high standard."
+                            },
+                            {
+                                "id": 12,
+                                "is_selected": false,
+                                "text": "To put much more effort into my work and answer questions as fully as possible."
+                            },
+                            {
+                                "id": 13,
+                                "is_selected": false,
+                                "text": "To continue the high level of effort and enthusiasm shown to date."
+                            },
+                            {
+                                "id": 14,
+                                "is_selected": false,
+                                "text": "To take more advantage of the opportunities within the lesson to ask for extra help with difficult concepts."
+                            },
+                            {
+                                "id": 15,
+                                "is_selected": false,
+                                "text": "To take a much more methodical approach to experimental work to make the best use of my time and the equipment."
+                            },
+                            {
+                                "id": 16,
+                                "is_selected": false,
+                                "text": "To take more care when collecting results and appreciate the need for accuracy and reliability in my results."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 202,
+                "name": "Languages",
+                "sections": [
+                    {
+                        "id": 625,
+                        "name": "Targets",
+                        "comment_text": "I should now concentrate on improving my spoken and written work by ensuring that basic structures are accurately presented.",
+                        "comment_bank": [
+                            {
+                                "id": 1,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken work by requesting a recorded version of my work for comparison."
+                            },
+                            {
+                                "id": 2,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken work by making an appointment with the language assistant."
+                            },
+                            {
+                                "id": 3,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken and written work by including more complex structures."
+                            },
+                            {
+                                "id": 4,
+                                "is_selected": true,
+                                "text": "I should now concentrate on improving my spoken and written work by ensuring that basic structures are accurately presented."
+                            },
+                            {
+                                "id": 5,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken and written work by ensuring that homework is completed thoroughly and on time."
+                            },
+                            {
+                                "id": 6,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken and written work by responding to the feedback given when work has been marked."
+                            },
+                            {
+                                "id": 7,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my written accuracy by perfecting my dictionary skills."
+                            },
+                            {
+                                "id": 8,
+                                "is_selected": false,
+                                "text": "I should now concentrate on improving my spoken and written work by committing key phrases to memory."
+                            },
+                            {
+                                "id": 9,
+                                "is_selected": false,
+                                "text": "To improve my reading and listening skills I should be completing practise papers at home."
+                            },
+                            {
+                                "id": 10,
+                                "is_selected": false,
+                                "text": "To improve my reading and listening skills I should be accessing the assigned materials via the VLE."
+                            },
+                            {
+                                "id": 11,
+                                "is_selected": false,
+                                "text": "To improve my reading and listening skills I should be learning the given vocabulary and completing the assigned VLE quizzes."
+                            },
+                            {
+                                "id": 12,
+                                "is_selected": false,
+                                "text": "To improve my reading and listening skills I should be committing key vocabulary to memory."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 203,
+                "name": "Humanities",
+                "sections": [
+                    {
+                        "id": 627,
+                        "name": "Targets",
+                        "comment_text": "To add more specific detail to written work.",
+                        "comment_bank": [
+                            {
+                                "id": 1,
+                                "is_selected": false,
+                                "text": "To participate more during class discussions."
+                            },
+                            {
+                                "id": 2,
+                                "is_selected": false,
+                                "text": "To maintain high standards in all aspects of work."
+                            },
+                            {
+                                "id": 3,
+                                "is_selected": false,
+                                "text": "To produce work that is a true reflection of my ability."
+                            },
+                            {
+                                "id": 4,
+                                "is_selected": true,
+                                "text": "To add more specific detail to written work."
+                            },
+                            {
+                                "id": 5,
+                                "is_selected": false,
+                                "text": "To maintain current high standards."
+                            },
+                            {
+                                "id": 6,
+                                "is_selected": false,
+                                "text": "To continue to work to the best of my ability in lessons."
+                            },
+                            {
+                                "id": 7,
+                                "is_selected": false,
+                                "text": "To maintain my excellent effort and attitude."
+                            },
+                            {
+                                "id": 8,
+                                "is_selected": false,
+                                "text": "To concentrate harder in class."
+                            },
+                            {
+                                "id": 9,
+                                "is_selected": false,
+                                "text": "To bring the correct equipment to all lessons."
+                            },
+                            {
+                                "id": 10,
+                                "is_selected": false,
+                                "text": "To ensure all necessary equipment is brought to every lesson."
+                            },
+                            {
+                                "id": 11,
+                                "is_selected": false,
+                                "text": "To develop geographical awareness and understanding."
+                            },
+                            {
+                                "id": 12,
+                                "is_selected": false,
+                                "text": "To continue to make valuable contributions during the lessons."
+                            },
+                            {
+                                "id": 13,
+                                "is_selected": false,
+                                "text": "To ask for help whenever necessary."
+                            },
+                            {
+                                "id": 14,
+                                "is_selected": false,
+                                "text": "To approach Geography with increased confidence."
+                            },
+                            {
+                                "id": 15,
+                                "is_selected": false,
+                                "text": "To maintain my present enthusiasm for the subject."
+                            },
+                            {
+                                "id": 16,
+                                "is_selected": false,
+                                "text": "To practise answering case study questions."
+                            },
+                            {
+                                "id": 17,
+                                "is_selected": false,
+                                "text": "To continue the progress made this year into Year 11."
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 207,
+                "name": "Form Teacher comment",
+                "sections": [
+                    {
+                        "id": 633,
+                        "name": "Comment",
+                        "comment_text": "Stan needs to ensure that he meets all targets set.",
+                        "comment_bank": []
+                    }
+                ]
+            }
+        ],
+        "variables": {
+            "Forename": "Rosanna",
+            "ChosenForename": "Rosanna",
+            "Surname": "Amoso",
+            "He": "She",
+            "he": "she",
+            "His": "Her",
+            "his": "her",
+            "him": "her",
+            "hers": "hers",
+            "man": "woman",
+            "boy": "girl",
+            "son": "daughter",
+            "himself": "herself",
+            "gent": "lady",
+            "reg": "10F",
+            "Yr": "Year 10",
+            "DoB": "2003-05-25",
+            "Gender": "Female",
+            "AdNo": "004605",
+            "Salutation": "Miss",
+            "Add1": "45 Stanley Street",
+            "Add2": "Northampton",
+            "Town": "NN2 6DD",
+            "Postcode": "NN2 6DD",
+            "DoA": "2014-09-03",
+            "House": "Boyle"
+        },
+        "metrics": {
+            "st": "2017-12-05 17:08:24",
+            "sspt": 0.50514698028564
+        }
+    },
+    "id": "6"
+}

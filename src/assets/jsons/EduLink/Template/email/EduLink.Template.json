@@ -1,0 +1,20 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "Communicator.Template",
+    "success": true,
+    "template": {
+      "name": "Test template",
+      "subject": "Example template",
+      "body": "<p>You can save templates for use when you are sending messages with similar content on a regular basis.To create a template simply type the template like you would a normal message and click the <b>Create Template</b> button, give your template a name and it will then appear in the template drop down list for future use.</p><p>&nbsp;</p><p>If you set a template to be <b>golbal</b> this means other employees will be able to use it and it will appear in their list. You can manage templates by clicking on the cog in the top left of the screen and selecting <b>Manage Templates</b> from the list",
+      "owner_id": "0",
+      "global": true,
+      "type": "html"
+    },
+    "metrics": {
+      "st": "2018-01-10 15:50:19",
+      "sspt": 0.079692840576171875
+    }
+  },
+  "id": "1"
+}

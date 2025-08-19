@@ -1,0 +1,4816 @@
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "method": "EduLink.Login",
+    "success": true,
+    "api_version": 1,
+    "establishment": {
+      "name": "Green Abbey School",
+      "logo": "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",
+      "demo_date": "2016-06-11",
+      "rooms": [
+        {
+          "id": "20",
+          "code": "A1",
+          "name": "Art Room 1"
+        },
+        {
+          "id": "21",
+          "code": "A2",
+          "name": "Art Room 2"
+        },
+        {
+          "id": "7",
+          "code": "A3",
+          "name": "Art Room 3"
+        },
+        {
+          "id": "22",
+          "code": "B1",
+          "name": "Business Studies 1"
+        },
+        {
+          "id": "23",
+          "code": "B2",
+          "name": "Business Studies 2"
+        },
+        {
+          "id": "71",
+          "code": "C1",
+          "name": "Construction Room 1"
+        },
+        {
+          "id": "75",
+          "code": "CR",
+          "name": "Changing Rooms"
+        },
+        {
+          "id": "18",
+          "code": "CSR",
+          "name": "Caretaker Stock Room"
+        },
+        {
+          "id": "24",
+          "code": "DRS",
+          "name": "Drama Studio"
+        },
+        {
+          "id": "25",
+          "code": "E1",
+          "name": "English Room 1"
+        },
+        {
+          "id": "26",
+          "code": "E2",
+          "name": "English Room 2"
+        },
+        {
+          "id": "27",
+          "code": "E3",
+          "name": "English Room 3"
+        },
+        {
+          "id": "28",
+          "code": "E4",
+          "name": "English Room 4"
+        },
+        {
+          "id": "29",
+          "code": "E5",
+          "name": "English Room 5"
+        },
+        {
+          "id": "30",
+          "code": "E6",
+          "name": "English Room 6"
+        },
+        {
+          "id": "10",
+          "code": "E7",
+          "name": "English Room 7"
+        },
+        {
+          "id": "67",
+          "code": "EX1",
+          "name": "EX1"
+        },
+        {
+          "id": "13",
+          "code": "GY2",
+          "name": "GYM 2"
+        },
+        {
+          "id": "31",
+          "code": "GYM",
+          "name": "Gym"
+        },
+        {
+          "id": "32",
+          "code": "GYM1",
+          "name": "Weights Gym"
+        },
+        {
+          "id": "9",
+          "code": "GYM2",
+          "name": "Weights Gym2"
+        },
+        {
+          "id": "33",
+          "code": "H1",
+          "name": "Humanities Room 1"
+        },
+        {
+          "id": "34",
+          "code": "H2",
+          "name": "Humanities Room 2"
+        },
+        {
+          "id": "35",
+          "code": "H3",
+          "name": "Humanities Room 3"
+        },
+        {
+          "id": "36",
+          "code": "H4",
+          "name": "Humanities Room 4"
+        },
+        {
+          "id": "37",
+          "code": "H5",
+          "name": "Humanities Room 5"
+        },
+        {
+          "id": "2",
+          "code": "H6",
+          "name": "Humanities Room 6"
+        },
+        {
+          "id": "12",
+          "code": "H7",
+          "name": "Humanities Room 7"
+        },
+        {
+          "id": "73",
+          "code": "HA",
+          "name": "Horticulture Area"
+        },
+        {
+          "id": "1",
+          "code": "HALL",
+          "name": "Main Hall"
+        },
+        {
+          "id": "72",
+          "code": "I1",
+          "name": "IT 1"
+        },
+        {
+          "id": "74",
+          "code": "I2",
+          "name": "IT 2"
+        },
+        {
+          "id": "38",
+          "code": "L1",
+          "name": "Language Room 1"
+        },
+        {
+          "id": "39",
+          "code": "L2",
+          "name": "Language Room 2"
+        },
+        {
+          "id": "40",
+          "code": "L3",
+          "name": "Language Room 3"
+        },
+        {
+          "id": "41",
+          "code": "L4",
+          "name": "Language Room 4"
+        },
+        {
+          "id": "42",
+          "code": "L5",
+          "name": "Language Room 5"
+        },
+        {
+          "id": "43",
+          "code": "L6",
+          "name": "Language Room 6"
+        },
+        {
+          "id": "6",
+          "code": "L7",
+          "name": "Language Room 7"
+        },
+        {
+          "id": "69",
+          "code": "LIB",
+          "name": "Library"
+        },
+        {
+          "id": "44",
+          "code": "M1",
+          "name": "Maths Room 1"
+        },
+        {
+          "id": "45",
+          "code": "M2",
+          "name": "Maths Room 2"
+        },
+        {
+          "id": "46",
+          "code": "M3",
+          "name": "Maths Room 3"
+        },
+        {
+          "id": "47",
+          "code": "M4",
+          "name": "Maths Room 4"
+        },
+        {
+          "id": "48",
+          "code": "M5",
+          "name": "Maths Room 5"
+        },
+        {
+          "id": "49",
+          "code": "M6",
+          "name": "Maths Room 6"
+        },
+        {
+          "id": "4",
+          "code": "M7",
+          "name": "Maths Room 7"
+        },
+        {
+          "id": "14",
+          "code": "MU2",
+          "name": "MUSIC 2"
+        },
+        {
+          "id": "50",
+          "code": "MUS",
+          "name": "MUS"
+        },
+        {
+          "id": "11",
+          "code": "MUS2",
+          "name": "MUS2"
+        },
+        {
+          "id": "51",
+          "code": "PF",
+          "name": "Playing Fields"
+        },
+        {
+          "id": "15",
+          "code": "PF2",
+          "name": "PF2"
+        },
+        {
+          "id": "17",
+          "code": "PSR",
+          "name": "PE Stock Room"
+        },
+        {
+          "id": "52",
+          "code": "S1",
+          "name": "Science Lab 1"
+        },
+        {
+          "id": "53",
+          "code": "S2",
+          "name": "Science Lab 2"
+        },
+        {
+          "id": "54",
+          "code": "S3",
+          "name": "Science lab 3"
+        },
+        {
+          "id": "55",
+          "code": "S4",
+          "name": "Science Lab 4"
+        },
+        {
+          "id": "56",
+          "code": "S5",
+          "name": "Science Lab 5"
+        },
+        {
+          "id": "57",
+          "code": "S6",
+          "name": "Science Lab 6"
+        },
+        {
+          "id": "3",
+          "code": "S7",
+          "name": "Science Lab 7"
+        },
+        {
+          "id": "5",
+          "code": "S8",
+          "name": "Science Lab 8"
+        },
+        {
+          "id": "19",
+          "code": "S9",
+          "name": "Science Lab 9"
+        },
+        {
+          "id": "70",
+          "code": "SAL",
+          "name": "Salon"
+        },
+        {
+          "id": "68",
+          "code": "SC",
+          "name": "Support Centre"
+        },
+        {
+          "id": "58",
+          "code": "SH",
+          "name": "Sports Hall"
+        },
+        {
+          "id": "59",
+          "code": "SH1",
+          "name": "Sports Hall 1"
+        },
+        {
+          "id": "60",
+          "code": "SH2",
+          "name": "Sports Hall 2"
+        },
+        {
+          "id": "16",
+          "code": "SR",
+          "name": "Staff Room"
+        },
+        {
+          "id": "61",
+          "code": "T1",
+          "name": "Technology 1"
+        },
+        {
+          "id": "62",
+          "code": "T2",
+          "name": "Technology 2"
+        },
+        {
+          "id": "63",
+          "code": "T3",
+          "name": "Technology 3"
+        },
+        {
+          "id": "64",
+          "code": "T4",
+          "name": "Technology 4"
+        },
+        {
+          "id": "65",
+          "code": "T5",
+          "name": "Technology 5"
+        },
+        {
+          "id": "8",
+          "code": "T6",
+          "name": "Technology 6"
+        },
+        {
+          "id": "76",
+          "code": "W1",
+          "name": "Workshop 1"
+        },
+        {
+          "id": "77",
+          "code": "W2",
+          "name": "Workshop 2"
+        },
+        {
+          "id": "66",
+          "code": "ZZ1",
+          "name": "Not in use"
+        }
+      ],
+      "year_groups": [
+        {
+          "id": "37",
+          "name": "Year  7"
+        },
+        {
+          "id": "36",
+          "name": "Year  8"
+        },
+        {
+          "id": "35",
+          "name": "Year  9"
+        },
+        {
+          "id": "34",
+          "name": "Year 10"
+        },
+        {
+          "id": "33",
+          "name": "Year 11"
+        },
+        {
+          "id": "32",
+          "name": "Year 12"
+        },
+        {
+          "id": "31",
+          "name": "Year 13"
+        }
+      ],
+      "community_groups": [
+        {
+          "id": "40",
+          "name": "Boyle"
+        },
+        {
+          "id": "41",
+          "name": "Curie"
+        },
+        {
+          "id": "42",
+          "name": "Fleming"
+        },
+        {
+          "id": "43",
+          "name": "Hooke"
+        },
+        {
+          "id": "44",
+          "name": "Newton"
+        }
+      ],
+      "discover_groups": [],
+      "applicant_admission_groups": [
+        {
+          "id": 32,
+          "name": "14-15 - Autumn Year 12"
+        },
+        {
+          "id": 31,
+          "name": "14-15 Autumn Year  7"
+        },
+        {
+          "id": 37,
+          "name": "15/16 Spring Y9 Mid Term (A)"
+        },
+        {
+          "id": 5,
+          "name": "2005 - Autumn - Year 7"
+        },
+        {
+          "id": 14,
+          "name": "2009/2010 - Autumn Year  7 (A)"
+        },
+        {
+          "id": 24,
+          "name": "2011/2012 - Autumn Year 11 (A)"
+        },
+        {
+          "id": 35,
+          "name": "2014/2015 - Spring Mid Term Ad"
+        },
+        {
+          "id": 34,
+          "name": "2015/16 Autumn Year 12"
+        },
+        {
+          "id": 33,
+          "name": "2015/16 Autumn Year 7"
+        },
+        {
+          "id": 38,
+          "name": "2015/2016 - Int Year  7"
+        },
+        {
+          "id": 39,
+          "name": "2016/2017 - Autumn Year  9 (A)"
+        },
+        {
+          "id": 1040,
+          "name": "2016/2017 - Mid Term Year  9 (A)"
+        },
+        {
+          "id": 36,
+          "name": "2016/2017 - Summer Year  7 (A)"
+        },
+        {
+          "id": 1039,
+          "name": "2017/2018 - Summer Year  7 (A)"
+        },
+        {
+          "id": 1041,
+          "name": "2018/2019 - Autumn Year  7 (A)"
+        },
+        {
+          "id": 1042,
+          "name": "2018/2019 - Mid-Term Year  7"
+        },
+        {
+          "id": 1043,
+          "name": "2019/2020 - Autumn Year 10 A"
+        },
+        {
+          "id": 1045,
+          "name": "2020/2021 - Autumn Year 10 A"
+        },
+        {
+          "id": 16,
+          "name": "Autumn"
+        },
+        {
+          "id": 26,
+          "name": "Autumn Year  7"
+        },
+        {
+          "id": 29,
+          "name": "Autumn Year  7"
+        },
+        {
+          "id": 22,
+          "name": "Autumn Year 12"
+        },
+        {
+          "id": 27,
+          "name": "Autumn Year 12"
+        },
+        {
+          "id": 30,
+          "name": "Autumn Year 12"
+        },
+        {
+          "id": 20,
+          "name": "Autumn Year 12 (A)"
+        },
+        {
+          "id": 21,
+          "name": "Autumn Year 7"
+        },
+        {
+          "id": 18,
+          "name": "CCS Intake 2010/2011 (A)"
+        },
+        {
+          "id": 19,
+          "name": "CCS from WE 2010/2011 (A)"
+        },
+        {
+          "id": 28,
+          "name": "CCS-Intake-2012 (A)"
+        },
+        {
+          "id": 23,
+          "name": "CCS_Intake_2011/2012 (A)"
+        },
+        {
+          "id": 15,
+          "name": "CES Intake 2009/2010 (A)"
+        },
+        {
+          "id": 1044,
+          "name": "ESS Intake Hold 2019/20 (A)"
+        },
+        {
+          "id": 17,
+          "name": "Intake"
+        },
+        {
+          "id": 25,
+          "name": "Temp for CTF Import from WE (A)"
+        }
+      ],
+      "applicant_intake_groups": [
+        {
+          "id": 1041,
+          "name": "2018/2019 - Autumn Year  7"
+        },
+        {
+          "id": 1042,
+          "name": "2018/2019 - Spring Year  7"
+        },
+        {
+          "id": 1045,
+          "name": "2020/2021 - Autumn Year 10"
+        },
+        {
+          "id": 1044,
+          "name": "ESS Intake Hold 2019/20"
+        }
+      ],
+      "form_groups": [
+        {
+          "id": "425",
+          "name": "10A",
+          "year_group_ids": ["34"],
+          "employee_id": "3",
+          "room_id": "34"
+        },
+        {
+          "id": "407",
+          "name": "10B",
+          "year_group_ids": ["34"],
+          "employee_id": "10",
+          "room_id": "47"
+        },
+        {
+          "id": "441",
+          "name": "10C",
+          "year_group_ids": ["34"],
+          "employee_id": "17",
+          "room_id": "57"
+        },
+        {
+          "id": "433",
+          "name": "10D",
+          "year_group_ids": ["34"],
+          "employee_id": "65",
+          "room_id": "22"
+        },
+        {
+          "id": "409",
+          "name": "10E",
+          "year_group_ids": ["34"],
+          "employee_id": "92",
+          "room_id": "3"
+        },
+        {
+          "id": "397",
+          "name": "10F",
+          "year_group_ids": ["34"],
+          "employee_id": "24",
+          "room_id": "49"
+        },
+        {
+          "id": "417",
+          "name": "11A",
+          "year_group_ids": ["33"],
+          "employee_id": "67",
+          "room_id": "27"
+        },
+        {
+          "id": "419",
+          "name": "11B",
+          "year_group_ids": ["33"],
+          "employee_id": "31",
+          "room_id": "42"
+        },
+        {
+          "id": "405",
+          "name": "11C",
+          "year_group_ids": ["33"],
+          "employee_id": "33",
+          "room_id": "26"
+        },
+        {
+          "id": "445",
+          "name": "11D",
+          "year_group_ids": ["33"],
+          "employee_id": "26",
+          "room_id": "26"
+        },
+        {
+          "id": "449",
+          "name": "11E",
+          "year_group_ids": ["33"],
+          "employee_id": "34",
+          "room_id": "61"
+        },
+        {
+          "id": "443",
+          "name": "11F",
+          "year_group_ids": ["33"],
+          "employee_id": "78",
+          "room_id": "41"
+        },
+        {
+          "id": "387",
+          "name": "7A",
+          "year_group_ids": ["37"],
+          "employee_id": "32",
+          "room_id": "27"
+        },
+        {
+          "id": "395",
+          "name": "7B",
+          "year_group_ids": ["37"],
+          "employee_id": "22",
+          "room_id": "42"
+        },
+        {
+          "id": "413",
+          "name": "7C",
+          "year_group_ids": ["37"],
+          "employee_id": "68",
+          "room_id": "26"
+        },
+        {
+          "id": "435",
+          "name": "7D",
+          "year_group_ids": ["37"],
+          "employee_id": "63",
+          "room_id": "12"
+        },
+        {
+          "id": "453",
+          "name": "7E",
+          "year_group_ids": ["37"],
+          "employee_id": "23",
+          "room_id": "61"
+        },
+        {
+          "id": "399",
+          "name": "7F",
+          "year_group_ids": ["37"],
+          "employee_id": "15",
+          "room_id": "41"
+        },
+        {
+          "id": "383",
+          "name": "8A",
+          "year_group_ids": ["36"],
+          "employee_id": "27",
+          "room_id": "28"
+        },
+        {
+          "id": "393",
+          "name": "8B",
+          "year_group_ids": ["36"],
+          "employee_id": "28",
+          "room_id": "38"
+        },
+        {
+          "id": "401",
+          "name": "8C",
+          "year_group_ids": ["36"],
+          "employee_id": "19",
+          "room_id": "56"
+        },
+        {
+          "id": "403",
+          "name": "8D",
+          "year_group_ids": ["36"],
+          "employee_id": "73",
+          "room_id": "63"
+        },
+        {
+          "id": "457",
+          "name": "8E",
+          "year_group_ids": ["36"],
+          "employee_id": "76",
+          "room_id": "8"
+        },
+        {
+          "id": "411",
+          "name": "8F",
+          "year_group_ids": ["36"],
+          "employee_id": "72",
+          "room_id": null
+        },
+        {
+          "id": "439",
+          "name": "9A",
+          "year_group_ids": ["35"],
+          "employee_id": "5",
+          "room_id": "21"
+        },
+        {
+          "id": "423",
+          "name": "9B",
+          "year_group_ids": ["35"],
+          "employee_id": "14",
+          "room_id": "33"
+        },
+        {
+          "id": "427",
+          "name": "9C",
+          "year_group_ids": ["35"],
+          "employee_id": "25",
+          "room_id": "48"
+        },
+        {
+          "id": "415",
+          "name": "9D",
+          "year_group_ids": ["35"],
+          "employee_id": "18",
+          "room_id": "45"
+        },
+        {
+          "id": "429",
+          "name": "9E",
+          "year_group_ids": ["35"],
+          "employee_id": "84",
+          "room_id": null
+        },
+        {
+          "id": "451",
+          "name": "9F",
+          "year_group_ids": ["35"],
+          "employee_id": "95",
+          "room_id": "53"
+        },
+        {
+          "id": "391",
+          "name": "G",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "36"
+        },
+        {
+          "id": "447",
+          "name": "H",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "30"
+        },
+        {
+          "id": "381",
+          "name": "J",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "40"
+        },
+        {
+          "id": "431",
+          "name": "K",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "44"
+        },
+        {
+          "id": "455",
+          "name": "L",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "7"
+        },
+        {
+          "id": "385",
+          "name": "M",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "22"
+        },
+        {
+          "id": "421",
+          "name": "N",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "35"
+        },
+        {
+          "id": "437",
+          "name": "P",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": "23"
+        },
+        {
+          "id": "459",
+          "name": "Q",
+          "year_group_ids": ["32", "31"],
+          "employee_id": null,
+          "room_id": null
+        },
+        {
+          "id": "13036",
+          "name": "SU",
+          "year_group_ids": [],
+          "employee_id": "1",
+          "room_id": "71"
+        },
+        {
+          "id": "13037",
+          "name": "lucy2",
+          "year_group_ids": [],
+          "employee_id": null,
+          "room_id": null
+        }
+      ],
+      "teaching_groups": [
+        {
+          "id": "13021",
+          "name": "10A/As1",
+          "employee_id": "2",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12850",
+          "name": "10A/Co1",
+          "employee_id": "17",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12846",
+          "name": "10A/Dr1",
+          "employee_id": "87",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12849",
+          "name": "10A/Gr1",
+          "employee_id": "23",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12847",
+          "name": "10A/Mu1",
+          "employee_id": "21",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12817",
+          "name": "10A/Ps",
+          "employee_id": "67",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12851",
+          "name": "10A/Tx1",
+          "employee_id": "88",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12859",
+          "name": "10B/Ar1a",
+          "employee_id": "88",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12861",
+          "name": "10B/Ar1b",
+          "employee_id": "33",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12857",
+          "name": "10B/Bs1",
+          "employee_id": "81",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12856",
+          "name": "10B/Co1",
+          "employee_id": "29",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12855",
+          "name": "10B/Ec1",
+          "employee_id": "84",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12858",
+          "name": "10B/Fn1",
+          "employee_id": "99",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12818",
+          "name": "10B/Ps",
+          "employee_id": "81",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12860",
+          "name": "10B/Pt1",
+          "employee_id": "88",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12853",
+          "name": "10B/So1",
+          "employee_id": "79",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12854",
+          "name": "10B/Te1",
+          "employee_id": "23",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12864",
+          "name": "10C/Gg1",
+          "employee_id": "10",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12865",
+          "name": "10C/Gg2",
+          "employee_id": "17",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12862",
+          "name": "10C/Hi1",
+          "employee_id": "74",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12863",
+          "name": "10C/Hi2",
+          "employee_id": "9",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12819",
+          "name": "10C/Ps",
+          "employee_id": "33",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12866",
+          "name": "10C/Re1",
+          "employee_id": "3",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12867",
+          "name": "10C/Re2",
+          "employee_id": "82",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12820",
+          "name": "10D/Ps",
+          "employee_id": "26",
+          "year_group_ids": ["34"],
+          "my_group": true
+        },
+        {
+          "id": "12821",
+          "name": "10E/Ps",
+          "employee_id": "34",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12822",
+          "name": "10F/Ps",
+          "employee_id": "78",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12843",
+          "name": "10x/Bi1",
+          "employee_id": "28",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12844",
+          "name": "10x/Ch1",
+          "employee_id": "28",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12823",
+          "name": "10x/En1",
+          "employee_id": "97",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12824",
+          "name": "10x/En2",
+          "employee_id": "5",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12825",
+          "name": "10x/En3",
+          "employee_id": "89",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12829",
+          "name": "10x/Fr1",
+          "employee_id": "15",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12827",
+          "name": "10x/Fr2",
+          "employee_id": "76",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12830",
+          "name": "10x/Ge1",
+          "employee_id": "15",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12828",
+          "name": "10x/Ge2",
+          "employee_id": "16",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12837",
+          "name": "10x/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12838",
+          "name": "10x/Pe2",
+          "employee_id": "91",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12839",
+          "name": "10x/Pe3",
+          "employee_id": "22",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12845",
+          "name": "10x/Ph1",
+          "employee_id": "28",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12841",
+          "name": "10x/Sc1",
+          "employee_id": "77",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12842",
+          "name": "10x/Sc2",
+          "employee_id": "27",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12831",
+          "name": "10xz/Ma1",
+          "employee_id": "86",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12832",
+          "name": "10xz/Ma2",
+          "employee_id": "62",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12833",
+          "name": "10xz/Ma3",
+          "employee_id": "19",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12834",
+          "name": "10xz/Ma4",
+          "employee_id": "18",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12835",
+          "name": "10xz/Ma5",
+          "employee_id": "82",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12836",
+          "name": "10xz/Ma6",
+          "employee_id": "17",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12874",
+          "name": "10y/Fr1",
+          "employee_id": "14",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12872",
+          "name": "10y/Fr2",
+          "employee_id": "72",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12875",
+          "name": "10y/Ge1",
+          "employee_id": "14",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12873",
+          "name": "10y/Ge2",
+          "employee_id": "2",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12876",
+          "name": "10y/Pe1",
+          "employee_id": "91",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12877",
+          "name": "10y/Pe2",
+          "employee_id": "22",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12878",
+          "name": "10y/Pe3",
+          "employee_id": "68",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12882",
+          "name": "10yz/Bi1",
+          "employee_id": null,
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12883",
+          "name": "10yz/Ch1",
+          "employee_id": null,
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12868",
+          "name": "10yz/En1",
+          "employee_id": "98",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12869",
+          "name": "10yz/En2",
+          "employee_id": "63",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12870",
+          "name": "10yz/En3",
+          "employee_id": "95",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12884",
+          "name": "10yz/Ph1",
+          "employee_id": null,
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12880",
+          "name": "10yz/Sc1",
+          "employee_id": "26",
+          "year_group_ids": ["34"],
+          "my_group": true
+        },
+        {
+          "id": "12881",
+          "name": "10yz/Sc2",
+          "employee_id": "96",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12887",
+          "name": "10z/Hb1",
+          "employee_id": null,
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12885",
+          "name": "10z/Pe1",
+          "employee_id": "91",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12886",
+          "name": "10z/Vm1",
+          "employee_id": "31",
+          "year_group_ids": ["34"]
+        },
+        {
+          "id": "12918",
+          "name": "11A/Ar1",
+          "employee_id": "88",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12915",
+          "name": "11A/Dr1",
+          "employee_id": "87",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12919",
+          "name": "11A/Dt1",
+          "employee_id": "3",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12920",
+          "name": "11A/Fr1",
+          "employee_id": "15",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12917",
+          "name": "11A/Gg1",
+          "employee_id": "10",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12916",
+          "name": "11A/Mu1",
+          "employee_id": "21",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12888",
+          "name": "11A/Ps",
+          "employee_id": "3",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12923",
+          "name": "11B/Co1",
+          "employee_id": "17",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12926",
+          "name": "11B/Eg1",
+          "employee_id": "29",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12924",
+          "name": "11B/Fn1",
+          "employee_id": "23",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12925",
+          "name": "11B/Ge1",
+          "employee_id": "14",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12922",
+          "name": "11B/Gg1",
+          "employee_id": "1",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12921",
+          "name": "11B/Hi1",
+          "employee_id": "10",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12889",
+          "name": "11B/Ps",
+          "employee_id": "10",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12929",
+          "name": "11C/Bs1",
+          "employee_id": "66",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12933",
+          "name": "11C/Eg1",
+          "employee_id": "23",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12934",
+          "name": "11C/Eg2",
+          "employee_id": "29",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12931",
+          "name": "11C/Fr1",
+          "employee_id": "76",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12932",
+          "name": "11C/Ge1",
+          "employee_id": "32",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12928",
+          "name": "11C/Gg1",
+          "employee_id": "10",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12927",
+          "name": "11C/Hi1",
+          "employee_id": "74",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12890",
+          "name": "11C/Ps",
+          "employee_id": "17",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12930",
+          "name": "11C/So1",
+          "employee_id": "79",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12891",
+          "name": "11D/Ps",
+          "employee_id": "65",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12892",
+          "name": "11E/Ps",
+          "employee_id": "20",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12893",
+          "name": "11F/Ps",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12912",
+          "name": "11x/Bi1",
+          "employee_id": "25",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12913",
+          "name": "11x/Ch1",
+          "employee_id": "25",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12894",
+          "name": "11x/En1",
+          "employee_id": "97",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12895",
+          "name": "11x/En2",
+          "employee_id": "5",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12896",
+          "name": "11x/En3",
+          "employee_id": "89",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12897",
+          "name": "11x/Ma1",
+          "employee_id": "86",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12898",
+          "name": "11x/Ma2",
+          "employee_id": "18",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12899",
+          "name": "11x/Ma3",
+          "employee_id": "19",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12903",
+          "name": "11x/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12905",
+          "name": "11x/Pe2",
+          "employee_id": "32",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12907",
+          "name": "11x/Pe3",
+          "employee_id": "68",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12914",
+          "name": "11x/Ph1",
+          "employee_id": "25",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12904",
+          "name": "11x/Re1",
+          "employee_id": "92",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12906",
+          "name": "11x/Re2",
+          "employee_id": "3",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12908",
+          "name": "11x/Re3",
+          "employee_id": "1",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12910",
+          "name": "11x/Sc1",
+          "employee_id": "33",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12911",
+          "name": "11x/Sc2",
+          "employee_id": "34",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12953",
+          "name": "11y/Bi1",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12954",
+          "name": "11y/Ch1",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12935",
+          "name": "11y/En1",
+          "employee_id": "98",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12936",
+          "name": "11y/En2",
+          "employee_id": "63",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12937",
+          "name": "11y/En3",
+          "employee_id": "95",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12938",
+          "name": "11y/Ma1",
+          "employee_id": "20",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12939",
+          "name": "11y/Ma2",
+          "employee_id": "78",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12940",
+          "name": "11y/Ma3",
+          "employee_id": "62",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12944",
+          "name": "11y/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12946",
+          "name": "11y/Pe2",
+          "employee_id": "22",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12948",
+          "name": "11y/Pe3",
+          "employee_id": "32",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12955",
+          "name": "11y/Ph1",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12945",
+          "name": "11y/Re1",
+          "employee_id": "6",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12947",
+          "name": "11y/Re2",
+          "employee_id": "3",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12949",
+          "name": "11y/Re3",
+          "employee_id": "1",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12951",
+          "name": "11y/Sc1",
+          "employee_id": "26",
+          "year_group_ids": ["33"],
+          "my_group": true
+        },
+        {
+          "id": "12952",
+          "name": "11y/Sc2",
+          "employee_id": "96",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12957",
+          "name": "12A/Ch1",
+          "employee_id": "25",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12961",
+          "name": "12A/Cn1",
+          "employee_id": "31",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12959",
+          "name": "12A/Ft1",
+          "employee_id": "65",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12958",
+          "name": "12A/Gg1",
+          "employee_id": "67",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12962",
+          "name": "12A/Lb1",
+          "employee_id": "75",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12960",
+          "name": "12A/Pd1",
+          "employee_id": "4",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12956",
+          "name": "12A/Pe1",
+          "employee_id": "66",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12963",
+          "name": "12B/Bi1",
+          "employee_id": null,
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12964",
+          "name": "12B/Bs1",
+          "employee_id": "82",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12965",
+          "name": "12B/Fr1",
+          "employee_id": "76",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12966",
+          "name": "12B/Hs1",
+          "employee_id": "4",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12967",
+          "name": "12B/Ma1",
+          "employee_id": "9",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12971",
+          "name": "12C/Ec1",
+          "employee_id": "4",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12968",
+          "name": "12C/Ge1",
+          "employee_id": "16",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12969",
+          "name": "12C/Hi1",
+          "employee_id": "6",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12970",
+          "name": "12C/La1",
+          "employee_id": "93",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12972",
+          "name": "12C/Ph1",
+          "employee_id": "77",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12973",
+          "name": "12D/Ar1",
+          "employee_id": "75",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12976",
+          "name": "12D/Bs1",
+          "employee_id": "82",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12974",
+          "name": "12D/En1",
+          "employee_id": "95",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12975",
+          "name": "12D/Hs1",
+          "employee_id": "27",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12977",
+          "name": "12D/Ma1",
+          "employee_id": "4",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12978",
+          "name": "12G/Gs1",
+          "employee_id": "91",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12979",
+          "name": "12G/Gs2",
+          "employee_id": "98",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12980",
+          "name": "12G/Gs3",
+          "employee_id": "66",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12981",
+          "name": "12G/Gs4",
+          "employee_id": "74",
+          "year_group_ids": ["32"]
+        },
+        {
+          "id": "12986",
+          "name": "13A/Bi1",
+          "employee_id": null,
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12989",
+          "name": "13A/Cn1",
+          "employee_id": null,
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12988",
+          "name": "13A/Co1",
+          "employee_id": "67",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12990",
+          "name": "13A/Hb1",
+          "employee_id": null,
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12984",
+          "name": "13A/Ma1",
+          "employee_id": "9",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12985",
+          "name": "13A/Ma2",
+          "employee_id": null,
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12987",
+          "name": "13A/Ts1",
+          "employee_id": "94",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12995",
+          "name": "13B/Bs1",
+          "employee_id": "81",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12994",
+          "name": "13B/En1",
+          "employee_id": "63",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12991",
+          "name": "13B/Gg1",
+          "employee_id": "6",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12993",
+          "name": "13B/Hi1",
+          "employee_id": "74",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12992",
+          "name": "13B/Ma1",
+          "employee_id": "17",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12996",
+          "name": "13B/Pd1",
+          "employee_id": "66",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "13000",
+          "name": "13C/Et1",
+          "employee_id": "73",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12998",
+          "name": "13C/Fr1",
+          "employee_id": "76",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12999",
+          "name": "13C/Ph1",
+          "employee_id": null,
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "12997",
+          "name": "13C/So1",
+          "employee_id": "20",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "13002",
+          "name": "13D/Ar1",
+          "employee_id": "75",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "13001",
+          "name": "13D/Ch1",
+          "employee_id": "25",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "13003",
+          "name": "13D/La1",
+          "employee_id": "66",
+          "year_group_ids": ["31"]
+        },
+        {
+          "id": "13004",
+          "name": "13D/Pe1",
+          "employee_id": "79",
+          "year_group_ids": []
+        },
+        {
+          "id": "12982",
+          "name": "13x/En1",
+          "employee_id": "73",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "12983",
+          "name": "13x/Ma1",
+          "employee_id": "17",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "12562",
+          "name": "7A/Ps",
+          "employee_id": "32",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12563",
+          "name": "7B/Ps",
+          "employee_id": "22",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12589",
+          "name": "7BLU/Ar",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12590",
+          "name": "7BLU/En",
+          "employee_id": "95",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12591",
+          "name": "7BLU/Fr",
+          "employee_id": "15",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12592",
+          "name": "7BLU/Ge",
+          "employee_id": "16",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12593",
+          "name": "7BLU/Gg",
+          "employee_id": "79",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12594",
+          "name": "7BLU/Hi",
+          "employee_id": "6",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12595",
+          "name": "7BLU/Mu",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12596",
+          "name": "7BLU/Re",
+          "employee_id": "6",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12597",
+          "name": "7BLU/Sc",
+          "employee_id": "28",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12564",
+          "name": "7C/Ps",
+          "employee_id": "68",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12565",
+          "name": "7D/Ps",
+          "employee_id": "63",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12566",
+          "name": "7E/Ps",
+          "employee_id": "23",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12567",
+          "name": "7F/Ps",
+          "employee_id": "15",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12580",
+          "name": "7GRN/Ar",
+          "employee_id": "88",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12581",
+          "name": "7GRN/En",
+          "employee_id": "94",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12582",
+          "name": "7GRN/Fr",
+          "employee_id": "2",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12583",
+          "name": "7GRN/Ge",
+          "employee_id": "94",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12584",
+          "name": "7GRN/Gg",
+          "employee_id": "77",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12585",
+          "name": "7GRN/Hi",
+          "employee_id": "10",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12586",
+          "name": "7GRN/Mu",
+          "employee_id": "75",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12587",
+          "name": "7GRN/Re",
+          "employee_id": "67",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12588",
+          "name": "7GRN/Sc",
+          "employee_id": "77",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12611",
+          "name": "7ORG/Ar",
+          "employee_id": "88",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12612",
+          "name": "7ORG/En",
+          "employee_id": "89",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12613",
+          "name": "7ORG/Fr",
+          "employee_id": "16",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12614",
+          "name": "7ORG/Ge",
+          "employee_id": "16",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12615",
+          "name": "7ORG/Gg",
+          "employee_id": "79",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12616",
+          "name": "7ORG/Hi",
+          "employee_id": "6",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12617",
+          "name": "7ORG/Mu",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12618",
+          "name": "7ORG/Re",
+          "employee_id": "6",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12619",
+          "name": "7ORG/Sc",
+          "employee_id": "26",
+          "year_group_ids": ["37"],
+          "my_group": true
+        },
+        {
+          "id": "12620",
+          "name": "7PIN/Ar",
+          "employee_id": "88",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12621",
+          "name": "7PIN/En",
+          "employee_id": "5",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12622",
+          "name": "7PIN/Fr",
+          "employee_id": "72",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12623",
+          "name": "7PIN/Ge",
+          "employee_id": "94",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12624",
+          "name": "7PIN/Gg",
+          "employee_id": "92",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12625",
+          "name": "7PIN/Hi",
+          "employee_id": "9",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12626",
+          "name": "7PIN/Mu",
+          "employee_id": "75",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12627",
+          "name": "7PIN/Re",
+          "employee_id": "1",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12628",
+          "name": "7PIN/Sc",
+          "employee_id": null,
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12571",
+          "name": "7RED/Ar",
+          "employee_id": "88",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12572",
+          "name": "7RED/En",
+          "employee_id": "98",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12573",
+          "name": "7RED/Fr",
+          "employee_id": "72",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12574",
+          "name": "7RED/Ge",
+          "employee_id": "94",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12575",
+          "name": "7RED/Gg",
+          "employee_id": "1",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12576",
+          "name": "7RED/Hi",
+          "employee_id": "92",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12577",
+          "name": "7RED/Mu",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12578",
+          "name": "7RED/Re",
+          "employee_id": "6",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12579",
+          "name": "7RED/Sc",
+          "employee_id": "34",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12629",
+          "name": "7YEL/Ar",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12630",
+          "name": "7YEL/En",
+          "employee_id": "97",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12631",
+          "name": "7YEL/Fr",
+          "employee_id": "94",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12632",
+          "name": "7YEL/Ge",
+          "employee_id": "15",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12633",
+          "name": "7YEL/Gg",
+          "employee_id": "79",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12634",
+          "name": "7YEL/Hi",
+          "employee_id": "73",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12635",
+          "name": "7YEL/Mu",
+          "employee_id": "87",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12636",
+          "name": "7YEL/Re",
+          "employee_id": "92",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12637",
+          "name": "7YEL/Sc",
+          "employee_id": "96",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12598",
+          "name": "7x/Ma1",
+          "employee_id": "86",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12599",
+          "name": "7x/Ma2",
+          "employee_id": "19",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12600",
+          "name": "7x/Ma3",
+          "employee_id": "18",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12601",
+          "name": "7x/Pe1",
+          "employee_id": "91",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12602",
+          "name": "7x/Pe2",
+          "employee_id": "22",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12603",
+          "name": "7x/Pe3",
+          "employee_id": "68",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12604",
+          "name": "7x/Te1",
+          "employee_id": "84",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12605",
+          "name": "7x/Te2",
+          "employee_id": "29",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12606",
+          "name": "7x/Te3",
+          "employee_id": "65",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12607",
+          "name": "7x/Te4",
+          "employee_id": "3",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12638",
+          "name": "7y/Ma1",
+          "employee_id": "20",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12639",
+          "name": "7y/Ma2",
+          "employee_id": "78",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12640",
+          "name": "7y/Ma3",
+          "employee_id": "62",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12641",
+          "name": "7y/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12642",
+          "name": "7y/Pe2",
+          "employee_id": "91",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12643",
+          "name": "7y/Pe3",
+          "employee_id": "22",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12644",
+          "name": "7y/Te1",
+          "employee_id": "99",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12645",
+          "name": "7y/Te2",
+          "employee_id": "84",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12646",
+          "name": "7y/Te3",
+          "employee_id": "65",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12647",
+          "name": "7y/Te4",
+          "employee_id": "31",
+          "year_group_ids": ["37"]
+        },
+        {
+          "id": "12657",
+          "name": "8A/Gg",
+          "employee_id": "6",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12658",
+          "name": "8A/Hi",
+          "employee_id": "74",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12648",
+          "name": "8A/Ps",
+          "employee_id": "27",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12659",
+          "name": "8A/Re",
+          "employee_id": "73",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12660",
+          "name": "8A/Sc",
+          "employee_id": "25",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12661",
+          "name": "8B/Gg",
+          "employee_id": "79",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12662",
+          "name": "8B/Hi",
+          "employee_id": "73",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12649",
+          "name": "8B/Ps",
+          "employee_id": "28",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12663",
+          "name": "8B/Re",
+          "employee_id": "1",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12664",
+          "name": "8B/Sc",
+          "employee_id": "33",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12665",
+          "name": "8C/Gg",
+          "employee_id": "73",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12666",
+          "name": "8C/Hi",
+          "employee_id": "6",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12650",
+          "name": "8C/Ps",
+          "employee_id": "19",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12667",
+          "name": "8C/Re",
+          "employee_id": "92",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12668",
+          "name": "8C/Sc",
+          "employee_id": "34",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12697",
+          "name": "8D/Gg",
+          "employee_id": "73",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12698",
+          "name": "8D/Hi",
+          "employee_id": "9",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12651",
+          "name": "8D/Ps",
+          "employee_id": "73",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12699",
+          "name": "8D/Re",
+          "employee_id": "74",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12700",
+          "name": "8D/Sc",
+          "employee_id": "77",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12701",
+          "name": "8E/Gg",
+          "employee_id": "10",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12702",
+          "name": "8E/Hi",
+          "employee_id": "92",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12652",
+          "name": "8E/Ps",
+          "employee_id": "76",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12703",
+          "name": "8E/Re",
+          "employee_id": "1",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12704",
+          "name": "8E/Sc",
+          "employee_id": "28",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12705",
+          "name": "8F/Gg",
+          "employee_id": "79",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12706",
+          "name": "8F/Hi",
+          "employee_id": "79",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12653",
+          "name": "8F/Ps",
+          "employee_id": "72",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12707",
+          "name": "8F/Re",
+          "employee_id": "67",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12708",
+          "name": "8F/Sc",
+          "employee_id": "27",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12672",
+          "name": "8x/Ar1",
+          "employee_id": "88",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12673",
+          "name": "8x/Dr1",
+          "employee_id": "33",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12669",
+          "name": "8x/En1",
+          "employee_id": "97",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12670",
+          "name": "8x/En2",
+          "employee_id": "89",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12671",
+          "name": "8x/En3",
+          "employee_id": "5",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12681",
+          "name": "8x/Fr1",
+          "employee_id": "2",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12683",
+          "name": "8x/Fr2",
+          "employee_id": "14",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12685",
+          "name": "8x/Fr3",
+          "employee_id": "72",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12682",
+          "name": "8x/Ge1",
+          "employee_id": "15",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12684",
+          "name": "8x/Ge2",
+          "employee_id": "2",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12686",
+          "name": "8x/Ge3",
+          "employee_id": "94",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12675",
+          "name": "8x/Ma1",
+          "employee_id": "19",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12676",
+          "name": "8x/Ma2",
+          "employee_id": "18",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12677",
+          "name": "8x/Ma3",
+          "employee_id": "86",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12674",
+          "name": "8x/Mu1",
+          "employee_id": "27",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12687",
+          "name": "8x/Pe1",
+          "employee_id": "32",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12688",
+          "name": "8x/Pe2",
+          "employee_id": "68",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12689",
+          "name": "8x/Pe3",
+          "employee_id": "22",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12690",
+          "name": "8x/Te1",
+          "employee_id": "29",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12691",
+          "name": "8x/Te2",
+          "employee_id": "84",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12692",
+          "name": "8x/Te3",
+          "employee_id": "81",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12693",
+          "name": "8x/Te4",
+          "employee_id": "15",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12712",
+          "name": "8y/Ar1",
+          "employee_id": "88",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12713",
+          "name": "8y/Dr1",
+          "employee_id": "87",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12709",
+          "name": "8y/En1",
+          "employee_id": "63",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12710",
+          "name": "8y/En2",
+          "employee_id": "98",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12711",
+          "name": "8y/En3",
+          "employee_id": "95",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12724",
+          "name": "8y/Fr1",
+          "employee_id": "15",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12726",
+          "name": "8y/Fr2",
+          "employee_id": "2",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12728",
+          "name": "8y/Fr3",
+          "employee_id": "14",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12725",
+          "name": "8y/Ge1",
+          "employee_id": "15",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12727",
+          "name": "8y/Ge2",
+          "employee_id": "2",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12729",
+          "name": "8y/Ge3",
+          "employee_id": "94",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12715",
+          "name": "8y/Ma1",
+          "employee_id": "20",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12716",
+          "name": "8y/Ma2",
+          "employee_id": "62",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12718",
+          "name": "8y/Ma3a",
+          "employee_id": "78",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12719",
+          "name": "8y/Ma3b",
+          "employee_id": "78",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12720",
+          "name": "8y/Ma3c",
+          "employee_id": "19",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12714",
+          "name": "8y/Mu1",
+          "employee_id": "21",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12730",
+          "name": "8y/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12731",
+          "name": "8y/Pe2",
+          "employee_id": "22",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12732",
+          "name": "8y/Pe3",
+          "employee_id": "32",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12733",
+          "name": "8y/Te1",
+          "employee_id": "29",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12734",
+          "name": "8y/Te2",
+          "employee_id": "84",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12735",
+          "name": "8y/Te3",
+          "employee_id": "65",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12736",
+          "name": "8y/Te4",
+          "employee_id": "23",
+          "year_group_ids": ["36"]
+        },
+        {
+          "id": "12755",
+          "name": "9A/Ps",
+          "employee_id": "5",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12756",
+          "name": "9B/Ps",
+          "employee_id": "14",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12757",
+          "name": "9C/Ps",
+          "employee_id": "25",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12758",
+          "name": "9D/Ps",
+          "employee_id": "18",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12759",
+          "name": "9E/Ps",
+          "employee_id": "84",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12760",
+          "name": "9F/Ps",
+          "employee_id": "6",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12740",
+          "name": "9X1/Fr",
+          "employee_id": "2",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12741",
+          "name": "9X1/Ge",
+          "employee_id": "15",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12742",
+          "name": "9X1/Gg",
+          "employee_id": "74",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12743",
+          "name": "9X1/Hi",
+          "employee_id": "74",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12744",
+          "name": "9X1/Re",
+          "employee_id": "74",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12745",
+          "name": "9X2/Fr",
+          "employee_id": "14",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12746",
+          "name": "9X2/Ge",
+          "employee_id": "14",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12747",
+          "name": "9X2/Gg",
+          "employee_id": "6",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12748",
+          "name": "9X2/Hi",
+          "employee_id": "6",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12749",
+          "name": "9X2/Re",
+          "employee_id": "6",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12750",
+          "name": "9X3/Fr",
+          "employee_id": "72",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12751",
+          "name": "9X3/Ge",
+          "employee_id": "16",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12752",
+          "name": "9X3/Gg",
+          "employee_id": "92",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12753",
+          "name": "9X3/Hi",
+          "employee_id": "9",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12754",
+          "name": "9X3/Re",
+          "employee_id": "92",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12783",
+          "name": "9Y1/Fr",
+          "employee_id": "15",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12784",
+          "name": "9Y1/Ge",
+          "employee_id": "32",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12785",
+          "name": "9Y1/Gg",
+          "employee_id": "73",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12786",
+          "name": "9Y1/Hi",
+          "employee_id": "73",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12787",
+          "name": "9Y1/Re",
+          "employee_id": "74",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12788",
+          "name": "9Y2/Fr",
+          "employee_id": "94",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12789",
+          "name": "9Y2/Ge",
+          "employee_id": "76",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12790",
+          "name": "9Y2/Gg",
+          "employee_id": "10",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12791",
+          "name": "9Y2/Hi",
+          "employee_id": "6",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12792",
+          "name": "9Y2/Re",
+          "employee_id": "9",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12793",
+          "name": "9Y3/Fr",
+          "employee_id": "72",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12794",
+          "name": "9Y3/Ge",
+          "employee_id": "94",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12795",
+          "name": "9Y3/Gg",
+          "employee_id": "10",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12796",
+          "name": "9Y3/Hi",
+          "employee_id": "10",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12797",
+          "name": "9Y3/Re",
+          "employee_id": "92",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12764",
+          "name": "9x/Ar1",
+          "employee_id": "93",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12766",
+          "name": "9x/Dr1",
+          "employee_id": "87",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12777",
+          "name": "9x/Dt1",
+          "employee_id": "99",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12761",
+          "name": "9x/En1",
+          "employee_id": "97",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12762",
+          "name": "9x/En2",
+          "employee_id": "5",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12763",
+          "name": "9x/En3",
+          "employee_id": "89",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12776",
+          "name": "9x/Ft1",
+          "employee_id": "3",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12767",
+          "name": "9x/Ma1",
+          "employee_id": "86",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12768",
+          "name": "9x/Ma2",
+          "employee_id": "19",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12769",
+          "name": "9x/Ma3",
+          "employee_id": "18",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12765",
+          "name": "9x/Mu1",
+          "employee_id": "21",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12770",
+          "name": "9x/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12771",
+          "name": "9x/Pe2",
+          "employee_id": "91",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12772",
+          "name": "9x/Pe3",
+          "employee_id": "22",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12778",
+          "name": "9x/Rm1",
+          "employee_id": "84",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12773",
+          "name": "9x/Sc1",
+          "employee_id": "28",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12774",
+          "name": "9x/Sc2",
+          "employee_id": "27",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12775",
+          "name": "9x/Sc3",
+          "employee_id": "77",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12779",
+          "name": "9x/Tx1",
+          "employee_id": "81",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12801",
+          "name": "9y/Ar1",
+          "employee_id": "88",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12803",
+          "name": "9y/Dr1",
+          "employee_id": "87",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12798",
+          "name": "9y/En1",
+          "employee_id": "98",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12799",
+          "name": "9y/En2",
+          "employee_id": "63",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12800",
+          "name": "9y/En3",
+          "employee_id": "95",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12804",
+          "name": "9y/Ma1",
+          "employee_id": "78",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12805",
+          "name": "9y/Ma2",
+          "employee_id": "20",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12806",
+          "name": "9y/Ma3",
+          "employee_id": "4",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12802",
+          "name": "9y/Mu1",
+          "employee_id": "21",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12807",
+          "name": "9y/Pe1",
+          "employee_id": "68",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12808",
+          "name": "9y/Pe2",
+          "employee_id": "91",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12809",
+          "name": "9y/Pe3",
+          "employee_id": "32",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12810",
+          "name": "9y/Sc1",
+          "employee_id": "26",
+          "year_group_ids": ["35"],
+          "my_group": true
+        },
+        {
+          "id": "12811",
+          "name": "9y/Sc2",
+          "employee_id": null,
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12812",
+          "name": "9y/Sc3",
+          "employee_id": "96",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12813",
+          "name": "9y/Te1",
+          "employee_id": "99",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12814",
+          "name": "9y/Te2",
+          "employee_id": "29",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12815",
+          "name": "9y/Te3",
+          "employee_id": "84",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "12816",
+          "name": "9y/Te4",
+          "employee_id": "23",
+          "year_group_ids": ["35"]
+        },
+        {
+          "id": "13006",
+          "name": "C6R/Rc1",
+          "employee_id": "81",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "13007",
+          "name": "C6R/Rc2",
+          "employee_id": "66",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "13008",
+          "name": "C6R/Rc3",
+          "employee_id": "82",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "13009",
+          "name": "C6R/Rc4",
+          "employee_id": "27",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "13010",
+          "name": "C6R/Rc5",
+          "employee_id": "91",
+          "year_group_ids": ["32", "31"]
+        },
+        {
+          "id": "12561",
+          "name": "LS/Fri:5",
+          "employee_id": "6913",
+          "year_group_ids": []
+        },
+        {
+          "id": "12514",
+          "name": "LS/Mon:5",
+          "employee_id": "6913",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12549",
+          "name": "LS/Thu:5",
+          "employee_id": "6913",
+          "year_group_ids": []
+        },
+        {
+          "id": "12526",
+          "name": "LS/Tue:5",
+          "employee_id": "6913",
+          "year_group_ids": []
+        },
+        {
+          "id": "12537",
+          "name": "LS/Wed:5",
+          "employee_id": "6913",
+          "year_group_ids": []
+        },
+        {
+          "id": "12550",
+          "name": "NS/Thu:5",
+          "employee_id": "62",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12519",
+          "name": "NS/Tue:2",
+          "employee_id": "62",
+          "year_group_ids": []
+        },
+        {
+          "id": "12538",
+          "name": "NS/Wed:5",
+          "employee_id": "18",
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12499",
+          "name": "SM/Mon:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12502",
+          "name": "SM/Mon:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12505",
+          "name": "SM/Mon:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12508",
+          "name": "SM/Mon:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12511",
+          "name": "SM/Mon:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12551",
+          "name": "SP/Fri:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12553",
+          "name": "SP/Fri:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12555",
+          "name": "SP/Fri:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12557",
+          "name": "SP/Fri:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12559",
+          "name": "SP/Fri:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12500",
+          "name": "SP/Mon:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12503",
+          "name": "SP/Mon:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12506",
+          "name": "SP/Mon:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12509",
+          "name": "SP/Mon:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12512",
+          "name": "SP/Mon:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12539",
+          "name": "SP/Thu:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12541",
+          "name": "SP/Thu:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12543",
+          "name": "SP/Thu:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12545",
+          "name": "SP/Thu:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12547",
+          "name": "SP/Thu:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12515",
+          "name": "SP/Tue:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12517",
+          "name": "SP/Tue:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12520",
+          "name": "SP/Tue:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12522",
+          "name": "SP/Tue:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12524",
+          "name": "SP/Tue:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12527",
+          "name": "SP/Wed:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12529",
+          "name": "SP/Wed:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12531",
+          "name": "SP/Wed:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12533",
+          "name": "SP/Wed:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12535",
+          "name": "SP/Wed:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12552",
+          "name": "SS/Fri:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12554",
+          "name": "SS/Fri:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12556",
+          "name": "SS/Fri:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12558",
+          "name": "SS/Fri:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12560",
+          "name": "SS/Fri:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12501",
+          "name": "SS/Mon:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12504",
+          "name": "SS/Mon:2",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12507",
+          "name": "SS/Mon:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12510",
+          "name": "SS/Mon:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12513",
+          "name": "SS/Mon:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12540",
+          "name": "SS/Thu:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12542",
+          "name": "SS/Thu:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12544",
+          "name": "SS/Thu:3",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12546",
+          "name": "SS/Thu:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12548",
+          "name": "SS/Thu:5",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12516",
+          "name": "SS/Tue:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12518",
+          "name": "SS/Tue:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12521",
+          "name": "SS/Tue:3",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12523",
+          "name": "SS/Tue:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12525",
+          "name": "SS/Tue:5",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12528",
+          "name": "SS/Wed:1",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12530",
+          "name": "SS/Wed:2",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12532",
+          "name": "SS/Wed:3",
+          "employee_id": null,
+          "year_group_ids": ["33"]
+        },
+        {
+          "id": "12534",
+          "name": "SS/Wed:4",
+          "employee_id": null,
+          "year_group_ids": []
+        },
+        {
+          "id": "12536",
+          "name": "SS/Wed:5",
+          "employee_id": null,
+          "year_group_ids": []
+        }
+      ],
+      "subjects": [
+        {
+          "id": "814",
+          "name": "A P Tyres",
+          "active": false
+        },
+        {
+          "id": "518",
+          "name": "Accounting",
+          "active": false
+        },
+        {
+          "id": "799",
+          "name": "Additional Science",
+          "active": false
+        },
+        {
+          "id": "519",
+          "name": "Art",
+          "active": true
+        },
+        {
+          "id": "2290",
+          "name": "Astronomy",
+          "active": true
+        },
+        {
+          "id": "807",
+          "name": "Basic Skills",
+          "active": false
+        },
+        {
+          "id": "520",
+          "name": "Biology",
+          "active": true
+        },
+        {
+          "id": "521",
+          "name": "Business Studies",
+          "active": true
+        },
+        {
+          "id": "526",
+          "name": "CDT:Des & Com",
+          "active": false
+        },
+        {
+          "id": "527",
+          "name": "CDT:Des & Real",
+          "active": false
+        },
+        {
+          "id": "523",
+          "name": "Chemistry",
+          "active": true
+        },
+        {
+          "id": "524",
+          "name": "Citizenship",
+          "active": false
+        },
+        {
+          "id": "525",
+          "name": "Com'Ity Service",
+          "active": false
+        },
+        {
+          "id": "2155",
+          "name": "Computer Studies",
+          "active": true
+        },
+        {
+          "id": "2154",
+          "name": "Construction",
+          "active": true
+        },
+        {
+          "id": "522",
+          "name": "Creative Arts",
+          "active": false
+        },
+        {
+          "id": "590",
+          "name": "Cymraeg",
+          "active": false
+        },
+        {
+          "id": "2156",
+          "name": "Dance",
+          "active": false
+        },
+        {
+          "id": "808",
+          "name": "Design & Technology",
+          "active": true
+        },
+        {
+          "id": "795",
+          "name": "Diploma Studies",
+          "active": false
+        },
+        {
+          "id": "528",
+          "name": "Drama",
+          "active": true
+        },
+        {
+          "id": "529",
+          "name": "Economics",
+          "active": true
+        },
+        {
+          "id": "530",
+          "name": "Electronics",
+          "active": false
+        },
+        {
+          "id": "2171",
+          "name": "Engineering",
+          "active": true
+        },
+        {
+          "id": "531",
+          "name": "English",
+          "active": true
+        },
+        {
+          "id": "532",
+          "name": "English Literature",
+          "active": true
+        },
+        {
+          "id": "2157",
+          "name": "Food & Nutrition",
+          "active": true
+        },
+        {
+          "id": "809",
+          "name": "Food Technology",
+          "active": true
+        },
+        {
+          "id": "533",
+          "name": "French",
+          "active": true
+        },
+        {
+          "id": "537",
+          "name": "General Studies",
+          "active": true
+        },
+        {
+          "id": "535",
+          "name": "Geography",
+          "active": true
+        },
+        {
+          "id": "534",
+          "name": "German",
+          "active": true
+        },
+        {
+          "id": "2158",
+          "name": "Graphics",
+          "active": true
+        },
+        {
+          "id": "536",
+          "name": "Greek",
+          "active": false
+        },
+        {
+          "id": "2159",
+          "name": "Hair & Beauty",
+          "active": true
+        },
+        {
+          "id": "540",
+          "name": "Health & Social",
+          "active": true
+        },
+        {
+          "id": "539",
+          "name": "History",
+          "active": true
+        },
+        {
+          "id": "538",
+          "name": "Home Economics",
+          "active": false
+        },
+        {
+          "id": "541",
+          "name": "Humanities",
+          "active": false
+        },
+        {
+          "id": "542",
+          "name": "Information Tech",
+          "active": false
+        },
+        {
+          "id": "2166",
+          "name": "Land Based Studies",
+          "active": true
+        },
+        {
+          "id": "543",
+          "name": "Law",
+          "active": true
+        },
+        {
+          "id": "592",
+          "name": "Leisure & Touris",
+          "active": false
+        },
+        {
+          "id": "544",
+          "name": "Leisure & Tourism",
+          "active": false
+        },
+        {
+          "id": "815",
+          "name": "Literacy",
+          "active": true
+        },
+        {
+          "id": "545",
+          "name": "Mathematics",
+          "active": true
+        },
+        {
+          "id": "546",
+          "name": "Modern Languages",
+          "active": false
+        },
+        {
+          "id": "547",
+          "name": "Music",
+          "active": true
+        },
+        {
+          "id": "2170",
+          "name": "Numeracy",
+          "active": true
+        },
+        {
+          "id": "551",
+          "name": "PSE",
+          "active": true
+        },
+        {
+          "id": "550",
+          "name": "Peer Support",
+          "active": false
+        },
+        {
+          "id": "2168",
+          "name": "Photography",
+          "active": true
+        },
+        {
+          "id": "548",
+          "name": "Physical Ed",
+          "active": true
+        },
+        {
+          "id": "549",
+          "name": "Physics",
+          "active": true
+        },
+        {
+          "id": "2167",
+          "name": "Product Design",
+          "active": true
+        },
+        {
+          "id": "552",
+          "name": "Recreation",
+          "active": true
+        },
+        {
+          "id": "554",
+          "name": "Reference",
+          "active": false
+        },
+        {
+          "id": "553",
+          "name": "Religious Education",
+          "active": true
+        },
+        {
+          "id": "810",
+          "name": "Resistant Materials",
+          "active": true
+        },
+        {
+          "id": "555",
+          "name": "Rural Science",
+          "active": false
+        },
+        {
+          "id": "556",
+          "name": "Science",
+          "active": true
+        },
+        {
+          "id": "559",
+          "name": "Sociology",
+          "active": true
+        },
+        {
+          "id": "557",
+          "name": "Spanish",
+          "active": false
+        },
+        {
+          "id": "558",
+          "name": "Sports L'Ship",
+          "active": false
+        },
+        {
+          "id": "816",
+          "name": "St Mary",
+          "active": true
+        },
+        {
+          "id": "561",
+          "name": "Statistics",
+          "active": false
+        },
+        {
+          "id": "2160",
+          "name": "Supervised Study",
+          "active": true
+        },
+        {
+          "id": "560",
+          "name": "Support",
+          "active": true
+        },
+        {
+          "id": "562",
+          "name": "Technology",
+          "active": true
+        },
+        {
+          "id": "811",
+          "name": "Textiles",
+          "active": true
+        },
+        {
+          "id": "563",
+          "name": "Theatre Studies",
+          "active": true
+        },
+        {
+          "id": "564",
+          "name": "Tutorial",
+          "active": false
+        },
+        {
+          "id": "2289",
+          "name": "Vehicle Maintainance",
+          "active": true
+        },
+        {
+          "id": "591",
+          "name": "Voc Stud",
+          "active": false
+        },
+        {
+          "id": "593",
+          "name": "Welsh",
+          "active": false
+        },
+        {
+          "id": "565",
+          "name": "Work Experience",
+          "active": false
+        }
+      ],
+      "report_card_target_types": [
+        {
+          "id": 1,
+          "code": "PUNC",
+          "description": "Arrived on time to session/lesson"
+        },
+        {
+          "id": 2,
+          "code": "HOME",
+          "description": "Supplied homework on time"
+        },
+        {
+          "id": 3,
+          "code": "DISP",
+          "description": "Developing better self discipline"
+        },
+        {
+          "id": 4,
+          "code": "EQUI",
+          "description": "Brought correct equipment to lesson"
+        },
+        {
+          "id": 5,
+          "code": "DISR",
+          "description": "Worked quietly without disrupting others"
+        },
+        {
+          "id": 6,
+          "code": "STAF",
+          "description": "Followed instructions of staff without question"
+        },
+        {
+          "id": 7,
+          "code": "SHARE",
+          "description": "Shared/helped others in the group without being asked"
+        },
+        {
+          "id": 8,
+          "code": "OPINIONS",
+          "description": "Showed respect for the views/opinions of others"
+        },
+        {
+          "id": 9,
+          "code": "CONTRIBUTE",
+          "description": "Contributed sensibly to class/group discussion"
+        }
+      ]
+    },
+    "authtoken": "dNO__Cg1SgcunPD2ps5q8aqq3z5s6BBF93G9mqkgUr_mSFD0jBSL3ZGY5_ipI3uvq3zz-hCAWs3qlKqBTQ6-TDYKnN_YPgFaieumC-Fiv5ISEqDzsWJ7dko6XdmJmdtZkUmpVg",
+    "using_supervisor_table": "common_teaching_group_supervisor",
+    "user": {
+      "establishment_id": 2,
+      "id": "26",
+      "gender": "Female",
+      "title": "Mrs",
+      "forename": "Teacher",
+      "surname": "Demo",
+      "types": ["employee"],
+      "username": "employee",
+      "remember_password_permitted": true
+    },
+    "analytics_enabled": [
+      {
+        "id": "homeworkoverview"
+      },
+      {
+        "id": "documentaccessreport"
+      },
+      {
+        "id": "employeecalloutoverview"
+      },
+      {
+        "id": "clubattendanceoverview"
+      },
+      {
+        "id": "behaviouroverview",
+        "options": {
+          "student_filter": [
+            "gender",
+            "form_group_ids",
+            "year_group_ids",
+            "house_group_ids",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_ids",
+            "boarder"
+          ],
+          "group_by": [
+            "gender",
+            "form_group",
+            "year_group",
+            "house_group",
+            "student",
+            "week",
+            "month",
+            "type",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_id",
+            "boarder"
+          ]
+        }
+      },
+      {
+        "id": "achievementoverview",
+        "options": {
+          "student_filter": [
+            "gender",
+            "form_group_ids",
+            "year_group_ids",
+            "house_group_ids",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_ids",
+            "boarder"
+          ],
+          "group_by": [
+            "gender",
+            "form_group",
+            "year_group",
+            "house_group",
+            "student",
+            "week",
+            "month",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_id",
+            "boarder"
+          ]
+        }
+      },
+      {
+        "id": "attendancestatutoryoverview",
+        "options": {
+          "student_filter": [
+            "gender",
+            "form_group_ids",
+            "year_group_ids",
+            "house_group_ids",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_ids",
+            "boarder",
+            "sen"
+          ],
+          "group_by": [
+            "gender",
+            "form_group",
+            "year_group",
+            "house_group",
+            "student",
+            "recorded_by",
+            "pp",
+            "eal",
+            "fsm",
+            "in_care",
+            "has_medical_condition",
+            "ethnicity_id",
+            "boarder",
+            "sen_status"
+          ]
+        }
+      }
+    ],
+    "personal_menu": [
+      {
+        "id": "registers",
+        "name": "Registers"
+      },
+      {
+        "id": "marksheets",
+        "name": "Marksheets"
+      },
+      {
+        "id": "learners",
+        "name": "Learners"
+      },
+      {
+        "id": "employeecallout",
+        "name": "Callout"
+      },
+      {
+        "id": "datacollection_manage",
+        "name": "Data Collections"
+      },
+      {
+        "id": "forms",
+        "name": "Forms"
+      },
+      {
+        "id": "behaviour",
+        "name": "Behaviour"
+      },
+      {
+        "id": "timetable",
+        "name": "Timetable"
+      },
+      {
+        "id": "catering",
+        "name": "Catering"
+      },
+      {
+        "id": "profiles",
+        "name": "Profiles"
+      },
+      {
+        "id": "homework",
+        "name": "Homework"
+      },
+      {
+        "id": "links",
+        "name": "Links"
+      },
+      {
+        "id": "noticeboard",
+        "name": "Noticeboard"
+      },
+      {
+        "id": "documents_message",
+        "name": "Document Messaging",
+        "submenu": true
+      },
+      {
+        "id": "parentevent",
+        "name": "Parents' Evening",
+        "submenu": true
+      },
+      {
+        "id": "resourcebooking",
+        "name": "Resource Booking",
+        "submenu": true
+      },
+      {
+        "id": "behaviour_detentionmanagement",
+        "name": "Detentions",
+        "submenu": true
+      },
+      {
+        "id": "attendance_absencemanagement",
+        "name": "Absences",
+        "submenu": true
+      },
+      {
+        "id": "datacollection",
+        "name": "Update Information",
+        "submenu": true
+      },
+      {
+        "id": "clubs",
+        "name": "Clubs",
+        "submenu": true
+      },
+      {
+        "id": "childprotection",
+        "name": "Child Protection",
+        "submenu": true
+      },
+      {
+        "id": "calendar",
+        "name": "Calendar",
+        "submenu": true
+      },
+      {
+        "id": "analytics",
+        "name": "Analytics",
+        "submenu": true
+      },
+      {
+        "id": "account",
+        "name": "Account Info",
+        "submenu": true
+      }
+    ],
+    "learner_menu": [
+      {
+        "id": "timetable",
+        "name": "Timetable"
+      },
+      {
+        "id": "seating_viewall",
+        "name": "Seating Plans",
+        "submenu": true
+      },
+      {
+        "id": "sen",
+        "name": "SEN"
+      },
+      {
+        "id": "documents",
+        "name": "Documents"
+      },
+      {
+        "id": "exams",
+        "name": "Exams"
+      },
+      {
+        "id": "behaviour",
+        "name": "Behaviour"
+      },
+      {
+        "id": "medical",
+        "name": "Medical Info"
+      },
+      {
+        "id": "account",
+        "name": "Account Info"
+      },
+      {
+        "id": "achievement",
+        "name": "Achievement"
+      },
+      {
+        "id": "assessment",
+        "name": "Assessment"
+      },
+      {
+        "id": "attendance",
+        "name": "Attendance"
+      },
+      {
+        "id": "attendance_absencereporting",
+        "name": "Absence Reporting"
+      },
+      {
+        "id": "calendar",
+        "name": "Calendar"
+      },
+      {
+        "id": "catering",
+        "name": "Catering"
+      },
+      {
+        "id": "homework",
+        "name": "Homework",
+        "submenu": true
+      },
+      {
+        "id": "links",
+        "name": "Links",
+        "submenu": true
+      },
+      {
+        "id": "parentevent",
+        "name": "Parents' Evening",
+        "submenu": true
+      },
+      {
+        "id": "clubs",
+        "name": "Clubs",
+        "submenu": true
+      },
+      {
+        "id": "youhq_studentsnapshotreport",
+        "name": "Wellbeing",
+        "submenu": true
+      }
+    ],
+    "sub_menu": {
+      "label": "More"
+    },
+    "can_create_messages": true,
+    "can_create_message_types": ["push", "sms", "push | sms", "email"],
+    "login_method": "admin",
+    "admin_login": true,
+    "login_method_change_password": false,
+    "document": {
+      "types": [
+        {
+          "id": 11,
+          "code": "ASSESSMENT",
+          "description": "AM Individual Report"
+        },
+        {
+          "id": 12,
+          "code": "ADOPTED",
+          "description": "Adopted from Care"
+        },
+        {
+          "id": 13,
+          "code": "ATTENDANCE",
+          "description": "Attendance letters"
+        },
+        {
+          "id": 14,
+          "code": "AUTHRETURN",
+          "description": "Authorised Statutory Returns output files"
+        },
+        {
+          "id": 15,
+          "code": "CLPDOC",
+          "description": "C&LP Document"
+        },
+        {
+          "id": 16,
+          "code": "COMMN",
+          "description": "Communication Documents"
+        },
+        {
+          "id": 17,
+          "code": "OUTCOMEFL",
+          "description": "Course Manger outcome files"
+        },
+        {
+          "id": 18,
+          "code": "EMAAPPEAL",
+          "description": "EMA Appeal Document"
+        },
+        {
+          "id": 19,
+          "code": "ENQUIRY",
+          "description": "Enquiry Documents"
+        },
+        {
+          "id": 20,
+          "code": "FEES",
+          "description": "Fees"
+        },
+        {
+          "id": 21,
+          "code": "GENERAL",
+          "description": "General Document"
+        },
+        {
+          "id": 22,
+          "code": "LETTER",
+          "description": "Letter"
+        },
+        {
+          "id": 23,
+          "code": "NOTSPEC",
+          "description": "Not Specified"
+        },
+        {
+          "id": 24,
+          "code": "PEP",
+          "description": "Personal Education Plan"
+        },
+        {
+          "id": 25,
+          "code": "PROF",
+          "description": "Profiles Document"
+        },
+        {
+          "id": 26,
+          "code": "SENDOC",
+          "description": "SEN Document"
+        },
+        {
+          "id": 27,
+          "code": "SENFDESC",
+          "description": "SEN Full Description"
+        },
+        {
+          "id": 28,
+          "code": "SENRINV",
+          "description": "SEN Review Invitation"
+        },
+        {
+          "id": 29,
+          "code": "SENRRPT",
+          "description": "SEN Review Report"
+        },
+        {
+          "id": 30,
+          "code": "SPCPD",
+          "description": "SP CPD"
+        },
+        {
+          "id": 31,
+          "code": "SPOBJ",
+          "description": "SP Objectives"
+        },
+        {
+          "id": 32,
+          "code": "SPOBSVTN",
+          "description": "SP Observation"
+        },
+        {
+          "id": 33,
+          "code": "SPREVW",
+          "description": "SP Review"
+        },
+        {
+          "id": 34,
+          "code": "BULLETIN",
+          "description": "School Bulletin"
+        },
+        {
+          "id": 35,
+          "code": "STFABSNOTE",
+          "description": "Staff Absence Note"
+        },
+        {
+          "id": 36,
+          "code": "CONTRANOTE",
+          "description": "Staff Contract Note"
+        },
+        {
+          "id": 37,
+          "code": "IMPAIRNOTE",
+          "description": "Staff Impairment Note"
+        },
+        {
+          "id": 38,
+          "code": "EMPMEDNOTE",
+          "description": "Staff Medical Note"
+        },
+        {
+          "id": 39,
+          "code": "SANOTE",
+          "description": "Staff Service Agreement Note"
+        },
+        {
+          "id": 40,
+          "code": "Exams",
+          "description": "Statement of Results"
+        },
+        {
+          "id": 41,
+          "code": "STUDMED",
+          "description": "Student Medical Note"
+        },
+        {
+          "id": 42,
+          "code": "EXTERNAL",
+          "description": "System files deployed by the External File Deployment system"
+        }
+      ],
+      "report": {
+        "subject": "{{report.summary}} for {{learner.forename}} {{learner.surname}} - test",
+        "body": "{{parent.title}} {{parent.forename}} {{parent.surname}}\r\n\r\nPlease find the report {{document.filenamepdf}} attached for {{learner.forename}} {{learner.surname}}\r\n\r\nDocument    summary: {{document.summary}}\r\n"
+      }
+    },
+    "absence_management": {
+      "templates": {
+        "email_subject": "Unauthorised absence for {{learner.forename}} {{learner.surname}}",
+        "email_body": "{{learner.forename}} {{learner.surname}} has been marked with\nunauthorised absence for {{date}}. Could you please contact the school\nas soon as possible\n\nThank you,\n\n{{sender.forename}} {{sender.surname}}\n",
+        "sms_body": "{{learner.forename}} {{learner.surname}} unauthorised absence. Please contact us.\n"
+      }
+    },
+    "capabilities": {
+      "data_collection": {
+        "move_cohabitees": true
+      },
+      "classdashboard": {
+        "enabled": true
+      },
+      "icalendar.group_import": true,
+      "communicator.enabled": true,
+      "child_protection": {
+        "enabled": true,
+        "team_employee_ids": ["26"],
+        "manager": false,
+        "team": true
+      },
+      "communicator": {
+        "message_reply": true,
+        "custom_parent_options": {
+          "enabled": true
+        },
+        "email": {
+          "html": true,
+          "attachments": true
+        },
+        "can_bulk_message_parents": true,
+        "parent_identification": {
+          "max_priority": "10",
+          "parental_responsibility": "true",
+          "options": {
+            "max_priority": {
+              "1": "1",
+              "2": "Up to 2",
+              "3": "Up to 3",
+              "4": "Up to 4",
+              "5": "Up to 5",
+              "6": "Up to 6",
+              "7": "Up to 7",
+              "8": "Up to 8",
+              "9": "Up to 9",
+              "10": "Up to 10",
+              "highest": "Highest",
+              "ignore": "Ignore"
+            }
+          }
+        }
+      },
+      "communicator.reply_to": true,
+      "communicator.switchuser": true,
+      "communicator.select_all": true,
+      "communicator.email_domain": "overnetdata.onmicrosoft.com",
+      "forms": {
+        "switchteacher": true
+      },
+      "communicator.create_message_types": ["push", "sms", "push | sms", "email"],
+      "communicator.new_message_recipients": [
+        "learners",
+        "teachers",
+        "form_tutors",
+        "custom",
+        "head_of_year",
+        "parents",
+        "groups"
+      ],
+      "parentevent.administrator": true,
+      "parentevent.switchteacher": true,
+      "parentevent.blockslot": true,
+      "marksheets.change_teacher": true,
+      "marksheets": {
+        "commentbank": {
+          "enabled": true,
+          "manager": true
+        }
+      },
+      "resourcebooking.manager": true,
+      "achievement": {
+        "create": true
+      },
+      "behaviour": {
+        "create": true,
+        "report_card": {
+          "detail": true
+        }
+      },
+      "club": {
+        "create": true,
+        "export": true
+      },
+      "attendance": {
+        "today": true
+      },
+      "homework.create": true,
+      "homework.teaching_group_required": false,
+      "homework.learnercreate": false,
+      "homework.homework_issues": true,
+      "homework.switchteacher": true,
+      "behaviour_detentionmanagement.session_create": true,
+      "behaviour_detentionmanagement.hide_learner_add": false,
+      "calendar.event_create": true,
+      "calendar.hide_sourcecog": false,
+      "attendance.absence_management": true,
+      "sen": {
+        "strategy_manager": true
+      },
+      "noticeboard": {
+        "manager": true
+      }
+    },
+    "miscellaneous": {
+      "upload": {
+        "chunksize": 100,
+        "max_attachment_size": 62914560,
+        "max_attachment_size_communicator": 31457280,
+        "max_body_size_communicator": 20971520
+      },
+      "max_status_last_visible": 5,
+      "status_interval_background": 60,
+      "student_count_warning": 50,
+      "app": {
+        "logout_on_pause": false
+      },
+      "editor": {
+        "defaultfont": "Calibri"
+      },
+      "setup": {
+        "url": "https://ondsupportteam.edulinkone.com/api/installer/setup.php",
+        "params": {
+          "authtoken": "dNO__Cg1SgcunPD2ps5q8aqq3z5s6BBF93G9mqkgUr_mSFD0jBSL3ZGY5_ipI3uvq3zz-hCAWs3qlKqBTQ6-TDYKnN_YPgFaieumC-Fiv5ISEqDzsWJ7dko6XdmJmdtZkUmpVg"
+        },
+        "method": "POST"
+      }
+    },
+    "metrics": {
+      "st": "2020-02-20 15:42:01",
+      "sspt": 0.5902209281921387,
+      "uniqid": "5e4ea8c9585f6"
+    }
+  },
+  "id": "20"
+}

@@ -1,0 +1,12 @@
+{
+   "method": "Communicator.Groups",
+   "success": true,
+   "groups": [
+      {
+         "id": 5,
+         "name": "Group Test 2",
+         "global": true,
+         "owner_id": "0"
+      }
+   ]
+}
