@@ -264,5 +264,6 @@ export default {
   icon: () => {
     return <RiSystemErrorWarningLine size={36} />;
   },
+  pos: 4,
   component: BehaviourComponent,
 };

@@ -23,6 +23,7 @@ type Item = {
   icon: Component;
   class: string;
   component: Component;
+  pos: number;
 };
 
 export default function Navigation(props: {
@@ -227,8 +228,14 @@ export default function Navigation(props: {
           icon: iconComponent,
           class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
           component: def.component,
+          pos: def.pos,
         };
-        setItems((prev) => [...prev, newItem]);
+
+        setItems((prev) => {
+          const newArr = [...prev, newItem];
+          newArr.sort((a, b) => a.pos - b.pos);
+          return newArr;
+        });
       });
     }
 

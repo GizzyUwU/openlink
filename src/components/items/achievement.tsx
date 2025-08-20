@@ -260,5 +260,6 @@ export default {
   icon: () => {
     return <AiOutlineTrophy size={36} />;
   },
+  pos: 5,
   component: AchievementComponent,
 };

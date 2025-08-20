@@ -200,5 +200,6 @@ export default {
   icon: () => {
     return <VsAccount size={36} />;
   },
+  pos: 10,
   component: Personal,
 };

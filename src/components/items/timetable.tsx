@@ -274,5 +274,6 @@ export default {
   icon: () => {
     return <HiOutlineClock size={36} />;
   },
+  pos: 1,
   component: Timetable,
 };

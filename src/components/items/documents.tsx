@@ -133,5 +133,6 @@ export default {
   icon: () => {
     return <AiOutlineFileText size={36} />;
   },
+  pos: 2,
   component: Documents,
 };

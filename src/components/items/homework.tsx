@@ -151,5 +151,6 @@ export default {
   icon: () => {
     return <IoBriefcaseOutline size={36} />;
   },
+  pos: 6,
   component: Homework,
 };
