@@ -22,11 +22,9 @@ function Homework(props: {
       current: HomeworkResponse.Items[];
       past: HomeworkResponse.Items[];
     };
-    hidden_fields: string[];
   }>({
     activePage: "current",
     shownHomework: null,
-    hidden_fields: [],
   });
 
   const [sessionData] = makePersisted(createSignal<any>(null), {
@@ -52,7 +50,6 @@ function Homework(props: {
     if (response.result.success) {
       setState("homework", response.result.homework);
       setState("shownHomework", response.result.homework.current || []);
-      setState("hidden_fields", response.result.hidden_fields);
       props.setProgress(1);
     } else {
       toast.showToast(
