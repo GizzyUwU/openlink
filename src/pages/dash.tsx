@@ -65,13 +65,10 @@ function Main() {
             a.finished.then(done);
             const navWheel = document.getElementById("nav-back");
             if (navWheel) {
-              const rect = navWheel.getBoundingClientRect();
               const elHtml = el as HTMLElement;
               elHtml.style.transform = "none";
               elHtml.style.position = "absolute";
-
               const minDistance = 80;
-
               let running = true;
 
               function updatePosition() {
@@ -79,11 +76,7 @@ function Main() {
 
                 if (navWheel) {
                   const rect = navWheel.getBoundingClientRect();
-
-                  // Minimum distance from back button
                   let left = rect.right + minDistance;
-
-                  // Keep it inside viewport
                   const maxLeft = window.innerWidth - elHtml.offsetWidth - 20;
                   if (left > maxLeft) left = maxLeft;
 
@@ -92,11 +85,7 @@ function Main() {
 
                 requestAnimationFrame(updatePosition);
               }
-
-              // Start updating position
               updatePosition();
-
-              // Stop updating when element is removed
               el.addEventListener("transitionend", () => {
                 running = false;
               });

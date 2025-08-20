@@ -42,9 +42,9 @@ body {
     color: #fff;
     font-size: 20px;
     height: 40px;
-    transition:
+    /*transition:
         background 9999s linear,
-        color 9999s linear;
+        color 9999s linear;*/
     width: 100%;
     animation: autofill both;
 }
