@@ -57,24 +57,28 @@ function Main() {
               id="item-box"
               ref={(el) => {
                 if (el) {
+                  const navWheel = document.getElementById("nav-back");
+                  const minDistance = 100;
+
                   el.style.position = "absolute";
-                  el.style.top = "100px";
-                  el.style.transform = "translate3d(-50%, 0, 0)";
                   el.style.height = "100%";
                   el.style.maxHeight = "calc(100vh - 200px)";
                   el.style.maxWidth = "1200px";
                   el.style.width = "100%";
                   el.style.zIndex = "10";
-                  const navWheel = document.getElementById("nav-back");
+                  el.style.top = "100px";
+                  let left = window.innerWidth / 2;
                   if (navWheel) {
                     const rect = navWheel.getBoundingClientRect();
-                    const minDistance = 100;
-                    let left = rect.right + minDistance;
-                    const maxLeft = window.innerWidth - el.offsetWidth - 20;
-                    if (left > maxLeft) left = maxLeft;
-                    el.style.left = `${left}px`;
-                    el.style.transform = "none";
+                    if (left - el.offsetWidth / 2 < rect.right + minDistance) {
+                      left = rect.right + minDistance + el.offsetWidth / 2;
+                    }
                   }
+                  const maxLeft = window.innerWidth - el.offsetWidth / 2 - 20;
+                  if (left > maxLeft) left = maxLeft;
+
+                  el.style.left = `${left}px`;
+                  el.style.transform = "translateX(-50%)";
                 }
               }}
             >
@@ -82,6 +86,7 @@ function Main() {
             </div>
           )}
         </Show>
+
         <Footer
           sessionData={sessionData}
           apiUrl={apiUrl}
