@@ -181,7 +181,7 @@ function Timetable(props: {
                       setState("dayPeriods", matched?.periods || []);
                       setState("dayLessons", matched?.lessons || []);
                     }}
-                    class={`text-sm font-medium text-white text-[14px] cursor-pointer ${
+                    class={`text-sm text-white cursor-pointer ${
                       day.name === state.dayName
                         ? "border-b border-blue-400"
                         : ""

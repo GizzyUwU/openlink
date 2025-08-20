@@ -1,11 +1,12 @@
 import { onMount, onCleanup, createSignal, Show } from "solid-js";
+import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { IoCheckmarkCircleOutline } from "solid-icons/io";
 import { ImCross } from "solid-icons/im";
 import { Transition } from "solid-transition-group";
 import { IoBriefcaseOutline } from "solid-icons/io";
-
+import { HomeworkResponse } from "../../types/api/homework";
 import { useToast } from "../toast";
 function Homework(props: {
   setProgress: (value: number) => void;
@@ -14,6 +15,20 @@ function Homework(props: {
   let styleElement: HTMLLinkElement;
   const edulink = useEdulink();
   const toast = useToast();
+  const [state, setState] = createStore<{
+    activePage: "current" | "past";
+    shownHomework: HomeworkResponse.Items[] | null;
+    homework?: {
+      current: HomeworkResponse.Items[];
+      past: HomeworkResponse.Items[];
+    };
+    hidden_fields: string[];
+  }>({
+    activePage: "current",
+    shownHomework: null,
+    hidden_fields: [],
+  });
+
   const [sessionData] = makePersisted(createSignal<any>(null), {
     storage: sessionStorage,
     name: "sessionData",
@@ -22,8 +37,6 @@ function Homework(props: {
     storage: sessionStorage,
     name: "apiUrl",
   });
-
-  const [homework, setHomework] = createSignal<any[]>([]);
 
   onMount(async () => {
     styleElement = document.createElement("link");
@@ -37,8 +50,9 @@ function Homework(props: {
     );
 
     if (response.result.success) {
-      console.log(response.result);
-      setHomework(response.result.homework.past || []);
+      setState("homework", response.result.homework);
+      setState("shownHomework", response.result.homework.current || []);
+      setState("hidden_fields", response.result.hidden_fields);
       props.setProgress(1);
     } else {
       toast.showToast(
@@ -54,6 +68,12 @@ function Homework(props: {
     styleElement.remove();
     props.setProgress(0);
   });
+
+  const handleSwap = (tab: "current" | "past") => {
+    if (!state.homework) return;
+    setState("activePage", tab);
+    setState("shownHomework", state.homework[tab]);
+  };
 
   return (
     <Transition
@@ -79,6 +99,30 @@ function Homework(props: {
     >
       <Show when={props.progress() === 1}>
         <div class="box-container">
+          <div class="flex items-center justify-end w-full pr-[16px]">
+            <div class="flex space-x-4 mb-2">
+              <button
+                type="button"
+                onClick={() => handleSwap("current")}
+                class={`text-sm text-white cursor-pointer ${
+                  state.activePage === "current"
+                    ? "border-b border-blue-400"
+                    : ""
+                }`}
+              >
+                Current
+              </button>
+              <button
+                type="button"
+                onClick={() => handleSwap("past")}
+                class={`text-sm font-medium text-white  cursor-pointer ${
+                  state.activePage === "past" ? "border-b border-blue-400" : ""
+                }`}
+              >
+                Past
+              </button>
+            </div>
+          </div>
           <div class="t-container">
             <div
               class="t-homework"
@@ -94,7 +138,7 @@ function Homework(props: {
                 <span class="t-header__title _received">Received</span>
               </div>
               <div class="t-body">
-                {homework().map((data) => (
+                {state.shownHomework?.map((data: HomeworkResponse.Items) => (
                   <div class="t-row">
                     <span class="t-homework__text _name">
                       <div

@@ -49,3 +49,7 @@ export type HomeworkResponse = EdulinkApiResponse<{
   };
   hidden_fields: string[];
 }>;
+
+export namespace HomeworkResponse {
+  export type Items = Homework;
+}
