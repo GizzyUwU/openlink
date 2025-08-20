@@ -200,8 +200,7 @@ export default function Navigation(props: {
 
   const updateSlideX = () => {
     if (navWheelRef) {
-      const wheelRect = navWheelRef.getBoundingClientRect();
-      setState("slideX", -(wheelRect.left + wheelRect.width / 2 + 12));
+      setState("slideX", -(window.innerWidth / 2 + 40));
     }
   };
 
@@ -214,6 +213,18 @@ export default function Navigation(props: {
       props.navAnimFinished(false);
       props.setLoadedComponent(null);
     }
+
+    const handleResize = () => {
+      if (state.isSlid && state.isLogoGone) {
+        updateSlideX();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    onCleanup(() => {
+      window.removeEventListener("resize", handleResize);
+    });
 
     const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
     for (const loader of Object.values(modules)) {
@@ -373,9 +384,10 @@ export default function Navigation(props: {
   }
 
   return (
-    <div class="nav-wheel" id="nav-wheel">
+    <div class="nav-wheel">
       <div
         class="__container __loaded"
+        id="nav-wheel"
         ref={(el) => (navWheelRef = el)}
         style={navWheelContainerStyle()}
       >

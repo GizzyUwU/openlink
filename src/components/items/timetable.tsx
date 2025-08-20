@@ -80,7 +80,9 @@ function Timetable(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (styleElement) {
+      styleElement.remove();
+    }
     document.removeEventListener("click", handleClick);
     props.setProgress(0);
   });

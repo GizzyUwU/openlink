@@ -2,22 +2,23 @@ import "../assets/css/main.css";
 import { makePersisted } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { useEdulink } from "../api/edulink";
-import { Show } from "solid-js";
-import { Transition } from "solid-transition-group";
+import { Show, onMount, createMemo, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Navigation from "../components/navigation";
-
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
+
   const [state, setState] = createStore<{
     progress: number;
     navWheelAnim: boolean;
+    screenWidth: number;
   }>({
     progress: 0,
     navWheelAnim: false,
+    screenWidth: window.innerWidth,
   });
 
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
@@ -30,6 +31,26 @@ function Main() {
     name: "apiUrl",
   });
 
+  onMount(() => {
+    const handleResize = () => {
+      setState("screenWidth", window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    onCleanup(() => {
+      window.removeEventListener("resize", handleResize);
+    });
+  });
+
+  const maxWidth = createMemo(() =>
+    state.screenWidth >= 1400 ? "1200px" : "1000px",
+  );
+  const setTransform = createMemo(() =>
+    state.screenWidth >= 1400
+      ? "translate3d(-50%, 0, 0)"
+      : "translate3d(-45%, 0, 0)",
+  );
   return (
     <Show when={sessionData() && Object.keys(sessionData()).length > 0}>
       <div class="container">
@@ -55,31 +76,16 @@ function Main() {
           {(Comp) => (
             <div
               id="item-box"
-              ref={(el) => {
-                if (el) {
-                  const navWheel = document.getElementById("nav-back");
-                  const minDistance = 100;
-
-                  el.style.position = "absolute";
-                  el.style.height = "100%";
-                  el.style.maxHeight = "calc(100vh - 200px)";
-                  el.style.maxWidth = "1200px";
-                  el.style.width = "100%";
-                  el.style.zIndex = "10";
-                  el.style.top = "100px";
-                  let left = window.innerWidth / 2;
-                  if (navWheel) {
-                    const rect = navWheel.getBoundingClientRect();
-                    if (left - el.offsetWidth / 2 < rect.right + minDistance) {
-                      left = rect.right + minDistance + el.offsetWidth / 2;
-                    }
-                  }
-                  const maxLeft = window.innerWidth - el.offsetWidth / 2 - 20;
-                  if (left > maxLeft) left = maxLeft;
-
-                  el.style.left = `${left}px`;
-                  el.style.transform = "translateX(-50%)";
-                }
+              style={{
+                position: "absolute",
+                top: "100px",
+                left: "50%",
+                transform: setTransform(),
+                height: "100%",
+                "max-height": "calc(100vh - 200px)",
+                "max-width": maxWidth(),
+                width: "100%",
+                "z-index": 10,
               }}
             >
               <Comp />
