@@ -1,8 +1,9 @@
-import { onMount, onCleanup, createSignal } from "solid-js";
+import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { VsAccount } from "solid-icons/vs";
+import { Transition } from "solid-transition-group";
 
 function Personal(props: {
   setProgress: (value: number) => void;
@@ -127,8 +128,28 @@ function Personal(props: {
   }
 
   return (
-    <>
-      {props.progress() === 1 && personalData() && (
+    <Transition
+      onEnter={(el, done) => {
+        const a = el.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 200,
+          easing: "ease",
+          fill: "forwards",
+          composite: "accumulate",
+        });
+        a.finished.then(done);
+      }}
+      onExit={(el, done) => {
+        const a = el.animate(
+          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
+          {
+            duration: 100,
+            composite: "accumulate",
+          },
+        );
+        a.finished.then(done);
+      }}
+    >
+      <Show when={props.progress() === 1 && personalData()}>
         <div class="box-container">
           <div class="t-container">
             <div class="t-personal">
@@ -169,8 +190,8 @@ function Personal(props: {
             </div>
           </div>
         </div>
-      )}
-    </>
+      </Show>
+    </Transition>
   );
 }
 

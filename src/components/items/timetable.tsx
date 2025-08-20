@@ -5,6 +5,7 @@ import type { TimetableResponse } from "../../types/api/timetable";
 import { useToast } from "../toast";
 let dropdownRef: HTMLDivElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
+import { Transition } from "solid-transition-group";
 
 function Timetable(props: {
   setProgress: (value: number) => void;
@@ -89,8 +90,28 @@ function Timetable(props: {
   }
 
   return (
-    <>
-      {props.progress() === 1 && (
+    <Transition
+      onEnter={(el, done) => {
+        const a = el.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 200,
+          easing: "ease",
+          fill: "forwards",
+          composite: "accumulate",
+        });
+        a.finished.then(done);
+      }}
+      onExit={(el, done) => {
+        const a = el.animate(
+          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
+          {
+            duration: 100,
+            composite: "accumulate",
+          },
+        );
+        a.finished.then(done);
+      }}
+    >
+      <Show when={props.progress() === 1}>
         <div class="box-container">
           <div class="flex items-center justify-between w-full">
             <div class="relative inline-block text-left">
@@ -243,8 +264,8 @@ function Timetable(props: {
             </div>
           </div>
         </div>
-      )}
-    </>
+      </Show>
+    </Transition>
   );
 }
 

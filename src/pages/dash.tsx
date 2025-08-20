@@ -11,9 +11,7 @@ import Navigation from "../components/navigation";
 
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
-
   const edulink = useEdulink();
-
   const [state, setState] = createStore<{
     progress: number;
     navWheelAnim: boolean;
@@ -53,76 +51,37 @@ function Main() {
           loadedComponent={LoadedComponent}
           navAnimFinished={(value: boolean) => setState("navWheelAnim", value)}
         />
-        <Transition
-          onEnter={(el, done) => {
-            const a = el.animate(
-              [{ opacity: 0 }, { opacity: 1 }, { easing: "ease" }],
-              {
-                duration: 100,
-                composite: "accumulate",
-              },
-            );
-            a.finished.then(done);
-            const navWheel = document.getElementById("nav-back");
-            if (navWheel) {
-              const elHtml = el as HTMLElement;
-              elHtml.style.transform = "none";
-              elHtml.style.position = "absolute";
-              const minDistance = 80;
-              let running = true;
-
-              function updatePosition() {
-                if (!running) return;
-
-                if (navWheel) {
-                  const rect = navWheel.getBoundingClientRect();
-                  let left = rect.right + minDistance;
-                  const maxLeft = window.innerWidth - elHtml.offsetWidth - 20;
-                  if (left > maxLeft) left = maxLeft;
-
-                  elHtml.style.left = `${left}px`;
+        <Show when={state.navWheelAnim && LoadedComponent()}>
+          {(Comp) => (
+            <div
+              id="item-box"
+              ref={(el) => {
+                if (el) {
+                  el.style.position = "absolute";
+                  el.style.top = "100px";
+                  el.style.transform = "translate3d(-50%, 0, 0)";
+                  el.style.height = "100%";
+                  el.style.maxHeight = "calc(100vh - 200px)";
+                  el.style.maxWidth = "1200px";
+                  el.style.width = "100%";
+                  el.style.zIndex = "10";
+                  const navWheel = document.getElementById("nav-back");
+                  if (navWheel) {
+                    const rect = navWheel.getBoundingClientRect();
+                    const minDistance = 100;
+                    let left = rect.right + minDistance;
+                    const maxLeft = window.innerWidth - el.offsetWidth - 20;
+                    if (left > maxLeft) left = maxLeft;
+                    el.style.left = `${left}px`;
+                    el.style.transform = "none";
+                  }
                 }
-
-                requestAnimationFrame(updatePosition);
-              }
-              updatePosition();
-              el.addEventListener("transitionend", () => {
-                running = false;
-              });
-            }
-          }}
-          onExit={(el, done) => {
-            const a = el.animate(
-              [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-              {
-                duration: 100,
-                composite: "accumulate",
-              },
-            );
-            a.finished.then(done);
-          }}
-        >
-          <Show when={state.navWheelAnim && LoadedComponent()}>
-            {(Comp) => (
-              <div
-                id="item-box"
-                style={{
-                  position: "absolute",
-                  top: "100px",
-                  left: "50%",
-                  transform: "translate3d(-50%, 0, 0)",
-                  height: "100%",
-                  "max-height": "calc(100vh - 200px)",
-                  "max-width": "1200px",
-                  width: "100%",
-                  "z-index": 10,
-                }}
-              >
-                <Comp />
-              </div>
-            )}
-          </Show>
-        </Transition>
+              }}
+            >
+              <Comp />
+            </div>
+          )}
+        </Show>
         <Footer
           sessionData={sessionData}
           apiUrl={apiUrl}

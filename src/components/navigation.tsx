@@ -215,25 +215,22 @@ export default function Navigation(props: {
     }
 
     const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
-    const modulePromises = Object.values(modules).map((loader) => loader());
+    for (const loader of Object.values(modules)) {
+      loader().then((mod: any) => {
+        const def = mod.default;
+        const iconComponent: Component =
+          typeof def.icon === "function" ? def.icon : () => def.icon;
 
-    const loadedModules = await Promise.all(modulePromises);
-
-    const loaded: Item[] = loadedModules.map((mod: any) => {
-      const def = mod.default;
-      const iconComponent: Component =
-        typeof def.icon === "function" ? def.icon : () => def.icon;
-
-      return {
-        id: def.name.toLowerCase().replace(/\s+/g, ""),
-        name: def.name,
-        icon: iconComponent,
-        class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
-        component: def.component,
-      };
-    });
-
-    setItems(loaded);
+        const newItem: Item = {
+          id: def.name.toLowerCase().replace(/\s+/g, ""),
+          name: def.name,
+          icon: iconComponent,
+          class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
+          component: def.component,
+        };
+        setItems((prev) => [...prev, newItem]);
+      });
+    }
 
     const logoBase64 = props.sessionData().establishment?.logo;
     if (!logoBase64) return;

@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal } from "solid-js";
+import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
@@ -119,168 +119,143 @@ function BehaviourComponent(props: {
   });
 
   return (
-    <>
-      {props.progress() === 1 && (
-        <Transition
-          onEnter={(el, done) => {
-            const a = el.animate(
-              [
-                {
-                  opacity: 0,
-                  transform: "translate3d(-50%, 0, 0) scale(0.8)",
-                },
-                {
-                  opacity: 1,
-                  transform: "translate3d(-50%, 0, 0) scale(1)",
-                },
-              ],
-              {
-                duration: 200,
-                easing: "ease",
-              },
-            );
-            a.finished.then(done);
-          }}
-          onExit={(el, done) => {
-            const a = el.animate(
-              [
-                {
-                  opacity: 1,
-                  transform: "translate3d(-50%, 0, 0) scale(1)",
-                },
-                {
-                  opacity: 0,
-                  transform: "translate3d(-50%, 0, 0) scale(0.8)",
-                },
-              ],
-              {
-                duration: 200,
-                easing: "ease",
-              },
-            );
-            a.finished.then(done);
-          }}
-        >
-          <div class="box-container">
-            <div class="t-behaviour">
-              <div
-                class="t-behaviour"
-                style={{ display: "flex", "flex-direction": "column" }}
-              >
-                <div class="t-header">
-                  <span class="t-header__title _type_date">Type & Date</span>
-                  <span class="t-header__title _comment_teacher">
-                    Comment & Teacher
-                  </span>
-                  <span class="t-header__title _action_info">
-                    Action & Info
-                  </span>
-                  <span class="t-header__title _loc_status">
-                    Location & Status
-                  </span>
-                  <span class="t-header__title _points">Points</span>
-                </div>
-                <div class="t-body">
-                  {behaviours().map((behaviour: any) => (
-                    <div class="t-row">
-                      <span class="t-behaviour__text_type_date">
-                        <div
-                          style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                          }}
-                        >
-                          <span class="_grey">
-                            {formatDate(behaviour.date)}
-                          </span>
-                          <span>
-                            {getLookupName(
-                              behaviour.type_ids?.[0],
-                              behaviourTypes(),
-                            ) || "-"}
-                          </span>
-                        </div>
-                      </span>
-                      <span class="t-behaviour__text _comment_teacher">
-                        <div
-                          style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                          }}
-                        >
-                          <span class="_grey">
-                            {(() => {
-                              const employeeId =
-                                behaviour.recorded?.employee_id ??
-                                behaviour.action_taken?.employee_id;
+    <Transition
+      onEnter={(el, done) => {
+        const a = el.animate([{ opacity: 0 }, { opacity: 1 }], {
+          duration: 200,
+          easing: "ease",
+          fill: "forwards",
+          composite: "accumulate",
+        });
+        a.finished.then(done);
+      }}
+      onExit={(el, done) => {
+        const a = el.animate(
+          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
+          {
+            duration: 100,
+            composite: "accumulate",
+          },
+        );
+        a.finished.then(done);
+      }}
+    >
+      <Show when={props.progress() === 1}>
+        <div class="box-container">
+          <div class="t-behaviour">
+            <div
+              class="t-behaviour"
+              style={{ display: "flex", "flex-direction": "column" }}
+            >
+              <div class="t-header">
+                <span class="t-header__title _type_date">Type & Date</span>
+                <span class="t-header__title _comment_teacher">
+                  Comment & Teacher
+                </span>
+                <span class="t-header__title _action_info">Action & Info</span>
+                <span class="t-header__title _loc_status">
+                  Location & Status
+                </span>
+                <span class="t-header__title _points">Points</span>
+              </div>
+              <div class="t-body">
+                {behaviours().map((behaviour: any) => (
+                  <div class="t-row">
+                    <span class="t-behaviour__text_type_date">
+                      <div
+                        style={{
+                          display: "flex",
+                          "flex-direction": "column",
+                        }}
+                      >
+                        <span class="_grey">{formatDate(behaviour.date)}</span>
+                        <span>
+                          {getLookupName(
+                            behaviour.type_ids?.[0],
+                            behaviourTypes(),
+                          ) || "-"}
+                        </span>
+                      </div>
+                    </span>
+                    <span class="t-behaviour__text _comment_teacher">
+                      <div
+                        style={{
+                          display: "flex",
+                          "flex-direction": "column",
+                        }}
+                      >
+                        <span class="_grey">
+                          {(() => {
+                            const employeeId =
+                              behaviour.recorded?.employee_id ??
+                              behaviour.action_taken?.employee_id;
 
-                              const employee = employees().find(
-                                (emp: any) => emp.id === String(employeeId),
-                              );
+                            const employee = employees().find(
+                              (emp: any) => emp.id === String(employeeId),
+                            );
 
-                              return employee
-                                ? `${employee.title} ${employee.forename} ${employee.surname}`
-                                : "-";
-                            })()}
-                          </span>
-                          <span>{behaviour.comments || "-"}</span>
-                        </div>
-                      </span>
-                      <span class="t-behaviour__text _action_info">
-                        <div
-                          style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                          }}
-                        >
-                          <span class="_grey">
-                            {getLookupName(
-                              behaviour.action_taken?.id,
-                              behaviourActions(),
-                            ) || "-"}
-                          </span>
-                          <span>{behaviour.lesson_information}</span>
-                        </div>
-                      </span>
-                      <span class="t-behaviour__text _loc_status">
-                        <div
-                          style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                          }}
-                        >
-                          <span class="_grey">
-                            {getLookupName(
-                              behaviour.location_id,
-                              behaviourLocations(),
-                            ) || "-"}
-                          </span>
-                          <span>
-                            {getLookupName(
-                              behaviour.status_id,
-                              behaviourStatuses(),
-                            ) || "-"}
-                          </span>
-                        </div>
-                      </span>
-                      <span class="t-behaviour__text">
-                        <span class="_points">{behaviour.points || "-"}</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div class="b-points-badge">
-                  <div class="__label">
-                    <span class="__label-text">Total Negative Points</span>
-                    <span class="__total-points">{totalPoints() || "-"}</span>
+                            return employee
+                              ? `${employee.title} ${employee.forename} ${employee.surname}`
+                              : "-";
+                          })()}
+                        </span>
+                        <span>{behaviour.comments || "-"}</span>
+                      </div>
+                    </span>
+                    <span class="t-behaviour__text _action_info">
+                      <div
+                        style={{
+                          display: "flex",
+                          "flex-direction": "column",
+                        }}
+                      >
+                        <span class="_grey">
+                          {getLookupName(
+                            behaviour.action_taken?.id,
+                            behaviourActions(),
+                          ) || "-"}
+                        </span>
+                        <span>{behaviour.lesson_information}</span>
+                      </div>
+                    </span>
+                    <span class="t-behaviour__text _loc_status">
+                      <div
+                        style={{
+                          display: "flex",
+                          "flex-direction": "column",
+                        }}
+                      >
+                        <span class="_grey">
+                          {getLookupName(
+                            behaviour.location_id,
+                            behaviourLocations(),
+                          ) || "-"}
+                        </span>
+                        <span>
+                          {getLookupName(
+                            behaviour.status_id,
+                            behaviourStatuses(),
+                          ) || "-"}
+                        </span>
+                      </div>
+                    </span>
+                    <span class="t-behaviour__text">
+                      <span class="_points">{behaviour.points || "-"}</span>
+                    </span>
                   </div>
+                ))}
+              </div>
+              <div class="b-points-badge">
+                <div class="__label">
+                  <span class="__label-text">Total Negative Points</span>
+                  <span class="__total-points">{totalPoints() || "-"}</span>
                 </div>
               </div>
             </div>
           </div>
-        </Transition>
-      )}
-    </>
+        </div>
+      </Show>
+    </Transition>
   );
 }
 
