@@ -41,7 +41,7 @@ function Timetable(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+    const styleUrl = new URL("../../assets/css/timetable.css", import.meta.url)
       .href;
     styleElement = document.createElement("link");
     styleElement.rel = "preload";

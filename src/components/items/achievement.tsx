@@ -56,8 +56,10 @@ function AchievementComponent(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
-      .href;
+    const styleUrl = new URL(
+      "../../assets/css/achievement.css",
+      import.meta.url,
+    ).href;
     styleElement = document.createElement("link");
     styleElement.rel = "preload";
     styleElement.as = "style";

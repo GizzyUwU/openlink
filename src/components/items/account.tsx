@@ -24,7 +24,7 @@ function Personal(props: {
   const [personalData, setPersonalData] = createSignal<any>(null);
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+    const styleUrl = new URL("../../assets/css/account.css", import.meta.url)
       .href;
     styleElement = document.createElement("link");
     styleElement.rel = "preload";

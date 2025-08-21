@@ -16,7 +16,7 @@ import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { FaSolidPersonRunning } from "solid-icons/fa";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { useEdulink } from "../api/edulink";
-
+import { items } from "../api/items";
 type Item = {
   id: string;
   name: string;
@@ -41,7 +41,6 @@ export default function Navigation(props: {
   let navWheelRef: HTMLDivElement | undefined;
   const edulink = useEdulink();
   const toast = useToast();
-  const [items, setItems] = createSignal<Item[]>([]);
 
   // const items = [
   //   {
@@ -134,7 +133,7 @@ export default function Navigation(props: {
     logoOpacity: 1,
     isLogoGone: false,
     navSlid: false,
-    itemOpacity: Array(items().length).fill(1),
+    itemOpacity: Array(items.length).fill(1),
     logoBG: "",
   });
 
@@ -205,7 +204,7 @@ export default function Navigation(props: {
   };
 
   const spinToIndex = (idx: number) => {
-    setState("wheelRotaton", (idx * 360) / items().length);
+    setState("wheelRotaton", (idx * 360) / items.length);
   };
 
   onMount(async () => {
@@ -225,29 +224,29 @@ export default function Navigation(props: {
       window.removeEventListener("resize", handleResize);
     });
 
-    const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
-    for (const loader of Object.values(modules)) {
-      loader().then((mod: any) => {
-        const def = mod.default;
-        const iconComponent: Component =
-          typeof def.icon === "function" ? def.icon : () => def.icon;
+    // const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
+    // for (const loader of Object.values(modules)) {
+    //   loader().then((mod: any) => {
+    //     const def = mod.default;
+    //     const iconComponent: Component =
+    //       typeof def.icon === "function" ? def.icon : () => def.icon;
 
-        const newItem: Item = {
-          id: def.name.toLowerCase().replace(/\s+/g, ""),
-          name: def.name,
-          icon: iconComponent,
-          class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
-          component: def.component,
-          pos: def.pos,
-        };
+    //     const newItem: Item = {
+    //       id: def.name.toLowerCase().replace(/\s+/g, ""),
+    //       name: def.name,
+    //       icon: iconComponent,
+    //       class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
+    //       component: def.component,
+    //       pos: def.pos,
+    //     };
 
-        setItems((prev) => {
-          const newArr = [...prev, newItem];
-          newArr.sort((a, b) => a.pos - b.pos);
-          return newArr;
-        });
-      });
-    }
+    //     setItems((prev) => {
+    //       const newArr = [...prev, newItem];
+    //       newArr.sort((a, b) => a.pos - b.pos);
+    //       return newArr;
+    //     });
+    //   });
+    // }
 
     const logoBase64 = props.sessionData().establishment?.logo;
     if (!logoBase64) return;
@@ -301,7 +300,7 @@ export default function Navigation(props: {
       if (!state.isLogoGone) updateSlideX();
       setState({
         logoOpacity: 0,
-        itemOpacity: Array(items().length).fill(0),
+        itemOpacity: Array(items.length).fill(0),
         isLogoGone: true,
       });
 
@@ -312,13 +311,13 @@ export default function Navigation(props: {
         isLogoGone: false,
         isSlid: false,
         logoOpacity: 0,
-        itemOpacity: Array(items().length).fill(0),
+        itemOpacity: Array(items.length).fill(0),
       });
 
       setTimeout(() => {
         setState({
           logoOpacity: 1,
-          itemOpacity: Array(items().length).fill(1),
+          itemOpacity: Array(items.length).fill(1),
         });
       }, 10);
     }
@@ -446,13 +445,13 @@ export default function Navigation(props: {
           exitToClass="opacity-0"
         >
           <ul class="__list" style={navWheelListStyle()}>
-            <For each={items()}>
+            <For each={items}>
               {(item, i) => (
                 <li
                   class="__item"
                   style={getItemStyle(
-                    166 * Math.cos(0 - i() * ((2 * Math.PI) / items().length)),
-                    166 * Math.sin(0 - i() * ((2 * Math.PI) / items().length)),
+                    166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
+                    166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length)),
                   )}
                 >
                   <div class="__inner">

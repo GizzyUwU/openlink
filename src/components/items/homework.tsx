@@ -37,7 +37,7 @@ function Homework(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+    const styleUrl = new URL("../../assets/css/homework.css", import.meta.url)
       .href;
     styleElement = document.createElement("link");
     styleElement.rel = "preload";
