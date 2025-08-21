@@ -5,6 +5,7 @@ import { AiOutlineDownload } from "solid-icons/ai";
 import { useToast } from "../toast";
 import { AiOutlineFileText } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
+
 function Documents(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -12,6 +13,7 @@ function Documents(props: {
   let styleElement: HTMLLinkElement;
   const edulink = useEdulink();
   const toast = useToast();
+
   const [sessionData] = makePersisted(createSignal<any>(null), {
     storage: sessionStorage,
     name: "sessionData",
@@ -24,9 +26,15 @@ function Documents(props: {
   const [documents, setDocuments] = createSignal<any[]>([]);
 
   onMount(async () => {
+    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+      .href;
     styleElement = document.createElement("link");
-    styleElement.rel = "stylesheet";
-    styleElement.href = "/src/assets/css/documents.css";
+    styleElement.rel = "preload";
+    styleElement.as = "style";
+    styleElement.href = `${styleUrl}?t=${Date.now()}`;
+    styleElement.onload = () => {
+      styleElement.rel = "stylesheet";
+    };
     document.getElementById("item-box")?.appendChild(styleElement);
 
     const response = await edulink.getDocuments(

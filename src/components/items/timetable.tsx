@@ -41,10 +41,15 @@ function Timetable(props: {
   };
 
   onMount(async () => {
+    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+      .href;
     styleElement = document.createElement("link");
-    styleElement.rel = "stylesheet";
-    styleElement.href = "/src/assets/css/timetable.css";
-    document.addEventListener("mouseup", handleClick);
+    styleElement.rel = "preload";
+    styleElement.as = "style";
+    styleElement.href = `${styleUrl}?t=${Date.now()}`;
+    styleElement.onload = () => {
+      styleElement.rel = "stylesheet";
+    };
     document.getElementById("item-box")?.appendChild(styleElement);
 
     const timetablePromise = props.edulink.getTimetable(

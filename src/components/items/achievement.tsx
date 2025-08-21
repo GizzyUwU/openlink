@@ -56,13 +56,16 @@ function AchievementComponent(props: {
   };
 
   onMount(async () => {
+    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+      .href;
     styleElement = document.createElement("link");
     styleElement.rel = "preload";
     styleElement.as = "style";
-    styleElement.href = "/src/assets/css/achievement.css";
+    styleElement.href = `${styleUrl}?t=${Date.now()}`;
     styleElement.onload = () => {
       styleElement.rel = "stylesheet";
     };
+    document.getElementById("item-box")?.appendChild(styleElement);
 
     document.getElementById("item-box")?.appendChild(styleElement);
 

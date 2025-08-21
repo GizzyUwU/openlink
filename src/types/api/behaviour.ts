@@ -50,3 +50,9 @@ export type BehaviourResponse = EdulinkApiResponse<{
   employees: Employees[];
   hide_fields: string[];
 }>;
+
+export namespace BehaviourResponse {
+  export type BehaviourType = Behaviour;
+  export type DetentionsType = Detentions;
+  export type EmployeesType = Employees;
+}

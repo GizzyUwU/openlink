@@ -78,6 +78,67 @@
     border-bottom: 1px solid #e3e9ea;
 }
 
+.t-detentions-header {
+    display: grid;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    grid-template-columns:
+        1fr
+        1fr 1fr 1fr
+        1fr 1fr;
+    text-align: center;
+    min-height: 40px;
+    color: #3090c7;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.t-detentions-row {
+    display: grid;
+    grid-template-columns:
+        1fr
+        1fr 1fr 1fr
+        1fr 1fr;
+    border-bottom: 1px solid #e3e9ea;
+}
+
+.t-detentions-header > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-transform: capitalize;
+    min-width: 0;
+}
+
+.t-detentions-row > span {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 85px;
+}
+
+.t-detentions-row:nth-child(even) {
+    background-color: #ececec;
+}
+
+.t-detentions-row > ._date,
+.t-detentions-row > ._type,
+.t-detentions-row > ._loc,
+.t-detentions-row > ._start,
+.t-detentions-row > ._end,
+.t-detentions-row > ._attended {
+    justify-content: flex-start !important;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 400;
+}
+
 .t-header > span {
     display: flex;
     align-items: center;
@@ -132,7 +193,6 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    /* Ensure it fills the full cell height */
 }
 
 ._grey {

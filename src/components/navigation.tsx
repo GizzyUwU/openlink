@@ -210,8 +210,7 @@ export default function Navigation(props: {
 
   onMount(async () => {
     if (props.loadedComponent) {
-      props.navAnimFinished(false);
-      props.setLoadedComponent(null);
+      resetNav();
     }
 
     const handleResize = () => {
@@ -381,6 +380,10 @@ export default function Navigation(props: {
       isSlid: false,
       showBack: false,
     });
+    props.setLoadedComponent(null);
+
+    const prev = document.getElementById("item-box");
+    if (prev) prev.remove();
   }
 
   return (

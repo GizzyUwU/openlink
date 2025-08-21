@@ -24,9 +24,15 @@ function Personal(props: {
   const [personalData, setPersonalData] = createSignal<any>(null);
 
   onMount(async () => {
+    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+      .href;
     styleElement = document.createElement("link");
-    styleElement.rel = "stylesheet";
-    styleElement.href = "/src/assets/css/account.css";
+    styleElement.rel = "preload";
+    styleElement.as = "style";
+    styleElement.href = `${styleUrl}?t=${Date.now()}`;
+    styleElement.onload = () => {
+      styleElement.rel = "stylesheet";
+    };
     document.getElementById("item-box")?.appendChild(styleElement);
 
     const response = await edulink.getPersonal(

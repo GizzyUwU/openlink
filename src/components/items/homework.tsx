@@ -37,9 +37,15 @@ function Homework(props: {
   });
 
   onMount(async () => {
+    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
+      .href;
     styleElement = document.createElement("link");
-    styleElement.rel = "stylesheet";
-    styleElement.href = "/src/assets/css/homework.css";
+    styleElement.rel = "preload";
+    styleElement.as = "style";
+    styleElement.href = `${styleUrl}?t=${Date.now()}`;
+    styleElement.onload = () => {
+      styleElement.rel = "stylesheet";
+    };
     document.getElementById("item-box")?.appendChild(styleElement);
 
     const response = await edulink.getHomework(
