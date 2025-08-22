@@ -15,7 +15,7 @@
     max-width: calc(100vw - 185px);
 }
 
-.t-personal {
+.b-message {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -46,6 +46,7 @@
     flex-grow: 1;
     min-height: 0;
     list-style: none;
+    overflow-y: auto;
 }
 
 .l-messages__items .__item {
