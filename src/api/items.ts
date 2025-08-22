@@ -14,8 +14,16 @@ export interface Item {
 }
 
 export const items: Item[] = Object.values(modules)
-  .map((mod: any) => {
-    const def = mod.default;
+  .map((mod: any) => mod.default)
+  .filter(
+    (def) =>
+      def &&
+      def.name &&
+      def.icon &&
+      def.component &&
+      typeof def.pos === "number",
+  )
+  .map((def) => {
     const iconComponent: Component =
       typeof def.icon === "function" ? def.icon : () => def.icon;
 

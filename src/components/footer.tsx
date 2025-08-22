@@ -8,6 +8,7 @@ export default function Footer(props: {
   setSession: any;
   setApiUrl: any;
   edulink: any;
+  loadItemPage: (id: string, name: string) => void;
 }) {
   const navigate = useNavigate();
   onMount(() => {
@@ -147,7 +148,10 @@ export default function Footer(props: {
             </div>
           )}
         </div>
-        <div class="__item">
+        <div
+          class="__item"
+          onClick={() => props.loadItemPage("messages", "Messages")}
+        >
           <div class="pr-couple">
             <span
               class="__icon"

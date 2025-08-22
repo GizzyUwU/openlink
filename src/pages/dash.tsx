@@ -7,9 +7,13 @@ import { createStore } from "solid-js/store";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Navigation from "../components/navigation";
+import { useToast } from "../components/toast";
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
+  const toast = useToast();
+  let resetNavFn: () => void = () => {};
+  let openNavFn: (idx: number) => void;
 
   const [state, setState] = createStore<{
     progress: number;
@@ -20,6 +24,53 @@ function Main() {
     navWheelAnim: false,
     screenWidth: window.innerWidth,
   });
+
+  function waitForWheelTransition() {
+    return new Promise<void>((resolve) => {
+      const navWheelRef = document.getElementById("nav-wheel");
+      if (!navWheelRef) return resolve();
+
+      const handler = () => {
+        navWheelRef?.removeEventListener("transitionend", handler);
+        resolve();
+      };
+
+      navWheelRef.addEventListener("transitionend", handler, { once: true });
+    });
+  }
+
+  async function loadItemPage(id: string, name: string) {
+    try {
+      const mod = await import(`../components/items/${id}.tsx`);
+      console.log(mod, id);
+      if (!mod.default.name && !mod.default.icon && mod.default.pos) {
+        openNavFn?.(mod.default.pos);
+      }
+      setState("progress", 0.3);
+      setLoadedComponent(() => (childProps: any) => (
+        <mod.default.component
+          {...childProps}
+          setProgress={(value: number) => setState("progress", value)}
+          progress={() => state.progress}
+          edulink={edulink}
+        />
+      ));
+
+      await waitForWheelTransition();
+      setState("navWheelAnim", true);
+    } catch (err) {
+      console.error(
+        `Failed to load component: ../components/items/${id}.tsx`,
+        err,
+      );
+
+      resetNavFn();
+      setLoadedComponent(null);
+      const prev = document.getElementById("item-box");
+      if (prev) prev.remove();
+      toast.showToast("Error!", `${name} failed to open.`, "error");
+    }
+  }
 
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
     storage: sessionStorage,
@@ -70,7 +121,10 @@ function Main() {
           edulink={edulink}
           setLoadedComponent={setLoadedComponent}
           loadedComponent={LoadedComponent}
+          loadItemPage={loadItemPage}
           navAnimFinished={(value: boolean) => setState("navWheelAnim", value)}
+          onResetNav={(fn) => (resetNavFn = fn)}
+          openNav={(fn) => (openNavFn = fn)}
         />
         <Show when={state.navWheelAnim && LoadedComponent()}>
           {(Comp) => (
@@ -99,6 +153,7 @@ function Main() {
           setSession={setSession}
           setApiUrl={setApiUrl}
           edulink={edulink}
+          loadItemPage={loadItemPage}
         />
       </div>
     </Show>

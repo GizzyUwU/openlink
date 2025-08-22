@@ -34,9 +34,12 @@ export default function Navigation(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
+  loadItemPage: any;
   setLoadedComponent: any;
   loadedComponent: any;
   navAnimFinished: (value: boolean) => void;
+  onResetNav?: (fn: () => void) => void;
+  openNav?: (fn: (idx: number) => void) => void;
 }) {
   let navWheelRef: HTMLDivElement | undefined;
   const edulink = useEdulink();
@@ -137,65 +140,52 @@ export default function Navigation(props: {
     logoBG: "",
   });
 
-  function waitForWheelTransition() {
-    return new Promise<void>((resolve) => {
-      if (!navWheelRef) return resolve();
+  // async function loadItemPage(id: string, name: string) {
+  //   try {
+  //     const idx = state.activeIdx;
+  //     const mod = await import(`../components/items/${id}.tsx`);
 
-      const handler = () => {
-        navWheelRef?.removeEventListener("transitionend", handler);
-        resolve();
-      };
+  //     if (idx !== null) {
+  //       setState({
+  //         activeIdx: idx,
+  //         isAnimating: true,
+  //         isSlid: true,
+  //       });
+  //       spinToIndex(idx);
+  //     }
+  //     props.setProgress(0.3);
+  //     props.setLoadedComponent(() => (childProps: any) => (
+  //       <mod.default.component
+  //         {...childProps}
+  //         setProgress={props.setProgress}
+  //         progress={props.progress}
+  //         edulink={edulink}
+  //       />
+  //     ));
 
-      navWheelRef.addEventListener("transitionend", handler, { once: true });
-    });
-  }
+  //     if (typeof idx === "number") {
+  //       setState("showBack", true);
+  //     }
 
-  async function loadItemPage(id: string, name: string) {
-    try {
-      const idx = state.activeIdx;
-      const mod = await import(`../components/items/${id}.tsx`);
-
-      if (idx !== null) {
-        setState({
-          activeIdx: idx,
-          isAnimating: true,
-          isSlid: true,
-        });
-        spinToIndex(idx);
-      }
-      props.setProgress(0.3);
-      props.setLoadedComponent(() => (childProps: any) => (
-        <mod.default.component
-          {...childProps}
-          setProgress={props.setProgress}
-          progress={props.progress}
-          edulink={edulink}
-        />
-      ));
-
-      if (typeof idx === "number") {
-        setState("showBack", true);
-      }
-
-      await waitForWheelTransition();
-      props.navAnimFinished(true);
-    } catch (err) {
-      console.error(
-        `Failed to load component: ../components/items/${id}.tsx`,
-        err,
-      );
-      setState({
-        isAnimating: false,
-        isSlid: false,
-        activeIdx: null,
-        showBack: false,
-      });
-      props.setLoadedComponent(null);
-      const prev = document.getElementById("item-box");
-      if (prev) prev.remove();
-      toast.showToast("Error!", `${name} failed to open.`, "error");
-    }
-  }
+  //     await waitForWheelTransition();
+  //     props.navAnimFinished(true);
+  //   } catch (err) {
+  //     console.error(
+  //       `Failed to load component: ../components/items/${id}.tsx`,
+  //       err,
+  //     );
+  //     setState({
+  //       isAnimating: false,
+  //       isSlid: false,
+  //       activeIdx: null,
+  //       showBack: false,
+  //     });
+  //     props.setLoadedComponent(null);
+  //     const prev = document.getElementById("item-box");
+  //     if (prev) prev.remove();
+  //     toast.showToast("Error!", `${name} failed to open.`, "error");
+  //   }
+  // }
 
   const updateSlideX = () => {
     if (navWheelRef) {
@@ -208,6 +198,8 @@ export default function Navigation(props: {
   };
 
   onMount(async () => {
+    props.onResetNav?.(resetNav);
+    props.openNav?.(openItem);
     if (props.loadedComponent) {
       resetNav();
     }
@@ -469,7 +461,7 @@ export default function Navigation(props: {
                         } else {
                           openItem(i());
                           spinToIndex(i());
-                          loadItemPage(item.id, item.name);
+                          props.loadItemPage(item.id, item.name);
                         }
                       }}
                     >
