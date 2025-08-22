@@ -62,7 +62,7 @@ function Messages(props: {
     const inboxPromise = props.edulink.getCommunicator(
       "inbox",
       1,
-      state.pagination.currentPage,
+      state.pagination.itemsPerPage,
       sessionData()?.authtoken,
       apiUrl(),
     );
