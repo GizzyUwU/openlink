@@ -35,19 +35,19 @@ export default function Footer(props: {
 
   return (
     <div class="s-footer">
-      <div class="__container">
-        <div class="__item">
+      <div class="__footer-container">
+        <div class="__footer-item">
           {status().lessons?.current && (
             <div class="pr-couple">
               <span
-                class="__icon"
+                class="__footer-icon"
                 style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
               >
                 <Icon icon="mdi:clock-outline" width="24" height="24"></Icon>
               </span>
-              <span class="__content">
-                <span class="__title">Current Lesson</span>
-                <span class="__body">
+              <span class="__footer-content">
+                <span class="__footer-title">Current Lesson</span>
+                <span class="__footer-body">
                   {status().lessons.current.teaching_group.subject} -{" "}
                   {status().lessons.current.teaching_group.name}
                 </span>
@@ -90,11 +90,11 @@ export default function Footer(props: {
             </div>
           )}
         </div>
-        <div class="__item">
+        <div class="__footer-item">
           {status().lessons?.next && (
             <div class="pr-couple">
               <span
-                class="__icon"
+                class="__footer-icon"
                 style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
               >
                 <Icon
@@ -103,9 +103,9 @@ export default function Footer(props: {
                   height="20"
                 ></Icon>
               </span>
-              <span class="__content">
-                <span class="__title">Next Lesson</span>
-                <span class="__body">
+              <span class="__footer-content">
+                <span class="__footer-title">Next Lesson</span>
+                <span class="__footer-body">
                   {status().lessons.next.teaching_group.subject} -{" "}
                   {status().lessons.next.teaching_group.name}
                 </span>
@@ -149,19 +149,19 @@ export default function Footer(props: {
           )}
         </div>
         <div
-          class="__item"
+          class="__footer-item"
           onClick={() => props.loadItemPage("messages", "Messages")}
         >
           <div class="pr-couple">
             <span
-              class="__icon"
+              class="__footer-icon"
               style="background-image: linear-gradient(135deg, rgb(253, 107, 92), rgb(235, 87, 86));"
             >
               <Icon icon="ic:outline-email" width="24" height="24"></Icon>
             </span>
-            <span class="__content">
-              <span class="__title">Messages</span>
-              <span class="__body">
+            <span class="__footer-content">
+              <span class="__footer-title">Messages</span>
+              <span class="__footer-body">
                 {status().new_messages || 0} new message
               </span>
             </span>

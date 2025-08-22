@@ -27,6 +27,7 @@
     "@tauri-apps/plugin-store": "~2",
     "@types/bun": "^1.2.19",
     "@types/uuid": "^10.0.0",
+    "dompurify": "^3.2.6",
     "solid-icons": "^1.1.0",
     "solid-js": "^1.9.3",
     "solid-transition-group": "^0.3.0",
