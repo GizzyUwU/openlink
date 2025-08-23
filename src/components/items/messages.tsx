@@ -1,11 +1,4 @@
-import {
-  onMount,
-  onCleanup,
-  createSignal,
-  createEffect,
-  For,
-  Show,
-} from "solid-js";
+import { onMount, onCleanup, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import type {
@@ -93,7 +86,6 @@ function Messages(props: {
         photos = photosData.result.employee_photos;
       }
 
-      // Merge messages and photos in one update
       setState({
         messages: [...state.messages, ...inboxData.result.messages],
         photos: [...state.photos, ...photos],

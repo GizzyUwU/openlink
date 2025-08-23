@@ -17,19 +17,21 @@ const ProtectedRoute = (props: any) => {
   });
 
   onMount(async () => {
-    if (
-      !sessionData() ||
-      Object.keys(sessionData()).length === 0 ||
-      !apiUrl()
-    ) {
+    if (sessionData() && Object.keys(sessionData()).length > 0 && apiUrl()) {
+      console.log(apiUrl());
+      const result = await edulink.getStatus(
+        sessionData()?.authtoken,
+        apiUrl(),
+      );
+      if (!result.result.success) {
+        navigate("/login", { replace: true });
+        return;
+      }
+    } else {
       setSession(null);
       setApiUrl(null);
-      throw navigate("/login");
-    }
-
-    const result = await edulink.getStatus(sessionData()?.authtoken, apiUrl());
-    if (!result.result.success) {
-      throw navigate("/login");
+      navigate("/login", { replace: true });
+      return;
     }
   });
 

@@ -257,7 +257,7 @@ ul {
     background-image: linear-gradient(to top left, #ebb326, #eb9e3d);
 }
 
-.nav-wheel .__item .__inner ._attendance_absencemanagement,
+.nav-wheel .__item .__inner ._attendance,
 .nav-wheel .__item .__inner ._parentevent {
     background-color: #ec9443;
     background-image: linear-gradient(to top left, #eb913d, #eb9e3d);
@@ -297,7 +297,7 @@ ul {
     background-image: linear-gradient(to top left, #d73924, #de4b37);
 }
 
-.nav-wheel .__item .__inner ._attendance_absencereporting {
+.nav-wheel .__item .__inner ._attendance-reporting {
     background-color: #8b77d2;
     background-image: linear-gradient(to top left, #585984, #7965a9);
 }
