@@ -530,7 +530,9 @@ function Attendance(props: {
                                   style="border-color: rgb(44, 201, 145);"
                                 />
                                 Present{" "}
-                                <span class="__value">{percent.present}%</span>
+                                <span class="__value">
+                                  {percent.present ?? 0}%
+                                </span>
                               </div>
                               <div class="__alias">
                                 <span
@@ -539,7 +541,7 @@ function Attendance(props: {
                                 />
                                 Unauthorized{" "}
                                 <span class="__value">
-                                  {percent.unauthorised}%
+                                  {percent.unauthorised ?? 0}%
                                 </span>
                               </div>
                               <div class="__alias">
@@ -556,7 +558,9 @@ function Attendance(props: {
                                   style="border-color: rgb(133, 209, 253);"
                                 />
                                 Late{" "}
-                                <span class="__value">{percent.late}%</span>
+                                <span class="__value">
+                                  {percent.late ?? 0}%
+                                </span>
                               </div>
                             </div>
                           </div>
