@@ -621,6 +621,6 @@ export default {
   icon: () => {
     return <AiOutlineLineChart size={36} />;
   },
-  pos: 4,
+  pos: 6,
   component: Attendance,
 };

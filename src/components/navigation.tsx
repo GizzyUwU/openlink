@@ -1,29 +1,9 @@
-import {
-  createEffect,
-  createSignal,
-  Show,
-  For,
-  onMount,
-  onCleanup,
-  Component,
-} from "solid-js";
+import { createEffect, Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
-import { useToast } from "./toast";
 import { AiOutlineForm } from "solid-icons/ai";
 import { TbCertificate } from "solid-icons/tb";
-import { RiSystemErrorWarningLine } from "solid-icons/ri";
-import { FaSolidPersonRunning } from "solid-icons/fa";
 import { Transition, TransitionGroup } from "solid-transition-group";
-import { useEdulink } from "../api/edulink";
 import { items } from "../api/items";
-type Item = {
-  id: string;
-  name: string;
-  icon: Component;
-  class: string;
-  component: Component;
-  pos: number;
-};
 
 export default function Navigation(props: {
   sessionData: any;
