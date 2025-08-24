@@ -212,9 +212,7 @@ function Attendance(props: {
                                       enabled: false,
                                     },
                                   },
-                                  stroke: {
-                                    width: 0,
-                                  },
+                                  labels: ["Present", "Unauthorized", "Absent"],
                                   colors: [
                                     "rgb(44, 201, 145)",
                                     "rgb(238, 84, 59)",
@@ -356,9 +354,7 @@ function Attendance(props: {
                                       enabled: false,
                                     },
                                   },
-                                  stroke: {
-                                    width: 0,
-                                  },
+                                  labels: ["Present", "Unauthorized", "Absent"],
                                   colors: [
                                     "rgb(44, 201, 145)",
                                     "rgb(238, 84, 59)",
@@ -495,9 +491,12 @@ function Attendance(props: {
                                       enabled: false,
                                     },
                                   },
-                                  stroke: {
-                                    width: 0,
-                                  },
+                                  labels: [
+                                    "Present",
+                                    "Unauthorized",
+                                    "Absent",
+                                    "Late",
+                                  ],
                                   colors: [
                                     "rgb(44, 201, 145)",
                                     "rgb(238, 84, 59)",
