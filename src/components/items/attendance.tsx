@@ -99,6 +99,11 @@ function Attendance(props: {
     late?: number,
   ) {
     const total = present + unauthorised + absent + (late ?? 0);
+    if (total === 0) {
+      return late !== undefined
+        ? { present: 0, unauthorised: 0, absent: 0, late: 0 }
+        : { present: 0, unauthorised: 0, absent: 0 };
+    }
 
     const presentPercentage = ((present / total) * 100).toFixed(2);
     const unauthorisedPercentage = ((unauthorised / total) * 100).toFixed(2);
@@ -194,86 +199,98 @@ function Attendance(props: {
                     return (
                       <>
                         <div class="attendance__statutory-left">
-                          <div class="b-graph">
-                            <div class="b-graph__graph">
-                              <SolidApexCharts
-                                ref={chartRef!}
-                                type="donut"
-                                width={210}
-                                height={210}
-                                series={[
-                                  percent.present,
-                                  percent.unauthorised,
-                                  percent.absent,
-                                ]}
-                                options={{
-                                  chart: {
-                                    animations: {
+                          {Object.values(
+                            state.currentMonthStatutory[0].values,
+                          ).every((v) => v === 0) ? (
+                            <div class="w-full h-full flex items-center justify-center">
+                              <h1 class="font-bold text-xl">No Data</h1>
+                            </div>
+                          ) : (
+                            <div class="b-graph">
+                              <div class="b-graph__graph">
+                                <SolidApexCharts
+                                  ref={chartRef!}
+                                  type="donut"
+                                  width={210}
+                                  height={210}
+                                  series={[
+                                    percent.present ?? 0,
+                                    percent.unauthorised ?? 0,
+                                    percent.absent ?? 0,
+                                  ]}
+                                  options={{
+                                    chart: {
+                                      animations: {
+                                        enabled: false,
+                                      },
+                                    },
+                                    labels: [
+                                      "Present",
+                                      "Unauthorized",
+                                      "Absent",
+                                    ],
+                                    colors: [
+                                      "rgb(44, 201, 145)",
+                                      "rgb(238, 84, 59)",
+                                      "rgb(252, 185, 66)",
+                                    ],
+                                    dataLabels: {
                                       enabled: false,
                                     },
-                                  },
-                                  labels: ["Present", "Unauthorized", "Absent"],
-                                  colors: [
-                                    "rgb(44, 201, 145)",
-                                    "rgb(238, 84, 59)",
-                                    "rgb(252, 185, 66)",
-                                  ],
-                                  dataLabels: {
-                                    enabled: false,
-                                  },
-                                  markers: {
-                                    size: 0,
-                                  },
-                                  plotOptions: {
-                                    pie: {
-                                      donut: {
-                                        size: "54%",
-                                        labels: {
-                                          show: false,
-                                        },
-                                      },
-                                      expandOnClick: false,
+                                    markers: {
+                                      size: 0,
                                     },
-                                  },
-                                  legend: {
-                                    show: false,
-                                  },
-                                }}
-                              />
+                                    plotOptions: {
+                                      pie: {
+                                        donut: {
+                                          size: "54%",
+                                          labels: {
+                                            show: false,
+                                          },
+                                        },
+                                        expandOnClick: false,
+                                      },
+                                    },
+                                    legend: {
+                                      show: false,
+                                    },
+                                  }}
+                                />
+                              </div>
+                              <div class="b-graph__aliases">
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(44, 201, 145);"
+                                  />
+                                  Present{" "}
+                                  <span class="__value">
+                                    {percent.present ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(238, 84, 59);"
+                                  />
+                                  Unauthorized{" "}
+                                  <span class="__value">
+                                    {percent.unauthorised ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(252, 185, 66);"
+                                  />
+                                  Absent{" "}
+                                  <span class="__value">
+                                    {percent.absent ?? 0}%
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div class="b-graph__aliases">
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(44, 201, 145);"
-                                />
-                                Present{" "}
-                                <span class="__value">
-                                  {percent.present ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(238, 84, 59);"
-                                />
-                                Unauthorized{" "}
-                                <span class="__value">
-                                  {percent.unauthorised ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(252, 185, 66);"
-                                />
-                                Absent{" "}
-                                <span class="__value">
-                                  {percent.absent ?? 0}%
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                          )}
                         </div>
                         <div class="attendance__statutory-right">
                           <div class="t-header">
@@ -336,86 +353,98 @@ function Attendance(props: {
                     return (
                       <>
                         <div class="attendance__statutory-left">
-                          <div class="b-graph">
-                            <div class="b-graph__graph">
-                              <SolidApexCharts
-                                ref={chartRef!}
-                                type="donut"
-                                width={210}
-                                height={210}
-                                series={[
-                                  percent.present,
-                                  percent.unauthorised,
-                                  percent.absent,
-                                ]}
-                                options={{
-                                  chart: {
-                                    animations: {
+                          {Object.values(
+                            state.currentMonthStatutory[0].values,
+                          ).every((v) => v === 0) ? (
+                            <div class="w-full h-full flex items-center justify-center">
+                              <h1 class="font-bold text-xl">No Data</h1>
+                            </div>
+                          ) : (
+                            <div class="b-graph">
+                              <div class="b-graph__graph">
+                                <SolidApexCharts
+                                  ref={chartRef!}
+                                  type="donut"
+                                  width={210}
+                                  height={210}
+                                  series={[
+                                    percent.present,
+                                    percent.unauthorised,
+                                    percent.absent,
+                                  ]}
+                                  options={{
+                                    chart: {
+                                      animations: {
+                                        enabled: false,
+                                      },
+                                    },
+                                    labels: [
+                                      "Present",
+                                      "Unauthorized",
+                                      "Absent",
+                                    ],
+                                    colors: [
+                                      "rgb(44, 201, 145)",
+                                      "rgb(238, 84, 59)",
+                                      "rgb(252, 185, 66)",
+                                    ],
+                                    dataLabels: {
                                       enabled: false,
                                     },
-                                  },
-                                  labels: ["Present", "Unauthorized", "Absent"],
-                                  colors: [
-                                    "rgb(44, 201, 145)",
-                                    "rgb(238, 84, 59)",
-                                    "rgb(252, 185, 66)",
-                                  ],
-                                  dataLabels: {
-                                    enabled: false,
-                                  },
-                                  markers: {
-                                    size: 0,
-                                  },
-                                  plotOptions: {
-                                    pie: {
-                                      donut: {
-                                        size: "54%",
-                                        labels: {
-                                          show: false,
-                                        },
-                                      },
-                                      expandOnClick: false,
+                                    markers: {
+                                      size: 0,
                                     },
-                                  },
-                                  legend: {
-                                    show: false,
-                                  },
-                                }}
-                              />
+                                    plotOptions: {
+                                      pie: {
+                                        donut: {
+                                          size: "54%",
+                                          labels: {
+                                            show: false,
+                                          },
+                                        },
+                                        expandOnClick: false,
+                                      },
+                                    },
+                                    legend: {
+                                      show: false,
+                                    },
+                                  }}
+                                />
+                              </div>
+                              <div class="b-graph__aliases">
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(44, 201, 145);"
+                                  />
+                                  Present{" "}
+                                  <span class="__value">
+                                    {percent.present ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(238, 84, 59);"
+                                  />
+                                  Unauthorized{" "}
+                                  <span class="__value">
+                                    {percent.unauthorised ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(252, 185, 66);"
+                                  />
+                                  Absent{" "}
+                                  <span class="__value">
+                                    {percent.absent ?? 0}%
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div class="b-graph__aliases">
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(44, 201, 145);"
-                                />
-                                Present{" "}
-                                <span class="__value">
-                                  {percent.present ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(238, 84, 59);"
-                                />
-                                Unauthorized{" "}
-                                <span class="__value">
-                                  {percent.unauthorised ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(252, 185, 66);"
-                                />
-                                Absent{" "}
-                                <span class="__value">
-                                  {percent.absent ?? 0}%
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                          )}
                         </div>
                         <div class="attendance__statutory-right">
                           <div class="t-header">
@@ -458,121 +487,127 @@ function Attendance(props: {
               </div>
             </Show>
             <Show when={state.activePage === "Lesson Academic Year"}>
-              <div class="progress-attendance">
-                <For each={state.lessons}>
-                  {(lesson) => {
-                    const percent = calculatePercent(
-                      lesson.values.present,
-                      lesson.values.unauthorised,
-                      lesson.values.absent,
-                      lesson.values.late,
-                    );
+              {state.lessons.length > 0 ? (
+                <div class="progress-attendance">
+                  <For each={state.lessons}>
+                    {(lesson) => {
+                      const percent = calculatePercent(
+                        lesson.values.present,
+                        lesson.values.unauthorised,
+                        lesson.values.absent,
+                        lesson.values.late,
+                      );
 
-                    return (
-                      <ul>
-                        <li class="__progress-item">
-                          <div class="__title">{lesson.subject || "-"}</div>
-                          <div class="b-graph">
-                            <div class="b-graph__graph">
-                              <SolidApexCharts
-                                ref={chartRef!}
-                                type="donut"
-                                width={210}
-                                height={210}
-                                series={[
-                                  percent.present,
-                                  percent.unauthorised,
-                                  percent.absent,
-                                  percent.late ?? 0,
-                                ]}
-                                options={{
-                                  chart: {
-                                    animations: {
+                      return (
+                        <ul>
+                          <li class="__progress-item">
+                            <div class="__title">{lesson.subject || "-"}</div>
+                            <div class="b-graph">
+                              <div class="b-graph__graph">
+                                <SolidApexCharts
+                                  ref={chartRef!}
+                                  type="donut"
+                                  width={210}
+                                  height={210}
+                                  series={[
+                                    percent.present,
+                                    percent.unauthorised,
+                                    percent.absent,
+                                    percent.late ?? 0,
+                                  ]}
+                                  options={{
+                                    chart: {
+                                      animations: {
+                                        enabled: false,
+                                      },
+                                    },
+                                    labels: [
+                                      "Present",
+                                      "Unauthorized",
+                                      "Absent",
+                                      "Late",
+                                    ],
+                                    colors: [
+                                      "rgb(44, 201, 145)",
+                                      "rgb(238, 84, 59)",
+                                      "rgb(252, 185, 66)",
+                                      "rgb(133, 209, 253)",
+                                    ],
+                                    dataLabels: {
                                       enabled: false,
                                     },
-                                  },
-                                  labels: [
-                                    "Present",
-                                    "Unauthorized",
-                                    "Absent",
-                                    "Late",
-                                  ],
-                                  colors: [
-                                    "rgb(44, 201, 145)",
-                                    "rgb(238, 84, 59)",
-                                    "rgb(252, 185, 66)",
-                                    "rgb(133, 209, 253)",
-                                  ],
-                                  dataLabels: {
-                                    enabled: false,
-                                  },
-                                  markers: {
-                                    size: 0,
-                                  },
-                                  plotOptions: {
-                                    pie: {
-                                      donut: {
-                                        size: "54%",
-                                        labels: {
-                                          show: false,
-                                        },
-                                      },
-                                      expandOnClick: false,
+                                    markers: {
+                                      size: 0,
                                     },
-                                  },
-                                  legend: {
-                                    show: false,
-                                  },
-                                }}
-                              />
+                                    plotOptions: {
+                                      pie: {
+                                        donut: {
+                                          size: "54%",
+                                          labels: {
+                                            show: false,
+                                          },
+                                        },
+                                        expandOnClick: false,
+                                      },
+                                    },
+                                    legend: {
+                                      show: false,
+                                    },
+                                  }}
+                                />
+                              </div>
+                              <div class="b-graph__aliases">
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(44, 201, 145);"
+                                  />
+                                  Present{" "}
+                                  <span class="__value">
+                                    {percent.present ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(238, 84, 59);"
+                                  />
+                                  Unauthorized{" "}
+                                  <span class="__value">
+                                    {percent.unauthorised ?? 0}%
+                                  </span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(252, 185, 66);"
+                                  />
+                                  Absent{" "}
+                                  <span class="__value">{percent.absent}%</span>
+                                </div>
+                                <div class="__alias">
+                                  <span
+                                    class="marker"
+                                    style="border-color: rgb(133, 209, 253);"
+                                  />
+                                  Late{" "}
+                                  <span class="__value">
+                                    {percent.late ?? 0}%
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                            <div class="b-graph__aliases">
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(44, 201, 145);"
-                                />
-                                Present{" "}
-                                <span class="__value">
-                                  {percent.present ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(238, 84, 59);"
-                                />
-                                Unauthorized{" "}
-                                <span class="__value">
-                                  {percent.unauthorised ?? 0}%
-                                </span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(252, 185, 66);"
-                                />
-                                Absent{" "}
-                                <span class="__value">{percent.absent}%</span>
-                              </div>
-                              <div class="__alias">
-                                <span
-                                  class="marker"
-                                  style="border-color: rgb(133, 209, 253);"
-                                />
-                                Late{" "}
-                                <span class="__value">
-                                  {percent.late ?? 0}%
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    );
-                  }}
-                </For>
-              </div>
+                          </li>
+                        </ul>
+                      );
+                    }}
+                  </For>
+                </div>
+              ) : (
+                <div class="t-attendance flex items-center justify-center h-full">
+                  <h1 class="text-center font-bold text-xl">No Data</h1>
+                </div>
+              )}
             </Show>
           </div>
         </div>
