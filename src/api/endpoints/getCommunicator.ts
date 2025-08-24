@@ -1,7 +1,7 @@
 import {
   CommunicatorInboxRequest,
   InboxResponse,
-  OutboxResponse,
+  // OutboxResponse,
 } from "../../types/api/communicator";
 import { v4 as uuid } from "uuid";
 import { callApi } from "../fetch";

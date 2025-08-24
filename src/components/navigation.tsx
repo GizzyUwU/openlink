@@ -9,7 +9,6 @@ import {
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import { useToast } from "./toast";
-import { HiOutlineClock, HiSolidLink } from "solid-icons/hi";
 import { AiOutlineForm } from "solid-icons/ai";
 import { TbCertificate } from "solid-icons/tb";
 import { RiSystemErrorWarningLine } from "solid-icons/ri";

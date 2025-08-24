@@ -179,6 +179,7 @@
 
 .progress-attendance {
     display: grid;
+    flex-grow: 1;
     grid-template-columns: repeat(3, minmax(250px, 1fr));
     overflow-x: hidden;
     overflow-y: auto;
