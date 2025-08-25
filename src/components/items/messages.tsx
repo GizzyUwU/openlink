@@ -200,7 +200,7 @@ function Messages(props: {
                               if (!el) return;
                               const img = new Image();
                               img.crossOrigin = "anonymous";
-                              img.src = `data:image/webp;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage}`;
+                              img.src = `data:image/*;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage}`;
 
                               img.onload = () => {
                                 const canvas = document.createElement("canvas");
@@ -273,7 +273,7 @@ function Messages(props: {
                             <div
                               class="l-photos__photo"
                               style={{
-                                "background-image": `url(data:image/png;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage}`,
+                                "background-image": `url(data:image/*;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage})`,
                               }}
                             ></div>
                           </li>
@@ -315,7 +315,7 @@ function Messages(props: {
 
                               const img = new Image();
                               img.crossOrigin = "anonymous";
-                              img.src = `data:image/png;base64,${state.photos.find((p) => p.id === state.openedMessage[0].sender.id)?.photo || state.defaultImage}`;
+                              img.src = `data:image/*;base64,${state.photos.find((p) => p.id === state.openedMessage[0].sender.id)?.photo || state.defaultImage}`;
 
                               img.onload = () => {
                                 const canvas = document.createElement("canvas");
@@ -388,7 +388,12 @@ function Messages(props: {
                             <div
                               class="l-photos__photo"
                               style={{
-                                "background-image": `url(data:image/png;base64,${state.photos.find((p) => p.id === state.openedMessage[0].sender.id)?.photo}`,
+                                "background-image": `url(data:image/*;base64,${
+                                  state.photos.find(
+                                    (p) =>
+                                      p.id === state.openedMessage[0].sender.id,
+                                  )?.photo ?? state.defaultImage
+                                })`,
                               }}
                             ></div>
                           </li>

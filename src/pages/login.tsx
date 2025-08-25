@@ -1,17 +1,86 @@
-import { createSignal, createEffect, onMount, onCleanup } from "solid-js";
+import { createSignal, onMount, onCleanup } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { useToast } from "../components/toast";
 import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
+import { useNavigate } from "@solidjs/router";
+import { callApi } from "../api/fetch";
 
 declare global {
   interface Window {
-    __TAURI_?: any;
+    __TAURI__?: any;
   }
 }
 
-import { useNavigate } from "@solidjs/router";
-import { callApi } from "../api/fetch";
+async function encryptUserData(state: { username: string; data: string }) {
+  const { getPassword, setPassword } = await import("tauri-plugin-keyring-api");
+  const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
+    const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
+    return Array.from(arr)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  };
+  const hexToBytes = (hex: string) =>
+    new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => parseInt(b, 16)));
+  let encryptKey = await getPassword("edulinkKey", state.username);
+  if (!encryptKey) {
+    const keyArray = crypto.getRandomValues(new Uint8Array(32));
+    encryptKey = bytesToHex(keyArray);
+    await setPassword("edulinkKey", state.username, encryptKey);
+  }
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw",
+    hexToBytes(encryptKey),
+    "AES-GCM",
+    false,
+    ["encrypt", "decrypt"],
+  );
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encoded = new TextEncoder().encode(state.data);
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    cryptoKey,
+    encoded,
+  );
+  const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+  combined.set(iv, 0);
+  combined.set(new Uint8Array(ciphertext), iv.byteLength);
+  return bytesToHex(combined);
+}
+
+async function decryptUserData(state: {
+  username: string;
+  encryptedData: string;
+}) {
+  const { getPassword } = await import("tauri-plugin-keyring-api");
+  const hexToBytes = (hex?: string) => {
+    if (!hex) throw new Error("Invalid hex string");
+    const matches = hex.match(/.{1,2}/g);
+    if (!matches) throw new Error("Hex string has invalid format");
+    return new Uint8Array(matches.map((b) => parseInt(b, 16)));
+  };
+
+  const encryptKey = await getPassword("edulinkKey", state.username);
+  if (!encryptKey) return;
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw",
+    hexToBytes(encryptKey),
+    "AES-GCM",
+    false,
+    ["encrypt", "decrypt"],
+  );
+  if (!state.encryptedData) return;
+  const combined = hexToBytes(state.encryptedData);
+  const iv = combined.slice(0, 12);
+  const ciphertext = combined.slice(12);
+  const decryptedBuffer = await crypto.subtle.decrypt(
+    { name: "AES-GCM", iv },
+    cryptoKey,
+    ciphertext,
+  );
+
+  return new TextDecoder().decode(decryptedBuffer);
+}
 
 function Login() {
   const edulink = useEdulink();
@@ -23,7 +92,6 @@ function Login() {
     password: string;
     schoolData: any;
     loading: boolean;
-    schoolFound: boolean;
     hasText: boolean;
     hasLoginText: boolean;
     demo: boolean;
@@ -33,7 +101,6 @@ function Login() {
     password: "",
     schoolData: {},
     loading: true,
-    schoolFound: false,
     hasText: false,
     hasLoginText: false,
     demo: false,
@@ -52,30 +119,23 @@ function Login() {
   let styleElement: HTMLLinkElement;
   let store: any;
 
-  createEffect(() => {
-    setState("hasText", state.code.trim().length > 0);
-    setState(
-      "hasLoginText",
-      state.username.trim().length > 0 && state.password.trim().length > 0,
-    );
-  });
-
   onMount(async () => {
     styleElement = document.createElement("link");
     styleElement.rel = "stylesheet";
     styleElement.href = "/src/assets/css/login.css";
     document.head.appendChild(styleElement);
-
-    if (window.__TAURI_) {
+    console.log("quack", state.schoolData);
+    if (window.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
       store = await load("users.json", { autoSave: false });
       const users = await store.get("users");
       if (!new URLSearchParams(window.location.search).has("logout")) {
         if (users?.length > 0) {
           const user = users[0];
-          const { getPassword } = await import("tauri-plugin-keyring-api");
-          const userData = await getPassword("EduLink", user.name);
-
+          const userData = await decryptUserData({
+            username: user.name,
+            encryptedData: user.userData,
+          });
           if (userData) {
             const data = JSON.parse(userData);
             if (data.apiUrl && data.id && data.password) {
@@ -89,7 +149,8 @@ function Login() {
               if (accountData.result.success) {
                 setSession(accountData.result);
                 setApiUrl(data.apiUrl);
-                throw navigate("/", { replace: true });
+                navigate("/", { replace: true });
+                return;
               }
             }
           }
@@ -118,7 +179,6 @@ function Login() {
       );
       if (school.result.success) {
         setState("schoolData", school.result);
-        setState("schoolFound", true);
       } else {
         toast.showToast("Error", "Failed to fetch school details", "error");
       }
@@ -155,18 +215,22 @@ function Login() {
         apiUrl: apiUrl(),
         password: state.password,
       };
-      if (window.__TAURI_) {
+      if (window.__TAURI__) {
         const usersResult = await store.get("users");
         const usersArray = usersResult?.value || [];
-        const { setPassword } = await import("tauri-plugin-keyring-api");
+        const encrypted = await encryptUserData({
+          username: state.username,
+          data: JSON.stringify(userData),
+        });
         await store.set("users", [
           ...usersArray,
-          { name: state.username, data: userData },
+          { name: state.username, userData: encrypted },
         ]);
-        await setPassword("EduLink", state.username, JSON.stringify(userData));
+        await store.save();
       }
       setSession(account.result);
-      throw navigate("/", { replace: true });
+      navigate("/", { replace: true });
+      return;
     } else {
       toast.showToast(
         `Request Id ${account.result.metrics.uniqid}`,
@@ -176,13 +240,12 @@ function Login() {
     }
   }
 
-  function resetSchool() {
-    setState("schoolData", null);
-    setState("schoolFound", false);
-    setState("code", "");
-    setState("username", "");
-    setState("password", "");
-  }
+  // function resetSchool() {
+  //   setState("schoolData", null);
+  //   setState("code", "");
+  //   setState("username", "");
+  //   setState("password", "");
+  // }
 
   const handleDemo = async (type: "parent" | "employee" | "learner") => {
     if (!type) return;
@@ -200,40 +263,41 @@ function Login() {
     console.log(account);
     setApiUrl(`demo/${type}`);
     setSession(account.demo.result);
-    throw navigate("/", { replace: true });
+    navigate("/", { replace: true });
+    return;
   };
 
   return (
     <>
       {state.loading ? null : (
         <div class="login-container">
-          {state.schoolFound && (
-            <>
-              <div
-                class="__logo"
-                style={{
-                  "background-size": "70%",
-                  "background-repeat": "no-repeat",
-                  "background-position": "50%",
-                  "background-image": state.schoolData?.establishment?.logo
-                    ? `url(data:image/webp;base64,${state.schoolData.establishment.logo})`
-                    : undefined,
-                }}
-              ></div>
-              <span class="text-white text-[21px] __school-title">
-                {state.schoolData?.establishment?.name || ""}
-              </span>
-            </>
-          )}
+          {Object.keys(state.schoolData).length &&
+            Object.keys(state.schoolData).length > 0 && (
+              <>
+                <div
+                  class="__logo"
+                  style={{
+                    "background-size": "70%",
+                    "background-repeat": "no-repeat",
+                    "background-position": "50%",
+                    "background-image": state.schoolData?.establishment?.logo
+                      ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
+                      : undefined,
+                  }}
+                ></div>
+                <span class="text-white text-[21px] __school-title">
+                  {state.schoolData?.establishment?.name || ""}
+                </span>
+              </>
+            )}
           {!state.demo ? (
             <>
-              {!state.schoolFound ? (
+              {!Object.keys(state.schoolData).length ||
+              Object.keys(state.schoolData).length === 0 ? (
                 <div
                   class="f-login"
                   classList={{
-                    "has-text": state.schoolFound
-                      ? state.hasLoginText
-                      : state.hasText,
+                    "has-text": state.hasText,
                   }}
                   style="max-height: 159px;"
                 >
@@ -250,7 +314,10 @@ function Login() {
                           class="__field"
                           placeholder=" "
                           onInput={(e) =>
-                            setState("code", e.currentTarget.value)
+                            setState({
+                              code: e.currentTarget.value,
+                              hasText: state.code.trim().length > 0,
+                            })
                           }
                         />
                         <span class="__label-text">School ID or Postcode</span>
@@ -276,9 +343,7 @@ function Login() {
                 <div
                   class="f-login"
                   classList={{
-                    "has-text": state.schoolFound
-                      ? state.hasLoginText
-                      : state.hasText,
+                    "has-text": state.hasLoginText,
                   }}
                 >
                   <form
@@ -293,7 +358,12 @@ function Login() {
                           class="__field"
                           placeholder=" "
                           onInput={(e) =>
-                            setState("username", e.currentTarget.value)
+                            setState({
+                              username: e.currentTarget.value,
+                              hasLoginText:
+                                state.username.trim().length > 0 &&
+                                state.password.trim().length > 0,
+                            })
                           }
                         />
                         <span class="__label-text">Username</span>
@@ -307,7 +377,12 @@ function Login() {
                           class="__field"
                           placeholder=" "
                           onInput={(e) =>
-                            setState("password", e.currentTarget.value)
+                            setState({
+                              password: e.currentTarget.value,
+                              hasLoginText:
+                                state.username.trim().length > 0 &&
+                                state.password.trim().length > 0,
+                            })
                           }
                         />
                         <span class="__label-text">Password</span>
