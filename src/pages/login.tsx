@@ -155,6 +155,11 @@ function Login() {
             }
           }
         }
+      } else {
+        if (users?.length > 0) {
+          await store.set("users", {});
+          await store.save();
+        }
       }
     }
     setState("loading", false);

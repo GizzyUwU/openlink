@@ -1,7 +1,6 @@
 import { createEffect, Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 // import { AiOutlineForm } from "solid-icons/ai";
-// import { TbCertificate } from "solid-icons/tb";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
 
