@@ -43,6 +43,9 @@ function Main() {
 
   async function loadItemPage(id: string, name: string) {
     try {
+      if (LoadedComponent()) {
+        setLoadedComponent(null);
+      }
       const mod = await import(`../components/items/${id}.tsx`);
       console.log(mod, id);
       if (!mod.default.name && !mod.default.icon && mod.default.pos) {
