@@ -1,7 +1,7 @@
 import { onMount, onCleanup, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
-import type { Form, FormsResponse } from "../../types/api/forms";
+import type { FormsResponse } from "../../types/api/forms";
 import { useToast } from "../toast";
 import { AiOutlineForm } from "solid-icons/ai";
 import { IoCheckmarkCircleOutline } from "solid-icons/io";

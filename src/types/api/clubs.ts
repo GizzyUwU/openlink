@@ -35,7 +35,7 @@ export interface Club {
   next_session: string;
   learners?: { learner_id: string | number }[];
   leaders?: { id: string | number }[];
-  leaders_name?: string | string[];
+  leaders_names?: string | string[];
   sessions?: Session[];
 }
 

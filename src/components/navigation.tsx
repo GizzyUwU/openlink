@@ -1,6 +1,5 @@
 import { createEffect, Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
-// import { AiOutlineForm } from "solid-icons/ai";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
 
@@ -20,75 +19,6 @@ export default function Navigation(props: {
   openNav?: (fn: (idx: number) => void) => void;
 }) {
   let navWheelRef: HTMLDivElement | undefined;
-
-  // const items = [
-  //   {
-  //     id: "timetable",
-  //     name: "Timetable",
-  //     icon: <HiOutlineClock size={36} />,
-  //     class: "_timetable",
-  //   },
-  //   {
-  //     id: "documents",
-  //     name: "Documents",
-  //     icon: <AiOutlineFileText size={36} />,
-  //     class: "_documents",
-  //   },
-  //   {
-  //     id: "exams",
-  //     name: "Exams",
-  //     icon: <TbCertificate size={36} />,
-  //     class: "_exams",
-  //   },
-  //   {
-  //     id: "behaviour",
-  //     name: "Behaviour",
-  //     icon: <RiSystemErrorWarningLine size={36} />,
-  //     class: "_behaviour",
-  //   },
-  //   {
-  //     id: "achievement",
-  //     name: "Achievement",
-  //     icon: <AiOutlineTrophy size={36} />,
-  //     class: "_achievement",
-  //   },
-  //   {
-  //     id: "attendance",
-  //     name: "Attendance",
-  //     icon: <AiOutlineLineChart size={36} />,
-  //     class: "_attendance_absencemanagement",
-  //   },
-  //   {
-  //     id: "homework",
-  //     name: "Homework",
-  //     icon: <IoBriefcaseOutline size={36} />,
-  //     class: "_homework",
-  //   },
-  //   {
-  //     id: "forms",
-  //     name: "Forms",
-  //     icon: <AiOutlineForm size={36} />,
-  //     class: "_forms",
-  //   },
-  //   {
-  //     id: "links",
-  //     name: "Links",
-  //     icon: <HiSolidLink size={36} />,
-  //     class: "_links",
-  //   },
-  //   {
-  //     id: "clubs",
-  //     name: "Clubs",
-  //     icon: <FaSolidPersonRunning size={36} />,
-  //     class: "_clubs",
-  //   },
-  //   {
-  //     id: "account",
-  //     name: "Account Info",
-  //     icon: <VsAccount size={36} />,
-  //     class: "_account",
-  //   },
-  // ];
 
   const [state, setState] = createStore<{
     showBack: boolean;
@@ -115,53 +45,6 @@ export default function Navigation(props: {
     itemOpacity: Array(items.length).fill(1),
     logoBG: "",
   });
-
-  // async function loadItemPage(id: string, name: string) {
-  //   try {
-  //     const idx = state.activeIdx;
-  //     const mod = await import(`../components/items/${id}.tsx`);
-
-  //     if (idx !== null) {
-  //       setState({
-  //         activeIdx: idx,
-  //         isAnimating: true,
-  //         isSlid: true,
-  //       });
-  //       spinToIndex(idx);
-  //     }
-  //     props.setProgress(0.3);
-  //     props.setLoadedComponent(() => (childProps: any) => (
-  //       <mod.default.component
-  //         {...childProps}
-  //         setProgress={props.setProgress}
-  //         progress={props.progress}
-  //         edulink={edulink}
-  //       />
-  //     ));
-
-  //     if (typeof idx === "number") {
-  //       setState("showBack", true);
-  //     }
-
-  //     await waitForWheelTransition();
-  //     props.navAnimFinished(true);
-  //   } catch (err) {
-  //     console.error(
-  //       `Failed to load component: ../components/items/${id}.tsx`,
-  //       err,
-  //     );
-  //     setState({
-  //       isAnimating: false,
-  //       isSlid: false,
-  //       activeIdx: null,
-  //       showBack: false,
-  //     });
-  //     props.setLoadedComponent(null);
-  //     const prev = document.getElementById("item-box");
-  //     if (prev) prev.remove();
-  //     toast.showToast("Error!", `${name} failed to open.`, "error");
-  //   }
-  // }
 
   const updateSlideX = () => {
     if (navWheelRef) {
@@ -192,37 +75,13 @@ export default function Navigation(props: {
       window.removeEventListener("resize", handleResize);
     });
 
-    // const modules = import.meta.glob("../components/items/*.{tsx,jsx,ts,js}");
-    // for (const loader of Object.values(modules)) {
-    //   loader().then((mod: any) => {
-    //     const def = mod.default;
-    //     const iconComponent: Component =
-    //       typeof def.icon === "function" ? def.icon : () => def.icon;
-
-    //     const newItem: Item = {
-    //       id: def.name.toLowerCase().replace(/\s+/g, ""),
-    //       name: def.name,
-    //       icon: iconComponent,
-    //       class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
-    //       component: def.component,
-    //       pos: def.pos,
-    //     };
-
-    //     setItems((prev) => {
-    //       const newArr = [...prev, newItem];
-    //       newArr.sort((a, b) => a.pos - b.pos);
-    //       return newArr;
-    //     });
-    //   });
-    // }
-
     const logoBase64 = props.sessionData().establishment?.logo;
     if (!logoBase64) return;
 
     const dominantColor = await new Promise<string | null>((resolve) => {
       const img = new Image();
       img.crossOrigin = "anonymous";
-      img.src = `data:image/webp;base64,${logoBase64}`;
+      img.src = `data:*;base64,${logoBase64}`;
 
       img.onload = () => {
         const canvas = document.createElement("canvas");

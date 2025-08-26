@@ -1,6 +1,6 @@
 import "../assets/css/main.css";
 import { makePersisted } from "@solid-primitives/storage";
-import { createSignal } from "solid-js";
+import { createSignal, JSXElement } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { Show, onMount, createMemo, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
@@ -19,10 +19,12 @@ function Main() {
     progress: number;
     navWheelAnim: boolean;
     screenWidth: number;
+    overlay: JSXElement | null;
   }>({
     progress: 0,
     navWheelAnim: false,
     screenWidth: window.innerWidth,
+    overlay: null,
   });
 
   function waitForWheelTransition() {
@@ -53,6 +55,7 @@ function Main() {
           setProgress={(value: number) => setState("progress", value)}
           progress={() => state.progress}
           edulink={edulink}
+          setOverlay={(value: JSXElement) => setState("overlay", value)}
         />
       ));
 
@@ -146,7 +149,11 @@ function Main() {
             </div>
           )}
         </Show>
-
+        <Show when={state.overlay !== null}>
+          <div class="t-overlay items-center justify-center">
+            {state.overlay}
+          </div>
+        </Show>
         <Footer
           sessionData={sessionData}
           apiUrl={apiUrl}

@@ -12,6 +12,7 @@
     height: 100%;
     flex-grow: 1;
     min-height: 0;
+    box-sizing: border-box;
 }
 
 .t-container {
@@ -21,6 +22,7 @@
     min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
+    box-sizing: border-box;
 }
 
 .t-clubs {
@@ -30,7 +32,6 @@
     min-height: 0;
     background: #fff;
     border-radius: 5px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -38,6 +39,7 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+    position: relative;
 }
 
 .t-header {
@@ -63,7 +65,16 @@
     text-align: center;
 }
 
-.t-header > span {
+.t-club-header,
+.t-club-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 75px 75px;
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-header > span,
+.t-club-header > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,7 +84,8 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-row > span,
+.t-club-row > span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +103,7 @@
 }
 
 .t-row > ._name,
-.t-row > ._session {
+.t-club-row > ._date {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;

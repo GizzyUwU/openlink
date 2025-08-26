@@ -504,3 +504,23 @@ ul {
     opacity: 0.8;
     color: #e3eaf6;
 }
+
+.t-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-grow: 1;
+    min-height: 0;
+    background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
+    z-index: 60;
+    display: flex;
+    flex-direction: column;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+}
