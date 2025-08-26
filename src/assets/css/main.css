@@ -1,4 +1,4 @@
-.container {
+.openlink-container {
     align-items: stretch;
     background: linear-gradient(0deg, #404b64, #4f596f) #4f596f;
     display: flex;
@@ -8,13 +8,13 @@
     position: relative;
 }
 
-.s-header {
+.openlink-s-header {
     max-height: 65px;
     padding: 15px 16px;
     position: relative;
 }
 
-.s-header .__inner .__gradient {
+.openlink-s-header .openlink__inner .openlink__gradient {
     background-image: linear-gradient(
         to left,
         rgb(130, 130, 198),
@@ -24,7 +24,7 @@
     width: 100%;
 }
 
-.s-header .__inner:before {
+.openlink-s-header .openlink__inner:before {
     background: url(../img/header.png) 0 0 repeat-x;
     content: "";
     display: block;
@@ -32,8 +32,8 @@
     position: relative;
 }
 
-.s-header .__inner,
-.s-header .__inner:before {
+.openlink-s-header .openlink__inner,
+.openlink-s-header .openlink__inner:before {
     height: 100%;
     left: 0;
     position: absolute;
@@ -41,7 +41,7 @@
     width: 100%;
 }
 
-.s-header .__container {
+.openlink-s-header .openlink__container {
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -51,7 +51,7 @@
     z-index: 6;
 }
 
-.s-header:after {
+.openlink-s-header:after {
     background-color: #fff;
     bottom: 0;
     content: "";
@@ -64,13 +64,13 @@
     z-index: 6;
 }
 
-.progress-wrapper {
+.openlink-progress-wrapper {
     width: 100%;
     height: 2px;
     overflow: hidden;
 }
 
-.progress-bar {
+.openlink-progress-bar {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -82,11 +82,11 @@
     z-index: 10;
 }
 
-.pr-user ._animated {
+.openlink-pr-user .openlink_animated {
     opacity: 1;
 }
 
-.pr-user {
+.openlink-pr-user {
     align-items: center;
     display: flex;
     position: relative;
@@ -94,18 +94,18 @@
     justify-content: flex-end;
 }
 
-.pr-user .__info,
-.pr-user .__info:after {
+.openlink-pr-user .openlink__info,
+.openlink-pr-user .openlink__info:after {
     display: inline-block;
     vertical-align: middle;
 }
 
-.pr-user .__info {
+.openlink-pr-user .openlink__info {
     cursor: pointer;
     font-size: 0;
 }
 
-.pr-user .__avatar {
+.openlink-pr-user .openlink__avatar {
     background: #3c424e;
     background-position: 50%;
     background-size: cover;
@@ -118,7 +118,7 @@
     z-index: 100;
 }
 
-.pr-user .__text {
+.openlink-pr-user .openlink__text {
     color: #fff;
     display: inline-block;
     font-size: 16px;
@@ -126,11 +126,11 @@
     vertical-align: middle;
 }
 
-.pr-user .__name {
+.openlink-pr-user .openlink__name {
     font-weight: 700;
 }
 
-.pr-user .__settings {
+.openlink-pr-user .openlink__settings {
     display: block;
     height: 40px;
     position: relative;
@@ -140,7 +140,7 @@
     color: white;
 }
 
-.nav-wheel {
+.openlink-nav-wheel {
     display: block;
     height: 100vh;
     left: 0;
@@ -151,7 +151,7 @@
     z-index: 2;
 }
 
-.nav-wheel .__container {
+.openlink-nav-wheel .openlink__container {
     bottom: 0;
     bottom: 11px;
     display: block;
@@ -165,23 +165,23 @@
     width: 332px;
 }
 
-.nav-wheel .__loaded {
+.openlink-nav-wheel .openlink__loaded {
     pointer-events: all;
 }
 
-.nav-wheel .__container .__artboard {
+.openlink-nav-wheel .openlink__container .openlink__artboard {
     background: rgba(0, 0, 0, 0.3);
     height: 332px;
     width: 332px;
 }
 
-.nav-wheel .__container .__artboard,
-.nav-wheel .__container .__logo-wrap {
+.openlink-nav-wheel .openlink__container .openlink__artboard,
+.openlink-nav-wheel .openlink__container .openlink__logo-wrap {
     border-radius: 50%;
     position: absolute;
 }
 
-.nav-wheel .__container .__logo-wrap {
+.openlink-nav-wheel .openlink__container .openlink__logo-wrap {
     background: #333;
     bottom: 0;
     display: block;
@@ -193,7 +193,7 @@
     width: 190px;
 }
 
-.nav-wheel .__container .__logo-wrap .__logo {
+.openlink-nav-wheel .openlink__container .openlink__logo-wrap .openlink__logo {
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: 70%;
@@ -206,24 +206,24 @@ ul {
     list-style: none;
 }
 
-.nav-wheel .__container .__list {
+.openlink-nav-wheel .openlink__container .openlink__list {
     left: 50%;
     position: absolute;
     top: 50%;
 }
 
-.nav-wheel .__container .__list .__item {
+.openlink-nav-wheel .openlink__container .openlink__list .openlink__item {
     cursor: pointer;
     padding: 8px;
     position: absolute;
     transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 166, 0);
 }
 
-.nav-wheel .__item .__inner {
+.openlink-nav-wheel .openlink__item .openlink__inner {
     position: relative;
 }
 
-.nav-wheel .__item .__inner .__item-name {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink__item-name {
     color: #fff;
     line-height: 64px;
     position: absolute;
@@ -237,7 +237,7 @@ ul {
     font-size: 10px;
 }
 
-.nav-wheel .__item .__inner .__item-link {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink__item-link {
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -247,142 +247,157 @@ ul {
     color: white;
 }
 
-.nav-wheel .__item .__inner .__timetable {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink__timetable {
     background-color: #ea6767;
     background-image: linear-gradient(to top left, #e85858, #eb6f6f);
 }
 
-.nav-wheel .__item .__inner ._clubs {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_clubs {
     background-color: #ecab39;
     background-image: linear-gradient(to top left, #ebb326, #eb9e3d);
 }
 
-.nav-wheel .__item .__inner ._attendance,
-.nav-wheel .__item .__inner ._parentevent {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_attendance,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_parentevent {
     background-color: #ec9443;
     background-image: linear-gradient(to top left, #eb913d, #eb9e3d);
 }
 
-.nav-wheel .__item .__inner ._medical,
-.nav-wheel .__item .__inner ._youhq_studentsnapshotreport {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_medical,
+.openlink-nav-wheel
+    .openlink__item
+    .openlink__inner
+    .openlink_youhq_studentsnapshotreport {
     background-color: #d74190;
     background-image: linear-gradient(to top left, #d63b77, #d63b8d);
 }
 
-.nav-wheel .__item .__inner ._calendar {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_calendar {
     background-color: #20c1ae;
     background-image: linear-gradient(to top left, #1db09f, #21c6b2);
 }
 
-.nav-wheel .__item .__inner ._behaviour_detentionmanagement,
-.nav-wheel .__item .__inner ._communicator,
-.nav-wheel .__item .__inner ._marksheets,
-.nav-wheel .__item .__inner ._timetable {
+.openlink-nav-wheel
+    .openlink__item
+    .openlink__inner
+    .openlink_behaviour_detentionmanagement,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_communicator,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_marksheets,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_timetable {
     background-color: #ea6767;
     background-image: linear-gradient(to top left, #e85858, #eb6f6f);
 }
 
-.nav-wheel .__item .__inner ._catering {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_catering {
     background-color: #ff7662;
     background-image: linear-gradient(to top left, #368242, #66af4e);
 }
 
-.nav-wheel .__item .__inner ._account {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_account {
     background-color: #7b60d8;
     background-image: linear-gradient(to top left, #5f62d8, #845fd8);
 }
 
-.nav-wheel .__item .__inner ._medicaltest {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_medicaltest {
     background-color: #dd4732;
     background-image: linear-gradient(to top left, #d73924, #de4b37);
 }
 
-.nav-wheel .__item .__inner ._attendance-reporting {
+.openlink-nav-wheel
+    .openlink__item
+    .openlink__inner
+    .openlink_attendance-reporting {
     background-color: #8b77d2;
     background-image: linear-gradient(to top left, #585984, #7965a9);
 }
 
-.nav-wheel .__item .__inner ._contact,
-.nav-wheel .__item .__inner ._profiles {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_contact,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_profiles {
     background-color: #51c288;
     background-image: linear-gradient(to top left, #42bc7d, #55c38a);
 }
 
-.nav-wheel .__item .__inner ._employeecallout,
-.nav-wheel .__item .__inner ._links {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_employeecallout,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_links {
     background-color: #1fd6f3;
     background-image: linear-gradient(to top left, #3f8662, #18d5f3);
 }
 
-.nav-wheel .__item .__inner ._documents {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_documents {
     background-color: #ab599a;
     background-image: linear-gradient(to top left, #a0518f, #ad5d9d);
 }
 
-.nav-wheel .__item .__inner ._analytics,
-.nav-wheel .__item .__inner ._assessment {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_analytics,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_assessment {
     background-color: #d74188;
     background-image: linear-gradient(to top left, #d4307d, #d8458a);
 }
 
-.nav-wheel .__item .__inner ._documents_message,
-.nav-wheel .__item .__inner ._learners {
+.openlink-nav-wheel
+    .openlink__item
+    .openlink__inner
+    .openlink_documents_message,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_learners {
     background-color: #55aed6;
     background-image: linear-gradient(to top left, #44a5d2, #59afd7);
 }
 
-.nav-wheel .__item .__inner ._achievement,
-.nav-wheel .__item .__inner ._exams {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_achievement,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_exams {
     background-color: #fb6d60;
     background-image: linear-gradient(to top left, #509dd5, #50b2d5);
 }
 
-.nav-wheel .__item .__inner ._attainment,
-.nav-wheel .__item .__inner ._behaviour,
-.nav-wheel .__item .__inner ._resourcebooking {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_attainment,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_behaviour,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_resourcebooking {
     background-color: #a7589c;
     background-image: linear-gradient(to top left, #985599, #ab5596);
 }
 
-.nav-wheel .__item .__inner ._childprotection,
-.nav-wheel .__item .__inner ._exam,
-.nav-wheel .__item .__inner ._homework,
-.nav-wheel .__item .__inner ._noticeboard,
-.nav-wheel .__item .__inner ._registers {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_childprotection,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_exam,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_homework,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_noticeboard,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_registers {
     background-color: #5883c5;
     background-image: linear-gradient(to top left, #6e76c0, #3988c6);
 }
 
-.nav-wheel .__item .__inner ._sen {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_sen {
     background-color: #7b60d8;
     background-image: linear-gradient(to top left, #5f62d8, #3988c6);
 }
 
-.nav-wheel .__item .__inner ._forms {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_forms {
     background-color: #02af71;
     background-image: linear-gradient(to top left, #029661, #02af71);
 }
 
-.nav-wheel .__item .__inner ._back button,
-.nav-wheel .__item .__inner ._submenu button {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_back button,
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_submenu button {
     background-color: #7b60d8;
     background-image: linear-gradient(to top left, #dca424, #ffc33b);
 }
 
-.nav-wheel .__item .__inner ._datacollection,
-.nav-wheel .__item .__inner ._datacollection_manage {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_datacollection,
+.openlink-nav-wheel
+    .openlink__item
+    .openlink__inner
+    .openlink_datacollection_manage {
     background-color: #8b56ad;
 }
 
-.nav-wheel .__item .__inner ._seating_viewall {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_seating_viewall {
     background-color: #8282c6;
 }
 
-.nav-wheel .__item .__inner ._payments_squid {
+.openlink-nav-wheel .openlink__item .openlink__inner .openlink_payments_squid {
     background-color: #e07;
 }
 
-.nav-wheel .__item .__inner ._payments_ipayimpact {
+.openlink-nav-wheel .__item .__inner ._payments_ipayimpact {
     background-color: #5b7cc2;
 }
 
@@ -407,7 +422,7 @@ ul {
     }
 }
 
-.s-footer {
+.openlink-s-footer {
     background: rgba(81, 191, 187, 0.1);
     padding: 5px 0;
     position: relative;
@@ -415,18 +430,14 @@ ul {
     margin-top: auto;
 }
 
-.s-footer .__footer-container {
+.openlink-s-footer .openlink__footer-container {
     display: flex;
     height: 70px;
     margin: 0 auto;
     max-width: 1024px;
 }
 
-.s-footer .__footer-item {
-    opacity: 1;
-}
-
-.s-footer .__footer-item {
+.openlink-s-footer .openlink__footer-item {
     cursor: pointer;
     flex-grow: 1;
     max-width: 40%;
@@ -434,14 +445,15 @@ ul {
     transition: opacity 0.2s ease-out;
     align-items: center;
     display: flex;
+    opacity: 1;
 }
 
-.s-footer .pr-couple {
+.openlink-s-footer .openlink-pr-couple {
     display: flex;
     align-items: center;
 }
 
-.s-footer .pr-couple .__footer-icon {
+.openlink-s-footer .openlink-pr-couple .openlink__footer-icon {
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -454,7 +466,7 @@ ul {
     color: white;
 }
 
-.s-footer .pr-couple .__footer-content {
+.openlink-s-footer .openlink-pr-couple .openlink__footer-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -463,7 +475,10 @@ ul {
     height: 100%;
 }
 
-.s-footer .pr-couple .__footer-content .__footer-title {
+.openlink-s-footer
+    .openlink-pr-couple
+    .openlink__footer-content
+    .openlink__footer-title {
     font-size: 10px;
     opacity: 0.5;
     font-weight: 700;
@@ -471,13 +486,19 @@ ul {
     color: #e0e6f6;
 }
 
-.s-footer .pr-couple .__footer-content .__footer-body {
+.openlink-s-footer
+    .openlink-pr-couple
+    .openlink__footer-content
+    .openlink__footer-body {
     font-size: 12px;
     font-weight: 700;
     color: #fff;
 }
 
-.s-footer .pr-couple .__footer-content .__footer {
+.openlink-s-footer
+    .openlink-pr-couple
+    .openlink__footer-content
+    .openlink__footer {
     font-size: 11px;
     font-weight: 400;
     opacity: 0.8;

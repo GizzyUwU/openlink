@@ -34,24 +34,24 @@ export default function Footer(props: {
   const [status, setStatus] = createSignal<any>({});
 
   return (
-    <div class="s-footer">
-      <div class="__footer-container">
-        <div class="__footer-item">
+    <div class="openlink-s-footer">
+      <div class="openlink__footer-container">
+        <div class="openlink__footer-item">
           {status().lessons?.current && (
-            <div class="pr-couple">
+            <div class="openlink-pr-couple">
               <span
-                class="__footer-icon"
+                class="openlink__footer-icon"
                 style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
               >
                 <Icon icon="mdi:clock-outline" width="24" height="24"></Icon>
               </span>
-              <span class="__footer-content">
-                <span class="__footer-title">Current Lesson</span>
-                <span class="__footer-body">
+              <span class="openlink__footer-content">
+                <span class="openlink__footer-title">Current Lesson</span>
+                <span class="openlink__footer-body">
                   {status().lessons.current.teaching_group.subject} -{" "}
                   {status().lessons.current.teaching_group.name}
                 </span>
-                <span class="__footer">
+                <span class="openlink__footer">
                   {status().lessons.current.room.name} /{" "}
                   {(() => {
                     const lesson = status().lessons.current;
@@ -90,11 +90,11 @@ export default function Footer(props: {
             </div>
           )}
         </div>
-        <div class="__footer-item">
+        <div class="openlink__footer-item">
           {status().lessons?.next && (
-            <div class="pr-couple">
+            <div class="openlink-pr-couple">
               <span
-                class="__footer-icon"
+                class="openlink__footer-icon"
                 style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
               >
                 <Icon
@@ -103,13 +103,13 @@ export default function Footer(props: {
                   height="20"
                 ></Icon>
               </span>
-              <span class="__footer-content">
-                <span class="__footer-title">Next Lesson</span>
-                <span class="__footer-body">
+              <span class="openlink__footer-content">
+                <span class="openlink__footer-title">Next Lesson</span>
+                <span class="openlink__footer-body">
                   {status().lessons.next.teaching_group.subject} -{" "}
                   {status().lessons.next.teaching_group.name}
                 </span>
-                <span class="__footer">
+                <span class="openlink__footer">
                   {status().lessons.next.room.name} /{" "}
                   {(() => {
                     const lesson = status().lessons.next;
@@ -149,19 +149,19 @@ export default function Footer(props: {
           )}
         </div>
         <div
-          class="__footer-item"
+          class="openlink__footer-item"
           onClick={() => props.loadItemPage("messages", "Messages")}
         >
-          <div class="pr-couple">
+          <div class="openlink-pr-couple">
             <span
-              class="__footer-icon"
+              class="openlink__footer-icon"
               style="background-image: linear-gradient(135deg, rgb(253, 107, 92), rgb(235, 87, 86));"
             >
               <Icon icon="ic:outline-email" width="24" height="24"></Icon>
             </span>
-            <span class="__footer-content">
-              <span class="__footer-title">Messages</span>
-              <span class="__footer-body">
+            <span class="openlink__footer-content">
+              <span class="openlink__footer-title">Messages</span>
+              <span class="openlink__footer-body">
                 {status().new_messages || 0} new message
               </span>
             </span>

@@ -354,14 +354,14 @@ export default function Navigation(props: {
   }
 
   return (
-    <div class="nav-wheel">
+    <div class="openlink-nav-wheel">
       <div
-        class="__container __loaded"
+        class="openlink__container openlink__loaded"
         id="nav-wheel"
         ref={(el) => (navWheelRef = el)}
         style={navWheelContainerStyle()}
       >
-        <div class="__artboard"></div>
+        <div class="openlink__artboard"></div>
         <Transition
           appear={false}
           onExit={(el: Element, done) => {
@@ -389,13 +389,13 @@ export default function Navigation(props: {
         >
           <Show when={!state.isLogoGone}>
             <div
-              class="__logo-wrap"
+              class="openlink__logo-wrap"
               style={{
                 "background-color": state.logoBG,
               }}
             >
               <div
-                class="__logo"
+                class="openlink__logo"
                 style={{
                   "background-image": `url(data:image/webp;base64,${props.sessionData().establishment?.logo || ""})`,
                 }}
@@ -412,19 +412,19 @@ export default function Navigation(props: {
           exitClass="opacity-100"
           exitToClass="opacity-0"
         >
-          <ul class="__list" style={navWheelListStyle()}>
+          <ul class="openlink__list" style={navWheelListStyle()}>
             <For each={items}>
               {(item, i) => (
                 <li
-                  class="__item"
+                  class="openlink__item"
                   style={getItemStyle(
                     166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
                     166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length)),
                   )}
                 >
-                  <div class="__inner">
+                  <div class="openlink__inner">
                     <a
-                      class={`__item-link ${item.class}`}
+                      class={`openlink__item-link ${item.class}`}
                       href={`/dash/#${item.id}`}
                       title={item.name}
                       onClick={(e) => {

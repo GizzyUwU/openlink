@@ -2,10 +2,9 @@ import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
-import { IoCheckmarkCircleOutline } from "solid-icons/io";
 import { ImCross } from "solid-icons/im";
 import { Transition } from "solid-transition-group";
-import { IoBriefcaseOutline } from "solid-icons/io";
+import { IoBriefcaseOutline, IoCheckmarkCircleOutline } from "solid-icons/io";
 import { HomeworkResponse } from "../../types/api/homework";
 import { useToast } from "../toast";
 function Homework(props: {

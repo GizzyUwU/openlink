@@ -31,7 +31,7 @@ export const items: Item[] = Object.values(modules)
       id: def.name.toLowerCase().replace(/\s+/g, ""),
       name: def.name,
       icon: iconComponent,
-      class: `_${def.name.toLowerCase().replace(/\s+/g, "")}`,
+      class: `openlink_${def.name.toLowerCase().replace(/\s+/g, "")}`,
       component: def.component,
       pos: def.pos,
     };

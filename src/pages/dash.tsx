@@ -104,7 +104,7 @@ function Main() {
   );
   return (
     <Show when={sessionData() && Object.keys(sessionData()).length > 0}>
-      <div class="container">
+      <div class="openlink-container">
         <Header
           progress={() => state.progress}
           setSession={setSession}

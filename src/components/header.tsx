@@ -47,16 +47,16 @@ export default function Header(props: {
   });
 
   return (
-    <div class="s-header">
-      <div class="__inner">
-        <div class="__gradient"></div>
+    <div class="openlink-s-header">
+      <div class="openlink__inner">
+        <div class="openlink__gradient"></div>
       </div>
-      <div class="__container">
-        <div class="pr-user _animated">
+      <div class="openlink__container">
+        <div class="openlink-pr-user _animated">
           <div class="relative inline-block text-left">
             <button
               type="button"
-              class="__settings cursor-pointer"
+              class="openlink__settings cursor-pointer"
               onClick={() => setOpen(!open())}
             >
               <HiOutlineCog6Tooth class="w-6 h-6 text-white" />
@@ -81,16 +81,16 @@ export default function Header(props: {
               </div>
             </Show>
           </div>
-          <div class="__info">
+          <div class="openlink__info">
             <div
-              class="__avatar"
+              class="openlink__avatar"
               style={{
                 "background-image": `url(data:image/webp;base64,${props.sessionData()?.user?.avatar?.photo || "default-avatar-data"})`,
               }}
             ></div>
-            <div class="__text">
+            <div class="openlink__text">
               Hello,&nbsp;
-              <span class="__name">
+              <span class="openlink__name">
                 {props.sessionData()?.user?.forename +
                   " " +
                   props.sessionData()?.user?.surname || ""}
@@ -99,10 +99,10 @@ export default function Header(props: {
           </div>
         </div>
       </div>
-      <div class="progress-wrapper">
+      <div class="openlink-progress-wrapper">
         <div
           ref={(el) => (progressBarRef = el)}
-          class="progress-bar"
+          class="openlink-progress-bar"
           style={{
             transform: `translateX(${((props.progress() ?? 0) - 1) * 100}%)`,
             opacity: fadeOut() ? 0 : 1,
