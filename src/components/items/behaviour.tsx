@@ -6,7 +6,6 @@ import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { BehaviourResponse } from "../../types/api/behaviour";
-import clsx from "clsx";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
@@ -200,9 +199,7 @@ function BehaviourComponent(props: {
             <div class={styles()!["t-behaviour"]}>
               <div class={styles()!["t-header"]}>
                 <div>Type & Date</div>
-                <div>
-                  Comment & Teacher
-                </div>
+                <div>Comment & Teacher</div>
                 <div>Action & Info</div>
                 <div>Location & Status</div>
                 <div>Points</div>
@@ -225,11 +222,7 @@ function BehaviourComponent(props: {
                         </div>
                       </div>
                     </div>
-                    <div
-                      class={
-                        styles()!["_comment_teacher"]
-                      }
-                    >
+                    <div class={styles()!["_comment_teacher"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -249,11 +242,7 @@ function BehaviourComponent(props: {
                         <div>{behaviour.comments || "-"}</div>
                       </div>
                     </div>
-                    <div
-                      class={
-                        styles()!["_action_info"]
-                      }
-                    >
+                    <div class={styles()!["_action_info"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -266,11 +255,7 @@ function BehaviourComponent(props: {
                         <div>{behaviour.lesson_information}</div>
                       </div>
                     </div>
-                    <div
-                      class={
-                        styles()!["_loc_status"]
-                      }
-                    >
+                    <div class={styles()!["_loc_status"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -322,46 +307,22 @@ function BehaviourComponent(props: {
                 {state.detentions.map(
                   (detention: BehaviourResponse.DetentionsType) => (
                     <div class={styles()!["t-detentions-row"]}>
-                      <div
-                        class={
-                          styles()!["_date"]
-                        }
-                      >
+                      <div class={styles()!["_date"]}>
                         {formatDate(detention.date)}
                       </div>
-                      <div
-                        class={
-                          styles()!["_type"]
-                        }
-                      >
+                      <div class={styles()!["_type"]}>
                         {detention.description || "-"}
                       </div>
-                      <div
-                        class={
-                          styles()!["_loc"]
-                        }
-                      >
+                      <div class={styles()!["_loc"]}>
                         {detention.location || "-"}
                       </div>
-                      <div
-                        class={
-                          styles()!["_start"]
-                        }
-                      >
+                      <div class={styles()!["_start"]}>
                         {detention.start_time || "-"}
                       </div>
-                      <div
-                        class={
-                          styles()!["_end"]
-                        }
-                      >
+                      <div class={styles()!["_end"]}>
                         {detention.end_time || "-"}
                       </div>
-                      <div
-                        class={
-                          styles()!["_attended"]
-                        }
-                      >
+                      <div class={styles()!["_attended"]}>
                         {detention.attended || "-"}
                       </div>
                     </div>

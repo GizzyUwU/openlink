@@ -8,7 +8,6 @@ import { createStore } from "solid-js/store";
 import type { AttendanceResponse } from "../../types/api/attendance";
 import type ApexCharts from "apexcharts";
 import { SolidApexCharts } from "solid-apexcharts";
-import clsx from "clsx";
 function Attendance(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -168,6 +167,7 @@ function Attendance(props: {
                     type="button"
                     onClick={() => {
                       if (state.activePage === name) return;
+                      console.log(name);
                       setState("activePage", name);
                     }}
                     class={`text-sm text-white cursor-pointer ${
@@ -204,8 +204,12 @@ function Attendance(props: {
                           {Object.values(
                             state.currentMonthStatutory[0].values,
                           ).every((v) => v === 0) ? (
-                            <div class={styles()!["no-data"]}>
-                              <h1 class={styles()!["no-data-text"]}>No Data</h1>
+                            <div
+                              class={`${styles()!["t-attendance"]} flex items-center justify-center h-full`}
+                            >
+                              <h1 class="text-center font-bold text-xl">
+                                No Data
+                              </h1>
                             </div>
                           ) : (
                             <div class={styles()!["b-graph"]}>
@@ -284,42 +288,10 @@ function Attendance(props: {
                         </div>
                         <div class={styles()!["attendance__statutory-right"]}>
                           <div class={styles()!["t-header"]}>
-                            <div
-                              class={
-                                styles()!["t-header__title"] +
-                                " " +
-                                styles()!["_description"]
-                              }
-                            >
-                              Description
-                            </div>
-                            <div
-                              class={
-                                styles()!["t-header__title"] +
-                                " " +
-                                styles()!["_date"]
-                              }
-                            >
-                              Date
-                            </div>
-                            <div
-                              class={
-                                styles()!["t-header__title"] +
-                                " " +
-                                styles()!["_type"]
-                              }
-                            >
-                              Type
-                            </div>
-                            <div
-                              class={
-                                styles()!["t-header__title"] +
-                                " " +
-                                styles()!["_period"]
-                              }
-                            >
-                              Period
-                            </div>
+                            <div>Description</div>
+                            <div>Date</div>
+                            <div>Type</div>
+                            <div>Period</div>
                           </div>
                           <div class={styles()!["t-body"]}>
                             <For
@@ -329,8 +301,6 @@ function Attendance(props: {
                                 <div class={styles()!["t-row"]}>
                                   <div
                                     class={
-                                      styles()!["t-timetable__text"] +
-                                      " " +
                                       styles()!["_description"] +
                                       " " +
                                       styles()!["_grey"]
@@ -338,22 +308,12 @@ function Attendance(props: {
                                   >
                                     {exception.description}
                                   </div>
-                                  <div
-                                    class={
-                                      styles()!["t-timetable__text"] +
-                                      " " +
-                                      styles()!["_description"] +
-                                      " " +
-                                      styles()!["_grey"]
-                                    }
-                                  >
+                                  <div class={styles()!["_grey"]}>
                                     {exception.date}
                                   </div>
                                   <div
                                     class={
-                                      styles()!["t-timetable__text"] +
-                                      " " +
-                                      styles()!["_description"] +
+                                      styles()!["_type"] +
                                       " " +
                                       styles()!["_grey"]
                                     }
@@ -362,9 +322,179 @@ function Attendance(props: {
                                   </div>
                                   <div
                                     class={
-                                      styles()!["t-timetable__text"] +
+                                      styles()!["_period"] +
                                       " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
+                                    {exception.period}
+                                  </div>
+                                </div>
+                              )}
+                            </For>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </Show>
+                <Show when={state.activePage === "Statutory Academic Year"}>
+                  {(() => {
+                    const totals = state.statutory.reduce(
+                      (acc, item) => {
+                        const values = item.values ?? {
+                          present: 0,
+                          unauthorised: 0,
+                          absent: 0,
+                        };
+                        acc.present += values.present;
+                        acc.unauthorised += values.unauthorised;
+                        acc.absent += values.absent;
+                        return acc;
+                      },
+                      { present: 0, unauthorised: 0, absent: 0 },
+                    );
+                    const percent = calculatePercent(
+                      totals.present,
+                      totals.unauthorised,
+                      totals.absent,
+                    );
+
+                    return (
+                      <>
+                        <div class={styles()!["attendance__statutory-left"]}>
+                          {Object.values(
+                            state.currentMonthStatutory[0].values,
+                          ).every((v) => v === 0) ? (
+                            <div class="w-full h-full flex items-center justify-center">
+                              <h1 class="font-bold text-xl">No Data</h1>
+                            </div>
+                          ) : (
+                            <div class={styles()!["b-graph"]}>
+                              <div class={styles()!["b-graph__graph"]}>
+                                <SolidApexCharts
+                                  ref={chartRef!}
+                                  type="donut"
+                                  width={210}
+                                  height={210}
+                                  series={[
+                                    percent.present,
+                                    percent.unauthorised,
+                                    percent.absent,
+                                  ]}
+                                  options={{
+                                    chart: {
+                                      animations: {
+                                        enabled: false,
+                                      },
+                                    },
+                                    labels: [
+                                      "Present",
+                                      "Unauthorized",
+                                      "Absent",
+                                    ],
+                                    colors: [
+                                      "rgb(44, 201, 145)",
+                                      "rgb(238, 84, 59)",
+                                      "rgb(252, 185, 66)",
+                                    ],
+                                    dataLabels: {
+                                      enabled: false,
+                                    },
+                                    markers: {
+                                      size: 0,
+                                    },
+                                    plotOptions: {
+                                      pie: {
+                                        donut: {
+                                          size: "54%",
+                                          labels: {
+                                            show: false,
+                                          },
+                                        },
+                                        expandOnClick: false,
+                                      },
+                                    },
+                                    legend: {
+                                      show: false,
+                                    },
+                                  }}
+                                />
+                              </div>
+                              <div class={styles()!["b-graph__aliases"]}>
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
+                                    style="border-color: rgb(44, 201, 145);"
+                                  />
+                                  Present{" "}
+                                  <div class={styles()!["__value"]}>
+                                    {percent.present ?? 0}%
+                                  </div>
+                                </div>
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
+                                    style="border-color: rgb(238, 84, 59);"
+                                  />
+                                  Unauthorized{" "}
+                                  <div class={styles()!["__value"]}>
+                                    {percent.unauthorised ?? 0}%
+                                  </div>
+                                </div>
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
+                                    style="border-color: rgb(252, 185, 66);"
+                                  />
+                                  Absent{" "}
+                                  <div class={styles()!["__value"]}>
+                                    {percent.absent ?? 0}%
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        <div class={styles()!["attendance__statutory-right"]}>
+                          <div class={styles()!["t-header"]}>
+                            <div>Description</div>
+                            <div>Date</div>
+                            <div>Type</div>
+                            <div>Period</div>
+                          </div>
+                          <div class={styles()!["t-body"]}>
+                            <For
+                              each={state.currentMonthStatutory.flatMap(
+                                (s) => s.exceptions,
+                              )}
+                            >
+                              {(exception) => (
+                                <div class={styles()!["t-row"]}>
+                                  <div
+                                    class={
                                       styles()!["_description"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
+                                    {exception.description}
+                                  </div>
+                                  <div class={styles()!["_grey"]}>
+                                    {exception.date}
+                                  </div>
+                                  <div
+                                    class={
+                                      styles()!["_type"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
+                                    {exception.type}
+                                  </div>
+                                  <div
+                                    class={
+                                      styles()!["_period"] +
                                       " " +
                                       styles()!["_grey"]
                                     }
@@ -493,9 +623,9 @@ function Attendance(props: {
                 </div>
               ) : (
                 <div
-                  class={styles()!["t-attendance"] + " " + styles()!["no-data"]}
+                  class={`${styles()!["t-attendance"]} flex items-center justify-center h-full`}
                 >
-                  <h1 class={styles()!["no-data-text"]}>No Data</h1>
+                  <h1 class="text-center font-bold text-xl">No Data</h1>
                 </div>
               )}
             </Show>

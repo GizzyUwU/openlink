@@ -10,7 +10,6 @@ import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
-  let styleElement: HTMLLinkElement;
   const edulink = useEdulink();
   const toast = useToast();
   let resetNavFn: () => void = () => {};
@@ -127,7 +126,7 @@ function Main() {
       ...cssModule,
     };
     setStyles(normalized);
-    console.log(normalized)
+    console.log(normalized);
     const handleResize = () => {
       setState("screenWidth", window.innerWidth);
     };
@@ -157,7 +156,6 @@ function Main() {
           sessionData={sessionData}
           showSettings={(value: boolean) => setState("showSettings", value)}
           styles={styles() || {}}
-
         />
         <Show when={state.showSettings}>
           <Settings
@@ -183,7 +181,6 @@ function Main() {
           onResetNav={(fn) => (resetNavFn = fn)}
           openNav={(fn) => (openNavFn = fn)}
           styles={styles()}
-
         />
         <Show when={state.navWheelAnim && LoadedComponent()}>
           {(Comp) => (
@@ -206,7 +203,7 @@ function Main() {
           )}
         </Show>
         <Show when={state.overlay !== null}>
-          <div class={`${style()?.["t-overlay"]} items-center justify-center`}>
+          <div class={`${styles()?.["t-overlay"]} items-center justify-center`}>
             {state.overlay}
           </div>
         </Show>
@@ -218,7 +215,6 @@ function Main() {
           edulink={edulink}
           loadItemPage={loadItemPage}
           styles={styles()}
-
         />
       </div>
     </Show>
