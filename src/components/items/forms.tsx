@@ -120,25 +120,19 @@ function Forms(props: {
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <div class={styles()!["t-header"]}>
-                <span class={styles()!["t-header__title"] + " _name"}>
-                  Form Name
-                </span>
-                <span class={styles()!["t-header__title"] + " _date"}>
-                  Due Date
-                </span>
-                <span class={styles()!["t-header__title"] + " _completed"}>
-                  Completed
-                </span>
+                <div>Form Name</div>
+                <div>Due Date</div>
+                <div>Completed</div>
               </div>
               <Show when={state.forms.length > 0}>
                 <div class={styles()!["t-body"]}>
                   <For each={state.forms}>
                     {(data: FormsResponse.FormType) => (
                       <div class={styles()!["t-row"]}>
-                        <div class={styles()!["__text"] + " _name"}>
+                        <div class={styles()!["_name"]}>
                           {data.subject || "-"}
                         </div>
-                        <div class={styles()!["__text"] + " _date"}>
+                        <div>
                           <div
                             style={{
                               display: "flex",
@@ -153,9 +147,7 @@ function Forms(props: {
                             </span>
                           </div>
                         </div>
-                        <div
-                          class={styles()!["t-timetable__text"] + " _completed"}
-                        >
+                        <div>
                           {data.submitted ? (
                             data.submitted ? (
                               <IoCheckmarkCircleOutline

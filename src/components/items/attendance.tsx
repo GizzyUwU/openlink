@@ -8,7 +8,7 @@ import { createStore } from "solid-js/store";
 import type { AttendanceResponse } from "../../types/api/attendance";
 import type ApexCharts from "apexcharts";
 import { SolidApexCharts } from "solid-apexcharts";
-
+import clsx from "clsx";
 function Attendance(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -47,7 +47,7 @@ function Attendance(props: {
 
   onMount(async () => {
     const cssModule = await import(
-      `../../public/assets/css/${props.theme}/.module.css`
+      `../../public/assets/css/${props.theme}/attendance.module.css`
     );
     const normalized: { [key: string]: string } = {
       ...cssModule.default,
@@ -150,10 +150,10 @@ function Attendance(props: {
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1 && state.statutory}>
+      <Show when={props.progress() === 1 && state.statutory && styles()}>
         <div class={styles()!["box-container"]}>
-          <div class={styles()!["header-container"]}>
-            <div class={styles()!["button-group"]}>
+          <div class="flex items-center text-white justify-end w-full pr-[10px]">
+            <div class="flex space-x-4 mb-2">
               <For
                 each={
                   [
@@ -170,11 +170,11 @@ function Attendance(props: {
                       if (state.activePage === name) return;
                       setState("activePage", name);
                     }}
-                    class={
+                    class={`text-sm text-white cursor-pointer ${
                       state.activePage === name
-                        ? styles()!["active-tab"]
-                        : styles()!["tab"]
-                    }
+                        ? "border-b border-blue-400"
+                        : ""
+                    }`}
                   >
                     {name}
                   </button>

@@ -5,7 +5,6 @@ import type { ExamsResponse } from "../../types/api/exams";
 import { useToast } from "../toast";
 import { TbCertificate } from "solid-icons/tb";
 import { Transition } from "solid-transition-group";
-import clsx from "clsx";
 
 function Exams(props: {
   setProgress: (value: number) => void;

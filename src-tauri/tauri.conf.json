@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "Edulink One",
+        "title": "Openlink",
         "width": 800,
         "height": 600,
         "backgroundColor": "#414c65",

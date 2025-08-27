@@ -131,30 +131,18 @@ function Homework(props: {
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <div class={styles()!["t-header"]}>
-                <div class={styles()!["t-header__title"] + " _due"}>
-                  Due Date
-                </div>
-                <div class={styles()!["t-header__title"] + " _name"}>Name</div>
-                <div class={styles()!["t-header__title"] + " _sub_class"}>
-                  Subject & Class
-                </div>
-                <div class={styles()!["t-header__title"] + " _available"}>
-                  Available
-                </div>
-                <div class={styles()!["t-header__title"] + " _submission"}>
-                  Submission
-                </div>
-                <div class={styles()!["t-header__title"] + " _status"}>
-                  Completed
-                </div>
-                <div class={styles()!["t-header__title"] + " _received"}>
-                  Received
-                </div>
+                <div>Due Date</div>
+                <div>Name</div>
+                <div>Subject & Class</div>
+                <div>Available</div>
+                <div>Submission</div>
+                <div>Completed</div>
+                <div>Received</div>
               </div>
               <div class={styles()!["t-body"]}>
                 {state.shownHomework?.map((data: HomeworkResponse.Items) => (
                   <div class={styles()!["t-row"]}>
-                    <div class={styles()!["t-homework__text"] + " _name"}>
+                    <div class={styles()!["_due"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -167,19 +155,17 @@ function Homework(props: {
                         <span>{data.due_date}</span>
                       </div>
                     </div>
-                    <div class={styles()!["t-homework__text"] + " _name"}>
-                      {data.activity || "-"}
-                    </div>
-                    <div class={styles()!["t-homework__text"] + " _sub_class"}>
+                    <div class={styles()!["_name"]}>{data.activity || "-"}</div>
+                    <div class={styles()!["_sub_class"]}>
                       {data.subject || "-"}
                     </div>
-                    <div class={styles()!["t-homework__text"] + " _available"}>
+                    <div class={styles()!["_available"]}>
                       {data.available_date || "-"}
                     </div>
-                    <div class={styles()!["t-homework__text"] + " _submission"}>
+                    <div class={styles()!["_submission"]}>
                       {data.status || "-"}
                     </div>
-                    <div class={styles()!["t-homework__text"] + " _status"}>
+                    <div class={styles()!["_status"]}>
                       {data.icon ? (
                         data.icon === "tick" ? (
                           <IoCheckmarkCircleOutline size="32" color="green" />
