@@ -425,9 +425,10 @@ ul {
 .openlink-s-footer {
     background: rgba(81, 191, 187, 0.1);
     padding: 5px 0;
-    position: relative;
-    z-index: 2;
+    position: absolute;
     margin-top: auto;
+    width: 100%;
+    bottom: 0;
 }
 
 .openlink-s-footer .openlink__footer-container {
