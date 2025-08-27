@@ -23,7 +23,7 @@
     max-width: calc(100vw - 185px);
 }
 
-.t-achievement {
+.t-behaviour {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -62,7 +62,7 @@
         1fr 1fr
         /* Comment/Teacher, Action/Info */
         200px 105px;
-    /* Award Points */
+    /* Loc/Status Points */
     border-bottom: 1px solid #e3e9ea;
 }
 
@@ -74,11 +74,35 @@
         1fr 1fr
         /* Comment/Teacher, Action/Info */
         200px 105px;
-    /* Award Points */
+    /* Loc/Status Points */
     border-bottom: 1px solid #e3e9ea;
 }
 
-.t-header > span {
+.t-detentions-header {
+    display: grid;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    grid-template-columns:
+        1fr
+        1fr 1fr 1fr
+        1fr 1fr;
+    text-align: center;
+    min-height: 40px;
+    color: #3090c7;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.t-detentions-row {
+    display: grid;
+    grid-template-columns:
+        1fr
+        1fr 1fr 1fr
+        1fr 1fr;
+    border-bottom: 1px solid #e3e9ea;
+}
+
+.t-detentions-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,7 +113,7 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-detentions-row > div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -97,8 +121,45 @@
     overflow: hidden;
     text-overflow: ellipsis;
     min-height: 85px;
+}
+
+.t-detentions-row:nth-child(even) {
+    background-color: #ececec;
+}
+
+.t-detentions-row > ._date,
+.t-detentions-row > ._type,
+.t-detentions-row > ._loc,
+.t-detentions-row > ._start,
+.t-detentions-row > ._end,
+.t-detentions-row > ._attended {
+    justify-content: flex-start !important;
+    padding-left: 10px;
+    text-align: left;
     font-weight: 400;
-    font-size: 15px;
+}
+
+.t-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-transform: capitalize;
+    min-width: 0;
+}
+
+.t-row > div {
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    min-width: 0;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-height: 85px;
 }
 
 .t-row:nth-child(even) {
@@ -107,18 +168,19 @@
 
 .t-row > ._comment_teacher,
 .t-row > ._action_info,
-.t-row > ._award {
+.t-row > ._loc_status {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
+    font-weight: 400;
 }
 
-.t-achievement__text ._points {
+.t-behaviour__text ._points {
     border-radius: 50%;
     height: 42px;
     width: 42px;
-    border: 1.2px solid green;
-    color: green;
+    border: 1.2px solid red;
+    color: red;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -126,14 +188,13 @@
     line-height: 1;
 }
 
-.t-achievement__text {
+.t-behaviour__text {
     width: 100%;
     font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
-    /* Ensure it fills the full cell height */
 }
 
 ._grey {
@@ -149,7 +210,7 @@
 }
 
 .b-points-badge .__label {
-    background: linear-gradient(0deg, #49bd81, #6bb842);
+    background: linear-gradient(0deg, #eb3449, #ed5a57);
     align-items: center;
     border-radius: 0 3px 3px 0;
     color: #fff;
@@ -167,7 +228,7 @@
 }
 
 .b-points-badge .__total-points {
-    background: linear-gradient(0deg, #49bd81, #6bb842);
+    background: linear-gradient(0deg, #eb3449, #ed5a57);
     border-radius: 50%;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     font-size: 28px;
@@ -180,9 +241,4 @@
     top: 50%;
     transform: translateY(-50%);
     width: 56px;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
 }

@@ -1,0 +1,218 @@
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-attendance {
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+}
+
+.attendance__statutory-left {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 0;
+    padding: 30px 10px 15px;
+    width: 320px;
+}
+
+.b-graph {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.b-graph__graph {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    font-weight: 500;
+    will-change: transform;
+}
+
+.b-graph__aliases {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    margin: 10px 0 0;
+    width: 100%;
+    font-weight: bold;
+}
+
+.__alias {
+    color: #404652;
+    flex-shrink: 0;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 16px;
+    position: relative;
+    text-transform: capitalize;
+    font-size: 14px;
+    width: 50%;
+}
+
+.__alias .marker {
+    border: 3px solid;
+    border-top-color: currentcolor;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-left-color: currentcolor;
+    border-radius: 50%;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 12px;
+    left: 0;
+    margin: auto 0;
+    position: absolute;
+    top: 0;
+    width: 12px;
+}
+
+.__alias .__value {
+    font-weight: 700;
+}
+
+.attendance__statutory-right {
+    background: #fff;
+    height: 100%;
+    width: calc(100% - 330px);
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-header {
+    color: #3090c7;
+    text-align: center;
+    min-height: 40px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.t-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.t-header,
+.t-row {
+    display: grid;
+    grid-template-columns:
+        1fr 100px 1fr
+        1fr;
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    min-width: 0;
+}
+
+.t-row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    max-height: 54px;
+}
+
+.t-row:nth-child(even) {
+    background-color: #ececec;
+}
+
+.t-row > ._description,
+.t-row > ._type,
+.t-row > ._period {
+    justify-content: flex-start !important;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.t-timetable__text {
+    width: 100%;
+    font-size: 14px;
+}
+
+._grey {
+    color: #888;
+}
+
+.progress-attendance {
+    display: grid;
+    flex-grow: 1;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    will-change: transform;
+    scroll-behavior: smooth;
+}
+
+.__progress-item {
+    border-bottom: 1px solid #e3e9ea;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 10px;
+    box-sizing: border-box;
+    will-change: transform scroll-position;
+}
+
+.__progress-item .__title {
+    color: #8c97a5;
+    flex-shrink: 0;
+    font-weight: 500;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.apexcharts-tooltip div {
+    color: #000000;
+}

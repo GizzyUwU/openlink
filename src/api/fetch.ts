@@ -22,13 +22,13 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       throw new Error("Missing ?method= query parameter in URL for demo mode.");
     }
 
-    if (window.__TAURI_) {
+    if (window.__TAURI__) {
       const { exists, readTextFile } = await import("@tauri-apps/plugin-fs");
       const { resourceDir } = await import("@tauri-apps/api/path");
       const [folder, subfolderCandidate] = apiMethod.split(".");
       const possiblePaths = [
-        `${await resourceDir()}/_up_/src/assets/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
-        `${await resourceDir()}/_up_/src/assets/jsons/${folder}/${apiMethod}.json`,
+        `${await resourceDir()}/_up_/src/public/assets/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
+        `${await resourceDir()}/_up_/src/public/assets/jsons/${folder}/${apiMethod}.json`,
       ];
       let res: any;
       for (const path of possiblePaths) {
@@ -80,7 +80,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       headers: { ...headers },
       body: options.body ? options.body : undefined,
     };
-    if (window.__TAURI_) {
+    if (window.__TAURI__) {
       const { fetch } = await import("@tauri-apps/plugin-http");
       const response = await fetch(url, fetchOptions);
       return response;

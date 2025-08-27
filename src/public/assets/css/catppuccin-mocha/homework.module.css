@@ -23,14 +23,13 @@
     max-width: calc(100vw - 185px);
 }
 
-.t-timetable {
+.t-homework {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
     background: #fff;
     border-radius: 5px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -59,17 +58,13 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        80px
-        /* Period */
-        1fr 1fr 1fr
-        /* Subject, Room, Teacher */
-        75px 75px;
-    /* Start, End */
+        1fr 1fr 1fr 1fr 1fr
+        105px 105px;
     border-bottom: 1px solid #e3e9ea;
     text-align: center;
 }
 
-.t-header > span {
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,7 +74,7 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-row > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,16 +91,20 @@
     background-color: #ececec;
 }
 
-.t-row > ._subject,
-.t-row > ._room,
-.t-row > ._teacher {
+.t-row > ._due,
+.t-row > ._name,
+.t-row > ._sub_class,
+.t-row > ._available,
+.t-row > ._submission {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
     font-weight: 400;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
-.t-timetable__text {
+.t-homework__text {
     width: 100%;
     font-size: 14px;
 }

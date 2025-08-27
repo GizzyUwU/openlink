@@ -67,7 +67,7 @@
     text-align: center;
 }
 
-.t-header > span {
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,15 +77,16 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-row > div {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px 10px;
     min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     text-align: center;
     height: 54px;
 }

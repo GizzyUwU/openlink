@@ -23,7 +23,7 @@
     max-width: calc(100vw - 185px);
 }
 
-.t-homework {
+.t-exams {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -48,23 +48,54 @@
 }
 
 .t-body {
-    flex-grow: 1;
     overflow-y: auto;
     min-height: 0;
     max-height: 100%;
 }
 
-.t-header,
-.t-row {
+.t-timetable .t-header,
+.t-timetable .t-row {
     display: grid;
-    grid-template-columns:
-        1fr 1fr 1fr 1fr 1fr
-        105px 105px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 75px 75px;
     border-bottom: 1px solid #e3e9ea;
     text-align: center;
 }
 
-.t-header > span {
+.t-timetable {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.t-entries {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.t-results {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.t-entries .t-header,
+.t-entries .t-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-results .t-header,
+.t-results .t-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 75px 75px;
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,37 +105,48 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-countdown {
+    display: flex;
+    color: #3090c7;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    min-width: 0;
+    z-index: 10;
+    border: 0;
+}
+
+.t-row > div {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px 10px;
     min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     text-align: center;
-    max-height: 54px;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .t-row:nth-child(even) {
     background-color: #ececec;
 }
 
-.t-row > ._due,
-.t-row > ._name,
-.t-row > ._sub_class,
-.t-row > ._available,
-.t-row > ._submission {
+.t-row > ._date_start,
+.t-row > ._board_level,
+.t-row > ._code_exam,
+.t-row > ._room {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
     font-weight: 400;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
 }
 
-.t-homework__text {
+.t-timetable__text {
     width: 100%;
     font-size: 14px;
 }

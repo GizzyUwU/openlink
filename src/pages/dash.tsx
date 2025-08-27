@@ -1,4 +1,3 @@
-import "../assets/css/main.css";
 import { makePersisted } from "@solid-primitives/storage";
 import { createSignal, JSXElement } from "solid-js";
 import { useEdulink } from "../api/edulink";
@@ -6,25 +5,51 @@ import { Show, onMount, createMemo, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Settings from "../components/settings";
 import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
+  let styleElement: HTMLLinkElement;
   const edulink = useEdulink();
   const toast = useToast();
   let resetNavFn: () => void = () => {};
   let openNavFn: (idx: number) => void;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
+
+  async function getTheme() {
+    if (window.__TAURI__) {
+      const { load } = await import("@tauri-apps/plugin-store");
+      const store = await load("users.json", { autoSave: false });
+      const theme = await store.get("theme");
+      if (typeof theme !== "string" || theme.length === 0) return "default";
+      return theme;
+    } else {
+      const [theme] = makePersisted(createSignal<any>({}), {
+        storage: localStorage,
+        name: "theme",
+      });
+      if (typeof theme() !== "string" || theme().length === 0) return "default";
+      return theme();
+    }
+  }
 
   const [state, setState] = createStore<{
     progress: number;
     navWheelAnim: boolean;
     screenWidth: number;
     overlay: JSXElement | null;
+    showSettings: boolean;
+    theme: string;
   }>({
     progress: 0,
     navWheelAnim: false,
     screenWidth: window.innerWidth,
     overlay: null,
+    showSettings: false,
+    theme: "default",
   });
 
   function waitForWheelTransition() {
@@ -46,7 +71,10 @@ function Main() {
       if (LoadedComponent()) {
         setLoadedComponent(null);
       }
-      const mod = await import(`../components/items/${id}.tsx`);
+      if (document.getElementById("item-styling")) {
+        document.getElementById("item-styling")?.remove();
+      }
+      const mod = await import(`../components/items/${id}.tsx?inline`);
       console.log(mod, id);
       if (!mod.default.name && !mod.default.icon && mod.default.pos) {
         openNavFn?.(mod.default.pos);
@@ -59,6 +87,7 @@ function Main() {
           progress={() => state.progress}
           edulink={edulink}
           setOverlay={(value: JSXElement) => setState("overlay", value)}
+          theme={state.theme}
         />
       ));
 
@@ -88,7 +117,17 @@ function Main() {
     name: "apiUrl",
   });
 
-  onMount(() => {
+  onMount(async () => {
+    await getTheme().then((theme) => setState("theme", theme));
+    const cssModule = await import(
+      `../public/assets/css/${state.theme}/main.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
+    };
+    setStyles(normalized);
+    console.log(normalized)
     const handleResize = () => {
       setState("screenWidth", window.innerWidth);
     };
@@ -116,7 +155,19 @@ function Main() {
           setSession={setSession}
           setApiUrl={setApiUrl}
           sessionData={sessionData}
+          showSettings={(value: boolean) => setState("showSettings", value)}
+          styles={styles() || {}}
+
         />
+        <Show when={state.showSettings}>
+          <Settings
+            progress={() => state.progress}
+            setSession={setSession}
+            setApiUrl={setApiUrl}
+            sessionData={sessionData}
+            setOverlay={(value: JSXElement) => setState("overlay", value)}
+          />
+        </Show>
         <Navigation
           sessionData={sessionData}
           apiUrl={apiUrl}
@@ -131,6 +182,8 @@ function Main() {
           navAnimFinished={(value: boolean) => setState("navWheelAnim", value)}
           onResetNav={(fn) => (resetNavFn = fn)}
           openNav={(fn) => (openNavFn = fn)}
+          styles={styles()}
+
         />
         <Show when={state.navWheelAnim && LoadedComponent()}>
           {(Comp) => (
@@ -153,7 +206,7 @@ function Main() {
           )}
         </Show>
         <Show when={state.overlay !== null}>
-          <div class="t-overlay items-center justify-center">
+          <div class={`${style()?.["t-overlay"]} items-center justify-center`}>
             {state.overlay}
           </div>
         </Show>
@@ -164,6 +217,8 @@ function Main() {
           setApiUrl={setApiUrl}
           edulink={edulink}
           loadItemPage={loadItemPage}
+          styles={styles()}
+
         />
       </div>
     </Show>

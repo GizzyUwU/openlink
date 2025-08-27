@@ -6,13 +6,16 @@ import { useToast } from "../toast";
 let dropdownRef: HTMLDivElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
-
+import clsx from "clsx";
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const toast = useToast();
   const [state, setState] = createStore<{
     dayPeriods?: TimetableResponse.Period[];
@@ -41,16 +44,26 @@ function Timetable(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/timetable.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/timetable.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
+    setStyles(normalized);
+    // const styleUrl = new URL(
+    //   `/assets/css/${props.theme}/timetable.css`,
+    //   import.meta.url,
+    // ).href;
+    // styleElement = document.createElement("link");
+    // styleElement.rel = "preload";
+    // styleElement.as = "style";
+    // styleElement.href = `${styleUrl}?t=${Date.now()}`;
+    // styleElement.onload = () => {
+    //   styleElement.rel = "stylesheet";
+    // };
+    // document.getElementById("item-box")?.appendChild(styleElement);
 
     const timetablePromise = props.edulink.getTimetable(
       sessionData()?.user?.id,
@@ -85,8 +98,8 @@ function Timetable(props: {
   });
 
   onCleanup(() => {
-    if (styleElement) {
-      styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
     }
     document.removeEventListener("click", handleClick);
     props.setProgress(0);
@@ -118,8 +131,8 @@ function Timetable(props: {
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
           <div class="flex items-center justify-between w-full">
             <div class="relative inline-block text-left">
               <button
@@ -127,7 +140,7 @@ function Timetable(props: {
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
                 class="__nav inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer"
               >
-                <span>{state.weekName}</span>
+                <div>{state.weekName}</div>
                 <svg
                   class="w-5 h-5 ml-2 -mr-1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -199,74 +212,96 @@ function Timetable(props: {
             </div>
           </div>
 
-          <div class="t-container">
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-timetable"
+              class={styles()!["t-timetable"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
-              <div class="t-header">
-                <span class="t-header__title _period">Period</span>
-                <span class="t-header__title _subject">Subject</span>
-                <span class="t-header__title _room">Room</span>
-                <span class="t-header__title _teacher">Teacher</span>
-                <span class="t-header__title _start">Start</span>
-                <span class="t-header__title _end">End</span>
+              <div class={styles()!["t-header"]}>
+                <div>Period</div>
+                <div>Subject</div>
+                <div>Room</div>
+                <div>Teacher</div>
+                <div>Start</div>
+                <div>End</div>
               </div>
-              <div class="t-body">
-                {state.dayPeriods?.map((period) => {
-                  const lesson = getLessonForPeriod(period.id);
-                  return (
-                    <div class="t-row">
-                      <span class="t-timetable__text _period _grey">
-                        {period.name}
-                      </span>
-                      <span class="t-timetable__text _subject">
+              <div class={styles()!["t-body"]}>
+                <For each={state.dayPeriods}>
+                  {(period) => {
+                    const lesson = getLessonForPeriod(period.id);
+                    return (
+                      <div class={styles()!["t-row"]}>
                         <div
-                          style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                          }}
+                          class={clsx(
+                            styles()!["t-timetable__text"],
+                            styles()!["_grey"],
+                          )}
                         >
-                          <span>{lesson?.teaching_group?.subject || "-"}</span>
-                          <span class="_grey">
-                            {lesson?.teaching_group?.name
-                              ? `(${lesson.teaching_group.name})`
-                              : ""}
-                          </span>
+                          {period.name}
                         </div>
-                      </span>
-                      <span class="t-timetable__text _room">
-                        {lesson?.room?.name || "-"}
-                      </span>
-                      <span class="t-timetable__text _teacher">
-                        {(() => {
-                          const t = lesson?.teacher ?? lesson?.teachers;
-                          if (!t) return "-";
+                        <div
+                          class={clsx(
+                            styles()!["t-timetable__text"],
+                            styles()!["_subject"],
+                          )}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              "flex-direction": "column",
+                            }}
+                          >
+                            <div>{lesson?.teaching_group?.subject || "-"}</div>
+                            <div class={styles()!["_grey"]}>
+                              {lesson?.teaching_group?.name
+                                ? `(${lesson.teaching_group.name})`
+                                : ""}
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class={clsx(
+                            styles()!["t-timetable__text"],
+                            styles()!["_room"],
+                          )}
+                        >
+                          {lesson?.room?.name || "-"}
+                        </div>
+                        <div
+                          class={clsx(
+                            styles()!["t-timetable__text"],
+                            styles()!["_teacher"],
+                          )}
+                        >
+                          {(() => {
+                            const t = lesson?.teacher ?? lesson?.teachers;
+                            if (!t) return "-";
 
-                          if (Array.isArray(t)) {
-                            return t
-                              .map((teacher) =>
-                                typeof teacher === "string"
-                                  ? teacher
-                                  : `${teacher.title ?? ""} ${teacher.forename ?? ""} ${teacher.surname ?? ""}`.trim(),
-                              )
-                              .join(", ");
-                          }
+                            if (Array.isArray(t)) {
+                              return t
+                                .map((teacher) =>
+                                  typeof teacher === "string"
+                                    ? teacher
+                                    : `${teacher.title ?? ""} ${teacher.forename ?? ""} ${teacher.surname ?? ""}`.trim(),
+                                )
+                                .join(", ");
+                            }
 
-                          return typeof t === "string"
-                            ? t
-                            : `${t.title ?? ""} ${t.forename ?? ""} ${t.surname ?? ""}`.trim();
-                        })()}
-                      </span>
-                      <span class="t-timetable__text _start">
-                        {period.start_time}
-                      </span>
-                      <span class="t-timetable__text _end">
-                        {period.end_time}
-                      </span>
-                    </div>
-                  );
-                })}
+                            return typeof t === "string"
+                              ? t
+                              : `${t.title ?? ""} ${t.forename ?? ""} ${t.surname ?? ""}`.trim();
+                          })()}
+                        </div>
+                        <div class={styles()!["t-timetable__text"]}>
+                          {period.start_time}
+                        </div>
+                        <div class={styles()!["t-timetable__text"]}>
+                          {period.end_time}
+                        </div>
+                      </div>
+                    );
+                  }}
+                </For>
               </div>
             </div>
           </div>

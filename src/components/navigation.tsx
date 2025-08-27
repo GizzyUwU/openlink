@@ -2,6 +2,7 @@ import { createEffect, Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
+import clsx from "clsx";
 
 export default function Navigation(props: {
   sessionData: any;
@@ -17,6 +18,7 @@ export default function Navigation(props: {
   navAnimFinished: (value: boolean) => void;
   onResetNav?: (fn: () => void) => void;
   openNav?: (fn: (idx: number) => void) => void;
+  styles: { [key: string]: string } | null;
 }) {
   let navWheelRef: HTMLDivElement | undefined;
 
@@ -213,14 +215,16 @@ export default function Navigation(props: {
   }
 
   return (
-    <div class="openlink-nav-wheel">
+    <Show when={props.styles}>
+    <div class={props.styles!["openlink-nav-wheel"]}>
       <div
-        class="openlink__container openlink__loaded"
+        class={`${props.styles!["openlink__container"]} ${props.styles!["openlink__loaded"]}`}
         id="nav-wheel"
         ref={(el) => (navWheelRef = el)}
         style={navWheelContainerStyle()}
       >
-        <div class="openlink__artboard"></div>
+        <div class={props.styles!["openlink__artboard"]}></div>
+
         <Transition
           appear={false}
           onExit={(el: Element, done) => {
@@ -230,7 +234,7 @@ export default function Navigation(props: {
                 duration: 400,
                 easing: "cubic-bezier(0.77,0,0.175,1)",
                 fill: "forwards",
-              },
+              }
             );
             anim.finished.then(done);
           }}
@@ -241,20 +245,18 @@ export default function Navigation(props: {
                 duration: 400,
                 easing: "cubic-bezier(0.77,0,0.175,1)",
                 fill: "forwards",
-              },
+              }
             );
             anim.finished.then(done);
           }}
         >
           <Show when={!state.isLogoGone}>
             <div
-              class="openlink__logo-wrap"
-              style={{
-                "background-color": state.logoBG,
-              }}
+              class={props.styles!["openlink__logo-wrap"]}
+              style={{ "background-color": state.logoBG }}
             >
               <div
-                class="openlink__logo"
+                class={props.styles!["openlink__logo"]}
                 style={{
                   "background-image": `url(data:image/webp;base64,${props.sessionData().establishment?.logo || ""})`,
                 }}
@@ -264,26 +266,29 @@ export default function Navigation(props: {
         </Transition>
 
         <TransitionGroup
-          enterActiveClass="transition-opacity duration-200 ease-[cubic-bezier(0.77,0,0.175,1)]"
-          exitActiveClass="transition-opacity duration-200 ease-[cubic-bezier(0.77,0,0.175,1)]"
-          enterClass="opacity-0"
-          enterToClass="opacity-100"
-          exitClass="opacity-100"
-          exitToClass="opacity-0"
+          enterActiveClass={props.styles!["transition-enter-active"]}
+          exitActiveClass={props.styles!["transition-exit-active"]}
+          enterClass={props.styles!["transition-enter"]}
+          enterToClass={props.styles!["transition-enter-to"]}
+          exitClass={props.styles!["transition-exit"]}
+          exitToClass={props.styles!["transition-exit-to"]}
         >
-          <ul class="openlink__list" style={navWheelListStyle()}>
+          <ul class={props.styles!["openlink__list"]} style={navWheelListStyle()}>
             <For each={items}>
               {(item, i) => (
                 <li
-                  class="openlink__item"
+                  class={props.styles!["openlink__item"]}
                   style={getItemStyle(
                     166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
-                    166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length)),
+                    166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length))
                   )}
                 >
-                  <div class="openlink__inner">
+                  <div class={props.styles!["openlink__inner"]}>
                     <a
-                      class={`openlink__item-link ${item.class}`}
+                      class={clsx(
+                        props.styles!["openlink__item-link"],
+                        props.styles![item.class],
+                      )}
                       href={`/dash/#${item.id}`}
                       title={item.name}
                       onClick={(e) => {
@@ -304,12 +309,10 @@ export default function Navigation(props: {
                         <span
                           style={{
                             opacity: state.itemOpacity[i()],
-                            transition:
-                              "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
+                            transition: "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
                           }}
                           onTransitionEnd={() => {
-                            if (state.isSlid && state.activeIdx === i())
-                              setState("showBack", true);
+                            if (state.isSlid && state.activeIdx === i()) setState("showBack", true);
                           }}
                         >
                           <item.icon />
@@ -330,8 +333,7 @@ export default function Navigation(props: {
                             stroke-linejoin="round"
                             style={{
                               opacity: 1,
-                              transition:
-                                "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
+                              transition: "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
                             }}
                           >
                             <path d="M15 18l-6-6 6-6" />
@@ -347,5 +349,6 @@ export default function Navigation(props: {
         </TransitionGroup>
       </div>
     </div>
+    </Show>
   );
 }

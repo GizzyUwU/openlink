@@ -132,7 +132,7 @@
     text-align: center;
 }
 
-.t-header > span {
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,7 +142,7 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-row > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,6 +213,6 @@
     font-size: 16px;
 }
 
-.apexcharts-tooltip span {
+.apexcharts-tooltip div {
     color: #000000;
 }

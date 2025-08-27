@@ -10,8 +10,11 @@ import { BehaviourResponse } from "../../types/api/behaviour";
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const [state, setState] = createStore<{
     behaviour: BehaviourResponse.BehaviourType[];
@@ -72,16 +75,14 @@ function BehaviourComponent(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/behaviour.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
+    setStyles(normalized);
 
     const userId = sessionData()?.user?.id;
     const token = sessionData()?.authtoken;
@@ -137,7 +138,9 @@ function BehaviourComponent(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -164,179 +167,225 @@ function BehaviourComponent(props: {
       }}
     >
       <Show when={props.progress() === 1}>
-        <div class="box-container">
-          <div class="flex items-center justify-end w-full pr-[10px]">
-            <div class="flex space-x-4 mb-2">
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["header-container"]}>
+            <div class={styles()!["button-group"]}>
               <button
                 type="button"
                 onClick={() => setState("activePage", "behaviour")}
-                class={`text-sm text-white cursor-pointer ${
+                class={
                   state.activePage === "behaviour"
-                    ? "border-b border-blue-400"
-                    : ""
-                }`}
+                    ? styles()!["active-tab"]
+                    : styles()!["tab"]
+                }
               >
                 Behaviour
               </button>
               <button
                 type="button"
                 onClick={() => setState("activePage", "detentions")}
-                class={`text-sm font-medium text-white  cursor-pointer ${
+                class={
                   state.activePage === "detentions"
-                    ? "border-b border-blue-400"
-                    : ""
-                }`}
+                    ? styles()!["active-tab"]
+                    : styles()!["tab"]
+                }
               >
                 Detentions
               </button>
             </div>
           </div>
           <Show when={state.activePage === "behaviour"}>
-            <div
-              class="t-behaviour"
-              style={{ display: "flex", "flex-direction": "column" }}
-            >
-              <div class="t-header bg-[#ececec]">
-                <span class="t-header__title _type_date">Type & Date</span>
-                <span class="t-header__title _comment_teacher">
+            <div class={styles()!["t-behaviour"]}>
+              <div class={styles()!["t-header"]}>
+                <div class={styles()!["_type_date"]}>Type & Date</div>
+                <div class={styles()!["_comment_teacher"]}>
                   Comment & Teacher
-                </span>
-                <span class="t-header__title _action_info">Action & Info</span>
-                <span class="t-header__title _loc_status">
-                  Location & Status
-                </span>
-                <span class="t-header__title _points">Points</span>
+                </div>
+                <div class={styles()!["_action_info"]}>Action & Info</div>
+                <div class={styles()!["_loc_status"]}>Location & Status</div>
+                <div class={styles()!["_points"]}>Points</div>
               </div>
-              <div class="t-body">
+              <div class={styles()!["t-body"]}>
                 {state.behaviour.map((behaviour: any) => (
-                  <div class="t-row">
-                    <span class="t-behaviour__text_type_date">
+                  <div class={styles()!["t-row"]}>
+                    <div
+                      class={
+                        styles()!["t-behaviour__text"] +
+                        " " +
+                        styles()!["_type_date"]
+                      }
+                    >
                       <div
-                        style={{
-                          display: "flex",
-                          "flex-direction": "column",
-                        }}
+                        style={{ display: "flex", "flex-direction": "column" }}
                       >
-                        <span class="_grey">{formatDate(behaviour.date)}</span>
-                        <span>
+                        <div class={styles()!["_grey"]}>
+                          {formatDate(behaviour.date)}
+                        </div>
+                        <div>
                           {getLookupName(
                             behaviour.type_ids?.[0],
                             state.behaviourTypes,
                           ) || "-"}
-                        </span>
+                        </div>
                       </div>
-                    </span>
-                    <span class="t-behaviour__text _comment_teacher">
+                    </div>
+                    <div
+                      class={
+                        styles()!["t-behaviour__text"] +
+                        " " +
+                        styles()!["_comment_teacher"]
+                      }
+                    >
                       <div
-                        style={{
-                          display: "flex",
-                          "flex-direction": "column",
-                        }}
+                        style={{ display: "flex", "flex-direction": "column" }}
                       >
-                        <span class="_grey">
+                        <div class={styles()!["_grey"]}>
                           {(() => {
                             const employeeId =
                               behaviour.recorded?.employee_id ??
                               behaviour.action_taken?.employee_id;
-
                             const employee = state.employees.find(
                               (emp: any) => emp.id === String(employeeId),
                             );
-
                             return employee
                               ? `${employee.title} ${employee.forename} ${employee.surname}`
                               : "-";
                           })()}
-                        </span>
-                        <span>{behaviour.comments || "-"}</span>
+                        </div>
+                        <div>{behaviour.comments || "-"}</div>
                       </div>
-                    </span>
-                    <span class="t-behaviour__text _action_info">
+                    </div>
+                    <div
+                      class={
+                        styles()!["t-behaviour__text"] +
+                        " " +
+                        styles()!["_action_info"]
+                      }
+                    >
                       <div
-                        style={{
-                          display: "flex",
-                          "flex-direction": "column",
-                        }}
+                        style={{ display: "flex", "flex-direction": "column" }}
                       >
-                        <span class="_grey">
+                        <div class={styles()!["_grey"]}>
                           {getLookupName(
                             behaviour.action_taken?.id,
                             state.behaviourActions,
                           ) || "-"}
-                        </span>
-                        <span>{behaviour.lesson_information}</span>
+                        </div>
+                        <div>{behaviour.lesson_information}</div>
                       </div>
-                    </span>
-                    <span class="t-behaviour__text _loc_status">
+                    </div>
+                    <div
+                      class={
+                        styles()!["t-behaviour__text"] +
+                        " " +
+                        styles()!["_loc_status"]
+                      }
+                    >
                       <div
-                        style={{
-                          display: "flex",
-                          "flex-direction": "column",
-                        }}
+                        style={{ display: "flex", "flex-direction": "column" }}
                       >
-                        <span class="_grey">
+                        <div class={styles()!["_grey"]}>
                           {getLookupName(
                             behaviour.location_id,
                             state.behaviourLocations,
                           ) || "-"}
-                        </span>
-                        <span>
+                        </div>
+                        <div>
                           {getLookupName(
                             behaviour.status_id,
                             state.behaviourStatuses,
                           ) || "-"}
-                        </span>
+                        </div>
                       </div>
-                    </span>
-                    <span class="t-behaviour__text">
-                      <span class="_points">{behaviour.points || "-"}</span>
-                    </span>
+                    </div>
+                    <div class={styles()!["t-behaviour__text"]}>
+                      <div class={styles()!["_points"]}>
+                        {behaviour.points || "-"}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
-              <div class="b-points-badge">
-                <div class="__label">
-                  <span class="__label-text">Total Negative Points</span>
-                  <span class="__total-points">{state.totalPoints || "-"}</span>
+              <div class={styles()!["b-points-badge"]}>
+                <div class={styles()!["__label"]}>
+                  <div class={styles()!["__label-text"]}>
+                    Total Negative Points
+                  </div>
+                  <div class={styles()!["__total-points"]}>
+                    {state.totalPoints || "-"}
+                  </div>
                 </div>
               </div>
             </div>
           </Show>
           <Show when={state.activePage === "detentions"}>
-            <div
-              class="t-behaviour"
-              style={{ display: "flex", "flex-direction": "column" }}
-            >
-              <div class="t-detentions-header bg-[#ececec] rounded-l rounded-r">
-                <span class="t-header__title _date">Date</span>
-                <span class="t-header__title _type">Type</span>
-                <span class="t-header__title _loc">Location</span>
-                <span class="t-header__title _start">Start time</span>
-                <span class="t-header__title _end">End time</span>
-                <span class="t-header__title _attended">Attended</span>
+            <div class={styles()!["t-behaviour"]}>
+              <div class={styles()!["t-detentions-header"]}>
+                <div class={styles()!["_date"]}>Date</div>
+                <div class={styles()!["_type"]}>Type</div>
+                <div class={styles()!["_loc"]}>Location</div>
+                <div class={styles()!["_start"]}>Start time</div>
+                <div class={styles()!["_end"]}>End time</div>
+                <div class={styles()!["_attended"]}>Attended</div>
               </div>
-              <div class="t-body">
+              <div class={styles()!["t-body"]}>
                 {state.detentions.map(
                   (detention: BehaviourResponse.DetentionsType) => (
-                    <div class="t-detentions-row">
-                      <span class="t-behaviour__text _date">
+                    <div class={styles()!["t-detentions-row"]}>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_date"]
+                        }
+                      >
                         {formatDate(detention.date)}
-                      </span>
-                      <span class="t-behaviour__text _type">
+                      </div>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_type"]
+                        }
+                      >
                         {detention.description || "-"}
-                      </span>
-                      <span class="t-behaviour__text _loc">
+                      </div>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_loc"]
+                        }
+                      >
                         {detention.location || "-"}
-                      </span>
-                      <span class="t-behaviour__text _start">
+                      </div>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_start"]
+                        }
+                      >
                         {detention.start_time || "-"}
-                      </span>
-                      <span class="t-behaviour__text _end">
+                      </div>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_end"]
+                        }
+                      >
                         {detention.end_time || "-"}
-                      </span>
-                      <span class="t-behaviour__text _attended">
+                      </div>
+                      <div
+                        class={
+                          styles()!["t-behaviour__text"] +
+                          " " +
+                          styles()!["_attended"]
+                        }
+                      >
                         {detention.attended || "-"}
-                      </span>
+                      </div>
                     </div>
                   ),
                 )}

@@ -1,0 +1,108 @@
+.__nav {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.t-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-timetable {
+    background: #fff;
+    border-radius: 5px;
+    flex-grow: 1;
+
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+}
+
+.t-header {
+    color: #3090c7;
+    text-align: center;
+    min-height: 40px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.t-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.t-header,
+.t-row {
+    display: grid;
+    grid-template-columns:
+        80px
+        /* Period */
+        1fr 1fr 1fr
+        /* Subject, Room, Teacher */
+        75px 75px;
+    /* Start, End */
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    min-width: 0;
+}
+
+.t-row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.t-row:nth-child(even) {
+    background-color: #ececec;
+}
+
+.t-row > ._subject,
+.t-row > ._room,
+.t-row > ._teacher {
+    justify-content: flex-start !important;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.t-timetable__text {
+    width: 100%;
+    font-size: 14px;
+}
+
+._grey {
+    color: #888;
+}

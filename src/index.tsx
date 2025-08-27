@@ -4,7 +4,8 @@ import { lazy, Suspense } from "solid-js";
 import { render } from "solid-js/web";
 import { Router, Route } from "@solidjs/router";
 import { ParentComponent } from "solid-js";
-import "./assets/css/index.css";
+import "./public/assets/css/index.css";
+import loaderImg from "./public/assets/img/loader.svg";
 import { Edulink } from "./api/edulink.tsx";
 import { Toast } from "./components/toast.tsx";
 const ProtectedRoute = lazy(() => import("./protectRoute.tsx"));
@@ -23,7 +24,7 @@ const LoadingFallback = () => (
     }}
   >
     <img
-      src="/src/assets/img/loader.svg"
+      src={loaderImg}
       alt="Loading..."
       style={{
         width: "64px",
@@ -49,12 +50,6 @@ render(
               )}
             />
             <Route path="/login" component={Login} />
-            <Route
-              path="*404"
-              component={() => {
-                return "404 not found";
-              }}
-            />
           </Router>
         </Suspense>
       </Edulink>

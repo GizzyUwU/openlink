@@ -9,8 +9,11 @@ import { Transition } from "solid-transition-group";
 function Documents(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const toast = useToast();
 
@@ -26,16 +29,14 @@ function Documents(props: {
   const [documents, setDocuments] = createSignal<any[]>([]);
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/documents.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
+    setStyles(normalized);
 
     const response = await edulink.getDocuments(
       sessionData()?.user?.id,
@@ -57,7 +58,9 @@ function Documents(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -73,58 +76,62 @@ function Documents(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
-          <div class="t-container">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-documents"
+              class={styles()!["t-documents"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
-              <div class="t-header">
-                <span class="t-header__title _name">File Name</span>
-                <span class="t-header__title _type">Type</span>
-                <span class="t-header__title _date">Date</span>
-                <span class="t-header__title _download">Download</span>
+              <div class={styles()!["t-header"]}>
+                <div class={styles()!["t-header__title"] + " _name"}>
+                  File Name
+                </div>
+                <div class={styles()!["t-header__title"] + " _type"}>Type</div>
+                <div class={styles()!["t-header__title"] + " _date"}>Date</div>
+                <div class={styles()!["t-header__title"] + " _download"}>
+                  Download
+                </div>
               </div>
-              <div class="t-body">
+              <div class={styles()!["t-body"]}>
                 {documents().map((doc) => (
-                  <div class="t-row">
-                    <span class="t-documents__text _name _grey">
+                  <div class={styles()!["t-row"]}>
+                    <div
+                      class={styles()!["t-documents__text"] + " _name _grey"}
+                    >
                       {doc.attachments?.[0]?.name ||
                         doc.summary ||
                         doc.filename ||
                         "-"}
-                    </span>
-                    <span class="t-documents__text _type">
+                    </div>
+                    <div class={styles()!["t-documents__text"] + " _type"}>
                       {doc.type || "-"}
-                    </span>
-                    <span class="t-documents__text _date">
+                    </div>
+                    <div class={styles()!["t-documents__text"] + " _date"}>
                       {doc.date || "-"}
-                    </span>
-                    <span class="t-documents__text _download">
+                    </div>
+                    <div class={styles()!["t-documents__text"] + " _download"}>
                       {doc.attachments?.[0]?.identifier ? (
                         <a
                           href={`/api/documents/download/${doc.attachments[0].identifier}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          class="t-documents__download-link"
+                          class={styles()!["t-documents__download-link"]}
                         >
                           <AiOutlineDownload size={22} />
                         </a>
                       ) : (
                         "-"
                       )}
-                    </span>
+                    </div>
                   </div>
                 ))}
               </div>

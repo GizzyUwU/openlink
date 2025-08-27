@@ -10,8 +10,11 @@ import { useToast } from "../toast";
 function Homework(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
@@ -36,17 +39,14 @@ function Homework(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/homework.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const response = await edulink.getHomework(
       sessionData()?.authtoken,
       apiUrl(),
@@ -67,7 +67,9 @@ function Homework(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -89,18 +91,16 @@ function Homework(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
           <div class="flex items-center justify-end w-full pr-[16px]">
             <div class="flex space-x-4 mb-2">
               <button
@@ -117,7 +117,7 @@ function Homework(props: {
               <button
                 type="button"
                 onClick={() => handleSwap("past")}
-                class={`text-sm font-medium text-white  cursor-pointer ${
+                class={`text-sm font-medium text-white cursor-pointer ${
                   state.activePage === "past" ? "border-b border-blue-400" : ""
                 }`}
               >
@@ -125,29 +125,38 @@ function Homework(props: {
               </button>
             </div>
           </div>
-          <div class="t-container">
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-homework"
+              class={styles()!["t-homework"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
-              <div class="t-header">
-                <span class="t-header__title _due">Due Date</span>
-                <span class="t-header__title _name">Name</span>
-                <span class="t-header__title _sub_class">Subject & Class</span>
-                <span class="t-header__title _available">Available</span>
-                <span class="t-header__title _submission">Submission</span>
-                <span class="t-header__title _status">Completed</span>
-                <span class="t-header__title _received">Received</span>
+              <div class={styles()!["t-header"]}>
+                <div class={styles()!["t-header__title"] + " _due"}>
+                  Due Date
+                </div>
+                <div class={styles()!["t-header__title"] + " _name"}>Name</div>
+                <div class={styles()!["t-header__title"] + " _sub_class"}>
+                  Subject & Class
+                </div>
+                <div class={styles()!["t-header__title"] + " _available"}>
+                  Available
+                </div>
+                <div class={styles()!["t-header__title"] + " _submission"}>
+                  Submission
+                </div>
+                <div class={styles()!["t-header__title"] + " _status"}>
+                  Completed
+                </div>
+                <div class={styles()!["t-header__title"] + " _received"}>
+                  Received
+                </div>
               </div>
-              <div class="t-body">
+              <div class={styles()!["t-body"]}>
                 {state.shownHomework?.map((data: HomeworkResponse.Items) => (
-                  <div class="t-row">
-                    <span class="t-homework__text _name">
+                  <div class={styles()!["t-row"]}>
+                    <div class={styles()!["t-homework__text"] + " _name"}>
                       <div
-                        style={{
-                          display: "flex",
-                          "flex-direction": "column",
-                        }}
+                        style={{ display: "flex", "flex-direction": "column" }}
                       >
                         <span>
                           {data.due_text
@@ -157,20 +166,20 @@ function Homework(props: {
                         </span>
                         <span>{data.due_date}</span>
                       </div>
-                    </span>
-                    <span class="t-homework__text _name">
+                    </div>
+                    <div class={styles()!["t-homework__text"] + " _name"}>
                       {data.activity || "-"}
-                    </span>
-                    <span class="t-homework__text _sub_class">
+                    </div>
+                    <div class={styles()!["t-homework__text"] + " _sub_class"}>
                       {data.subject || "-"}
-                    </span>
-                    <span class="t-homework__text _available">
+                    </div>
+                    <div class={styles()!["t-homework__text"] + " _available"}>
                       {data.available_date || "-"}
-                    </span>
-                    <span class="t-homework__text _submission">
+                    </div>
+                    <div class={styles()!["t-homework__text"] + " _submission"}>
                       {data.status || "-"}
-                    </span>
-                    <span class="t-homework__text _status">
+                    </div>
+                    <div class={styles()!["t-homework__text"] + " _status"}>
                       {data.icon ? (
                         data.icon === "tick" ? (
                           <IoCheckmarkCircleOutline size="32" color="green" />
@@ -180,7 +189,7 @@ function Homework(props: {
                       ) : (
                         "-"
                       )}
-                    </span>
+                    </div>
                   </div>
                 ))}
               </div>

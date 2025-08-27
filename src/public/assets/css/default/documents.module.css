@@ -1,0 +1,114 @@
+.__nav {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-documents {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+}
+
+.t-header {
+    color: #3090c7;
+    text-align: center;
+    min-height: 40px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.t-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.t-header,
+.t-row {
+    display: grid;
+    grid-template-columns:
+        1fr 1fr
+        /* Name, Type*/
+        105px 105px;
+    /* Date, Download */
+    border-bottom: 1px solid #e3e9ea;
+    text-align: center;
+}
+
+.t-header > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    font-weight: bold;
+    text-transform: capitalize;
+    min-width: 0;
+}
+
+.t-row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    min-width: 0;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    height: 54px;
+}
+
+.t-row:nth-child(even) {
+    background-color: #ececec;
+}
+
+.t-row > ._name,
+.t-row > ._type,
+.t-row > ._date {
+    justify-content: flex-start !important;
+    padding-left: 10px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.t-documents__text {
+    width: 100%;
+    font-size: 14px;
+}
+
+._grey {
+    color: #888;
+}

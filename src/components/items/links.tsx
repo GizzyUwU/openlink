@@ -10,8 +10,11 @@ import type { LinksResponse } from "../../types/api/links";
 function Links(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
@@ -29,17 +32,14 @@ function Links(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/links.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/links.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const response = await edulink.getExternalLinks(
       sessionData()?.authtoken,
       apiUrl(),
@@ -61,7 +61,9 @@ function Links(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -77,34 +79,46 @@ function Links(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
-          <div class="t-container">
-            {state.links.length > 0 ? (
-              <div class="t-links">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["t-container"]}>
+            <Show
+              when={state.links.length > 0}
+              fallback={
+                <div
+                  class={
+                    styles()!["t-links"] +
+                    " flex items-center justify-center h-full"
+                  }
+                >
+                  <h1 class="text-center font-bold text-xl">No Data</h1>
+                </div>
+              }
+            >
+              <div class={styles()!["t-links"]}>
                 <For each={state.links}>
                   {(link) => (
                     <ul>
-                      <li class="__links-item">
+                      <li class={styles()!["__links-item"]}>
                         <a
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="block"
                         >
-                          <div class="__title">{link.name || "-"}</div>
+                          <div class={styles()!["__title"]}>
+                            {link.name || "-"}
+                          </div>
                           <div
-                            class="__image"
+                            class={styles()!["__image"]}
                             style={{ "background-image": `url(${link.icon})` }}
                           ></div>
                         </a>
@@ -113,11 +127,7 @@ function Links(props: {
                   )}
                 </For>
               </div>
-            ) : (
-              <div class="t-links flex items-center justify-center h-full">
-                <h1 class="text-center font-bold text-xl">No Data</h1>
-              </div>
-            )}
+            </Show>
           </div>
         </div>
       </Show>

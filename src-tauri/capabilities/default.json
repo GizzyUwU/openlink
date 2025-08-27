@@ -2,9 +2,7 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": [
-    "main"
-  ],
+  "windows": ["main"],
   "permissions": [
     "core:default",
     "opener:default",
@@ -22,6 +20,11 @@
     "keyring:default",
     "store:default",
     "fs:allow-resource-read-recursive",
-    "fs:allow-exists"
+    "fs:allow-exists",
+    "store:allow-get",
+    "store:allow-set",
+    "store:allow-delete",
+    "store:allow-keys",
+    "store:allow-clear"
   ]
 }

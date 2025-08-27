@@ -56,7 +56,6 @@ export const Toast: ParentComponent = (props) => {
       fadingOut: false,
     });
 
-    // Reset timing
     remainingTime = 10000;
     startTime = Date.now();
 

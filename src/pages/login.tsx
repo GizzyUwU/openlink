@@ -5,6 +5,7 @@ import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
 import { useNavigate } from "@solidjs/router";
 import { callApi } from "../api/fetch";
+import "../public/assets/css/login.css";
 
 declare global {
   interface Window {
@@ -120,10 +121,10 @@ function Login() {
   let store: any;
 
   onMount(async () => {
-    styleElement = document.createElement("link");
-    styleElement.rel = "stylesheet";
-    styleElement.href = "/src/assets/css/login.css";
-    document.head.appendChild(styleElement);
+    // styleElement = document.createElement("link");
+    // styleElement.rel = "stylesheet";
+    // styleElement.href = "/assets/css/login.css";
+    // document.head.appendChild(styleElement);
     console.log("quack", state.schoolData);
     if (window.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
@@ -165,9 +166,9 @@ function Login() {
     setState("loading", false);
   });
 
-  onCleanup(() => {
-    styleElement.remove();
-  });
+  // onCleanup(() => {
+  //   styleElement.remove();
+  // });
 
   async function findCode() {
     if (!state.code) {

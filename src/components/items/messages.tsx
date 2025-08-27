@@ -14,8 +14,11 @@ function Messages(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   let loadMoreRef: HTMLDivElement | undefined;
   const toast = useToast();
   const [state, setState] = createStore<{
@@ -104,17 +107,14 @@ function Messages(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/messages.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/messages.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     await handlePagination(1);
 
     if (loadMoreRef) {
@@ -137,8 +137,8 @@ function Messages(props: {
   });
 
   onCleanup(() => {
-    if (styleElement) {
-      styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
     }
     props.setProgress(0);
   });
@@ -165,13 +165,11 @@ function Messages(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
@@ -179,29 +177,33 @@ function Messages(props: {
         when={
           props.progress() === 1 &&
           state.photos.length > 0 &&
-          state.messages.length > 0
+          state.messages.length > 0 &&
+          styles()
         }
       >
-        <div class="box-container">
-          <div class="t-container">
-            <div class="b-messages">
-              <ul class="l-messages__items">
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["t-container"]}>
+            <div class={styles()!["b-messages"]}>
+              <ul class={styles()!["l-messages__items"]}>
                 <For each={state.messages}>
                   {(message) => (
                     <li
-                      class="__item"
+                      class={styles()!["__item"]}
                       onClick={() => setState("openedMessage", [message])}
                     >
-                      <div class="l-messages__photos">
-                        <ul class="l-photos">
+                      <div class={styles()!["l-messages__photos"]}>
+                        <ul class={styles()!["l-photos"]}>
                           <li
-                            class="l-photos__item"
+                            class={styles()!["l-photos__item"]}
                             ref={(el) => {
                               if (!el) return;
                               const img = new Image();
                               img.crossOrigin = "anonymous";
-                              img.src = `data:image/*;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage}`;
-
+                              img.src = `data:image/*;base64,${
+                                state.photos.find(
+                                  (p) => p.id === message.sender.id,
+                                )?.photo || state.defaultImage
+                              }`;
                               img.onload = () => {
                                 const canvas = document.createElement("canvas");
                                 const ctx = canvas.getContext("2d");
@@ -241,7 +243,6 @@ function Messages(props: {
                                     break;
                                   }
                                 }
-
                                 if (hasTransparentBackground) return;
 
                                 const colorCounts: Record<string, number> = {};
@@ -254,45 +255,46 @@ function Messages(props: {
                                   const b = data[i + 2];
                                   const a = data[i + 3];
                                   if (a === 0) continue;
-
                                   const key = `${r},${g},${b}`;
                                   colorCounts[key] =
                                     (colorCounts[key] || 0) + 1;
-
                                   if (colorCounts[key] > maxCount) {
                                     maxCount = colorCounts[key];
                                     maxColor = key;
                                   }
                                 }
-
                                 if (maxColor)
                                   el.style.backgroundColor = `rgb(${maxColor})`;
                               };
                             }}
                           >
                             <div
-                              class="l-photos__photo"
+                              class={styles()!["l-photos__photo"]}
                               style={{
-                                "background-image": `url(data:image/*;base64,${state.photos.find((p) => p.id === message.sender.id)?.photo || state.defaultImage})`,
+                                "background-image": `url(data:image/*;base64,${
+                                  state.photos.find(
+                                    (p) => p.id === message.sender.id,
+                                  )?.photo || state.defaultImage
+                                })`,
                               }}
                             ></div>
                           </li>
                         </ul>
                       </div>
-                      <div class="l-messages__info">
-                        <div class="l-messages__data">
-                          <div class="l-messages__name text-black text-base">
+                      <div class={styles()!["l-messages__info"]}>
+                        <div class={styles()!["l-messages__data"]}>
+                          <div class={styles()!["l-messages__name"]}>
                             {message.sender.name || "-"}
                           </div>
-                          <div class="l-messages__text text-[14px]">
+                          <div class={styles()!["l-messages__text"]}>
                             {message.subject}
                           </div>
                         </div>
-                        <div class="l-messages__description">
-                          <div class="l-messages__date text-sm">
+                        <div class={styles()!["l-messages__description"]}>
+                          <div class={styles()!["l-messages__date"]}>
                             {formatDate(message.date) || "-"}
                           </div>
-                          <div class="l-messages__type text-sm">
+                          <div class={styles()!["l-messages__type"]}>
                             {message.type || "-"}
                           </div>
                         </div>
@@ -302,21 +304,24 @@ function Messages(props: {
                 </For>
                 <div ref={loadMoreRef} style={{ height: "1px" }}></div>
               </ul>
-              <div class="l-messages__content">
-                <div class="__content">
+              <div class={styles()!["l-messages__content"]}>
+                <div class={styles()!["__content"]}>
                   <Show when={state.openedMessage.length > 0}>
-                    <div class="__header">
-                      <div class="l-messages__photos">
-                        <ul class="l-photos">
+                    <div class={styles()!["__header"]}>
+                      <div class={styles()!["l-messages__photos"]}>
+                        <ul class={styles()!["l-photos"]}>
                           <li
-                            class="l-photos__item"
+                            class={styles()!["l-photos__item"]}
                             ref={(el) => {
                               if (!el) return;
-
                               const img = new Image();
                               img.crossOrigin = "anonymous";
-                              img.src = `data:image/*;base64,${state.photos.find((p) => p.id === state.openedMessage[0].sender.id)?.photo || state.defaultImage}`;
-
+                              img.src = `data:image/*;base64,${
+                                state.photos.find(
+                                  (p) =>
+                                    p.id === state.openedMessage[0].sender.id,
+                                )?.photo || state.defaultImage
+                              }`;
                               img.onload = () => {
                                 const canvas = document.createElement("canvas");
                                 const ctx = canvas.getContext("2d");
@@ -332,7 +337,6 @@ function Messages(props: {
                                   canvas.width,
                                   canvas.height,
                                 );
-
                                 const width = canvas.width;
                                 const height = canvas.height;
                                 const corners = [
@@ -356,7 +360,6 @@ function Messages(props: {
                                     break;
                                   }
                                 }
-
                                 if (hasTransparentBackground) return;
 
                                 const colorCounts: Record<string, number> = {};
@@ -369,54 +372,51 @@ function Messages(props: {
                                   const b = data[i + 2];
                                   const a = data[i + 3];
                                   if (a === 0) continue;
-
                                   const key = `${r},${g},${b}`;
                                   colorCounts[key] =
                                     (colorCounts[key] || 0) + 1;
-
                                   if (colorCounts[key] > maxCount) {
                                     maxCount = colorCounts[key];
                                     maxColor = key;
                                   }
                                 }
-
                                 if (maxColor)
                                   el.style.backgroundColor = `rgb(${maxColor})`;
                               };
                             }}
                           >
                             <div
-                              class="l-photos__photo"
+                              class={styles()!["l-photos__photo"]}
                               style={{
                                 "background-image": `url(data:image/*;base64,${
                                   state.photos.find(
                                     (p) =>
                                       p.id === state.openedMessage[0].sender.id,
-                                  )?.photo ?? state.defaultImage
+                                  )?.photo || state.defaultImage
                                 })`,
                               }}
                             ></div>
                           </li>
                         </ul>
                       </div>
-                      <div class="__info">
-                        <div class="__info-item">
-                          <div class="__name">
+                      <div class={styles()!["__info"]}>
+                        <div class={styles()!["__info-item"]}>
+                          <div class={styles()!["__name"]}>
                             {state.openedMessage[0].sender.name}
                           </div>
-                          <div class="__time text-sm">
+                          <div class={styles()!["__time"]}>
                             {state.openedMessage[0].date}
                           </div>
                         </div>
-                        <div class="__info-item">
-                          <div class="__subject text-sm">
+                        <div class={styles()!["__info-item"]}>
+                          <div class={styles()!["__subject"]}>
                             {state.openedMessage[0].subject}
                           </div>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="__body"
+                      class={styles()!["__body"]}
                       innerHTML={DOMPurify.sanitize(
                         state.openedMessage[0].body,
                       )}

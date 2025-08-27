@@ -8,8 +8,11 @@ import { AiOutlineTrophy } from "solid-icons/ai";
 function AchievementComponent(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const [sessionData] = makePersisted(createSignal<any>(null), {
     storage: sessionStorage,
@@ -56,21 +59,14 @@ function AchievementComponent(props: {
   };
 
   onMount(async () => {
-    const styleUrl = new URL(
-      "../../assets/css/achievement.css",
-      import.meta.url,
-    ).href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const userId = sessionData()?.user?.id;
     const token = sessionData()?.authtoken;
     const url = apiUrl();
@@ -120,7 +116,9 @@ function AchievementComponent(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -154,43 +152,41 @@ function AchievementComponent(props: {
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <div class="t-header">
-                <span class="t-header__title _type_date">Type & Date</span>
-                <span class="t-header__title _comment_teacher">
+                <div class="t-header__title _type _date">Type & Date</div>
+                <div class="t-header__title _comment_teacher">
                   Comment & Teacher
-                </span>
-                <span class="t-header__title _action_info">Action & Info</span>
-                <span class="t-header__title _award">Award</span>
-                <span class="t-header__title _points">Points</span>
+                </div>
+                <div class="t-header__title _action_info">Action & Info</div>
+                <div class="t-header__title _award">Award</div>
+                <div class="t-header__title _points">Points</div>
               </div>
               <div class="t-body">
                 {achievements().map((achievement: any) => (
                   <div class="t-row">
-                    <span class="t-achievement__text_type_date">
+                    <div class="t-achievement__text _type _date">
                       <div
                         style={{
                           display: "flex",
                           "flex-direction": "column",
                         }}
                       >
-                        <span class="_grey">
-                          {formatDate(achievement.date)}
-                        </span>
-                        <span>
+                        <div class="_grey">{formatDate(achievement.date)}</div>
+                        <div>
                           {getLookupName(
                             achievement.type_ids?.[0],
                             achievementTypes(),
                           ) || "-"}
-                        </span>
+                        </div>
                       </div>
-                    </span>
-                    <span class="t-achievement__text _comment_teacher">
+                    </div>
+                    <div class="t-achievement__text _comment_teacher">
                       <div
                         style={{
                           display: "flex",
                           "flex-direction": "column",
                         }}
                       >
-                        <span class="_grey">
+                        <div class="_grey">
                           {(() => {
                             const employeeId =
                               achievement.recorded?.employee_id ??
@@ -204,52 +200,52 @@ function AchievementComponent(props: {
                               ? `${employee.title} ${employee.forename} ${employee.surname}`
                               : "-";
                           })()}
-                        </span>
-                        <span>{achievement.comments || "-"}</span>
+                        </div>
+                        <div>{achievement.comments || "-"}</div>
                       </div>
-                    </span>
-                    <span class="t-achievement__text _action_info">
+                    </div>
+                    <div class="t-achievement__text _action_info">
                       <div
                         style={{
                           display: "flex",
                           "flex-direction": "column",
                         }}
                       >
-                        <span class="_grey">
+                        <div class="_grey">
                           {getLookupName(
                             achievement.activity_id,
                             achievementActivities(),
                           ) || "-"}
-                        </span>
-                        <span>{achievement.lesson_information || "-"}</span>
+                        </div>
+                        <div>{achievement.lesson_information || "-"}</div>
                       </div>
-                    </span>
-                    <span class="t-achievement__text _award">
+                    </div>
+                    <div class="t-achievement__text _award">
                       <div
                         style={{
                           display: "flex",
                           "flex-direction": "column",
                         }}
                       >
-                        <span class="_grey">
+                        <div class="_grey">
                           {getLookupName(
                             achievement.award?.id,
                             achievementAwards(),
                           ) || "-"}
-                        </span>
-                        <span>Achievement Award</span>
+                        </div>
+                        <div>Achievement Award</div>
                       </div>
-                    </span>
-                    <span class="t-achievement__text">
-                      <span class="_points">{achievement.points || "-"}</span>
-                    </span>
+                    </div>
+                    <div class="t-achievement__text">
+                      <div class="_points">{achievement.points || "-"}</div>
+                    </div>
                   </div>
                 ))}
               </div>
               <div class="b-points-badge">
                 <div class="__label">
-                  <span class="__label-text">Total Achievement Points</span>
-                  <span class="__total-points">{totalPoints() || "-"}</span>
+                  <div class="__label-text">Total Achievement Points</div>
+                  <div class="__total-points">{totalPoints() || "-"}</div>
                 </div>
               </div>
             </div>

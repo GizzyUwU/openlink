@@ -1,3 +1,31 @@
+:root {
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --text: white;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    --overlay2: #9399b2;
+    --overlay1: #7f849c;
+    --overlay0: #6c7086;
+    --surface2: #585b70;
+    --surface1: #45475a;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+}
+
 .__nav {
     align-items: center;
     display: flex;
@@ -10,34 +38,29 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    flex-grow: 1;
-    min-height: 0;
 }
 
 .t-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
 }
 
-.t-exams {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    min-height: 0;
-    background: #fff;
+.t-timetable {
+    background: var(--base);
     border-radius: 5px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
     z-index: 2;
+    flex-grow: 1;
     font-family:
         Helvetica Neue,
         Arial,
         Helvetica,
         sans-serif;
     font-size: 14px;
+    border: 0;
+    border-bottom: 1px solid var(--mantle);
 }
 
 .t-header {
@@ -49,69 +72,32 @@
 }
 
 .t-body {
+    flex-grow: 1;
     overflow-y: auto;
     min-height: 0;
     max-height: 100%;
 }
 
-.t-timetable .t-header,
-.t-timetable .t-row {
+.t-header,
+.t-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
+    grid-template-columns:
+        80px
+        /* Period */
+        1fr 1fr 1fr
+        /* Subject, Room, Teacher */
+        75px 75px;
+    /* Start, End */
+    border-bottom: 1px solid green;
     text-align: center;
+    color: var(--text);
 }
 
-.t-timetable {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-.t-entries {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-.t-results {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-.t-entries .t-header,
-.t-entries .t-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-results .t-header,
-.t-results .t-row {
-    display: grid;
-    grid-template-columns: 100px 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-header > span {
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 5px;
-    font-weight: bold;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-countdown {
-    display: flex;
-    color: #3090c7;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
     font-weight: bold;
     text-transform: capitalize;
     min-width: 0;
@@ -124,23 +110,22 @@
     padding: 10px 10px;
     min-width: 0;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
     text-align: center;
 }
 
 .t-row:nth-child(even) {
-    background-color: #ececec;
+    background-color: var(--mantle);
 }
 
-.t-row > ._date_start,
-.t-row > ._board_level,
-.t-row > ._code_exam,
-.t-row > ._room {
+.t-row > ._subject,
+.t-row > ._room,
+.t-row > ._teacher {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
     font-weight: 400;
-    word-wrap: break-word;
 }
 
 .t-timetable__text {

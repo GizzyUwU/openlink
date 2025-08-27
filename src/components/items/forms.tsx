@@ -12,8 +12,11 @@ function Forms(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const toast = useToast();
   const [state, setState] = createStore<{
     forms: FormsResponse.FormType[];
@@ -32,16 +35,14 @@ function Forms(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/forms.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
+    setStyles(normalized);
     const response: FormsResponse = await props.edulink.getForms(
       "learner",
       sessionData()?.authtoken,
@@ -62,8 +63,8 @@ function Forms(props: {
   });
 
   onCleanup(() => {
-    if (styleElement) {
-      styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
     }
     props.setProgress(0);
   });
@@ -103,35 +104,41 @@ function Forms(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
-          <div class="t-container">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-forms"
+              class={styles()!["t-forms"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
-              <div class="t-header">
-                <span class="t-header__title _name">Form Name</span>
-                <span class="t-header__title _date">Due Date</span>
-                <span class="t-header__title _completed">Completed</span>
+              <div class={styles()!["t-header"]}>
+                <span class={styles()!["t-header__title"] + " _name"}>
+                  Form Name
+                </span>
+                <span class={styles()!["t-header__title"] + " _date"}>
+                  Due Date
+                </span>
+                <span class={styles()!["t-header__title"] + " _completed"}>
+                  Completed
+                </span>
               </div>
               <Show when={state.forms.length > 0}>
-                <For each={state.forms}>
-                  {(data: FormsResponse.FormType) => (
-                    <div class="t-body">
-                      <div class="t-row">
-                        <div class="__text _name">{data.subject || "-"}</div>
-                        <div class="__text _date">
+                <div class={styles()!["t-body"]}>
+                  <For each={state.forms}>
+                    {(data: FormsResponse.FormType) => (
+                      <div class={styles()!["t-row"]}>
+                        <div class={styles()!["__text"] + " _name"}>
+                          {data.subject || "-"}
+                        </div>
+                        <div class={styles()!["__text"] + " _date"}>
                           <div
                             style={{
                               display: "flex",
@@ -142,14 +149,13 @@ function Forms(props: {
                               {formatDate({ date: data.due })}
                             </span>
                             <span>
-                              {formatDate({
-                                time: true,
-                                date: data.due,
-                              })}
+                              {formatDate({ time: true, date: data.due })}
                             </span>
                           </div>
                         </div>
-                        <div class="t-timetable__text _completed">
+                        <div
+                          class={styles()!["t-timetable__text"] + " _completed"}
+                        >
                           {data.submitted ? (
                             data.submitted ? (
                               <IoCheckmarkCircleOutline
@@ -164,9 +170,9 @@ function Forms(props: {
                           )}
                         </div>
                       </div>
-                    </div>
-                  )}
-                </For>
+                    )}
+                  </For>
+                </div>
               </Show>
             </div>
           </div>

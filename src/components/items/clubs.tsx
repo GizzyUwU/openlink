@@ -14,8 +14,11 @@ function Clubs(props: {
   progress: () => number;
   edulink: any;
   setOverlay: any;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const toast = useToast();
   const [state, setState] = createStore<{
     clubs: ClubsResponse.ClubType[];
@@ -38,17 +41,14 @@ function Clubs(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/clubs.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const response = await props.edulink.getClubs(
       true,
       sessionData()?.user?.id,
@@ -80,8 +80,8 @@ function Clubs(props: {
   });
 
   onCleanup(() => {
-    if (styleElement) {
-      styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
     }
     props.setProgress(0);
   });
@@ -164,11 +164,11 @@ function Clubs(props: {
               : clubData.result.club.leaders_names}{" "}
           </h2>
           <h2 class="text-sm">
-            <span class="font-bold">Description:</span>
+            <div class="font-bold">Description:</div>
             <br />
-            <span
+            <div
               innerHTML={DOMPurify.sanitize(clubData.result.club.description)}
-            ></span>
+            ></div>
           </h2>
           <br />
           <h2 class="text-sm font-bold">All Times:</h2>
@@ -178,19 +178,19 @@ function Clubs(props: {
             style={{ display: "flex", "flex-direction": "column" }}
           >
             <div class="t-club-header">
-              <span class="t-header__title _name">Name</span>
-              <span class="t-header__title _location">Attendance</span>
-              <span class="t-header__title _capacity">Start</span>
-              <span class="t-header__title _session">End</span>
+              <div class="t-header__title _name">Name</div>
+              <div class="t-header__title _location">Attendance</div>
+              <div class="t-header__title _capacity">Start</div>
+              <div class="t-header__title _session">End</div>
             </div>
             <div class="t-body mt-2">
               <For each={clubData.result.club.sessions}>
                 {(data) => (
                   <div class="t-club-row cursor-pointer">
-                    <span class="t-timetable__text _date">
+                    <div class="t-timetable__text _date">
                       {formatDate({ date: data.start_time }) || "-"}
-                    </span>
-                    <span class="t-timetable__text _attend">
+                    </div>
+                    <div class="t-timetable__text _attend">
                       {data.attended ? (
                         data.attended ? (
                           <IoCheckmarkCircleOutline size="32" color="green" />
@@ -200,13 +200,13 @@ function Clubs(props: {
                       ) : (
                         <ImCross color="red" size="20" />
                       )}
-                    </span>
-                    <span class="t-timetable__text _start">
+                    </div>
+                    <div class="t-timetable__text _start">
                       {formatDate({ date: data.start_time, time: true })}
-                    </span>
-                    <span class="t-timetable__text _end">
+                    </div>
+                    <div class="t-timetable__text _end">
                       {formatDate({ date: data.end_time, time: true })}
-                    </span>
+                    </div>
                   </div>
                 )}
               </For>
@@ -229,18 +229,16 @@ function Clubs(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
           <div class="flex items-center justify-end w-full pr-[10px] z">
             <div class="flex space-x-4 mb-2">
               <For each={["My Clubs", "All Clubs"] as const}>
@@ -263,43 +261,49 @@ function Clubs(props: {
               </For>
             </div>
           </div>
-          <div class="t-container">
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-clubs"
+              class={styles()!["t-clubs"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
-              <div class="t-header">
-                <span class="t-header__title _name">Name</span>
-                <span class="t-header__title _location">Location</span>
-                <span class="t-header__title _capacity">Capacity</span>
-                <span class="t-header__title _session">Next Session</span>
+              <div class={styles()!["t-header"]}>
+                <div class={styles()!["t-header__title"] + " _name"}>Name</div>
+                <div class={styles()!["t-header__title"] + " _location"}>
+                  Location
+                </div>
+                <div class={styles()!["t-header__title"] + " _capacity"}>
+                  Capacity
+                </div>
+                <div class={styles()!["t-header__title"] + " _session"}>
+                  Next Session
+                </div>
               </div>
-              <div class="t-body">
+              <div class={styles()!["t-body"]}>
                 {(state.activePage === "My Clubs"
                   ? state.clubs
                   : state.allClubs
                 )?.map((club) => (
                   <div
-                    class="t-row cursor-pointer"
+                    class={styles()!["t-row"] + " cursor-pointer"}
                     onClick={() => handleClubPreview(club.id)}
                   >
-                    <span class="t-timetable__text _name">
+                    <div class={styles()!["t-timetable__text"] + " _name"}>
                       {club.name || "-"}
-                    </span>
-                    <span class="t-timetable__text _location">
+                    </div>
+                    <div class={styles()!["t-timetable__text"] + " _location"}>
                       {club.location || "-"}
-                    </span>
-                    <span class="t-timetable__text _capacity">
+                    </div>
+                    <div class={styles()!["t-timetable__text"] + " _capacity"}>
                       {club.capacity?.maximum
                         ? `${club.capacity.bookings}/${club.capacity.maximum}`
                         : "-"}
-                    </span>
-                    <span class="t-timetable__text _session">
+                    </div>
+                    <div class={styles()!["t-timetable__text"] + " _session"}>
                       {formatDate({
                         date: club.next_session,
                         fullFormat: true,
                       }) || "-"}
-                    </span>
+                    </div>
                   </div>
                 ))}
               </div>

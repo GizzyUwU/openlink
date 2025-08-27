@@ -8,8 +8,11 @@ import { Transition } from "solid-transition-group";
 function Personal(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const toast = useToast();
   const [sessionData] = makePersisted(createSignal<any>(null), {
@@ -24,17 +27,14 @@ function Personal(props: {
   const [personalData, setPersonalData] = createSignal<any>(null);
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/account.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const response = await edulink.getPersonal(
       sessionData()?.user?.id,
       sessionData()?.authtoken,
@@ -55,7 +55,9 @@ function Personal(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 

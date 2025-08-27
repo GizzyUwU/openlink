@@ -269,7 +269,24 @@ export type LoginResponse = EdulinkApiResponse<{
 
 export type StatusResponse = EdulinkApiResponse<{
   lessons?: {
-    next: {
+    current?: {
+      period_id: string;
+      room: {
+        name: string;
+        id: string;
+        moved: boolean;
+      };
+      teaching_group: {
+        id: string;
+        name: string;
+        subject: string;
+      };
+      teachers: string;
+      start_time: string;
+      end_time: string;
+      period_name: string;
+    };
+    next?: {
       period_id: string;
       room: {
         name: string;

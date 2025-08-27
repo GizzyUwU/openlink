@@ -1,9 +1,25 @@
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import solid from "vite-plugin-solid";
 import tailwindcss from "@tailwindcss/vite";
 // req.method.eq:"POST" AND req.host.cont:"edulinkone"
-// @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
+
+const noCssDevInjection: Plugin = {
+  name: "no-css-dev-injection",
+  enforce: "pre",
+  resolveId(id) {
+    if (id.endsWith(".css")) {
+      return id; // treat CSS imports as normal files, don't transform
+    }
+    return null;
+  },
+  load(id) {
+    if (id.endsWith(".css")) {
+      return ""; // return empty content so Vite won't inject
+    }
+    return null;
+  },
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({

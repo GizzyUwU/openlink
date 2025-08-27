@@ -12,9 +12,12 @@ import { SolidApexCharts } from "solid-apexcharts";
 function Attendance(props: {
   setProgress: (value: number) => void;
   progress: () => number;
+  theme: string;
 }) {
   let chartRef: ApexCharts;
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
@@ -43,17 +46,14 @@ function Attendance(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/attendance.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
-
+    setStyles(normalized);
     const response = await edulink.getAttendance(
       sessionData()?.user?.id,
       sessionData()?.authtoken,
@@ -88,7 +88,9 @@ function Attendance(props: {
   });
 
   onCleanup(() => {
-    styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
+    }
     props.setProgress(0);
   });
 
@@ -149,9 +151,9 @@ function Attendance(props: {
       }}
     >
       <Show when={props.progress() === 1 && state.statutory}>
-        <div class="box-container">
-          <div class="flex items-center justify-end w-full pr-[10px]">
-            <div class="flex space-x-4 mb-2">
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["header-container"]}>
+            <div class={styles()!["button-group"]}>
               <For
                 each={
                   [
@@ -168,11 +170,11 @@ function Attendance(props: {
                       if (state.activePage === name) return;
                       setState("activePage", name);
                     }}
-                    class={`text-sm text-white cursor-pointer ${
+                    class={
                       state.activePage === name
-                        ? "border-b border-blue-400"
-                        : ""
-                    }`}
+                        ? styles()!["active-tab"]
+                        : styles()!["tab"]
+                    }
                   >
                     {name}
                   </button>
@@ -180,9 +182,9 @@ function Attendance(props: {
               </For>
             </div>
           </div>
-          <div class="t-container">
+          <div class={styles()!["t-container"]}>
             <Show when={state.activePage !== "Lesson Academic Year"}>
-              <div class="t-attendance">
+              <div class={styles()!["t-attendance"]}>
                 <Show when={state.activePage === "Statutory Month"}>
                   {(() => {
                     const values = state.currentMonthStatutory[0]?.values ?? {
@@ -198,16 +200,16 @@ function Attendance(props: {
 
                     return (
                       <>
-                        <div class="attendance__statutory-left">
+                        <div class={styles()!["attendance__statutory-left"]}>
                           {Object.values(
                             state.currentMonthStatutory[0].values,
                           ).every((v) => v === 0) ? (
-                            <div class="w-full h-full flex items-center justify-center">
-                              <h1 class="font-bold text-xl">No Data</h1>
+                            <div class={styles()!["no-data"]}>
+                              <h1 class={styles()!["no-data-text"]}>No Data</h1>
                             </div>
                           ) : (
-                            <div class="b-graph">
-                              <div class="b-graph__graph">
+                            <div class={styles()!["b-graph"]}>
+                              <div class={styles()!["b-graph__graph"]}>
                                 <SolidApexCharts
                                   ref={chartRef!}
                                   type="donut"
@@ -219,11 +221,7 @@ function Attendance(props: {
                                     percent.absent ?? 0,
                                   ]}
                                   options={{
-                                    chart: {
-                                      animations: {
-                                        enabled: false,
-                                      },
-                                    },
+                                    chart: { animations: { enabled: false } },
                                     labels: [
                                       "Present",
                                       "Unauthorized",
@@ -234,247 +232,145 @@ function Attendance(props: {
                                       "rgb(238, 84, 59)",
                                       "rgb(252, 185, 66)",
                                     ],
-                                    dataLabels: {
-                                      enabled: false,
-                                    },
-                                    markers: {
-                                      size: 0,
-                                    },
+                                    dataLabels: { enabled: false },
+                                    markers: { size: 0 },
                                     plotOptions: {
                                       pie: {
                                         donut: {
                                           size: "54%",
-                                          labels: {
-                                            show: false,
-                                          },
+                                          labels: { show: false },
                                         },
                                         expandOnClick: false,
                                       },
                                     },
-                                    legend: {
-                                      show: false,
-                                    },
+                                    legend: { show: false },
                                   }}
                                 />
                               </div>
-                              <div class="b-graph__aliases">
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                              <div class={styles()!["b-graph__aliases"]}>
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(44, 201, 145);"
                                   />
                                   Present{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.present ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(238, 84, 59);"
                                   />
                                   Unauthorized{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.unauthorised ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(252, 185, 66);"
                                   />
                                   Absent{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.absent ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           )}
                         </div>
-                        <div class="attendance__statutory-right">
-                          <div class="t-header">
-                            <span class="t-header__title _description">
+                        <div class={styles()!["attendance__statutory-right"]}>
+                          <div class={styles()!["t-header"]}>
+                            <div
+                              class={
+                                styles()!["t-header__title"] +
+                                " " +
+                                styles()!["_description"]
+                              }
+                            >
                               Description
-                            </span>
-                            <span class="t-header__title _date">Date</span>
-                            <span class="t-header__title _type">Type</span>
-                            <span class="t-header__title _period">Period</span>
+                            </div>
+                            <div
+                              class={
+                                styles()!["t-header__title"] +
+                                " " +
+                                styles()!["_date"]
+                              }
+                            >
+                              Date
+                            </div>
+                            <div
+                              class={
+                                styles()!["t-header__title"] +
+                                " " +
+                                styles()!["_type"]
+                              }
+                            >
+                              Type
+                            </div>
+                            <div
+                              class={
+                                styles()!["t-header__title"] +
+                                " " +
+                                styles()!["_period"]
+                              }
+                            >
+                              Period
+                            </div>
                           </div>
-                          <div class="t-body">
+                          <div class={styles()!["t-body"]}>
                             <For
                               each={state.currentMonthStatutory[0].exceptions}
                             >
                               {(exception) => (
-                                <div class="t-row">
-                                  <span class="t-timetable__text _description _grey">
+                                <div class={styles()!["t-row"]}>
+                                  <div
+                                    class={
+                                      styles()!["t-timetable__text"] +
+                                      " " +
+                                      styles()!["_description"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
                                     {exception.description}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
+                                  </div>
+                                  <div
+                                    class={
+                                      styles()!["t-timetable__text"] +
+                                      " " +
+                                      styles()!["_description"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
                                     {exception.date}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
+                                  </div>
+                                  <div
+                                    class={
+                                      styles()!["t-timetable__text"] +
+                                      " " +
+                                      styles()!["_description"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
                                     {exception.type}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
+                                  </div>
+                                  <div
+                                    class={
+                                      styles()!["t-timetable__text"] +
+                                      " " +
+                                      styles()!["_description"] +
+                                      " " +
+                                      styles()!["_grey"]
+                                    }
+                                  >
                                     {exception.period}
-                                  </span>
-                                </div>
-                              )}
-                            </For>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </Show>
-                <Show when={state.activePage === "Statutory Academic Year"}>
-                  {(() => {
-                    const totals = state.statutory.reduce(
-                      (acc, item) => {
-                        const values = item.values ?? {
-                          present: 0,
-                          unauthorised: 0,
-                          absent: 0,
-                        };
-                        acc.present += values.present;
-                        acc.unauthorised += values.unauthorised;
-                        acc.absent += values.absent;
-                        return acc;
-                      },
-                      { present: 0, unauthorised: 0, absent: 0 },
-                    );
-                    const percent = calculatePercent(
-                      totals.present,
-                      totals.unauthorised,
-                      totals.absent,
-                    );
-
-                    return (
-                      <>
-                        <div class="attendance__statutory-left">
-                          {Object.values(
-                            state.currentMonthStatutory[0].values,
-                          ).every((v) => v === 0) ? (
-                            <div class="w-full h-full flex items-center justify-center">
-                              <h1 class="font-bold text-xl">No Data</h1>
-                            </div>
-                          ) : (
-                            <div class="b-graph">
-                              <div class="b-graph__graph">
-                                <SolidApexCharts
-                                  ref={chartRef!}
-                                  type="donut"
-                                  width={210}
-                                  height={210}
-                                  series={[
-                                    percent.present,
-                                    percent.unauthorised,
-                                    percent.absent,
-                                  ]}
-                                  options={{
-                                    chart: {
-                                      animations: {
-                                        enabled: false,
-                                      },
-                                    },
-                                    labels: [
-                                      "Present",
-                                      "Unauthorized",
-                                      "Absent",
-                                    ],
-                                    colors: [
-                                      "rgb(44, 201, 145)",
-                                      "rgb(238, 84, 59)",
-                                      "rgb(252, 185, 66)",
-                                    ],
-                                    dataLabels: {
-                                      enabled: false,
-                                    },
-                                    markers: {
-                                      size: 0,
-                                    },
-                                    plotOptions: {
-                                      pie: {
-                                        donut: {
-                                          size: "54%",
-                                          labels: {
-                                            show: false,
-                                          },
-                                        },
-                                        expandOnClick: false,
-                                      },
-                                    },
-                                    legend: {
-                                      show: false,
-                                    },
-                                  }}
-                                />
-                              </div>
-                              <div class="b-graph__aliases">
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
-                                    style="border-color: rgb(44, 201, 145);"
-                                  />
-                                  Present{" "}
-                                  <span class="__value">
-                                    {percent.present ?? 0}%
-                                  </span>
-                                </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
-                                    style="border-color: rgb(238, 84, 59);"
-                                  />
-                                  Unauthorized{" "}
-                                  <span class="__value">
-                                    {percent.unauthorised ?? 0}%
-                                  </span>
-                                </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
-                                    style="border-color: rgb(252, 185, 66);"
-                                  />
-                                  Absent{" "}
-                                  <span class="__value">
-                                    {percent.absent ?? 0}%
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                        <div class="attendance__statutory-right">
-                          <div class="t-header">
-                            <span class="t-header__title _description">
-                              Description
-                            </span>
-                            <span class="t-header__title _date">Date</span>
-                            <span class="t-header__title _type">Type</span>
-                            <span class="t-header__title _period">Period</span>
-                          </div>
-                          <div class="t-body">
-                            <For
-                              each={state.currentMonthStatutory.flatMap(
-                                (s) => s.exceptions,
-                              )}
-                            >
-                              {(exception) => (
-                                <div class="t-row">
-                                  <span class="t-timetable__text _description _grey">
-                                    {exception.description}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
-                                    {exception.date}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
-                                    {exception.type}
-                                  </span>
-                                  <span class="t-timetable__text _description _grey">
-                                    {exception.period}
-                                  </span>
+                                  </div>
                                 </div>
                               )}
                             </For>
@@ -488,7 +384,7 @@ function Attendance(props: {
             </Show>
             <Show when={state.activePage === "Lesson Academic Year"}>
               {state.lessons.length > 0 ? (
-                <div class="progress-attendance">
+                <div class={styles()!["progress-attendance"]}>
                   <For each={state.lessons}>
                     {(lesson) => {
                       const percent = calculatePercent(
@@ -500,10 +396,12 @@ function Attendance(props: {
 
                       return (
                         <ul>
-                          <li class="__progress-item">
-                            <div class="__title">{lesson.subject || "-"}</div>
-                            <div class="b-graph">
-                              <div class="b-graph__graph">
+                          <li class={styles()!["__progress-item"]}>
+                            <div class={styles()!["__title"]}>
+                              {lesson.subject || "-"}
+                            </div>
+                            <div class={styles()!["b-graph"]}>
+                              <div class={styles()!["b-graph__graph"]}>
                                 <SolidApexCharts
                                   ref={chartRef!}
                                   type="donut"
@@ -516,11 +414,7 @@ function Attendance(props: {
                                     percent.late ?? 0,
                                   ]}
                                   options={{
-                                    chart: {
-                                      animations: {
-                                        enabled: false,
-                                      },
-                                    },
+                                    chart: { animations: { enabled: false } },
                                     labels: [
                                       "Present",
                                       "Unauthorized",
@@ -533,67 +427,61 @@ function Attendance(props: {
                                       "rgb(252, 185, 66)",
                                       "rgb(133, 209, 253)",
                                     ],
-                                    dataLabels: {
-                                      enabled: false,
-                                    },
-                                    markers: {
-                                      size: 0,
-                                    },
+                                    dataLabels: { enabled: false },
+                                    markers: { size: 0 },
                                     plotOptions: {
                                       pie: {
                                         donut: {
                                           size: "54%",
-                                          labels: {
-                                            show: false,
-                                          },
+                                          labels: { show: false },
                                         },
                                         expandOnClick: false,
                                       },
                                     },
-                                    legend: {
-                                      show: false,
-                                    },
+                                    legend: { show: false },
                                   }}
                                 />
                               </div>
-                              <div class="b-graph__aliases">
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                              <div class={styles()!["b-graph__aliases"]}>
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(44, 201, 145);"
                                   />
                                   Present{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.present ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(238, 84, 59);"
                                   />
                                   Unauthorized{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.unauthorised ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(252, 185, 66);"
                                   />
                                   Absent{" "}
-                                  <span class="__value">{percent.absent}%</span>
+                                  <div class={styles()!["__value"]}>
+                                    {percent.absent}%
+                                  </div>
                                 </div>
-                                <div class="__alias">
-                                  <span
-                                    class="marker"
+                                <div class={styles()!["__alias"]}>
+                                  <div
+                                    class={styles()!["marker"]}
                                     style="border-color: rgb(133, 209, 253);"
                                   />
                                   Late{" "}
-                                  <span class="__value">
+                                  <div class={styles()!["__value"]}>
                                     {percent.late ?? 0}%
-                                  </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -604,8 +492,10 @@ function Attendance(props: {
                   </For>
                 </div>
               ) : (
-                <div class="t-attendance flex items-center justify-center h-full">
-                  <h1 class="text-center font-bold text-xl">No Data</h1>
+                <div
+                  class={styles()!["t-attendance"] + " " + styles()!["no-data"]}
+                >
+                  <h1 class={styles()!["no-data-text"]}>No Data</h1>
                 </div>
               )}
             </Show>

@@ -102,7 +102,7 @@
     border-bottom: 1px solid #e3e9ea;
 }
 
-.t-detentions-header > span {
+.t-detentions-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,7 +113,7 @@
     min-width: 0;
 }
 
-.t-detentions-row > span {
+.t-detentions-row > div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -139,7 +139,7 @@
     font-weight: 400;
 }
 
-.t-header > span {
+.t-header > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,13 +150,15 @@
     min-width: 0;
 }
 
-.t-row > span {
+.t-row > div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     min-height: 85px;
 }
 

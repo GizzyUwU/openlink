@@ -10,8 +10,11 @@ function Exams(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
+  theme: string;
 }) {
-  let styleElement: HTMLLinkElement;
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const toast = useToast();
   const [state, setState] = createStore<{
     entries: ExamsResponse.EntryType[];
@@ -42,16 +45,14 @@ function Exams(props: {
   });
 
   onMount(async () => {
-    const styleUrl = new URL("../../assets/css/exams.css", import.meta.url)
-      .href;
-    styleElement = document.createElement("link");
-    styleElement.rel = "preload";
-    styleElement.as = "style";
-    styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    styleElement.onload = () => {
-      styleElement.rel = "stylesheet";
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
     };
-    document.getElementById("item-box")?.appendChild(styleElement);
+    setStyles(normalized);
     const response: ExamsResponse = await props.edulink.getExams(
       sessionData()?.user?.id,
       sessionData()?.authtoken,
@@ -81,8 +82,8 @@ function Exams(props: {
   });
 
   onCleanup(() => {
-    if (styleElement) {
-      styleElement.remove();
+    if (document.getElementById("item-styling")) {
+      document.getElementById("item-styling")?.remove();
     }
     props.setProgress(0);
   });
@@ -153,20 +154,22 @@ function Exams(props: {
         a.finished.then(done);
       }}
       onExit={(el, done) => {
-        const a = el.animate(
-          [{ opacity: 1 }, { opacity: 0 }, { easing: "ease" }],
-          {
-            duration: 100,
-            composite: "accumulate",
-          },
-        );
+        const a = el.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 100,
+          easing: "ease",
+          composite: "accumulate",
+        });
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
-        <div class="box-container">
-          <div class="flex items-center justify-end w-full pr-[10px]">
-            <div class="flex space-x-4 mb-2">
+      <Show when={props.progress() === 1 && styles()}>
+        <div class={styles()!["box-container"]}>
+          <div
+            class={
+              styles()!["flex"] + " items-center justify-end w-full pr-[10px]"
+            }
+          >
+            <div class={styles()!["flex"] + " space-x-4 mb-2"}>
               <For
                 each={[
                   "Exam Timetable",
@@ -199,9 +202,9 @@ function Exams(props: {
               </For>
             </div>
           </div>
-          <div class="t-container">
+          <div class={styles()!["t-container"]}>
             <div
-              class="t-exams"
+              class={styles()!["t-exams"]}
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <Show when={state.activePage === "Exam Timetable"}>
@@ -210,29 +213,41 @@ function Exams(props: {
                     !!state.countdown.minutes_to_go || !!state.countdown.exam
                   }
                 >
-                  <div class="t-countdown">
+                  <div class={styles()!["t-countdown"]}>
                     <span>{useTemplate()}af</span>
                   </div>
                 </Show>
-                <div class="t-timetable">
-                  <div class="t-header">
-                    <span class="t-header__title _date_start">
+                <div class={styles()!["t-timetable"]}>
+                  <div class={styles()!["t-header"]}>
+                    <div class={styles()!["t-header__title"] + " _date_start"}>
                       Date & Start Time
-                    </span>
-                    <span class="t-header__title _board_level">
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _board_level"}>
                       Board & Level
-                    </span>
-                    <span class="t-header__title _code_exam">Code & Exam</span>
-                    <span class="t-header__title _room">Room</span>
-                    <span class="t-header__title _seat">Seat</span>
-                    <span class="t-header__title _duration">Duration</span>
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _code_exam"}>
+                      Code & Exam
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _room"}>
+                      Room
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _seat"}>
+                      Seat
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _duration"}>
+                      Duration
+                    </div>
                   </div>
                   <Show when={state.timetable.length > 0}>
                     <For each={state.timetable}>
                       {(data: ExamsResponse.TimetableType) => (
-                        <div class="t-body">
-                          <div class="t-row">
-                            <div class="t-timetable__text _date_start">
+                        <div class={styles()!["t-body"]}>
+                          <div class={styles()!["t-row"]}>
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _date_start"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
@@ -243,9 +258,9 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <span class="_grey">
+                                    <div class="_grey">
                                       {formatDate({ date: data.datetime })}
-                                    </span>
+                                    </div>
                                     <span>
                                       {formatDate({
                                         time: true,
@@ -256,7 +271,11 @@ function Exams(props: {
                                 )}
                               </div>
                             </div>
-                            <div class="t-timetable__text _board_level">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _board_level"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
@@ -267,15 +286,17 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <span class="_grey">
-                                      {data.board || "-"}
-                                    </span>
+                                    <div class="_grey">{data.board || "-"}</div>
                                     <span>{data.level || "-"}</span>
                                   </>
                                 )}
                               </div>
                             </div>
-                            <div class="t-timetable__text _code_exam">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _code_exam"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
@@ -286,22 +307,27 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <span class="_grey">
-                                      {data.code || "-"}
-                                    </span>
+                                    <div class="_grey">{data.code || "-"}</div>
                                     <span>{data.title}</span>
                                   </>
                                 )}
                               </div>
                             </div>
-
-                            <div class="t-timetable__text _room">
+                            <div
+                              class={styles()!["t-timetable__text"] + " _room"}
+                            >
                               {data.room}
                             </div>
-                            <div class="t-timetable__text _seat">
+                            <div
+                              class={styles()!["t-timetable__text"] + " _seat"}
+                            >
                               {data.seat}
                             </div>
-                            <div class="t-timetable__text _duration">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _duration"
+                              }
+                            >
                               {data.duration}
                             </div>
                           </div>
@@ -312,43 +338,57 @@ function Exams(props: {
                 </div>
               </Show>
               <Show when={state.activePage === "Exam Entries"}>
-                <div class="t-entries">
-                  <div class="t-header">
-                    <span class="t-header__title _date_start">
+                <div class={styles()!["t-entries"]}>
+                  <div class={styles()!["t-header"]}>
+                    <div class={styles()!["t-header__title"] + " _date_start"}>
                       Date & Start Time
-                    </span>
-                    <span class="t-header__title _board_level">
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _board_level"}>
                       Board & Level
-                    </span>
-                    <span class="t-header__title _code_exam">Code & Exam</span>
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _code_exam"}>
+                      Code & Exam
+                    </div>
                   </div>
                   <Show when={state.entries.length > 0}>
                     <For each={state.entries}>
                       {(data: ExamsResponse.EntryType) => (
-                        <div class="t-body">
-                          <div class="t-row">
-                            <div class="t-timetable__text _date_start">
+                        <div class={styles()!["t-body"]}>
+                          <div class={styles()!["t-row"]}>
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _date_start"
+                              }
+                            >
                               {data.season}
                             </div>
-                            <div class="t-timetable__text _board_level">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _board_level"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
                                   "flex-direction": "column",
                                 }}
                               >
-                                <span class="_grey">{data.board || "-"}</span>
+                                <div class="_grey">{data.board || "-"}</div>
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
-                            <div class="t-timetable__text _code_exam">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _code_exam"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
                                   "flex-direction": "column",
                                 }}
                               >
-                                <span class="_grey">{data.code || "-"}</span>
+                                <div class="_grey">{data.code || "-"}</div>
                                 <span>{data.title}</span>
                               </div>
                             </div>
@@ -360,50 +400,76 @@ function Exams(props: {
                 </div>
               </Show>
               <Show when={state.activePage === "Exam Results"}>
-                <div class="t-results">
-                  <div class="t-header">
-                    <span class="t-header__title _date">Date</span>
-                    <span class="t-header__title _board_level">
+                <div class={styles()!["t-results"]}>
+                  <div class={styles()!["t-header"]}>
+                    <div class={styles()!["t-header__title"] + " _date"}>
+                      Date
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _board_level"}>
                       Board & Level
-                    </span>
-                    <span class="t-header__title _code_exam">Code & Exam</span>
-                    <span class="t-header__title _result">Result</span>
-                    <span class="t-header__title _equivalent">Equivalent</span>
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _code_exam"}>
+                      Code & Exam
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _result"}>
+                      Result
+                    </div>
+                    <div class={styles()!["t-header__title"] + " _equivalent"}>
+                      Equivalent
+                    </div>
                   </div>
                   <Show when={state.results.length > 0}>
                     <For each={state.results}>
                       {(data: ExamsResponse.ResultType) => (
-                        <div class="t-body">
-                          <div class="t-row">
-                            <div class="t-timetable__text _date">
+                        <div class={styles()!["t-body"]}>
+                          <div class={styles()!["t-row"]}>
+                            <div
+                              class={styles()!["t-timetable__text"] + " _date"}
+                            >
                               {data.date}
                             </div>
-                            <div class="t-timetable__text _board_level">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _board_level"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
                                   "flex-direction": "column",
                                 }}
                               >
-                                <span class="_grey">{data.board || "-"}</span>
+                                <div class="_grey">{data.board || "-"}</div>
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
-                            <div class="t-timetable__text _code_exam">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _code_exam"
+                              }
+                            >
                               <div
                                 style={{
                                   display: "flex",
                                   "flex-direction": "column",
                                 }}
                               >
-                                <span class="_grey">{data.code || "-"}</span>
+                                <div class="_grey">{data.code || "-"}</div>
                                 <span>{data.title}</span>
                               </div>
                             </div>
-                            <div class="t-timetable__text _result">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _result"
+                              }
+                            >
                               {data.result}
                             </div>
-                            <div class="t-timetable__text _equivalent">
+                            <div
+                              class={
+                                styles()!["t-timetable__text"] + " _equivalent"
+                              }
+                            >
                               {data.equivalent}
                             </div>
                           </div>
