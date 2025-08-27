@@ -42,7 +42,7 @@ function Clubs(props: {
 
   onMount(async () => {
     const cssModule = await import(
-      `../../public/assets/css/${props.theme}/.module.css`
+      `../../public/assets/css/${props.theme}/clubs.module.css`
     );
     const normalized: { [key: string]: string } = {
       ...cssModule.default,

@@ -6,6 +6,7 @@ import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { BehaviourResponse } from "../../types/api/behaviour";
+import clsx from "clsx";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
@@ -76,7 +77,7 @@ function BehaviourComponent(props: {
 
   onMount(async () => {
     const cssModule = await import(
-      `../../public/assets/css/${props.theme}/.module.css`
+      `../../public/assets/css/${props.theme}/behaviour.module.css`
     );
     const normalized: { [key: string]: string } = {
       ...cssModule.default,
@@ -168,53 +169,48 @@ function BehaviourComponent(props: {
     >
       <Show when={props.progress() === 1}>
         <div class={styles()!["box-container"]}>
-          <div class={styles()!["header-container"]}>
-            <div class={styles()!["button-group"]}>
+          <div class="flex items-center justify-end w-full pr-[10px]">
+            <div class="flex space-x-4 mb-2">
               <button
                 type="button"
                 onClick={() => setState("activePage", "behaviour")}
-                class={
+                class={`text-sm text-white cursor-pointer ${
                   state.activePage === "behaviour"
-                    ? styles()!["active-tab"]
-                    : styles()!["tab"]
-                }
+                    ? "border-b border-blue-400"
+                    : ""
+                }`}
               >
                 Behaviour
               </button>
               <button
                 type="button"
                 onClick={() => setState("activePage", "detentions")}
-                class={
+                class={`text-sm font-medium text-white  cursor-pointer ${
                   state.activePage === "detentions"
-                    ? styles()!["active-tab"]
-                    : styles()!["tab"]
-                }
+                    ? "border-b border-blue-400"
+                    : ""
+                }`}
               >
                 Detentions
               </button>
             </div>
           </div>
+
           <Show when={state.activePage === "behaviour"}>
             <div class={styles()!["t-behaviour"]}>
               <div class={styles()!["t-header"]}>
-                <div class={styles()!["_type_date"]}>Type & Date</div>
-                <div class={styles()!["_comment_teacher"]}>
+                <div>Type & Date</div>
+                <div>
                   Comment & Teacher
                 </div>
-                <div class={styles()!["_action_info"]}>Action & Info</div>
-                <div class={styles()!["_loc_status"]}>Location & Status</div>
-                <div class={styles()!["_points"]}>Points</div>
+                <div>Action & Info</div>
+                <div>Location & Status</div>
+                <div>Points</div>
               </div>
               <div class={styles()!["t-body"]}>
                 {state.behaviour.map((behaviour: any) => (
                   <div class={styles()!["t-row"]}>
-                    <div
-                      class={
-                        styles()!["t-behaviour__text"] +
-                        " " +
-                        styles()!["_type_date"]
-                      }
-                    >
+                    <div>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -231,8 +227,6 @@ function BehaviourComponent(props: {
                     </div>
                     <div
                       class={
-                        styles()!["t-behaviour__text"] +
-                        " " +
                         styles()!["_comment_teacher"]
                       }
                     >
@@ -257,8 +251,6 @@ function BehaviourComponent(props: {
                     </div>
                     <div
                       class={
-                        styles()!["t-behaviour__text"] +
-                        " " +
                         styles()!["_action_info"]
                       }
                     >
@@ -276,8 +268,6 @@ function BehaviourComponent(props: {
                     </div>
                     <div
                       class={
-                        styles()!["t-behaviour__text"] +
-                        " " +
                         styles()!["_loc_status"]
                       }
                     >
@@ -334,8 +324,6 @@ function BehaviourComponent(props: {
                     <div class={styles()!["t-detentions-row"]}>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_date"]
                         }
                       >
@@ -343,8 +331,6 @@ function BehaviourComponent(props: {
                       </div>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_type"]
                         }
                       >
@@ -352,8 +338,6 @@ function BehaviourComponent(props: {
                       </div>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_loc"]
                         }
                       >
@@ -361,8 +345,6 @@ function BehaviourComponent(props: {
                       </div>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_start"]
                         }
                       >
@@ -370,8 +352,6 @@ function BehaviourComponent(props: {
                       </div>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_end"]
                         }
                       >
@@ -379,8 +359,6 @@ function BehaviourComponent(props: {
                       </div>
                       <div
                         class={
-                          styles()!["t-behaviour__text"] +
-                          " " +
                           styles()!["_attended"]
                         }
                       >

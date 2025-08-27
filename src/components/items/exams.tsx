@@ -46,7 +46,7 @@ function Exams(props: {
 
   onMount(async () => {
     const cssModule = await import(
-      `../../public/assets/css/${props.theme}/.module.css`
+      `../../public/assets/css/${props.theme}/exams.module.css`
     );
     const normalized: { [key: string]: string } = {
       ...cssModule.default,
