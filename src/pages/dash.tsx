@@ -73,7 +73,7 @@ function Main() {
       if (document.getElementById("item-styling")) {
         document.getElementById("item-styling")?.remove();
       }
-      const mod = await import(`../components/items/${id}.tsx?inline`);
+      const mod = await import(`../components/items/${id}.tsx`);
       console.log(mod, id);
       if (!mod.default.name && !mod.default.icon && mod.default.pos) {
         openNavFn?.(mod.default.pos);
