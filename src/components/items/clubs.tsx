@@ -174,23 +174,23 @@ function Clubs(props: {
           <h2 class="text-sm font-bold">All Times:</h2>
           <br />
           <div
-            class="t-clubs"
+            class={styles()!["t-clubs"]}
             style={{ display: "flex", "flex-direction": "column" }}
           >
-            <div class="t-club-header">
-              <div class="t-header__title _name">Name</div>
-              <div class="t-header__title _location">Attendance</div>
-              <div class="t-header__title _capacity">Start</div>
-              <div class="t-header__title _session">End</div>
+            <div class={styles()!["t-club-header"]}>
+              <div>Name</div>
+              <div>Attendance</div>
+              <div>Start</div>
+              <div>End</div>
             </div>
-            <div class="t-body mt-2">
+            <div class={`${styles()!["t-body"]} mt-2`}>
               <For each={clubData.result.club.sessions}>
                 {(data) => (
-                  <div class="t-club-row cursor-pointer">
-                    <div class="t-timetable__text _date">
+                  <div class={`${styles()!["t-club-row"]} cursor-pointer`}>
+                    <div class={styles()!["_date"]}>
                       {formatDate({ date: data.start_time }) || "-"}
                     </div>
-                    <div class="t-timetable__text _attend">
+                    <div>
                       {data.attended ? (
                         data.attended ? (
                           <IoCheckmarkCircleOutline size="32" color="green" />
@@ -201,12 +201,10 @@ function Clubs(props: {
                         <ImCross color="red" size="20" />
                       )}
                     </div>
-                    <div class="t-timetable__text _start">
+                    <div>
                       {formatDate({ date: data.start_time, time: true })}
                     </div>
-                    <div class="t-timetable__text _end">
-                      {formatDate({ date: data.end_time, time: true })}
-                    </div>
+                    <div>{formatDate({ date: data.end_time, time: true })}</div>
                   </div>
                 )}
               </For>
@@ -284,21 +282,19 @@ function Clubs(props: {
                   : state.allClubs
                 )?.map((club) => (
                   <div
-                    class={styles()!["t-row"] + " cursor-pointer"}
+                    class={`${styles()!["t-row"]} cursor-pointer`}
                     onClick={() => handleClubPreview(club.id)}
                   >
-                    <div class={styles()!["t-timetable__text"] + " _name"}>
-                      {club.name || "-"}
-                    </div>
-                    <div class={styles()!["t-timetable__text"] + " _location"}>
+                    <div class={styles()!["_name"]}>{club.name || "-"}</div>
+                    <div class={styles()!["_location"]}>
                       {club.location || "-"}
                     </div>
-                    <div class={styles()!["t-timetable__text"] + " _capacity"}>
+                    <div class={styles()!["_capacity"]}>
                       {club.capacity?.maximum
                         ? `${club.capacity.bookings}/${club.capacity.maximum}`
                         : "-"}
                     </div>
-                    <div class={styles()!["t-timetable__text"] + " _session"}>
+                    <div class={styles()!["_session"]}>
                       {formatDate({
                         date: club.next_session,
                         fullFormat: true,
