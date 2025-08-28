@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 * {
     box-sizing: border-box;
 }
@@ -12,7 +14,7 @@ body {
 .login-container {
     background-image:
         url("../../img/bg-login.png"),
-        linear-gradient(170deg, rgb(124, 140, 202), rgb(77, 157, 205));
+        linear-gradient(170deg, var(--base), var(--mantle));
     background-position: 50%;
     max-width: 100%;
     height: 100vh;
@@ -22,7 +24,7 @@ body {
 }
 
 .f-login {
-    background: rgba(51, 74, 122, 0.6);
+    background: var(--surface0);
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     margin: 0 auto 55px;
@@ -83,7 +85,7 @@ body {
     text-transform: uppercase;
     width: 100%;
     border-radius: 75px;
-    background: linear-gradient(0deg, #8c97a5, #bfc6ce);
+    background: linear-gradient(0deg, var(--surface0), var(--surface1));
     border: 0;
     bottom: -23px;
     position: relative;
@@ -118,7 +120,8 @@ body {
 }
 
 .f-login.has-text .__submit {
-    background: linear-gradient(0deg, #fd746c, #ff9168);
+    background: var(--mauve);
+    color: black;
 }
 
 .f-login .__checkbox {
@@ -206,9 +209,8 @@ body {
 }
 
 .f-demo .select .__item {
-    background-color: rgba(51, 74, 122, 0.6);
+    background-color: var(--surface0);
     border-radius: 5px;
-    box-shadow: 0 5px 30px 0 rgba(60, 66, 78, 0.5);
     margin-bottom: 20px;
     max-height: 95px;
     text-align: center;
