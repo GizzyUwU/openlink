@@ -28,7 +28,7 @@ function Personal(props: {
 
   onMount(async () => {
     const cssModule = await import(
-      `../../public/assets/css/${props.theme}/.module.css`
+      `../../public/assets/css/${props.theme}/account.module.css`
     );
     const normalized: { [key: string]: string } = {
       ...cssModule.default,
@@ -55,9 +55,6 @@ function Personal(props: {
   });
 
   onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
     props.setProgress(0);
   });
 
@@ -157,37 +154,38 @@ function Personal(props: {
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1 && personalData()}>
-        <div class="box-container">
-          <div class="t-container">
-            <div class="t-personal">
-              <div class="b-student-info">
-                <div class="b-student-info__left">
-                  <div class="l-student-title">
+      <Show when={props.progress() === 1 && personalData() && styles()}>
+        <div class={styles()!["box-container"]}>
+          <div class={styles()!["t-container"]}>
+            <div class={styles()!["t-personal"]}>
+              <div class={styles()!["b-student-info"]}>
+                <div class={styles()!["b-student-info__left"]}>
+                  <div class={styles()!["l-student-title"]}>
                     <div
-                      class="__photo"
+                      class={styles()!["__photo"]}
                       style={{
-                        "background-image": `url(data:image/webp;base64,${
-                          sessionData()?.user?.avatar?.photo ||
-                          "default-avatar-data"
+                        "background-image": `url(data:image/*;base64,${
+                          sessionData()?.user?.avatar?.photo || ""
                         })`,
                       }}
                     ></div>
-                    <div class="__title">
+                    <div class={styles()!["__title"]}>
                       {sessionData()?.user?.forename +
                         " " +
                         sessionData()?.user?.surname || ""}
                     </div>
                   </div>
                 </div>
-                <div class="b-student-info__right">
-                  <div class="__content">
+                <div class={styles()!["b-student-info__right"]}>
+                  <div class={styles()!["__content"]}>
                     {getPersonalFields().map((row) => (
-                      <div class="__row _col-wrap">
+                      <div
+                        class={`${styles()!["__row"]} ${styles()!["_col-wrap"]}`}
+                      >
                         {row.map(([title, data]) => (
-                          <div class="__col">
-                            <div class="__title">{title}</div>
-                            <div class="__data">{data}</div>
+                          <div class={styles()!["__col"]}>
+                            <div class={styles()!["__title"]}>{title}</div>
+                            <div class={styles()!["__data"]}>{data}</div>
                           </div>
                         ))}
                       </div>
