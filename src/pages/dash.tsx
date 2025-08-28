@@ -195,7 +195,6 @@ function Main() {
                 "max-height": "calc(100vh - 200px)",
                 "max-width": maxWidth(),
                 width: "100%",
-                "z-index": 10,
               }}
             >
               <Comp />

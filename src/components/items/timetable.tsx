@@ -137,7 +137,7 @@ function Timetable(props: {
       <Show when={props.progress() === 1 && styles()}>
         <div class={styles()!["box-container"]}>
           <div class="flex items-center justify-between w-full">
-            <div class="relative inline-block text-left">
+            <div class="relative z-10 inline-block text-left">
               <button
                 type="button"
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
@@ -160,7 +160,7 @@ function Timetable(props: {
               </button>
               <Show when={state.weekDropdown}>
                 <div
-                  class="absolute z-10 mt-2 origin-top-right bg-white border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max"
+                  class={`${styles()!["__dropdown"]} absolute z-10 mt-2 origin-top-right border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max`}
                   ref={dropdownRef}
                 >
                   <div class="py-1">
@@ -179,7 +179,7 @@ function Timetable(props: {
                             setState("dayLessons", matched?.lessons || []);
                             setState("daysThisWeek", week.days);
                           }}
-                          class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                          class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                         >
                           {week.name}
                         </button>

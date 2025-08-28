@@ -26,12 +26,21 @@
     --crust: #11111b;
 }
 
+.__dropdown {
+    background: var(--base);
+    color: var(--text);
+    border: 0;
+}
+
 .__nav {
     align-items: center;
     display: flex;
     flex-shrink: 0;
     height: 32px;
     margin-bottom: 10px;
+    background: var(--base);
+    color: var(--text);
+    border: 0;
 }
 
 .box-container {
@@ -60,7 +69,6 @@
         sans-serif;
     font-size: 14px;
     border: 0;
-    border-bottom: 1px solid var(--mantle);
 }
 
 .t-header {
@@ -69,6 +77,9 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    background: var(--surface0);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-body {
@@ -88,7 +99,6 @@
         /* Subject, Room, Teacher */
         75px 75px;
     /* Start, End */
-    border-bottom: 1px solid green;
     text-align: center;
     color: var(--text);
 }
@@ -101,6 +111,10 @@
     font-weight: bold;
     text-transform: capitalize;
     min-width: 0;
+}
+
+.t-row {
+    background: var(--surface1);
 }
 
 .t-row > div {
@@ -116,7 +130,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: var(--mantle);
+    background-color: var(--surface0);
 }
 
 .t-row > ._subject,

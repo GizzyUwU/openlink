@@ -11,6 +11,7 @@ export default function Header(props: {
   styles: { [key: string]: string } | null;
 }) {
   let dropdownRef: HTMLDivElement | undefined;
+  let buttonRef: HTMLButtonElement | undefined;
   let progressBarRef: HTMLDivElement | null = null;
   const [open, setOpen] = createSignal<boolean>(false);
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ export default function Header(props: {
 
   const handleClick = (event: MouseEvent) => {
     if (!open()) return;
-    if (!dropdownRef?.contains(event.target as Node)) {
+    if (
+      !dropdownRef?.contains(event.target as Node) &&
+      !buttonRef?.contains(event.target as Node)
+    ) {
       setOpen(false);
     }
   };
@@ -58,35 +62,34 @@ export default function Header(props: {
           <div
             class={`${props.styles!["openlink-pr-user"]} ${props.styles!["_animated"]}`}
           >
-            <div class={`${props.styles!["relative-inline-block"]} text-left`}>
+            <div class="relative inline-block text-left">
               <button
+                ref={buttonRef}
                 type="button"
                 class={`${props.styles!["openlink__settings"]} cursor-pointer`}
-                onClick={() => setOpen(!open())}
+                onClick={() => setOpen((prev) => !prev)}
               >
                 <HiOutlineCog6Tooth class={props.styles!["icon"]} />
               </button>
               <Show when={open()}>
                 <div
-                  class="absolute z-10 mt-2 origin-top-right bg-white border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max"
+                  class="absolute mt-2 bg-white border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max"
                   ref={dropdownRef}
                 >
-                  <div class="py-1">
+                  <div class="py-1 z-40">
                     <button
                       onClick={() => props.showSettings(true)}
                       class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                     >
                       Settings
                     </button>
-                  </div>
-                  <div class="py-1">
                     <button
                       onClick={() => {
                         props.setSession(null);
                         props.setApiUrl("");
                         throw navigate("/login?logout=true");
                       }}
-                      class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      class="block z-50 w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                     >
                       Logout
                     </button>
