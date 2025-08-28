@@ -11,7 +11,7 @@ body {
 
 .login-container {
     background-image:
-        url("../img/bg-login.png"),
+        url("../../img/bg-login.png"),
         linear-gradient(170deg, rgb(124, 140, 202), rgb(77, 157, 205));
     background-position: 50%;
     max-width: 100%;

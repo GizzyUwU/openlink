@@ -1,11 +1,10 @@
-import { createSignal, onMount, onCleanup } from "solid-js";
+import { createSignal, onMount, Show } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { useToast } from "../components/toast";
 import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
 import { useNavigate } from "@solidjs/router";
 import { callApi } from "../api/fetch";
-import "../public/assets/css/login.css";
 
 declare global {
   interface Window {
@@ -83,6 +82,23 @@ async function decryptUserData(state: {
   return new TextDecoder().decode(decryptedBuffer);
 }
 
+async function getTheme() {
+  if (window.__TAURI__) {
+    const { load } = await import("@tauri-apps/plugin-store");
+    const store = await load("users.json", { autoSave: false });
+    const theme = await store.get("theme");
+    if (typeof theme !== "string" || theme.length === 0) return "default";
+    return theme;
+  } else {
+    const [theme] = makePersisted(createSignal<any>({}), {
+      storage: localStorage,
+      name: "theme",
+    });
+    if (typeof theme() !== "string" || theme().length === 0) return "default";
+    return theme();
+  }
+}
+
 function Login() {
   const edulink = useEdulink();
   const navigate = useNavigate();
@@ -96,6 +112,7 @@ function Login() {
     hasText: boolean;
     hasLoginText: boolean;
     demo: boolean;
+    styles: { [key: string]: string } | null;
   }>({
     code: "",
     username: "",
@@ -105,6 +122,7 @@ function Login() {
     hasText: false,
     hasLoginText: false,
     demo: false,
+    styles: null,
   });
 
   const [, setSession] = makePersisted(createSignal<any>(null), {
@@ -117,15 +135,17 @@ function Login() {
     name: "apiUrl",
   });
 
-  let styleElement: HTMLLinkElement;
   let store: any;
 
   onMount(async () => {
-    // styleElement = document.createElement("link");
-    // styleElement.rel = "stylesheet";
-    // styleElement.href = "/assets/css/login.css";
-    // document.head.appendChild(styleElement);
-    console.log("quack", state.schoolData);
+    const cssModule = await import(
+      `../public/assets/css/${await getTheme()}/login.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
+    };
+    setState("styles", normalized);
     if (window.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
       store = await load("users.json", { autoSave: false });
@@ -166,10 +186,6 @@ function Login() {
     setState("loading", false);
   });
 
-  // onCleanup(() => {
-  //   styleElement.remove();
-  // });
-
   async function findCode() {
     if (!state.code) {
       toast.showToast("Error", "Please fill the field", "error");
@@ -208,6 +224,8 @@ function Login() {
       return;
     }
 
+    setState("loading", true);
+
     const account = await edulink.accountSignin(
       state.username,
       state.password,
@@ -238,6 +256,7 @@ function Login() {
       navigate("/", { replace: true });
       return;
     } else {
+      setState("loading", false);
       toast.showToast(
         `Request Id ${account.result.metrics.uniqid}`,
         account.result.error ?? "Unknown error",
@@ -267,6 +286,7 @@ function Login() {
 
     const account = await callApi(`demo/${type}?method=EduLink.Login`);
     console.log(account);
+    setState("loading", true);
     setApiUrl(`demo/${type}`);
     setSession(account.demo.result);
     navigate("/", { replace: true });
@@ -275,197 +295,217 @@ function Login() {
 
   return (
     <>
-      {state.loading ? null : (
-        <div class="login-container">
-          {Object.keys(state.schoolData).length &&
-            Object.keys(state.schoolData).length > 0 && (
-              <>
-                <div
-                  class="__logo"
-                  style={{
-                    "background-size": "70%",
-                    "background-repeat": "no-repeat",
-                    "background-position": "50%",
-                    "background-image": state.schoolData?.establishment?.logo
-                      ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
-                      : undefined,
+      <Show when={!state.loading}>
+        <div class={state.styles!["login-container"]}>
+          <Show when={!state.demo}>
+            <Show when={Object.keys(state.schoolData).length === 0}>
+              <div
+                class={`${state.styles!["f-login"]} ${state.hasText ? state.styles!["has-text"] : ""}`}
+                style="max-height: 159px;"
+              >
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    findCode();
                   }}
-                ></div>
-                <span class="text-white text-[21px] __school-title">
-                  {state.schoolData?.establishment?.name || ""}
-                </span>
-              </>
-            )}
-          {!state.demo ? (
-            <>
-              {!Object.keys(state.schoolData).length ||
-              Object.keys(state.schoolData).length === 0 ? (
-                <div
-                  class="f-login"
-                  classList={{
-                    "has-text": state.hasText,
-                  }}
-                  style="max-height: 159px;"
                 >
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      findCode();
-                    }}
-                  >
-                    <div class="__row">
-                      <label class="__label">
-                        <input
-                          type="text"
-                          class="__field"
-                          placeholder=" "
-                          onInput={(e) =>
-                            setState({
-                              code: e.currentTarget.value,
-                              hasText: state.code.trim().length > 0,
-                            })
-                          }
-                        />
-                        <span class="__label-text">School ID or Postcode</span>
-                      </label>
-                    </div>
-                    <div class="__button">
-                      <button class="__submit" type="submit">
-                        Next
-                      </button>
-                    </div>
-                  </form>
-                  <div class="__button">
-                    <button
-                      class="__demo"
-                      type="button"
-                      onClick={() => setState("demo", true)}
-                    >
-                      DEMO
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <input
+                        type="text"
+                        class={state.styles!["__field"]}
+                        placeholder=" "
+                        onInput={(e) =>
+                          setState({
+                            code: e.currentTarget.value,
+                            hasText: state.code.trim().length > 0,
+                          })
+                        }
+                      />
+                      <span class={state.styles!["__label-text"]}>
+                        School ID or Postcode
+                      </span>
+                    </label>
+                  </div>
+                  <div class={state.styles!["__button"]}>
+                    <button class={state.styles!["__submit"]} type="submit">
+                      Next
                     </button>
                   </div>
-                </div>
-              ) : (
-                <div
-                  class="f-login"
-                  classList={{
-                    "has-text": state.hasLoginText,
-                  }}
-                >
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                    }}
+                </form>
+                <div class={state.styles!["__button"]}>
+                  <button
+                    class={state.styles!["__demo"]}
+                    type="button"
+                    onClick={() => setState("demo", true)}
                   >
-                    <div class="__row">
-                      <label class="__label">
-                        <input
-                          type="text"
-                          class="__field"
-                          placeholder=" "
-                          onInput={(e) =>
-                            setState({
-                              username: e.currentTarget.value,
-                              hasLoginText:
-                                state.username.trim().length > 0 &&
-                                state.password.trim().length > 0,
-                            })
-                          }
-                        />
-                        <span class="__label-text">Username</span>
-                      </label>
-                    </div>
-                    <br />
-                    <div class="__row">
-                      <label class="__label">
-                        <input
-                          type="password"
-                          class="__field"
-                          placeholder=" "
-                          onInput={(e) =>
-                            setState({
-                              password: e.currentTarget.value,
-                              hasLoginText:
-                                state.username.trim().length > 0 &&
-                                state.password.trim().length > 0,
-                            })
-                          }
-                        />
-                        <span class="__label-text">Password</span>
-                      </label>
-                    </div>
-                    <div class="__row">
-                      <label class="__label">
-                        <div class="__checkbox">
-                          <label class="__checkbox-wrapper">
-                            <input type="checkbox" />
-                            <span class="__checkbox-custom"></span>
-                            <span class="__checkbox-label">Remember me</span>
-                          </label>
-                          <label class="__checkbox-wrapper">
-                            <button
-                              type="button"
-                              class="__checkbox-label"
-                              disabled
-                            >
-                              Reset Login
-                            </button>
-                          </label>
-                        </div>
-                      </label>
-                    </div>
-                    <div class="__button">
-                      <button
-                        class="__submit"
-                        type="submit"
-                        onClick={accountLogin}
-                      >
-                        Log In
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              )}
-            </>
-          ) : (
-            <>
-              <div class="f-demo">
-                <div class="select">
-                  <ul class="select__list">
-                    <li class="__item">
-                      <button
-                        type="button"
-                        class="__title"
-                        onClick={() => handleDemo("parent")}
-                      >
-                        Parent (DEMO)
-                      </button>
-                    </li>
-                    <li class="__item">
-                      <button
-                        type="button"
-                        class="__title"
-                        onClick={() => handleDemo("employee")}
-                      >
-                        Teacher (DEMO)
-                      </button>
-                    </li>
-                    <li class="__item">
-                      <button
-                        type="button"
-                        class="__title"
-                        onClick={() => handleDemo("learner")}
-                      >
-                        Student (DEMO)
-                      </button>
-                    </li>
-                  </ul>
+                    DEMO
+                  </button>
                 </div>
               </div>
-            </>
-          )}
+            </Show>
+            <Show when={Object.keys(state.schoolData).length > 0}>
+              <div
+                class={state.styles!["__logo"]}
+                style={{
+                  "background-size": "70%",
+                  "background-repeat": "no-repeat",
+                  "background-position": "50%",
+                  "background-image": state.schoolData?.establishment?.logo
+                    ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
+                    : undefined,
+                }}
+              ></div>
+              <span
+                class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
+              >
+                {state.schoolData?.establishment?.name || ""}
+              </span>
+              <div
+                class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
+              >
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <input
+                        type="text"
+                        class={state.styles!["__field"]}
+                        placeholder=" "
+                        onInput={(e) =>
+                          setState({
+                            username: e.currentTarget.value,
+                            hasLoginText:
+                              state.username.trim().length > 0 &&
+                              state.password.trim().length > 0,
+                          })
+                        }
+                      />
+                      <span class={state.styles!["__label-text"]}>
+                        Username
+                      </span>
+                    </label>
+                  </div>
+                  <br />
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <input
+                        type="password"
+                        class={state.styles!["__field"]}
+                        placeholder=" "
+                        onInput={(e) =>
+                          setState({
+                            password: e.currentTarget.value,
+                            hasLoginText:
+                              state.username.trim().length > 0 &&
+                              state.password.trim().length > 0,
+                          })
+                        }
+                      />
+                      <span class={state.styles!["__label-text"]}>
+                        Password
+                      </span>
+                    </label>
+                  </div>
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <div class={state.styles!["__checkbox"]}>
+                        <label class={state.styles!["__checkbox-wrapper"]}>
+                          <input type="checkbox" />
+                          <span
+                            class={state.styles!["__checkbox-custom"]}
+                          ></span>
+                          <span class={state.styles!["__checkbox-label"]}>
+                            Remember me
+                          </span>
+                        </label>
+                        <label class={state.styles!["__checkbox-wrapper"]}>
+                          <button
+                            type="button"
+                            class={state.styles!["__checkbox-label"]}
+                            disabled
+                          >
+                            Reset Login
+                          </button>
+                        </label>
+                      </div>
+                    </label>
+                  </div>
+                  <div class={state.styles!["__button"]}>
+                    <button
+                      class={state.styles!["__submit"]}
+                      type="submit"
+                      onClick={accountLogin}
+                    >
+                      Log In
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </Show>
+          </Show>
+          <Show when={state.demo}>
+            <div class={state.styles!["f-demo"]}>
+              <div class={state.styles!["select"]}>
+                <ul class={state.styles!["select__list"]}>
+                  <li class={state.styles!["__item"]}>
+                    <button
+                      type="button"
+                      class={state.styles!["__title"]}
+                      onClick={() => handleDemo("parent")}
+                    >
+                      Parent (DEMO)
+                    </button>
+                  </li>
+                  <li class={state.styles!["__item"]}>
+                    <button
+                      type="button"
+                      class={state.styles!["__title"]}
+                      onClick={() => handleDemo("employee")}
+                    >
+                      Teacher (DEMO)
+                    </button>
+                  </li>
+                  <li class={state.styles!["__item"]}>
+                    <button
+                      type="button"
+                      class={state.styles!["__title"]}
+                      onClick={() => handleDemo("learner")}
+                    >
+                      Student (DEMO)
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Show>
         </div>
-      )}
+      </Show>
+      <Show when={state.loading}>
+        <div
+          style={{
+            display: "flex",
+            "justify-content": "center",
+            "align-items": "center",
+            height: "100vh",
+            color: "white",
+            "font-size": "1.5rem",
+          }}
+        >
+          <img
+            src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e.spinner_qM83{animation:spinner_8HQG%201.05s%20infinite}.spinner_oXPr{animation-delay:.1s}.spinner_ZTLf{animation-delay:.2s}@keyframes%20spinner_8HQG{0%25,57.14%25{animation-timing-function:cubic-bezier(0.33,.66,.66,1);transform:translate(0)}28.57%25{animation-timing-function:cubic-bezier(0.33,0,.66,.33);transform:translateY(-6px)}100%25{transform:translate(0)}}%3c/style%3e%3ccircle%20class='spinner_qM83'%20cx='4'%20cy='12'%20r='3'/%3e%3ccircle%20class='spinner_qM83%20spinner_oXPr'%20cx='12'%20cy='12'%20r='3'/%3e%3ccircle%20class='spinner_qM83%20spinner_ZTLf'%20cx='20'%20cy='12'%20r='3'/%3e%3c/svg%3e"
+            alt="Loading..."
+            style={{
+              width: "64px",
+              height: "64px",
+              filter: "invert(1)",
+            }}
+          />
+        </div>
+      </Show>
     </>
   );
 }
