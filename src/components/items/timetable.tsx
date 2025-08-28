@@ -1,4 +1,11 @@
-import { onMount, onCleanup, createSignal, For, Show } from "solid-js";
+import {
+  onMount,
+  onCleanup,
+  createSignal,
+  createMemo,
+  For,
+  Show,
+} from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import type { TimetableResponse } from "../../types/api/timetable";
@@ -105,10 +112,6 @@ function Timetable(props: {
     props.setProgress(0);
   });
 
-  function getLessonForPeriod(periodId: number | string) {
-    return state.dayLessons?.find((l) => l.period_id == periodId);
-  }
-
   return (
     <Transition
       onEnter={(el, done) => {
@@ -138,7 +141,7 @@ function Timetable(props: {
               <button
                 type="button"
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
-                class="__nav inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer"
+                class={`${styles()!["__nav"]} inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer`}
               >
                 <div>{state.weekName}</div>
                 <svg
@@ -228,33 +231,28 @@ function Timetable(props: {
               <div class={styles()!["t-body"]}>
                 <For each={state.dayPeriods}>
                   {(period) => {
-                    const lesson = getLessonForPeriod(period.id);
+                    const lesson = createMemo(() =>
+                      state.dayLessons?.find(
+                        (l) => Number(l.period_id) === Number(period.id),
+                      ),
+                    );
+
                     return (
                       <div class={styles()!["t-row"]}>
-                        <div
-                          class={clsx(
-                            styles()!["t-timetable__text"],
-                            styles()!["_grey"],
-                          )}
-                        >
-                          {period.name}
-                        </div>
-                        <div
-                          class={clsx(
-                            styles()!["t-timetable__text"],
-                            styles()!["_subject"],
-                          )}
-                        >
+                        <div class={styles()!["_grey"]}>{period.name}</div>
+                        <div class={styles()!["_subject"]}>
                           <div
                             style={{
                               display: "flex",
                               "flex-direction": "column",
                             }}
                           >
-                            <div>{lesson?.teaching_group?.subject || "-"}</div>
+                            <div>
+                              {lesson()?.teaching_group?.subject || "-"}
+                            </div>
                             <div class={styles()!["_grey"]}>
-                              {lesson?.teaching_group?.name
-                                ? `(${lesson.teaching_group.name})`
+                              {lesson()?.teaching_group?.name
+                                ? `(${lesson()?.teaching_group.name})`
                                 : ""}
                             </div>
                           </div>
@@ -265,7 +263,7 @@ function Timetable(props: {
                             styles()!["_room"],
                           )}
                         >
-                          {lesson?.room?.name || "-"}
+                          {lesson()?.room?.name || "-"}
                         </div>
                         <div
                           class={clsx(
@@ -274,7 +272,7 @@ function Timetable(props: {
                           )}
                         >
                           {(() => {
-                            const t = lesson?.teacher ?? lesson?.teachers;
+                            const t = lesson()?.teacher ?? lesson()?.teachers;
                             if (!t) return "-";
 
                             if (Array.isArray(t)) {
@@ -292,12 +290,8 @@ function Timetable(props: {
                               : `${t.title ?? ""} ${t.forename ?? ""} ${t.surname ?? ""}`.trim();
                           })()}
                         </div>
-                        <div class={styles()!["t-timetable__text"]}>
-                          {period.start_time}
-                        </div>
-                        <div class={styles()!["t-timetable__text"]}>
-                          {period.end_time}
-                        </div>
+                        <div>{period.start_time}</div>
+                        <div>{period.end_time}</div>
                       </div>
                     );
                   }}

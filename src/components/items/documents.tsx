@@ -92,33 +92,23 @@ function Documents(props: {
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <div class={styles()!["t-header"]}>
-                <div class={styles()!["t-header__title"] + " _name"}>
-                  File Name
-                </div>
-                <div class={styles()!["t-header__title"] + " _type"}>Type</div>
-                <div class={styles()!["t-header__title"] + " _date"}>Date</div>
-                <div class={styles()!["t-header__title"] + " _download"}>
-                  Download
-                </div>
+                <div>File Name</div>
+                <div>Type</div>
+                <div>Date</div>
+                <div>Download</div>
               </div>
               <div class={styles()!["t-body"]}>
                 {documents().map((doc) => (
                   <div class={styles()!["t-row"]}>
-                    <div
-                      class={styles()!["t-documents__text"] + " _name _grey"}
-                    >
+                    <div class={`${styles()!["_name"]} _grey"`}>
                       {doc.attachments?.[0]?.name ||
                         doc.summary ||
                         doc.filename ||
                         "-"}
                     </div>
-                    <div class={styles()!["t-documents__text"] + " _type"}>
-                      {doc.type || "-"}
-                    </div>
-                    <div class={styles()!["t-documents__text"] + " _date"}>
-                      {doc.date || "-"}
-                    </div>
-                    <div class={styles()!["t-documents__text"] + " _download"}>
+                    <div class={styles()!["_type"]}>{doc.type || "-"}</div>
+                    <div class={styles()!["_date"]}>{doc.date || "-"}</div>
+                    <div class={styles()!["_download"]}>
                       {doc.attachments?.[0]?.identifier ? (
                         <a
                           href={`/api/documents/download/${doc.attachments[0].identifier}`}

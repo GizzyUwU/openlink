@@ -55,33 +55,38 @@ export default function Header(props: {
           <div class={props.styles!["openlink__gradient"]}></div>
         </div>
         <div class={props.styles!["openlink__container"]}>
-          <div class={props.styles!["openlink-pr-user"] + " _animated"}>
-            <div class={props.styles!["relative-inline-block"] + " text-left"}>
+          <div
+            class={`${props.styles!["openlink-pr-user"]} ${props.styles!["_animated"]}`}
+          >
+            <div class={`${props.styles!["relative-inline-block"]} text-left`}>
               <button
                 type="button"
-                class={props.styles!["openlink__settings"] + " cursor-pointer"}
+                class={`${props.styles!["openlink__settings"]} cursor-pointer`}
                 onClick={() => setOpen(!open())}
               >
                 <HiOutlineCog6Tooth class={props.styles!["icon"]} />
               </button>
               <Show when={open()}>
-                <div class={props.styles!["dropdown"]} ref={dropdownRef}>
-                  <div class={props.styles!["dropdown-section"]}>
+                <div
+                  class="absolute z-10 mt-2 origin-top-right bg-white border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max"
+                  ref={dropdownRef}
+                >
+                  <div class="py-1">
                     <button
                       onClick={() => props.showSettings(true)}
-                      class={props.styles!["dropdown-item"]}
+                      class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                     >
                       Settings
                     </button>
                   </div>
-                  <div class={props.styles!["dropdown-section"]}>
+                  <div class="py-1">
                     <button
                       onClick={() => {
                         props.setSession(null);
                         props.setApiUrl("");
                         throw navigate("/login?logout=true");
                       }}
-                      class={props.styles!["dropdown-item"]}
+                      class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                     >
                       Logout
                     </button>
@@ -94,7 +99,8 @@ export default function Header(props: {
                 class={props.styles!["openlink__avatar"]}
                 style={{
                   "background-image": `url(data:image/webp;base64,${
-                    props.sessionData()?.user?.avatar?.photo || "default-avatar-data"
+                    props.sessionData()?.user?.avatar?.photo ||
+                    "default-avatar-data"
                   })`,
                 }}
               ></div>
