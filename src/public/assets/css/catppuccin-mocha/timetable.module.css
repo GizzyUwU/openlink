@@ -1,7 +1,7 @@
 @import "./colors.css";
 
 .__dropdown {
-    background: var(--base);
+    background: var(--surface0);
     color: var(--text);
     border: 0;
 }
@@ -12,7 +12,7 @@
     flex-shrink: 0;
     height: 32px;
     margin-bottom: 10px;
-    background: var(--base);
+    background: var(--surface0);
     color: var(--text);
     border: 0;
 }
@@ -32,7 +32,7 @@
 }
 
 .t-timetable {
-    background: var(--base);
+    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     flex-grow: 1;
@@ -51,7 +51,7 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
-    background: var(--surface0);
+    background: var(--surface1);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
 }
@@ -87,10 +87,6 @@
     min-width: 0;
 }
 
-.t-row {
-    background: var(--surface1);
-}
-
 .t-row > div {
     display: flex;
     align-items: center;
@@ -104,7 +100,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: var(--surface0);
+    background-color: var(--surface1);
 }
 
 .t-row > ._subject,

@@ -1,11 +1,13 @@
+@import "./colors.css";
+
 .openlink-container {
     align-items: stretch;
-    background: linear-gradient(0deg, #404b64, #4f596f) #4f596f;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     max-width: 100%;
     position: relative;
+    background: var(--text);
 }
 
 .openlink-s-header {
@@ -15,17 +17,14 @@
 }
 
 .openlink-s-header .openlink__inner .openlink__gradient {
-    background-image: linear-gradient(
-        to left,
-        rgb(130, 130, 198),
-        rgb(73, 150, 205)
-    );
     height: 100%;
     width: 100%;
+    z-index: 2;
 }
 
 .openlink-s-header .openlink__inner:before {
     background: url(../img/header.png) 0 0 repeat-x;
+    background: var(--surface0);
     content: "";
     display: block;
     z-index: 3;
@@ -52,7 +51,7 @@
 }
 
 .openlink-s-header:after {
-    background-color: #fff;
+    background-color: var(--surface1);
     bottom: 0;
     content: "";
     display: block;
@@ -106,7 +105,7 @@
 }
 
 .openlink-pr-user .openlink__avatar {
-    background: #3c424e;
+    background: var(--surface1);
     background-position: 50%;
     background-size: cover;
     border-radius: 50%;
@@ -140,6 +139,12 @@
     color: white;
 }
 
+.openlink-pr-user .dropdown {
+    background: var(--surface1);
+    color: var(--text);
+    border: 0;
+}
+
 .openlink-nav-wheel {
     display: block;
     height: 100vh;
@@ -148,7 +153,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 2;
+    background: var(--base);
 }
 
 .openlink-nav-wheel .openlink__container {
@@ -170,7 +175,8 @@
 }
 
 .openlink-nav-wheel .openlink__container .openlink__artboard {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--surface0);
+    opacity: 0.6;
     height: 332px;
     width: 332px;
 }
@@ -423,7 +429,7 @@ ul {
 }
 
 .openlink-s-footer {
-    background: rgba(81, 191, 187, 0.1);
+    background: var(--surface0);
     padding: 5px 0;
     position: absolute;
     margin-top: auto;

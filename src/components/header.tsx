@@ -73,13 +73,13 @@ export default function Header(props: {
               </button>
               <Show when={open()}>
                 <div
-                  class="absolute mt-2 bg-white border left-1 border-gray-400 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max"
+                  class={`${props.styles!["dropdown"]} absolute mt-2 border left-1 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max`}
                   ref={dropdownRef}
                 >
                   <div class="py-1 z-40">
                     <button
                       onClick={() => props.showSettings(true)}
-                      class="block w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                     >
                       Settings
                     </button>
@@ -89,7 +89,7 @@ export default function Header(props: {
                         props.setApiUrl("");
                         throw navigate("/login?logout=true");
                       }}
-                      class="block z-50 w-full text-left px-4 py-1 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
+                      class="block z-50 w-full text-left px-4 py-1 text-sm  cursor-pointer"
                     >
                       Logout
                     </button>

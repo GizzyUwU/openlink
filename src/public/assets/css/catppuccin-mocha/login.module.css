@@ -196,7 +196,7 @@ body {
     height: 140px;
     width: 140px;
     border-radius: 100%;
-    background-color: white;
+    background-color: var(--surface0);
 }
 
 .f-demo .select {

@@ -11,6 +11,7 @@ import { makePersisted } from "@solid-primitives/storage";
 import type { TimetableResponse } from "../../types/api/timetable";
 import { useToast } from "../toast";
 let dropdownRef: HTMLDivElement | undefined;
+let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 import clsx from "clsx";
@@ -45,12 +46,17 @@ function Timetable(props: {
 
   const handleClick = (event: MouseEvent) => {
     if (!state.weekDropdown) return;
-    if (!dropdownRef?.contains(event.target as Node)) {
+    if (
+      !dropdownRef?.contains(event.target as Node) &&
+      !buttonRef?.contains(event.target as Node)
+    ) {
       setState("weekDropdown", false);
     }
   };
 
   onMount(async () => {
+    document.addEventListener("mouseup", handleClick);
+
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/timetable.module.css`
     );
@@ -105,9 +111,6 @@ function Timetable(props: {
   });
 
   onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
     document.removeEventListener("click", handleClick);
     props.setProgress(0);
   });
@@ -139,6 +142,7 @@ function Timetable(props: {
           <div class="flex items-center justify-between w-full">
             <div class="relative z-10 inline-block text-left">
               <button
+                ref={buttonRef}
                 type="button"
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
                 class={`${styles()!["__nav"]} inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer`}
