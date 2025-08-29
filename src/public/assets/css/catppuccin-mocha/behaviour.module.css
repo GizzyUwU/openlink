@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 .__nav {
     align-items: center;
     display: flex;
@@ -21,6 +23,7 @@
     min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
+    margin-bottom: 10px;
 }
 
 .t-behaviour {
@@ -28,7 +31,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -37,10 +40,11 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+    margin-bottom: 15px;
 }
 
 .t-header {
-    color: #3090c7;
+    color: var(--text);
     text-align: center;
     min-height: 40px;
     font-size: 12px;
@@ -58,24 +62,20 @@
     display: grid;
     grid-template-columns:
         130px
-        /* Type/Date */
         1fr 1fr
-        /* Comment/Teacher, Action/Info */
         200px 105px;
-    /* Loc/Status Points */
-    border-bottom: 1px solid #e3e9ea;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-row {
     display: grid;
     grid-template-columns:
         260px
-        /* Type/Date */
         1fr 1fr
-        /* Comment/Teacher, Action/Info */
         200px 105px;
-    /* Loc/Status Points */
-    border-bottom: 1px solid #e3e9ea;
+    color: var(--text);
 }
 
 .t-detentions-header {
@@ -88,9 +88,12 @@
         1fr 1fr;
     text-align: center;
     min-height: 40px;
-    color: #3090c7;
+    color: var(--text);
     font-size: 12px;
     font-weight: 400;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-detentions-row {
@@ -99,7 +102,7 @@
         1fr
         1fr 1fr 1fr
         1fr 1fr;
-    border-bottom: 1px solid #e3e9ea;
+    color: var(--text);
 }
 
 .t-detentions-header > div {
@@ -124,7 +127,7 @@
 }
 
 .t-detentions-row:nth-child(even) {
-    background-color: #ececec;
+    background-color: var(--surface1);
 }
 
 .t-detentions-row > ._date,
@@ -163,7 +166,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: #ececec;
+    background-color: var(--surface1);
 }
 
 .t-row > ._comment_teacher,
@@ -179,8 +182,8 @@
     border-radius: 50%;
     height: 42px;
     width: 42px;
-    border: 1.2px solid red;
-    color: red;
+    border: 1.2px solid var(--red);
+    color: var(--red);
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -210,7 +213,7 @@
 }
 
 .b-points-badge .__label {
-    background: linear-gradient(0deg, #eb3449, #ed5a57);
+    background: #bd362f;
     align-items: center;
     border-radius: 0 3px 3px 0;
     color: #fff;
@@ -219,6 +222,7 @@
     margin-right: calc(56px / 2);
     padding-left: 20px;
     position: relative;
+    margin-bottom: 15px;
 }
 
 .b-points-badge .__label-text {
@@ -228,7 +232,7 @@
 }
 
 .b-points-badge .__total-points {
-    background: linear-gradient(0deg, #eb3449, #ed5a57);
+    background: #bd362f;
     border-radius: 50%;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     font-size: 28px;

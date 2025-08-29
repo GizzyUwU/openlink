@@ -23,8 +23,7 @@
 }
 
 .openlink-s-header .openlink__inner:before {
-    background: url(../img/header.png) 0 0 repeat-x;
-    background: var(--surface0);
+    background: var(--surface0) url("../../img/header.png") 0 0 repeat-x;
     content: "";
     display: block;
     z-index: 3;

@@ -140,6 +140,12 @@
     color: white;
 }
 
+.openlink-pr-user .dropdown {
+    background: #fff;
+    color: #000;
+    border: 0;
+}
+
 .openlink-nav-wheel {
     display: block;
     height: 100vh;

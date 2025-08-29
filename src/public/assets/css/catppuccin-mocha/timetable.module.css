@@ -68,11 +68,8 @@
     display: grid;
     grid-template-columns:
         80px
-        /* Period */
         1fr 1fr 1fr
-        /* Subject, Room, Teacher */
         75px 75px;
-    /* Start, End */
     text-align: center;
     color: var(--text);
 }

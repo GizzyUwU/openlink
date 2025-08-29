@@ -223,9 +223,9 @@ function Exams(props: {
                     <div>Duration</div>
                   </div>
                   <Show when={state.timetable.length > 0}>
-                    <For each={state.timetable}>
-                      {(data: ExamsResponse.TimetableType) => (
-                        <div class={styles()!["t-body"]}>
+                    <div class={styles()!["t-body"]}>
+                      <For each={state.timetable}>
+                        {(data: ExamsResponse.TimetableType) => (
                           <div class={styles()!["t-row"]}>
                             <div class={styles()!["_date_start"]}>
                               <div
@@ -289,9 +289,9 @@ function Exams(props: {
                             <div>{data.seat}</div>
                             <div>{data.duration}</div>
                           </div>
-                        </div>
-                      )}
-                    </For>
+                        )}
+                      </For>
+                    </div>
                   </Show>
                 </div>
               </Show>
@@ -303,9 +303,9 @@ function Exams(props: {
                     <div>Code & Exam</div>
                   </div>
                   <Show when={state.entries.length > 0}>
-                    <For each={state.entries}>
-                      {(data: ExamsResponse.EntryType) => (
-                        <div class={styles()!["t-body"]}>
+                    <div class={styles()!["t-body"]}>
+                      <For each={state.entries}>
+                        {(data: ExamsResponse.EntryType) => (
                           <div class={styles()!["t-row"]}>
                             <div class={styles()!["_date_start"]}>
                               {data.season}
@@ -333,9 +333,9 @@ function Exams(props: {
                               </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </For>
+                        )}
+                      </For>
+                    </div>
                   </Show>
                 </div>
               </Show>
@@ -349,9 +349,9 @@ function Exams(props: {
                     <div>Equivalent</div>
                   </div>
                   <Show when={state.results.length > 0}>
-                    <For each={state.results}>
-                      {(data: ExamsResponse.ResultType) => (
-                        <div class={styles()!["t-body"]}>
+                    <div class={styles()!["t-body"]}>
+                      <For each={state.results}>
+                        {(data: ExamsResponse.ResultType) => (
                           <div class={styles()!["t-row"]}>
                             <div>{data.date}</div>
                             <div class={styles()!["_board_level"]}>
@@ -379,9 +379,9 @@ function Exams(props: {
                             <div>{data.result}</div>
                             <div>{data.equivalent}</div>
                           </div>
-                        </div>
-                      )}
-                    </For>
+                        )}
+                      </For>
+                    </div>
                   </Show>
                 </div>
               </Show>

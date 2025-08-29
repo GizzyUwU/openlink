@@ -1,9 +1,14 @@
+@import "./colors.css";
+
 .__nav {
     align-items: center;
     display: flex;
     flex-shrink: 0;
     height: 32px;
     margin-bottom: 10px;
+    margin-bottom: 10px;
+    background: var(--surface0);
+    color: var(--text);
 }
 
 .box-container {
@@ -28,7 +33,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: var(--surface0);
     border-radius: 5px;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
     z-index: 2;
@@ -46,6 +51,9 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-body {
@@ -53,6 +61,7 @@
     overflow-y: auto;
     min-height: 0;
     max-height: 100%;
+    color: var(--text);
 }
 
 .t-header,
@@ -60,10 +69,7 @@
     display: grid;
     grid-template-columns:
         1fr 1fr
-        /* Name, Type*/
         105px 105px;
-    /* Date, Download */
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
 }
 
@@ -92,7 +98,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: #ececec;
+    background: var(--surface1);
 }
 
 .t-row > ._name,

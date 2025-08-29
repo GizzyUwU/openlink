@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 .__nav {
     align-items: center;
     display: flex;
@@ -28,7 +30,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -40,10 +42,13 @@
 }
 
 .t-header {
-    color: #3090c7;
+    color: var(--text);
     text-align: center;
     min-height: 40px;
     font-size: 12px;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     font-weight: 400;
 }
 
@@ -57,42 +62,48 @@
 .t-timetable .t-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
-}
-
-.t-timetable {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-.t-entries {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
-}
-
-.t-results {
-    flex: 1 1 0;
-    overflow-y: auto;
-    min-height: 0;
+    color: var(--text);
 }
 
 .t-entries .t-header,
 .t-entries .t-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
+    color: var(--text);
 }
 
 .t-results .t-header,
 .t-results .t-row {
     display: grid;
     grid-template-columns: 100px 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
+    color: var(--text);
+}
+
+.t-timetable {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.t-entries {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.t-results {
+    flex: 1 1 0;
+    overflow-y: auto;
+    min-height: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-header > div {
@@ -107,7 +118,7 @@
 
 .t-countdown {
     display: flex;
-    color: #3090c7;
+    color: var(--text);
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -132,7 +143,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: #ececec;
+    background-color: var(--surface1);
 }
 
 .t-row > ._date_start,
@@ -152,5 +163,5 @@
 }
 
 ._grey {
-    color: #888;
+    color: #888 !important;
 }
