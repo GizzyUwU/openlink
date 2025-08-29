@@ -216,139 +216,145 @@ export default function Navigation(props: {
 
   return (
     <Show when={props.styles}>
-    <div class={props.styles!["openlink-nav-wheel"]}>
-      <div
-        class={`${props.styles!["openlink__container"]} ${props.styles!["openlink__loaded"]}`}
-        id="nav-wheel"
-        ref={(el) => (navWheelRef = el)}
-        style={navWheelContainerStyle()}
-      >
-        <div class={props.styles!["openlink__artboard"]}></div>
-
-        <Transition
-          appear={false}
-          onExit={(el: Element, done) => {
-            const anim = (el as HTMLElement).animate(
-              [{ opacity: 1 }, { opacity: 0 }],
-              {
-                duration: 400,
-                easing: "cubic-bezier(0.77,0,0.175,1)",
-                fill: "forwards",
-              }
-            );
-            anim.finished.then(done);
-          }}
-          onEnter={(el: Element, done) => {
-            const anim = (el as HTMLElement).animate(
-              [{ opacity: 0 }, { opacity: 1 }],
-              {
-                duration: 400,
-                easing: "cubic-bezier(0.77,0,0.175,1)",
-                fill: "forwards",
-              }
-            );
-            anim.finished.then(done);
-          }}
+      <div class={props.styles!["openlink-nav-wheel"]}>
+        <div
+          class={`${props.styles!["openlink__container"]} ${props.styles!["openlink__loaded"]}`}
+          id="nav-wheel"
+          ref={(el) => (navWheelRef = el)}
+          style={navWheelContainerStyle()}
         >
-          <Show when={!state.isLogoGone}>
-            <div
-              class={props.styles!["openlink__logo-wrap"]}
-              style={{ "background-color": state.logoBG }}
-            >
+          <div class={props.styles!["openlink__artboard"]}></div>
+
+          <Transition
+            appear={false}
+            onExit={(el: Element, done) => {
+              const anim = (el as HTMLElement).animate(
+                [{ opacity: 1 }, { opacity: 0 }],
+                {
+                  duration: 400,
+                  easing: "cubic-bezier(0.77,0,0.175,1)",
+                  fill: "forwards",
+                },
+              );
+              anim.finished.then(done);
+            }}
+            onEnter={(el: Element, done) => {
+              const anim = (el as HTMLElement).animate(
+                [{ opacity: 0 }, { opacity: 1 }],
+                {
+                  duration: 400,
+                  easing: "cubic-bezier(0.77,0,0.175,1)",
+                  fill: "forwards",
+                },
+              );
+              anim.finished.then(done);
+            }}
+          >
+            <Show when={!state.isLogoGone}>
               <div
-                class={props.styles!["openlink__logo"]}
-                style={{
-                  "background-image": `url(data:image/webp;base64,${props.sessionData().establishment?.logo || ""})`,
-                }}
-              ></div>
-            </div>
-          </Show>
-        </Transition>
+                class={props.styles!["openlink__logo-wrap"]}
+                style={{ "background-color": state.logoBG }}
+              >
+                <div
+                  class={props.styles!["openlink__logo"]}
+                  style={{
+                    "background-image": `url(data:image/webp;base64,${props.sessionData().establishment?.logo || ""})`,
+                  }}
+                ></div>
+              </div>
+            </Show>
+          </Transition>
 
-        <TransitionGroup
-          enterActiveClass={props.styles!["transition-enter-active"]}
-          exitActiveClass={props.styles!["transition-exit-active"]}
-          enterClass={props.styles!["transition-enter"]}
-          enterToClass={props.styles!["transition-enter-to"]}
-          exitClass={props.styles!["transition-exit"]}
-          exitToClass={props.styles!["transition-exit-to"]}
-        >
-          <ul class={props.styles!["openlink__list"]} style={navWheelListStyle()}>
-            <For each={items}>
-              {(item, i) => (
-                <li
-                  class={props.styles!["openlink__item"]}
-                  style={getItemStyle(
-                    166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
-                    166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length))
-                  )}
-                >
-                  <div class={props.styles!["openlink__inner"]}>
-                    <a
-                      class={clsx(
-                        props.styles!["openlink__item-link"],
-                        props.styles![item.class],
-                      )}
-                      href={`/dash/#${item.id}`}
-                      title={item.name}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (state.isSlid && state.activeIdx === i()) {
-                          resetNav();
-                          props.setLoadedComponent(null);
-                          const prev = document.getElementById("item-box");
-                          if (prev) prev.remove();
-                        } else {
-                          openItem(i());
-                          spinToIndex(i());
-                          props.loadItemPage(item.id, item.name);
-                        }
-                      }}
-                    >
-                      {!state.isSlid ? (
-                        <span
-                          style={{
-                            opacity: state.itemOpacity[i()],
-                            transition: "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
-                          }}
-                          onTransitionEnd={() => {
-                            if (state.isSlid && state.activeIdx === i()) setState("showBack", true);
-                          }}
-                        >
-                          <item.icon />
-                        </span>
-                      ) : state.activeIdx !== i() && state.showBack ? (
-                        true
-                      ) : (
-                        <>
-                          <div id="nav-back"></div>
-                          <svg
-                            width="36"
-                            height="36"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+          <TransitionGroup
+            enterActiveClass={props.styles!["transition-enter-active"]}
+            exitActiveClass={props.styles!["transition-exit-active"]}
+            enterClass={props.styles!["transition-enter"]}
+            enterToClass={props.styles!["transition-enter-to"]}
+            exitClass={props.styles!["transition-exit"]}
+            exitToClass={props.styles!["transition-exit-to"]}
+          >
+            <ul
+              class={props.styles!["openlink__list"]}
+              style={navWheelListStyle()}
+            >
+              <For each={items}>
+                {(item, i) => (
+                  <li
+                    class={props.styles!["openlink__item"]}
+                    style={getItemStyle(
+                      166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
+                      166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length)),
+                    )}
+                  >
+                    <div class={props.styles!["openlink__inner"]}>
+                      <a
+                        class={clsx(
+                          props.styles!["openlink__item-link"],
+                          props.styles![item.class],
+                        )}
+                        href={`/dash/#${item.id}`}
+                        title={item.name}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (state.isSlid && state.activeIdx === i()) {
+                            resetNav();
+                            props.setLoadedComponent(null);
+                            const prev = document.getElementById("item-box");
+                            if (prev) prev.remove();
+                          } else {
+                            openItem(i());
+                            spinToIndex(i());
+                            props.loadItemPage(item.id, item.name);
+                          }
+                        }}
+                      >
+                        {!state.isSlid ? (
+                          <span
                             style={{
-                              opacity: 1,
-                              transition: "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
+                              opacity: state.itemOpacity[i()],
+                              transition:
+                                "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
+                            }}
+                            onTransitionEnd={() => {
+                              if (state.isSlid && state.activeIdx === i())
+                                setState("showBack", true);
                             }}
                           >
-                            <path d="M15 18l-6-6 6-6" />
-                          </svg>
-                        </>
-                      )}
-                    </a>
-                  </div>
-                </li>
-              )}
-            </For>
-          </ul>
-        </TransitionGroup>
+                            <item.icon />
+                          </span>
+                        ) : state.activeIdx !== i() && state.showBack ? (
+                          true
+                        ) : (
+                          <>
+                            <div id="nav-back"></div>
+                            <svg
+                              width="36"
+                              height="36"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              style={{
+                                opacity: 1,
+                                transition:
+                                  "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
+                              }}
+                            >
+                              <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                          </>
+                        )}
+                      </a>
+                    </div>
+                  </li>
+                )}
+              </For>
+            </ul>
+          </TransitionGroup>
+        </div>
       </div>
-    </div>
     </Show>
   );
 }

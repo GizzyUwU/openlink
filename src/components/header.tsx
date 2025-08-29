@@ -3,6 +3,7 @@ import { HiOutlineCog6Tooth } from "solid-icons/hi";
 import { useNavigate } from "@solidjs/router";
 
 export default function Header(props: {
+  setProgress: (value: number) => void;
   progress: () => number;
   sessionData: any;
   setSession: any;
@@ -32,6 +33,9 @@ export default function Header(props: {
     const handleTransitionEnd = (e: TransitionEvent) => {
       if (e.propertyName === "transform" && props.progress() === 1) {
         setFadeOut(true);
+      } else {
+        if (fadeOut() !== true) return;
+        setFadeOut(false);
       }
     };
 

@@ -49,7 +49,10 @@ export default function Settings(props: {
     >
       <button
         type="button"
-        onClick={() => props.setOverlay(null)}
+        onClick={() => {
+          props.setOverlay(null);
+          props.showSettings(false);
+        }}
         class={`${props.styles!["close"]} absolute top-2 right-2`}
       >
         ✕

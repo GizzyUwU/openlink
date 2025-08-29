@@ -8,7 +8,7 @@ export default function Footer(props: {
   setSession: any;
   setApiUrl: any;
   edulink: any;
-  loadItemPage: (id: string, name: string) => void;
+  loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   styles: { [key: string]: string } | null;
 }) {
   const navigate = useNavigate();
@@ -38,7 +38,10 @@ export default function Footer(props: {
     <Show when={props.styles}>
       <div class={props.styles!["openlink-s-footer"]}>
         <div class={props.styles!["openlink__footer-container"]}>
-          <div class={props.styles!["openlink__footer-item"]}>
+          <div
+            class={props.styles!["openlink__footer-item"]}
+            onClick={() => props.loadItemPage("timetable", "Timetable", true)}
+          >
             {status().lessons?.current && (
               <div class={props.styles!["openlink-pr-couple"]}>
                 <span
@@ -96,7 +99,10 @@ export default function Footer(props: {
             )}
           </div>
 
-          <div class={props.styles!["openlink__footer-item"]}>
+          <div
+            class={props.styles!["openlink__footer-item"]}
+            onClick={() => props.loadItemPage("timetable", "Timetable", true)}
+          >
             {status().lessons?.next && (
               <div class={props.styles!["openlink-pr-couple"]}>
                 <span
@@ -160,7 +166,7 @@ export default function Footer(props: {
 
           <div
             class={props.styles!["openlink__footer-item"]}
-            onClick={() => props.loadItemPage("messages", "Messages")}
+            onClick={() => props.loadItemPage("messages", "Messages", true)}
           >
             <div class={props.styles!["openlink-pr-couple"]}>
               <span

@@ -65,7 +65,11 @@ function Main() {
     });
   }
 
-  async function loadItemPage(id: string, name: string) {
+  async function loadItemPage(
+    id: string,
+    name: string,
+    forceOpenNav?: boolean,
+  ) {
     try {
       if (LoadedComponent()) {
         setLoadedComponent(null);
@@ -74,9 +78,8 @@ function Main() {
         document.getElementById("item-styling")?.remove();
       }
       const mod = await import(`../components/items/${id}.tsx`);
-      console.log(mod, id);
-      if (!mod.default.name && !mod.default.icon && mod.default.pos) {
-        openNavFn?.(mod.default.pos);
+      if (forceOpenNav) {
+        openNavFn?.(mod.default.pos - 1);
       }
       setState("progress", 0.3);
       setLoadedComponent(() => (childProps: any) => (
@@ -163,6 +166,7 @@ function Main() {
           setSession={setSession}
           setApiUrl={setApiUrl}
           sessionData={sessionData}
+          setProgress={(value: number) => setState("progress", value)}
           showSettings={changeSettingsState}
           styles={styles() || {}}
         />

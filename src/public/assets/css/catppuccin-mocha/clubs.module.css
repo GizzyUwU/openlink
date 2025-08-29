@@ -129,6 +129,8 @@
 .club {
     background: var(--surface0);
     color: var(--text);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .club-cross {
