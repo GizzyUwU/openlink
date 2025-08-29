@@ -418,7 +418,7 @@ function Messages(props: {
                     <div
                       class={styles()!["__body"]}
                       innerHTML={DOMPurify.sanitize(
-                        state.openedMessage[0].body,
+                        state.openedMessage[0].body.replace(/\n/g, "<br>"),
                       )}
                     ></div>
                   </Show>
