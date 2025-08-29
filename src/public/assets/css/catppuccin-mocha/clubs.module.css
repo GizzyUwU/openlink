@@ -1,10 +1,4 @@
-.__nav {
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    height: 32px;
-    margin-bottom: 10px;
-}
+@import "./colors.css";
 
 .box-container {
     display: flex;
@@ -30,7 +24,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -43,11 +37,23 @@
 }
 
 .t-header {
-    color: #3090c7;
     text-align: center;
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.t-club-header {
+    text-align: center;
+    min-height: 40px;
+    font-size: 12px;
+    font-weight: 400;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-body {
@@ -61,16 +67,16 @@
 .t-row {
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
+    color: var(--text);
 }
 
 .t-club-header,
 .t-club-row {
     display: grid;
     grid-template-columns: 1fr 100px 80px 80px;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
+    color: var(--text);
 }
 
 .t-header > div,
@@ -98,8 +104,9 @@
     text-align: center;
 }
 
-.t-row:nth-child(even) {
-    background-color: #ececec;
+.t-row:nth-child(even),
+.t-club-row:nth-child(even) {
+    background-color: var(--surface1);
 }
 
 .t-row > ._name,
@@ -117,4 +124,17 @@
 
 ._grey {
     color: #888;
+}
+
+.club {
+    background: var(--surface0);
+    color: var(--text);
+}
+
+.club-cross {
+    color: var(--subtext1);
+}
+
+.club-cross:hover {
+    color: var(--subtext0);
 }

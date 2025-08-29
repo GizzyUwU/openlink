@@ -1,10 +1,4 @@
-.__nav {
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    height: 32px;
-    margin-bottom: 10px;
-}
+@import "./colors.css";
 
 .box-container {
     display: flex;
@@ -28,7 +22,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -40,11 +34,13 @@
 }
 
 .t-header {
-    color: #3090c7;
     text-align: center;
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    background: var(--surface1);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-body {
@@ -60,8 +56,8 @@
     grid-template-columns:
         1fr 1fr 1fr 1fr 1fr
         105px 105px;
-    border-bottom: 1px solid #e3e9ea;
     text-align: center;
+    color: var(--text);
 }
 
 .t-header > div {
@@ -88,7 +84,7 @@
 }
 
 .t-row:nth-child(even) {
-    background-color: #ececec;
+    background-color: var(--surface1);
 }
 
 .t-row > ._due,
@@ -111,4 +107,12 @@
 
 ._grey {
     color: #888;
+}
+
+.check-color {
+    color: #6bb842;
+}
+
+.cross-color {
+    color: #bd362f;
 }

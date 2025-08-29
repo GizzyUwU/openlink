@@ -2,8 +2,8 @@ import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
-import { ImCross } from "solid-icons/im";
 import { Transition } from "solid-transition-group";
+import { Icon } from "@iconify-icon/solid";
 import { IoBriefcaseOutline, IoCheckmarkCircleOutline } from "solid-icons/io";
 import { HomeworkResponse } from "../../types/api/homework";
 import { useToast } from "../toast";
@@ -168,9 +168,17 @@ function Homework(props: {
                     <div class={styles()!["_status"]}>
                       {data.icon ? (
                         data.icon === "tick" ? (
-                          <IoCheckmarkCircleOutline size="32" color="green" />
+                          <IoCheckmarkCircleOutline
+                            size="32"
+                            class={styles()!["check-color"]}
+                          />
                         ) : (
-                          <ImCross color="red" size="20" />
+                          <Icon
+                            icon="maki:cross"
+                            width="32"
+                            height="32"
+                            class={styles()!["cross-color"]}
+                          />
                         )
                       ) : (
                         "-"

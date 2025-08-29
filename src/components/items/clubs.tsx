@@ -125,11 +125,13 @@ function Clubs(props: {
 
   const handleClubPreview = async (club_id: number | string) => {
     props.setOverlay(
-      <div class="bg-white rounded-2xl p-6 w-[90%] max-w-lg relative">
+      <div
+        class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-lg relative`}
+      >
         <button
           type="button"
           onClick={() => props.setOverlay(null)}
-          class="absolute top-2 right-2 text-gray-500 hover:text-black"
+          class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
         >
           ✕
         </button>
@@ -145,15 +147,19 @@ function Clubs(props: {
 
     if (clubData.result.success) {
       props.setOverlay(
-        <div class="bg-white rounded-2xl p-6 w-[90%] max-w-xl relative max-h-[50vh] flex flex-col">
+        <div
+          class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-xl relative max-h-[50vh] flex flex-col`}
+        >
           <button
             type="button"
             onClick={() => props.setOverlay(null)}
-            class="absolute top-1 right-2 text-xl text-gray-500 hover:text-black"
+            class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
           >
             ✕
           </button>
-          <h2 class="absolute top-4 left-4 text-xs text-capitalise text-gray-400">
+          <h2
+            class={`absolute top-4 left-4 text-xs text-capitalise ${styles()!["overlay-title"]}`}
+          >
             CLUB DETAILS
           </h2>
           <h2 class="text-center text-xl mt-4">{clubData.result.club.name}</h2>

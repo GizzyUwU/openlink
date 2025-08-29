@@ -528,3 +528,7 @@ ul {
         sans-serif;
     font-size: 14px;
 }
+
+.overlay-title {
+    color: var(--subtext1);
+}
