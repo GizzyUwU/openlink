@@ -529,3 +529,59 @@ ul {
         sans-serif;
     font-size: 14px;
 }
+
+.settings {
+    background: #fff;
+    border-radius: 5px;
+    color: #000;
+}
+
+.settings .close {
+    color: var(--color-gray-500);
+    cursor: pointer;
+}
+
+.settings .close:hover {
+    color: var(--color-gray-600);
+}
+
+.settings .theme-selector .theme-button {
+    position: relative;
+    background: var(--color-gray-400);
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text);
+    border: 0;
+}
+
+.theme-button .dropdown-arrow {
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid white;
+    display: inline-block;
+    top: 12px;
+    right: 15px;
+}
+
+.settings .theme-selector .dropdown-menu {
+    max-height: 123px;
+    width: 100%;
+    margin-top: 2px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    background: var(--color-gray-400);
+}
+
+.dropdown-menu .item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu .item:nth-child(even) {
+    background: oklch(80.2% 0.01 258.338);
+}

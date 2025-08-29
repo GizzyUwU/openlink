@@ -24,7 +24,6 @@
     background: #fff;
     border-radius: 5px;
     flex-grow: 1;
-
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -54,11 +53,8 @@
     display: grid;
     grid-template-columns:
         80px
-        /* Period */
         1fr 1fr 1fr
-        /* Subject, Room, Teacher */
         75px 75px;
-    /* Start, End */
     border-bottom: 1px solid #e3e9ea;
     text-align: center;
 }

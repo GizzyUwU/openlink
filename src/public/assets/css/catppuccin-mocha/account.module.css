@@ -1,3 +1,5 @@
+@import "./colors.css";
+
 .box-container {
     display: flex;
     flex-direction: column;
@@ -20,8 +22,6 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -76,7 +76,7 @@
 }
 
 .b-student-info__right {
-    background: #fff;
+    background: var(--surface0);
     height: 100%;
     width: calc(100% - 330px);
     flex-grow: 1;
@@ -115,7 +115,7 @@
     width: 52%;
 }
 
-.__col:last-child {
+.__col:last-child:not(:only-child) {
     border-left: 1px solid #e3e9ea;
     width: 48%;
 }
@@ -125,7 +125,7 @@
     font-size: 14px;
 }
 .__col .__data {
-    color: #404652;
+    color: var(--text);
     font-size: 17px;
     padding: 5px 0;
 }

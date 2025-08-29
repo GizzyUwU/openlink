@@ -1,6 +1,8 @@
-import { createSignal, JSXElement } from "solid-js";
+import { createSignal, JSXElement, Show, Setter } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
-const themeImports = import.meta.glob("../public/assets/css/*/*.css", { eager: true });
+const themeImports = import.meta.glob("../public/assets/css/*/*.css", {
+  eager: true,
+});
 
 async function setTheme(theme: string) {
   if (window.__TAURI__) {
@@ -36,27 +38,41 @@ export default function Settings(props: {
   setSession: any;
   setApiUrl: any;
   setOverlay: (value: JSXElement) => void;
+  styles: { [key: string]: string } | null;
+  showSettings: Setter<boolean>;
 }) {
+  const [themeSelection, triggerSelection] = createSignal<boolean>(false);
+
   props.setOverlay(
-    <div class="bg-white rounded-2xl p-6 w-[90%] max-w-lg relative">
+    <div
+      class={`${props.styles!["settings"]} rounded-2xl p-6 w-[90%] max-w-lg relative`}
+    >
       <button
         type="button"
         onClick={() => props.setOverlay(null)}
-        class="absolute top-2 right-2 text-gray-500 hover:text-black"
+        class={`${props.styles!["close"]} absolute top-2 right-2`}
       >
         ✕
       </button>
       <h2 class="text-xl text-center mb-4">Settings</h2>
 
-      <div class="space-y-2">
-        <h3 class="text-lg font-semibold">Available Themes</h3>
-        <ul class="list-disc pl-6">
-          {themes.map((theme) => (
-            <li onClick={() => setTheme(theme ?? "default")}>
-              {theme?.charAt(0).toUpperCase() + theme?.slice(1)}
-            </li>
-          ))}
-        </ul>
+      <div class={`${props.styles!["theme-selector"]} text-center`}>
+        <button
+          type="button"
+          onClick={() => triggerSelection((prev) => !prev)}
+          class={`${props.styles!["theme-button"]} font-semibold`}
+        >
+          Available Themes<i class={props.styles!["dropdown-arrow"]}></i>
+        </button>
+        <Show when={themeSelection()}>
+          <ul class={props.styles!["dropdown-menu"]}>
+            {themes.map((theme) => (
+              <li class={props.styles!["item"]} onClick={() => setTheme(theme)}>
+                {theme}
+              </li>
+            ))}
+          </ul>
+        </Show>
       </div>
     </div>,
   );

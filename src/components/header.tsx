@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show } from "solid-js";
+import { onMount, onCleanup, createSignal, Show, Setter } from "solid-js";
 import { HiOutlineCog6Tooth } from "solid-icons/hi";
 import { useNavigate } from "@solidjs/router";
 
@@ -7,7 +7,7 @@ export default function Header(props: {
   sessionData: any;
   setSession: any;
   setApiUrl: any;
-  showSettings: (value: boolean) => void;
+  showSettings: Setter<boolean>;
   styles: { [key: string]: string } | null;
 }) {
   let dropdownRef: HTMLDivElement | undefined;
@@ -78,7 +78,7 @@ export default function Header(props: {
                 >
                   <div class="py-1 z-40">
                     <button
-                      onClick={() => props.showSettings(true)}
+                      onClick={() => props.showSettings((prev) => !prev)}
                       class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                     >
                       Settings

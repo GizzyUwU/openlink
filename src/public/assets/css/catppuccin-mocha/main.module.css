@@ -529,6 +529,59 @@ ul {
     font-size: 14px;
 }
 
-.overlay-title {
+.settings {
+    background: var(--surface0);
+    border-radius: 5px;
+    color: var(--text);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settings .close {
     color: var(--subtext1);
+}
+
+.settings .close:hover {
+    color: var(--subtext0);
+}
+
+.settings .theme-selector .theme-button {
+    position: relative;
+    background: var(--surface2);
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--text);
+    border: 0;
+}
+
+.theme-button .dropdown-arrow {
+    border: solid var(--text);
+    position: absolute;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    top: 10px;
+    right: 15px;
+    -webkit-transform: rotate(45deg);
+}
+
+.settings .theme-selector .dropdown-menu {
+    max-height: 123px;
+    width: 100%;
+    margin-top: 2px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    background: var(--surface1);
+}
+
+.dropdown-menu .item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu .item:nth-child(even) {
+    background-color: var(--surface2);
 }

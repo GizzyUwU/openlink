@@ -1,5 +1,5 @@
 import { makePersisted } from "@solid-primitives/storage";
-import { createSignal, JSXElement } from "solid-js";
+import { createSignal, JSXElement, Setter } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { Show, onMount, createMemo, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
@@ -146,6 +146,15 @@ function Main() {
       ? "translate3d(-50%, 0, 0)"
       : "translate3d(-45%, 0, 0)",
   );
+
+  const changeSettingsState: Setter<boolean> = (valueOrFn) => {
+    setState("showSettings", (prev) =>
+      typeof valueOrFn === "function"
+        ? (valueOrFn as (prev: boolean) => boolean)(prev)
+        : valueOrFn,
+    );
+  };
+
   return (
     <Show when={sessionData() && Object.keys(sessionData()).length > 0}>
       <div class="openlink-container">
@@ -154,7 +163,7 @@ function Main() {
           setSession={setSession}
           setApiUrl={setApiUrl}
           sessionData={sessionData}
-          showSettings={(value: boolean) => setState("showSettings", value)}
+          showSettings={changeSettingsState}
           styles={styles() || {}}
         />
         <Show when={state.showSettings}>
@@ -164,6 +173,8 @@ function Main() {
             setApiUrl={setApiUrl}
             sessionData={sessionData}
             setOverlay={(value: JSXElement) => setState("overlay", value)}
+            showSettings={changeSettingsState}
+            styles={styles() || {}}
           />
         </Show>
         <Navigation
@@ -202,10 +213,17 @@ function Main() {
           )}
         </Show>
         <Show when={state.overlay !== null}>
-          <div class={`${styles()?.["t-overlay"]} items-center justify-center`}>
-            {state.overlay}
+          <div
+            class={`${styles()?.["t-overlay"]} flex justify-center`}
+            onMouseUp={() => {
+              changeSettingsState(false);
+              setState("overlay", null);
+            }}
+          >
+            <div onMouseUp={(e) => e.stopPropagation()}>{state.overlay}</div>
           </div>
         </Show>
+
         <Footer
           sessionData={sessionData}
           apiUrl={apiUrl}
