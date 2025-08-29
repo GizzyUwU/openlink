@@ -18,6 +18,7 @@
 }
 
 .t-attendance {
+    background: var(--surface0);
     display: flex;
     flex-grow: 1;
     min-height: 0;
@@ -28,6 +29,7 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+    color: var(--text);
 }
 
 .attendance__statutory-left {

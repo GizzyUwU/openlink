@@ -20,6 +20,8 @@
 .t-personal {
     display: flex;
     flex-direction: column;
+    background: var(--surface0);
+
     flex-grow: 1;
     min-height: 0;
     z-index: 2;
