@@ -534,6 +534,8 @@ ul {
     background: #fff;
     border-radius: 5px;
     color: #000;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .settings .close {
@@ -552,8 +554,9 @@ ul {
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
-    color: var(--text);
+    color: black;
     border: 0;
+    font-weight: 400;
 }
 
 .theme-button .dropdown-arrow {
@@ -574,7 +577,7 @@ ul {
     margin-top: 2px;
     border-radius: 5px;
     overflow-y: scroll;
-    background: var(--color-gray-400);
+    background: oklch(76.2% 0.01 258.338);
 }
 
 .dropdown-menu .item {
@@ -583,5 +586,5 @@ ul {
 }
 
 .dropdown-menu .item:nth-child(even) {
-    background: oklch(80.2% 0.01 258.338);
+    background: var(--color-gray-400);
 }

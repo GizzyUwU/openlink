@@ -51,7 +51,6 @@ body,
     background-position: 15px;
     background-repeat: no-repeat;
     border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 0 12px #999;
     color: #fff;
     margin: 0 0 6px;
     opacity: 0.7;
@@ -83,6 +82,10 @@ body,
 
 .toast-error {
     background-color: #bd362f;
+}
+
+.toast-success {
+    background-color: #6bb842;
 }
 
 .toast .icon {

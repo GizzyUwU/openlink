@@ -23,6 +23,7 @@ tauri-runtime-verso-build = { git = "https://github.com/versotile-org/tauri-runt
 tauri = { version = "2.6.1", default-features = false, features = [
     "common-controls-v6",
     "x11",
+    "devtools",
 ] }
 tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
@@ -38,13 +39,17 @@ sha2 = "0.10.9"
 pbkdf2 = "0.12.2"
 
 [profile.dev]
-incremental = false
-opt-level = 0
-debug = true
+incremental = true
 lto = true
 codegen-units = 1
-strip = true
 
 [profile.dev.package."*"]
 opt-level = 1
 debug = false
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+panic = "abort"
+strip = true

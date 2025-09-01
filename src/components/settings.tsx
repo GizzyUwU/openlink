@@ -63,7 +63,7 @@ export default function Settings(props: {
         <button
           type="button"
           onClick={() => triggerSelection((prev) => !prev)}
-          class={`${props.styles!["theme-button"]} font-semibold`}
+          class={`${props.styles!["theme-button"]}`}
         >
           Available Themes<i class={props.styles!["dropdown-arrow"]}></i>
         </button>

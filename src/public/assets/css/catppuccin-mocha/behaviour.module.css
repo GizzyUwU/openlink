@@ -1,13 +1,5 @@
 @import "./colors.css";
 
-.__nav {
-    align-items: center;
-    display: flex;
-    flex-shrink: 0;
-    height: 32px;
-    margin-bottom: 10px;
-}
-
 .box-container {
     display: flex;
     flex-direction: column;

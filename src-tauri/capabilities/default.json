@@ -2,10 +2,23 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": ["main"],
+  "windows": [
+    "main"
+  ],
   "permissions": [
     "core:default",
     "opener:default",
+    {
+      "identifier": "opener:allow-open-path",
+      "allow": [
+        {
+          "path": "https://*.edulinkone.com/**"
+        },
+        {
+          "path": "blob:**"
+        }
+      ]
+    },
     {
       "identifier": "http:default",
       "allow": [
@@ -21,6 +34,32 @@
     "store:default",
     "fs:allow-resource-read-recursive",
     "fs:allow-exists",
+    "fs:allow-download-write",
+    "fs:default",
+    "fs:allow-write-text-file",
+    "fs:allow-download-write-recursive",
+    "fs:scope-download",
+    "fs:scope-download-recursive",
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [
+        {
+          "path": "$DOWNLOAD/**"
+        },
+        {
+          "path": "$DOWNLOAD/**/.*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "$DOWNLOAD/*"
+        }
+      ]
+    },
+    "fs:allow-create",
     "store:allow-get",
     "store:allow-set",
     "store:allow-delete",

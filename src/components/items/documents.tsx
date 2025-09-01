@@ -6,6 +6,13 @@ import { useToast } from "../toast";
 import { AiOutlineFileText } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
 
+const blobToFile = (theBlob: Blob, fileName: string): File => {
+  return new File([theBlob as any], fileName, {
+    lastModified: new Date().getTime(),
+    type: theBlob.type,
+  });
+};
+
 function Documents(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -64,6 +71,75 @@ function Documents(props: {
     props.setProgress(0);
   });
 
+  const handleDownload = async (file: string, documentId: string) => {
+    try {
+      console.log(file);
+      const res = await edulink.getDocument(
+        file,
+        documentId,
+        sessionData()?.authtoken,
+        apiUrl(),
+      );
+
+      if (!res.result.success) {
+        toast.showToast("Error", res.result.error ?? "Unknown error", "error");
+        console.error(res.result.error);
+        return;
+      }
+
+      const { url, document, mime_type } = res.result.result;
+      if (!url && !document) {
+        toast.showToast("Error", "Missing File URL/Document", "error");
+        console.error("Missing File URL/Document");
+        return;
+      }
+      const data = url ?? document;
+
+      if (data.startsWith("http")) {
+        if (window.__TAURI__) {
+          const { openUrl } = await import("@tauri-apps/plugin-opener");
+          await openUrl(data);
+        } else {
+          window.open(data, "_blank");
+        }
+      } else {
+        const base64String = await data;
+        function base64ToUint8Array(base64: string) {
+          const binary = atob(base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+          }
+          return bytes;
+        }
+
+        const fileBytes = base64ToUint8Array(base64String);
+        const blob = new Blob([fileBytes], {
+          type: "application/octet-stream",
+        });
+        const link = window.document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = file;
+        window.document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(link.href);
+        console.log("meow");
+        toast.showToast(
+          "Download Successful",
+          `${file} downloaded successfully`,
+          "success",
+        );
+      }
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : String(err ?? "Unknown error");
+      toast.showToast("Error", message, "error");
+      console.error(err);
+      return;
+    }
+  };
+
   return (
     <Transition
       onEnter={(el, done) => {
@@ -108,13 +184,15 @@ function Documents(props: {
                     </div>
                     <div class={styles()!["_type"]}>{doc.type || "-"}</div>
                     <div class={styles()!["_date"]}>{doc.date || "-"}</div>
-                    <div class={styles()!["_download"]}>
+                    <div class={`${styles()!["_download"]} cursor-pointer`}>
                       {doc.attachments?.[0]?.identifier ? (
                         <a
-                          href={`/api/documents/download/${doc.attachments[0].identifier}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class={styles()!["t-documents__download-link"]}
+                          onClick={() =>
+                            handleDownload(
+                              doc.attachments?.[0]?.identifier,
+                              doc.id,
+                            )
+                          }
                         >
                           <AiOutlineDownload size={22} />
                         </a>
