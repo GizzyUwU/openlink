@@ -34,6 +34,7 @@ export default function Navigation(props: {
     navSlid: boolean;
     itemOpacity: number[];
     logoBG: string;
+    userMenu: typeof items;
   }>({
     showBack: false,
     activeIdx: null,
@@ -44,8 +45,9 @@ export default function Navigation(props: {
     logoOpacity: 1,
     isLogoGone: false,
     navSlid: false,
-    itemOpacity: Array(items.length).fill(1),
+    itemOpacity: [],
     logoBG: "",
+    userMenu: [],
   });
 
   const updateSlideX = () => {
@@ -55,7 +57,8 @@ export default function Navigation(props: {
   };
 
   const spinToIndex = (idx: number) => {
-    setState("wheelRotaton", (idx * 360) / items.length);
+    if (!state.userMenu) return;
+    setState("wheelRotaton", (idx * 360) / state.userMenu.length);
   };
 
   onMount(async () => {
@@ -63,6 +66,28 @@ export default function Navigation(props: {
     props.openNav?.(openItem);
     if (props.loadedComponent) {
       resetNav();
+    }
+
+    const personalMenu = props.sessionData()?.personal_menu || [];
+    if (personalMenu.length > 0) {
+      const orderMap = new Map(
+        personalMenu.map((menuItem: any, index: number) => [
+          menuItem.id,
+          index,
+        ]),
+      );
+      const filterAndSort = items
+        .filter((item) => orderMap.has(item.id))
+        .sort((a, b) => {
+          const indexA = Number(orderMap.get(a.id));
+          const indexB = Number(orderMap.get(b.id));
+          return indexA - indexB;
+        });
+      setState("itemOpacity", Array(filterAndSort.length).fill(1));
+      setState("userMenu", filterAndSort);
+    } else {
+      setState("itemOpacity", Array(items.length).fill(1));
+      setState("userMenu", items);
     }
 
     const handleResize = () => {
@@ -129,7 +154,7 @@ export default function Navigation(props: {
       if (!state.isLogoGone) updateSlideX();
       setState({
         logoOpacity: 0,
-        itemOpacity: Array(items.length).fill(0),
+        itemOpacity: Array(state.userMenu.length).fill(0),
         isLogoGone: true,
       });
 
@@ -140,13 +165,13 @@ export default function Navigation(props: {
         isLogoGone: false,
         isSlid: false,
         logoOpacity: 0,
-        itemOpacity: Array(items.length).fill(0),
+        itemOpacity: Array(state.userMenu.length).fill(0),
       });
 
       setTimeout(() => {
         setState({
           logoOpacity: 1,
-          itemOpacity: Array(items.length).fill(1),
+          itemOpacity: Array(state.userMenu.length).fill(1),
         });
       }, 10);
     }
@@ -277,13 +302,19 @@ export default function Navigation(props: {
               class={props.styles!["openlink__list"]}
               style={navWheelListStyle()}
             >
-              <For each={items}>
+              <For each={state.userMenu}>
                 {(item, i) => (
                   <li
                     class={props.styles!["openlink__item"]}
                     style={getItemStyle(
-                      166 * Math.cos(0 - i() * ((2 * Math.PI) / items.length)),
-                      166 * Math.sin(0 - i() * ((2 * Math.PI) / items.length)),
+                      166 *
+                        Math.cos(
+                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                        ),
+                      166 *
+                        Math.sin(
+                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                        ),
                     )}
                   >
                     <div class={props.styles!["openlink__inner"]}>

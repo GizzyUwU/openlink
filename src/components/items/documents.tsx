@@ -6,12 +6,14 @@ import { useToast } from "../toast";
 import { AiOutlineFileText } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
 
-const blobToFile = (theBlob: Blob, fileName: string): File => {
-  return new File([theBlob as any], fileName, {
-    lastModified: new Date().getTime(),
-    type: theBlob.type,
-  });
-};
+function base64ToUint8Array(base64: string) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
 
 function Documents(props: {
   setProgress: (value: number) => void;
@@ -87,10 +89,10 @@ function Documents(props: {
         return;
       }
 
-      const { url, document, mime_type } = res.result.result;
+      const { url, document } = res.result.result;
       if (!url && !document) {
-        toast.showToast("Error", "Missing File URL/Document", "error");
-        console.error("Missing File URL/Document");
+        toast.showToast("Error", "Missing File URL/Document Data", "error");
+        console.error("Missing File URL/Document Data");
         return;
       }
       const data = url ?? document;
@@ -103,17 +105,7 @@ function Documents(props: {
           window.open(data, "_blank");
         }
       } else {
-        const base64String = await data;
-        function base64ToUint8Array(base64: string) {
-          const binary = atob(base64);
-          const bytes = new Uint8Array(binary.length);
-          for (let i = 0; i < binary.length; i++) {
-            bytes[i] = binary.charCodeAt(i);
-          }
-          return bytes;
-        }
-
-        const fileBytes = base64ToUint8Array(base64String);
+        const fileBytes = base64ToUint8Array(await data);
         const blob = new Blob([fileBytes], {
           type: "application/octet-stream",
         });

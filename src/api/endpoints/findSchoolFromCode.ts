@@ -16,7 +16,6 @@ export default {
     };
 
     const response = await callApi(
-      // "http://127.0.0.1:3000/?method=School.FromCode",
       "https://provisioning.edulinkone.com/?method=School.FromCode",
       {
         method: "POST",

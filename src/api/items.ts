@@ -13,27 +13,29 @@ export interface Item {
   pos: number;
 }
 
-export const items: Item[] = Object.values(modules)
-  .map((mod: any) => mod.default)
-  .filter(
-    (def) =>
-      def &&
-      def.name &&
-      def.icon &&
-      def.component &&
-      typeof def.pos === "number",
-  )
-  .map((def) => {
+export const items: Item[] = Object.entries(modules)
+  .map(([path, mod]: [string, any]) => {
+    const def = mod.default;
+    const fileName = path
+      .split("/")
+      .pop()!
+      .replace(/\.[tj]sx?$/, "");
+
+    if (!def || !def.icon || !def.component || typeof def.pos !== "number") {
+      return null;
+    }
+
     const iconComponent: Component =
       typeof def.icon === "function" ? def.icon : () => def.icon;
-
+    console.log(fileName, path);
     return {
-      id: def.name.toLowerCase().replace(/\s+/g, ""),
-      name: def.name,
+      id: fileName,
+      name: fileName,
       icon: iconComponent,
-      class: `openlink_${def.name.toLowerCase().replace(/\s+/g, "")}`,
+      class: `openlink_${fileName.toLowerCase().replace(/\s+/g, "")}`,
       component: def.component,
       pos: def.pos,
     };
   })
+  .filter((item): item is Item => item !== null)
   .sort((a, b) => a.pos - b.pos);
