@@ -299,6 +299,7 @@ export default function Navigation(props: {
                           if (state.isSlid && state.activeIdx === i()) {
                             resetNav();
                             props.setLoadedComponent(null);
+                            props.setProgress(0);
                             const prev = document.getElementById("item-box");
                             if (prev) prev.remove();
                           } else {
@@ -322,9 +323,7 @@ export default function Navigation(props: {
                           >
                             <item.icon />
                           </span>
-                        ) : state.activeIdx !== i() && state.showBack ? (
-                          true
-                        ) : (
+                        ) : state.activeIdx !== i() && state.showBack ? null : (
                           <>
                             <div id="nav-back"></div>
                             <svg

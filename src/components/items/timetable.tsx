@@ -65,18 +65,6 @@ function Timetable(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    // const styleUrl = new URL(
-    //   `/assets/css/${props.theme}/timetable.css`,
-    //   import.meta.url,
-    // ).href;
-    // styleElement = document.createElement("link");
-    // styleElement.rel = "preload";
-    // styleElement.as = "style";
-    // styleElement.href = `${styleUrl}?t=${Date.now()}`;
-    // styleElement.onload = () => {
-    //   styleElement.rel = "stylesheet";
-    // };
-    // document.getElementById("item-box")?.appendChild(styleElement);
 
     const timetablePromise = props.edulink.getTimetable(
       sessionData()?.user?.id,
@@ -114,7 +102,6 @@ function Timetable(props: {
     document.removeEventListener("click", handleClick);
     props.setProgress(0);
   });
-
   return (
     <Transition
       onEnter={(el, done) => {

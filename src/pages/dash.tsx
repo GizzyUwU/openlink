@@ -74,9 +74,6 @@ function Main() {
       if (LoadedComponent()) {
         setLoadedComponent(null);
       }
-      if (document.getElementById("item-styling")) {
-        document.getElementById("item-styling")?.remove();
-      }
       const mod = await import(`../components/items/${id}.tsx`);
       if (forceOpenNav) {
         openNavFn?.(mod.default.pos - 1);
