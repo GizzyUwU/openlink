@@ -25,14 +25,14 @@ export default function Navigation(props: {
     activeIdx: number | null;
     isSlid: boolean;
     slideX: number;
-    wheelRotaton: number;
+    wheelRotation: number;
     logoBG: string;
     userMenu: typeof items;
   }>({
     activeIdx: null,
     isSlid: false,
     slideX: 0,
-    wheelRotaton: 0,
+    wheelRotation: 0,
     logoBG: "",
     userMenu: [],
   });
@@ -45,7 +45,7 @@ export default function Navigation(props: {
 
   const spinToIndex = (idx: number) => {
     if (!state.userMenu) return;
-    setState("wheelRotaton", (idx * 360) / state.userMenu.length);
+    setState("wheelRotation", (idx * 360) / state.userMenu.length);
   };
 
   onMount(async () => {
@@ -152,14 +152,14 @@ export default function Navigation(props: {
     transition: state.isSlid
       ? "transform 1.2s cubic-bezier(0.77,0,0.175,1)"
       : "none",
-    transform: `rotate(${state.wheelRotaton}deg)`,
+    transform: `rotate(${state.wheelRotation}deg)`,
   });
 
   const getItemStyle = (x: number, y: number) => ({
     position: "absolute" as const,
     left: `calc(50% + ${x}px)`,
     top: `calc(50% + ${y}px)`,
-    transform: `translate(-50%, -50%) rotate(${-state.wheelRotaton}deg)`,
+    transform: `translate(-50%, -50%) rotate(${-state.wheelRotation}deg)`,
     transition: state.isSlid
       ? "transform 1.2s cubic-bezier(0.77,0,0.175,1)"
       : "none",
@@ -179,9 +179,8 @@ export default function Navigation(props: {
     setState({
       activeIdx: null,
       isSlid: false,
+      wheelRotation: 0,
     });
-    setState("wheelRotaton", 0);
-
     props.setLoadedComponent(null);
 
     const prev = document.getElementById("item-box");
