@@ -1,8 +1,7 @@
-import { createEffect, Show, For, onMount, onCleanup } from "solid-js";
+import { Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
-import clsx from "clsx";
 
 export default function Navigation(props: {
   sessionData: any;
@@ -23,29 +22,17 @@ export default function Navigation(props: {
   let navWheelRef: HTMLDivElement | undefined;
 
   const [state, setState] = createStore<{
-    showBack: boolean;
     activeIdx: number | null;
-    isAnimating: boolean;
     isSlid: boolean;
     slideX: number;
     wheelRotaton: number;
-    logoOpacity: number;
-    isLogoGone: boolean;
-    navSlid: boolean;
-    itemOpacity: number[];
     logoBG: string;
     userMenu: typeof items;
   }>({
-    showBack: false,
     activeIdx: null,
-    isAnimating: false,
     isSlid: false,
     slideX: 0,
     wheelRotaton: 0,
-    logoOpacity: 1,
-    isLogoGone: false,
-    navSlid: false,
-    itemOpacity: [],
     logoBG: "",
     userMenu: [],
   });
@@ -69,7 +56,10 @@ export default function Navigation(props: {
     }
 
     const personalMenu = props.sessionData()?.personal_menu || [];
-    if (personalMenu.length > 0) {
+    if (
+      personalMenu.length > 0 &&
+      !props.apiUrl().trim().toLowerCase().includes("demo")
+    ) {
       const orderMap = new Map(
         personalMenu.map((menuItem: any, index: number) => [
           menuItem.id,
@@ -83,15 +73,13 @@ export default function Navigation(props: {
           const indexB = Number(orderMap.get(b.id));
           return indexA - indexB;
         });
-      setState("itemOpacity", Array(filterAndSort.length).fill(1));
       setState("userMenu", filterAndSort);
     } else {
-      setState("itemOpacity", Array(items.length).fill(1));
       setState("userMenu", items);
     }
 
     const handleResize = () => {
-      if (state.isSlid && state.isLogoGone) {
+      if (state.isSlid) {
         updateSlideX();
       }
     };
@@ -149,48 +137,8 @@ export default function Navigation(props: {
     if (dominantColor) setState("logoBG", dominantColor);
   });
 
-  createEffect(() => {
-    if (state.isSlid) {
-      if (!state.isLogoGone) updateSlideX();
-      setState({
-        logoOpacity: 0,
-        itemOpacity: Array(state.userMenu.length).fill(0),
-        isLogoGone: true,
-      });
-
-      setTimeout(() => setState("isSlid", true), 600);
-    } else {
-      setState({
-        slideX: 0,
-        isLogoGone: false,
-        isSlid: false,
-        logoOpacity: 0,
-        itemOpacity: Array(state.userMenu.length).fill(0),
-      });
-
-      setTimeout(() => {
-        setState({
-          logoOpacity: 1,
-          itemOpacity: Array(state.userMenu.length).fill(1),
-        });
-      }, 10);
-    }
-
-    if (state.isSlid && typeof state.activeIdx === "number") {
-      spinToIndex(state.activeIdx!);
-    } else if (!state.isSlid) {
-      setState("wheelRotaton", 0);
-    }
-
-    const idx = state.activeIdx;
-    const navActive =
-      state.isSlid && state.isLogoGone && typeof idx === "number";
-    setState("showBack", navActive);
-    setState("showBack", state.isSlid && typeof idx === "number");
-  });
-
   const navWheelContainerStyle = () =>
-    state.isAnimating
+    state.isSlid
       ? {
           transition: "transform 1.2s cubic-bezier(0.77,0,0.175,1)",
           transform: `translateX(${state.slideX}px)`,
@@ -201,7 +149,7 @@ export default function Navigation(props: {
         };
 
   const navWheelListStyle = () => ({
-    transition: state.isAnimating
+    transition: state.isSlid
       ? "transform 1.2s cubic-bezier(0.77,0,0.175,1)"
       : "none",
     transform: `rotate(${state.wheelRotaton}deg)`,
@@ -212,27 +160,28 @@ export default function Navigation(props: {
     left: `calc(50% + ${x}px)`,
     top: `calc(50% + ${y}px)`,
     transform: `translate(-50%, -50%) rotate(${-state.wheelRotaton}deg)`,
-    transition: state.isAnimating
+    transition: state.isSlid
       ? "transform 1.2s cubic-bezier(0.77,0,0.175,1)"
       : "none",
   });
 
   function openItem(idx: number) {
+    updateSlideX();
     setState({
       activeIdx: idx,
-      isAnimating: true,
       isSlid: true,
     });
+    spinToIndex(state.activeIdx!);
   }
 
   function resetNav() {
     props.navAnimFinished(false);
     setState({
       activeIdx: null,
-      isAnimating: false,
       isSlid: false,
-      showBack: false,
     });
+    setState("wheelRotaton", 0);
+
     props.setLoadedComponent(null);
 
     const prev = document.getElementById("item-box");
@@ -275,7 +224,7 @@ export default function Navigation(props: {
               anim.finished.then(done);
             }}
           >
-            <Show when={!state.isLogoGone}>
+            <Show when={!state.isSlid}>
               <div
                 class={props.styles!["openlink__logo-wrap"]}
                 style={{ "background-color": state.logoBG }}
@@ -319,10 +268,9 @@ export default function Navigation(props: {
                   >
                     <div class={props.styles!["openlink__inner"]}>
                       <a
-                        class={clsx(
-                          props.styles!["openlink__item-link"],
-                          props.styles![item.class],
-                        )}
+                        class={`
+                          ${props.styles!["openlink__item-link"]} ${props.styles![item.class]}
+                        `}
                         href={`/dash/#${item.id}`}
                         title={item.name}
                         onClick={(e) => {
@@ -343,18 +291,13 @@ export default function Navigation(props: {
                         {!state.isSlid ? (
                           <span
                             style={{
-                              opacity: state.itemOpacity[i()],
                               transition:
                                 "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
-                            }}
-                            onTransitionEnd={() => {
-                              if (state.isSlid && state.activeIdx === i())
-                                setState("showBack", true);
                             }}
                           >
                             <item.icon />
                           </span>
-                        ) : state.activeIdx !== i() && state.showBack ? null : (
+                        ) : state.activeIdx !== i() && state.isSlid ? null : (
                           <>
                             <div id="nav-back"></div>
                             <svg
