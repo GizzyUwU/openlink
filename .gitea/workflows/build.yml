@@ -30,6 +30,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf clang lld cmake libssl-dev
 
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
