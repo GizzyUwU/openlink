@@ -30,7 +30,7 @@ export const items: Item[] = Object.entries(modules)
     console.log(fileName, path);
     return {
       id: fileName,
-      name: fileName,
+      name: def.name,
       icon: iconComponent,
       class: `openlink_${fileName.toLowerCase().replace(/\s+/g, "")}`,
       component: def.component,
