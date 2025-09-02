@@ -6,7 +6,7 @@
   "build": {
     "beforeDevCommand": "bun run dev-server",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "bun run build:frontend",
+    "beforeBuildCommand": "sh -c 'if command -v bun >/dev/null 2>&1; then bun run build:frontend; elif command -v pnpm >/dev/null 2>&1; then pnpm run build:frontend; elif command -v yarn >/dev/null 2>&1; then yarn run build:frontend; else npm run build:frontend; fi'",
     "frontendDist": "../dist"
   },
   "app": {
