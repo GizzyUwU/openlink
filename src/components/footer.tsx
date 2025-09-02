@@ -12,6 +12,8 @@ export default function Footer(props: {
   styles: { [key: string]: string } | null;
 }) {
   const navigate = useNavigate();
+  const [status, setStatus] = createSignal<any>({});
+
   onMount(() => {
     const fetchStatus = async () => {
       const result = await props.edulink.getStatus(
@@ -20,7 +22,6 @@ export default function Footer(props: {
       );
       if (result.result.success) {
         setStatus(result.result);
-        console.log(result.result);
       } else {
         props.setSession(null);
         props.setApiUrl(null);
@@ -29,10 +30,12 @@ export default function Footer(props: {
     };
 
     fetchStatus();
-    const checkStatus = setInterval(fetchStatus, 60 * 1000);
+    const checkStatus = setInterval(
+      fetchStatus,
+      props.sessionData().miscellaneous.status_interval ?? 60 * 1000,
+    );
     onCleanup(() => clearInterval(checkStatus));
   });
-  const [status, setStatus] = createSignal<any>({});
 
   return (
     <Show when={props.styles}>

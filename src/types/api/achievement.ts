@@ -41,3 +41,8 @@ export type AchievementResponse = EdulinkApiResponse<{
   employees: Employees[];
   hide_fields: string[];
 }>;
+
+export namespace AchievementResponse {
+  export type AchievementType = Achievement;
+  export type EmployeesType = Employees;
+}

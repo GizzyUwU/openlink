@@ -32,6 +32,7 @@ function Links(props: {
   });
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/links.module.css`
     );
@@ -46,6 +47,8 @@ function Links(props: {
     );
 
     if (response.result.success) {
+      props.setProgress(0.8);
+
       setState({
         links: response.result.links,
       });

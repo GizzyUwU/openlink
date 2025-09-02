@@ -47,7 +47,6 @@ export const Toast: ParentComponent = (props) => {
   ) => {
     if (timeoutId) clearTimeout(timeoutId);
     if (fadeOutTimeoutId) clearTimeout(fadeOutTimeoutId);
-    console.log(title, message, type);
     setToastState({
       visible: true,
       title,

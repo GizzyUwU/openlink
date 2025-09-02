@@ -172,11 +172,10 @@
 
 .__info-item .__time {
     color: #99a5b4;
-    max-width: 120px;
+    max-width: 130px;
     text-align: right;
     font-size: 14px;
-
-    width: 120px;
+    width: 130px;
 }
 
 .__info-item .__subject {
@@ -184,7 +183,6 @@
 }
 
 .__content .__body {
-    border-top: 1px solid #e3e9ea;
     color: #404652;
     flex-grow: 1;
     overflow-y: auto;

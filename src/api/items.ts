@@ -9,31 +9,24 @@ export interface Item {
   name: string;
   icon: Component;
   class: string;
-  component: Component;
   pos: number;
 }
 
 export const items: Item[] = Object.entries(modules)
   .map(([path, mod]: [string, any]) => {
     const def = mod.default;
-    const fileName = path
-      .split("/")
-      .pop()!
-      .replace(/\.[tj]sx?$/, "");
 
-    if (!def || !def.icon || !def.component || typeof def.pos !== "number") {
+    if (!def || !def.name || !def.icon || typeof def.pos !== "number")
       return null;
-    }
 
-    const iconComponent: Component =
-      typeof def.icon === "function" ? def.icon : () => def.icon;
-    console.log(fileName, path);
     return {
-      id: fileName,
+      id: path
+        .split("/")
+        .pop()!
+        .replace(/\.[tj]sx?$/, ""),
       name: def.name,
-      icon: iconComponent,
-      class: `openlink_${fileName.toLowerCase().replace(/\s+/g, "")}`,
-      component: def.component,
+      icon: def.icon,
+      class: `openlink_${def.name.toLowerCase().replace(/\s+/g, "")}`,
       pos: def.pos,
     };
   })

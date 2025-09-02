@@ -6,6 +6,7 @@ import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { BehaviourResponse } from "../../types/api/behaviour";
+import { ABLookupResponse } from "../../types/api/ablookup";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
@@ -22,10 +23,10 @@ function BehaviourComponent(props: {
     employees: BehaviourResponse.EmployeesType[];
     activePage: "behaviour" | "detentions";
     totalPoints: number;
-    behaviourTypes: any[];
-    behaviourLocations: any[];
-    behaviourStatuses: any[];
-    behaviourActions: any[];
+    behaviourTypes: ABLookupResponse.behaviourType[];
+    behaviourLocations: ABLookupResponse.behaviourLocationsType[];
+    behaviourStatuses: ABLookupResponse.behaviourStatusesType[];
+    behaviourActions: ABLookupResponse.behaviourActions[];
   }>({
     behaviour: [],
     detentions: [],
@@ -70,11 +71,12 @@ function BehaviourComponent(props: {
         typeof item.id === "string" ? parseInt(item.id, 10) : item.id;
       return idAsInt === itemIdAsInt;
     });
-    console.log(lookup, "quack", id);
     return lookup ? lookup.name || lookup.description : "-";
   };
 
   onMount(async () => {
+    props.setProgress(0.6);
+
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/behaviour.module.css`
     );
@@ -84,22 +86,22 @@ function BehaviourComponent(props: {
     };
     setStyles(normalized);
 
-    const userId = sessionData()?.user?.id;
-    const token = sessionData()?.authtoken;
-    const url = apiUrl();
-
     const [behaviourResponse, lookupResponse] = await Promise.all([
-      edulink.getBehaviour(userId, token, url),
-      edulink.getABLookup(token, url),
+      edulink.getBehaviour(
+        sessionData()?.user?.id,
+        sessionData()?.authtoken,
+        apiUrl(),
+      ),
+      edulink.getABLookup(sessionData()?.authtoken, apiUrl()),
     ]);
 
     if (behaviourResponse.result.success) {
+      props.setProgress(0.7);
       setState({
         behaviour: behaviourResponse.result.behaviour,
         detentions: behaviourResponse.result.detentions,
         employees: behaviourResponse.result.employees,
       });
-      props.setProgress(0.7);
     } else {
       toast.showToast(
         "Error",
@@ -110,14 +112,7 @@ function BehaviourComponent(props: {
     }
 
     if (lookupResponse.result.success) {
-      setState("behaviourTypes", lookupResponse.result.behaviour_types);
-      setState("behaviourLocations", lookupResponse.result.behaviour_locations);
-      setState("behaviourStatuses", lookupResponse.result.behaviour_statuses);
-      setState(
-        "behaviourActions",
-        lookupResponse.result.behaviour_actions_taken,
-      );
-
+      props.setProgress(0.8);
       const total = (behaviourResponse.result.behaviour || []).reduce(
         (sum: number, behaviour: any) => {
           const points = Number(behaviour.points);
@@ -125,7 +120,13 @@ function BehaviourComponent(props: {
         },
         0,
       );
-      setState("totalPoints", total);
+      setState({
+        behaviourTypes: lookupResponse.result.behaviour_types,
+        behaviourLocations: lookupResponse.result.behaviour_locations,
+        behaviourStatuses: lookupResponse.result.behaviour_statuses,
+        behaviourActions: lookupResponse.result.behaviour_actions_taken,
+        totalPoints: total,
+      });
       props.setProgress(1);
     } else {
       toast.showToast(

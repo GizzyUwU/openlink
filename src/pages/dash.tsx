@@ -51,6 +51,16 @@ function Main() {
     theme: "default",
   });
 
+  const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
+    storage: sessionStorage,
+    name: "sessionData",
+  });
+
+  const [apiUrl, setApiUrl] = makePersisted(createSignal<any>(""), {
+    storage: sessionStorage,
+    name: "apiUrl",
+  });
+
   function waitForWheelTransition() {
     return new Promise<void>((resolve) => {
       const navWheelRef = document.getElementById("nav-wheel");
@@ -84,6 +94,7 @@ function Main() {
           {...childProps}
           setProgress={(value: number) => setState("progress", value)}
           progress={() => state.progress}
+          sessionData={sessionData}
           edulink={edulink}
           setOverlay={(value: JSXElement) => setState("overlay", value)}
           theme={state.theme}
@@ -106,16 +117,6 @@ function Main() {
     }
   }
 
-  const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-
-  const [apiUrl, setApiUrl] = makePersisted(createSignal<any>(""), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
-
   onMount(async () => {
     await getTheme().then((theme) => setState("theme", theme));
     const cssModule = await import(
@@ -126,7 +127,6 @@ function Main() {
       ...cssModule,
     };
     setStyles(normalized);
-    console.log(normalized);
     const handleResize = () => {
       setState("screenWidth", window.innerWidth);
     };
@@ -141,6 +141,7 @@ function Main() {
   const maxWidth = createMemo(() =>
     state.screenWidth >= 1400 ? "1200px" : "1000px",
   );
+
   const setTransform = createMemo(() =>
     state.screenWidth >= 1400
       ? "translate3d(-50%, 0, 0)"

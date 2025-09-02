@@ -41,6 +41,8 @@ function Clubs(props: {
   });
 
   onMount(async () => {
+    props.setProgress(0.6);
+
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/clubs.module.css`
     );
@@ -49,26 +51,39 @@ function Clubs(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    const response = await props.edulink.getClubs(
+    const clubsPromise = props.edulink.getClubs(
       true,
       sessionData()?.user?.id,
       sessionData()?.authtoken,
       apiUrl(),
     );
 
+    const allClubsPromise = props.edulink.getClubs(
+      false,
+      sessionData()?.user?.id,
+      sessionData()?.authtoken,
+      apiUrl(),
+    );
+
+    const [response, allClubsResponse] = await Promise.all([
+      clubsPromise,
+      allClubsPromise,
+    ]);
     if (response.result.success) {
       setState("clubs", response.result.clubs);
-      props.setProgress(1);
-      const allClubsResponse = await props.edulink.getClubs(
-        false,
-        sessionData()?.user?.id,
-        sessionData()?.authtoken,
-        apiUrl(),
+      props.setProgress(props.progress() === 0.8 ? 1 : 0.8);
+    } else {
+      toast.showToast(
+        "Error",
+        response.result.error ?? "Unknown error",
+        "error",
       );
+      props.setProgress(0);
+    }
 
-      if (allClubsResponse.result.success) {
-        setState("allClubs", allClubsResponse.result.clubs);
-      }
+    if (allClubsResponse.result.success) {
+      props.setProgress(props.progress() === 0.8 ? 1 : 0.8);
+      setState("allClubs", allClubsResponse.result.clubs);
     } else {
       toast.showToast(
         "Error",

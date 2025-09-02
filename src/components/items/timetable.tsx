@@ -55,6 +55,7 @@ function Timetable(props: {
   };
 
   onMount(async () => {
+    props.setProgress(0.6);
     document.addEventListener("mouseup", handleClick);
 
     const cssModule = await import(
@@ -66,14 +67,14 @@ function Timetable(props: {
     };
     setStyles(normalized);
 
-    const timetablePromise = props.edulink.getTimetable(
+    const timetable: TimetableResponse = await props.edulink.getTimetable(
       sessionData()?.user?.id,
       sessionData()?.authtoken,
       apiUrl(),
     );
 
-    const timetable: TimetableResponse = await timetablePromise;
     if (timetable.result.success) {
+      props.setProgress(0.8);
       setState("weeks", timetable.result.weeks);
       const currentWeek =
         timetable.result.weeks.find((w) => w.is_current) ||
@@ -159,7 +160,6 @@ function Timetable(props: {
                       {(week) => (
                         <button
                           onClick={() => {
-                            console.log(week.name, state.weekName);
                             if (week.name === state.weekName)
                               return setState("weekDropdown", false);
                             const matched = week.days?.[0];

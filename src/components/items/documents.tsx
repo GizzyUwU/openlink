@@ -38,6 +38,7 @@ function Documents(props: {
   const [documents, setDocuments] = createSignal<any[]>([]);
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/documents.module.css`
     );
@@ -54,6 +55,7 @@ function Documents(props: {
     );
 
     if (response.result.success) {
+      props.setProgress(0.8);
       setDocuments(response.result.documents || []);
       props.setProgress(1);
     } else {
@@ -75,7 +77,6 @@ function Documents(props: {
 
   const handleDownload = async (file: string, documentId: string) => {
     try {
-      console.log(file);
       const res = await edulink.getDocument(
         file,
         documentId,
@@ -116,7 +117,6 @@ function Documents(props: {
         link.click();
         link.remove();
         URL.revokeObjectURL(link.href);
-        console.log("meow");
         toast.showToast(
           "Download Successful",
           `${file} downloaded successfully`,

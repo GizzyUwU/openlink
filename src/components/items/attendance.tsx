@@ -45,6 +45,8 @@ function Attendance(props: {
   });
 
   onMount(async () => {
+    props.setProgress(0.6);
+
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/attendance.module.css`
     );
@@ -63,6 +65,7 @@ function Attendance(props: {
     );
 
     if (response.result.success) {
+      props.setProgress(0.8);
       const now = new Date();
       const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
 
@@ -180,7 +183,6 @@ function Attendance(props: {
                         type="button"
                         onClick={() => {
                           if (state.activePage === name) return;
-                          console.log(name);
                           setState("activePage", name);
                         }}
                         class={`text-sm text-white cursor-pointer ${

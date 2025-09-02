@@ -27,6 +27,7 @@ function Personal(props: {
   const [personalData, setPersonalData] = createSignal<any>(null);
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/account.module.css`
     );
@@ -42,6 +43,7 @@ function Personal(props: {
     );
 
     if (response.result.success) {
+      props.setProgress(0.8);
       setPersonalData(response.result.personal || null);
       props.setProgress(1);
     } else {

@@ -98,3 +98,17 @@ export type ABLookupResponse = EdulinkApiResponse<{
   detentionmanagement_enabled: boolean;
   detentionmanagement_require_fields: string[];
 }>;
+
+export namespace ABLookupResponse {
+  export type achievementType = achievementTypes;
+  export type behaviourActions = behaviourActionsTaken;
+  export type behaviourActivities = behaviourActivityTypes;
+  export type behaviourBullying = behaviourBullyingTypes;
+  export type behaviourDetentions = behaviourDetentionAttendance;
+  export type behaviourLocationsType = behaviourLocations;
+  export type behaviourStatusesType = behaviourStatuses;
+  export type behaviourTimesType = behaviourTimes;
+  export type behaviourType = behaviourTypes;
+  export type achievementActvities = achievementActivityTypes[];
+  export type achievementAwards = achievementActivityTypes[];
+}

@@ -39,6 +39,7 @@ function Homework(props: {
   });
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/homework.module.css`
     );
@@ -53,8 +54,11 @@ function Homework(props: {
     );
 
     if (response.result.success) {
-      setState("homework", response.result.homework);
-      setState("shownHomework", response.result.homework.current || []);
+      props.setProgress(0.8);
+      setState({
+        homework: response.result.homework || [],
+        shownHomework: response.result.homework.current || [],
+      });
       props.setProgress(1);
     } else {
       toast.showToast(
@@ -75,8 +79,10 @@ function Homework(props: {
 
   const handleSwap = (tab: "current" | "past") => {
     if (!state.homework) return;
-    setState("activePage", tab);
-    setState("shownHomework", state.homework[tab]);
+    setState({
+      activePage: tab,
+      shownHomework: state.homework[tab],
+    });
   };
 
   return (

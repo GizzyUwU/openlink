@@ -35,6 +35,7 @@ function Forms(props: {
   });
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/forms.module.css`
     );
@@ -50,6 +51,7 @@ function Forms(props: {
     );
 
     if (response.result.success) {
+      props.setProgress(0.8);
       setState("forms", response.result.forms);
       props.setProgress(1);
     } else {

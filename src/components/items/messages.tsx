@@ -107,6 +107,7 @@ function Messages(props: {
   };
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/messages.module.css`
     );
@@ -116,7 +117,6 @@ function Messages(props: {
     };
     setStyles(normalized);
     await handlePagination(1);
-
     if (loadMoreRef) {
       const observer = new IntersectionObserver(
         (entries) => {

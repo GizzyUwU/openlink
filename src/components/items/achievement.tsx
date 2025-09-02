@@ -1,10 +1,12 @@
 import { onMount, onCleanup, createSignal, Show, For } from "solid-js";
+import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { AiOutlineTrophy } from "solid-icons/ai";
-
+import { AchievementResponse } from "../../types/api/achievement";
+import { ABLookupResponse } from "../../types/api/ablookup";
 function AchievementComponent(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -23,14 +25,21 @@ function AchievementComponent(props: {
     name: "apiUrl",
   });
 
-  const [achievements, setAchievements] = createSignal<any>([]);
-  const [employees, setEmployees] = createSignal<any>([]);
-  const [totalPoints, setTotalPoints] = createSignal<number>(0);
-  const [achievementTypes, setAchievementTypes] = createSignal<any>([]);
-  const [achievementAwards, setAchievementAwards] = createSignal<any[]>([]);
-  const [achievementActivities, setAchievementActivityTypes] = createSignal<
-    any[]
-  >([]);
+  const [state, setState] = createStore<{
+    achievements: AchievementResponse.AchievementType[];
+    employees: AchievementResponse.EmployeesType[];
+    totalPoints: number;
+    achievementTypes: ABLookupResponse.achievementType[];
+    achievementAwards: ABLookupResponse.achievementAwards[];
+    achievementActivities: ABLookupResponse.achievementActvities[];
+  }>({
+    achievements: [],
+    employees: [],
+    totalPoints: 0,
+    achievementTypes: [],
+    achievementAwards: [],
+    achievementActivities: [],
+  });
   const toast = useToast();
 
   const formatDate = (dateString: string | null): string => {
@@ -59,6 +68,7 @@ function AchievementComponent(props: {
   };
 
   onMount(async () => {
+    props.setProgress(0.6);
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/achievement.module.css`
     );
@@ -77,9 +87,19 @@ function AchievementComponent(props: {
     ]);
 
     if (achievementResponse.result.success) {
-      setAchievements(achievementResponse.result.achievement || []);
-      setEmployees(achievementResponse.result.employees || []);
-      props.setProgress(0.7);
+      props.setProgress(0.8);
+      const total = (achievementResponse.result.achievement || []).reduce(
+        (sum: number, achievement: any) => {
+          const points = Number(achievement.points);
+          return sum + (isNaN(points) ? 0 : points);
+        },
+        0,
+      );
+      setState({
+        achievements: achievementResponse.result.achievement || [],
+        employees: achievementResponse.result.employees || [],
+        totalPoints: total,
+      });
     } else {
       toast.showToast(
         "Error",
@@ -90,20 +110,13 @@ function AchievementComponent(props: {
     }
 
     if (lookupResponse.result.success) {
-      setAchievementTypes(lookupResponse.result.achievement_types || []);
-      setAchievementActivityTypes(
-        lookupResponse.result.achievement_activity_types || [],
-      );
-      setAchievementAwards(lookupResponse.result.achievement_award_types || []);
-
-      const total = (achievementResponse.result.achievement || []).reduce(
-        (sum: number, achievement: any) => {
-          const points = Number(achievement.points);
-          return sum + (isNaN(points) ? 0 : points);
-        },
-        0,
-      );
-      setTotalPoints(total);
+      props.setProgress(0.9);
+      setState({
+        achievementTypes: lookupResponse.result.achievement_types || [],
+        achievementActivities:
+          lookupResponse.result.achievement_activity_types || [],
+        achievementAwards: lookupResponse.result.achievement_award_types || [],
+      });
       props.setProgress(1);
     } else {
       toast.showToast(
@@ -116,9 +129,6 @@ function AchievementComponent(props: {
   });
 
   onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
     props.setProgress(0);
   });
 
@@ -159,7 +169,7 @@ function AchievementComponent(props: {
                 <div>Points</div>
               </div>
               <div class={styles()!["t-body"]}>
-                <For each={achievements()}>
+                <For each={state.achievements}>
                   {(achievement: any) => (
                     <div class={styles()!["t-row"]}>
                       <div>
@@ -175,7 +185,7 @@ function AchievementComponent(props: {
                           <div>
                             {getLookupName(
                               achievement.type_ids?.[0],
-                              achievementTypes(),
+                              state.achievementTypes,
                             ) || "-"}
                           </div>
                         </div>
@@ -193,7 +203,7 @@ function AchievementComponent(props: {
                                 achievement.recorded?.employee_id ??
                                 achievement.action_taken?.employee_id;
 
-                              const employee = employees().find(
+                              const employee = state.employees.find(
                                 (emp: any) => emp.id === String(employeeId),
                               );
 
@@ -215,7 +225,7 @@ function AchievementComponent(props: {
                           <div class="_grey">
                             {getLookupName(
                               achievement.activity_id,
-                              achievementActivities(),
+                              state.achievementActivities,
                             ) || "-"}
                           </div>
                           <div>{achievement.lesson_information || "-"}</div>
@@ -231,7 +241,7 @@ function AchievementComponent(props: {
                           <div class="_grey">
                             {getLookupName(
                               achievement.award?.id,
-                              achievementAwards(),
+                              state.achievementAwards,
                             ) || "-"}
                           </div>
                           <div>Achievement Award</div>
@@ -252,7 +262,7 @@ function AchievementComponent(props: {
                     Total Achievement Points
                   </div>
                   <div class={styles()!["__total-points"]}>
-                    {totalPoints() || "-"}
+                    {state.totalPoints || "-"}
                   </div>
                 </div>
               </div>
