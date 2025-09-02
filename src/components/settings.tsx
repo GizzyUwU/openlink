@@ -17,6 +17,7 @@ async function setTheme(theme: string) {
       name: "theme",
     });
     themeSet(theme);
+    window.location.reload();
   }
 }
 
