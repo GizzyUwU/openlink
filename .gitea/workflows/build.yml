@@ -28,15 +28,12 @@ jobs:
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf lld cmake libssl-dev
+          sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf clang lld cmake libssl-dev
 
-      - name: Install LLVM
-        run: bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: lts/*
+          bun-version: latest
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -49,10 +46,10 @@ jobs:
           workspaces: "./src-tauri -> target"
 
       - name: Install frontend dependencies
-        run: npm install
+        run: bun ci
 
       - name: Build the app
-        run: npm run build
+        run: bun run build
 
       - name: Generate changelog
         run: |
