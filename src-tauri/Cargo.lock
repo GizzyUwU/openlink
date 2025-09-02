@@ -966,7 +966,6 @@ dependencies = [
  "tauri-plugin-keyring",
  "tauri-plugin-opener",
  "tauri-plugin-store",
- "tauri-runtime-verso-build",
  "webkit2gtk",
  "wgpu",
 ]
@@ -4592,14 +4591,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tauri-runtime-verso-build"
-version = "0.1.0"
-source = "git+https://github.com/versotile-org/tauri-runtime-verso.git#1c5fd862b20ae398792a9ff3712acf0b3f548677"
-dependencies = [
- "versoview_build",
-]
-
-[[package]]
 name = "tauri-runtime-wry"
 version = "2.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -5200,11 +5191,6 @@ name = "version_check"
 version = "0.9.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
-
-[[package]]
-name = "versoview_build"
-version = "0.0.7"
-source = "git+https://github.com/tauri-apps/verso?rev=805b010753180ed6f6c7e7e474b8a96b0d703f02#805b010753180ed6f6c7e7e474b8a96b0d703f02"
 
 [[package]]
 name = "vswhom"
