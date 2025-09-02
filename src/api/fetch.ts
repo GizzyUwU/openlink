@@ -48,30 +48,29 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       return res;
     } else {
       const [folder, subfolderCandidate] = apiMethod.split(".");
+
       const possiblePaths = [
-        `/src/assets/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
-        `/src/assets/jsons/${folder}/${apiMethod}.json`,
+        `../public/assets/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
+        `../public/assets/jsons/${folder}/${apiMethod}.json`,
       ];
+
       let res: any;
+
       for (const path of possiblePaths) {
-        const response = await fetch(path);
-        const text = await response.text();
-        if (
-          text.trimStart().startsWith("{") ||
-          text.trimStart().startsWith("[")
-        ) {
-          res = {
-            demo: JSON.parse(text),
-          };
+        try {
+          const jsonModule = await import(/* @vite-ignore */ path);
+          console.log(jsonModule.default);
+          res = { demo: jsonModule.default };
           break;
-        } else {
+        } catch (err) {
           continue;
         }
       }
 
       if (!res) {
-        throw new Error(`Failed to fetch demo JSON for method: ${apiMethod}`);
+        throw new Error(`Failed to import demo JSON for method: ${apiMethod}`);
       }
+
       return res;
     }
   } else {

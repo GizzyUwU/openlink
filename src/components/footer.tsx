@@ -30,9 +30,10 @@ export default function Footer(props: {
     };
 
     fetchStatus();
+
     const checkStatus = setInterval(
       fetchStatus,
-      props.sessionData().miscellaneous.status_interval ?? 60 * 1000,
+      (props.sessionData().miscellaneous.status_interval ?? 60) * 1000,
     );
     onCleanup(() => clearInterval(checkStatus));
   });
