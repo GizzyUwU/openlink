@@ -24,9 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: add yarn
-        run: npm install -g yarn
-
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-22.04'
         run: |
@@ -37,7 +34,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: "yarn"
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
@@ -50,7 +46,7 @@ jobs:
           workspaces: "./src-tauri -> target"
 
       - name: Install frontend dependencies
-        run: yarn install
+        run: npm install
 
       - name: Build the app
         run: yarn tauri build
