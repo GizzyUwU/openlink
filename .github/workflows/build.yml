@@ -30,6 +30,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     env:
       PKG_CONFIG_PATH: ${{ matrix.platform == 'windows-latest' && 'C:\\msys64\\usr\\lib\\pkgconfig;C:\\msys64\\usr\\share\\pkgconfig' || '' }}
+      PATH: ${{ matrix.platform == 'windows-latest' && 'C:\\tools\\msys64\\usr\\bin;C:\\tools\\msys64\\mingw64\\bin;' || '' }}${{ env.PATH }}
     steps:
       - uses: actions/checkout@v4
 
