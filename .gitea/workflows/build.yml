@@ -5,9 +5,9 @@ on:
   push:
     branches:
       - main
-  paths-ignore:
-    - ".github/**"
-    - ".gitea/**"
+    paths-ignore:
+      - ".github/**"
+      - ".gitea/**"
 
 jobs:
   publish-tauri:
