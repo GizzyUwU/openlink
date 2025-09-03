@@ -44,7 +44,8 @@ jobs:
           choco install -y pkgconfiglite msys2
           ridk exec pacman -Syu --noconfirm
           ridk exec pacman -S --noconfirm mingw-w64-x86_64-toolchain mingw-w64-x86_64-glib2 mingw-w64-x86_64-pango mingw-w64-x86_64-cairo
-          echo "PKG_CONFIG_PATH=C:\\msys64\\mingw64\\lib\\pkgconfig" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=C:/msys64/mingw64/lib/pkgconfig" >> $GITHUB_ENV
+          echo "PKG_CONFIG=C:/msys64/mingw64/bin/pkg-config.exe" >> $GITHUB_ENV
 
       - name: setup node
         uses: actions/setup-node@v4
