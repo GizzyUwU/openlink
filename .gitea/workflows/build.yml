@@ -24,11 +24,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-22.04'
+      - name: install dependencies (ubuntu only)
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf clang lld cmake libssl-dev
+          sudo apt-get install -y --no-install-recommends libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf libgtk-3-dev pkg-config libglib2.0-dev libpango1.0-dev \
+          libcairo2-dev libgdk-pixbuf2.0-dev libatk1.0-dev libharfbuzz-dev pkg-config xdg-utils
 
       - name: Setup NodeJS
         uses: actions/setup-node@v4
