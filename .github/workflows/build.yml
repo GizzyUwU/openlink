@@ -30,7 +30,6 @@ jobs:
     runs-on: ${{ matrix.platform }}
     env:
       PKG_CONFIG_PATH: ${{ matrix.platform == 'windows-latest' && 'C:\\msys64\\usr\\lib\\pkgconfig;C:\\msys64\\usr\\share\\pkgconfig' || '' }}
-      PATH: ${{ matrix.platform == 'windows-latest' && 'C:\\tools\\msys64\\usr\\bin;C:\\tools\\msys64\\mingw64\\bin;' || '' }}${{ env.PATH }}
     steps:
       - uses: actions/checkout@v4
 
@@ -56,6 +55,8 @@ jobs:
           ridk exec pacman -Syu --noconfirm
           ridk exec pacman -S --noconfirm mingw-w64-x86_64-toolchain mingw-w64-x86_64-glib2 mingw-w64-x86_64-pango mingw-w64-x86_64-cairo
           echo "PKG_CONFIG_PATH is now $env:PKG_CONFIG_PATH"
+          echo "C:\tools\msys64\usr\bin;C:\tools\msys64\mingw64\bin" >> $GITHUB_PATH
+          echo "C:\tools\msys64\usr\lib\pkgconfig;C:\tools\msys64\usr\share\pkgconfig" >> $GITHUB_ENV
 
       - name: setup node
         uses: actions/setup-node@v4
