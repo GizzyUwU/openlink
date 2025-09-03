@@ -8,7 +8,7 @@
     "dev-server": "vite --host",
     "dev": "bun run tauri dev",
     "build:frontend": "vite build",
-    "build": "NO_STRIP=true tauri build -- --release",
+    "build": "NO_STRIP=true tauri build",
     "serve": "vite preview",
     "tauri": "tauri"
   },
