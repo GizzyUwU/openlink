@@ -16,10 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-latest"
-            args: "--target aarch64-apple-darwin"
-          - platform: "macos-latest"
-            args: "--target x86_64-apple-darwin"
           - platform: "ubuntu-22.04"
             args: ""
           - platform: "ubuntu-22.04-arm"
@@ -59,6 +55,14 @@ jobs:
         uses: swatinem/rust-cache@v2
         with:
           workspaces: "./src-tauri -> target"
+
+      - name: Configure sccache
+        run: |
+          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
+          echo “SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+
+      - name: Run sccache-cache
+        uses: mozilla-actions/sccache-action@v0.0.2
 
       - name: install frontend dependencies
         run: yarn install
