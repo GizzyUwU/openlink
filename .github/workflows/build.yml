@@ -48,17 +48,19 @@ jobs:
           key: windows-msys2-1
           restore-keys: windows-msys2-
 
-      - name: Install build tools on Windows
-        if: startsWith(matrix.platform, 'windows')
+      - name: Install MSYS2 + deps
         run: |
           choco install -y msys2
           ridk exec pacman -Syu --noconfirm
           ridk exec pacman -S --noconfirm mingw-w64-x86_64-toolchain mingw-w64-x86_64-glib2 mingw-w64-x86_64-pango mingw-w64-x86_64-cairo
-          echo "C:\msys64\usr\bin;C:\msys64\mingw64\bin" >> $GITHUB_PATH
-          echo "PKG_CONFIG_PATH=/mingw64/lib/pkgconfig" >> $GITHUB_ENV
-          echo "PKG_CONFIG=/mingw64/bin/pkg-config" >> $GITHUB_ENV
-          rustup target add x86_64-pc-windows-gnu
-          echo "PKG_CONFIG_PATH is now $env:PKG_CONFIG_PATH"
+          echo "C:\msys64\usr\bin;C:\msys64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo "PKG_CONFIG_PATH=C:/msys64/mingw64/lib/pkgconfig" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "PKG_CONFIG=C:/msys64/mingw64/bin/pkg-config.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Switch Rust to GNU toolchain
+        run: |
+          rustup set default-host x86_64-pc-windows-gnu
+          rustup default stable-x86_64-pc-windows-gnu
 
       - name: setup node
         uses: actions/setup-node@v4
