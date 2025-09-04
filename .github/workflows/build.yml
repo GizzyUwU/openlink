@@ -34,11 +34,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Disable initramfs update
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
       - name: Disable man-db update
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: sudo rm -f /var/lib/man-db/auto-update
 
       - uses: awalsh128/cache-apt-pkgs-action@latest
+        if: startsWith(matrix.platform, 'ubuntu-22.04')
         with:
           packages: libwebkit2gtk-4.1 libayatana-appindicator3-1 librsvg2-dev patchelf libgtk-3-dev pkg-config libglib2.0-dev libpango1.0-dev libcairo2-dev libgdk-pixbuf2.0-dev libatk1.0-dev libharfbuzz-dev pkg-config xdg-utils
 
