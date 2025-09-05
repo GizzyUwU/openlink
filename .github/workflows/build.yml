@@ -68,6 +68,7 @@ jobs:
         run: yarn install
 
       - name: Add SHORT_SHA env property with commit short sha
+        shell: bash
         run: echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
 
       - uses: tauri-apps/tauri-action@v0
