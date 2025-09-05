@@ -67,12 +67,15 @@ jobs:
       - name: install frontend dependencies
         run: yarn install
 
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
+
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ github.sha }}
-          releaseName: "Build from commit ${{ github.sha }}"
+          tagName: prerelease-${{ env.SHORT_SHA }}
+          releaseName: "Build from commit ${{ env.SHORT_SHA }}"
           releaseBody: ${{ github.event.head_commit.message }}
           releaseDraft: false
           prerelease: true
