@@ -68,12 +68,10 @@ jobs:
         run: yarn install
 
       - uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: ${{ steps.tag.outputs.tag_name }}
-          releaseName: ${{ steps.tag.outputs.tag_name }}
-          releaseBody: "See the assets to download this version and install."
+          tagName: ${{ github.sha }}
+          releaseName: "Build from commit ${{ github.sha }}"
+          releaseBody: ${{ github.event.head_commit.message }}
           releaseDraft: false
           prerelease: true
           args: ${{ matrix.args }}
