@@ -71,9 +71,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__
-          releaseName: "App v__VERSION__"
+          tagName: ${{ steps.tag.outputs.tag_name }}
+          releaseName: ${{ steps.tag.outputs.tag_name }}
           releaseBody: "See the assets to download this version and install."
-          releaseDraft: true
-          prerelease: false
+          releaseDraft: false
+          prerelease: true
           args: ${{ matrix.args }}

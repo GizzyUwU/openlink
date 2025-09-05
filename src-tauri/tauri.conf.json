@@ -17,7 +17,7 @@
         "width": 800,
         "height": 600,
         "backgroundColor": "#414c65",
-        "decorations": false
+        "decorations": true
       }
     ],
     "withGlobalTauri": true,
