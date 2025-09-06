@@ -88,6 +88,7 @@ function Timetable(props: {
       setState("dayLessons", currentDay.lessons || []);
       setState("weeks", timetable.result.weeks || []);
       setState("daysThisWeek", currentWeek.days || []);
+      console.log(currentWeek.days);
       props.setProgress(1);
     } else {
       toast.showToast(

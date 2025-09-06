@@ -25,7 +25,8 @@ body {
     background: rgba(51, 74, 122, 0.6);
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    margin: 0 auto 55px;
+    justify-content: center;
+    align-items: center;
     padding: 42px 20px 0;
     position: relative;
     width: 400px;
@@ -42,9 +43,6 @@ body {
     color: #fff;
     font-size: 20px;
     height: 40px;
-    /*transition:
-        background 9999s linear,
-        color 9999s linear;*/
     width: 100%;
     animation: autofill both;
 }
@@ -176,24 +174,22 @@ body {
 }
 
 .__school-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -200px);
-    text-align: center;
-    z-index: 10;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6px;
 }
 
 .__logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -350px);
-    z-index: 11;
     height: 140px;
     width: 140px;
     border-radius: 100%;
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: white;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
 }
 
 .f-demo .select {

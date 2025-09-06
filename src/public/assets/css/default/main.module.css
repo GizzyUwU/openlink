@@ -551,7 +551,7 @@ ul {
 
 .settings .theme-selector .theme-button {
     position: relative;
-    background: var(--color-gray-400);
+    background: oklch(76.2% 0.01 258.338);
     width: 100%;
     padding: 5px;
     border-radius: 10px;
@@ -587,6 +587,6 @@ ul {
     cursor: pointer;
 }
 
-.dropdown-menu .item:nth-child(even) {
+.dropdown-menu .item:hover {
     background: var(--color-gray-400);
 }

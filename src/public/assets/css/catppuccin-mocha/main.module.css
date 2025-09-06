@@ -575,7 +575,7 @@ ul {
     margin-top: 2px;
     border-radius: 5px;
     overflow-y: scroll;
-    background: var(--surface1);
+    background: var(--surface2);
 }
 
 .dropdown-menu .item {
@@ -583,6 +583,6 @@ ul {
     cursor: pointer;
 }
 
-.dropdown-menu .item:nth-child(even) {
-    background-color: var(--surface2);
+.dropdown-menu .item:hover {
+    background: var(--surface1);
 }

@@ -345,105 +345,107 @@ function Login() {
               </div>
             </Show>
             <Show when={Object.keys(state.schoolData).length > 0}>
-              <div
-                class={state.styles!["__logo"]}
-                style={{
-                  "background-size": "70%",
-                  "background-repeat": "no-repeat",
-                  "background-position": "50%",
-                  "background-image": state.schoolData?.establishment?.logo
-                    ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
-                    : undefined,
-                }}
-              ></div>
-              <span
-                class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
-              >
-                {state.schoolData?.establishment?.name || ""}
-              </span>
-              <div
-                class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
-              >
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
+              <div class="login-wrapper">
+                <div
+                  class={state.styles!["__logo"]}
+                  style={{
+                    "background-size": "70%",
+                    "background-repeat": "no-repeat",
+                    "background-position": "50%",
+                    "background-image": state.schoolData?.establishment?.logo
+                      ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
+                      : undefined,
                   }}
+                ></div>
+                <span
+                  class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
                 >
-                  <div class={state.styles!["__row"]}>
-                    <label class={state.styles!["__label"]}>
-                      <input
-                        type="text"
-                        class={state.styles!["__field"]}
-                        placeholder=" "
-                        onInput={(e) =>
-                          setState({
-                            username: e.currentTarget.value,
-                            hasLoginText:
-                              state.username.trim().length > 0 &&
-                              state.password.trim().length > 0,
-                          })
-                        }
-                      />
-                      <span class={state.styles!["__label-text"]}>
-                        Username
-                      </span>
-                    </label>
-                  </div>
-                  <br />
-                  <div class={state.styles!["__row"]}>
-                    <label class={state.styles!["__label"]}>
-                      <input
-                        type="password"
-                        class={state.styles!["__field"]}
-                        placeholder=" "
-                        onInput={(e) =>
-                          setState({
-                            password: e.currentTarget.value,
-                            hasLoginText:
-                              state.username.trim().length > 0 &&
-                              state.password.trim().length > 0,
-                          })
-                        }
-                      />
-                      <span class={state.styles!["__label-text"]}>
-                        Password
-                      </span>
-                    </label>
-                  </div>
-                  <div class={state.styles!["__row"]}>
-                    <label class={state.styles!["__label"]}>
-                      <div class={state.styles!["__checkbox"]}>
-                        <label class={state.styles!["__checkbox-wrapper"]}>
-                          <input type="checkbox" />
-                          <span
-                            class={state.styles!["__checkbox-custom"]}
-                          ></span>
-                          <span class={state.styles!["__checkbox-label"]}>
-                            Remember me
-                          </span>
-                        </label>
-                        <label class={state.styles!["__checkbox-wrapper"]}>
-                          <button
-                            type="button"
-                            class={state.styles!["__checkbox-label"]}
-                            disabled
-                          >
-                            Reset Login
-                          </button>
-                        </label>
-                      </div>
-                    </label>
-                  </div>
-                  <div class={state.styles!["__button"]}>
-                    <button
-                      class={state.styles!["__submit"]}
-                      type="submit"
-                      onClick={accountLogin}
-                    >
-                      Log In
-                    </button>
-                  </div>
-                </form>
+                  {state.schoolData?.establishment?.name || "a"}
+                </span>
+                <div
+                  class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
+                >
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <div class={state.styles!["__row"]}>
+                      <label class={state.styles!["__label"]}>
+                        <input
+                          type="text"
+                          class={state.styles!["__field"]}
+                          placeholder=" "
+                          onInput={(e) =>
+                            setState({
+                              username: e.currentTarget.value,
+                              hasLoginText:
+                                state.username.trim().length > 0 &&
+                                state.password.trim().length > 0,
+                            })
+                          }
+                        />
+                        <span class={state.styles!["__label-text"]}>
+                          Username
+                        </span>
+                      </label>
+                    </div>
+                    <br />
+                    <div class={state.styles!["__row"]}>
+                      <label class={state.styles!["__label"]}>
+                        <input
+                          type="password"
+                          class={state.styles!["__field"]}
+                          placeholder=" "
+                          onInput={(e) =>
+                            setState({
+                              password: e.currentTarget.value,
+                              hasLoginText:
+                                state.username.trim().length > 0 &&
+                                state.password.trim().length > 0,
+                            })
+                          }
+                        />
+                        <span class={state.styles!["__label-text"]}>
+                          Password
+                        </span>
+                      </label>
+                    </div>
+                    <div class={state.styles!["__row"]}>
+                      <label class={state.styles!["__label"]}>
+                        <div class={state.styles!["__checkbox"]}>
+                          <label class={state.styles!["__checkbox-wrapper"]}>
+                            <input type="checkbox" />
+                            <span
+                              class={state.styles!["__checkbox-custom"]}
+                            ></span>
+                            <span class={state.styles!["__checkbox-label"]}>
+                              Remember me
+                            </span>
+                          </label>
+                          <label class={state.styles!["__checkbox-wrapper"]}>
+                            <button
+                              type="button"
+                              class={state.styles!["__checkbox-label"]}
+                              disabled
+                            >
+                              Reset Login
+                            </button>
+                          </label>
+                        </div>
+                      </label>
+                    </div>
+                    <div class={state.styles!["__button"]}>
+                      <button
+                        class={state.styles!["__submit"]}
+                        type="submit"
+                        onClick={accountLogin}
+                      >
+                        Log In
+                      </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </Show>
           </Show>
