@@ -85,7 +85,7 @@ async function decryptUserData(state: {
 async function getTheme() {
   if (window.__TAURI__) {
     const { load } = await import("@tauri-apps/plugin-store");
-    const store = await load("users.json", { autoSave: false });
+    const store = await load("users.json", { autoSave: false, defaults: {} });
     const theme = await store.get("theme");
     if (typeof theme !== "string" || theme.length === 0) return "default";
     return theme;
@@ -148,7 +148,7 @@ function Login() {
     setState("styles", normalized);
     if (window.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
-      store = await load("users.json", { autoSave: false });
+      store = await load("users.json", { autoSave: false, defaults: {} });
       const users = await store.get("users");
       if (!new URLSearchParams(window.location.search).has("logout")) {
         if (users?.length > 0) {

@@ -7,7 +7,7 @@ const themeImports = import.meta.glob("../public/assets/css/*/*.css", {
 async function setTheme(theme: string) {
   if (window.__TAURI__) {
     const { load } = await import("@tauri-apps/plugin-store");
-    const store = await load("users.json", { autoSave: false });
+    const store = await load("users.json", { autoSave: false, defaults: {} });
     store.set("theme", theme);
     await store.save();
     window.location.reload();
