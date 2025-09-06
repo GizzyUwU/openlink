@@ -4,6 +4,7 @@
     height: 100%;
     flex-grow: 1;
     min-height: 0;
+    max-width: calc(100vw - 185px);
 }
 
 .t-container {
@@ -17,6 +18,7 @@
 
 .t-achievement {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
@@ -30,6 +32,7 @@
         sans-serif;
     font-size: 14px;
     margin-bottom: 15px;
+    max-width: calc(100vw - 185px);
 }
 
 .t-header {
@@ -47,27 +50,13 @@
     max-height: 100%;
 }
 
-.t-header {
-    display: grid;
-    grid-template-columns:
-        130px
-        /* Type/Date */
-        1fr 1fr
-        /* Comment/Teacher, Action/Info */
-        200px 105px;
-    /* Award Points */
-    border-bottom: 1px solid #e3e9ea;
-}
-
+.t-header,
 .t-row {
     display: grid;
     grid-template-columns:
-        260px
-        /* Type/Date */
+        130px
         1fr 1fr
-        /* Comment/Teacher, Action/Info */
         200px 105px;
-    /* Award Points */
     border-bottom: 1px solid #e3e9ea;
 }
 
@@ -108,7 +97,7 @@
     text-align: left;
 }
 
-.t-achievement__text ._points {
+._points {
     border-radius: 50%;
     height: 42px;
     width: 42px;
@@ -128,7 +117,6 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    /* Ensure it fills the full cell height */
 }
 
 ._grey {
@@ -136,7 +124,7 @@
 }
 
 .b-points-badge {
-    bottom: -20px;
+    bottom: -30px;
     position: absolute;
     right: 14px;
     align-items: center;

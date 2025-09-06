@@ -179,7 +179,7 @@ function AchievementComponent(props: {
                             "flex-direction": "column",
                           }}
                         >
-                          <div class="_grey">
+                          <div class={styles()!["_grey"]}>
                             {formatDate(achievement.date)}
                           </div>
                           <div>
@@ -197,7 +197,7 @@ function AchievementComponent(props: {
                             "flex-direction": "column",
                           }}
                         >
-                          <div class="_grey">
+                          <div class={styles()!["_grey"]}>
                             {(() => {
                               const employeeId =
                                 achievement.recorded?.employee_id ??
@@ -222,7 +222,7 @@ function AchievementComponent(props: {
                             "flex-direction": "column",
                           }}
                         >
-                          <div class="_grey">
+                          <div class={styles()!["_grey"]}>
                             {getLookupName(
                               achievement.activity_id,
                               state.achievementActivities,
@@ -238,7 +238,7 @@ function AchievementComponent(props: {
                             "flex-direction": "column",
                           }}
                         >
-                          <div class="_grey">
+                          <div class={styles()!["_grey"]}>
                             {getLookupName(
                               achievement.award?.id,
                               state.achievementAwards,

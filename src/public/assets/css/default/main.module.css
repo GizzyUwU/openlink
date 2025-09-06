@@ -441,18 +441,20 @@ ul {
     display: flex;
     height: 70px;
     margin: 0 auto;
-    max-width: 1024px;
+    justify-content: center;
+    align-items: center;
+    gap: min(80px, 5vw);
 }
 
 .openlink-s-footer .openlink__footer-item {
     cursor: pointer;
-    flex-grow: 1;
     max-width: 40%;
-    padding: 0 20px;
-    transition: opacity 0.2s ease-out;
-    align-items: center;
+    padding: 0 10px;
     display: flex;
+    align-items: center;
     opacity: 1;
+    flex-grow: 0;
+    margin: 0;
 }
 
 .openlink-s-footer .openlink-pr-couple {

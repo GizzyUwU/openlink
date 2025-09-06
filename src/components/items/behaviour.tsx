@@ -169,7 +169,10 @@ function BehaviourComponent(props: {
     >
       <Show when={props.progress() === 1}>
         <div class={styles()!["box-container"]}>
-          <div class="flex items-center justify-end w-full pr-[10px]">
+          <div
+            class="flex items-center justify-end w-full pr-[10px]"
+            style="max-width: calc(100vw - 185px);"
+          >
             <div class="flex space-x-4 mb-2">
               <button
                 type="button"

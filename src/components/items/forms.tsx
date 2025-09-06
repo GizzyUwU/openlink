@@ -141,7 +141,7 @@ function Forms(props: {
                               "flex-direction": "column",
                             }}
                           >
-                            <span class="_grey">
+                            <span class={styles()!["_grey"]}>
                               {formatDate({ date: data.due })}
                             </span>
                             <span>

@@ -168,7 +168,7 @@ function Documents(props: {
               <div class={styles()!["t-body"]}>
                 {documents().map((doc) => (
                   <div class={styles()!["t-row"]}>
-                    <div class={`${styles()!["_name"]} _grey"`}>
+                    <div class={`${styles()!["_name"]} ${styles()!["_grey"]}"`}>
                       {doc.attachments?.[0]?.name ||
                         doc.summary ||
                         doc.filename ||

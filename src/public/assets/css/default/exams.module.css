@@ -4,6 +4,7 @@
     height: 100%;
     flex-grow: 1;
     min-height: 0;
+    max-width: calc(100vw - 185px);
 }
 
 .t-container {

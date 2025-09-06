@@ -6,6 +6,7 @@
     height: 100%;
     flex-grow: 1;
     min-height: 0;
+    max-width: calc(100vw - 185px);
 }
 
 .t-container {
@@ -15,11 +16,12 @@
     min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
+    margin-bottom: 10px;
 }
 
 .t-achievement {
     display: flex;
-    flex-direction: column;
+    position: relative;
     flex-grow: 1;
     min-height: 0;
     background: var(--surface0);
@@ -32,10 +34,12 @@
         sans-serif;
     font-size: 14px;
     margin-bottom: 15px;
+
+    max-width: calc(100vw - 185px);
 }
 
 .t-header {
-    color: #3090c7;
+    color: var(--text);
     text-align: center;
     min-height: 40px;
     font-size: 12px;
@@ -56,7 +60,7 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        260px
+        130px
         1fr 1fr
         200px 105px;
     color: var(--text);
@@ -118,11 +122,11 @@
 }
 
 .b-points-badge {
-    bottom: -20px;
+    display: flex;
+    bottom: -30px;
     position: absolute;
     right: 14px;
     align-items: center;
-    display: flex;
 }
 
 .b-points-badge .__label {

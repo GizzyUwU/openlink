@@ -121,3 +121,33 @@
 ._grey {
     color: #888;
 }
+
+@media (max-width: 600px) {
+    .t-header {
+        display: none;
+    }
+
+    .t-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color, #ddd);
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .t-row > div {
+        margin: 0.2rem 0;
+    }
+
+    ._subject {
+        font-weight: bold;
+    }
+
+    ._teacher,
+    ._room {
+        font-size: 0.9em;
+        color: #666;
+    }
+}

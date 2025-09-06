@@ -237,7 +237,7 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <div class="_grey">
+                                    <div class={styles()!["_grey"]}>
                                       {formatDate({ date: data.datetime })}
                                     </div>
                                     <span>
@@ -261,7 +261,9 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <div class="_grey">{data.board || "-"}</div>
+                                    <div class={styles()!["_grey"]}>
+                                      {data.board || "-"}
+                                    </div>
                                     <span>{data.level || "-"}</span>
                                   </>
                                 )}
@@ -278,7 +280,9 @@ function Exams(props: {
                                   <span>TBA</span>
                                 ) : (
                                   <>
-                                    <div class="_grey">{data.code || "-"}</div>
+                                    <div class={styles()!["_grey"]}>
+                                      {data.code || "-"}
+                                    </div>
                                     <span>{data.title}</span>
                                   </>
                                 )}
@@ -316,7 +320,9 @@ function Exams(props: {
                                   "flex-direction": "column",
                                 }}
                               >
-                                <div class="_grey">{data.board || "-"}</div>
+                                <div class={styles()!["_grey"]}>
+                                  {data.board || "-"}
+                                </div>
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
@@ -327,7 +333,9 @@ function Exams(props: {
                                   "flex-direction": "column",
                                 }}
                               >
-                                <div class="_grey">{data.code || "-"}</div>
+                                <div class={styles()!["_grey"]}>
+                                  {data.code || "-"}
+                                </div>
                                 <span>{data.title}</span>
                               </div>
                             </div>
@@ -360,7 +368,9 @@ function Exams(props: {
                                   "flex-direction": "column",
                                 }}
                               >
-                                <div class="_grey">{data.board || "-"}</div>
+                                <div class={styles()!["_grey"]}>
+                                  {data.board || "-"}
+                                </div>
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
@@ -371,7 +381,9 @@ function Exams(props: {
                                   "flex-direction": "column",
                                 }}
                               >
-                                <div class="_grey">{data.code || "-"}</div>
+                                <div class={styles()!["_grey"]}>
+                                  {data.code || "-"}
+                                </div>
                                 <span>{data.title}</span>
                               </div>
                             </div>

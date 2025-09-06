@@ -20,6 +20,7 @@
 
 .t-behaviour {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
@@ -33,6 +34,7 @@
         sans-serif;
     font-size: 14px;
     margin-bottom: 15px;
+    max-width: calc(100vw - 185px);
 }
 
 .t-header {
@@ -41,6 +43,8 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
 }
 
 .t-body {
@@ -197,7 +201,7 @@
 }
 
 .b-points-badge {
-    bottom: -20px;
+    bottom: -30px;
     position: absolute;
     right: 14px;
     align-items: center;

@@ -451,7 +451,7 @@ ul {
     display: flex;
     align-items: center;
     opacity: 1;
-    flex-grow: 0; /* don’t stretch */
+    flex-grow: 0;
     margin: 0;
 }
 

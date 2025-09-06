@@ -7,6 +7,7 @@
     flex-grow: 1;
     min-height: 0;
     box-sizing: border-box;
+    max-width: calc(100vw - 185px);
 }
 
 .t-container {

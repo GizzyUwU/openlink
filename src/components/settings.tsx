@@ -8,14 +8,17 @@ async function setTheme(theme: string) {
   if (window.__TAURI__) {
     const { load } = await import("@tauri-apps/plugin-store");
     const store = await load("users.json", { autoSave: false, defaults: {} });
+    const currentTheme = await store.get("theme");
+    if (currentTheme === theme) return;
     store.set("theme", theme);
     await store.save();
     window.location.reload();
   } else {
-    const [, themeSet] = makePersisted(createSignal<any>({}), {
+    const [currentTheme, themeSet] = makePersisted(createSignal<any>({}), {
       storage: localStorage,
       name: "theme",
     });
+    if (currentTheme() === theme) return;
     themeSet(theme);
     window.location.reload();
   }
