@@ -21,7 +21,7 @@ function Main() {
   async function getTheme() {
     if (window.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
-      const store = await load("users.json", { autoSave: false });
+      const store = await load("users.json", { autoSave: false, defaults: {} });
       const theme = await store.get("theme");
       if (typeof theme !== "string" || theme.length === 0) return "default";
       return theme;
@@ -196,24 +196,69 @@ function Main() {
           styles={styles()}
         />
         <Show when={state.navWheelAnim && LoadedComponent()}>
-          {(Comp) => (
-            <div
-              id="item-box"
-              style={{
-                position: "absolute",
-                top: "100px",
-                left: "50%",
-                transform: setTransform(),
-                height: "100%",
-                "max-height": "calc(100vh - 200px)",
-                "max-width": maxWidth(),
-                width: "100%",
-              }}
-            >
-              <Comp />
-            </div>
-          )}
+          {(Comp) => {
+            let itemBoxEl: HTMLDivElement | undefined;
+
+            const positionItemBox = () => {
+              if (!itemBoxEl) return;
+              const navEl = document.getElementById("nav-back");
+              if (!navEl) return;
+
+              const minGap = 20;
+              if (!itemBoxEl) return;
+              itemBoxEl.style.transform = setTransform();
+
+              const navRect = navEl.getBoundingClientRect();
+              const boxRect = itemBoxEl.getBoundingClientRect();
+              const distance = boxRect.left - navRect.right;
+
+              let extraShift = 0;
+              if (distance < minGap) extraShift = minGap - distance;
+
+              itemBoxEl.style.transform = `${setTransform()} translateX(${extraShift}px)`;
+            };
+
+            onMount(() => {
+              positionItemBox();
+
+              let debounce = (callback: Function, delay: number) => {
+                let myTimeout: ReturnType<typeof setTimeout>;
+                return () => {
+                  clearTimeout(myTimeout);
+                  myTimeout = setTimeout(() => {
+                    callback();
+                  }, delay);
+                };
+              };
+
+              let doDebounce = debounce(() => positionItemBox(), 1010);
+              window.addEventListener("resize", () => doDebounce());
+
+              onCleanup(() => {
+                window.removeEventListener("resize", doDebounce);
+              });
+            });
+            return (
+              <div
+                id="item-box"
+                ref={(el) => (itemBoxEl = el)}
+                style={{
+                  position: "fixed",
+                  top: "100px",
+                  left: "50%",
+                  transform: setTransform(),
+                  height: "100%",
+                  "max-height": "calc(100vh - 200px)",
+                  "max-width": maxWidth(),
+                  width: "100%",
+                }}
+              >
+                <Comp />
+              </div>
+            );
+          }}
         </Show>
+
         <Show when={state.overlay !== null}>
           <div
             class={`${styles()?.["t-overlay"]} flex justify-center`}

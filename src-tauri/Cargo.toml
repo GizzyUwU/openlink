@@ -5,7 +5,6 @@ description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
 
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
@@ -30,9 +29,6 @@ tauri-plugin-http = "2"
 tauri-plugin-keyring = "0.1.0"
 tauri-plugin-store = "2"
 tauri-plugin-fs = "2"
-
-[target.'cfg(unix)'.dependencies]
-webkit2gtk = "2.0.1"
 
 [profile.dev]
 incremental = true

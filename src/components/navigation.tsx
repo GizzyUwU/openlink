@@ -84,7 +84,19 @@ export default function Navigation(props: {
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    let debounce = (callback: Function, delay: number) => {
+      let myTimeout: ReturnType<typeof setTimeout>;
+      return () => {
+        clearTimeout(myTimeout);
+        myTimeout = setTimeout(() => {
+          callback();
+        }, delay);
+      };
+    };
+
+    let doDebounce = debounce(() => updateSlideX(), 300);
+
+    window.addEventListener("resize", () => doDebounce());
 
     onCleanup(() => {
       window.removeEventListener("resize", handleResize);
@@ -140,17 +152,17 @@ export default function Navigation(props: {
   const navWheelContainerStyle = () =>
     state.isSlid
       ? {
-          transition: "transform 1.2s cubic-bezier(0.77,0,0.175,1)",
+          transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
           transform: `translateX(${state.slideX}px)`,
         }
       : {
-          transition: "transform 1.2s cubic-bezier(0.77,0,0.175,1)",
+          transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
           transform: "none",
         };
 
   const navWheelListStyle = () => ({
     transition: state.isSlid
-      ? "transform 1.2s cubic-bezier(0.77,0,0.175,1)"
+      ? "transform 1s cubic-bezier(0.77,0,0.175,1)"
       : "none",
     transform: `rotate(${state.wheelRotation}deg)`,
   });
@@ -171,7 +183,7 @@ export default function Navigation(props: {
       activeIdx: idx,
       isSlid: true,
     });
-    spinToIndex(state.activeIdx!);
+    spinToIndex(idx);
   }
 
   function resetNav() {
@@ -182,9 +194,6 @@ export default function Navigation(props: {
       wheelRotation: 0,
     });
     props.setLoadedComponent(null);
-
-    const prev = document.getElementById("item-box");
-    if (prev) prev.remove();
   }
 
   return (
@@ -267,6 +276,11 @@ export default function Navigation(props: {
                   >
                     <div class={props.styles!["openlink__inner"]}>
                       <a
+                        id={
+                          state.activeIdx !== i() && state.isSlid
+                            ? ""
+                            : "nav-back"
+                        }
                         class={`
                           ${props.styles!["openlink__item-link"]} ${props.styles![item.class]}
                         `}
@@ -298,7 +312,7 @@ export default function Navigation(props: {
                           </span>
                         ) : state.activeIdx !== i() && state.isSlid ? null : (
                           <>
-                            <div id="nav-back"></div>
+                            {/*<div id="nav-back"></div>*/}
                             <svg
                               width="36"
                               height="36"

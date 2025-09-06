@@ -17,10 +17,15 @@
     border: 0;
 }
 
+._nav-items {
+    flex-grow: 1;
+}
+
 .box-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-width: 0;
 }
 
 .t-container {

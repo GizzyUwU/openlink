@@ -7,8 +7,7 @@
     "beforeDevCommand": "bun run dev-server",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "yarn run build:frontend",
-    "frontendDist": "../dist",
-    "removeUnusedCommands": true
+    "frontendDist": "../dist"
   },
   "app": {
     "windows": [
@@ -17,7 +16,7 @@
         "width": 800,
         "height": 600,
         "backgroundColor": "#414c65",
-        "decorations": true
+        "decorations": false
       }
     ],
     "withGlobalTauri": true,

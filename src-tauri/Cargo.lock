@@ -895,7 +895,6 @@ dependencies = [
  "tauri-plugin-keyring",
  "tauri-plugin-opener",
  "tauri-plugin-store",
- "webkit2gtk",
 ]
 
 [[package]]

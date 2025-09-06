@@ -127,7 +127,10 @@ function Timetable(props: {
     >
       <Show when={props.progress() === 1 && styles()}>
         <div class={styles()!["box-container"]}>
-          <div class="flex items-center justify-between w-full">
+          <div
+            class="flex items-center justify-between w-full"
+            style="max-width: calc(100vw - 185px);"
+          >
             <div class="relative z-10 inline-block text-left">
               <button
                 ref={buttonRef}
