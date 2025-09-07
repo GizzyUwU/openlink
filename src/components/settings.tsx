@@ -79,15 +79,12 @@ export default function Settings(props: {
   onMount(async () => {
     if (window.__TAURI__) {
       const { check } = await import("@tauri-apps/plugin-updater");
-      // const { relaunch } = await import("@tauri-apps/plugin-process");
       const update = await check();
       if (update) {
         setUpdate({ version: update.version });
         console.log(
           `[INFO] Update available! ${update.version} from ${update.date}`,
         );
-      } else {
-        setUpdate({ version: "1.0.0" });
       }
     }
   });

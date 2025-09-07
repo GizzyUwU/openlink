@@ -12,6 +12,7 @@ body,
     height: 100vh;
     margin: 0;
     background: #414c65;
+    overflow: hidden;
 }
 
 #toast-container {

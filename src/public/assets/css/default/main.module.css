@@ -561,6 +561,18 @@ ul {
     font-weight: 400;
 }
 
+.update-button {
+    position: relative;
+    background: oklch(76.2% 0.01 258.338);
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+    border: 0;
+    font-weight: 400;
+}
+
 .theme-button .dropdown-arrow {
     position: absolute;
     height: 0;
