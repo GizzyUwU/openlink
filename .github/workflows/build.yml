@@ -79,7 +79,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git tag -fa release-${SHORT_SHA} -m "Release from commit ${SHORT_SHA}"
+          git tag -fa prerelease-${SHORT_SHA} -m "Release from commit ${SHORT_SHA}"
           git push https://${GITHUB_TOKEN}@github.com/${{ github.repository }} prerelease-${SHORT_SHA}
 
       - uses: tauri-apps/tauri-action@v0
@@ -93,5 +93,5 @@ jobs:
           releaseBody: ${{ github.event.head_commit.message }}
           includeUpdaterJson: true
           releaseDraft: false
-          prerelease: false
+          prerelease: true
           args: ${{ matrix.args }}
