@@ -83,5 +83,5 @@ jobs:
           releaseBody: ${{ github.event.head_commit.message }}
           includeUpdaterJson: true
           releaseDraft: false
-          prerelease: true
+          prerelease: false
           args: ${{ matrix.args }}
