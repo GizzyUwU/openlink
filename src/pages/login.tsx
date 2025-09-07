@@ -12,8 +12,35 @@ declare global {
   }
 }
 
+let storeModule: typeof import("@tauri-apps/plugin-store") | null = null;
+let keyring: typeof import("tauri-plugin-keyring-api") | null = null;
+
+async function getKeyring(): Promise<
+  typeof import("tauri-plugin-keyring-api") | null
+> {
+  if (!window.__TAURI__) return null;
+  if (!keyring) {
+    keyring = await import("tauri-plugin-keyring-api");
+  }
+  return keyring;
+}
+
+async function getStore(): Promise<
+  typeof import("@tauri-apps/plugin-store") | null
+> {
+  if (!window.__TAURI__) return null;
+  if (!storeModule) {
+    storeModule = await import("@tauri-apps/plugin-store");
+  }
+  return storeModule;
+}
+
 async function encryptUserData(state: { username: string; data: string }) {
-  const { getPassword, setPassword } = await import("tauri-plugin-keyring-api");
+  const keyring = await getKeyring();
+  if (!keyring) {
+    return;
+  }
+  const { getPassword, setPassword } = keyring;
   const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
     const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
     return Array.from(arr)
@@ -52,7 +79,11 @@ async function decryptUserData(state: {
   username: string;
   encryptedData: string;
 }) {
-  const { getPassword } = await import("tauri-plugin-keyring-api");
+  const keyring = await getKeyring();
+  if (!keyring) {
+    return;
+  }
+  const { getPassword } = keyring;
   const hexToBytes = (hex?: string) => {
     if (!hex) throw new Error("Invalid hex string");
     const matches = hex.match(/.{1,2}/g);
@@ -70,21 +101,34 @@ async function decryptUserData(state: {
     ["encrypt", "decrypt"],
   );
   if (!state.encryptedData) return;
-  const combined = hexToBytes(state.encryptedData);
-  const iv = combined.slice(0, 12);
-  const ciphertext = combined.slice(12);
-  const decryptedBuffer = await crypto.subtle.decrypt(
-    { name: "AES-GCM", iv },
-    cryptoKey,
-    ciphertext,
-  );
 
-  return new TextDecoder().decode(decryptedBuffer);
+  try {
+    const combined = hexToBytes(state.encryptedData);
+    const iv = combined.slice(0, 12);
+    const ciphertext = combined.slice(12);
+    console.log("IV length:", iv.length);
+    console.log("Ciphertext length:", ciphertext.length);
+
+    const decryptedBuffer = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv },
+      cryptoKey,
+      ciphertext,
+    );
+
+    return new TextDecoder().decode(decryptedBuffer);
+  } catch (e) {
+    console.warn("Decryption failed:", e);
+    return;
+  }
 }
 
 async function getTheme() {
   if (window.__TAURI__) {
-    const { load } = await import("@tauri-apps/plugin-store");
+    const loadStore = await getStore();
+    if (!loadStore) {
+      return;
+    }
+    const { load } = loadStore;
     const store = await load("users.json", { autoSave: false, defaults: {} });
     const theme = await store.get("theme");
     if (typeof theme !== "string" || theme.length === 0) return "default";
@@ -135,8 +179,6 @@ function Login() {
     name: "apiUrl",
   });
 
-  let store: any;
-
   onMount(async () => {
     const cssModule = await import(
       `../public/assets/css/${await getTheme()}/login.module.css`
@@ -147,9 +189,15 @@ function Login() {
     };
     setState("styles", normalized);
     if (window.__TAURI__) {
-      const { load } = await import("@tauri-apps/plugin-store");
-      store = await load("users.json", { autoSave: false, defaults: {} });
-      const users = await store.get("users");
+      await Promise.all([getStore(), getKeyring()]);
+      const loadStore = await getStore();
+      if (!loadStore) {
+        return;
+      }
+      const { load } = loadStore;
+      const store = await load("users.json", { autoSave: false, defaults: {} });
+      const users =
+        (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
       if (!new URLSearchParams(window.location.search).has("logout")) {
         if (users?.length > 0) {
           const user = users[0];
@@ -240,14 +288,20 @@ function Login() {
         password: state.password,
       };
       if (window.__TAURI__) {
-        const usersResult = await store.get("users");
-        const usersArray = usersResult?.value || [];
+        const loadStore = await getStore();
+        if (!loadStore) {
+          return;
+        }
+        const { load } = loadStore;
+        const store = await load("users.json", {
+          autoSave: false,
+          defaults: {},
+        });
         const encrypted = await encryptUserData({
           username: state.username,
           data: JSON.stringify(userData),
         });
         await store.set("users", [
-          ...usersArray,
           { name: state.username, userData: encrypted },
         ]);
         await store.save();
