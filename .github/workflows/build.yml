@@ -72,16 +72,6 @@ jobs:
         shell: bash
         run: echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
 
-      - name: Create Git tag for public release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SHORT_SHA: ${{ env.SHORT_SHA }}
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag -fa prerelease-${SHORT_SHA} -m "Release from commit ${SHORT_SHA}"
-          git push https://${GITHUB_TOKEN}@github.com/${{ github.repository }} prerelease-${SHORT_SHA}
-
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -92,6 +82,6 @@ jobs:
           releaseName: "prerelease-${{ env.SHORT_SHA }}"
           releaseBody: ${{ github.event.head_commit.message }}
           includeUpdaterJson: true
-          releaseDraft: false
-          prerelease: true
+          releaseDraft: true
+          prerelease: false
           args: ${{ matrix.args }}
