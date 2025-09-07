@@ -25,11 +25,16 @@ jobs:
 
       - name: Disable initramfs update
         if: startsWith(matrix.platform, 'ubuntu-22.04')
-        run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
+        run: |
+          if [ -f /etc/initramfs-tools/update-initramfs.conf ]; then
+            sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
+          else
+            echo "No initramfs config file found, skipping."
+          fi
 
       - name: Disable man-db update
         if: startsWith(matrix.platform, 'ubuntu-22.04')
-        run: sudo rm -f /var/lib/man-db/auto-update
+        run: sudo rm -f /var/lib/man-db/auto-update || true
 
       - uses: awalsh128/cache-apt-pkgs-action@latest
         if: startsWith(matrix.platform, 'ubuntu-22.04')
