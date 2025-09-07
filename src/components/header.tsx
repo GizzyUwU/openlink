@@ -16,7 +16,8 @@ export default function Header(props: {
   let progressBarRef: HTMLDivElement | null = null;
   const [open, setOpen] = createSignal<boolean>(false);
   const navigate = useNavigate();
-  const [fadeOut, setFadeOut] = createSignal(false);
+  const [fadeOut, setFadeOut] = createSignal<boolean>(false);
+  const [update, setUpdate] = createSignal<boolean>(false);
 
   const handleClick = (event: MouseEvent) => {
     if (!open()) return;
@@ -28,7 +29,7 @@ export default function Header(props: {
     }
   };
 
-  onMount(() => {
+  onMount(async () => {
     document.addEventListener("mouseup", handleClick);
     const handleTransitionEnd = (e: TransitionEvent) => {
       if (e.propertyName === "transform" && props.progress() === 1) {
@@ -49,6 +50,18 @@ export default function Header(props: {
             handleTransitionEnd,
           ),
       );
+    }
+
+    if (window.__TAURI__) {
+      const { check } = await import("@tauri-apps/plugin-updater");
+      // const { relaunch } = await import("@tauri-apps/plugin-process");
+      const update = await check();
+      if (update) {
+        setUpdate(true);
+        console.log(
+          `[INFO] Update available! ${update.version} from ${update.date}`,
+        );
+      }
     }
   });
 
@@ -74,6 +87,9 @@ export default function Header(props: {
                 onClick={() => setOpen((prev) => !prev)}
               >
                 <HiOutlineCog6Tooth class={props.styles!["icon"]} />
+                {update() && (
+                  <span class="absolute bottom-1 z-50 right-4 h-2 w-2 rounded-full bg-red-500"></span>
+                )}
               </button>
               <Show when={open()}>
                 <div

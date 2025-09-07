@@ -42,6 +42,7 @@ function Main() {
     overlay: JSXElement | null;
     showSettings: boolean;
     theme: string;
+    updateAvailable: boolean;
   }>({
     progress: 0,
     navWheelAnim: false,
@@ -49,6 +50,7 @@ function Main() {
     overlay: null,
     showSettings: false,
     theme: "default",
+    updateAvailable: false,
   });
 
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
@@ -127,6 +129,19 @@ function Main() {
       ...cssModule,
     };
     setStyles(normalized);
+
+    if (window.__TAURI__) {
+      const { check } = await import("@tauri-apps/plugin-updater");
+      // const { relaunch } = await import("@tauri-apps/plugin-process");
+      const update = await check();
+      if (update) {
+        setState("updateAvailable", true);
+        console.log(
+          `[INFO] Update available! ${update.version} from ${update.date}`,
+        );
+      }
+    }
+
     const handleResize = () => {
       setState("screenWidth", window.innerWidth);
     };

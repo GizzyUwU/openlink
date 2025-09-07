@@ -5,12 +5,15 @@
   "windows": ["main"],
   "permissions": [
     "core:default",
-    "opener:default",
+    "opener:allow-open-url",
     "core:window:default",
     "core:window:allow-start-dragging",
     "core:window:allow-close",
     "core:window:allow-toggle-maximize",
     "core:window:allow-minimize",
+    "process:allow-restart",
+    "updater:allow-check",
+    "updater:allow-download-and-install",
     {
       "identifier": "opener:allow-open-path",
       "allow": [
@@ -33,14 +36,14 @@
         }
       ]
     },
-    "keyring:default",
-    "store:default",
+    "keyring:allow-get-password",
+    "keyring:allow-set-password",
     "fs:allow-resource-read-recursive",
     "fs:allow-exists",
     "store:allow-get",
     "store:allow-set",
     "store:allow-delete",
-    "store:allow-keys",
-    "store:allow-clear"
+    "store:allow-load",
+    "store:allow-save"
   ]
 }
