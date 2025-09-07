@@ -20,6 +20,7 @@ jobs:
             args: ""
 
     runs-on: ${{ matrix.platform }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -55,14 +56,6 @@ jobs:
         uses: swatinem/rust-cache@v2
         with:
           workspaces: "./src-tauri -> target"
-
-      - name: Configure sccache
-        run: |
-          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
-          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
-
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.9
 
       - name: Install frontend dependencies
         run: yarn ci
