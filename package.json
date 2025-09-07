@@ -26,6 +26,7 @@
     "@tauri-apps/plugin-http": "~2.5.2",
     "@tauri-apps/plugin-opener": "^2.5.0",
     "@tauri-apps/plugin-store": "~2.4.0",
+    "@tauri-apps/plugin-updater": "~2",
     "@types/bun": "^1.2.21",
     "@types/uuid": "^10.0.0",
     "apexcharts": "^5.3.4",
