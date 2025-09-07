@@ -32,6 +32,7 @@ jobs:
       - name: Disable initramfs update
         if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: sudo sed -i 's/yes/no/g' /etc/initramfs-tools/update-initramfs.conf
+
       - name: Disable man-db update
         if: startsWith(matrix.platform, 'ubuntu-22.04')
         run: sudo rm -f /var/lib/man-db/auto-update
@@ -74,10 +75,12 @@ jobs:
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
         with:
           tagName: prerelease-${{ env.SHORT_SHA }}
           releaseName: "Build from commit ${{ env.SHORT_SHA }}"
           releaseBody: ${{ github.event.head_commit.message }}
+          includeUpdaterJson: true
           releaseDraft: false
           prerelease: true
           args: ${{ matrix.args }}
