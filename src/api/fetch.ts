@@ -47,6 +47,9 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       }
       return res;
     } else {
+      const demoJsons = import.meta.glob("../public/assets/jsons/**/*.json", {
+        eager: true,
+      });
       const [folder, subfolderCandidate] = apiMethod.split(".");
 
       const possiblePaths = [
@@ -58,10 +61,11 @@ export async function callApi(url: string, options: ApiOptions = {}) {
 
       for (const path of possiblePaths) {
         try {
-          const jsonModule = await import(/* @vite-ignore */ path);
-          console.log(jsonModule.default);
-          res = { demo: jsonModule.default };
-          break;
+          const jsonModule = demoJsons[path] as { default: any } | undefined;
+          if (jsonModule) {
+            res = { demo: jsonModule.default };
+            break;
+          }
         } catch (err) {
           continue;
         }
