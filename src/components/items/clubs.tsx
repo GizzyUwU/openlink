@@ -177,58 +177,64 @@ function Clubs(props: {
           >
             CLUB DETAILS
           </h2>
-          <h2 class="text-center text-xl mt-4">{clubData.result.club.name}</h2>
-          <h2 class="text-center text-sm">
-            {clubData.result.club.location} -{" "}
-            {Array.isArray(clubData.result.club.leaders_names)
-              ? clubData.result.club.leaders_names.join(", ")
-              : clubData.result.club.leaders_names}{" "}
-          </h2>
-          <h2 class="text-sm">
-            <div class="font-bold">Description:</div>
-            <div
-              innerHTML={DOMPurify.sanitize(clubData.result.club.description)}
-            ></div>
+
+          {/* NEW SCROLLABLE WRAPPER */}
+          <div class="mt-10 flex-1 min-h-0 overflow-y-auto">
+            <h2 class="text-center text-xl">{clubData.result.club.name}</h2>
+            <h2 class="text-center text-sm">
+              {clubData.result.club.location} -{" "}
+              {Array.isArray(clubData.result.club.leaders_names)
+                ? clubData.result.club.leaders_names.join(", ")
+                : clubData.result.club.leaders_names}{" "}
+            </h2>
+            <h2 class="text-sm">
+              <div class="font-bold">Description:</div>
+              <div
+                innerHTML={DOMPurify.sanitize(clubData.result.club.description)}
+              ></div>
+              <br />
+            </h2>
             <br />
-          </h2>
-          <br />
-          <h2 class="text-sm font-bold">All Times:</h2>
-          <br />
-          <div
-            class={styles()!["t-clubs"]}
-            style={{ display: "flex", "flex-direction": "column" }}
-          >
-            <div class={styles()!["t-club-header"]}>
-              <div>Name</div>
-              <div>Attendance</div>
-              <div>Start</div>
-              <div>End</div>
-            </div>
-            <div class={`${styles()!["t-body"]} mt-2`}>
-              <For each={clubData.result.club.sessions}>
-                {(data) => (
-                  <div class={`${styles()!["t-club-row"]} cursor-pointer`}>
-                    <div class={styles()!["_date"]}>
-                      {formatDate({ date: data.start_time }) || "-"}
-                    </div>
-                    <div>
-                      {data.attended ? (
-                        data.attended ? (
-                          <IoCheckmarkCircleOutline size="32" color="green" />
+            <h2 class="text-sm font-bold">All Times:</h2>
+            <br />
+            <div
+              class={styles()!["t-clubs"]}
+              style={{ display: "flex", "flex-direction": "column" }}
+            >
+              <div class={styles()!["t-club-header"]}>
+                <div>Name</div>
+                <div>Attendance</div>
+                <div>Start</div>
+                <div>End</div>
+              </div>
+              <div class={`${styles()!["t-body"]} mt-2`}>
+                <For each={clubData.result.club.sessions}>
+                  {(data) => (
+                    <div class={`${styles()!["t-club-row"]} cursor-pointer`}>
+                      <div class={styles()!["_date"]}>
+                        {formatDate({ date: data.start_time }) || "-"}
+                      </div>
+                      <div>
+                        {data.attended ? (
+                          data.attended ? (
+                            <IoCheckmarkCircleOutline size="32" color="green" />
+                          ) : (
+                            <ImCross color="red" size="20" />
+                          )
                         ) : (
                           <ImCross color="red" size="20" />
-                        )
-                      ) : (
-                        <ImCross color="red" size="20" />
-                      )}
+                        )}
+                      </div>
+                      <div>
+                        {formatDate({ date: data.start_time, time: true })}
+                      </div>
+                      <div>
+                        {formatDate({ date: data.end_time, time: true })}
+                      </div>
                     </div>
-                    <div>
-                      {formatDate({ date: data.start_time, time: true })}
-                    </div>
-                    <div>{formatDate({ date: data.end_time, time: true })}</div>
-                  </div>
-                )}
-              </For>
+                  )}
+                </For>
+              </div>
             </div>
           </div>
         </div>,

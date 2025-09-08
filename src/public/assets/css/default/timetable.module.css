@@ -23,6 +23,7 @@
     flex-grow: 1;
     width: 100%;
     max-width: calc(100vw - 185px);
+    min-height: 0;
 }
 
 .t-timetable {
@@ -36,6 +37,7 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+    min-height: 0;
 }
 
 .t-header {

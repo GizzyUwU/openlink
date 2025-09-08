@@ -14,7 +14,6 @@ let dropdownRef: HTMLDivElement | undefined;
 let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
-import clsx from "clsx";
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -250,18 +249,18 @@ function Timetable(props: {
                           </div>
                         </div>
                         <div
-                          class={clsx(
-                            styles()!["t-timetable__text"],
-                            styles()!["_room"],
-                          )}
+                          class={`
+                            ${styles()!["t-timetable__text"]},
+                            ${styles()!["_room"]},
+                          `}
                         >
                           {lesson()?.room?.name || "-"}
                         </div>
                         <div
-                          class={clsx(
-                            styles()!["t-timetable__text"],
-                            styles()!["_teacher"],
-                          )}
+                          class={`
+                            ${styles()!["t-timetable__text"]}
+                            ${styles()!["_teacher"]}
+                          `}
                         >
                           {(() => {
                             const t = lesson()?.teacher ?? lesson()?.teachers;

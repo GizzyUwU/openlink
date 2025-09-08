@@ -521,6 +521,7 @@ ul {
     bottom: 0;
     background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     z-index: 60;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     font-family:
@@ -529,6 +530,15 @@ ul {
         Helvetica,
         sans-serif;
     font-size: 14px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+
+.t-overlay > * {
+    flex-shrink: 1;
+    min-height: 0;
 }
 
 .settings {

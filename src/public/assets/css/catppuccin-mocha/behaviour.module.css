@@ -68,7 +68,7 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        260px
+        190px
         1fr 1fr
         200px 105px;
     color: var(--text);
