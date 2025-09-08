@@ -54,7 +54,7 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        130px
+        260px
         1fr 1fr
         200px 105px;
     border-bottom: 1px solid #e3e9ea;
@@ -108,6 +108,8 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .t-achievement__text {

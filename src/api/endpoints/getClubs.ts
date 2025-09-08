@@ -15,7 +15,9 @@ export default {
     if (!learner_id)
       throw new Error("Learner ID is required for timetable lookup");
     if (!key) throw new Error("API key is not set. Please provide api key.");
-    if (!member) member = true;
+    if (member === undefined || member === null) {
+      member = true;
+    }
     const method = "EduLink.Clubs";
     const requestBody: ClubsRequest = {
       jsonrpc: "2.0",

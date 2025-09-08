@@ -8,6 +8,7 @@
     max-width: 100%;
     position: relative;
     background: var(--text);
+    overflow: hidden;
 }
 
 .openlink-s-header {

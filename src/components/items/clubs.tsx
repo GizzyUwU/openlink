@@ -186,10 +186,10 @@ function Clubs(props: {
           </h2>
           <h2 class="text-sm">
             <div class="font-bold">Description:</div>
-            <br />
             <div
               innerHTML={DOMPurify.sanitize(clubData.result.club.description)}
             ></div>
+            <br />
           </h2>
           <br />
           <h2 class="text-sm font-bold">All Times:</h2>
