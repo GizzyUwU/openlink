@@ -105,6 +105,10 @@ function Main() {
 
       await waitForWheelTransition();
       setState("navWheelAnim", true);
+      const url = new URL(window.location.href);
+      console.log("meow");
+      url.searchParams.set("page", id);
+      window.history.pushState({}, "", url.toString());
     } catch (err) {
       console.error(
         `Failed to load component: ../components/items/${id}.tsx`,
@@ -132,7 +136,6 @@ function Main() {
 
     if (window.__TAURI__) {
       const { check } = await import("@tauri-apps/plugin-updater");
-      // const { relaunch } = await import("@tauri-apps/plugin-process");
       const update = await check();
       if (update) {
         setState("updateAvailable", true);
@@ -140,6 +143,12 @@ function Main() {
           `[INFO] Update available! ${update.version} from ${update.date}`,
         );
       }
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get("page");
+    if (page !== null) {
+      loadItemPage(page, page, true);
     }
 
     const handleResize = () => {

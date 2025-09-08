@@ -94,6 +94,10 @@ export default function Navigation(props: {
       };
     };
 
+    window.addEventListener("popstate", () => {
+      resetNav();
+    });
+
     let doDebounce = debounce(() => updateSlideX(), 300);
 
     window.addEventListener("resize", () => doDebounce());
@@ -194,6 +198,10 @@ export default function Navigation(props: {
       wheelRotation: 0,
     });
     props.setLoadedComponent(null);
+
+    const url = new URL(window.location.href);
+    url.searchParams.delete("page");
+    window.history.pushState({}, "", url.toString());
   }
 
   return (
