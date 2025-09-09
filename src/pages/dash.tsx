@@ -106,7 +106,6 @@ function Main() {
       await waitForWheelTransition();
       setState("navWheelAnim", true);
       const url = new URL(window.location.href);
-      console.log("meow");
       url.searchParams.set("page", id);
       window.history.pushState({}, "", url.toString());
     } catch (err) {
@@ -154,11 +153,14 @@ function Main() {
     onCleanup(() => {
       window.removeEventListener("resize", handleResize);
     });
-
     const url = new URL(window.location.href);
     const page = url.searchParams.get("page");
     if (page !== null) {
-      await loadItemPage(page, page, true);
+      const loadHandler = async () => {
+        await loadItemPage(page, page, true);
+        window.removeEventListener("load", loadHandler);
+      };
+      window.addEventListener("load", loadHandler);
     }
   });
 
