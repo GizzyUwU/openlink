@@ -51,9 +51,9 @@ export default function Navigation(props: {
   onMount(async () => {
     props.onResetNav?.(resetNav);
     props.openNav?.(openItem);
-    if (props.loadedComponent) {
-      resetNav();
-    }
+    // if (props.loadedComponent) {
+    //   resetNav();
+    // }
 
     const personalMenu = props.sessionData()?.personal_menu || [];
     if (
@@ -95,7 +95,7 @@ export default function Navigation(props: {
     };
 
     window.addEventListener("popstate", () => {
-      resetNav();
+      resetNav(true);
     });
 
     let doDebounce = debounce(() => updateSlideX(), 300);
@@ -190,7 +190,7 @@ export default function Navigation(props: {
     spinToIndex(idx);
   }
 
-  function resetNav() {
+  function resetNav(fromBack?: boolean) {
     props.navAnimFinished(false);
     setState({
       activeIdx: null,
@@ -199,9 +199,11 @@ export default function Navigation(props: {
     });
     props.setLoadedComponent(null);
 
-    const url = new URL(window.location.href);
-    url.searchParams.delete("page");
-    window.history.pushState({}, "", url.toString());
+    if (fromBack) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("page");
+      window.history.pushState({}, "", url.toString());
+    }
   }
 
   return (
@@ -297,7 +299,7 @@ export default function Navigation(props: {
                         onClick={(e) => {
                           e.preventDefault();
                           if (state.isSlid && state.activeIdx === i()) {
-                            resetNav();
+                            resetNav(true);
                             props.setLoadedComponent(null);
                             props.setProgress(0);
                             const prev = document.getElementById("item-box");

@@ -15,6 +15,15 @@ export type ClubRequest = ApiRequest<
   }
 >;
 
+export type AttendClubRequest = ApiRequest<
+  "EduLink.ClubAttending",
+  {
+    club_id: number | string;
+    learner_id: string | number;
+    attending: boolean;
+  }
+>;
+
 export interface Session {
   id: number | string;
   start_time: string;
@@ -49,6 +58,12 @@ export type ClubResponse = EdulinkApiResponse<{
   method: "EduLink.Club";
   success: boolean;
   clubs: Club;
+}>;
+
+export type AttendClubResponse = EdulinkApiResponse<{
+  method: "EduLink.ClubAttending";
+  success: boolean;
+  attending: boolean;
 }>;
 
 export namespace ClubsResponse {

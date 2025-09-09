@@ -138,6 +138,32 @@ function Clubs(props: {
     return `${weekday}, ${day} ${month}`;
   }
 
+  async function attendClub(club_id: string | number, attend: boolean) {
+    if (!club_id) throw new Error("Club ID needed to identify the club");
+    console.log(attend);
+    if (attend === undefined || attend === null)
+      throw new Error(
+        "Attend Bool needed to see if should leave or join a club",
+      );
+
+    const res = await props.edulink.attendClub(
+      club_id,
+      sessionData()?.user?.id,
+      attend,
+      sessionData()?.authtoken,
+      apiUrl(),
+    );
+
+    if (res.result.success) {
+      toast.showToast(
+        "Success",
+        `${state.activePage === "My Clubs" ? "Left" : "Joined"} the club.`,
+        "success",
+      );
+      setState("activePage", "My Clubs");
+    }
+  }
+
   const handleClubPreview = async (club_id: number | string) => {
     props.setOverlay(
       <div
@@ -177,9 +203,7 @@ function Clubs(props: {
           >
             CLUB DETAILS
           </h2>
-
-          {/* NEW SCROLLABLE WRAPPER */}
-          <div class="mt-10 flex-1 min-h-0 overflow-y-auto">
+          <div class="mt-6 flex-1 min-h-0 overflow-y-auto">
             <h2 class="text-center text-xl">{clubData.result.club.name}</h2>
             <h2 class="text-center text-sm">
               {clubData.result.club.location} -{" "}
@@ -187,15 +211,16 @@ function Clubs(props: {
                 ? clubData.result.club.leaders_names.join(", ")
                 : clubData.result.club.leaders_names}{" "}
             </h2>
-            <h2 class="text-sm">
-              <div class="font-bold">Description:</div>
-              <div
-                innerHTML={DOMPurify.sanitize(clubData.result.club.description)}
-              ></div>
-              <br />
-            </h2>
-            <br />
-            <h2 class="text-sm font-bold">All Times:</h2>
+            <Show when={clubData.result.club.description !== null}>
+              <h2 class="text-sm">
+                <div class="font-bold">Description:</div>
+                <div
+                  innerHTML={DOMPurify.sanitize(
+                    clubData.result.club.description,
+                  )}
+                ></div>
+              </h2>
+            </Show>
             <br />
             <div
               class={styles()!["t-clubs"]}
@@ -236,6 +261,19 @@ function Clubs(props: {
                 </For>
               </div>
             </div>
+          </div>
+          <div class="mt-4 flex flex-1 min-h-0 items-center justify-center">
+            <button
+              class={`${styles()!["attending"]} ${state.activePage === "My Clubs" ? styles()!["unbook"] : styles()!["attend"]}`}
+              onClick={() =>
+                attendClub(
+                  club_id,
+                  state.activePage === "My Clubs" ? false : true,
+                )
+              }
+            >
+              {state.activePage === "My Clubs" ? "Unbook" : "Attend"}
+            </button>
           </div>
         </div>,
       );

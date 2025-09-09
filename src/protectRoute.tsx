@@ -18,12 +18,14 @@ const ProtectedRoute = (props: any) => {
 
   onMount(async () => {
     if (sessionData() && Object.keys(sessionData()).length > 0 && apiUrl()) {
-      console.log(apiUrl());
       const result = await edulink.getStatus(
         sessionData()?.authtoken,
         apiUrl(),
       );
       if (!result.result.success) {
+        console.log(
+          "[INFO] Authentication Check failed. Redirecting to /login",
+        );
         navigate("/login", { replace: true });
         return;
       }

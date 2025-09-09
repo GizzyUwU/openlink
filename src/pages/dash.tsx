@@ -145,12 +145,6 @@ function Main() {
       }
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const page = params.get("page");
-    if (page !== null) {
-      loadItemPage(page, page, true);
-    }
-
     const handleResize = () => {
       setState("screenWidth", window.innerWidth);
     };
@@ -160,6 +154,12 @@ function Main() {
     onCleanup(() => {
       window.removeEventListener("resize", handleResize);
     });
+
+    const url = new URL(window.location.href);
+    const page = url.searchParams.get("page");
+    if (page !== null) {
+      await loadItemPage(page, page, true);
+    }
   });
 
   const maxWidth = createMemo(() =>

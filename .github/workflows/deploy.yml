@@ -33,8 +33,8 @@ jobs:
 
       - name: Copy demo JSONs
         run: |
-          mkdir -p dist/assets/jsons
-          cp -r src/public/assets/jsons/* dist/assets/jsons/
+          mkdir -p dist/public/assets/jsons
+          cp -r src/public/assets/jsons/* dist/public/assets/jsons/
 
       - name: Create .nojekyll
         run: touch dist/.nojekyll

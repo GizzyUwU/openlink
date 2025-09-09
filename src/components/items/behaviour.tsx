@@ -291,7 +291,7 @@ function BehaviourComponent(props: {
                     Total Negative Points
                   </div>
                   <div class={styles()!["__total-points"]}>
-                    {state.totalPoints || "-"}
+                    {state.totalPoints || "0"}
                   </div>
                 </div>
               </div>
