@@ -117,3 +117,21 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.attending {
+    border-radius: 5px;
+    max-height: 95px;
+    padding: 6px 14px 6px 14px;
+    text-align: center;
+    transition: background-color 0.25s;
+    background-color: green;
+    cursor: pointer;
+}
+
+.attend {
+    background-color: green;
+}
+
+.unbook {
+    background-color: red;
+}
