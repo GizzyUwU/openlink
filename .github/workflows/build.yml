@@ -25,8 +25,6 @@ jobs:
             args: ""
 
     runs-on: ${{ matrix.platform }}
-    env:
-      PKG_CONFIG_PATH: ${{ matrix.platform == 'windows-latest' && 'C:\\msys64\\usr\\lib\\pkgconfig;C:\\msys64\\usr\\share\\pkgconfig' || '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -58,14 +56,6 @@ jobs:
         with:
           workspaces: "./src-tauri -> target"
 
-      - name: Configure sccache
-        run: |
-          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
-          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
-
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.9
-
       - name: install frontend dependencies
         run: yarn install
 
@@ -79,8 +69,8 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          tagName: app-v__VERSION__
-          releaseName: "App v__VERSION__"
+          tagName: openlink-v__VERSION__
+          releaseName: "Openlink v__VERSION__"
           releaseBody: ${{ github.event.head_commit.message }}
           includeUpdaterJson: true
           releaseDraft: false
