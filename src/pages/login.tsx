@@ -35,93 +35,6 @@ async function getStore(): Promise<
   return storeModule;
 }
 
-async function encryptUserData(state: { username: string; data: string }) {
-  const keyring = await getKeyring();
-  if (!keyring) {
-    return;
-  }
-  const { getPassword, setPassword } = keyring;
-  const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
-    const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
-    return Array.from(arr)
-      .map((b) => b.toString(16).padStart(2, "0"))
-      .join("");
-  };
-  const hexToBytes = (hex: string) =>
-    new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => parseInt(b, 16)));
-  let encryptKey = await getPassword("edulinkKey", state.username);
-  if (!encryptKey) {
-    const keyArray = crypto.getRandomValues(new Uint8Array(32));
-    encryptKey = bytesToHex(keyArray);
-    await setPassword("edulinkKey", state.username, encryptKey);
-  }
-  const cryptoKey = await crypto.subtle.importKey(
-    "raw",
-    hexToBytes(encryptKey),
-    "AES-GCM",
-    false,
-    ["encrypt", "decrypt"],
-  );
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const encoded = new TextEncoder().encode(state.data);
-  const ciphertext = await crypto.subtle.encrypt(
-    { name: "AES-GCM", iv },
-    cryptoKey,
-    encoded,
-  );
-  const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
-  combined.set(iv, 0);
-  combined.set(new Uint8Array(ciphertext), iv.byteLength);
-  return bytesToHex(combined);
-}
-
-async function decryptUserData(state: {
-  username: string;
-  encryptedData: string;
-}) {
-  const keyring = await getKeyring();
-  if (!keyring) {
-    return;
-  }
-  const { getPassword } = keyring;
-  const hexToBytes = (hex?: string) => {
-    if (!hex) throw new Error("Invalid hex string");
-    const matches = hex.match(/.{1,2}/g);
-    if (!matches) throw new Error("Hex string has invalid format");
-    return new Uint8Array(matches.map((b) => parseInt(b, 16)));
-  };
-
-  const encryptKey = await getPassword("edulinkKey", state.username);
-  if (!encryptKey) return;
-  const cryptoKey = await crypto.subtle.importKey(
-    "raw",
-    hexToBytes(encryptKey),
-    "AES-GCM",
-    false,
-    ["encrypt", "decrypt"],
-  );
-  if (!state.encryptedData) return;
-
-  try {
-    const combined = hexToBytes(state.encryptedData);
-    const iv = combined.slice(0, 12);
-    const ciphertext = combined.slice(12);
-    console.log("IV length:", iv.length);
-    console.log("Ciphertext length:", ciphertext.length);
-
-    const decryptedBuffer = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv },
-      cryptoKey,
-      ciphertext,
-    );
-
-    return new TextDecoder().decode(decryptedBuffer);
-  } catch (e) {
-    console.warn("Decryption failed:", e);
-    return;
-  }
-}
-
 async function getTheme() {
   if (window.__TAURI__) {
     const loadStore = await getStore();
@@ -179,6 +92,94 @@ function Login() {
     name: "apiUrl",
   });
 
+  async function encryptUserData(state: { username: string; data: string }) {
+    const keyring = await getKeyring();
+    if (!keyring) {
+      return;
+    }
+    const { getPassword, setPassword } = keyring;
+    const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
+      const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
+      return Array.from(arr)
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
+    };
+    const hexToBytes = (hex: string) =>
+      new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => parseInt(b, 16)));
+    let encryptKey = await getPassword("edulinkKey", state.username);
+    if (!encryptKey) {
+      const keyArray = crypto.getRandomValues(new Uint8Array(32));
+      encryptKey = bytesToHex(keyArray);
+      await setPassword("edulinkKey", state.username, encryptKey);
+    }
+    const cryptoKey = await crypto.subtle.importKey(
+      "raw",
+      hexToBytes(encryptKey),
+      "AES-GCM",
+      false,
+      ["encrypt", "decrypt"],
+    );
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const encoded = new TextEncoder().encode(state.data);
+    const ciphertext = await crypto.subtle.encrypt(
+      { name: "AES-GCM", iv },
+      cryptoKey,
+      encoded,
+    );
+    const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+    combined.set(iv, 0);
+    combined.set(new Uint8Array(ciphertext), iv.byteLength);
+    return bytesToHex(combined);
+  }
+
+  async function decryptUserData(state: {
+    username: string;
+    encryptedData: string;
+  }) {
+    const keyring = await getKeyring();
+    if (!keyring) {
+      return;
+    }
+    const { getPassword } = keyring;
+    const hexToBytes = (hex?: string) => {
+      if (!hex) throw new Error("Invalid hex string");
+      const matches = hex.match(/.{1,2}/g);
+      if (!matches) throw new Error("Hex string has invalid format");
+      return new Uint8Array(matches.map((b) => parseInt(b, 16)));
+    };
+
+    const encryptKey = await getPassword("edulinkKey", state.username);
+    if (!encryptKey) return;
+    const cryptoKey = await crypto.subtle.importKey(
+      "raw",
+      hexToBytes(encryptKey),
+      "AES-GCM",
+      false,
+      ["encrypt", "decrypt"],
+    );
+    if (!state.encryptedData) return;
+
+    try {
+      const combined = hexToBytes(state.encryptedData);
+      const iv = combined.slice(0, 12);
+      const ciphertext = combined.slice(12);
+      const decryptedBuffer = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv },
+        cryptoKey,
+        ciphertext,
+      );
+
+      return new TextDecoder().decode(decryptedBuffer);
+    } catch (e) {
+      if (e instanceof Error) {
+        toast.showToast("Error", e.message, "error");
+      } else {
+        toast.showToast("Error", String(e), "error");
+      }
+      return;
+    }
+  }
+
   onMount(async () => {
     const cssModule = await import(
       `../public/assets/css/${await getTheme()}/login.module.css`
@@ -222,6 +223,12 @@ function Login() {
                 return;
               }
             }
+          } else {
+            toast.showToast(
+              "Error",
+              "Decrypted Data contains no data on the end user.",
+              "error",
+            );
           }
         }
       } else {
@@ -339,7 +346,6 @@ function Login() {
     });
 
     const account = await callApi(`demo/${type}?method=EduLink.Login`);
-    console.log(account);
     setState("loading", true);
     setApiUrl(`demo/${type}`);
     setSession(account.demo.result);
@@ -422,6 +428,7 @@ function Login() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
+                      accountLogin();
                     }}
                   >
                     <div class={state.styles!["__row"]}>
@@ -490,11 +497,7 @@ function Login() {
                       </label>
                     </div>
                     <div class={state.styles!["__button"]}>
-                      <button
-                        class={state.styles!["__submit"]}
-                        type="submit"
-                        onClick={accountLogin}
-                      >
+                      <button class={state.styles!["__submit"]} type="submit">
                         Log In
                       </button>
                     </div>

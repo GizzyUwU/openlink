@@ -25,12 +25,24 @@ function Exams(props: {
       exam?: string;
       template?: string;
     };
+    enabled: {
+      entries: boolean;
+      results: boolean;
+      timetable: boolean;
+      countdown: boolean;
+    };
     activePage: "Exam Timetable" | "Exam Entries" | "Exam Results";
   }>({
     entries: [],
     results: [],
     timetable: [],
     countdown: {},
+    enabled: {
+      entries: false,
+      results: false,
+      timetable: false,
+      countdown: false,
+    },
     activePage: "Exam Timetable",
   });
 
@@ -58,13 +70,18 @@ function Exams(props: {
       sessionData()?.user?.id,
       sessionData()?.authtoken,
       apiUrl(),
+      "timetable",
     );
 
     if (response.result.success) {
       props.setProgress(0.8);
       setState({
-        entries: response.result.show_entries ? response.result.entries : [],
-        results: response.result.show_results ? response.result.results : [],
+        enabled: {
+          timetable: response.result.show_timetable,
+          results: response.result.show_results,
+          entries: response.result.show_entries,
+          countdown: response.result.show_countdown,
+        },
         timetable: response.result.show_timetable
           ? response.result.timetable
           : [],
@@ -72,7 +89,37 @@ function Exams(props: {
           ? response.result.countdown
           : {},
       });
+
       props.setProgress(1);
+      if (response.result.show_entries) {
+        props.edulink
+          .getExams(
+            sessionData()?.user?.id,
+            sessionData()?.authtoken,
+            apiUrl(),
+            "entries",
+          )
+          .then((entriesRes: ExamsResponse) => {
+            if (entriesRes.result.success) {
+              setState("entries", entriesRes.result.entries || []);
+            }
+          });
+      }
+
+      if (response.result.show_results) {
+        props.edulink
+          .getExams(
+            sessionData()?.user?.id,
+            sessionData()?.authtoken,
+            apiUrl(),
+            "results",
+          )
+          .then((resultsRes: ExamsResponse) => {
+            if (resultsRes.result.success) {
+              setState("results", resultsRes.result.results || []);
+            }
+          });
+      }
     } else {
       toast.showToast(
         "Error",

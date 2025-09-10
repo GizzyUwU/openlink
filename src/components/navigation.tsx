@@ -192,6 +192,7 @@ export default function Navigation(props: {
 
   function resetNav(fromBack?: boolean) {
     props.navAnimFinished(false);
+    props.setProgress(0);
     setState({
       activeIdx: null,
       isSlid: false,

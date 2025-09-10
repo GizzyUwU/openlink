@@ -85,57 +85,68 @@ function BehaviourComponent(props: {
       ...cssModule,
     };
     setStyles(normalized);
+    const behaviourPromise = edulink.getBehaviour(
+      sessionData()?.user?.id,
+      sessionData()?.authtoken,
+      apiUrl(),
+    );
 
-    const [behaviourResponse, lookupResponse] = await Promise.all([
-      edulink.getBehaviour(
-        sessionData()?.user?.id,
-        sessionData()?.authtoken,
-        apiUrl(),
-      ),
-      edulink.getABLookup(sessionData()?.authtoken, apiUrl()),
-    ]);
+    const lookupPromise = edulink.getABLookup(
+      sessionData()?.authtoken,
+      apiUrl(),
+    );
 
-    if (behaviourResponse.result.success) {
-      props.setProgress(0.7);
-      setState({
-        behaviour: behaviourResponse.result.behaviour,
-        detentions: behaviourResponse.result.detentions,
-        employees: behaviourResponse.result.employees,
-      });
-    } else {
-      toast.showToast(
-        "Error",
-        behaviourResponse.result.error ?? "Unknown error",
-        "error",
-      );
-      props.setProgress(0);
-    }
+    lookupPromise.then((lookupResponse: ABLookupResponse) => {
+      if (lookupResponse.result.success) {
+        setState({
+          behaviourTypes: lookupResponse.result.behaviour_types,
+          behaviourLocations: lookupResponse.result.behaviour_locations,
+          behaviourStatuses: lookupResponse.result.behaviour_statuses,
+          behaviourActions: lookupResponse.result.behaviour_actions_taken,
+        });
+        props.setProgress(Math.max(props.progress(), 0.7));
+      } else {
+        toast.showToast(
+          "Error",
+          lookupResponse.result.error ?? "Unknown error",
+          "error",
+        );
+      }
+    });
 
-    if (lookupResponse.result.success) {
-      props.setProgress(0.8);
-      const total = (behaviourResponse.result.behaviour || []).reduce(
-        (sum: number, behaviour: any) => {
-          const points = Number(behaviour.points);
-          return sum + (isNaN(points) ? 0 : points);
-        },
-        0,
-      );
-      setState({
-        behaviourTypes: lookupResponse.result.behaviour_types,
-        behaviourLocations: lookupResponse.result.behaviour_locations,
-        behaviourStatuses: lookupResponse.result.behaviour_statuses,
-        behaviourActions: lookupResponse.result.behaviour_actions_taken,
-        totalPoints: total,
-      });
+    behaviourPromise.then((behaviourResponse: BehaviourResponse) => {
+      if (behaviourResponse.result.success) {
+        const total = (behaviourResponse.result.behaviour || []).reduce(
+          (sum, b) => sum + (isNaN(Number(b.points)) ? 0 : Number(b.points)),
+          0,
+        );
+
+        setState(() => ({
+          ...(behaviourResponse.result.behaviour?.length && {
+            behaviour: behaviourResponse.result.behaviour,
+          }),
+          ...(behaviourResponse.result.detentions?.length && {
+            detentions: behaviourResponse.result.detentions,
+          }),
+          ...(behaviourResponse.result.employees?.length && {
+            employees: behaviourResponse.result.employees,
+          }),
+          totalPoints: total,
+        }));
+
+        props.setProgress(Math.max(props.progress(), 0.9));
+      } else {
+        toast.showToast(
+          "Error",
+          behaviourResponse.result.error ?? "Unknown error",
+          "error",
+        );
+      }
+    });
+
+    Promise.all([behaviourPromise, lookupPromise]).then(() => {
       props.setProgress(1);
-    } else {
-      toast.showToast(
-        "Error",
-        lookupResponse.result.error ?? "Unknown error",
-        "error",
-      );
-      props.setProgress(0);
-    }
+    });
   });
 
   onCleanup(() => {

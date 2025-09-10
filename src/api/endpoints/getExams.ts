@@ -8,6 +8,7 @@ export default {
     learner_id: string,
     key: string,
     serverUrl: string,
+    page?: string,
   ): Promise<ExamsResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -20,6 +21,7 @@ export default {
       method,
       params: {
         learner_id,
+        page,
       },
       uuid: uuid(),
       id: "1",

@@ -57,7 +57,7 @@
 .t-header {
     display: grid;
     grid-template-columns:
-        130px
+        230px
         1fr 1fr
         200px 105px;
     background: var(--surface1);
