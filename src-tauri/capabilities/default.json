@@ -11,6 +11,7 @@
     "core:window:allow-close",
     "core:window:allow-toggle-maximize",
     "core:window:allow-minimize",
+    "core:webview:allow-set-webview-zoom",
     "process:allow-restart",
     "updater:allow-check",
     "updater:allow-download-and-install",

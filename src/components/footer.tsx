@@ -1,7 +1,7 @@
 import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { Icon } from "@iconify-icon/solid";
 import { useNavigate } from "@solidjs/router";
-
+import type { ClubsResponse } from "../types/api/clubs";
 export default function Footer(props: {
   sessionData: any;
   apiUrl: any;
@@ -10,6 +10,7 @@ export default function Footer(props: {
   edulink: any;
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   styles: { [key: string]: string } | null;
+  clubData: ClubsResponse.ClubType[];
 }) {
   const navigate = useNavigate();
   const [status, setStatus] = createSignal<any>({});
@@ -46,126 +47,233 @@ export default function Footer(props: {
             class={props.styles!["openlink__footer-item"]}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
-            {status().lessons?.current && (
-              <div class={props.styles!["openlink-pr-couple"]}>
-                <span
-                  class={props.styles!["openlink__footer-icon"]}
-                  style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
-                >
-                  <Icon icon="mdi:clock-outline" width="24" height="24" />
-                </span>
-                <span class={props.styles!["openlink__footer-content"]}>
-                  <span class={props.styles!["openlink__footer-title"]}>
-                    Current Lesson
-                  </span>
-                  <span class={props.styles!["openlink__footer-body"]}>
-                    {status().lessons.current.teaching_group.subject} -{" "}
-                    {status().lessons.current.teaching_group.name}
-                  </span>
-                  <span class={props.styles!["openlink__footer"]}>
-                    {status().lessons.current.room.name}
-                    {" / "}
-                    {(() => {
-                      const lesson = status().lessons.current;
-                      const teachers = lesson.teachers || lesson.teacher;
+            {props.clubData?.length > 0 &&
+              (() => {
+                const currentClub = props.clubData.find((club) => {
+                  if (!club.next_session) return false;
+                  const nextLesson = status().lessons?.current;
+                  if (!nextLesson?.start_time) return false;
 
-                      if (!teachers) return "";
+                  const [lessonHour, lessonMinute] = nextLesson.start_time
+                    .split(":")
+                    .map(Number);
 
-                      if (Array.isArray(teachers)) {
-                        return teachers
-                          .map((t) => {
-                            if (typeof t === "string") return t;
-                            if (typeof t === "object" && t !== null) {
-                              const { title, forename, surname } = t;
-                              return [title, forename, surname]
-                                .filter(Boolean)
-                                .join(" ");
-                            }
-                            return "";
-                          })
-                          .join(", ");
-                      }
+                  const now = new Date();
+                  const lessonDate = new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    now.getDate(),
+                    lessonHour,
+                    lessonMinute,
+                    0,
+                    0,
+                  );
 
-                      if (typeof teachers === "string") return teachers;
+                  const sessionDate = new Date(club.next_session);
+                  const sameDay =
+                    sessionDate.getFullYear() === lessonDate.getFullYear() &&
+                    sessionDate.getMonth() === lessonDate.getMonth() &&
+                    sessionDate.getDate() === lessonDate.getDate();
 
-                      if (typeof teachers === "object" && teachers !== null) {
-                        const { title, forename, surname } = teachers;
-                        return [title, forename, surname]
-                          .filter(Boolean)
-                          .join(" ");
-                      }
+                  if (!sameDay) return false;
+                  return sessionDate.getTime() < lessonDate.getTime();
+                });
 
-                      return "";
-                    })()}
-                  </span>
-                </span>
-              </div>
-            )}
+                if (currentClub) {
+                  return (
+                    <div class={props.styles!["openlink-pr-couple"]}>
+                      <span
+                        class={props.styles!["openlink__footer-icon"]}
+                        style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
+                      >
+                        <Icon icon="mdi:clock-outline" width="24" height="24" />
+                      </span>
+                      <span class={props.styles!["openlink__footer-content"]}>
+                        <span class={props.styles!["openlink__footer-title"]}>
+                          Current Club
+                        </span>
+                        <span class={props.styles!["openlink__footer-body"]}>
+                          {currentClub.name}
+                        </span>
+                        <span class={props.styles!["openlink__footer"]}>
+                          Location: {currentClub.location}
+                        </span>
+                      </span>
+                    </div>
+                  );
+                }
+
+                if (status().lessons?.current) {
+                  const lesson = status().lessons.current;
+                  const teachers = lesson.teachers || lesson.teacher;
+
+                  const teacherNames = (() => {
+                    if (!teachers) return "";
+                    if (Array.isArray(teachers)) {
+                      return teachers
+                        .map((t) => {
+                          if (typeof t === "string") return t;
+                          if (t && typeof t === "object") {
+                            const { title, forename, surname } = t;
+                            return [title, forename, surname]
+                              .filter(Boolean)
+                              .join(" ");
+                          }
+                          return "";
+                        })
+                        .join(", ");
+                    }
+                    if (typeof teachers === "string") return teachers;
+                    if (teachers && typeof teachers === "object") {
+                      const { title, forename, surname } = teachers;
+                      return [title, forename, surname]
+                        .filter(Boolean)
+                        .join(" ");
+                    }
+                    return "";
+                  })();
+
+                  return (
+                    <div class={props.styles!["openlink-pr-couple"]}>
+                      <span
+                        class={props.styles!["openlink__footer-icon"]}
+                        style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
+                      >
+                        <Icon icon="mdi:clock-outline" width="24" height="24" />
+                      </span>
+                      <span class={props.styles!["openlink__footer-content"]}>
+                        <span class={props.styles!["openlink__footer-title"]}>
+                          Current Lesson
+                        </span>
+                        <span class={props.styles!["openlink__footer-body"]}>
+                          {lesson.teaching_group.subject} –{" "}
+                          {lesson.teaching_group.name}
+                        </span>
+                        <span class={props.styles!["openlink__footer"]}>
+                          {lesson.room.name} / {teacherNames}
+                        </span>
+                      </span>
+                    </div>
+                  );
+                }
+
+                return null;
+              })()}
           </div>
 
           <div
             class={props.styles!["openlink__footer-item"]}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
-            {status().lessons?.next && (
-              <div class={props.styles!["openlink-pr-couple"]}>
-                <span
-                  class={props.styles!["openlink__footer-icon"]}
-                  style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
-                >
-                  <Icon
-                    icon="streamline:fastforward-clock-remix"
-                    width="20"
-                    height="20"
-                  />
-                </span>
-                <span class={props.styles!["openlink__footer-content"]}>
-                  <span class={props.styles!["openlink__footer-title"]}>
-                    Next Lesson
-                  </span>
-                  <span class={props.styles!["openlink__footer-body"]}>
-                    {status().lessons.next.teaching_group.subject} -{" "}
-                    {status().lessons.next.teaching_group.name}
-                  </span>
-                  <span class={props.styles!["openlink__footer"]}>
-                    {status().lessons.next.room.name}
-                    {" / "}
-                    {(() => {
-                      const lesson = status().lessons.next;
-                      const teachers = lesson.teachers || lesson.teacher;
+            {props.clubData?.length > 0 &&
+              (() => {
+                const currentClub = props.clubData.find((club) => {
+                  if (!club.next_session) return false;
+                  const nextLesson = status().lessons?.next;
+                  if (!nextLesson?.start_time) return false;
 
-                      if (!teachers) return "";
+                  const [lessonHour, lessonMinute] = nextLesson.start_time
+                    .split(":")
+                    .map(Number);
 
-                      if (Array.isArray(teachers)) {
-                        return teachers
-                          .map((t) => {
-                            if (typeof t === "string") return t;
-                            if (typeof t === "object" && t !== null) {
-                              const { title, forename, surname } = t;
-                              return [title, forename, surname]
-                                .filter(Boolean)
-                                .join(" ");
-                            }
-                            return "";
-                          })
-                          .join(", ");
-                      }
+                  const sessionDate = new Date(club.next_session);
+                  return (
+                    sessionDate.getHours() === lessonHour &&
+                    sessionDate.getMinutes() === lessonMinute &&
+                    sessionDate.getDate() === new Date().getDate() &&
+                    sessionDate.getMonth() === new Date().getMonth() &&
+                    sessionDate.getFullYear() === new Date().getFullYear()
+                  );
+                });
 
-                      if (typeof teachers === "string") return teachers;
+                if (currentClub) {
+                  return (
+                    <div class={props.styles!["openlink-pr-couple"]}>
+                      <span
+                        class={props.styles!["openlink__footer-icon"]}
+                        style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
+                      >
+                        <Icon
+                          icon="streamline:fastforward-clock-remix"
+                          width="20"
+                          height="20"
+                        />
+                      </span>
+                      <span class={props.styles!["openlink__footer-content"]}>
+                        <span class={props.styles!["openlink__footer-title"]}>
+                          Next Club
+                        </span>
+                        <span class={props.styles!["openlink__footer-body"]}>
+                          {currentClub.name}
+                        </span>
+                        <span class={props.styles!["openlink__footer"]}>
+                          Location: {currentClub.location}
+                        </span>
+                      </span>
+                    </div>
+                  );
+                }
 
-                      if (typeof teachers === "object" && teachers !== null) {
-                        const { title, forename, surname } = teachers;
-                        return [title, forename, surname]
-                          .filter(Boolean)
-                          .join(" ");
-                      }
+                if (status().lessons?.next) {
+                  const lesson = status().lessons.next;
+                  const teachers = lesson.teachers || lesson.teacher;
 
-                      return "";
-                    })()}
-                  </span>
-                </span>
-              </div>
-            )}
+                  const teacherNames = (() => {
+                    if (!teachers) return "";
+                    if (Array.isArray(teachers)) {
+                      return teachers
+                        .map((t) => {
+                          if (typeof t === "string") return t;
+                          if (t && typeof t === "object") {
+                            const { title, forename, surname } = t;
+                            return [title, forename, surname]
+                              .filter(Boolean)
+                              .join(" ");
+                          }
+                          return "";
+                        })
+                        .join(", ");
+                    }
+                    if (typeof teachers === "string") return teachers;
+                    if (teachers && typeof teachers === "object") {
+                      const { title, forename, surname } = teachers;
+                      return [title, forename, surname]
+                        .filter(Boolean)
+                        .join(" ");
+                    }
+                    return "";
+                  })();
+
+                  return (
+                    <div class={props.styles!["openlink-pr-couple"]}>
+                      <span
+                        class={props.styles!["openlink__footer-icon"]}
+                        style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
+                      >
+                        <Icon
+                          icon="streamline:fastforward-clock-remix"
+                          width="20"
+                          height="20"
+                        />
+                      </span>
+                      <span class={props.styles!["openlink__footer-content"]}>
+                        <span class={props.styles!["openlink__footer-title"]}>
+                          Next Lesson
+                        </span>
+                        <span class={props.styles!["openlink__footer-body"]}>
+                          {lesson.teaching_group.subject} –{" "}
+                          {lesson.teaching_group.name}
+                        </span>
+                        <span class={props.styles!["openlink__footer"]}>
+                          {lesson.room.name} / {teacherNames}
+                        </span>
+                      </span>
+                    </div>
+                  );
+                }
+
+                return null;
+              })()}
           </div>
 
           <div

@@ -8,6 +8,8 @@ import Footer from "../components/footer";
 import Settings from "../components/settings";
 import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
+import type { ClubsResponse } from "../types/api/clubs";
+
 function Main() {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
@@ -43,6 +45,7 @@ function Main() {
     showSettings: boolean;
     theme: string;
     updateAvailable: boolean;
+    clubData: ClubsResponse.ClubType[];
   }>({
     progress: 0,
     navWheelAnim: false,
@@ -51,6 +54,7 @@ function Main() {
     showSettings: false,
     theme: "default",
     updateAvailable: false,
+    clubData: [],
   });
 
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
@@ -100,6 +104,7 @@ function Main() {
           edulink={edulink}
           setOverlay={(value: JSXElement) => setState("overlay", value)}
           theme={state.theme}
+          clubData={state.clubData}
         />
       ));
 
@@ -134,14 +139,29 @@ function Main() {
     setStyles(normalized);
 
     if (window.__TAURI__) {
-      const { check } = await import("@tauri-apps/plugin-updater");
-      const update = await check();
-      if (update) {
-        setState("updateAvailable", true);
-        console.log(
-          `[INFO] Update available! ${update.version} from ${update.date}`,
-        );
+      try {
+        const { check } = await import("@tauri-apps/plugin-updater");
+        const update = await check();
+        if (update) {
+          setState("updateAvailable", true);
+          console.log(
+            `[INFO] Update available! ${update.version} from ${update.date}`,
+          );
+        }
+      } catch (err) {
+        console.log("[INFO] Skipping update check:", err);
       }
+    }
+
+    const clubData = await edulink.getClubs(
+      true,
+      sessionData()?.user?.id,
+      sessionData()?.authtoken,
+      apiUrl(),
+    );
+    console.log(clubData);
+    if (clubData.result.success) {
+      setState("clubData", clubData.result.clubs);
     }
 
     const handleResize = () => {
@@ -305,6 +325,7 @@ function Main() {
           edulink={edulink}
           loadItemPage={loadItemPage}
           styles={styles()}
+          clubData={state.clubData}
         />
       </div>
     </Show>

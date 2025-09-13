@@ -18,6 +18,7 @@ export default {
     if (member === undefined || member === null) {
       member = true;
     }
+    console.log("AJJ");
     const method = "EduLink.Clubs";
     const requestBody: ClubsRequest = {
       jsonrpc: "2.0",
