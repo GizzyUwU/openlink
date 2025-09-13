@@ -14,24 +14,22 @@ let dropdownRef: HTMLDivElement | undefined;
 let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
+import type { ClubsResponse } from "../../types/api/clubs";
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
   edulink: any;
   theme: string;
+  clubData: ClubsResponse.ClubType[];
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
   const toast = useToast();
   const [state, setState] = createStore<{
-    dayPeriods?: TimetableResponse.Period[];
-    dayLessons?: TimetableResponse.Lesson[];
-    dayName?: string;
-    weekName?: string;
-    daysOfWeek?: string[];
+    currentDay?: TimetableResponse.Day;
+    currentWeek?: TimetableResponse.Week;
     weeks?: TimetableResponse.Week[];
-    daysThisWeek?: TimetableResponse.Day[];
     weekDropdown?: boolean;
   }>({});
   const [sessionData] = makePersisted(createSignal<any>(null), {
@@ -74,20 +72,23 @@ function Timetable(props: {
 
     if (timetable.result.success) {
       props.setProgress(0.8);
-      setState("weeks", timetable.result.weeks);
       const currentWeek =
         timetable.result.weeks.find((w) => w.is_current) ||
         timetable.result.weeks[0];
-      const currentDay =
-        currentWeek.days.find((d) => d.is_current) || currentWeek.days[0];
 
-      setState("dayName", currentDay.name);
-      setState("weekName", currentWeek.name);
-      setState("dayPeriods", currentDay.periods);
-      setState("dayLessons", currentDay.lessons || []);
-      setState("weeks", timetable.result.weeks || []);
-      setState("daysThisWeek", currentWeek.days || []);
-      console.log(currentWeek.days);
+      const validDays = currentWeek.days.filter(
+        (d) => d.lessons?.length || d.periods?.length,
+      );
+
+      const currentDay = validDays.find((d) => d.is_current) || validDays[0];
+      setState({
+        currentDay: currentDay || {},
+        currentWeek: {
+          ...currentWeek,
+          days: validDays.length ? validDays : [],
+        },
+        weeks: timetable.result.weeks || [],
+      });
       props.setProgress(1);
     } else {
       toast.showToast(
@@ -135,7 +136,7 @@ function Timetable(props: {
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
                 class={`${styles()!["__nav"]} inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer`}
               >
-                <div>{state.weekName}</div>
+                <div>{state.currentWeek?.name}</div>
                 <svg
                   class="w-5 h-5 ml-2 -mr-1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -160,15 +161,20 @@ function Timetable(props: {
                       {(week) => (
                         <button
                           onClick={() => {
-                            if (week.name === state.weekName)
+                            if (week.name === state.currentWeek?.name)
                               return setState("weekDropdown", false);
-                            const matched = week.days?.[0];
-                            setState("weekDropdown", false);
-                            setState("dayName", matched?.name);
-                            setState("weekName", week?.name);
-                            setState("dayPeriods", matched?.periods || []);
-                            setState("dayLessons", matched?.lessons || []);
-                            setState("daysThisWeek", week.days);
+
+                            const validDays = week.days.filter(
+                              (d) => d.lessons?.length || d.periods?.length,
+                            );
+                            return setState({
+                              weekDropdown: false,
+                              currentWeek: {
+                                ...week,
+                                days: validDays.length ? validDays : [],
+                              },
+                              currentDay: week.days?.[0],
+                            });
                           }}
                           class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                         >
@@ -181,20 +187,15 @@ function Timetable(props: {
               </Show>
             </div>
             <div class="flex space-x-4 pr-[10px]">
-              <For each={state.daysThisWeek}>
+              <For each={state.currentWeek?.days}>
                 {(day) => (
                   <button
                     type="button"
                     onClick={() => {
-                      setState("dayName", day.name);
-                      const matched = state.daysThisWeek?.find(
-                        (d) => d.name === day.name,
-                      );
-                      setState("dayPeriods", matched?.periods || []);
-                      setState("dayLessons", matched?.lessons || []);
+                      setState({ currentDay: day });
                     }}
                     class={`text-sm text-white cursor-pointer ${
-                      day.name === state.dayName
+                      day.name === state.currentDay?.name
                         ? "border-b border-blue-400"
                         : ""
                     }`}
@@ -220,10 +221,10 @@ function Timetable(props: {
                 <div>End</div>
               </div>
               <div class={styles()!["t-body"]}>
-                <For each={state.dayPeriods}>
+                <For each={state.currentDay?.periods}>
                   {(period) => {
                     const lesson = createMemo(() =>
-                      state.dayLessons?.find(
+                      state.currentDay?.lessons?.find(
                         (l) => Number(l.period_id) === Number(period.id),
                       ),
                     );
@@ -250,18 +251,12 @@ function Timetable(props: {
                         </div>
                         <div
                           class={`
-                            ${styles()!["t-timetable__text"]},
                             ${styles()!["_room"]},
                           `}
                         >
                           {lesson()?.room?.name || "-"}
                         </div>
-                        <div
-                          class={`
-                            ${styles()!["t-timetable__text"]}
-                            ${styles()!["_teacher"]}
-                          `}
-                        >
+                        <div class={styles()!["_teacher"]}>
                           {(() => {
                             const t = lesson()?.teacher ?? lesson()?.teachers;
                             if (!t) return "-";
