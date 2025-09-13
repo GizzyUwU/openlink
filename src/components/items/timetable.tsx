@@ -72,23 +72,120 @@ function Timetable(props: {
 
     if (timetable.result.success) {
       props.setProgress(0.8);
-      const currentWeek =
-        timetable.result.weeks.find((w) => w.is_current) ||
-        timetable.result.weeks[0];
+      const currentWeek = timetable.result.weeks.find((w) => w.is_current) ||
+        timetable.result.weeks[0] || { days: [], name: "Unknown" };
 
       const validDays = currentWeek.days.filter(
         (d) => d.lessons?.length || d.periods?.length,
       );
 
-      const currentDay = validDays.find((d) => d.is_current) || validDays[0];
-      setState({
-        currentDay: currentDay || {},
-        currentWeek: {
-          ...currentWeek,
-          days: validDays.length ? validDays : [],
-        },
-        weeks: timetable.result.weeks || [],
-      });
+      const currentDay = validDays.find((d) => d.is_current) || validDays[3];
+
+      const todaysClubs = Array.isArray(props.clubData)
+        ? props.clubData.filter((club) => {
+            if (!club?.next_session) return false;
+            const clubDateStr = new Date(club.next_session)
+              .toISOString()
+              .split("T")[0];
+            console.log(clubDateStr, currentDay.date);
+            return clubDateStr === currentDay.date;
+          })
+        : [];
+
+      console.log(todaysClubs);
+      if (currentDay?.periods && currentDay?.lessons) {
+        const updatedLessons = [...currentDay.lessons];
+        const updatedPeriods = [...currentDay.periods];
+        const dayShort = currentDay.date
+          ? new Date(currentDay.date).toLocaleDateString("en-US", {
+              weekday: "short",
+            })
+          : "Day";
+
+        todaysClubs.forEach((club) => {
+          const clubTime = club.next_session.split(" ")[1].slice(0, 5);
+
+          let matchingPeriod = currentDay.periods.find(
+            (p) => p.start_time === clubTime,
+          );
+
+          if (!matchingPeriod) {
+            for (let i = 0; i < updatedPeriods.length; i++) {
+              const periodStart = updatedPeriods[i].start_time;
+              const periodEnd = updatedPeriods[i].end_time;
+              const nextPeriodStart = updatedPeriods[i + 1]?.start_time;
+              if (
+                clubTime > periodStart &&
+                nextPeriodStart &&
+                clubTime < nextPeriodStart
+              ) {
+                matchingPeriod = {
+                  id: club.id,
+                  name: `${dayShort}:Club`,
+                  start_time: clubTime,
+                  end_time: nextPeriodStart,
+                };
+
+                updatedPeriods.splice(i + 1, 0, matchingPeriod);
+                break;
+              }
+            }
+          }
+          const lessonIndex = updatedLessons.findIndex(
+            (lesson) => lesson.period_id === matchingPeriod?.id,
+          );
+
+          if (lessonIndex !== -1) {
+            updatedLessons[lessonIndex] = {
+              ...updatedLessons[lessonIndex],
+              description: club.name,
+              room: { id: 0, name: club.location || "TBD" },
+              room_id: 0,
+              teacher: undefined,
+              teachers: undefined,
+            };
+          } else {
+            console.log("scream");
+            updatedLessons.push({
+              description: club.name,
+              period_id: Number(matchingPeriod?.id),
+              room: { id: 1, name: club.location || "TBD" },
+              room_id: 0,
+              teacher: undefined,
+              teachers: undefined,
+              teaching_group: {
+                id: 1,
+                name: "",
+                subject: club.name,
+              },
+              teaching_group_id: undefined,
+            });
+          }
+        });
+
+        setState({
+          currentDay: {
+            ...currentDay,
+            periods: updatedPeriods,
+            lessons: updatedLessons,
+          },
+          currentWeek: {
+            ...currentWeek,
+            days: validDays.length ? validDays : [],
+          },
+          weeks: timetable.result.weeks || [],
+        });
+      } else {
+        setState({
+          currentDay: currentDay || {},
+          currentWeek: {
+            ...currentWeek,
+            days: validDays.length ? validDays : [],
+          },
+          weeks: timetable.result.weeks || [],
+        });
+      }
+
       props.setProgress(1);
     } else {
       toast.showToast(

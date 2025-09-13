@@ -9,17 +9,17 @@ type TimetableParams = {
 export type TimetableRequest = ApiRequest<"EduLink.Timetable", TimetableParams>;
 
 export interface TimetablePeriods {
-  id: string;
-  external_id: string;
+  id: string | number;
+  external_id?: string | number;
   name: string;
   start_time: string;
   end_time: string;
-  empty: boolean;
+  empty?: boolean;
 }
 
 export interface TimetableLessons {
   description: string;
-  period_id: number;
+  period_id: string | number;
   room: {
     id: number;
     name: string;
@@ -40,14 +40,14 @@ export interface TimetableLessons {
         forename: string;
         surname: string;
       }
-    | string
+    | string[]
   )[];
-  teaching_group: {
+  teaching_group?: {
     id: number;
     name: string;
     subject: string;
   };
-  teaching_group_id: number;
+  teaching_group_id?: number;
 }
 
 export interface TimetableDay {
