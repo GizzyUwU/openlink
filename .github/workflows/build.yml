@@ -15,6 +15,8 @@ jobs:
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
+      - uses: actions/checkout@v4
+
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         id: version-bump
