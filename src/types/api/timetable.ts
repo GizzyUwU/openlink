@@ -27,7 +27,7 @@ export interface TimetableLessons {
   room_id: number;
   teacher?:
     | {
-        id: number;
+        id: number | string;
         title: string;
         forename: string;
         surname: string;

@@ -92,7 +92,6 @@ function Timetable(props: {
           })
         : [];
 
-      console.log(todaysClubs);
       if (currentDay?.periods && currentDay?.lessons) {
         const updatedLessons = [...currentDay.lessons];
         const updatedPeriods = [...currentDay.periods];
@@ -112,7 +111,6 @@ function Timetable(props: {
           if (!matchingPeriod) {
             for (let i = 0; i < updatedPeriods.length; i++) {
               const periodStart = updatedPeriods[i].start_time;
-              const periodEnd = updatedPeriods[i].end_time;
               const nextPeriodStart = updatedPeriods[i + 1]?.start_time;
               if (
                 clubTime > periodStart &&
@@ -341,7 +339,7 @@ function Timetable(props: {
                             </div>
                             <div class={styles()!["_grey"]}>
                               {lesson()?.teaching_group?.name
-                                ? `(${lesson()?.teaching_group.name})`
+                                ? `(${lesson()?.teaching_group?.name})`
                                 : ""}
                             </div>
                           </div>
@@ -355,22 +353,30 @@ function Timetable(props: {
                         </div>
                         <div class={styles()!["_teacher"]}>
                           {(() => {
-                            const t = lesson()?.teacher ?? lesson()?.teachers;
-                            if (!t) return "-";
+                            const tRaw =
+                              lesson()?.teacher ?? lesson()?.teachers;
+                            if (!tRaw) return "-";
 
-                            if (Array.isArray(t)) {
-                              return t
-                                .map((teacher) =>
-                                  typeof teacher === "string"
-                                    ? teacher
-                                    : `${teacher.title ?? ""} ${teacher.forename ?? ""} ${teacher.surname ?? ""}`.trim(),
+                            const teachersArray: (
+                              | string
+                              | {
+                                  id: number | string;
+                                  title?: string;
+                                  forename?: string;
+                                  surname?: string;
+                                }
+                            )[] = Array.isArray(tRaw)
+                              ? tRaw.flatMap((t) =>
+                                  Array.isArray(t) ? t : [t],
                                 )
-                                .join(", ");
-                            }
+                              : [tRaw];
 
-                            return typeof t === "string"
-                              ? t
-                              : `${t.title ?? ""} ${t.forename ?? ""} ${t.surname ?? ""}`.trim();
+                            return teachersArray
+                              .map((teacher) => {
+                                if (typeof teacher === "string") return teacher;
+                                return `${teacher.title ?? ""} ${teacher.forename ?? ""} ${teacher.surname ?? ""}`.trim();
+                              })
+                              .join(", ");
                           })()}
                         </div>
                         <div>{period.start_time}</div>

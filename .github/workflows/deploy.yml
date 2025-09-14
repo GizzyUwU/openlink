@@ -39,6 +39,9 @@ jobs:
       - name: Create .nojekyll
         run: touch dist/.nojekyll
 
+      - name: Fix Routes Returning 404 because GH Pages
+        run: cp dist/index.html dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
