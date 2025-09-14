@@ -57,7 +57,7 @@ export type ClubsResponse = EdulinkApiResponse<{
 export type ClubResponse = EdulinkApiResponse<{
   method: "EduLink.Club";
   success: boolean;
-  clubs: Club;
+  club: Club;
 }>;
 
 export type AttendClubResponse = EdulinkApiResponse<{

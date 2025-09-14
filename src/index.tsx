@@ -7,6 +7,7 @@ import { ParentComponent } from "solid-js";
 import "./public/assets/css/index.css";
 import { Edulink } from "./api/edulink.tsx";
 import { Toast } from "./components/toast.tsx";
+import type { StatusResponse } from "./types/auth.ts";
 const ProtectedRoute = lazy(() => import("./protectRoute.tsx"));
 const Login = lazy(() => import("./pages/login.tsx"));
 const Main = lazy(() => import("./pages/dash.tsx"));
@@ -44,7 +45,9 @@ render(
               path="/"
               component={() => (
                 <ProtectedRoute>
-                  <Main />
+                  {({ status }: { status: StatusResponse | null }) => (
+                    <Main status={status} />
+                  )}
                 </ProtectedRoute>
               )}
             />

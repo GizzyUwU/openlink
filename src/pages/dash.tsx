@@ -9,8 +9,9 @@ import Settings from "../components/settings";
 import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 import type { ClubsResponse } from "../types/api/clubs";
+import { StatusResponse } from "../types/auth";
 
-function Main() {
+function Main(props: { status: StatusResponse | null }) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
   const toast = useToast();
@@ -326,6 +327,7 @@ function Main() {
           loadItemPage={loadItemPage}
           styles={styles()}
           clubData={state.clubData}
+          status={props.status}
         />
       </div>
     </Show>

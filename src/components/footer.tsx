@@ -2,6 +2,7 @@ import { onMount, onCleanup, createSignal, Show } from "solid-js";
 import { Icon } from "@iconify-icon/solid";
 import { useNavigate } from "@solidjs/router";
 import type { ClubsResponse } from "../types/api/clubs";
+import type { StatusResponse } from "../types/auth";
 export default function Footer(props: {
   sessionData: any;
   apiUrl: any;
@@ -11,6 +12,7 @@ export default function Footer(props: {
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   styles: { [key: string]: string } | null;
   clubData: ClubsResponse.ClubType[];
+  status: StatusResponse | null;
 }) {
   const navigate = useNavigate();
   const [status, setStatus] = createSignal<any>({});
@@ -30,8 +32,11 @@ export default function Footer(props: {
       }
     };
 
-    fetchStatus();
-
+    if (props.status !== null) {
+      setStatus(props.status);
+    } else {
+      fetchStatus();
+    }
     const checkStatus = setInterval(
       fetchStatus,
       (props.sessionData().miscellaneous.status_interval ?? 60) * 1000,
@@ -49,35 +54,37 @@ export default function Footer(props: {
           >
             {props.clubData?.length > 0 &&
               (() => {
-                const currentClub = props.clubData.find((club) => {
-                  if (!club.next_session) return false;
-                  const nextLesson = status().lessons?.current;
-                  if (!nextLesson?.start_time) return false;
+                const currentClub = props.clubData.find(
+                  (club: ClubsResponse.ClubType) => {
+                    if (!club.next_session) return false;
+                    const nextLesson = status().lessons?.current;
+                    if (!nextLesson?.start_time) return false;
 
-                  const [lessonHour, lessonMinute] = nextLesson.start_time
-                    .split(":")
-                    .map(Number);
+                    const [lessonHour, lessonMinute] = nextLesson.start_time
+                      .split(":")
+                      .map(Number);
 
-                  const now = new Date();
-                  const lessonDate = new Date(
-                    now.getFullYear(),
-                    now.getMonth(),
-                    now.getDate(),
-                    lessonHour,
-                    lessonMinute,
-                    0,
-                    0,
-                  );
+                    const now = new Date();
+                    const lessonDate = new Date(
+                      now.getFullYear(),
+                      now.getMonth(),
+                      now.getDate(),
+                      lessonHour,
+                      lessonMinute,
+                      0,
+                      0,
+                    );
 
-                  const sessionDate = new Date(club.next_session);
-                  const sameDay =
-                    sessionDate.getFullYear() === lessonDate.getFullYear() &&
-                    sessionDate.getMonth() === lessonDate.getMonth() &&
-                    sessionDate.getDate() === lessonDate.getDate();
+                    const sessionDate = new Date(club.next_session);
+                    const sameDay =
+                      sessionDate.getFullYear() === lessonDate.getFullYear() &&
+                      sessionDate.getMonth() === lessonDate.getMonth() &&
+                      sessionDate.getDate() === lessonDate.getDate();
 
-                  if (!sameDay) return false;
-                  return sessionDate.getTime() < lessonDate.getTime();
-                });
+                    if (!sameDay) return false;
+                    return sessionDate.getTime() < lessonDate.getTime();
+                  },
+                );
 
                 if (currentClub) {
                   return (

@@ -14,7 +14,8 @@ let dropdownRef: HTMLDivElement | undefined;
 let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
-import type { ClubsResponse } from "../../types/api/clubs";
+import type { ClubResponse, ClubsResponse } from "../../types/api/clubs";
+import { Edulink } from "../../api/edulink";
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
@@ -79,7 +80,7 @@ function Timetable(props: {
         (d) => d.lessons?.length || d.periods?.length,
       );
 
-      const currentDay = validDays.find((d) => d.is_current) || validDays[3];
+      const currentDay = validDays.find((d) => d.is_current) || validDays[0];
 
       const todaysClubs = Array.isArray(props.clubData)
         ? props.clubData.filter((club) => {
@@ -87,7 +88,6 @@ function Timetable(props: {
             const clubDateStr = new Date(club.next_session)
               .toISOString()
               .split("T")[0];
-            console.log(clubDateStr, currentDay.date);
             return clubDateStr === currentDay.date;
           })
         : [];
@@ -101,7 +101,12 @@ function Timetable(props: {
             })
           : "Day";
 
-        todaysClubs.forEach((club) => {
+        for (const club of todaysClubs) {
+          const clubDetails: ClubResponse = await props.edulink.getClub(
+            club.id,
+            sessionData()?.authtoken,
+            apiUrl(),
+          );
           const clubTime = club.next_session.split(" ")[1].slice(0, 5);
 
           let matchingPeriod = currentDay.periods.find(
@@ -109,57 +114,114 @@ function Timetable(props: {
           );
 
           if (!matchingPeriod) {
+            let inserted = false;
+
             for (let i = 0; i < updatedPeriods.length; i++) {
               const periodStart = updatedPeriods[i].start_time;
               const nextPeriodStart = updatedPeriods[i + 1]?.start_time;
-              if (
-                clubTime > periodStart &&
-                nextPeriodStart &&
-                clubTime < nextPeriodStart
-              ) {
+
+              if (clubTime < periodStart) {
                 matchingPeriod = {
                   id: club.id,
                   name: `${dayShort}:Club`,
                   start_time: clubTime,
-                  end_time: nextPeriodStart,
+                  end_time: periodStart,
                 };
 
-                updatedPeriods.splice(i + 1, 0, matchingPeriod);
+                updatedPeriods.splice(i, 0, matchingPeriod);
+                inserted = true;
+                break;
+              }
+
+              if (nextPeriodStart) {
+                if (clubTime > periodStart && clubTime < nextPeriodStart) {
+                  matchingPeriod = {
+                    id: club.id,
+                    name: `${dayShort}:Club`,
+                    start_time: clubTime,
+                    end_time: nextPeriodStart,
+                  };
+                  updatedPeriods.splice(i + 1, 0, matchingPeriod);
+                  inserted = true;
+                  break;
+                }
+              } else {
+                matchingPeriod = {
+                  id: club.id,
+                  name: `${dayShort}:Club`,
+                  start_time: clubTime,
+                  end_time: "-",
+                };
+
+                updatedPeriods.push(matchingPeriod);
+                inserted = true;
                 break;
               }
             }
+
+            if (!inserted) {
+              matchingPeriod = {
+                id: club.id,
+                name: `${dayShort}:Club`,
+                start_time: clubTime,
+                end_time: updatedPeriods[0]?.start_time || clubTime,
+              };
+              updatedPeriods.unshift(matchingPeriod);
+            }
           }
+
           const lessonIndex = updatedLessons.findIndex(
             (lesson) => lesson.period_id === matchingPeriod?.id,
           );
 
           if (lessonIndex !== -1) {
+            const leaders: string[] = Array.isArray(
+              clubDetails.result.club.leaders_names,
+            )
+              ? clubDetails.result.club.leaders_names.filter(
+                  (name): name is string => !!name,
+                )
+              : clubDetails.result.club.leaders_names
+                ? [clubDetails.result.club.leaders_names]
+                : [];
+
             updatedLessons[lessonIndex] = {
               ...updatedLessons[lessonIndex],
               description: club.name,
-              room: { id: 0, name: club.location || "TBD" },
-              room_id: 0,
-              teacher: undefined,
-              teachers: undefined,
-            };
-          } else {
-            console.log("scream");
-            updatedLessons.push({
-              description: club.name,
-              period_id: Number(matchingPeriod?.id),
               room: { id: 1, name: club.location || "TBD" },
-              room_id: 0,
-              teacher: undefined,
-              teachers: undefined,
+              room_id: 1,
+              teacher: leaders,
               teaching_group: {
                 id: 1,
                 name: "",
                 subject: club.name,
               },
-              teaching_group_id: undefined,
+            };
+          } else {
+            const leaders: string[] = Array.isArray(
+              clubDetails.result.club.leaders_names,
+            )
+              ? clubDetails.result.club.leaders_names.filter(
+                  (name): name is string => !!name,
+                )
+              : clubDetails.result.club.leaders_names
+                ? [clubDetails.result.club.leaders_names]
+                : [];
+
+            updatedLessons.push({
+              description: club.name,
+              period_id: Number(matchingPeriod?.id),
+              room: { id: 1, name: club.location || "TBD" },
+              room_id: 1,
+              teacher: leaders,
+              teaching_group: {
+                id: 1,
+                name: "",
+                subject: club.name,
+              },
             });
           }
-        });
+        }
 
         setState({
           currentDay: {
@@ -355,6 +417,7 @@ function Timetable(props: {
                           {(() => {
                             const tRaw =
                               lesson()?.teacher ?? lesson()?.teachers;
+
                             if (!tRaw) return "-";
 
                             const teachersArray: (
