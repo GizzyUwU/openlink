@@ -55,9 +55,38 @@ function Homework(props: {
 
     if (response.result.success) {
       props.setProgress(0.8);
+      const parseDueDate = (dateStr: string) => {
+        if (!dateStr) return Infinity;
+        const [year, month, day] = dateStr.trim().split("-").map(Number);
+        return new Date(year, month - 1, day).getTime();
+      };
+
+      const sortCurrent = (
+        a: HomeworkResponse.Items,
+        b: HomeworkResponse.Items,
+      ) => {
+        const now = Date.now();
+        return (
+          parseDueDate(a.due_date) - now - (parseDueDate(b.due_date) - now)
+        );
+      };
+
+      const sortPast = (a: HomeworkResponse.Items, b: HomeworkResponse.Items) =>
+        parseDueDate(b.due_date) - parseDueDate(a.due_date);
+
+      const currentHomework = [
+        ...(response.result.homework.current || []),
+      ].sort(sortCurrent);
+      const pastHomework = [...(response.result.homework.past || [])].sort(
+        sortPast,
+      );
+
       setState({
-        homework: response.result.homework || [],
-        shownHomework: response.result.homework.current || [],
+        homework: {
+          current: currentHomework,
+          past: pastHomework,
+        },
+        shownHomework: currentHomework,
       });
       props.setProgress(1);
     } else {
@@ -147,7 +176,13 @@ function Homework(props: {
               </div>
               <div class={styles()!["t-body"]}>
                 {state.shownHomework?.map((data: HomeworkResponse.Items) => (
-                  <div class={styles()!["t-row"]}>
+                  <div
+                    class={styles()!["t-row"]}
+                    style={{
+                      "padding-top": `${Math.min(12 + data.activity.length * 0.15, 6)}px`,
+                      "padding-bottom": `${Math.min(12 + data.activity.length * 0.15, 6)}px`,
+                    }}
+                  >
                     <div class={styles()!["_due"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
