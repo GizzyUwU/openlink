@@ -10,7 +10,19 @@ on:
       - ".github/workflows/deploy.yml"
 
 jobs:
+  version-bump:
+    runs-on: "ubuntu-22.04"
+    outputs:
+      new-tag: ${{ steps.version-bump.outputs.newTag }}
+    steps:
+      - name: "Automated Version Bump"
+        id: version-bump
+        uses: "rimonhanna/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   publish-tauri:
+    needs: version-bump
     permissions:
       contents: write
     strategy:
@@ -27,17 +39,6 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: "Automated Version Bump"
-        id: version-bump
-        uses: "phips28/gh-action-bump-version@master"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          minor-wording: "add,Adds,new,adds,feat"
-          major-wording: "MAJOR,cut-major,major"
-          patch-wording: "patch,fixes"
-          rc-wording: "RELEASE,alpha"
 
       - name: Disable initramfs update
         if: startsWith(matrix.platform, 'ubuntu-22.04')
@@ -80,8 +81,8 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
-          tagName: v${{ steps.version-bump.outputs.newTag }}
-          releaseName: "Openlink v${{ steps.version-bump.outputs.newTag }}"
+          tagName: v${{ needs.version-bump.outputs.new-tag }}
+          releaseName: "Openlink v${{ needs.version-bump.outputs.new-tag }}"
           releaseBody: ${{ github.event.head_commit.message }}
           includeUpdaterJson: true
           releaseDraft: true

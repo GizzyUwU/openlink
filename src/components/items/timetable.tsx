@@ -15,7 +15,6 @@ let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 import type { ClubResponse, ClubsResponse } from "../../types/api/clubs";
-import { Edulink } from "../../api/edulink";
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
