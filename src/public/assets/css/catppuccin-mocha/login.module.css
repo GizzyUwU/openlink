@@ -41,6 +41,7 @@ body {
     position: relative;
 }
 
+
 .f-login .__field {
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
     color: #fff;
@@ -221,4 +222,28 @@ body {
     font-size: 22px;
     font-weight: 400;
     padding: 30px 90px;
+}
+
+.idp_btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 36px;
+    width: 200px;
+    background: var(--surface1);
+    color: var(--text);
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+
+.__idp-row {
+    display: block;
+    position: relative;
+}
+.__idp-label {
+    display: flex;
+    justify-content: center;
 }

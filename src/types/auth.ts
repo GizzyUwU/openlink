@@ -4,6 +4,7 @@ export type AuthMethod =
   | "School.FromCode"
   | "Edulink.SchoolDetails"
   | "Edulink.Login"
+  | "EduLink.LoginFromIDP"
   | "Edulink.Status";
 
 type FromCodeParams = {
@@ -23,6 +24,12 @@ type LoginParams = {
   establishment_id: string;
 };
 
+type LoginFromIDPParams = {
+  from_app: boolean;
+  fcm_token_old: string;
+  token: string;
+};
+
 type StatusParams = {
   last_visible: number;
   format: number;
@@ -34,6 +41,10 @@ export type SchoolDetailsRequest = ApiRequest<
   SchoolDetailsParams
 >;
 export type LoginRequest = ApiRequest<"EduLink.Login", LoginParams>;
+export type LoginFromIDPRequest = ApiRequest<
+  "EduLink.LoginFromIDP",
+  LoginFromIDPParams
+>;
 export type StatusRequest = ApiRequest<"EduLink.Status", StatusParams>;
 
 export type FromCodeResponse = SchoolApiResponse<{
@@ -49,6 +60,7 @@ export type SchoolDetailsResponse = EdulinkApiResponse<{
     name: string;
     idp_login: {
       microsoftonline: string;
+      google: string;
     };
     idp_only: boolean;
     logo?: string;

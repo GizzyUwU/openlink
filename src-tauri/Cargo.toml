@@ -30,6 +30,8 @@ tauri-plugin-keyring = "0.1.0"
 tauri-plugin-store = "2"
 tauri-plugin-fs = "2"
 tauri-plugin-process = "2"
+url = "2.5.7"
+tokio = "1.47.1"
 
 [profile.dev]
 incremental = true

@@ -5,6 +5,8 @@ import { makePersisted } from "@solid-primitives/storage";
 import { createStore } from "solid-js/store";
 import { useNavigate } from "@solidjs/router";
 import { callApi } from "../api/fetch";
+import { SchoolDetailsResponse } from "../types/auth";
+import { CgMicrosoft, CgGoogle } from "solid-icons/cg";
 
 declare global {
   interface Window {
@@ -64,7 +66,7 @@ function Login() {
     code: string;
     username: string;
     password: string;
-    schoolData: any;
+    schoolData: SchoolDetailsResponse | null;
     loading: boolean;
     hasText: boolean;
     hasLoginText: boolean;
@@ -74,7 +76,7 @@ function Login() {
     code: "",
     username: "",
     password: "",
-    schoolData: {},
+    schoolData: null,
     loading: true,
     hasText: false,
     hasLoginText: false,
@@ -250,12 +252,21 @@ function Login() {
     const data = await edulink.findSchoolFromCode(state.code);
     if (data.result.success) {
       setApiUrl(data.result.school.server);
-      const school = await edulink.schoolLookup(
+      const school: SchoolDetailsResponse = await edulink.schoolLookup(
         data.result.school.school_id,
         data.result.school.server,
       );
       if (school.result.success) {
-        setState("schoolData", school.result);
+        // if (school.result.establishment.idp_login.microsoftonline) {
+        //   if (window.__TAURI__) {
+        //     const data = await window.__TAURI__.core.invoke("run_oauth", {
+        //       url: school.result.establishment.idp_login.microsoftonline,
+        //     });
+
+        //     console.log(data);
+        //   }
+        // }
+        setState("schoolData", school);
       } else {
         toast.showToast("Error", "Failed to fetch school details", "error");
       }
@@ -284,13 +295,13 @@ function Login() {
     const account = await edulink.accountSignin(
       state.username,
       state.password,
-      state.schoolData.establishment.id,
+      state.schoolData.result.establishment.id,
       apiUrl(),
     );
 
     if (account.result.success) {
       const userData = {
-        id: state.schoolData.establishment.id,
+        id: state.schoolData.result.establishment.id,
         apiUrl: apiUrl(),
         password: state.password,
       };
@@ -313,6 +324,43 @@ function Login() {
         ]);
         await store.save();
       }
+      setSession(account.result);
+      navigate("/", { replace: true });
+      return;
+    } else {
+      setState("loading", false);
+      toast.showToast(
+        `Request Id ${account.result.metrics.uniqid}`,
+        account.result.error ?? "Unknown error",
+        "error",
+      );
+    }
+  }
+
+  async function handleIDP(idp_id: "microsoftonline" | "google") {
+    if (state.schoolData === null) {
+      toast.showToast(
+        "Error",
+        "How did we end up here? Find a school first",
+        "error",
+      );
+      return;
+    }
+    console.log("a");
+
+    const idpUrl = state.schoolData?.result?.establishment?.idp_login?.[idp_id];
+    setState("loading", true);
+
+    const idpData: {
+      idp_token: string;
+      server: string;
+    } = await window.__TAURI__.core.invoke("run_oauth", {
+      url: idpUrl,
+    });
+
+    const account = await edulink.loginFromIDP(idpData.idp_token, apiUrl());
+
+    if (account.result.success) {
       setSession(account.result);
       navigate("/", { replace: true });
       return;
@@ -358,7 +406,12 @@ function Login() {
       <Show when={!state.loading}>
         <div class={state.styles!["login-container"]}>
           <Show when={!state.demo}>
-            <Show when={Object.keys(state.schoolData).length === 0}>
+            <Show
+              when={
+                state.schoolData === null ||
+                Object.keys(state.schoolData?.result).length === 0
+              }
+            >
               <div
                 class={`${state.styles!["f-login"]} ${state.hasText ? state.styles!["has-text"] : ""}`}
                 style="max-height: 159px;"
@@ -404,7 +457,12 @@ function Login() {
                 </div>
               </div>
             </Show>
-            <Show when={Object.keys(state.schoolData).length > 0}>
+            <Show
+              when={
+                state.schoolData !== null &&
+                Object.keys(state.schoolData).length > 0
+              }
+            >
               <div class="login-wrapper">
                 <div
                   class={state.styles!["__logo"]}
@@ -412,15 +470,16 @@ function Login() {
                     "background-size": "70%",
                     "background-repeat": "no-repeat",
                     "background-position": "50%",
-                    "background-image": state.schoolData?.establishment?.logo
-                      ? `url(data:image/*;base64,${state.schoolData.establishment.logo})`
+                    "background-image": state.schoolData?.result?.establishment
+                      ?.logo
+                      ? `url(data:image/*;base64,${state.schoolData.result.establishment.logo})`
                       : undefined,
                   }}
                 ></div>
                 <span
                   class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
                 >
-                  {state.schoolData?.establishment?.name || "a"}
+                  {state.schoolData?.result.establishment?.name || "a"}
                 </span>
                 <div
                   class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
@@ -496,6 +555,61 @@ function Login() {
                         </div>
                       </label>
                     </div>
+                    <Show
+                      when={
+                        state.schoolData !== null &&
+                        Object.keys(
+                          state.schoolData.result.establishment.idp_login,
+                        ).length > 0 &&
+                        window.__TAURI__
+                      }
+                    >
+                      <div class={state.styles!["__idp-row"]}>
+                        <Show
+                          when={
+                            state.schoolData?.result.establishment.idp_login
+                              .microsoftonline
+                          }
+                        >
+                          <div class={state.styles!["__idp-label"]}>
+                            <button
+                              type="button"
+                              onClick={() => handleIDP("microsoftonline")}
+                              class={state.styles!["idp_btn"]}
+                            >
+                              <div class={state.styles!["idp_logo"]}>
+                                <CgMicrosoft />
+                              </div>
+                              <div class={state.styles!["idp_text"]}>
+                                Microsoft
+                              </div>
+                            </button>
+                          </div>
+                        </Show>
+                        <Show
+                          when={
+                            state.schoolData?.result.establishment.idp_login
+                              .google
+                          }
+                        >
+                          <div class={state.styles!["__idp-label"]}>
+                            <button
+                              type="button"
+                              onClick={() => handleIDP("google")}
+                              class={state.styles!["idp_btn"]}
+                            >
+                              <div class={state.styles!["idp_logo"]}>
+                                <CgGoogle />
+                              </div>
+                              <div class={state.styles!["idp_text"]}>
+                                Google
+                              </div>
+                            </button>
+                          </div>
+                        </Show>
+                      </div>
+                    </Show>
+
                     <div class={state.styles!["__button"]}>
                       <button class={state.styles!["__submit"]} type="submit">
                         Log In
