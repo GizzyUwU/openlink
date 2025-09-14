@@ -12,6 +12,9 @@ on:
 jobs:
   version-bump:
     runs-on: "ubuntu-22.04"
+    permissions:
+      contents: write
+
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
