@@ -16,10 +16,15 @@ jobs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
       - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
         id: version-bump
-        uses: "rimonhanna/gh-action-bump-version@master"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          minor-wording: "add,Adds,new,adds"
+          major-wording: "MAJOR,cut-major,major"
+          patch-wording: "patch,fixes"
+          rc-wording: "RELEASE,alpha"
 
   publish-tauri:
     needs: version-bump
