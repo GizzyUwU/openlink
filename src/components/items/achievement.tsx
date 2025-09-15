@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show, For } from "solid-js";
+import { onMount, createSignal, Show, For } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
@@ -126,10 +126,6 @@ function AchievementComponent(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    props.setProgress(0);
   });
 
   return (

@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show } from "solid-js";
+import { onMount, createSignal, Show } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
@@ -54,10 +54,6 @@ function Personal(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    props.setProgress(0);
   });
 
   function getPersonalFields() {

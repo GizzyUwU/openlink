@@ -258,7 +258,6 @@ function Timetable(props: {
 
   onCleanup(() => {
     document.removeEventListener("click", handleClick);
-    props.setProgress(0);
   });
   return (
     <Transition

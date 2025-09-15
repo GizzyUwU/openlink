@@ -116,7 +116,8 @@ function Main(props: { status: StatusResponse | null }) {
       window.history.pushState({}, "", url.toString());
     } catch (err) {
       console.error(
-        `Failed to load component: ../components/items/${id}.tsx`,
+        "Failed to load component: ../components/items/%s.tsx",
+        id.replace(/%/g, "%%"),
         err,
       );
 

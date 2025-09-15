@@ -136,13 +136,6 @@ function Messages(props: {
     }
   });
 
-  onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
-    props.setProgress(0);
-  });
-
   const formatDate = (dateString: string | null): string => {
     if (!dateString) return "-";
     const date = new Date(dateString);

@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show } from "solid-js";
+import { onMount, createSignal, Show } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { AiOutlineDownload } from "solid-icons/ai";
@@ -66,13 +66,6 @@ function Documents(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
-    props.setProgress(0);
   });
 
   const handleDownload = async (file: string, documentId: string) => {

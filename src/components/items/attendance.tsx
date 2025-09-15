@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show, For } from "solid-js";
+import { onMount, createSignal, Show, For } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
@@ -90,13 +90,6 @@ function Attendance(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
-    props.setProgress(0);
   });
 
   function calculatePercent(

@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, For, Show } from "solid-js";
+import { onMount, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import type { FormsResponse } from "../../types/api/forms";
@@ -62,13 +62,6 @@ function Forms(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    if (document.getElementById("item-styling")) {
-      document.getElementById("item-styling")?.remove();
-    }
-    props.setProgress(0);
   });
 
   function formatDate({

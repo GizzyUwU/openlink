@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, For, Show } from "solid-js";
+import { onMount, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
 import type { ExamsResponse } from "../../types/api/exams";
@@ -128,10 +128,6 @@ function Exams(props: {
       );
       props.setProgress(0);
     }
-  });
-
-  onCleanup(() => {
-    props.setProgress(0);
   });
 
   function formatDate({
