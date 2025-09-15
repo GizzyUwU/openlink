@@ -195,6 +195,53 @@
                 document
                     .querySelector(".titlebar")
                     ?.style.setProperty("display", "grid");
+
+                import("@tauri-apps/api/webview").then(
+                    async ({ getCurrentWebview }) => {
+                        const webview = await getCurrentWebview();
+                        const { load } = await import(
+                            "@tauri-apps/plugin-store"
+                        );
+                        const store = await load("users.json", {
+                            autoSave: false,
+                            defaults: {},
+                        });
+                        const zoomStore = await store.get("zoom");
+                        if (typeof zoomStore === "number" && zoomStore > 0) {
+                            await webview.setZoom(zoomStore);
+                        }
+                        let currentZoom = 1;
+
+                        const setZoom = async (zoom) => {
+                            currentZoom = zoom;
+                            await webview.setZoom(zoom);
+                            await store.set("zoom", zoom);
+                            await store.save();
+                            console.log(zoom);
+                        };
+
+                        window.addEventListener("keydown", async (e) => {
+                            if (!e.ctrlKey) return;
+
+                            switch (e.key) {
+                                case "+":
+                                case "=":
+                                    await setZoom(currentZoom * 1.1);
+                                    e.preventDefault();
+                                    break;
+                                case "-":
+                                    await setZoom(currentZoom / 1.1);
+                                    e.preventDefault();
+                                    break;
+                                case "0":
+                                    await setZoom(1);
+                                    e.preventDefault();
+                                    break;
+                            }
+                        });
+                    },
+                );
+
                 import("@tauri-apps/api/window").then(
                     ({ getCurrentWindow }) => {
                         const appWindow = getCurrentWindow();
