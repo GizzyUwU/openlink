@@ -14,11 +14,13 @@ jobs:
     runs-on: "ubuntu-22.04"
     permissions:
       contents: write
-
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
 
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
