@@ -80,6 +80,14 @@ function Timetable(props: {
       );
 
       const currentDay = validDays.find((d) => d.is_current) || validDays[0];
+      setState({
+        currentDay: currentDay || {},
+        currentWeek: {
+          ...currentWeek,
+          days: validDays.length ? validDays : [],
+        },
+        weeks: timetable.result.weeks || [],
+      });
 
       const todaysClubs = Array.isArray(props.clubData)
         ? props.clubData.filter((club) => {
@@ -91,7 +99,11 @@ function Timetable(props: {
           })
         : [];
 
-      if (currentDay?.periods && currentDay?.lessons) {
+      if (
+        currentDay?.periods &&
+        currentDay?.lessons &&
+        todaysClubs.length > 0
+      ) {
         const updatedLessons = [...currentDay.lessons];
         const updatedPeriods = [...currentDay.periods];
         const dayShort = currentDay.date
@@ -234,15 +246,6 @@ function Timetable(props: {
           },
           weeks: timetable.result.weeks || [],
         });
-      } else {
-        setState({
-          currentDay: currentDay || {},
-          currentWeek: {
-            ...currentWeek,
-            days: validDays.length ? validDays : [],
-          },
-          weeks: timetable.result.weeks || [],
-        });
       }
 
       props.setProgress(1);
@@ -348,6 +351,13 @@ function Timetable(props: {
                     type="button"
                     onClick={async () => {
                       const currentDay = day;
+                      setState({
+                        currentDay: {
+                          ...currentDay,
+                          periods: currentDay.periods,
+                          lessons: currentDay.lessons,
+                        },
+                      });
                       const updatedLessons = [...currentDay.lessons];
                       const updatedPeriods = [...currentDay.periods];
                       const dayShort = currentDay.date
@@ -367,97 +377,99 @@ function Timetable(props: {
                           })
                         : [];
 
-                      for (const club of todaysClubs) {
-                        const clubDetails: ClubResponse =
-                          await props.edulink.getClub(
-                            club.id,
-                            sessionData()?.authtoken,
-                            apiUrl(),
+                      if (todaysClubs.length > 0) {
+                        for (const club of todaysClubs) {
+                          const clubDetails: ClubResponse =
+                            await props.edulink.getClub(
+                              club.id,
+                              sessionData()?.authtoken,
+                              apiUrl(),
+                            );
+
+                          const clubTime = club.next_session
+                            .split(" ")[1]
+                            .slice(0, 5);
+
+                          let matchingPeriod = updatedPeriods.find(
+                            (p) => p.start_time === clubTime,
                           );
+                          if (!matchingPeriod) {
+                            let inserted = false;
+                            for (let i = 0; i < updatedPeriods.length; i++) {
+                              const periodStart = updatedPeriods[i].start_time;
+                              const nextPeriodStart =
+                                updatedPeriods[i + 1]?.start_time;
 
-                        const clubTime = club.next_session
-                          .split(" ")[1]
-                          .slice(0, 5);
+                              if (clubTime < periodStart) {
+                                matchingPeriod = {
+                                  id: club.id,
+                                  name: `${dayShort}:Club`,
+                                  start_time: clubTime,
+                                  end_time: periodStart,
+                                };
+                                updatedPeriods.splice(i, 0, matchingPeriod);
+                                inserted = true;
+                                break;
+                              }
 
-                        let matchingPeriod = updatedPeriods.find(
-                          (p) => p.start_time === clubTime,
-                        );
-                        if (!matchingPeriod) {
-                          let inserted = false;
-                          for (let i = 0; i < updatedPeriods.length; i++) {
-                            const periodStart = updatedPeriods[i].start_time;
-                            const nextPeriodStart =
-                              updatedPeriods[i + 1]?.start_time;
+                              if (
+                                nextPeriodStart &&
+                                clubTime > periodStart &&
+                                clubTime < nextPeriodStart
+                              ) {
+                                matchingPeriod = {
+                                  id: club.id,
+                                  name: `${dayShort}:Club`,
+                                  start_time: clubTime,
+                                  end_time: nextPeriodStart,
+                                };
+                                updatedPeriods.splice(i + 1, 0, matchingPeriod);
+                                inserted = true;
+                                break;
+                              }
+                            }
 
-                            if (clubTime < periodStart) {
+                            if (!inserted) {
                               matchingPeriod = {
                                 id: club.id,
                                 name: `${dayShort}:Club`,
                                 start_time: clubTime,
-                                end_time: periodStart,
+                                end_time: "-",
                               };
-                              updatedPeriods.splice(i, 0, matchingPeriod);
-                              inserted = true;
-                              break;
-                            }
-
-                            if (
-                              nextPeriodStart &&
-                              clubTime > periodStart &&
-                              clubTime < nextPeriodStart
-                            ) {
-                              matchingPeriod = {
-                                id: club.id,
-                                name: `${dayShort}:Club`,
-                                start_time: clubTime,
-                                end_time: nextPeriodStart,
-                              };
-                              updatedPeriods.splice(i + 1, 0, matchingPeriod);
-                              inserted = true;
-                              break;
+                              updatedPeriods.push(matchingPeriod);
                             }
                           }
 
-                          if (!inserted) {
-                            matchingPeriod = {
-                              id: club.id,
-                              name: `${dayShort}:Club`,
-                              start_time: clubTime,
-                              end_time: "-",
-                            };
-                            updatedPeriods.push(matchingPeriod);
-                          }
+                          const lessonIndex = updatedLessons.findIndex(
+                            (l) => l.period_id === matchingPeriod?.id,
+                          );
+                          const leaders: string[] = Array.isArray(
+                            clubDetails.result.club.leaders_names,
+                          )
+                            ? clubDetails.result.club.leaders_names.filter(
+                                (n): n is string => !!n,
+                              )
+                            : clubDetails.result.club.leaders_names
+                              ? [clubDetails.result.club.leaders_names]
+                              : [];
+
+                          const clubLesson = {
+                            description: club.name,
+                            period_id: Number(matchingPeriod?.id),
+                            room: { id: 1, name: club.location || "TBD" },
+                            room_id: 1,
+                            teacher: leaders,
+                            teaching_group: {
+                              id: 1,
+                              name: "",
+                              subject: club.name,
+                            },
+                          };
+
+                          if (lessonIndex !== -1)
+                            updatedLessons[lessonIndex] = clubLesson;
+                          else updatedLessons.push(clubLesson);
                         }
-
-                        const lessonIndex = updatedLessons.findIndex(
-                          (l) => l.period_id === matchingPeriod?.id,
-                        );
-                        const leaders: string[] = Array.isArray(
-                          clubDetails.result.club.leaders_names,
-                        )
-                          ? clubDetails.result.club.leaders_names.filter(
-                              (n): n is string => !!n,
-                            )
-                          : clubDetails.result.club.leaders_names
-                            ? [clubDetails.result.club.leaders_names]
-                            : [];
-
-                        const clubLesson = {
-                          description: club.name,
-                          period_id: Number(matchingPeriod?.id),
-                          room: { id: 1, name: club.location || "TBD" },
-                          room_id: 1,
-                          teacher: leaders,
-                          teaching_group: {
-                            id: 1,
-                            name: "",
-                            subject: club.name,
-                          },
-                        };
-
-                        if (lessonIndex !== -1)
-                          updatedLessons[lessonIndex] = clubLesson;
-                        else updatedLessons.push(clubLesson);
                       }
 
                       setState({

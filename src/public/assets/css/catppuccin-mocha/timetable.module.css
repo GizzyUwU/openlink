@@ -67,7 +67,7 @@
     flex-grow: 1;
     overflow-y: auto;
     min-height: 0;
-    max-height: 90%;
+    max-height: 100%;
 }
 
 .t-header,
