@@ -242,7 +242,11 @@ function Timetable(props: {
           },
           currentWeek: {
             ...currentWeek,
-            days: validDays.length ? validDays : [],
+            days: (validDays.length ? validDays : []).map((day) =>
+              day.date === currentDay.date
+                ? { ...day, periods: updatedPeriods, lessons: updatedLessons }
+                : day,
+            ),
           },
           weeks: timetable.result.weeks || [],
         });
@@ -477,6 +481,20 @@ function Timetable(props: {
                           ...currentDay,
                           periods: updatedPeriods,
                           lessons: updatedLessons,
+                        },
+                        currentWeek: {
+                          ...state.currentWeek,
+                          name: state.currentWeek?.name ?? "Unknown",
+                          is_current: state.currentWeek?.is_current ?? false,
+                          days: (state.currentWeek?.days || []).map((day) =>
+                            day.date === currentDay.date
+                              ? {
+                                  ...day,
+                                  periods: updatedPeriods,
+                                  lessons: updatedLessons,
+                                }
+                              : day,
+                          ),
                         },
                       });
                     }}
