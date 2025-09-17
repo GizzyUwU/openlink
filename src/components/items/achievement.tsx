@@ -31,7 +31,7 @@ function AchievementComponent(props: {
     totalPoints: number;
     achievementTypes: ABLookupResponse.achievementType[];
     achievementAwards: ABLookupResponse.achievementAwards[];
-    achievementActivities: ABLookupResponse.achievementActvities[];
+    achievementActivities: ABLookupResponse.achievementActivities[];
   }>({
     achievements: [],
     employees: [],
@@ -80,13 +80,10 @@ function AchievementComponent(props: {
     const userId = sessionData()?.user?.id;
     const token = sessionData()?.authtoken;
     const url = apiUrl();
-
-    // Fire requests independently
     const achievementPromise = edulink.getAchievement(userId, token, url);
     const lookupPromise = edulink.getABLookup(token, url);
 
-    // Handle achievement first → show immediately
-    achievementPromise.then((achievementResponse) => {
+    achievementPromise.then((achievementResponse: AchievementResponse) => {
       if (achievementResponse.result.success) {
         const total = (achievementResponse.result.achievement || []).reduce(
           (sum: number, achievement: any) => {
@@ -102,8 +99,7 @@ function AchievementComponent(props: {
           totalPoints: total,
         });
 
-        // Progress enough to trigger display
-        props.setProgress(0.9);
+        props.setProgress(Math.max(props.progress(), 0.9));
       } else {
         toast.showToast(
           "Error",
@@ -114,7 +110,6 @@ function AchievementComponent(props: {
       }
     });
 
-    // Lookup runs after → fills in names/details later
     lookupPromise.then((lookupResponse: ABLookupResponse) => {
       if (lookupResponse.result.success) {
         setState({
@@ -125,8 +120,7 @@ function AchievementComponent(props: {
             lookupResponse.result.achievement_award_types || [],
         });
 
-        // Once lookup is done, mark fully complete
-        props.setProgress(1);
+        props.setProgress(Math.max(props.progress(), 1));
       } else {
         toast.showToast(
           "Error",

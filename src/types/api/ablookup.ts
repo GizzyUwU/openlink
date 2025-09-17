@@ -109,6 +109,6 @@ export namespace ABLookupResponse {
   export type behaviourStatusesType = behaviourStatuses;
   export type behaviourTimesType = behaviourTimes;
   export type behaviourType = behaviourTypes;
-  export type achievementActivities = achievementActivityTypes[];
-  export type achievementAwards = achievementActivityTypes[];
+  export type achievementActivities = achievementActivityTypes;
+  export type achievementAwards = achievementActivityTypes;
 }
