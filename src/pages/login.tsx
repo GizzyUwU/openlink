@@ -240,6 +240,16 @@ function Login() {
         }
       }
     }
+    if (new URLSearchParams(window.location.search).has("code")) {
+      const code = new URLSearchParams(window.location.search).get("code") ?? "";
+
+      setState({
+        code,
+        hasText: code.trim().length > 0,
+      });
+      findCode();
+    }
+
     setState("loading", false);
   });
 
