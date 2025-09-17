@@ -85,6 +85,8 @@ function BehaviourComponent(props: {
       ...cssModule,
     };
     setStyles(normalized);
+
+    // Start both requests, but don’t block rendering on lookup
     const behaviourPromise = edulink.getBehaviour(
       sessionData()?.user?.id,
       sessionData()?.authtoken,
@@ -95,24 +97,6 @@ function BehaviourComponent(props: {
       sessionData()?.authtoken,
       apiUrl(),
     );
-
-    lookupPromise.then((lookupResponse: ABLookupResponse) => {
-      if (lookupResponse.result.success) {
-        setState({
-          behaviourTypes: lookupResponse.result.behaviour_types,
-          behaviourLocations: lookupResponse.result.behaviour_locations,
-          behaviourStatuses: lookupResponse.result.behaviour_statuses,
-          behaviourActions: lookupResponse.result.behaviour_actions_taken,
-        });
-        props.setProgress(Math.max(props.progress(), 0.7));
-      } else {
-        toast.showToast(
-          "Error",
-          lookupResponse.result.error ?? "Unknown error",
-          "error",
-        );
-      }
-    });
 
     behaviourPromise.then((behaviourResponse: BehaviourResponse) => {
       if (behaviourResponse.result.success) {
@@ -144,8 +128,23 @@ function BehaviourComponent(props: {
       }
     });
 
-    Promise.all([behaviourPromise, lookupPromise]).then(() => {
-      props.setProgress(1);
+    lookupPromise.then((lookupResponse: ABLookupResponse) => {
+      if (lookupResponse.result.success) {
+        setState({
+          behaviourTypes: lookupResponse.result.behaviour_types,
+          behaviourLocations: lookupResponse.result.behaviour_locations,
+          behaviourStatuses: lookupResponse.result.behaviour_statuses,
+          behaviourActions: lookupResponse.result.behaviour_actions_taken,
+        });
+      } else {
+        toast.showToast(
+          "Error",
+          lookupResponse.result.error ?? "Unknown error",
+          "error",
+        );
+      }
+
+      props.setProgress(Math.max(props.progress(), 1));
     });
   });
 
@@ -171,7 +170,7 @@ function BehaviourComponent(props: {
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1}>
+      <Show when={props.progress() === 0.9 || props.progress() === 1}>
         <div class={styles()!["box-container"]}>
           <div
             class="flex items-center justify-end w-full pr-[10px]"

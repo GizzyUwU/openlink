@@ -79,7 +79,7 @@ export type ABLookupResponse = EdulinkApiResponse<{
   method: "EduLink.AchievementBehaviourLookups";
   success: boolean;
   achievement_activity_types: achievementActivityTypes[];
-  achievementAwardTypes: achievementActivityTypes[];
+  achievement_award_types: achievementActivityTypes[];
   achievement_hidden_fields_on_entry: string[];
   achievement_points_editable: boolean;
   achievement_require_fields: string[];
@@ -109,6 +109,6 @@ export namespace ABLookupResponse {
   export type behaviourStatusesType = behaviourStatuses;
   export type behaviourTimesType = behaviourTimes;
   export type behaviourType = behaviourTypes;
-  export type achievementActvities = achievementActivityTypes[];
+  export type achievementActivities = achievementActivityTypes[];
   export type achievementAwards = achievementActivityTypes[];
 }

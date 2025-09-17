@@ -81,51 +81,61 @@ function AchievementComponent(props: {
     const token = sessionData()?.authtoken;
     const url = apiUrl();
 
-    const [achievementResponse, lookupResponse] = await Promise.all([
-      edulink.getAchievement(userId, token, url),
-      edulink.getABLookup(token, url),
-    ]);
+    // Fire requests independently
+    const achievementPromise = edulink.getAchievement(userId, token, url);
+    const lookupPromise = edulink.getABLookup(token, url);
 
-    if (achievementResponse.result.success) {
-      props.setProgress(0.8);
-      const total = (achievementResponse.result.achievement || []).reduce(
-        (sum: number, achievement: any) => {
-          const points = Number(achievement.points);
-          return sum + (isNaN(points) ? 0 : points);
-        },
-        0,
-      );
-      setState({
-        achievements: achievementResponse.result.achievement || [],
-        employees: achievementResponse.result.employees || [],
-        totalPoints: total,
-      });
-    } else {
-      toast.showToast(
-        "Error",
-        achievementResponse.result.error ?? "Unknown error",
-        "error",
-      );
-      props.setProgress(0);
-    }
+    // Handle achievement first → show immediately
+    achievementPromise.then((achievementResponse) => {
+      if (achievementResponse.result.success) {
+        const total = (achievementResponse.result.achievement || []).reduce(
+          (sum: number, achievement: any) => {
+            const points = Number(achievement.points);
+            return sum + (isNaN(points) ? 0 : points);
+          },
+          0,
+        );
 
-    if (lookupResponse.result.success) {
-      props.setProgress(0.9);
-      setState({
-        achievementTypes: lookupResponse.result.achievement_types || [],
-        achievementActivities:
-          lookupResponse.result.achievement_activity_types || [],
-        achievementAwards: lookupResponse.result.achievement_award_types || [],
-      });
-      props.setProgress(1);
-    } else {
-      toast.showToast(
-        "Error",
-        lookupResponse.result.error ?? "Unknown error",
-        "error",
-      );
-      props.setProgress(0);
-    }
+        setState({
+          achievements: achievementResponse.result.achievement || [],
+          employees: achievementResponse.result.employees || [],
+          totalPoints: total,
+        });
+
+        // Progress enough to trigger display
+        props.setProgress(0.9);
+      } else {
+        toast.showToast(
+          "Error",
+          achievementResponse.result.error ?? "Unknown error",
+          "error",
+        );
+        props.setProgress(0);
+      }
+    });
+
+    // Lookup runs after → fills in names/details later
+    lookupPromise.then((lookupResponse: ABLookupResponse) => {
+      if (lookupResponse.result.success) {
+        setState({
+          achievementTypes: lookupResponse.result.achievement_types || [],
+          achievementActivities:
+            lookupResponse.result.achievement_activity_types || [],
+          achievementAwards:
+            lookupResponse.result.achievement_award_types || [],
+        });
+
+        // Once lookup is done, mark fully complete
+        props.setProgress(1);
+      } else {
+        toast.showToast(
+          "Error",
+          lookupResponse.result.error ?? "Unknown error",
+          "error",
+        );
+        props.setProgress(0);
+      }
+    });
   });
 
   return (
@@ -150,7 +160,9 @@ function AchievementComponent(props: {
         a.finished.then(done);
       }}
     >
-      <Show when={props.progress() === 1 && styles()}>
+      <Show
+        when={(props.progress() === 0.9 || props.progress() === 1) && styles()}
+      >
         <div class={styles()!["box-container"]}>
           <div class={styles()!["t-container"]}>
             <div
