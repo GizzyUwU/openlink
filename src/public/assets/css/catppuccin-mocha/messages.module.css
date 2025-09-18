@@ -6,7 +6,6 @@
     height: 100%;
     flex-grow: 1;
     min-height: 0;
-    max-width: calc(100vw - 185px);
 }
 
 .t-container {
@@ -16,10 +15,12 @@
     min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
+    margin-bottom: 10px;
 }
 
 .b-message {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
@@ -31,11 +32,12 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+    margin-bottom: 15px;
+    max-width: calc(100vw - 185px);
 }
 
 .b-messages {
     display: flex;
-    height: 100%;
     flex-grow: 1;
     min-height: 0;
 }
@@ -57,6 +59,16 @@
     display: flex;
     padding: 10px;
     position: relative;
+}
+
+
+.__unread {
+    display: flex;
+    border-radius: 50%;
+    background-color: red;
+    height: 8px;
+    width: 8px;
+    z-index: 10;
 }
 
 .l-messages__photos {
@@ -130,10 +142,12 @@
 
 .l-messages__content {
     background: var(--surface0);
-    height: 100%;
+    flex: 1 1 auto;
     width: calc(100% - 330px);
     flex-grow: 1;
+    overflow-y: auto;
     min-height: 0;
+    max-height: 100%;
     padding: 10px 20px 15px;
     display: flex;
     flex-direction: column;
@@ -187,7 +201,8 @@
 
 .__content .__body {
     color: var(--text);
-    flex-grow: 1;
-    overflow-y: auto;
+    flex: 1 1 auto;   /* grow + shrink */
+    min-height: 0;    /* allow shrinking */
+    overflow-y: auto; /* scroll inside this element */
     padding: 20px 30px 0 60px;
 }

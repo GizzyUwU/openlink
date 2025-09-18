@@ -15,6 +15,18 @@ export type CommunicatorOutboxRequest = ApiRequest<
   CommunicatorParams
 >;
 
+export type CommunicatorMarkRead = ApiRequest<
+  "Communicator.MessageMarkRead",
+  {
+     message_id: string | number;
+  }
+>;
+
+export type MarkReadResponse = EdulinkApiResponse<{
+  method: "Communicator.MessageMarkRead";
+  success: boolean;
+}>;
+
 export interface Attachments {
   id: string | number;
   filename: string;

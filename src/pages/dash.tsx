@@ -292,12 +292,12 @@ function Main(props: { status: StatusResponse | null }) {
                 ref={(el) => (itemBoxEl = el)}
                 style={{
                   position: "fixed",
-                  top: "100px",
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
                   "max-height": "calc(100vh - 200px)",
                   "max-width": maxWidth(),
+                  "margin-top": "20px",
                   width: "100%",
                 }}
               >
