@@ -1,5 +1,5 @@
 import { ExamsRequest, ExamsResponse } from "../../types/api/exams";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -23,7 +23,7 @@ export default {
         learner_id,
         page,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

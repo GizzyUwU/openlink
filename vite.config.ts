@@ -11,6 +11,9 @@ export default defineConfig(async () => ({
       "@": "/src",
     },
   },
+  setupFiles: [
+    './src/setup.ts'
+  ],
   optimizeDeps: {
     include: ["@tauri-apps/api"],
   },

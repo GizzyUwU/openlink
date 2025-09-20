@@ -1,5 +1,5 @@
 import { DocumentRequest, DocumentResponse } from "../../types/api/documents";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 /**
@@ -36,7 +36,7 @@ export default {
         document_id,
         format: 2,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
     const response = await callApi(serverUrl + "?method=" + method, {

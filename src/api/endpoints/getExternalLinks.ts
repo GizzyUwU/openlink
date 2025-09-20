@@ -1,5 +1,5 @@
 import { LinksRequest, LinksResponse } from "../../types/api/links";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -16,7 +16,7 @@ export default {
       jsonrpc: "2.0",
       method,
       params: {},
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

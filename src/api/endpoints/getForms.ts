@@ -1,5 +1,5 @@
 import { FormsRequest, FormsResponse } from "../../types/api/forms";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -19,7 +19,7 @@ export default {
       params: {
         for: forType,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

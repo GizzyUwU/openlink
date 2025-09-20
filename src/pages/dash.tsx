@@ -297,7 +297,8 @@ function Main(props: { status: StatusResponse | null }) {
                   height: "100%",
                   "max-height": "calc(100vh - 200px)",
                   "max-width": maxWidth(),
-                  "margin-top": "20px",
+                  "margin-top": "10px",
+                  "margin-bottom": "10px",
                   width: "100%",
                 }}
               >

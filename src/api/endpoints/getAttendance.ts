@@ -2,7 +2,7 @@ import {
   AttendanceRequest,
   AttendanceResponse,
 } from "../../types/api/attendance";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -25,7 +25,7 @@ export default {
         learner_id: learnerId,
         format: 3,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

@@ -1,5 +1,5 @@
 import { LoginRequest, LoginResponse } from "../../types/auth";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -31,7 +31,7 @@ export default {
         password,
         establishment_id: schoolId.toString(),
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

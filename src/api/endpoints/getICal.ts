@@ -1,27 +1,22 @@
-import { CommunicatorMarkRead, MarkReadResponse } from "../../types/api/communicator";
+import { ICalRequest, ICalResponse } from "../../types/api/ical";
 
 import { callApi } from "../fetch";
 
 export default {
-    name: "markAsRead",
+    name: "getICal",
     handler: async function (
-        message_id: string | number,
         key: string,
         serverUrl: string,
-    ): Promise<MarkReadResponse> {
+    ): Promise<ICalResponse> {
         if (!serverUrl)
             throw new Error("API URL is not set. Please find school api url.");
         if (!key)
             throw new Error("API key is not set. Please provide api key.");
-        if (!message_id)
-            throw new Error("Message ID is required to mark it as read.");
-        const method = "Communicator.MessageMarkRead";
-        const requestBody: CommunicatorMarkRead = {
+        const method = "EduLink.ICalendars";
+        const requestBody: ICalRequest = {
             jsonrpc: "2.0",
             method,
-            params: {
-                message_id,
-            },
+            params: {},
             uuid: window.crypto.randomUUID(),
             id: "1",
         };

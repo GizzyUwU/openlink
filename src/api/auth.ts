@@ -1,5 +1,5 @@
 import { FromCodeRequest, FromCodeResponse, SchoolDetailsRequest, SchoolDetailsResponse } from "../types/auth";
-import { v4 as uuid } from "uuid";
+
 
 export async function findSchoolFromCode(
   code: string,
@@ -8,7 +8,7 @@ export async function findSchoolFromCode(
     jsonrpc: "2.0",
     method: "School.FromCode",
     params: { code },
-    uuid: uuid(),
+    uuid: window.crypto.randomUUID(),
     id: "1",
   };
 
@@ -41,7 +41,7 @@ export async function schoolLookup(
     jsonrpc: "2.0",
     method,
     params: { establishment_id: id.toString(), from_app: false },
-    uuid: uuid(),
+    uuid: window.crypto.randomUUID(),
     id: "1",
   };
 

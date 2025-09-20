@@ -1,5 +1,5 @@
 import { StatusRequest, StatusResponse } from "../../types/auth";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -20,7 +20,7 @@ export default {
         last_visible: 0,
         format: 2,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

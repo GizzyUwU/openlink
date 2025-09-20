@@ -1,5 +1,5 @@
 import { TimetableRequest, TimetableResponse } from "../../types/api/timetable";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -23,7 +23,7 @@ export default {
         learner_id: learnerId,
         format: 2,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
     const response = await callApi(serverUrl + "?method=" + method, {

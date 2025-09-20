@@ -75,7 +75,8 @@ export default function Settings(props: {
   showSettings: Setter<boolean>;
 }) {
   const [themeSelection, triggerSelection] = createSignal<boolean>(false);
-  const [update, setUpdate] = createSignal<{ version?: string | number }>({});
+  const [update, setUpdate] = createSignal<{ version: string } | null>();
+
   onMount(async () => {
     if (window.__TAURI__) {
       const { check } = await import("@tauri-apps/plugin-updater");
@@ -83,8 +84,10 @@ export default function Settings(props: {
       if (update) {
         setUpdate({ version: update.version });
         console.log(
-          `[INFO] Update available! ${update.version} from ${update.date}`,
+          `[INFO] Update available! ${update.currentVersion} to ${update.version} from ${update.date}`,
         );
+      } else {
+        setUpdate({ version: "latest" });
       }
     }
   });
@@ -105,11 +108,15 @@ export default function Settings(props: {
       </button>
       <h2 class="text-xl text-center">Settings</h2>
       <h2 class="text-[16px] text-center mb-4">
-        {update().version
-          ? `Version ${update().version} available.`
-          : "Latest Version"}
+        {update() === null ? (
+          "Checking for updates..."
+        ) : update()?.version === "latest" ? (
+          "Latest Version"
+        ) : (
+          `Version ${update()?.version} available.`
+        )}
       </h2>
-      <Show when={update().version}>
+      <Show when={update() !== null && update()?.version !== "latest"}>
         <button
           type="button"
           onClick={() => updateToLatest()}

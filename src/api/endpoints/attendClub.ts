@@ -1,5 +1,5 @@
 import { AttendClubRequest, AttendClubResponse } from "../../types/api/clubs";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -28,7 +28,7 @@ export default {
         learner_id,
         attending,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

@@ -3,7 +3,7 @@ import {
   InboxResponse,
   // OutboxResponse,
 } from "../../types/api/communicator";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -27,7 +27,7 @@ export default {
           page,
           per_page,
         },
-        uuid: uuid(),
+        uuid: window.crypto.randomUUID(),
         id: "1",
       };
 

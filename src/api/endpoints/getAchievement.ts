@@ -2,7 +2,7 @@ import {
   AchievementRequest,
   AchievementResponse,
 } from "../../types/api/achievement";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -24,7 +24,7 @@ export default {
       params: {
         learner_id: learnerId,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

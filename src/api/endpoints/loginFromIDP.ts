@@ -1,5 +1,5 @@
 import { LoginFromIDPRequest, LoginResponse } from "../../types/auth";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -22,7 +22,7 @@ export default {
         fcm_token_old: "",
         token: idpToken,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

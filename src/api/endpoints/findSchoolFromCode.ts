@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+
 import { FromCodeRequest, FromCodeResponse } from "../../types/auth";
 import { callApi } from "../fetch";
 
@@ -11,7 +11,7 @@ export default {
       jsonrpc: "2.0",
       method: "School.FromCode",
       params: { code },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

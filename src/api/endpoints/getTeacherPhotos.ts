@@ -2,7 +2,7 @@ import {
   TeacherPhotosRequest,
   TeacherPhotosResponse,
 } from "../../types/api/teacherPhotos";
-import { v4 as uuid } from "uuid";
+
 import { callApi } from "../fetch";
 
 export default {
@@ -23,7 +23,7 @@ export default {
         employee_ids: Array.isArray(employees) ? employees : [employees],
         size: 160,
       },
-      uuid: uuid(),
+      uuid: window.crypto.randomUUID(),
       id: "1",
     };
 

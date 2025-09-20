@@ -304,6 +304,7 @@ function Messages(props: {
                 <div class={styles()!["__content"]}>
                   <Show when={state.openedMessage.length > 0}>
                     {(_) => {
+                      const message = state.openedMessage[0];
                       if (!state.openedMessage[0].read || state.openedMessage[0].read.length === 0) {
                         (async () => {
                           try {
@@ -323,91 +324,99 @@ function Messages(props: {
                           <div class={styles()!["__header"]}>
                             <div class={styles()!["l-messages__photos"]}>
                               <ul class={styles()!["l-photos"]}>
-                                <li
-                                  class={styles()!["l-photos__item"]}
-                                  ref={(el) => {
-                                    if (!el) return;
-                                    const img = new Image();
-                                    img.crossOrigin = "anonymous";
-                                    img.src = `data:image/*;base64,${state.photos.find(
-                                      (p) =>
-                                        p.id === state.openedMessage[0].sender.id,
-                                    )?.photo || state.defaultImage
-                                      }`;
-                                    img.onload = () => {
-                                      const canvas = document.createElement("canvas");
-                                      const ctx = canvas.getContext("2d");
-                                      if (!ctx) return;
+                                <For each={state.openedMessage.map(m =>
+                                  state.photos.find(p => p.id === m.sender.id)?.photo || state.defaultImage
+                                )}>
+                                  {() => (
+                                    <li
+                                      class={styles()!["l-photos__item"]}
+                                      ref={(el) => {
+                                        if (!el) return;
+                                        const img = new Image();
+                                        img.crossOrigin = "anonymous";
+                                        img.src = `data:image/*;base64,${state.photos.find(
+                                          (p) =>
+                                            p.id === state.openedMessage[0].sender.id,
+                                        )?.photo || state.defaultImage
+                                          }`;
+                                        img.onload = () => {
+                                          const canvas = document.createElement("canvas");
+                                          const ctx = canvas.getContext("2d");
+                                          if (!ctx) return;
 
-                                      canvas.width = img.width;
-                                      canvas.height = img.height;
-                                      ctx.drawImage(img, 0, 0);
+                                          canvas.width = img.width;
+                                          canvas.height = img.height;
+                                          ctx.drawImage(img, 0, 0);
 
-                                      const { data } = ctx.getImageData(
-                                        0,
-                                        0,
-                                        canvas.width,
-                                        canvas.height,
-                                      );
-                                      const width = canvas.width;
-                                      const height = canvas.height;
-                                      const corners = [
-                                        0,
-                                        0,
-                                        width - 1,
-                                        0,
-                                        0,
-                                        height - 1,
-                                        width - 1,
-                                        height - 1,
-                                      ];
+                                          const { data } = ctx.getImageData(
+                                            0,
+                                            0,
+                                            canvas.width,
+                                            canvas.height,
+                                          );
+                                          const width = canvas.width;
+                                          const height = canvas.height;
+                                          const corners = [
+                                            0,
+                                            0,
+                                            width - 1,
+                                            0,
+                                            0,
+                                            height - 1,
+                                            width - 1,
+                                            height - 1,
+                                          ];
 
-                                      let hasTransparentBackground = false;
-                                      for (let i = 0; i < corners.length; i += 2) {
-                                        const x = corners[i];
-                                        const y = corners[i + 1];
-                                        const alpha = data[(y * width + x) * 4 + 3];
-                                        if (alpha < 255) {
-                                          hasTransparentBackground = true;
-                                          break;
-                                        }
-                                      }
-                                      if (hasTransparentBackground) return;
+                                          let hasTransparentBackground = false;
+                                          for (let i = 0; i < corners.length; i += 2) {
+                                            const x = corners[i];
+                                            const y = corners[i + 1];
+                                            const alpha = data[(y * width + x) * 4 + 3];
+                                            if (alpha < 255) {
+                                              hasTransparentBackground = true;
+                                              break;
+                                            }
+                                          }
+                                          if (hasTransparentBackground) return;
 
-                                      const colorCounts: Record<string, number> = {};
-                                      let maxColor = "";
-                                      let maxCount = 0;
+                                          const colorCounts: Record<string, number> = {};
+                                          let maxColor = "";
+                                          let maxCount = 0;
 
-                                      for (let i = 0; i < data.length; i += 4) {
-                                        const r = data[i];
-                                        const g = data[i + 1];
-                                        const b = data[i + 2];
-                                        const a = data[i + 3];
-                                        if (a === 0) continue;
-                                        const key = `${r},${g},${b}`;
-                                        colorCounts[key] =
-                                          (colorCounts[key] || 0) + 1;
-                                        if (colorCounts[key] > maxCount) {
-                                          maxCount = colorCounts[key];
-                                          maxColor = key;
-                                        }
-                                      }
-                                      if (maxColor)
-                                        el.style.backgroundColor = `rgb(${maxColor})`;
-                                    };
-                                  }}
-                                >
-                                  <div
-                                    class={styles()!["l-photos__photo"]}
-                                    style={{
-                                      "background-image": `url(data:image/*;base64,${state.photos.find(
-                                        (p) =>
-                                          p.id === state.openedMessage[0].sender.id,
-                                      )?.photo || state.defaultImage
-                                        })`,
-                                    }}
-                                  ></div>
-                                </li>
+                                          for (let i = 0; i < data.length; i += 4) {
+                                            const r = data[i];
+                                            const g = data[i + 1];
+                                            const b = data[i + 2];
+                                            const a = data[i + 3];
+                                            if (a === 0) continue;
+                                            const key = `${r},${g},${b}`;
+                                            colorCounts[key] =
+                                              (colorCounts[key] || 0) + 1;
+                                            if (colorCounts[key] > maxCount) {
+                                              maxCount = colorCounts[key];
+                                              maxColor = key;
+                                            }
+                                          }
+                                          if (maxColor) {
+                                            console.log(maxColor)
+                                            el.style.backgroundColor = `rgb(${maxColor})`;
+                                          }
+                                        };
+                                      }}
+                                    >
+                                      <div
+                                        class={styles()!["l-photos__photo"]}
+                                        style={{
+                                          "background-image": `url(data:image/*;base64,${state.photos.find(
+                                            (p) =>
+                                              p.id === state.openedMessage[0].sender.id,
+                                          )?.photo || state.defaultImage
+                                            })`,
+                                        }}
+                                      ></div>
+                                    </li>
+                                  )}
+                                </For>
                               </ul>
                             </div>
                             <div class={styles()!["__info"]}>
