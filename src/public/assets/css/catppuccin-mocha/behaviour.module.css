@@ -15,7 +15,6 @@
     min-height: 0;
     width: 100%;
     max-width: calc(100vw - 185px);
-    margin-bottom: 10px;
 }
 
 .t-behaviour {
@@ -33,7 +32,6 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
-    margin-bottom: 15px;
     max-width: calc(100vw - 185px);
 }
 
