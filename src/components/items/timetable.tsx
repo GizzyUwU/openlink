@@ -141,7 +141,6 @@ function Timetable(props: {
 
               if (clubTime < periodStart) {
                 const end = endTime === "-" || endTime === nextPeriodStart ? periodStart : endTime;
-                console.log(end)
                 matchingPeriod = {
                   id: club.id,
                   name: `${dayShort}:Club`,
@@ -410,37 +409,49 @@ function Timetable(props: {
                           );
                           if (!matchingPeriod) {
                             let inserted = false;
+
+                            let endTime = "-";
+                            const session = clubDetails.result.club.sessions?.find(session => session.start_time === club.next_session);
+
                             for (let i = 0; i < updatedPeriods.length; i++) {
                               const periodStart = updatedPeriods[i].start_time;
                               const nextPeriodStart =
                                 updatedPeriods[i + 1]?.start_time;
 
+                              if (session) {
+                                endTime = session.end_time.split(" ")[1].slice(0, 5);
+                              } else if (nextPeriodStart) {
+                                endTime = nextPeriodStart;
+                              }
+
                               if (clubTime < periodStart) {
+                                const end = endTime === "-" || endTime === nextPeriodStart ? periodStart : endTime;
+
                                 matchingPeriod = {
                                   id: club.id,
                                   name: `${dayShort}:Club`,
                                   start_time: clubTime,
-                                  end_time: periodStart,
+                                  end_time: end
                                 };
                                 updatedPeriods.splice(i, 0, matchingPeriod);
                                 inserted = true;
                                 break;
                               }
-
-                              if (
-                                nextPeriodStart &&
-                                clubTime > periodStart &&
-                                clubTime < nextPeriodStart
-                              ) {
-                                matchingPeriod = {
-                                  id: club.id,
-                                  name: `${dayShort}:Club`,
-                                  start_time: clubTime,
-                                  end_time: nextPeriodStart,
-                                };
-                                updatedPeriods.splice(i + 1, 0, matchingPeriod);
-                                inserted = true;
-                                break;
+                              if (endTime !== "-") {
+                                if (
+                                  clubTime > periodStart &&
+                                  clubTime < endTime
+                                ) {
+                                  matchingPeriod = {
+                                    id: club.id,
+                                    name: `${dayShort}:Club`,
+                                    start_time: clubTime,
+                                    end_time: endTime,
+                                  };
+                                  updatedPeriods.splice(i + 1, 0, matchingPeriod);
+                                  inserted = true;
+                                  break;
+                                }
                               }
                             }
 
@@ -449,7 +460,7 @@ function Timetable(props: {
                                 id: club.id,
                                 name: `${dayShort}:Club`,
                                 start_time: clubTime,
-                                end_time: "-",
+                                end_time: endTime,
                               };
                               updatedPeriods.push(matchingPeriod);
                             }
