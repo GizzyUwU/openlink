@@ -75,7 +75,7 @@ export default function Settings(props: {
   showSettings: Setter<boolean>;
 }) {
   const [themeSelection, triggerSelection] = createSignal<boolean>(false);
-  const [update, setUpdate] = createSignal<{ version: string } | null>();
+  const [update, setUpdate] = createSignal<{ version: string } | null>(null);
 
   onMount(async () => {
     if (window.__TAURI__) {
@@ -107,15 +107,19 @@ export default function Settings(props: {
         ✕
       </button>
       <h2 class="text-xl text-center">Settings</h2>
-      <h2 class="text-[16px] text-center mb-4">
-        {update() === null ? (
-          "Checking for updates..."
-        ) : update()?.version === "latest" ? (
-          "Latest Version"
-        ) : (
-          `Version ${update()?.version} available.`
-        )}
-      </h2>
+      {window.__TAURI__ ? (
+        <h2 class="text-[16px] text-center mb-4">
+          {update() === null ? (
+            "Checking for updates..."
+          ) : update()?.version === "latest" ? (
+            "Latest Version"
+          ) : (
+            `Version ${update()?.version} available.`
+          )}
+        </h2>
+      ) : (
+        <div class="mb-2"></div>
+      )}
       <Show when={update() !== null && update()?.version !== "latest"}>
         <button
           type="button"
