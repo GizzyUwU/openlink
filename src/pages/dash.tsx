@@ -273,7 +273,10 @@ function Main(props: { status: StatusResponse | null }) {
             onMount(() => {
               const handle = () => requestAnimationFrame(positionItemBox);
               handle()
-              window.addEventListener("resize", handle);
+              window.addEventListener("resize", async () => {
+                await waitForWheelTransition()
+                handle()
+              });
               const ro = new ResizeObserver(handle);
               if (itemBoxEl) ro.observe(itemBoxEl);
 
