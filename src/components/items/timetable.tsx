@@ -91,12 +91,12 @@ function Timetable(props: {
 
       const todaysClubs = Array.isArray(props.clubData)
         ? props.clubData.filter((club) => {
-            if (!club?.next_session) return false;
-            const clubDateStr = new Date(club.next_session)
-              .toISOString()
-              .split("T")[0];
-            return clubDateStr === currentDay.date;
-          })
+          if (!club?.next_session) return false;
+          const clubDateStr = new Date(club.next_session)
+            .toISOString()
+            .split("T")[0];
+          return clubDateStr === currentDay.date;
+        })
         : [];
 
       if (
@@ -108,8 +108,8 @@ function Timetable(props: {
         const updatedPeriods = [...currentDay.periods];
         const dayShort = currentDay.date
           ? new Date(currentDay.date).toLocaleDateString("en-US", {
-              weekday: "short",
-            })
+            weekday: "short",
+          })
           : "Day";
 
         for (const club of todaysClubs) {
@@ -130,13 +130,23 @@ function Timetable(props: {
             for (let i = 0; i < updatedPeriods.length; i++) {
               const periodStart = updatedPeriods[i].start_time;
               const nextPeriodStart = updatedPeriods[i + 1]?.start_time;
+              let endTime = "-";
+              const session = clubDetails.result.club.sessions?.find(session => session.start_time === club.next_session);
+
+              if (session) {
+                endTime = session.end_time.split(" ")[1].slice(0, 5);
+              } else if (nextPeriodStart) {
+                endTime = nextPeriodStart;
+              }
 
               if (clubTime < periodStart) {
+                const end = endTime === "-" || endTime === nextPeriodStart ? periodStart : endTime;
+                console.log(end)
                 matchingPeriod = {
                   id: club.id,
                   name: `${dayShort}:Club`,
                   start_time: clubTime,
-                  end_time: periodStart,
+                  end_time: end,
                 };
 
                 updatedPeriods.splice(i, 0, matchingPeriod);
@@ -144,13 +154,13 @@ function Timetable(props: {
                 break;
               }
 
-              if (nextPeriodStart) {
-                if (clubTime > periodStart && clubTime < nextPeriodStart) {
+              if (endTime !== "-") {
+                if (clubTime > periodStart && clubTime < endTime) {
                   matchingPeriod = {
                     id: club.id,
                     name: `${dayShort}:Club`,
                     start_time: clubTime,
-                    end_time: nextPeriodStart,
+                    end_time: endTime,
                   };
                   updatedPeriods.splice(i + 1, 0, matchingPeriod);
                   inserted = true;
@@ -161,7 +171,7 @@ function Timetable(props: {
                   id: club.id,
                   name: `${dayShort}:Club`,
                   start_time: clubTime,
-                  end_time: "-",
+                  end_time: endTime,
                 };
 
                 updatedPeriods.push(matchingPeriod);
@@ -190,8 +200,8 @@ function Timetable(props: {
               clubDetails.result.club.leaders_names,
             )
               ? clubDetails.result.club.leaders_names.filter(
-                  (name): name is string => !!name,
-                )
+                (name): name is string => !!name,
+              )
               : clubDetails.result.club.leaders_names
                 ? [clubDetails.result.club.leaders_names]
                 : [];
@@ -213,8 +223,8 @@ function Timetable(props: {
               clubDetails.result.club.leaders_names,
             )
               ? clubDetails.result.club.leaders_names.filter(
-                  (name): name is string => !!name,
-                )
+                (name): name is string => !!name,
+              )
               : clubDetails.result.club.leaders_names
                 ? [clubDetails.result.club.leaders_names]
                 : [];
@@ -266,6 +276,7 @@ function Timetable(props: {
   onCleanup(() => {
     document.removeEventListener("click", handleClick);
   });
+
   return (
     <Transition
       onEnter={(el, done) => {
@@ -366,19 +377,19 @@ function Timetable(props: {
                       const updatedPeriods = [...currentDay.periods];
                       const dayShort = currentDay.date
                         ? new Date(currentDay.date).toLocaleDateString(
-                            "en-US",
-                            { weekday: "short" },
-                          )
+                          "en-US",
+                          { weekday: "short" },
+                        )
                         : "Day";
 
                       const todaysClubs = Array.isArray(props.clubData)
                         ? props.clubData.filter((club) => {
-                            if (!club?.next_session) return false;
-                            const clubDateStr = new Date(club.next_session)
-                              .toISOString()
-                              .split("T")[0];
-                            return clubDateStr === currentDay.date;
-                          })
+                          if (!club?.next_session) return false;
+                          const clubDateStr = new Date(club.next_session)
+                            .toISOString()
+                            .split("T")[0];
+                          return clubDateStr === currentDay.date;
+                        })
                         : [];
 
                       if (todaysClubs.length > 0) {
@@ -451,8 +462,8 @@ function Timetable(props: {
                             clubDetails.result.club.leaders_names,
                           )
                             ? clubDetails.result.club.leaders_names.filter(
-                                (n): n is string => !!n,
-                              )
+                              (n): n is string => !!n,
+                            )
                             : clubDetails.result.club.leaders_names
                               ? [clubDetails.result.club.leaders_names]
                               : [];
@@ -489,20 +500,19 @@ function Timetable(props: {
                           days: (state.currentWeek?.days || []).map((day) =>
                             day.date === currentDay.date
                               ? {
-                                  ...day,
-                                  periods: updatedPeriods,
-                                  lessons: updatedLessons,
-                                }
+                                ...day,
+                                periods: updatedPeriods,
+                                lessons: updatedLessons,
+                              }
                               : day,
                           ),
                         },
                       });
                     }}
-                    class={`text-sm text-white cursor-pointer ${
-                      day.name === state.currentDay?.name
-                        ? "border-b border-blue-400"
-                        : ""
-                    }`}
+                    class={`text-sm text-white cursor-pointer ${day.name === state.currentDay?.name
+                      ? "border-b border-blue-400"
+                      : ""
+                      }`}
                   >
                     {day.name}
                   </button>
@@ -570,16 +580,16 @@ function Timetable(props: {
                             const teachersArray: (
                               | string
                               | {
-                                  id: number | string;
-                                  title?: string;
-                                  forename?: string;
-                                  surname?: string;
-                                }
+                                id: number | string;
+                                title?: string;
+                                forename?: string;
+                                surname?: string;
+                              }
                             )[] = Array.isArray(tRaw)
-                              ? tRaw.flatMap((t) =>
+                                ? tRaw.flatMap((t) =>
                                   Array.isArray(t) ? t : [t],
                                 )
-                              : [tRaw];
+                                : [tRaw];
 
                             return teachersArray
                               .map((teacher) => {
