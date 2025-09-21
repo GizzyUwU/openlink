@@ -304,7 +304,6 @@ function Messages(props: {
                 <div class={styles()!["__content"]}>
                   <Show when={state.openedMessage.length > 0}>
                     {(_) => {
-                      const message = state.openedMessage[0];
                       if (!state.openedMessage[0].read || state.openedMessage[0].read.length === 0) {
                         (async () => {
                           try {
@@ -398,7 +397,6 @@ function Messages(props: {
                                             }
                                           }
                                           if (maxColor) {
-                                            console.log(maxColor)
                                             el.style.backgroundColor = `rgb(${maxColor})`;
                                           }
                                         };

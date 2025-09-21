@@ -43,12 +43,15 @@ export default function Header(props: {
     if (progressBarRef) {
       progressBarRef.addEventListener("transitionend", handleTransitionEnd);
       onCleanup(
-        () =>
-          progressBarRef &&
-          progressBarRef.removeEventListener(
-            "transitionend",
-            handleTransitionEnd,
-          ),
+        () => {
+          document.removeEventListener("click", handleClick);
+          if (progressBarRef) {
+            progressBarRef.removeEventListener(
+              "transitionend",
+              handleTransitionEnd,
+            )
+          }
+        }
       );
     }
 
@@ -63,10 +66,6 @@ export default function Header(props: {
         );
       }
     }
-  });
-
-  onCleanup(() => {
-    document.removeEventListener("click", handleClick);
   });
 
   return (
@@ -121,10 +120,9 @@ export default function Header(props: {
               <div
                 class={props.styles!["openlink__avatar"]}
                 style={{
-                  "background-image": `url(data:image/webp;base64,${
-                    props.sessionData()?.user?.avatar?.photo ||
+                  "background-image": `url(data:image/webp;base64,${props.sessionData()?.user?.avatar?.photo ||
                     "default-avatar-data"
-                  })`,
+                    })`,
                 }}
               ></div>
               <div class={props.styles!["openlink__text"]}>

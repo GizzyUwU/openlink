@@ -15,7 +15,7 @@ function Main(props: { status: StatusResponse | null }) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
   const toast = useToast();
-  let resetNavFn: () => void = () => {};
+  let resetNavFn: () => void = () => { };
   let openNavFn: (idx: number) => void;
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
@@ -88,9 +88,8 @@ function Main(props: { status: StatusResponse | null }) {
     forceOpenNav?: boolean,
   ) {
     try {
-      if (LoadedComponent()) {
-        setLoadedComponent(null);
-      }
+      if (LoadedComponent()) setLoadedComponent(null);
+      if (state.navWheelAnim) setState("navWheelAnim", false)
       const mod = await import(`../components/items/${id}.tsx`);
       if (forceOpenNav) {
         openNavFn?.(mod.default.pos - 1);
@@ -129,62 +128,53 @@ function Main(props: { status: StatusResponse | null }) {
     }
   }
 
-  onMount(async () => {
-    await getTheme().then((theme) => setState("theme", theme));
-    const cssModule = await import(
-      `../public/assets/css/${state.theme}/main.module.css`
-    );
-    const normalized: { [key: string]: string } = {
-      ...cssModule.default,
-      ...cssModule,
-    };
-    setStyles(normalized);
-
-    if (window.__TAURI__) {
-      try {
-        const { check } = await import("@tauri-apps/plugin-updater");
-        const update = await check();
-        if (update) {
-          setState("updateAvailable", true);
-          console.log(
-            `[INFO] Update available! ${update.version} from ${update.date}`,
-          );
-        }
-      } catch (err) {
-        console.log("[INFO] Skipping update check:", err);
-      }
-    }
-
-    const clubData = await edulink.getClubs(
-      true,
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
-    );
-    console.log(clubData);
-    if (clubData.result.success) {
-      setState("clubData", clubData.result.clubs);
-    }
-
-    const handleResize = () => {
-      setState("screenWidth", window.innerWidth);
-    };
-
+  onMount(() => {
+    const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
+    onCleanup(() => window.removeEventListener("resize", handleResize));
 
-    onCleanup(() => {
-      window.removeEventListener("resize", handleResize);
-    });
-    const url = new URL(window.location.href);
-    const page = url.searchParams.get("page");
-    if (page !== null) {
-      const loadHandler = async () => {
-        await loadItemPage(page, page, true);
-        window.removeEventListener("load", loadHandler);
+    (async () => {
+      const theme = await getTheme();
+      setState("theme", theme);
+
+      const cssModule = await import(
+        `../public/assets/css/${state.theme}/main.module.css`
+      );
+      const normalized: { [key: string]: string } = {
+        ...cssModule.default,
+        ...cssModule,
       };
-      window.addEventListener("load", loadHandler);
-    }
+      setStyles(normalized);
+
+      if (window.__TAURI__) {
+        try {
+          const { check } = await import("@tauri-apps/plugin-updater");
+          const update = await check();
+          if (update) setState("updateAvailable", true);
+        } catch { }
+      }
+
+      const clubData = await edulink.getClubs(
+        true,
+        sessionData()?.user?.id,
+        sessionData()?.authtoken,
+        apiUrl(),
+      );
+
+      if (clubData.result.success) setState("clubData", clubData.result.clubs);
+
+      const url = new URL(window.location.href);
+      const page = url.searchParams.get("page");
+      if (page !== null) {
+        const loadHandler = async () => {
+          await loadItemPage(page, page, true);
+          window.removeEventListener("load", loadHandler);
+        };
+        window.addEventListener("load", loadHandler);
+      }
+    })();
   });
+
 
   const maxWidth = createMemo(() =>
     state.screenWidth >= 1400 ? "1200px" : "1000px",
@@ -251,7 +241,6 @@ function Main(props: { status: StatusResponse | null }) {
               if (!itemBoxEl) return;
               const navEl = document.getElementById("nav-back");
               if (!navEl) return;
-
               const minGap = 20;
               if (!itemBoxEl) return;
               itemBoxEl.style.transform = setTransform();
@@ -267,25 +256,18 @@ function Main(props: { status: StatusResponse | null }) {
             };
 
             onMount(() => {
-              positionItemBox();
-
-              let debounce = (callback: Function, delay: number) => {
-                let myTimeout: ReturnType<typeof setTimeout>;
-                return () => {
-                  clearTimeout(myTimeout);
-                  myTimeout = setTimeout(() => {
-                    callback();
-                  }, delay);
-                };
-              };
-
-              let doDebounce = debounce(() => positionItemBox(), 1010);
-              window.addEventListener("resize", () => doDebounce());
+              const handle = () => requestAnimationFrame(positionItemBox);
+              handle()
+              window.addEventListener("resize", handle);
+              const ro = new ResizeObserver(handle);
+              if (itemBoxEl) ro.observe(itemBoxEl);
 
               onCleanup(() => {
-                window.removeEventListener("resize", doDebounce);
+                window.removeEventListener("resize", handle);
+                ro.disconnect();
               });
             });
+
             return (
               <div
                 id="item-box"
@@ -297,7 +279,7 @@ function Main(props: { status: StatusResponse | null }) {
                   height: "100%",
                   "max-height": "calc(100vh - 200px)",
                   "max-width": maxWidth(),
-                  "margin-top": "10px",
+                  "margin-top": "20px",
                   "margin-bottom": "10px",
                   width: "100%",
                 }}

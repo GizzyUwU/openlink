@@ -35,7 +35,8 @@
     "solid-js": "^1.9.9",
     "solid-transition-group": "^0.3.0",
     "tailwindcss": "^4.1.12",
-    "tauri-plugin-keyring-api": "^0.1.1"
+    "tauri-plugin-keyring-api": "^0.1.1",
+    "vite-plugin-checker": "^0.10.3"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.8.4",

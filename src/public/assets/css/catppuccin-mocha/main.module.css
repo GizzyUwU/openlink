@@ -8,7 +8,13 @@
     max-width: 100%;
     position: relative;
     background: var(--text);
-    overflow: hidden;
+    overflow: clip;
+}
+
+.openlink-container > * {
+  min-width: 0; 
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .openlink-s-header {
