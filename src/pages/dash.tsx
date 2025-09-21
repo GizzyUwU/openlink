@@ -17,6 +17,7 @@ function Main(props: { status: StatusResponse | null }) {
   const toast = useToast();
   let resetNavFn: () => void = () => { };
   let openNavFn: (idx: number) => void;
+  let prevNavPos: number | null = null;
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -88,11 +89,15 @@ function Main(props: { status: StatusResponse | null }) {
     forceOpenNav?: boolean,
   ) {
     try {
-      if (LoadedComponent()) setLoadedComponent(null);
-      if (state.navWheelAnim) setState("navWheelAnim", false)
+      if (LoadedComponent()) {
+        setLoadedComponent(null);
+      }
+      if (state.navWheelAnim) setState("navWheelAnim", false);
       const mod = await import(`../components/items/${id}.tsx`);
+      const targetPos = mod.default.pos - 1;
+
       if (forceOpenNav) {
-        openNavFn?.(mod.default.pos - 1);
+        openNavFn?.(targetPos);
       }
       setState("progress", 0.3);
       setLoadedComponent(() => (childProps: any) => (
@@ -108,7 +113,10 @@ function Main(props: { status: StatusResponse | null }) {
         />
       ));
 
-      await waitForWheelTransition();
+      if (prevNavPos !== targetPos) {
+        await waitForWheelTransition();
+        prevNavPos = targetPos;
+      }
       setState("navWheelAnim", true);
       const url = new URL(window.location.href);
       url.searchParams.set("page", id);

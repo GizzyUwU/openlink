@@ -51,9 +51,6 @@ export default function Navigation(props: {
   onMount(async () => {
     props.onResetNav?.(resetNav);
     props.openNav?.(openItem);
-    // if (props.loadedComponent) {
-    //   resetNav();
-    // }
 
     const personalMenu = props.sessionData()?.personal_menu || [];
     if (
