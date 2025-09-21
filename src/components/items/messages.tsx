@@ -106,35 +106,43 @@ function Messages(props: {
     }
   };
 
-  onMount(async () => {
+  onMount(() => {
     props.setProgress(0.6);
-    const cssModule = await import(
-      `../../public/assets/css/${props.theme}/messages.module.css`
-    );
-    const normalized: { [key: string]: string } = {
-      ...cssModule.default,
-      ...cssModule,
-    };
-    setStyles(normalized);
-    await handlePagination(1);
-    if (loadMoreRef) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (
-            entries[0].isIntersecting &&
-            Number(state.pagination.totalPages) >
-            Number(state.pagination.currentPage)
-          ) {
-            handlePagination(state.pagination.currentPage + 1);
-          }
-        },
-        { threshold: 1.0 },
-      );
-      observer.observe(loadMoreRef);
+    let observer: IntersectionObserver | null = null;
+    onCleanup(() => {
+      if (observer) observer.disconnect();
+    });
 
-      onCleanup(() => observer.disconnect());
-    }
+    (async () => {
+      const cssModule = await import(
+        `../../public/assets/css/${props.theme}/messages.module.css`
+      );
+      const normalized: { [key: string]: string } = {
+        ...cssModule.default,
+        ...cssModule,
+      };
+      setStyles(normalized);
+
+      await handlePagination(1);
+
+      if (loadMoreRef) {
+        observer = new IntersectionObserver(
+          (entries) => {
+            if (
+              entries[0].isIntersecting &&
+              Number(state.pagination.totalPages) >
+              Number(state.pagination.currentPage)
+            ) {
+              handlePagination(state.pagination.currentPage + 1);
+            }
+          },
+          { threshold: 1.0 }
+        );
+        observer.observe(loadMoreRef);
+      }
+    })();
   });
+
 
   const formatDate = (dateString: string | null): string => {
     if (!dateString) return "-";

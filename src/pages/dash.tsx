@@ -17,7 +17,6 @@ function Main(props: { status: StatusResponse | null }) {
   const toast = useToast();
   let resetNavFn: () => void = () => { };
   let openNavFn: (idx: number) => void;
-  let prevNavPos: number | null = null;
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -48,6 +47,7 @@ function Main(props: { status: StatusResponse | null }) {
     theme: string;
     updateAvailable: boolean;
     clubData: ClubsResponse.ClubType[];
+    prevPos: number | null;
   }>({
     progress: 0,
     navWheelAnim: false,
@@ -57,6 +57,7 @@ function Main(props: { status: StatusResponse | null }) {
     theme: "default",
     updateAvailable: false,
     clubData: [],
+    prevPos: null
   });
 
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
@@ -113,9 +114,9 @@ function Main(props: { status: StatusResponse | null }) {
         />
       ));
 
-      if (prevNavPos !== targetPos) {
+      if (state.prevPos !== targetPos) {
         await waitForWheelTransition();
-        prevNavPos = targetPos;
+        setState("prevPos", targetPos)
       }
       setState("navWheelAnim", true);
       const url = new URL(window.location.href);
@@ -178,7 +179,12 @@ function Main(props: { status: StatusResponse | null }) {
           await loadItemPage(page, page, true);
           window.removeEventListener("load", loadHandler);
         };
-        window.addEventListener("load", loadHandler);
+
+        if (document.readyState === "complete") {
+          loadHandler();
+        } else {
+          window.addEventListener("load", loadHandler);
+        }
       }
     })();
   });
@@ -231,6 +237,7 @@ function Main(props: { status: StatusResponse | null }) {
           setSession={setSession}
           setApiUrl={setApiUrl}
           setProgress={(value: number) => setState("progress", value)}
+          setPrevPos={(value: number | null) => setState("prevPos", value)}
           progress={() => state.progress}
           edulink={edulink}
           setLoadedComponent={setLoadedComponent}

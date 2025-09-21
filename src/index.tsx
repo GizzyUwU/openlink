@@ -35,6 +35,14 @@ const LoadingFallback = () => (
   </div>
 );
 
+const originalWarn = console.warn;
+
+console.warn = (...args: any[]) => {
+  const message = args.join(" ");
+  const err = new Error(message);
+  originalWarn.call(console, err);
+};
+
 render(
   () => (
     <Toast>

@@ -9,6 +9,7 @@ export default function Navigation(props: {
   setSession: any;
   setApiUrl: any;
   setProgress: (value: number) => void;
+  setPrevPos: (value: number | null) => void;
   progress: () => number;
   edulink: any;
   loadItemPage: any;
@@ -189,6 +190,7 @@ export default function Navigation(props: {
 
   function resetNav(fromBack?: boolean) {
     props.navAnimFinished(false);
+    props.setPrevPos(null)
     props.setProgress(0);
     setState({
       activeIdx: null,
