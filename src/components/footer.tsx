@@ -52,8 +52,8 @@ export default function Footer(props: {
             class={props.styles!["openlink__footer-item"]}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
-            {props.clubData?.length > 0 &&
-              (() => {
+            {(() => {
+              if (props.clubData?.length > 0) {
                 const currentClub = props.clubData.find(
                   (club: ClubsResponse.ClubType) => {
                     if (!club.next_session) return false;
@@ -109,75 +109,66 @@ export default function Footer(props: {
                     </div>
                   );
                 }
+              }
 
-                if (status().lessons?.current) {
-                  const lesson = status().lessons.current;
-                  const teachers = lesson.teachers || lesson.teacher;
+              if (status().lessons?.current) {
+                const lesson = status().lessons.current;
+                const teachers = lesson.teachers || lesson.teacher;
 
-                  const teacherNames = (() => {
-                    if (!teachers) return "";
-                    if (Array.isArray(teachers)) {
-                      return teachers
-                        .map((t) => {
-                          if (typeof t === "string") return t;
-                          if (t && typeof t === "object") {
-                            const { title, forename, surname } = t;
-                            return [title, forename, surname]
-                              .filter(Boolean)
-                              .join(" ");
-                          }
-                          return "";
-                        })
-                        .join(", ");
-                    }
-                    if (typeof teachers === "string") return teachers;
-                    if (teachers && typeof teachers === "object") {
-                      const { title, forename, surname } = teachers;
-                      return [title, forename, surname]
+                const teacherNames = Array.isArray(teachers)
+                  ? teachers
+                    .map((t) =>
+                      typeof t === "string"
+                        ? t
+                        : [t?.title, t?.forename, t?.surname].filter(Boolean).join(" "),
+                    )
+                    .join(", ")
+                  : typeof teachers === "string"
+                    ? teachers
+                    : teachers
+                      ? [teachers.title, teachers.forename, teachers.surname]
                         .filter(Boolean)
-                        .join(" ");
-                    }
-                    return "";
-                  })();
+                        .join(" ")
+                      : "";
 
-                  return (
-                    <div class={props.styles!["openlink-pr-couple"]}>
-                      <span
-                        class={props.styles!["openlink__footer-icon"]}
-                        style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
-                      >
-                        <Icon icon="mdi:clock-outline" width="24" height="24" />
+                return (
+                  <div class={props.styles!["openlink-pr-couple"]}>
+                    <span
+                      class={props.styles!["openlink__footer-icon"]}
+                      style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
+                    >
+                      <Icon icon="mdi:clock-outline" width="24" height="24" />
+                    </span>
+                    <span class={props.styles!["openlink__footer-content"]}>
+                      <span class={props.styles!["openlink__footer-title"]}>
+                        Current Lesson
                       </span>
-                      <span class={props.styles!["openlink__footer-content"]}>
-                        <span class={props.styles!["openlink__footer-title"]}>
-                          Current Lesson
-                        </span>
-                        <span class={props.styles!["openlink__footer-body"]}>
-                          {lesson.teaching_group.subject} –{" "}
-                          {lesson.teaching_group.name}
-                        </span>
-                        <span class={props.styles!["openlink__footer"]}>
-                          {lesson.room.name} / {teacherNames}
-                        </span>
+                      <span class={props.styles!["openlink__footer-body"]}>
+                        {lesson.teaching_group.subject} – {lesson.teaching_group.name}
                       </span>
-                    </div>
-                  );
-                }
+                      <span class={props.styles!["openlink__footer"]}>
+                        {lesson.room.name} / {teacherNames}
+                      </span>
+                    </span>
+                  </div>
+                );
+              }
 
-                return null;
-              })()}
+              return null;
+            })()}
           </div>
 
           <div
             class={props.styles!["openlink__footer-item"]}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
-            {props.clubData?.length > 0 &&
-              (() => {
-                const currentClub = props.clubData.find((club) => {
+            {(() => {
+              const nextLesson = status().lessons?.next;
+
+              let currentClub: ClubsResponse.ClubType | null = null;
+              if (props.clubData?.length > 0 && nextLesson?.start_time) {
+                currentClub = props.clubData.find((club) => {
                   if (!club.next_session) return false;
-                  const nextLesson = status().lessons?.next;
-                  if (!nextLesson?.start_time) return false;
 
                   const [lessonHour, lessonMinute] = nextLesson.start_time
                     .split(":")
@@ -191,96 +182,85 @@ export default function Footer(props: {
                     sessionDate.getMonth() === new Date().getMonth() &&
                     sessionDate.getFullYear() === new Date().getFullYear()
                   );
-                });
+                }) || null;
+              }
 
-                if (currentClub) {
-                  return (
-                    <div class={props.styles!["openlink-pr-couple"]}>
-                      <span
-                        class={props.styles!["openlink__footer-icon"]}
-                        style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
-                      >
-                        <Icon
-                          icon="streamline:fastforward-clock-remix"
-                          width="20"
-                          height="20"
-                        />
+              if (currentClub) {
+                return (
+                  <div class={props.styles!["openlink-pr-couple"]}>
+                    <span
+                      class={props.styles!["openlink__footer-icon"]}
+                      style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
+                    >
+                      <Icon
+                        icon="streamline:fastforward-clock-remix"
+                        width="20"
+                        height="20"
+                      />
+                    </span>
+                    <span class={props.styles!["openlink__footer-content"]}>
+                      <span class={props.styles!["openlink__footer-title"]}>
+                        Next Club
                       </span>
-                      <span class={props.styles!["openlink__footer-content"]}>
-                        <span class={props.styles!["openlink__footer-title"]}>
-                          Next Club
-                        </span>
-                        <span class={props.styles!["openlink__footer-body"]}>
-                          {currentClub.name}
-                        </span>
-                        <span class={props.styles!["openlink__footer"]}>
-                          Location: {currentClub.location}
-                        </span>
+                      <span class={props.styles!["openlink__footer-body"]}>
+                        {currentClub.name}
                       </span>
-                    </div>
-                  );
-                }
+                      <span class={props.styles!["openlink__footer"]}>
+                        Location: {currentClub.location}
+                      </span>
+                    </span>
+                  </div>
+                );
+              }
 
-                if (status().lessons?.next) {
-                  const lesson = status().lessons.next;
-                  const teachers = lesson.teachers || lesson.teacher;
-
-                  const teacherNames = (() => {
-                    if (!teachers) return "";
-                    if (Array.isArray(teachers)) {
-                      return teachers
-                        .map((t) => {
-                          if (typeof t === "string") return t;
-                          if (t && typeof t === "object") {
-                            const { title, forename, surname } = t;
-                            return [title, forename, surname]
-                              .filter(Boolean)
-                              .join(" ");
-                          }
-                          return "";
-                        })
-                        .join(", ");
-                    }
-                    if (typeof teachers === "string") return teachers;
-                    if (teachers && typeof teachers === "object") {
-                      const { title, forename, surname } = teachers;
-                      return [title, forename, surname]
+              if (nextLesson) {
+                const teachers = nextLesson.teachers || nextLesson.teacher;
+                const teacherNames = Array.isArray(teachers)
+                  ? teachers
+                    .map((t) =>
+                      typeof t === "string"
+                        ? t
+                        : [t?.title, t?.forename, t?.surname].filter(Boolean).join(" "),
+                    )
+                    .join(", ")
+                  : typeof teachers === "string"
+                    ? teachers
+                    : teachers
+                      ? [teachers.title, teachers.forename, teachers.surname]
                         .filter(Boolean)
-                        .join(" ");
-                    }
-                    return "";
-                  })();
+                        .join(" ")
+                      : "";
 
-                  return (
-                    <div class={props.styles!["openlink-pr-couple"]}>
-                      <span
-                        class={props.styles!["openlink__footer-icon"]}
-                        style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
-                      >
-                        <Icon
-                          icon="streamline:fastforward-clock-remix"
-                          width="20"
-                          height="20"
-                        />
+                return (
+                  <div class={props.styles!["openlink-pr-couple"]}>
+                    <span
+                      class={props.styles!["openlink__footer-icon"]}
+                      style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
+                    >
+                      <Icon
+                        icon="streamline:fastforward-clock-remix"
+                        width="20"
+                        height="20"
+                      />
+                    </span>
+                    <span class={props.styles!["openlink__footer-content"]}>
+                      <span class={props.styles!["openlink__footer-title"]}>
+                        Next Lesson
                       </span>
-                      <span class={props.styles!["openlink__footer-content"]}>
-                        <span class={props.styles!["openlink__footer-title"]}>
-                          Next Lesson
-                        </span>
-                        <span class={props.styles!["openlink__footer-body"]}>
-                          {lesson.teaching_group.subject} –{" "}
-                          {lesson.teaching_group.name}
-                        </span>
-                        <span class={props.styles!["openlink__footer"]}>
-                          {lesson.room.name} / {teacherNames}
-                        </span>
+                      <span class={props.styles!["openlink__footer-body"]}>
+                        {nextLesson.teaching_group.subject} –{" "}
+                        {nextLesson.teaching_group.name}
                       </span>
-                    </div>
-                  );
-                }
+                      <span class={props.styles!["openlink__footer"]}>
+                        {nextLesson.room.name} / {teacherNames}
+                      </span>
+                    </span>
+                  </div>
+                );
+              }
 
-                return null;
-              })()}
+              return null;
+            })()}
           </div>
 
           <div
@@ -299,7 +279,7 @@ export default function Footer(props: {
                   Messages
                 </span>
                 <span class={props.styles!["openlink__footer-body"]}>
-                  {status().new_messages || 0} new message
+                  {status().new_messages === 0 ? "No new messages" : `${status().new_messages} new messages`}
                 </span>
               </span>
             </div>
