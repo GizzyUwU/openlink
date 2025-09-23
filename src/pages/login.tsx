@@ -285,7 +285,7 @@ function Login() {
     }
   }
 
-  async function accountLogin() {
+  async function accountLogin(remember: boolean) {
     if (!state.schoolData) {
       toast.showToast(
         "Error",
@@ -316,23 +316,25 @@ function Login() {
         password: state.password,
       };
       if (window.__TAURI__) {
-        const loadStore = await getStore();
-        if (!loadStore) {
-          return;
+        if (remember) {
+          const loadStore = await getStore();
+          if (!loadStore) {
+            return;
+          }
+          const { load } = loadStore;
+          const store = await load("users.json", {
+            autoSave: false,
+            defaults: {},
+          });
+          const encrypted = await encryptUserData({
+            username: state.username,
+            data: JSON.stringify(userData),
+          });
+          await store.set("users", [
+            { name: state.username, userData: encrypted },
+          ]);
+          await store.save();
         }
-        const { load } = loadStore;
-        const store = await load("users.json", {
-          autoSave: false,
-          defaults: {},
-        });
-        const encrypted = await encryptUserData({
-          username: state.username,
-          data: JSON.stringify(userData),
-        });
-        await store.set("users", [
-          { name: state.username, userData: encrypted },
-        ]);
-        await store.save();
       }
       setSession(account.result);
       navigate("/", { replace: true });
@@ -473,161 +475,169 @@ function Login() {
                 Object.keys(state.schoolData).length > 0
               }
             >
-              <div class="login-wrapper">
-                <div
-                  class={state.styles!["__logo"]}
-                  style={{
-                    "background-size": "70%",
-                    "background-repeat": "no-repeat",
-                    "background-position": "50%",
-                    "background-image": state.schoolData?.result?.establishment
-                      ?.logo
-                      ? `url(data:image/*;base64,${state.schoolData.result.establishment.logo})`
-                      : undefined,
+            <div class="login-wrapper">
+              <div
+                class={state.styles!["__logo"]}
+                style={{
+                  "background-size": "70%",
+                  "background-repeat": "no-repeat",
+                  "background-position": "50%",
+                  "background-image": state.schoolData?.result?.establishment
+                    ?.logo
+                    ? `url(data:image/*;base64,${state.schoolData.result.establishment.logo})`
+                    : undefined,
+                }}
+              ></div>
+              <span
+                class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
+              >
+                {state.schoolData?.result.establishment?.name || "a"}
+              </span>
+              <div
+                class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
+              >
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const formData = new FormData(e.currentTarget);
+                    accountLogin(formData.get("remember") === "on");
                   }}
-                ></div>
-                <span
-                  class={`text-white text-[21px] ${state.styles!["__school-title"]}`}
                 >
-                  {state.schoolData?.result.establishment?.name || "a"}
-                </span>
-                <div
-                  class={`${state.styles!["f-login"]} ${state.hasLoginText ? state.styles!["has-text"] : ""}`}
-                >
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      accountLogin();
-                    }}
-                  >
-                    <div class={state.styles!["__row"]}>
-                      <label class={state.styles!["__label"]}>
-                        <input
-                          type="text"
-                          class={state.styles!["__field"]}
-                          placeholder=" "
-                          onInput={(e) =>
-                            setState({
-                              username: e.currentTarget.value,
-                              hasLoginText:
-                                state.username.trim().length > 0 &&
-                                state.password.trim().length > 0,
-                            })
-                          }
-                        />
-                        <span class={state.styles!["__label-text"]}>
-                          Username
-                        </span>
-                      </label>
-                    </div>
-                    <br />
-                    <div class={state.styles!["__row"]}>
-                      <label class={state.styles!["__label"]}>
-                        <input
-                          type="password"
-                          class={state.styles!["__field"]}
-                          placeholder=" "
-                          onInput={(e) =>
-                            setState({
-                              password: e.currentTarget.value,
-                              hasLoginText:
-                                state.username.trim().length > 0 &&
-                                state.password.trim().length > 0,
-                            })
-                          }
-                        />
-                        <span class={state.styles!["__label-text"]}>
-                          Password
-                        </span>
-                      </label>
-                    </div>
-                    <div class={state.styles!["__row"]}>
-                      <label class={state.styles!["__label"]}>
-                        <div class={state.styles!["__checkbox"]}>
-                          <label class={state.styles!["__checkbox-wrapper"]}>
-                            <input type="checkbox" />
-                            <span
-                              class={state.styles!["__checkbox-custom"]}
-                            ></span>
-                            <span class={state.styles!["__checkbox-label"]}>
-                              Remember me
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <input
+                        type="text"
+                        class={state.styles!["__field"]}
+                        placeholder=" "
+                        onInput={(e) =>
+                          setState({
+                            username: e.currentTarget.value,
+                            hasLoginText:
+                              state.username.trim().length > 0 &&
+                              state.password.trim().length > 0,
+                          })
+                        }
+                      />
+                      <span class={state.styles!["__label-text"]}>
+                        Username
+                      </span>
+                    </label>
+                  </div>
+                  <br />
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <input
+                        type="password"
+                        class={state.styles!["__field"]}
+                        placeholder=" "
+                        onInput={(e) =>
+                          setState({
+                            password: e.currentTarget.value,
+                            hasLoginText:
+                              state.username.trim().length > 0 &&
+                              state.password.trim().length > 0,
+                          })
+                        }
+                      />
+                      <span class={state.styles!["__label-text"]}>
+                        Password
+                      </span>
+                    </label>
+                  </div>
+                  <div class={state.styles!["__row"]}>
+                    <label class={state.styles!["__label"]}>
+                      <div class={state.styles!["__checkbox"]}>
+                        <label class={state.styles!["__checkbox-wrapper"]}>
+                          <label class="flex items-center cursor-pointer relative">
+                            <input type="checkbox" name="remember" class="peer h-6 w-6 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800" id="check" />
+                            <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                              </svg>
                             </span>
                           </label>
-                          <label class={state.styles!["__checkbox-wrapper"]}>
-                            <button
-                              type="button"
-                              class={state.styles!["__checkbox-label"]}
-                              disabled
-                            >
-                              Reset Login
-                            </button>
-                          </label>
-                        </div>
-                      </label>
-                    </div>
-                    <Show
-                      when={
-                        state.schoolData !== null &&
-                        Object.keys(
-                          state.schoolData.result.establishment.idp_login,
-                        ).length > 0 &&
-                        window.__TAURI__
-                      }
-                    >
-                      <div class={state.styles!["__idp-row"]}>
-                        <Show
-                          when={
-                            state.schoolData?.result.establishment.idp_login
-                              .microsoftonline
-                          }
-                        >
-                          <div class={state.styles!["__idp-label"]}>
-                            <button
-                              type="button"
-                              onClick={() => handleIDP("microsoftonline")}
-                              class={state.styles!["idp_btn"]}
-                            >
-                              <div class={state.styles!["idp_logo"]}>
-                                <CgMicrosoft />
-                              </div>
-                              <div class={state.styles!["idp_text"]}>
-                                Microsoft
-                              </div>
-                            </button>
-                          </div>
-                        </Show>
-                        <Show
-                          when={
-                            state.schoolData?.result.establishment.idp_login
-                              .google
-                          }
-                        >
-                          <div class={state.styles!["__idp-label"]}>
-                            <button
-                              type="button"
-                              onClick={() => handleIDP("google")}
-                              class={state.styles!["idp_btn"]}
-                            >
-                              <div class={state.styles!["idp_logo"]}>
-                                <CgGoogle />
-                              </div>
-                              <div class={state.styles!["idp_text"]}>
-                                Google
-                              </div>
-                            </button>
-                          </div>
-                        </Show>
+                          <span
+                            class={state.styles!["__checkbox-custom"]}
+                          ></span>
+                          <span class={state.styles!["__checkbox-label"]}>
+                            Remember me
+                          </span>
+                        </label>
+                        <label class={state.styles!["__checkbox-wrapper"]}>
+                          <button
+                            type="button"
+                            class={state.styles!["__checkbox-label"]}
+                            disabled
+                          >
+                            Reset Login
+                          </button>
+                        </label>
                       </div>
-                    </Show>
-
-                    <div class={state.styles!["__button"]}>
-                      <button class={state.styles!["__submit"]} type="submit">
-                        Log In
-                      </button>
+                    </label>
+                  </div>
+                  <Show
+                    when={
+                      state.schoolData !== null &&
+                      Object.keys(
+                        state.schoolData.result.establishment.idp_login,
+                      ).length > 0 &&
+                      window.__TAURI__
+                    }
+                  >
+                    <div class={state.styles!["__idp-row"]}>
+                      <Show
+                        when={
+                          state.schoolData?.result.establishment.idp_login
+                            .microsoftonline
+                        }
+                      >
+                        <div class={state.styles!["__idp-label"]}>
+                          <button
+                            type="button"
+                            onClick={() => handleIDP("microsoftonline")}
+                            class={state.styles!["idp_btn"]}
+                          >
+                            <div class={state.styles!["idp_logo"]}>
+                              <CgMicrosoft />
+                            </div>
+                            <div class={state.styles!["idp_text"]}>
+                              Microsoft
+                            </div>
+                          </button>
+                        </div>
+                      </Show>
+                      <Show
+                        when={
+                          state.schoolData?.result.establishment.idp_login
+                            .google
+                        }
+                      >
+                        <div class={state.styles!["__idp-label"]}>
+                          <button
+                            type="button"
+                            onClick={() => handleIDP("google")}
+                            class={state.styles!["idp_btn"]}
+                          >
+                            <div class={state.styles!["idp_logo"]}>
+                              <CgGoogle />
+                            </div>
+                            <div class={state.styles!["idp_text"]}>
+                              Google
+                            </div>
+                          </button>
+                        </div>
+                      </Show>
                     </div>
-                  </form>
-                </div>
+                  </Show>
+
+                  <div class={state.styles!["__button"]}>
+                    <button class={state.styles!["__submit"]} type="submit">
+                      Log In
+                    </button>
+                  </div>
+                </form>
               </div>
+            </div>
             </Show>
           </Show>
           <Show when={state.demo}>

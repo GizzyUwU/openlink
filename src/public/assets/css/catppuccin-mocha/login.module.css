@@ -158,16 +158,6 @@ body {
     background: transparent !important;
 }
 
-.f-login .__checkbox input[type="checkbox"]:checked::after {
-    content: "✓";
-    position: absolute;
-    top: -9px;
-    left: 0px;
-    color: white;
-    font-size: 30px;
-    font-weight: 100;
-}
-
 .f-login .__checkbox a {
     color: hsla(0, 0%, 100%, 0.8);
     text-decoration: none;
