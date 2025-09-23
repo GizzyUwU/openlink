@@ -9,7 +9,7 @@ const ProtectedRoute = (props: any) => {
   const edulink = useEdulink();
 
   const [status, setStatus] = createSignal<StatusResponse | null>(null);
-
+  const [check, setCheck] = createSignal<boolean>(false);
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
     storage: sessionStorage,
     name: "sessionData",
@@ -25,29 +25,33 @@ const ProtectedRoute = (props: any) => {
       sessionData() &&
       Object.keys(sessionData()).length > 0 &&
       apiUrl() &&
+      typeof apiUrl() === "string" &&
       apiUrl().length > 0
     ) {
-      const result = await edulink.getStatus(
-        sessionData()?.authtoken,
-        apiUrl(),
-      );
+      const result = await edulink.getStatus(sessionData()?.authtoken, apiUrl());
       if (!result.result.success) {
-        console.log(
-          "[INFO] Authentication Check failed. Redirecting to /login",
-        );
+        console.log("[INFO] Authentication Check failed. Redirecting to /login");
         navigate("/login", { replace: true });
         return;
       }
       setStatus(result.result);
+      setCheck(true)
     } else {
       setSession(null);
-      setApiUrl(null);
+      setApiUrl("");
       navigate("/login", { replace: true });
-      return;
+      return
     }
   });
 
-  return <>{props.children({ status: status() })}</>;
+  return (
+    <>
+      {check()
+        ? props.children({ status: status() })
+        : null
+      }
+    </>
+  );
 };
 
 export default ProtectedRoute;
