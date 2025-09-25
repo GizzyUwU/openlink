@@ -10,6 +10,7 @@ import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 import type { ClubsResponse } from "../types/api/clubs";
 import { StatusResponse } from "../types/auth";
+import type { SessionData } from "../types/auth";
 
 function Main(props: { status: StatusResponse | null }) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
@@ -60,14 +61,9 @@ function Main(props: { status: StatusResponse | null }) {
     prevPos: null
   });
 
-  const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
+  const [sessionData, setSession] = makePersisted(createSignal<SessionData | null>(null), {
     storage: sessionStorage,
     name: "sessionData",
-  });
-
-  const [apiUrl, setApiUrl] = makePersisted(createSignal<any>(""), {
-    storage: sessionStorage,
-    name: "apiUrl",
   });
 
   function waitForWheelTransition() {
@@ -163,14 +159,21 @@ function Main(props: { status: StatusResponse | null }) {
         } catch { }
       }
 
-      const clubData = await edulink.getClubs(
-        true,
-        sessionData()?.user?.id,
-        sessionData()?.authtoken,
-        apiUrl(),
-      );
-
-      if (clubData.result.success) setState("clubData", clubData.result.clubs);
+      (async () => {
+        try {
+          const clubData = await edulink.getClubs(
+            true,
+            sessionData()?.user?.id,
+            sessionData()?.authtoken,
+            sessionData()?.apiUrl,
+          );
+          if (clubData.result.success) {
+            setState("clubData", clubData.result.clubs);
+          }
+        } catch (err) {
+          console.error("Failed to fetch clubs:", err);
+        }
+      })();
 
       const url = new URL(window.location.href);
       const page = url.searchParams.get("page");
@@ -188,7 +191,6 @@ function Main(props: { status: StatusResponse | null }) {
       }
     })();
   });
-
 
   const maxWidth = createMemo(() =>
     state.screenWidth >= 1400 ? "1200px" : "1000px",
@@ -209,12 +211,11 @@ function Main(props: { status: StatusResponse | null }) {
   };
 
   return (
-    <Show when={sessionData() && Object.keys(sessionData()).length > 0}>
+    <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0}>
       <div class="openlink-container">
         <Header
           progress={() => state.progress}
           setSession={setSession}
-          setApiUrl={setApiUrl}
           sessionData={sessionData}
           setProgress={(value: number) => setState("progress", value)}
           showSettings={changeSettingsState}
@@ -223,8 +224,6 @@ function Main(props: { status: StatusResponse | null }) {
         <Show when={state.showSettings}>
           <Settings
             progress={() => state.progress}
-            setSession={setSession}
-            setApiUrl={setApiUrl}
             sessionData={sessionData}
             setOverlay={(value: JSXElement) => setState("overlay", value)}
             showSettings={changeSettingsState}
@@ -233,9 +232,6 @@ function Main(props: { status: StatusResponse | null }) {
         </Show>
         <Navigation
           sessionData={sessionData}
-          apiUrl={apiUrl}
-          setSession={setSession}
-          setApiUrl={setApiUrl}
           setProgress={(value: number) => setState("progress", value)}
           setPrevPos={(value: number | null) => setState("prevPos", value)}
           progress={() => state.progress}
@@ -322,9 +318,7 @@ function Main(props: { status: StatusResponse | null }) {
 
         <Footer
           sessionData={sessionData}
-          apiUrl={apiUrl}
           setSession={setSession}
-          setApiUrl={setApiUrl}
           edulink={edulink}
           loadItemPage={loadItemPage}
           styles={styles()}

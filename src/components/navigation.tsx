@@ -2,16 +2,14 @@ import { Show, For, onMount, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
+import type { EdulinkAPI } from "../api/main";
 
 export default function Navigation(props: {
   sessionData: any;
-  apiUrl: any;
-  setSession: any;
-  setApiUrl: any;
   setProgress: (value: number) => void;
   setPrevPos: (value: number | null) => void;
   progress: () => number;
-  edulink: any;
+  edulink: EdulinkAPI;
   loadItemPage: any;
   setLoadedComponent: any;
   loadedComponent: any;
@@ -56,7 +54,7 @@ export default function Navigation(props: {
     const personalMenu = props.sessionData()?.personal_menu || [];
     if (
       personalMenu.length > 0 &&
-      !props.apiUrl().trim().toLowerCase().includes("demo")
+      !props.sessionData().apiUrl.trim().toLowerCase().includes("demo")
     ) {
       const orderMap = new Map(
         personalMenu.map((menuItem: any, index: number) => [
@@ -154,13 +152,13 @@ export default function Navigation(props: {
   const navWheelContainerStyle = () =>
     state.isSlid
       ? {
-          transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
-          transform: `translateX(${state.slideX}px)`,
-        }
+        transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
+        transform: `translateX(${state.slideX}px)`,
+      }
       : {
-          transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
-          transform: "none",
-        };
+        transition: "transform 1s cubic-bezier(0.77,0,0.175,1)",
+        transform: "none",
+      };
 
   const navWheelListStyle = () => ({
     transition: state.isSlid
@@ -275,13 +273,13 @@ export default function Navigation(props: {
                     class={props.styles!["openlink__item"]}
                     style={getItemStyle(
                       166 *
-                        Math.cos(
-                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
-                        ),
+                      Math.cos(
+                        0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                      ),
                       166 *
-                        Math.sin(
-                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
-                        ),
+                      Math.sin(
+                        0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                      ),
                     )}
                   >
                     <div class={props.styles!["openlink__inner"]}>

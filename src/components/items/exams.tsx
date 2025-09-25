@@ -1,15 +1,17 @@
 import { onMount, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import type { ExamsResponse } from "../../types/api/exams";
 import { useToast } from "../toast";
 import { TbCertificate } from "solid-icons/tb";
 import { Transition } from "solid-transition-group";
+import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Exams(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
-  edulink: any;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
@@ -46,15 +48,8 @@ function Exams(props: {
     activePage: "Exam Timetable",
   });
 
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
 
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -67,9 +62,9 @@ function Exams(props: {
     };
     setStyles(normalized);
     const response: ExamsResponse = await props.edulink.getExams(
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
       "timetable",
     );
 
@@ -94,9 +89,9 @@ function Exams(props: {
       if (response.result.show_entries) {
         props.edulink
           .getExams(
-            sessionData()?.user?.id,
-            sessionData()?.authtoken,
-            apiUrl(),
+            props.sessionData()?.user?.id,
+            props.sessionData()?.authtoken,
+            props.sessionData()?.apiUrl,
             "entries",
           )
           .then((entriesRes: ExamsResponse) => {
@@ -109,9 +104,9 @@ function Exams(props: {
       if (response.result.show_results) {
         props.edulink
           .getExams(
-            sessionData()?.user?.id,
-            sessionData()?.authtoken,
-            apiUrl(),
+            props.sessionData()?.user?.id,
+            props.sessionData()?.authtoken,
+            props.sessionData()?.apiUrl,
             "results",
           )
           .then((resultsRes: ExamsResponse) => {
@@ -223,16 +218,15 @@ function Exams(props: {
                       setState(
                         "activePage",
                         name as
-                          | "Exam Timetable"
-                          | "Exam Entries"
-                          | "Exam Results",
+                        | "Exam Timetable"
+                        | "Exam Entries"
+                        | "Exam Results",
                       );
                     }}
-                    class={`text-sm text-white cursor-pointer ${
-                      state.activePage === name
-                        ? "border-b border-blue-400"
-                        : ""
-                    }`}
+                    class={`text-sm text-white cursor-pointer ${state.activePage === name
+                      ? "border-b border-blue-400"
+                      : ""
+                      }`}
                   >
                     {name}
                   </button>

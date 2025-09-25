@@ -326,3 +326,8 @@ export type StatusResponse = EdulinkApiResponse<{
     new_items: number;
   };
 }>;
+
+
+export type SessionData = LoginResponse extends EdulinkApiResponse<infer T>
+  ? T & { apiUrl?: string }
+  : never;

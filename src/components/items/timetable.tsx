@@ -7,7 +7,6 @@ import {
   Show,
 } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import type { TimetableResponse } from "../../types/api/timetable";
 import { useToast } from "../toast";
 let dropdownRef: HTMLDivElement | undefined;
@@ -15,10 +14,14 @@ let buttonRef: HTMLButtonElement | undefined;
 import { HiOutlineClock } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 import type { ClubResponse, ClubsResponse } from "../../types/api/clubs";
+import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
+
 function Timetable(props: {
   setProgress: (value: number) => void;
   progress: () => number;
-  edulink: any;
+  sessionData: () => SessionData;
+  edulink: EdulinkAPI;
   theme: string;
   clubData: ClubsResponse.ClubType[];
 }) {
@@ -32,14 +35,7 @@ function Timetable(props: {
     weeks?: TimetableResponse.Week[];
     weekDropdown?: boolean;
   }>({});
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   const handleClick = (event: MouseEvent) => {
     if (!state.weekDropdown) return;
@@ -65,9 +61,9 @@ function Timetable(props: {
     setStyles(normalized);
 
     const timetable: TimetableResponse = await props.edulink.getTimetable(
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (timetable.result.success) {
@@ -115,8 +111,8 @@ function Timetable(props: {
         for (const club of todaysClubs) {
           const clubDetails: ClubResponse = await props.edulink.getClub(
             club.id,
-            sessionData()?.authtoken,
-            apiUrl(),
+            props.sessionData()?.authtoken,
+            props.sessionData()?.apiUrl,
           );
           const clubTime = club.next_session.split(" ")[1].slice(0, 5);
 
@@ -396,8 +392,8 @@ function Timetable(props: {
                           const clubDetails: ClubResponse =
                             await props.edulink.getClub(
                               club.id,
-                              sessionData()?.authtoken,
-                              apiUrl(),
+                              props.sessionData()?.authtoken,
+                              props.sessionData()?.apiUrl,
                             );
 
                           const clubTime = club.next_session

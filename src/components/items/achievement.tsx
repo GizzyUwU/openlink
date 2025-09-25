@@ -1,14 +1,16 @@
 import { onMount, createSignal, Show, For } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { AiOutlineTrophy } from "solid-icons/ai";
 import { AchievementResponse } from "../../types/api/achievement";
 import { ABLookupResponse } from "../../types/api/ablookup";
+import type { SessionData } from "../../types/auth";
+
 function AchievementComponent(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -16,14 +18,6 @@ function AchievementComponent(props: {
     null,
   );
   const edulink = useEdulink();
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
 
   const [state, setState] = createStore<{
     achievements: AchievementResponse.AchievementType[];
@@ -77,9 +71,9 @@ function AchievementComponent(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    const userId = sessionData()?.user?.id;
-    const token = sessionData()?.authtoken;
-    const url = apiUrl();
+    const userId = props.sessionData()?.user?.id;
+    const token = props.sessionData()?.authtoken;
+    const url = props.sessionData()?.apiUrl;
     const achievementPromise = edulink.getAchievement(userId, token, url);
     const lookupPromise = edulink.getABLookup(token, url);
 

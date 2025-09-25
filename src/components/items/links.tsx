@@ -1,14 +1,15 @@
 import { onMount, createSignal, Show, For } from "solid-js";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { HiSolidLink } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 import { createStore } from "solid-js/store";
 import type { LinksResponse } from "../../types/api/links";
+import type { SessionData } from "../../types/auth";
 
 function Links(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -22,14 +23,7 @@ function Links(props: {
   }>({
     links: [],
   });
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -42,8 +36,8 @@ function Links(props: {
     };
     setStyles(normalized);
     const response = await edulink.getExternalLinks(
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (response.result.success) {

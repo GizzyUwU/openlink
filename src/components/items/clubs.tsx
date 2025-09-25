@@ -1,6 +1,5 @@
 import { onMount, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import type { ClubsResponse } from "../../types/api/clubs";
 import { useToast } from "../toast";
 import { FaSolidPersonRunning } from "solid-icons/fa";
@@ -8,11 +7,14 @@ import { Transition } from "solid-transition-group";
 import DOMPurify from "dompurify";
 import { IoCheckmarkCircleOutline } from "solid-icons/io";
 import { ImCross } from "solid-icons/im";
+import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Clubs(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
-  edulink: any;
+  edulink: EdulinkAPI;
   setOverlay: any;
   theme: string;
 }) {
@@ -31,14 +33,7 @@ function Clubs(props: {
     previewClub: [],
     activePage: "My Clubs",
   });
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -53,16 +48,16 @@ function Clubs(props: {
     setStyles(normalized);
     const clubsPromise = props.edulink.getClubs(
       true,
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     const allClubsPromise = props.edulink.getClubs(
       false,
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     const [response, allClubsResponse] = await Promise.all([
@@ -141,10 +136,10 @@ function Clubs(props: {
 
     const res = await props.edulink.attendClub(
       club_id,
-      sessionData()?.user?.id,
+      props.sessionData()?.user?.id,
       attend,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (res.result.success) {
@@ -175,8 +170,8 @@ function Clubs(props: {
 
     const clubData = await props.edulink.getClub(
       club_id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (clubData.result.success) {
@@ -305,11 +300,10 @@ function Clubs(props: {
                       if (state.activePage === name) return;
                       setState("activePage", name);
                     }}
-                    class={`text-sm text-white cursor-pointer ${
-                      state.activePage === name
-                        ? "border-b border-blue-400"
-                        : ""
-                    }`}
+                    class={`text-sm text-white cursor-pointer ${state.activePage === name
+                      ? "border-b border-blue-400"
+                      : ""
+                      }`}
                   >
                     {name}
                   </button>

@@ -1,5 +1,4 @@
 import { onMount, createSignal, Show } from "solid-js";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { createStore } from "solid-js/store";
 import { Transition } from "solid-transition-group";
@@ -7,9 +6,11 @@ import { useToast } from "../toast";
 import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { BehaviourResponse } from "../../types/api/behaviour";
 import { ABLookupResponse } from "../../types/api/ablookup";
+import type { SessionData } from "../../types/auth";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -39,14 +40,7 @@ function BehaviourComponent(props: {
     behaviourActions: [],
   });
 
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   const toast = useToast();
   const formatDate = (dateString: string | null): string => {
@@ -88,14 +82,14 @@ function BehaviourComponent(props: {
 
     // Start both requests, but don’t block rendering on lookup
     const behaviourPromise = edulink.getBehaviour(
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     const lookupPromise = edulink.getABLookup(
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     behaviourPromise.then((behaviourResponse: BehaviourResponse) => {
@@ -180,22 +174,20 @@ function BehaviourComponent(props: {
               <button
                 type="button"
                 onClick={() => setState("activePage", "behaviour")}
-                class={`text-sm text-white cursor-pointer ${
-                  state.activePage === "behaviour"
-                    ? "border-b border-blue-400"
-                    : ""
-                }`}
+                class={`text-sm text-white cursor-pointer ${state.activePage === "behaviour"
+                  ? "border-b border-blue-400"
+                  : ""
+                  }`}
               >
                 Behaviour
               </button>
               <button
                 type="button"
                 onClick={() => setState("activePage", "detentions")}
-                class={`text-sm font-medium text-white  cursor-pointer ${
-                  state.activePage === "detentions"
-                    ? "border-b border-blue-400"
-                    : ""
-                }`}
+                class={`text-sm font-medium text-white  cursor-pointer ${state.activePage === "detentions"
+                  ? "border-b border-blue-400"
+                  : ""
+                  }`}
               >
                 Detentions
               </button>

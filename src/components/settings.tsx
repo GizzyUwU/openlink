@@ -68,8 +68,6 @@ const updateToLatest = async () => {
 export default function Settings(props: {
   progress: () => number;
   sessionData: any;
-  setSession: any;
-  setApiUrl: any;
   setOverlay: (value: JSXElement) => void;
   styles: { [key: string]: string } | null;
   showSettings: Setter<boolean>;

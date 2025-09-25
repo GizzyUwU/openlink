@@ -3,12 +3,11 @@ import { Icon } from "@iconify-icon/solid";
 import { useNavigate } from "@solidjs/router";
 import type { ClubsResponse } from "../types/api/clubs";
 import type { StatusResponse } from "../types/auth";
+import type { EdulinkAPI } from "../api/main";
 export default function Footer(props: {
   sessionData: any;
-  apiUrl: any;
   setSession: any;
-  setApiUrl: any;
-  edulink: any;
+  edulink: EdulinkAPI;
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   styles: { [key: string]: string } | null;
   clubData: ClubsResponse.ClubType[];
@@ -20,14 +19,13 @@ export default function Footer(props: {
   onMount(() => {
     const fetchStatus = async () => {
       const result = await props.edulink.getStatus(
-        props.sessionData()?.authtoken,
-        props.apiUrl(),
+        props.sessionData().authtoken,
+        props.sessionData().apiUrl,
       );
       if (result.result.success) {
         setStatus(result.result);
       } else {
         props.setSession(null);
-        props.setApiUrl(null);
         throw navigate("/login");
       }
     };

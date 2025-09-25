@@ -1,10 +1,10 @@
 import { onMount, createSignal, Show } from "solid-js";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { AiOutlineDownload } from "solid-icons/ai";
 import { useToast } from "../toast";
 import { AiOutlineFileText } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
+import type { SessionData } from "../../types/auth";
 
 function base64ToUint8Array(base64: string) {
   const binary = atob(base64);
@@ -17,6 +17,7 @@ function base64ToUint8Array(base64: string) {
 
 function Documents(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -26,14 +27,7 @@ function Documents(props: {
   const edulink = useEdulink();
   const toast = useToast();
 
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   const [documents, setDocuments] = createSignal<any[]>([]);
 
@@ -49,9 +43,9 @@ function Documents(props: {
     setStyles(normalized);
 
     const response = await edulink.getDocuments(
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (response.result.success) {
@@ -73,8 +67,8 @@ function Documents(props: {
       const res = await edulink.getDocument(
         file,
         documentId,
-        sessionData()?.authtoken,
-        apiUrl(),
+        props.sessionData()?.authtoken,
+        props.sessionData()?.apiUrl,
       );
 
       if (!res.result.success) {

@@ -1,13 +1,15 @@
 import { onMount, createSignal, Show, For } from "solid-js";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { AiOutlineLineChart } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
 import { createStore } from "solid-js/store";
 import type { AttendanceResponse } from "../../types/api/attendance";
+import type { SessionData } from "../../types/auth";
+
 function Attendance(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -25,9 +27,9 @@ function Attendance(props: {
     statutory: AttendanceResponse.StatutoryType[];
     todaySessions: AttendanceResponse.SessionsType[];
     activePage:
-      | "Lesson Academic Year"
-      | "Statutory Month"
-      | "Statutory Academic Year";
+    | "Lesson Academic Year"
+    | "Statutory Month"
+    | "Statutory Academic Year";
   }>({
     lessons: [],
     currentMonthStatutory: [],
@@ -35,14 +37,7 @@ function Attendance(props: {
     todaySessions: [],
     activePage: "Lesson Academic Year",
   });
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -59,9 +54,9 @@ function Attendance(props: {
     const module = await import("solid-apexcharts");
     setSolidApexCharts(() => module.SolidApexCharts);
     const response = await edulink.getAttendance(
-      sessionData()?.user?.id,
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (response.result.success) {
@@ -156,7 +151,7 @@ function Attendance(props: {
           styles()
         }
       >
-        {({}) => {
+        {({ }) => {
           const Chart = SolidApexCharts()!;
           return (
             <div class={styles()!["box-container"]}>
@@ -178,11 +173,10 @@ function Attendance(props: {
                           if (state.activePage === name) return;
                           setState("activePage", name);
                         }}
-                        class={`text-sm text-white cursor-pointer ${
-                          state.activePage === name
-                            ? "border-b border-blue-400"
-                            : ""
-                        }`}
+                        class={`text-sm text-white cursor-pointer ${state.activePage === name
+                          ? "border-b border-blue-400"
+                          : ""
+                          }`}
                       >
                         {name}
                       </button>

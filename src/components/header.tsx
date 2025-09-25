@@ -7,7 +7,6 @@ export default function Header(props: {
   progress: () => number;
   sessionData: any;
   setSession: any;
-  setApiUrl: any;
   showSettings: Setter<boolean>;
   styles: { [key: string]: string } | null;
 }) {
@@ -105,7 +104,6 @@ export default function Header(props: {
                     <button
                       onClick={() => {
                         props.setSession(null);
-                        props.setApiUrl("");
                         throw navigate("/login?logout=true");
                       }}
                       class="block z-50 w-full text-left px-4 py-1 text-sm  cursor-pointer"

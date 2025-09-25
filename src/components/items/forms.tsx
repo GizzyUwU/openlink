@@ -1,17 +1,19 @@
 import { onMount, createSignal, For, Show } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import type { FormsResponse } from "../../types/api/forms";
 import { useToast } from "../toast";
 import { AiOutlineForm } from "solid-icons/ai";
 import { IoCheckmarkCircleOutline } from "solid-icons/io";
 import { ImCross } from "solid-icons/im";
 import { Transition } from "solid-transition-group";
+import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Forms(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
-  edulink: any;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
@@ -24,15 +26,8 @@ function Forms(props: {
     forms: [],
   });
 
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
 
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -46,8 +41,8 @@ function Forms(props: {
     setStyles(normalized);
     const response: FormsResponse = await props.edulink.getForms(
       "learner",
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (response.result.success) {

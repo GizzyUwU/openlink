@@ -1,14 +1,16 @@
 import { onMount, createSignal, Show } from "solid-js";
 import { createStore } from "solid-js/store";
-import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
 import { Icon } from "@iconify-icon/solid";
 import { IoBriefcaseOutline, IoCheckmarkCircleOutline } from "solid-icons/io";
 import { HomeworkResponse } from "../../types/api/homework";
 import { useToast } from "../toast";
+import type { SessionData } from "../../types/auth";
+
 function Homework(props: {
   setProgress: (value: number) => void;
+  sessionData: () => SessionData;
   progress: () => number;
   theme: string;
 }) {
@@ -29,14 +31,7 @@ function Homework(props: {
     shownHomework: null,
   });
 
-  const [sessionData] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "sessionData",
-  });
-  const [apiUrl] = makePersisted(createSignal<any>(null), {
-    storage: sessionStorage,
-    name: "apiUrl",
-  });
+
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -49,8 +44,8 @@ function Homework(props: {
     };
     setStyles(normalized);
     const response = await edulink.getHomework(
-      sessionData()?.authtoken,
-      apiUrl(),
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
     );
 
     if (response.result.success) {
@@ -134,20 +129,18 @@ function Homework(props: {
               <button
                 type="button"
                 onClick={() => handleSwap("current")}
-                class={`text-sm text-white cursor-pointer ${
-                  state.activePage === "current"
-                    ? "border-b border-blue-400"
-                    : ""
-                }`}
+                class={`text-sm text-white cursor-pointer ${state.activePage === "current"
+                  ? "border-b border-blue-400"
+                  : ""
+                  }`}
               >
                 Current
               </button>
               <button
                 type="button"
                 onClick={() => handleSwap("past")}
-                class={`text-sm font-medium text-white cursor-pointer ${
-                  state.activePage === "past" ? "border-b border-blue-400" : ""
-                }`}
+                class={`text-sm font-medium text-white cursor-pointer ${state.activePage === "past" ? "border-b border-blue-400" : ""
+                  }`}
               >
                 Past
               </button>
@@ -183,7 +176,7 @@ function Homework(props: {
                         <span>
                           {data.due_text
                             ? data.due_text.charAt(0).toUpperCase() +
-                              data.due_text.slice(1)
+                            data.due_text.slice(1)
                             : "-"}
                         </span>
                         <span>{data.due_date}</span>
