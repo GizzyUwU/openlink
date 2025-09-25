@@ -39,6 +39,7 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    border-bottom: 1px solid #e3e9ea;
 }
 
 .t-body {
@@ -52,9 +53,10 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        230px
-        1fr 1fr
-        200px 105px;
+        230px 1fr 1fr 200px 105px;
+}
+
+.t-row:not(:last-child) {
     border-bottom: 1px solid #e3e9ea;
 }
 
@@ -63,9 +65,7 @@
     padding-top: 10px;
     padding-bottom: 6px;
     grid-template-columns:
-        100px
-        1fr 1fr 100px
-        100px 260px;
+        100px 1fr 1fr 100px 100px 260px;
     text-align: center;
     min-height: 40px;
     color: #3090c7;
@@ -76,13 +76,11 @@
 .t-detentions-row {
     display: grid;
     grid-template-columns:
-        100px
-        1fr 1fr 100px
-        100px 260px;
+        100px 1fr 1fr 100px 100px 260px;
     border-bottom: 1px solid #e3e9ea;
 }
 
-.t-detentions-header > div {
+.t-detentions-header>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,7 +91,7 @@
     min-width: 0;
 }
 
-.t-detentions-row > div {
+.t-detentions-row>div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -108,17 +106,17 @@
     background-color: #ececec;
 }
 
-.t-detentions-row > ._date,
-.t-detentions-row > ._type,
-.t-detentions-row > ._loc,
-.t-detentions-row > ._attended {
+.t-detentions-row>._date,
+.t-detentions-row>._type,
+.t-detentions-row>._loc,
+.t-detentions-row>._attended {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
     font-weight: 400;
 }
 
-.t-header > div {
+.t-header>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,7 +127,7 @@
     min-width: 0;
 }
 
-.t-row > div {
+.t-row>div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -145,9 +143,9 @@
     background-color: #ececec;
 }
 
-.t-row > ._comment_teacher,
-.t-row > ._action_info,
-.t-row > ._loc_status {
+.t-row>._comment_teacher,
+.t-row>._action_info,
+.t-row>._loc_status {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;

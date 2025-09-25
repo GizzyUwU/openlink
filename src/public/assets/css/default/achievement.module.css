@@ -40,6 +40,7 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    border-bottom: 1px solid #e3e9ea;
 }
 
 .t-body {
@@ -53,13 +54,10 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        230px
-        1fr 1fr
-        200px 105px;
-    border-bottom: 1px solid #e3e9ea;
+        230px 1fr 1fr 200px 105px;
 }
 
-.t-header > div {
+.t-header>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,7 +68,11 @@
     min-width: 0;
 }
 
-.t-row > div {
+.t-row:not(:last-child) {
+    border-bottom: 1px solid #e3e9ea;
+}
+
+.t-row>div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
@@ -88,9 +90,9 @@
     background-color: #ececec;
 }
 
-.t-row > ._comment_teacher,
-.t-row > ._action_info,
-.t-row > ._award {
+.t-row>._comment_teacher,
+.t-row>._action_info,
+.t-row>._award {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
