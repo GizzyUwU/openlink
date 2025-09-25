@@ -79,7 +79,7 @@
     grid-template-columns:
         100px
         1fr 1fr 100px
-        100px 260px;
+        100px 130px;
     text-align: center;
     min-height: 40px;
     color: var(--text);
@@ -95,7 +95,7 @@
     grid-template-columns:
         100px
         1fr 1fr 100px
-        100px 260px;
+        100px 130px;
     color: var(--text);
 }
 
@@ -127,8 +127,7 @@
 
 .t-detentions-row > ._date,
 .t-detentions-row > ._type,
-.t-detentions-row > ._loc,
-.t-detentions-row > ._attended {
+.t-detentions-row > ._loc {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;
