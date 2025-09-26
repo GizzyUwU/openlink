@@ -44,7 +44,7 @@ export default function Footer(props: {
 
   return (
     <Show when={props.styles}>
-      <div class={props.styles!["openlink-s-footer"]}>
+      <div id="footer" class={props.styles!["openlink-s-footer"]}>
         <div class={props.styles!["openlink__footer-container"]}>
           <div
             class={props.styles!["openlink__footer-item"]}

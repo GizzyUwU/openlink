@@ -105,7 +105,7 @@ export default function Navigation(props: {
     const logoBase64 = props.sessionData().establishment?.logo;
     if (!logoBase64) return;
 
-    const dominantColor = await new Promise<string | null>((resolve) => {
+    const dominantColor = await new Promise<string>((resolve) => {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = `data:*;base64,${logoBase64}`;
@@ -113,7 +113,7 @@ export default function Navigation(props: {
       img.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        if (!ctx) return resolve(null);
+        if (!ctx) return resolve("rgb(255,255,255)");
 
         canvas.width = img.width;
         canvas.height = img.height;
@@ -124,12 +124,19 @@ export default function Navigation(props: {
         let maxColor = "";
         let maxCount = 0;
 
+        let transparentCount = 0;
+        let totalPixels = data.length / 4;
+
         for (let i = 0; i < data.length; i += 4) {
           const r = data[i];
           const g = data[i + 1];
           const b = data[i + 2];
           const a = data[i + 3];
-          if (a === 0) continue;
+
+          if (a === 0) {
+            transparentCount++;
+            continue;
+          }
 
           const key = `${r},${g},${b}`;
           colorCounts[key] = (colorCounts[key] || 0) + 1;
@@ -140,10 +147,16 @@ export default function Navigation(props: {
           }
         }
 
-        resolve(maxColor ? `rgb(${maxColor})` : null);
+        const transparencyRatio = transparentCount / totalPixels;
+
+        if (transparencyRatio > 0.5) {
+          resolve("rgb(255,255,255)");
+        } else {
+          resolve(maxColor ? `rgb(${maxColor})` : "rgb(255,255,255)");
+        }
       };
 
-      img.onerror = () => resolve(null);
+      img.onerror = () => resolve("rgb(255,255,255)");
     });
 
     if (dominantColor) setState("logoBG", dominantColor);

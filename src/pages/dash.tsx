@@ -247,13 +247,16 @@ function Main(props: { status: StatusResponse | null }) {
         <Show when={state.navWheelAnim && LoadedComponent()}>
           {(Comp) => {
             let itemBoxEl: HTMLDivElement | undefined;
+            let footerEl: HTMLElement | null = null;
+
+            const [footerHeight, setFooterHeight] = createSignal(0);
 
             const positionItemBox = () => {
               if (!itemBoxEl) return;
               const navEl = document.getElementById("nav-back");
               if (!navEl) return;
               const minGap = 20;
-              if (!itemBoxEl) return;
+
               itemBoxEl.style.transform = setTransform();
 
               const navRect = navEl.getBoundingClientRect();
@@ -267,18 +270,40 @@ function Main(props: { status: StatusResponse | null }) {
             };
 
             onMount(() => {
+              footerEl = document.getElementById("footer");
+
+              if (footerEl) {
+                const updateFooterHeight = () => {
+                  const rect = footerEl!.getBoundingClientRect();
+                  console.log("Footer rect:", rect); // debugging
+                  setFooterHeight(rect.height);
+                  console.log(footerHeight())
+                };
+
+                // Delay the first read until after layout/paint
+                requestAnimationFrame(updateFooterHeight);
+
+                // Watch for future changes
+                const roFooter = new ResizeObserver(updateFooterHeight);
+                roFooter.observe(footerEl);
+
+                onCleanup(() => roFooter.disconnect());
+              }
               const handle = () => requestAnimationFrame(positionItemBox);
-              handle()
-              window.addEventListener("resize", async () => {
-                await waitForWheelTransition()
-                handle()
-              });
-              const ro = new ResizeObserver(handle);
-              if (itemBoxEl) ro.observe(itemBoxEl);
+              handle();
+
+              const resizeHandler = async () => {
+                await waitForWheelTransition();
+                handle();
+              };
+              window.addEventListener("resize", resizeHandler);
+
+              const roBox = new ResizeObserver(handle);
+              if (itemBoxEl) roBox.observe(itemBoxEl);
 
               onCleanup(() => {
-                window.removeEventListener("resize", handle);
-                ro.disconnect();
+                window.removeEventListener("resize", resizeHandler);
+                roBox.disconnect();
               });
             });
 
@@ -291,7 +316,7 @@ function Main(props: { status: StatusResponse | null }) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": "calc(100vh - 230px)",
+                  "max-height": `calc(100vh - ${footerHeight() + 100}px)`, // <- 10px gap
                   "max-width": maxWidth(),
                   "margin-top": "20px",
                   width: "100%",
