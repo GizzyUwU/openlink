@@ -163,10 +163,10 @@ function Homework(props: {
               <div class={styles()!["t-body"]}>
                 {state.shownHomework?.map((data: HomeworkResponse.Items) => (
                   <div
-                    class={styles()!["t-row"]}
+                    class={`${styles()!["t-row"]} ${data.completed ? `${styles()!["completed"]}` : ""} ${!data.completed && data.due_date === new Date().toISOString().split("T")[0] ? styles()!["due-today"] : ""}`}
                     style={{
-                      "padding-top": `${Math.min(12 + data.activity.length * 0.15, 6)}px`,
-                      "padding-bottom": `${Math.min(12 + data.activity.length * 0.15, 6)}px`,
+                      "padding-top": `${ Math.min(12 + data.activity.length * 0.15, 6) }px`,
+                      "padding-bottom": `${ Math.min(12 + data.activity.length * 0.15, 6) }px`,
                     }}
                   >
                     <div class={styles()!["_due"]}>
@@ -193,8 +193,7 @@ function Homework(props: {
                       {data.status || "-"}
                     </div>
                     <div class={styles()!["_status"]}>
-                      {data.icon ? (
-                        data.icon === "tick" ? (
+                        {data.completed ? (
                           <IoCheckmarkCircleOutline
                             size="32"
                             class={styles()!["check-color"]}
@@ -206,10 +205,7 @@ function Homework(props: {
                             height="32"
                             class={styles()!["cross-color"]}
                           />
-                        )
-                      ) : (
-                        "-"
-                      )}
+                        )}
                     </div>
                   </div>
                 ))}
