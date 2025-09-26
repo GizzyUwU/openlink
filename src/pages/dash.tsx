@@ -291,10 +291,9 @@ function Main(props: { status: StatusResponse | null }) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": "calc(100vh - 200px)",
+                  "max-height": "calc(100vh - 230px)",
                   "max-width": maxWidth(),
                   "margin-top": "20px",
-                  "padding-bottom": "10px",
                   width: "100%",
                 }}
               >
