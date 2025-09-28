@@ -12,6 +12,7 @@
     "core:window:allow-toggle-maximize",
     "core:window:allow-minimize",
     "core:webview:allow-set-webview-zoom",
+    "core:app:allow-default-window-icon",
     "process:allow-restart",
     "updater:allow-check",
     "updater:allow-download-and-install",
