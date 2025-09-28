@@ -71,14 +71,30 @@ function Main(props: { status: StatusResponse | null }) {
       const navWheelRef = document.getElementById("nav-wheel");
       if (!navWheelRef) return resolve();
 
+      const computed = getComputedStyle(navWheelRef);
+      const duration = parseFloat(computed.transitionDuration) * 1000;
+      const delay = parseFloat(computed.transitionDelay) * 1000;
+      const total = duration + delay;
+
+      if (total === 0) {
+        return resolve();
+      }
+
       const handler = () => {
-        navWheelRef?.removeEventListener("transitionend", handler);
+        clearTimeout(fallback);
+        navWheelRef.removeEventListener("transitionend", handler);
         resolve();
       };
+
+      const fallback = setTimeout(() => {
+        navWheelRef.removeEventListener("transitionend", handler);
+        resolve();
+      }, total + 50);
 
       navWheelRef.addEventListener("transitionend", handler, { once: true });
     });
   }
+
 
   async function loadItemPage(
     id: string,
@@ -275,15 +291,10 @@ function Main(props: { status: StatusResponse | null }) {
               if (footerEl) {
                 const updateFooterHeight = () => {
                   const rect = footerEl!.getBoundingClientRect();
-                  console.log("Footer rect:", rect); // debugging
                   setFooterHeight(rect.height);
-                  console.log(footerHeight())
                 };
 
-                // Delay the first read until after layout/paint
                 requestAnimationFrame(updateFooterHeight);
-
-                // Watch for future changes
                 const roFooter = new ResizeObserver(updateFooterHeight);
                 roFooter.observe(footerEl);
 
@@ -316,7 +327,7 @@ function Main(props: { status: StatusResponse | null }) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": `calc(100vh - ${footerHeight() + 100}px)`, // <- 10px gap
+                  "max-height": `calc(100vh - ${footerHeight() + 110}px)`, // <- 10px gap
                   "max-width": maxWidth(),
                   "margin-top": "20px",
                   width: "100%",
