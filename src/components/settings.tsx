@@ -100,7 +100,7 @@ export default function Settings(props: {
           props.setOverlay(null);
           props.showSettings(false);
         }}
-        class={`${props.styles!["close"]} absolute top-2 right-2`}
+        class={`${props.styles!["close"]} absolute top-2 right-2 cursor-pointer`}
       >
         ✕
       </button>
