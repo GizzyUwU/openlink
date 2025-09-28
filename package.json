@@ -1,6 +1,6 @@
 {
   "name": "openlink",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Openlink - Custom client built for the EdulinkOne API",
   "type": "module",
   "scripts": {
