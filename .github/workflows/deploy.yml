@@ -6,7 +6,11 @@ on:
     branches:
       - main
     paths-ignore:
-      - ".gitea/**"
+      - "screenshots/**"
+      - "README.md"
+      - ".gitignore"
+      - ".wakatime-project"
+      - ".vscode"
       - ".github/workflows/build.yml"
 
 jobs:
