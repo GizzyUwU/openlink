@@ -49,8 +49,6 @@
 
 ## Screenshots
 
-## Screenshots
-
 <a href="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/1.png"><img src="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/1.png" width="49.5%"/></a> <a href="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/2.png"><img src="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/2.png" width="49.5%"/></a>
 
 <a href="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/3.png"><img src="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/3.png" width="49.5%"/></a> <a href="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/4.png"><img src="https://raw.githubusercontent.com/GizzyUwU/openlink/main/screenshots/4.png" width="49.5%"/></a>

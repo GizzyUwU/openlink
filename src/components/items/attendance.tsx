@@ -1,16 +1,17 @@
 import { onMount, createSignal, Show, For } from "solid-js";
-import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { AiOutlineLineChart } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
 import { createStore } from "solid-js/store";
 import type { AttendanceResponse } from "../../types/api/attendance";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Attendance(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [SolidApexCharts, setSolidApexCharts] = createSignal<
@@ -19,7 +20,6 @@ function Attendance(props: {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
     lessons: AttendanceResponse.LessonType[];
@@ -53,7 +53,7 @@ function Attendance(props: {
 
     const module = await import("solid-apexcharts");
     setSolidApexCharts(() => module.SolidApexCharts);
-    const response = await edulink.getAttendance(
+    const response = await props.edulink.getAttendance(
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,

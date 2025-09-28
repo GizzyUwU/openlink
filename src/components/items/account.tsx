@@ -1,23 +1,21 @@
 import { onMount, createSignal, Show } from "solid-js";
-import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { VsAccount } from "solid-icons/vs";
 import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Personal(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const toast = useToast();
-
-
   const [personalData, setPersonalData] = createSignal<any>(null);
 
   onMount(async () => {
@@ -30,7 +28,7 @@ function Personal(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    const response = await edulink.getPersonal(
+    const response = await props.edulink.getPersonal(
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,

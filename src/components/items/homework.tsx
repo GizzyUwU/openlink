@@ -1,23 +1,23 @@
 import { onMount, createSignal, Show } from "solid-js";
 import { createStore } from "solid-js/store";
-import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
 import { Icon } from "@iconify-icon/solid";
 import { IoBriefcaseOutline, IoCheckmarkCircleOutline } from "solid-icons/io";
 import { HomeworkResponse } from "../../types/api/homework";
 import { useToast } from "../toast";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Homework(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
     activePage: "current" | "past";
@@ -43,7 +43,7 @@ function Homework(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    const response = await edulink.getHomework(
+    const response = await props.edulink.getHomework(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
     );

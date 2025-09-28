@@ -1,22 +1,22 @@
 import { onMount, createSignal, Show, For } from "solid-js";
-import { useEdulink } from "../../api/edulink";
 import { useToast } from "../toast";
 import { HiSolidLink } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 import { createStore } from "solid-js/store";
 import type { LinksResponse } from "../../types/api/links";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function Links(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const toast = useToast();
   const [state, setState] = createStore<{
     links: LinksResponse.LinksType[];
@@ -35,7 +35,7 @@ function Links(props: {
       ...cssModule,
     };
     setStyles(normalized);
-    const response = await edulink.getExternalLinks(
+    const response = await props.edulink.getExternalLinks(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
     );

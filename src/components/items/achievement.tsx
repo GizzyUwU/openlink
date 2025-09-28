@@ -1,23 +1,23 @@
 import { onMount, createSignal, Show, For } from "solid-js";
 import { createStore } from "solid-js/store";
-import { useEdulink } from "../../api/edulink";
 import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
 import { AiOutlineTrophy } from "solid-icons/ai";
 import { AchievementResponse } from "../../types/api/achievement";
 import { ABLookupResponse } from "../../types/api/ablookup";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function AchievementComponent(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
 
   const [state, setState] = createStore<{
     achievements: AchievementResponse.AchievementType[];
@@ -74,8 +74,8 @@ function AchievementComponent(props: {
     const userId = props.sessionData()?.user?.id;
     const token = props.sessionData()?.authtoken;
     const url = props.sessionData()?.apiUrl;
-    const achievementPromise = edulink.getAchievement(userId, token, url);
-    const lookupPromise = edulink.getABLookup(token, url);
+    const achievementPromise = props.edulink.getAchievement(userId, token, url);
+    const lookupPromise = props.edulink.getABLookup(token, url);
 
     achievementPromise.then((achievementResponse: AchievementResponse) => {
       if (achievementResponse.result.success) {

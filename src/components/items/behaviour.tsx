@@ -1,5 +1,4 @@
 import { onMount, createSignal, Show } from "solid-js";
-import { useEdulink } from "../../api/edulink";
 import { createStore } from "solid-js/store";
 import { Transition } from "solid-transition-group";
 import { useToast } from "../toast";
@@ -7,17 +6,18 @@ import { RiSystemErrorWarningLine } from "solid-icons/ri";
 import { BehaviourResponse } from "../../types/api/behaviour";
 import { ABLookupResponse } from "../../types/api/ablookup";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const [state, setState] = createStore<{
     behaviour: BehaviourResponse.BehaviourType[];
     detentions: BehaviourResponse.DetentionsType[];
@@ -79,15 +79,13 @@ function BehaviourComponent(props: {
       ...cssModule,
     };
     setStyles(normalized);
-
-    // Start both requests, but don’t block rendering on lookup
-    const behaviourPromise = edulink.getBehaviour(
+    const behaviourPromise = props.edulink.getBehaviour(
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
     );
 
-    const lookupPromise = edulink.getABLookup(
+    const lookupPromise = props.edulink.getABLookup(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
     );

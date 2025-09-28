@@ -1,10 +1,10 @@
 import { onMount, createSignal, Show } from "solid-js";
-import { useEdulink } from "../../api/edulink";
 import { AiOutlineDownload } from "solid-icons/ai";
 import { useToast } from "../toast";
 import { AiOutlineFileText } from "solid-icons/ai";
 import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
+import type { EdulinkAPI } from "../../api/main";
 
 function base64ToUint8Array(base64: string) {
   const binary = atob(base64);
@@ -19,16 +19,13 @@ function Documents(props: {
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
+  edulink: EdulinkAPI;
   theme: string;
 }) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const edulink = useEdulink();
   const toast = useToast();
-
-
-
   const [documents, setDocuments] = createSignal<any[]>([]);
 
   onMount(async () => {
@@ -42,7 +39,7 @@ function Documents(props: {
     };
     setStyles(normalized);
 
-    const response = await edulink.getDocuments(
+    const response = await props.edulink.getDocuments(
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
@@ -64,7 +61,7 @@ function Documents(props: {
 
   const handleDownload = async (file: string, documentId: string) => {
     try {
-      const res = await edulink.getDocument(
+      const res = await props.edulink.getDocument(
         file,
         documentId,
         props.sessionData()?.authtoken,
