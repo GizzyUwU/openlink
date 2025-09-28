@@ -652,14 +652,14 @@ function Login() {
             <div class={state.styles!["f-demo"]}>
               <div class={state.styles!["select"]}>
                 <ul class={state.styles!["select__list"]}>
-                  <li class={state.styles!["__item"]}>
+                  {/* <li class={state.styles!["__item"]}>
                     <button
                       type="button"
                       class={state.styles!["__title"]}
                       onClick={() => handleDemo("parent")}
                     >
                       Parent (DEMO)
-                    </button>
+                    </button>`
                   </li>
                   <li class={state.styles!["__item"]}>
                     <button
@@ -669,7 +669,7 @@ function Login() {
                     >
                       Teacher (DEMO)
                     </button>
-                  </li>
+                  </li> */}
                   <li class={state.styles!["__item"]}>
                     <button
                       type="button"
