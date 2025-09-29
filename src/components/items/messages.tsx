@@ -185,7 +185,24 @@ function Messages(props: {
                   {(message) => (
                     <li
                       class={styles()!["__item"]}
-                      onClick={() => setState("openedMessage", [message])}
+                      onClick={() => {
+                        setState("openedMessage", [message])
+                        if (!state.openedMessage[0].read || state.openedMessage[0].read.length === 0) {
+                          setState("messages", (m) => m.id === message.id, "read", new Date().toISOString());
+                          (async () => {
+                            try {
+                              const res = await props.edulink.markAsRead(
+                                state.openedMessage[0].id,
+                                props.sessionData()?.authtoken,
+                                props.sessionData()?.apiUrl
+                              );
+                              if (res.result?.success) return;
+                            } catch (err) {
+                              console.error("Failed to mark as read:", err);
+                            }
+                          })();
+                        }
+                      }}
                     >
                       <div class={styles()!["l-messages__photos"]}>
                         <ul class={styles()!["l-photos"]}>
@@ -315,21 +332,6 @@ function Messages(props: {
                                 state.photos.find(p => p.id === m.sender.id)?.photo || state.defaultImage
                               )}>
                                 {() => {
-
-                                  if (!state.openedMessage[0].read || state.openedMessage[0].read.length === 0) {
-                                    (async () => {
-                                      try {
-                                        const res = await props.edulink.markAsRead(
-                                          state.openedMessage[0].id,
-                                          props.sessionData()?.authtoken,
-                                          props.sessionData()?.apiUrl
-                                        );
-                                        if (res.result?.success) return;
-                                      } catch (err) {
-                                        console.error("Failed to mark as read:", err);
-                                      }
-                                    })();
-                                  }
                                   return (
                                     <>
                                       <li
