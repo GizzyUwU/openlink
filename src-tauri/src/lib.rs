@@ -1,5 +1,9 @@
 use tauri::Manager;
-use tauri::{WebviewUrl, WebviewWindowBuilder};
+use tauri::{
+    menu::{Menu, MenuItem},
+    tray::TrayIconBuilder,
+    WebviewUrl, WebviewWindowBuilder, Window,
+};
 use tokio::sync::oneshot;
 use url::form_urlencoded;
 use url::Url;
@@ -50,8 +54,8 @@ async fn run_oauth(app_handle: tauri::AppHandle, url: String) -> Result<OAuthRed
                         if let Some(tx) = tx.lock().unwrap().take() {
                             let _ = tx.send(OAuthRedirect { idp_token, server });
                             if let Some(window) = app.get_webview_window("oauth") {
-                                      let _ = window.close();
-                                  }
+                                let _ = window.close();
+                            }
                         }
                     }
                 }
@@ -78,6 +82,35 @@ pub fn run() {
         .plugin(tauri_plugin_keyring::init())
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_opener::init())
+        .setup(|app| {
+            let open_i =
+                MenuItem::with_id(app, "open", "Open Openlink", true, None::<&str>)?;
+            let restart_i =
+                MenuItem::with_id(app, "restart", "Restart Openlink", true, None::<&str>)?;
+            let quit_i = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
+            let menu = Menu::with_items(app, &[&open_i, &restart_i, &quit_i])?;
+            TrayIconBuilder::new()
+                .icon(app.default_window_icon().unwrap().clone())
+                .menu(&menu)
+                .on_menu_event(|app, event| match event.id.as_ref() {
+                    "open" => {
+                        if let Some(window) = app.get_webview_window("main") {
+                            let _ = window.show();
+                        }
+                    }
+                    "restart" => {
+                        app.restart();
+                    }
+                    "quit" => {
+                        app.exit(0);
+                    }
+                    _ => {
+                        println!("menu item {:?} not handled", event.id);
+                    }
+                })
+                .build(app)?;
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![run_oauth])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
