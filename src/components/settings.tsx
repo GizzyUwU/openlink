@@ -1,5 +1,10 @@
 import { createSignal, JSXElement, Show, Setter, onMount } from "solid-js";
+import { createStore } from "solid-js/store";
 import { makePersisted } from "@solid-primitives/storage";
+import {
+  isPermissionGranted,
+  requestPermission,
+} from '@tauri-apps/plugin-notification';
 const themeImports = import.meta.glob("../public/assets/css/*/*.css", {
   eager: true,
 });
@@ -72,20 +77,28 @@ export default function Settings(props: {
   styles: { [key: string]: string } | null;
   showSettings: Setter<boolean>;
 }) {
-  const [themeSelection, triggerSelection] = createSignal<boolean>(false);
-  const [update, setUpdate] = createSignal<{ version: string } | null>(null);
-
+  const [state, setState] = createStore<{
+    themeSelection: boolean;
+    update: { version: string} | null;
+    notificationPermission: boolean | null;
+  }>({
+    themeSelection: false,
+    update: null,
+    notificationPermission: false
+  })
+  
   onMount(async () => {
     if (window.__TAURI__) {
       const { check } = await import("@tauri-apps/plugin-updater");
       const update = await check();
+      setState("notificationPermission", await isPermissionGranted());
       if (update) {
-        setUpdate({ version: update.version });
+        setState("update", { version: update.version });
         console.log(
           `[INFO] Update available! ${update.currentVersion} to ${update.version} from ${update.date}`,
         );
       } else {
-        setUpdate({ version: "latest" });
+        setState("update", { version: "latest" });
       }
     }
   });
@@ -107,18 +120,18 @@ export default function Settings(props: {
       <h2 class="text-xl text-center">Settings</h2>
       {window.__TAURI__ ? (
         <h2 class="text-[16px] text-center mb-4">
-          {update() === null ? (
+          {state.update === null ? (
             "Checking for updates..."
-          ) : update()?.version === "latest" ? (
+          ) : state.update?.version === "latest" ? (
             "Latest Version"
           ) : (
-            `Version ${update()?.version} available.`
+            `Version ${state.update?.version} available.`
           )}
         </h2>
       ) : (
         <div class="mb-2"></div>
       )}
-      <Show when={update() !== null && update()?.version !== "latest"}>
+      <Show when={state.update !== null && state.update?.version !== "latest"}>
         <button
           type="button"
           onClick={() => updateToLatest()}
@@ -127,15 +140,28 @@ export default function Settings(props: {
           Update to Latest
         </button>
       </Show>
+      <Show when={window.__TAURI__ && !state.notificationPermission}>
+        <button
+          type="button"
+          onClick={async () => {
+            const permission = await requestPermission();
+            setState("notificationPermission", permission === "granted")
+            window.location.reload();
+          }}
+          class={`${props.styles!["update-button"]} mb-4`}
+        >
+          Allow Notifications?
+        </button>
+      </Show>
       <div class={`${props.styles!["theme-selector"]} text-center`}>
         <button
           type="button"
-          onClick={() => triggerSelection((prev) => !prev)}
+          onClick={() => setState("themeSelection", ((prev) => !prev))}
           class={`${props.styles!["theme-button"]}`}
         >
           Available Themes<i class={props.styles!["dropdown-arrow"]}></i>
         </button>
-        <Show when={themeSelection()}>
+        <Show when={state.themeSelection}>
           <ul class={props.styles!["dropdown-menu"]}>
             {themes.map((theme) => (
               <li class={props.styles!["item"]} onClick={() => setTheme(theme)}>

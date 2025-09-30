@@ -53,7 +53,7 @@ render(
               path="/"
               component={() => (
                 <ProtectedRoute>
-                  {({ status }: { status: StatusResponse | null }) => (
+                  {({ status }: { status: StatusResponse["result"] | null }) => (
                     <Main status={status} />
                   )}
                 </ProtectedRoute>

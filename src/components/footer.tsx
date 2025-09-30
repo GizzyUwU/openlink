@@ -4,6 +4,11 @@ import { useNavigate } from "@solidjs/router";
 import type { ClubsResponse } from "../types/api/clubs";
 import type { StatusResponse } from "../types/auth";
 import type { EdulinkAPI } from "../api/main";
+import {
+  isPermissionGranted,
+  sendNotification
+} from '@tauri-apps/plugin-notification';
+
 export default function Footer(props: {
   sessionData: any;
   setSession: any;
@@ -11,19 +16,72 @@ export default function Footer(props: {
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   styles: { [key: string]: string } | null;
   clubData: ClubsResponse.ClubType[];
-  status: StatusResponse | null;
+  status: StatusResponse["result"] | null;
 }) {
   const navigate = useNavigate();
   const [status, setStatus] = createSignal<any>({});
+  let lastMessageCount = 0;
+  let lastFormCount = 0;
+  const notifiedEvents = new Set<string>();
 
-  onMount(() => {
+  onMount(async () => {
+    const notificationPermission = await isPermissionGranted();
     const fetchStatus = async () => {
-      const result = await props.edulink.getStatus(
+      const result: StatusResponse = await props.edulink.getStatus(
         props.sessionData().authtoken,
         props.sessionData().apiUrl,
       );
       if (result.result.success) {
+        const now = Date.now();
         setStatus(result.result);
+
+        if (notificationPermission) {
+          if (result.result.new_messages && result.result.new_messages !== lastMessageCount) {
+            sendNotification({ title: `Openlink - New Message${result.result.new_messages > 1 ? "s" : ""}!`, body: `You have ${result.result.new_messages} unread message${result.result.new_messages > 1 ? "s" : ""}.` });
+            lastMessageCount = result.result.new_messages;
+          }
+          if (result.result.new_forms && result.result.new_forms !== lastFormCount) {
+            sendNotification({ title: `Openlink - New Form${result.result.new_forms > 1 ? "'s" : ""}!`, body: `You have ${result.result.new_forms} undone form${result.result.new_forms > 1 ? "'s" : ""}.` });
+            lastFormCount = result.result.new_forms;
+          }
+
+          const nextLesson = result.result.lessons?.next;
+          if (nextLesson?.start_time) {
+            const [h, m] = nextLesson.start_time.split(":").map(Number);
+            const lessonDate = new Date();
+            lessonDate.setHours(h, m, 0, 0);
+
+            const diff = lessonDate.getTime() - now;
+            if (diff <= 5 * 60 * 1000 && diff > 0) {
+              const key = `lesson-${lessonDate.toISOString()}`;
+              if (!notifiedEvents.has(key)) {
+                sendNotification({
+                  title: `${nextLesson.teaching_group.subject}`,
+                  body: `${nextLesson.teaching_group.subject} / ${nextLesson.room.name} in 5 minutes.`,
+                });
+                notifiedEvents.add(key);
+              }
+            }
+          }
+
+          if (props.clubData?.length) {
+            props.clubData.forEach((club) => {
+              if (!club.next_session) return;
+              const sessionDate = new Date(club.next_session);
+              const diff = sessionDate.getTime() - now;
+              if (diff <= 5 * 60 * 1000 && diff > 0) {
+                const key = `club-${sessionDate.toISOString()}`;
+                if (!notifiedEvents.has(key)) {
+                  sendNotification({
+                    title: `${club.name}`,
+                    body: `${club.name} / ${club.location} starts in 5 minutes`,
+                  });
+                  notifiedEvents.add(key);
+                }
+              }
+            });
+          }
+        }
       } else {
         props.setSession(null);
         throw navigate("/login");
@@ -31,7 +89,55 @@ export default function Footer(props: {
     };
 
     if (props.status !== null) {
+      const now = Date.now();
       setStatus(props.status);
+      if (notificationPermission) {
+        if (props.status.new_messages && props.status.new_messages !== lastMessageCount) {
+          sendNotification({ title: `Openlink - New Message${props.status.new_messages > 1 ? "s" : ""}!`, body: `You have ${props.status.new_messages} unread message${props.status.new_messages > 1 ? "s" : ""}.` });
+          lastMessageCount = props.status.new_messages;
+        }
+        if (props.status.new_forms && props.status.new_forms !== lastFormCount) {
+          sendNotification({ title: `Openlink - New Form${props.status.new_forms > 1 ? "'s" : ""}!`, body: `You have ${props.status.new_forms} undone form${props.status.new_forms > 1 ? "'s" : ""}.` });
+          lastFormCount = props.status.new_forms;
+        }
+
+        const nextLesson = props.status.lessons?.next;
+        if (nextLesson?.start_time) {
+          const [h, m] = nextLesson.start_time.split(":").map(Number);
+          const lessonDate = new Date();
+          lessonDate.setHours(h, m, 0, 0);
+
+          const diff = lessonDate.getTime() - now;
+          if (diff <= 5 * 60 * 1000 && diff > 0) {
+            const key = `lesson-${lessonDate.toISOString()}`;
+            if (!notifiedEvents.has(key)) {
+              sendNotification({
+                title: `${nextLesson.teaching_group.subject}`,
+                body: `${nextLesson.teaching_group.subject} / ${nextLesson.room.name} in 5 minutes.`,
+              });
+              notifiedEvents.add(key);
+            }
+          }
+        }
+
+        if (props.clubData?.length) {
+          props.clubData.forEach((club) => {
+            if (!club.next_session) return;
+            const sessionDate = new Date(club.next_session);
+            const diff = sessionDate.getTime() - now;
+            if (diff <= 5 * 60 * 1000 && diff > 0) {
+              const key = `club-${sessionDate.toISOString()}`;
+              if (!notifiedEvents.has(key)) {
+                sendNotification({
+                  title: `${club.name}`,
+                  body: `${club.name} / ${club.location} starts in 5 minutes`,
+                });
+                notifiedEvents.add(key);
+              }
+            }
+          });
+        }
+      }
     } else {
       fetchStatus();
     }

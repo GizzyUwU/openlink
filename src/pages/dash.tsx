@@ -12,7 +12,7 @@ import type { ClubsResponse } from "../types/api/clubs";
 import { StatusResponse } from "../types/auth";
 import type { SessionData } from "../types/auth";
 
-function Main(props: { status: StatusResponse | null }) {
+function Main(props: { status: StatusResponse["result"] | null }) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
   const toast = useToast();
@@ -327,7 +327,7 @@ function Main(props: { status: StatusResponse | null }) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": `calc(100vh - ${footerHeight() + 110}px)`, // <- 10px gap
+                  "max-height": `calc(100vh - ${footerHeight() + 150}px)`, // <- 10px gap
                   "max-width": maxWidth(),
                   "margin-top": "20px",
                   width: "100%",

@@ -33,6 +33,7 @@ tauri-plugin-fs = "2"
 tauri-plugin-process = "2"
 url = "2.5.7"
 tokio = "1.47.1"
+tauri-plugin-notification = "2"
 
 [profile.dev]
 incremental = true

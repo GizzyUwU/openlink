@@ -8,7 +8,7 @@ const ProtectedRoute = (props: any) => {
   const navigate = useNavigate();
   const edulink = useEdulink();
 
-  const [status, setStatus] = createSignal<StatusResponse | null>(null);
+  const [status, setStatus] = createSignal<StatusResponse["result"] | null>(null);
   const [check, setCheck] = createSignal<boolean>(false);
   const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
     storage: sessionStorage,

@@ -2,7 +2,7 @@ use tauri::Manager;
 use tauri::{
     menu::{Menu, MenuItem},
     tray::TrayIconBuilder,
-    WebviewUrl, WebviewWindowBuilder, Window,
+    WebviewUrl, WebviewWindowBuilder
 };
 use tokio::sync::oneshot;
 use url::form_urlencoded;
@@ -75,6 +75,7 @@ pub fn run() {
     std::env::set_var("WEBKIT_DISABLE_COMPOSITING_MODE", "1");
 
     tauri::Builder::default()
+        .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(tauri_plugin_fs::init())
@@ -83,8 +84,7 @@ pub fn run() {
         .plugin(tauri_plugin_http::init())
         .plugin(tauri_plugin_opener::init())
         .setup(|app| {
-            let open_i =
-                MenuItem::with_id(app, "open", "Open Openlink", true, None::<&str>)?;
+            let open_i = MenuItem::with_id(app, "open", "Open Openlink", true, None::<&str>)?;
             let restart_i =
                 MenuItem::with_id(app, "restart", "Restart Openlink", true, None::<&str>)?;
             let quit_i = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
