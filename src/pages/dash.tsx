@@ -327,7 +327,7 @@ function Main(props: { status: StatusResponse["result"] | null }) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": `calc(100vh - ${footerHeight() + 150}px)`, // <- 10px gap
+                  "max-height": `calc(100vh - ${footerHeight() + 140}px)`, // <- 10px gap
                   "max-width": maxWidth(),
                   "margin-top": "20px",
                   width: "100%",

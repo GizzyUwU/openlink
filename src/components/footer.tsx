@@ -25,7 +25,6 @@ export default function Footer(props: {
   const notifiedEvents = new Set<string>();
 
   onMount(async () => {
-    const notificationPermission = await isPermissionGranted();
     const fetchStatus = async () => {
       const result: StatusResponse = await props.edulink.getStatus(
         props.sessionData().authtoken,
@@ -34,8 +33,8 @@ export default function Footer(props: {
       if (result.result.success) {
         const now = Date.now();
         setStatus(result.result);
-
-        if (notificationPermission) {
+        
+        if (window.__TAURI__ && await isPermissionGranted()) {
           if (result.result.new_messages && result.result.new_messages !== lastMessageCount) {
             sendNotification({ title: `Openlink - New Message${result.result.new_messages > 1 ? "s" : ""}!`, body: `You have ${result.result.new_messages} unread message${result.result.new_messages > 1 ? "s" : ""}.` });
             lastMessageCount = result.result.new_messages;
@@ -91,7 +90,7 @@ export default function Footer(props: {
     if (props.status !== null) {
       const now = Date.now();
       setStatus(props.status);
-      if (notificationPermission) {
+      if (window.__TAURI__ && await isPermissionGranted()) {
         if (props.status.new_messages && props.status.new_messages !== lastMessageCount) {
           sendNotification({ title: `Openlink - New Message${props.status.new_messages > 1 ? "s" : ""}!`, body: `You have ${props.status.new_messages} unread message${props.status.new_messages > 1 ? "s" : ""}.` });
           lastMessageCount = props.status.new_messages;
@@ -147,6 +146,8 @@ export default function Footer(props: {
     );
     onCleanup(() => clearInterval(checkStatus));
   });
+
+  console.log(status())
 
   return (
     <Show when={props.styles}>
