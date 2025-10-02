@@ -79,19 +79,23 @@
     .titlebar button:hover {
         background: #45475a;
     }
+    
+    #titlebar-close:hover {
+        background: #E81123;
+    }
 </style>
 
 <body>
     <div class="titlebar">
         <div data-tauri-drag-region></div>
         <div class="controls">
-            <button id="titlebar-minimize" title="minimize">
+            <button id="titlebar-minimize" title="Minimize">
                 <svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                     style="overflow: visible; color: currentcolor" height="1em" width="1em">
                     <path d="M2 7.75A.75.75 0 0 1 2.75 7h10a.75.75 0 0 1 0 1.5h-10A.75.75 0 0 1 2 7.75Z"></path>
                 </svg>
             </button>
-            <button id="titlebar-maximize" title="maximize">
+            <button id="titlebar-maximize" title="Maximize">
                 <svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                     style="overflow: visible; color: currentcolor" height="0.9em" width="0.9em">
                     <path
@@ -99,7 +103,7 @@
                     </path>
                 </svg>
             </button>
-            <button id="titlebar-close" title="close">
+            <button id="titlebar-close" title="Close">
                 <svg fill="currentColor" stroke-width="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                     style="overflow: visible; color: currentcolor" height="1em" width="1em">
                     <path fill-rule="evenodd"
