@@ -186,6 +186,26 @@ function Login() {
       ...cssModule,
     };
     setState("styles", normalized);
+
+    if (!navigator.onLine) {
+      setState("demo", true)
+      toast.showToast(
+        "No Network Connection",
+        "There is no active network connection! Please connect to a network to be able to use all the features.",
+        "error",
+      );
+    } else {
+      const checkNetwork = await edulink.checkNetwork();
+      if (!checkNetwork) {
+        setState("demo", true)
+        toast.showToast(
+          "No Internet Access",
+          "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
+          "error",
+        );
+      }
+    }
+
     if (window.__TAURI__) {
       await Promise.all([getStore(), getKeyring()]);
       const loadStore = await getStore();
