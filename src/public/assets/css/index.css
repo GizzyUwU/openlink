@@ -19,7 +19,6 @@ body,
     position: fixed !important;
     z-index: 999999 !important;
     right: 12px !important;
-    top: 12px !important;
     transition: opacity 0.3s ease-in-out;
 }
 

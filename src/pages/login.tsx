@@ -203,68 +203,68 @@ function Login() {
           "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
           "error",
         );
-      }
-    }
+      } else {
+        if (window.__TAURI__) {
+          await Promise.all([getStore(), getKeyring()]);
+          const loadStore = await getStore();
+          if (!loadStore) {
+            return;
+          }
+          const { load } = loadStore;
+          const store = await load("users.json", { autoSave: false, defaults: {} });
+          const users =
+            (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
+          if (!new URLSearchParams(window.location.search).has("logout")) {
+            if (users?.length > 0) {
+              const user = users[0];
+              const userData = await decryptUserData({
+                username: user.name,
+                encryptedData: user.userData,
+              });
+              if (userData) {
+                const data = JSON.parse(userData);
+                if (data.apiUrl && data.id && data.password) {
+                  const accountData = await edulink.accountSignin(
+                    user.name,
+                    data.password,
+                    data.id,
+                    data.apiUrl,
+                  );
 
-    if (window.__TAURI__) {
-      await Promise.all([getStore(), getKeyring()]);
-      const loadStore = await getStore();
-      if (!loadStore) {
-        return;
-      }
-      const { load } = loadStore;
-      const store = await load("users.json", { autoSave: false, defaults: {} });
-      const users =
-        (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
-      if (!new URLSearchParams(window.location.search).has("logout")) {
-        if (users?.length > 0) {
-          const user = users[0];
-          const userData = await decryptUserData({
-            username: user.name,
-            encryptedData: user.userData,
-          });
-          if (userData) {
-            const data = JSON.parse(userData);
-            if (data.apiUrl && data.id && data.password) {
-              const accountData = await edulink.accountSignin(
-                user.name,
-                data.password,
-                data.id,
-                data.apiUrl,
-              );
-
-              if (accountData.result.success) {
-                setSession({
-                  ...accountData.result,
-                  apiUrl: data.apiUrl
-                })
-                navigate("/", { replace: true });
-                return;
+                  if (accountData.result.success) {
+                    setSession({
+                      ...accountData.result,
+                      apiUrl: data.apiUrl
+                    })
+                    navigate("/", { replace: true });
+                    return;
+                  }
+                }
+              } else {
+                toast.showToast(
+                  "Error",
+                  "Decrypted Data contains no data on the end user.",
+                  "error",
+                );
               }
             }
           } else {
-            toast.showToast(
-              "Error",
-              "Decrypted Data contains no data on the end user.",
-              "error",
-            );
+            if (users?.length > 0) {
+              await store.set("users", {});
+              await store.save();
+            }
           }
         }
-      } else {
-        if (users?.length > 0) {
-          await store.set("users", {});
-          await store.save();
+        if (new URLSearchParams(window.location.search).has("code")) {
+          const code = new URLSearchParams(window.location.search).get("code") ?? "";
+
+          setState({
+            code,
+            hasText: code.trim().length > 0,
+          });
+          findCode();
         }
       }
-    }
-    if (new URLSearchParams(window.location.search).has("code")) {
-      const code = new URLSearchParams(window.location.search).get("code") ?? "";
-
-      setState({
-        code,
-        hasText: code.trim().length > 0,
-      });
-      findCode();
     }
 
     setState("loading", false);

@@ -1,37 +1,25 @@
 import { callApi } from "../fetch";
 
 export default {
-  name: "checkNetwork",
-  handler: async function (): Promise<boolean> {
-    const method = "EduLink.SchoolDetails";
-    const requestBody: {
-        jsonrpc: string;
-        method: "EduLink.SchoolDetails";
-        params: {
-            from_app: boolean;
+    name: "checkNetwork",
+    handler: async function (): Promise<boolean> {
+        try {
+            const response = await callApi("https://www.edulinkone.com/api/?networkCheck=true", {
+                method: "GET",
+            });
+            console.log(response)
+
+            if (!response.ok) {
+                return false;
+            }
+            return true;
+        } catch (err) {
+            if (err instanceof TypeError) {
+                console.log("Network error: probably offline or server unreachable");
+            } else {
+                console.log("Unexpected error:", err);
+            }
+            return false
         }
-        uuid: string;
-        id: string;
-    } = {
-      jsonrpc: "2.0",
-      method,
-      params: { from_app: false },
-      uuid: window.crypto.randomUUID(),
-      id: "1",
-    };
-
-    const response = await callApi("https://www.edulinkone.com/api/" + "?method=" + method + "&networkCheck=true", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-API-Method": method,
-      },
-      body: JSON.stringify(requestBody),
-    });
-
-    if (!response.ok) {
-       return false;
-    }
-    return true;
-  },
+    },
 };

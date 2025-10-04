@@ -10,7 +10,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
   if (!url) throw new Error("URL must be provided");
   const parsedUrl = new URL(url, window.location.origin);
   const pathname = parsedUrl.pathname.split("/").filter(Boolean);
-  if (pathname[0] === "demo" && !url.includes("&networkCheck=true")) {
+  if (pathname[0] === "demo" && !url.includes("?networkCheck=true")) {
     const accountType = pathname[1] as "parent" | "employee" | "learner";
     const apiMethod = parsedUrl.searchParams.get("method");
 

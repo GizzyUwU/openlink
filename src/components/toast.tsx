@@ -47,6 +47,15 @@ export const Toast: ParentComponent = (props) => {
   ) => {
     if (timeoutId) clearTimeout(timeoutId);
     if (fadeOutTimeoutId) clearTimeout(fadeOutTimeoutId);
+    const titlebar = document.querySelector(".titlebar");
+    const topOffset = titlebar ? `${titlebar.clientHeight + 12}px` : "12px";
+
+    const toastContainer = document.querySelector<HTMLElement>("#toast-container");
+    if (toastContainer) {
+      console.log("beeep")
+      toastContainer.style.top = topOffset;
+    }
+
     setToastState({
       visible: true,
       title,
