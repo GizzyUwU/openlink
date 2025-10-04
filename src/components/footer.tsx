@@ -147,8 +147,6 @@ export default function Footer(props: {
     onCleanup(() => clearInterval(checkStatus));
   });
 
-  console.log(status())
-
   return (
     <Show when={props.styles}>
       <div id="footer" class={props.styles!["openlink-s-footer"]}>

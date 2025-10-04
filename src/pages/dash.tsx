@@ -2,6 +2,7 @@ import { makePersisted } from "@solid-primitives/storage";
 import { createSignal, JSXElement, Setter } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { Show, onMount, createMemo, onCleanup } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import { createStore } from "solid-js/store";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -16,6 +17,7 @@ function Main(props: { status: StatusResponse["result"] | null }) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
   const toast = useToast();
+  const navigate = useNavigate();
   let resetNavFn: () => void = () => { };
   let openNavFn: (idx: number) => void;
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
@@ -153,59 +155,103 @@ function Main(props: { status: StatusResponse["result"] | null }) {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
     onCleanup(() => window.removeEventListener("resize", handleResize));
-
-    (async () => {
-      const theme = await getTheme();
-      setState("theme", theme);
-
-      const cssModule = await import(
-        `../public/assets/css/${state.theme}/main.module.css`
-      );
-      const normalized: { [key: string]: string } = {
-        ...cssModule.default,
-        ...cssModule,
-      };
-      setStyles(normalized);
-
-      if (window.__TAURI__) {
-        try {
-          const { check } = await import("@tauri-apps/plugin-updater");
-          const update = await check();
-          if (update) setState("updateAvailable", true);
-        } catch { }
+    if (!navigator.onLine) {
+      const parsedUrl = new URL(window.location.href);
+      const pathname = parsedUrl.pathname.split("/").filter(Boolean);
+      if (pathname[0] !== "demo") {
+        toast.showToast(
+          "No Network Connection",
+          "There is no active network connection! Please connect to a network to be able to use all the features.",
+          "error",
+        );
+        return navigate("/login");
       }
-
+    } else {
       (async () => {
-        try {
-          const clubData = await edulink.getClubs(
-            true,
-            sessionData()?.user?.id,
-            sessionData()?.authtoken,
-            sessionData()?.apiUrl,
+        const checkNetwork = await edulink.checkNetwork();
+        if (!checkNetwork) {
+          toast.showToast(
+            "No Internet Access",
+            "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
+            "error",
           );
-          if (clubData.result.success) {
-            setState("clubData", clubData.result.clubs);
+          const parsedUrl = new URL(window.location.href);
+          const pathname = parsedUrl.pathname.split("/").filter(Boolean);
+          if (pathname[0] !== "demo") {
+            toast.showToast(
+              "No Internet Access",
+              "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
+              "error",
+            );
+            return navigate("/login");
           }
-        } catch (err) {
-          console.error("Failed to fetch clubs:", err);
+        } else {
+          const theme = await getTheme();
+          setState("theme", theme);
+
+          const cssModule = await import(
+            `../public/assets/css/${state.theme}/main.module.css`
+          );
+          const normalized: { [key: string]: string } = {
+            ...cssModule.default,
+            ...cssModule,
+          };
+          setStyles(normalized);
+
+          if (window.__TAURI__) {
+            try {
+              const { check } = await import("@tauri-apps/plugin-updater");
+              const update = await check();
+              if (update) setState("updateAvailable", true);
+            } catch { }
+          }
+
+          try {
+            const clubData = await edulink.getClubs(
+              true,
+              sessionData()?.user?.id,
+              sessionData()?.authtoken,
+              sessionData()?.apiUrl,
+            );
+            if (clubData.result.success) {
+              setState("clubData", clubData.result.clubs);
+            }
+          } catch (err) {
+            console.error("Failed to fetch clubs:", err);
+          }
+
+          const url = new URL(window.location.href);
+          const page = url.searchParams.get("page");
+          if (page !== null) {
+            const loadHandler = async () => {
+              await loadItemPage(page, page, true);
+              window.removeEventListener("load", loadHandler);
+            };
+
+            if (document.readyState === "complete") {
+              loadHandler();
+            } else {
+              window.addEventListener("load", loadHandler);
+            }
+          }
+
         }
       })();
+    }
 
-      const url = new URL(window.location.href);
-      const page = url.searchParams.get("page");
-      if (page !== null) {
-        const loadHandler = async () => {
-          await loadItemPage(page, page, true);
-          window.removeEventListener("load", loadHandler);
-        };
-
-        if (document.readyState === "complete") {
-          loadHandler();
-        } else {
-          window.addEventListener("load", loadHandler);
-        }
+    window.addEventListener('offline', () => {
+      const parsedUrl = new URL(window.location.href);
+      const pathname = parsedUrl.pathname.split("/").filter(Boolean);
+      if (pathname[0] !== "demo") {
+        toast.showToast(
+          "No Network Connection",
+          "There is no active network connection! Please connect to a network to be able to use all the features.",
+          "error",
+        );
+        return navigate("/login");
       }
-    })();
+    })
+
   });
 
   const maxWidth = createMemo(() =>
