@@ -23,6 +23,7 @@ export default function Footer(props: {
   let lastMessageCount = 0;
   let lastFormCount = 0;
   const notifiedEvents = new Set<string>();
+  let sessionTimeout: ReturnType<typeof setTimeout> | null = null;
 
   onMount(async () => {
     const fetchStatus = async () => {
@@ -33,7 +34,7 @@ export default function Footer(props: {
       if (result.result.success) {
         const now = Date.now();
         setStatus(result.result);
-        
+
         if (window.__TAURI__ && await isPermissionGranted()) {
           if (result.result.new_messages && result.result.new_messages !== lastMessageCount) {
             sendNotification({ title: `Openlink - New Message${result.result.new_messages > 1 ? "s" : ""}!`, body: `You have ${result.result.new_messages} unread message${result.result.new_messages > 1 ? "s" : ""}.` });
@@ -81,9 +82,24 @@ export default function Footer(props: {
             });
           }
         }
+
+        if (!sessionTimeout && result.result.session?.expires) {
+          const expiresInMs = result.result.session.expires * 1000;
+          sessionTimeout = setTimeout(() => {
+            props.setSession(null);
+            sessionTimeout = null;
+            return navigate("/login");
+          }, expiresInMs);
+        } else if (!sessionTimeout) {
+          sessionTimeout = setTimeout(() => {
+            props.setSession(null);
+            sessionTimeout = null;
+            return navigate("/login");
+          }, 3600 * 1000);
+        }
       } else {
         props.setSession(null);
-        throw navigate("/login");
+        return navigate("/login");
       }
     };
 
