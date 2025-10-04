@@ -72,6 +72,7 @@ function Login() {
     hasLoginText: boolean;
     demo: boolean;
     styles: { [key: string]: string } | null;
+    noInternet: boolean;
   }>({
     code: "",
     username: "",
@@ -82,6 +83,7 @@ function Login() {
     hasLoginText: false,
     demo: false,
     styles: null,
+    noInternet: false
   });
 
   const [session, setSession] = makePersisted(createSignal<any>(null), {
@@ -188,7 +190,10 @@ function Login() {
     setState("styles", normalized);
 
     if (!navigator.onLine) {
-      setState("demo", true)
+      setState({
+        "noInternet": true,
+        "demo": true,
+      });
       toast.showToast(
         "No Network Connection",
         "There is no active network connection! Please connect to a network to be able to use all the features.",
@@ -197,7 +202,10 @@ function Login() {
     } else {
       const checkNetwork = await edulink.checkNetwork();
       if (!checkNetwork) {
-        setState("demo", true)
+        setState({
+          "noInternet": true,
+          "demo": true,
+        });
         toast.showToast(
           "No Internet Access",
           "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
@@ -266,6 +274,98 @@ function Login() {
         }
       }
     }
+
+    window.addEventListener('online', async () => {
+      const checkNetwork = await edulink.checkNetwork();
+      if (!checkNetwork) {
+        if (!state.demo) {
+          setState({
+            "demo": true,
+          });
+        }
+        toast.showToast(
+          "No Internet Access",
+          "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
+          "error",
+        );
+      } else if (state.noInternet) {
+        setState({
+          "noInternet": false,
+          "demo": true,
+        });
+        if (window.__TAURI__) {
+          await Promise.all([getStore(), getKeyring()]);
+          const loadStore = await getStore();
+          if (!loadStore) {
+            return;
+          }
+          const { load } = loadStore;
+          const store = await load("users.json", { autoSave: false, defaults: {} });
+          const users =
+            (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
+          if (!new URLSearchParams(window.location.search).has("logout")) {
+            if (users?.length > 0) {
+              const user = users[0];
+              const userData = await decryptUserData({
+                username: user.name,
+                encryptedData: user.userData,
+              });
+              if (userData) {
+                const data = JSON.parse(userData);
+                if (data.apiUrl && data.id && data.password) {
+                  const accountData = await edulink.accountSignin(
+                    user.name,
+                    data.password,
+                    data.id,
+                    data.apiUrl,
+                  );
+
+                  if (accountData.result.success) {
+                    setSession({
+                      ...accountData.result,
+                      apiUrl: data.apiUrl
+                    })
+                    navigate("/", { replace: true });
+                    return;
+                  }
+                }
+              } else {
+                toast.showToast(
+                  "Error",
+                  "Decrypted Data contains no data on the end user.",
+                  "error",
+                );
+              }
+            }
+          } else {
+            if (users?.length > 0) {
+              await store.set("users", {});
+              await store.save();
+            }
+          }
+        }
+        if (new URLSearchParams(window.location.search).has("code")) {
+          const code = new URLSearchParams(window.location.search).get("code") ?? "";
+
+          setState({
+            code,
+            hasText: code.trim().length > 0,
+          });
+          findCode();
+        }
+      }
+    });
+
+    window.addEventListener('offline', () => {
+      setState({
+        "demo": true,
+      });
+      toast.showToast(
+        "No Network Connection",
+        "There is no active network connection! Please connect to a network to be able to use all the features.",
+        "error",
+      );
+    });
 
     setState("loading", false);
   });
