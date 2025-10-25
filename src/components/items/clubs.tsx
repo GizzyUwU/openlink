@@ -347,10 +347,12 @@ function Clubs(props: {
                         : "-"}
                     </div>
                     <div class={styles()!["_session"]}>
-                      {formatDate({
-                        date: club.next_session,
-                        fullFormat: true,
-                      }) || "-"}
+                      {club.next_session === null
+                        ? "-"
+                        : formatDate({
+                          date: club.next_session,
+                          fullFormat: true,
+                        })}
                     </div>
                   </div>
                 ))}

@@ -104,7 +104,7 @@ export default function Header(props: {
                     <button
                       onClick={() => {
                         props.setSession(null);
-                        throw navigate("/login?logout=true");
+                        return navigate("/login?logout=true");
                       }}
                       class="block z-50 w-full text-left px-4 py-1 text-sm  cursor-pointer"
                     >
@@ -124,7 +124,7 @@ export default function Header(props: {
                 }}
               ></div>
               <div class={props.styles!["openlink__text"]}>
-                Hello,&nbsp;
+                Hello,{" "}
                 <span class={props.styles!["openlink__name"]}>
                   {props.sessionData()?.user?.forename +
                     " " +

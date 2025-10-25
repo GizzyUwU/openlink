@@ -8,7 +8,7 @@ type TimetableParams = {
 
 export type TimetableRequest = ApiRequest<"EduLink.Timetable", TimetableParams>;
 
-export interface TimetablePeriods {
+export interface TimetablePeriod {
   id: string | number;
   external_id?: string | number;
   name: string;
@@ -57,7 +57,7 @@ export interface TimetableDay {
   date: string;
   is_current: boolean;
   lessons: TimetableLessons[];
-  periods: TimetablePeriods[];
+  periods: TimetablePeriod[];
 }
 
 export interface TimetableWeek {
@@ -78,6 +78,6 @@ export type TimetableResponse = EdulinkApiResponse<{
 export namespace TimetableResponse {
   export type Week = TimetableWeek;
   export type Day = TimetableDay;
-  export type Period = TimetablePeriods;
+  export type Period = TimetablePeriod;
   export type Lesson = TimetableLessons;
 }

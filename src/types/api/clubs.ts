@@ -68,4 +68,5 @@ export type AttendClubResponse = EdulinkApiResponse<{
 
 export namespace ClubsResponse {
   export type ClubType = Club;
+  export type SessionType = Session;
 }

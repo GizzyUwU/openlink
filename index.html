@@ -35,56 +35,56 @@
     <meta name="language" content="en" />
     <meta name="revisit-after" content="30 days" />
     <meta name="author" content="GizzyUwU" />
+    <style>
+        html,
+        body {
+            background-color: #414c65;
+        }
+
+        .titlebar {
+            height: 30px;
+            background: #1e1e2e;
+            user-select: none;
+            display: none;
+            grid-template-columns: auto max-content;
+            grid-auto-rows: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            color: white;
+        }
+
+        .titlebar>.controls {
+            display: flex;
+            height: 100%;
+        }
+
+        .titlebar button {
+            appearance: none;
+            padding: 0;
+            margin: 0;
+            border: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 100%;
+            background-color: transparent;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        .titlebar button:hover {
+            background: #45475a;
+        }
+
+        #titlebar-close:hover {
+            background: #E81123;
+        }
+    </style>
 </head>
-<style>
-    html,
-    body {
-        background-color: #414c65;
-    }
-
-    .titlebar {
-        height: 30px;
-        background: #1e1e2e;
-        user-select: none;
-        display: none;
-        grid-template-columns: auto max-content;
-        grid-auto-rows: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        color: white;
-    }
-
-    .titlebar>.controls {
-        display: flex;
-        height: 100%;
-    }
-
-    .titlebar button {
-        appearance: none;
-        padding: 0;
-        margin: 0;
-        border: none;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 100%;
-        background-color: transparent;
-        box-sizing: border-box;
-    }
-
-    .titlebar button:hover {
-        background: #45475a;
-    }
-    
-    #titlebar-close:hover {
-        background: #E81123;
-    }
-</style>
-
 <body>
     <div class="titlebar">
         <div data-tauri-drag-region></div>
@@ -115,85 +115,68 @@
     </div>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
-    <script src="/src/index.tsx" type="module"></script>
-    <script type="module">
-        if (window.__TAURI__) {
-            document
-                .querySelector("#root")
-                ?.style.setProperty("padding-top", "30px");
-            document
-                .querySelector(".titlebar")
-                ?.style.setProperty("display", "grid");
-
-            import("@tauri-apps/api/webview").then(
-                async ({ getCurrentWebview }) => {
-                    const webview = await getCurrentWebview();
-                    const { load } = await import(
-                        "@tauri-apps/plugin-store"
-                    );
-                    const store = await load("users.json", {
-                        autoSave: false,
-                        defaults: {},
-                    });
-                    const zoomStore = await store.get("zoom");
-                    if (typeof zoomStore === "number" && zoomStore > 0) {
-                        await webview.setZoom(zoomStore);
-                    }
-                    let currentZoom = 1;
-
-                    const setZoom = async (zoom) => {
-                        currentZoom = zoom;
-                        await webview.setZoom(zoom);
-                        await store.set("zoom", zoom);
-                        await store.save();
-                        console.log(zoom);
-                    };
-
-                    window.addEventListener("keydown", async (e) => {
-                        if (!e.ctrlKey) return;
-
-                        switch (e.key) {
-                            case "+":
-                            case "=":
-                                await setZoom(currentZoom * 1.1);
-                                e.preventDefault();
-                                break;
-                            case "-":
-                                await setZoom(currentZoom / 1.1);
-                                e.preventDefault();
-                                break;
-                            case "0":
-                                await setZoom(1);
-                                e.preventDefault();
-                                break;
-                        }
-                    });
-                },
-            );
-
-            import("@tauri-apps/api/window").then(
-                ({ getCurrentWindow }) => {
-                    const appWindow = getCurrentWindow();
-                    document
-                        .getElementById("titlebar-minimize")
-                        ?.addEventListener("click", () =>
-                            appWindow.minimize(),
-                        );
-                    document
-                        .getElementById("titlebar-maximize")
-                        ?.addEventListener("click", () =>
-                            appWindow.toggleMaximize(),
-                        );
-                    document
-                        .getElementById("titlebar-close")
-                        ?.addEventListener("click", () =>
-                            appWindow.hide(),
-                        );
-                },
-            );
+    <script>
+        if (globalThis.__TAURI__) {
+            document.querySelector('.titlebar').style.display = 'grid';
+            document.querySelector('#root').style.paddingTop = '30px';
         }
     </script>
+    <script type="module">
+        if (globalThis.__TAURI__) {
+            const [{ getCurrentWindow }, { getCurrentWebview }, { load }] = await Promise.all([
+                import('@tauri-apps/api/window'),
+                import('@tauri-apps/api/webview'),
+                import('@tauri-apps/plugin-store'),
+            ]);
+
+            const appWindow = getCurrentWindow();
+
+            document.getElementById('titlebar-minimize')?.addEventListener('click', () => appWindow.minimize());
+            document.getElementById('titlebar-maximize')?.addEventListener('click', () => appWindow.toggleMaximize());
+            document.getElementById('titlebar-close')?.addEventListener('click', () => appWindow.hide());
+
+            try {
+                const webview = await getCurrentWebview();
+                const store = await load('users.json', { autoSave: false, defaults: {} });
+                const zoomStore = await store.get('zoom');
+
+                if (typeof zoomStore === 'number' && zoomStore > 0) {
+                    await webview.setZoom(zoomStore);
+                }
+
+                let currentZoom = zoomStore ?? 1;
+                const setZoom = async (zoom) => {
+                    currentZoom = zoom;
+                    await webview.setZoom(zoom);
+                    await store.set('zoom', zoom);
+                    await store.save();
+                };
+
+                globalThis.addEventListener('keydown', async (e) => {
+                    if (!e.ctrlKey) return;
+
+                    switch (e.key) {
+                        case '+':
+                        case '=':
+                            await setZoom(currentZoom * 1.1);
+                            e.preventDefault();
+                            break;
+                        case '-':
+                            await setZoom(currentZoom / 1.1);
+                            e.preventDefault();
+                            break;
+                        case '0':
+                            await setZoom(1);
+                            e.preventDefault();
+                            break;
+                    }
+                });
+            } catch (err) {
+                console.warn('Zoom setup skipped:', err);
+            }
+        }
+    </script>
+    <script src="/src/index.tsx" type="module" defer></script>
 </body>
 
 </html>

@@ -5,8 +5,9 @@ import {
   createMemo,
   For,
   Show,
+  batch
 } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createStore, produce } from "solid-js/store";
 import type { TimetableResponse } from "../../types/api/timetable";
 import { useToast } from "../toast";
 let dropdownRef: HTMLDivElement | undefined;
@@ -16,15 +17,16 @@ import { Transition } from "solid-transition-group";
 import type { ClubResponse, ClubsResponse } from "../../types/api/clubs";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { ExamsResponse } from "../../types/api/exams";
 
-function Timetable(props: {
+function Timetable(props: Readonly<{
   setProgress: (value: number) => void;
   progress: () => number;
   sessionData: () => SessionData;
   edulink: EdulinkAPI;
   theme: string;
   clubData: ClubsResponse.ClubType[];
-}) {
+}>) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -36,6 +38,22 @@ function Timetable(props: {
     weekDropdown?: boolean;
   }>({});
 
+  const currentDay = createMemo(() => state.currentDay);
+
+
+  const currentWeeksClubs = createMemo(() => {
+    const week = state.currentWeek;
+    if (!week) return {};
+    return props.clubData.reduce((acc, club) => {
+      if (!club?.next_session) return acc;
+      const date = new Date(club.next_session).toISOString().split("T")[0];
+      if (week.days.some((d) => d.date === date)) {
+        const clubsForDate = acc[date] ??= [];
+        clubsForDate.push(club);
+      }
+      return acc;
+    }, {} as Record<string, ClubsResponse.ClubType[]>);
+  });
 
   const handleClick = (event: MouseEvent) => {
     if (!state.weekDropdown) return;
@@ -47,18 +65,269 @@ function Timetable(props: {
     }
   };
 
+  async function insertNewPeriod({
+    day = currentDay(),
+    periodData,
+  }: {
+    day?: TimetableResponse.Day;
+    periodData: TimetableResponse.Period;
+  }) {
+    if (!day || !periodData) {
+      console.error("[Insert New Period] Missing day or periodData");
+      return;
+    }
+    const existing = day.periods.find(
+      (p) => p.start_time === periodData.start_time && p.end_time === periodData.end_time
+    );
+    ;
+    if (existing) {
+      console.warn("[Insert New Period] Period already exists at this time");
+      return;
+    }
+
+    const toMinutes = (t: string) => {
+      const [h, m] = t.split(":").map(Number);
+      return h * 60 + m;
+    };
+
+    batch(() => {
+      setState(
+        produce((state) => {
+          if (!state.weeks) return;
+
+          const weekIndex = state.weeks.findIndex((w) =>
+            w.days.some((d) => d.date === day.date)
+          );
+          if (weekIndex === -1) return;
+
+          const dayIndex = state.weeks[weekIndex].days.findIndex((d) => d.date === day.date);
+          if (dayIndex === -1) return;
+
+          let newPeriods = day.periods.map((p) => ({ ...p }));
+          const newStart = toMinutes(periodData.start_time);
+          const newEnd = toMinutes(periodData.end_time);
+
+          let inserted = false;
+          for (let i = 0; i < newPeriods.length; i++) {
+            const p = newPeriods[i];
+            const start = toMinutes(p.start_time);
+            const end = toMinutes(p.end_time);
+            if (newStart < start || (newStart === start && newEnd < end)) {
+              newPeriods.splice(i, 0, { ...periodData });
+              inserted = true;
+              break;
+            }
+          }
+          if (!inserted) newPeriods.push({ ...periodData });
+
+          state.weeks[weekIndex].days[dayIndex] = { ...day, periods: newPeriods };
+          if (state.currentDay?.date === day.date) {
+            state.currentDay = { ...day, periods: newPeriods };
+          }
+        })
+      );
+    });
+  }
+
+  async function insertNewLesson({
+    day = currentDay(),
+    lessonData,
+    overwrite = false,
+  }: {
+    day?: TimetableResponse.Day;
+    lessonData: TimetableResponse.Lesson;
+    overwrite?: boolean;
+  }) {
+    if (!day || !lessonData) {
+      console.error("[Insert New Lesson] Missing day or lessonData");
+      return;
+    }
+
+    const periodExists = day.periods.some((p) => p.id === lessonData.period_id);
+    if (!periodExists) {
+      console.error("[Insert New Lesson] Cannot insert into non-existent period");
+      return;
+    }
+
+    const existingLesson = day.lessons.find(
+      (l) => l.period_id === lessonData.period_id
+    );
+    if (existingLesson && !overwrite) {
+      console.warn("[Insert New Lesson] Lesson already exists and overwrite=false");
+      return;
+    }
+
+    batch(() => {
+      setState(
+        produce((state) => {
+          if (!state.weeks) return;
+          for (const week of state.weeks) {
+            const d = week.days.find((d) => d.date === day.date);
+            if (!d) continue;
+
+            const idx = d.lessons.findIndex(
+              (l) => l.period_id === lessonData.period_id
+            );
+            if (idx >= 0) {
+              d.lessons[idx] = lessonData;
+            } else {
+              d.lessons.push(lessonData);
+            }
+            if (state.currentDay?.date === d.date) {
+              state.currentDay = d;
+            }
+            if (state.currentWeek?.name === week.name) {
+              state.currentWeek = week;
+            }
+
+            break;
+          }
+        })
+      );
+    });
+  }
+
+  async function insertClubs() {
+    if (state.weeks === undefined) return;
+    for (const week of state.weeks) {
+      for (const day of week.days) {
+        const dayClubs = currentWeeksClubs()[day.date] ?? [];
+        if (!dayClubs.length || !day.periods || !day.lessons) continue;
+        const updatedPeriods = [...day.periods];
+        function updatedDay() {
+          return state.weeks
+            ?.find(w => w.days.some(d => d.date === day.date))
+            ?.days.find(d => d.date === day.date);
+        }
+
+        const clubDetailsList: ClubResponse[] = await Promise.all(
+          dayClubs.map((club) =>
+            props.edulink.getClub(
+              club.id,
+              props.sessionData()?.authtoken,
+              props.sessionData()?.apiUrl
+            )
+          )
+        );
+
+        for (let i = 0; i < dayClubs.length; i++) {
+          const club = dayClubs[i];
+          const clubDetails = clubDetailsList[i];
+          const session = clubDetails.result.club.sessions?.find(
+            (s) => s.start_time === club.next_session
+          );
+          if (!session) continue;
+
+          const startTime = session.start_time.split(" ")[1]?.slice(0, 5);
+          const endTime = session.end_time.split(" ")[1]?.slice(0, 5);
+          if (!startTime || !endTime) continue;
+
+          const alreadyExists = updatedPeriods.some(
+            (p) => p.start_time === startTime && p.end_time === endTime
+          );
+
+          if (alreadyExists === false) {
+            const newPeriod: TimetableResponse.Period = {
+              id: club.id,
+              name: `${day.name}:Club`,
+              start_time: startTime,
+              end_time: endTime,
+            };
+
+            await insertNewPeriod({ day: updatedDay(), periodData: newPeriod });
+            updatedPeriods.push(newPeriod);
+          }
+
+          const rawLeaders = clubDetails.result.club.leaders_names;
+          let leaders: string[] = [];
+
+          if (Array.isArray(rawLeaders)) {
+            leaders = rawLeaders.filter((n): n is string => !!n);
+          } else if (rawLeaders) {
+            leaders = [rawLeaders];
+          }
+
+          const matchingPeriod = updatedPeriods.find(
+            (p) => p.start_time === startTime && p.end_time === endTime
+          );
+
+          const clubLesson: TimetableResponse.Lesson = {
+            description: club.name,
+            period_id: Number(matchingPeriod?.id ?? club.id),
+            room: { id: 1, name: club.location || "TBD" },
+            room_id: 1,
+            teacher: leaders,
+            teaching_group: { id: 1, name: "", subject: club.name },
+          };
+
+          await insertNewLesson({ day: updatedDay(), lessonData: clubLesson, overwrite: true });
+        }
+      }
+    }
+  }
+
+  async function insertExams(data: ExamsResponse.TimetableType[]) {
+    if (state.weeks === undefined) return;
+    for (const week of state.weeks) {
+      for (const day of week.days) {
+        const dayExams = (data.filter(item => item.datetime.startsWith(day.date))) ?? [];
+        if (!dayExams.length || !day.periods || !day.lessons) continue;
+        const updatedPeriods = [...day.periods];
+        function updatedDay() {
+          return state.weeks
+            ?.find(w => w.days.some(d => d.date === day.date))
+            ?.days.find(d => d.date === day.date);
+        }
+
+        for (const exam of dayExams) {
+          const hoursMatch = /(\d+)\s*hr/.exec(exam.duration);
+          const minutesMatch = /(\d+)\s*m/.exec(exam.duration);
+          const h = hoursMatch ? Number(hoursMatch[1]) : 0;
+          const m = minutesMatch ? Number(minutesMatch[1]) : 0;
+          const end = new Date(new Date(exam.datetime).getTime() + (h * 3600 + m * 60) * 1000);
+          const startTime = new Date(exam.datetime).toTimeString().slice(0, 5);
+          const endTime = end.toTimeString().slice(0, 5);
+          const periodId = Number(startTime.replace(":", "") + endTime.replace(":", ""));
+          const alreadyExists = updatedPeriods.some(
+            (p) => p.start_time === startTime && p.end_time === endTime
+          );
+
+          if (alreadyExists === false) {
+            const newPeriod: TimetableResponse.Period = {
+              id: periodId,
+              name: `Exam`,
+              start_time: startTime,
+              end_time: endTime,
+            };
+            await insertNewPeriod({ day: updatedDay(), periodData: newPeriod });
+            updatedPeriods.push(newPeriod);
+          }
+
+          const matchingPeriod = updatedPeriods.find(
+            (p) => p.start_time === startTime && p.end_time === endTime
+          );
+
+          const clubLesson: TimetableResponse.Lesson = {
+            description: "",
+            period_id: Number(matchingPeriod?.id ?? periodId),
+            room: { id: 1, name: exam.room || "TBD" },
+            room_id: 1,
+            teacher: ["EXAMINATION"],
+            teaching_group: { id: 1, name: String(exam.code), subject: String(exam.title) },
+          };
+          await insertNewLesson({ day: updatedDay(), lessonData: clubLesson, overwrite: true });
+        }
+      }
+    }
+  }
+
   onMount(async () => {
     props.setProgress(0.6);
     document.addEventListener("mouseup", handleClick);
-
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/timetable.module.css`
     );
-    const normalized: { [key: string]: string } = {
-      ...cssModule.default,
-      ...cssModule,
-    };
-    setStyles(normalized);
+    setStyles({ ...cssModule.default, ...cssModule });
 
     const timetable: TimetableResponse = await props.edulink.getTimetable(
       props.sessionData()?.user?.id,
@@ -66,206 +335,45 @@ function Timetable(props: {
       props.sessionData()?.apiUrl,
     );
 
-    if (timetable.result.success) {
-      props.setProgress(0.8);
-      const currentWeek = timetable.result.weeks.find((w) => w.is_current) ||
-        timetable.result.weeks[0] || { days: [], name: "Unknown" };
+    const waitExamTimetable: Promise<ExamsResponse> = props.edulink.getExams(
+      props.sessionData()?.user?.id,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
+      "timetable",
+    );
 
-      const validDays = currentWeek.days.filter(
-        (d) => d.lessons?.length || d.periods?.length,
-      );
-
-      const currentDay = validDays.find((d) => d.is_current) || validDays[0];
-      setState({
-        currentDay: currentDay || {},
-        currentWeek: {
-          ...currentWeek,
-          days: validDays.length ? validDays : [],
-        },
-        weeks: timetable.result.weeks || [],
-      });
-
-      const todaysClubs = Array.isArray(props.clubData)
-        ? props.clubData.filter((club) => {
-          if (!club?.next_session) return false;
-          const clubDateStr = new Date(club.next_session)
-            .toISOString()
-            .split("T")[0];
-          return clubDateStr === currentDay.date;
-        })
-        : [];
-
-      if (
-        currentDay?.periods &&
-        currentDay?.lessons &&
-        todaysClubs.length > 0
-      ) {
-        const updatedLessons = [...currentDay.lessons];
-        const updatedPeriods = [...currentDay.periods];
-        const dayShort = currentDay.date
-          ? new Date(currentDay.date).toLocaleDateString("en-US", {
-            weekday: "short",
-          })
-          : "Day";
-
-        for (const club of todaysClubs) {
-          const clubDetails: ClubResponse = await props.edulink.getClub(
-            club.id,
-            props.sessionData()?.authtoken,
-            props.sessionData()?.apiUrl,
-          );
-          const clubTime = club.next_session.split(" ")[1].slice(0, 5);
-
-          let matchingPeriod = currentDay.periods.find(
-            (p) => p.start_time === clubTime,
-          );
-
-          if (!matchingPeriod) {
-            let inserted = false;
-
-            for (let i = 0; i < updatedPeriods.length; i++) {
-              const periodStart = updatedPeriods[i].start_time;
-              const nextPeriodStart = updatedPeriods[i + 1]?.start_time;
-              let endTime = "-";
-              const session = clubDetails.result.club.sessions?.find(session => session.start_time === club.next_session);
-
-              if (session) {
-                endTime = session.end_time.split(" ")[1].slice(0, 5);
-              } else if (nextPeriodStart) {
-                endTime = nextPeriodStart;
-              }
-
-              if (clubTime < periodStart) {
-                const end = endTime === "-" || endTime === nextPeriodStart ? periodStart : endTime;
-                matchingPeriod = {
-                  id: club.id,
-                  name: `${dayShort}:Club`,
-                  start_time: clubTime,
-                  end_time: end,
-                };
-
-                updatedPeriods.splice(i, 0, matchingPeriod);
-                inserted = true;
-                break;
-              }
-
-              if (endTime !== "-") {
-                if (clubTime > periodStart && clubTime < endTime) {
-                  matchingPeriod = {
-                    id: club.id,
-                    name: `${dayShort}:Club`,
-                    start_time: clubTime,
-                    end_time: endTime,
-                  };
-                  updatedPeriods.splice(i + 1, 0, matchingPeriod);
-                  inserted = true;
-                  break;
-                }
-              } else {
-                matchingPeriod = {
-                  id: club.id,
-                  name: `${dayShort}:Club`,
-                  start_time: clubTime,
-                  end_time: endTime,
-                };
-
-                updatedPeriods.push(matchingPeriod);
-                inserted = true;
-                break;
-              }
-            }
-
-            if (!inserted) {
-              matchingPeriod = {
-                id: club.id,
-                name: `${dayShort}:Club`,
-                start_time: clubTime,
-                end_time: updatedPeriods[0]?.start_time || clubTime,
-              };
-              updatedPeriods.unshift(matchingPeriod);
-            }
-          }
-
-          const lessonIndex = updatedLessons.findIndex(
-            (lesson) => lesson.period_id === matchingPeriod?.id,
-          );
-
-          if (lessonIndex !== -1) {
-            const leaders: string[] = Array.isArray(
-              clubDetails.result.club.leaders_names,
-            )
-              ? clubDetails.result.club.leaders_names.filter(
-                (name): name is string => !!name,
-              )
-              : clubDetails.result.club.leaders_names
-                ? [clubDetails.result.club.leaders_names]
-                : [];
-
-            updatedLessons[lessonIndex] = {
-              ...updatedLessons[lessonIndex],
-              description: club.name,
-              room: { id: 1, name: club.location || "TBD" },
-              room_id: 1,
-              teacher: leaders,
-              teaching_group: {
-                id: 1,
-                name: "",
-                subject: club.name,
-              },
-            };
-          } else {
-            const leaders: string[] = Array.isArray(
-              clubDetails.result.club.leaders_names,
-            )
-              ? clubDetails.result.club.leaders_names.filter(
-                (name): name is string => !!name,
-              )
-              : clubDetails.result.club.leaders_names
-                ? [clubDetails.result.club.leaders_names]
-                : [];
-
-            updatedLessons.push({
-              description: club.name,
-              period_id: Number(matchingPeriod?.id),
-              room: { id: 1, name: club.location || "TBD" },
-              room_id: 1,
-              teacher: leaders,
-              teaching_group: {
-                id: 1,
-                name: "",
-                subject: club.name,
-              },
-            });
-          }
-        }
-
-        setState({
-          currentDay: {
-            ...currentDay,
-            periods: updatedPeriods,
-            lessons: updatedLessons,
-          },
-          currentWeek: {
-            ...currentWeek,
-            days: (validDays.length ? validDays : []).map((day) =>
-              day.date === currentDay.date
-                ? { ...day, periods: updatedPeriods, lessons: updatedLessons }
-                : day,
-            ),
-          },
-          weeks: timetable.result.weeks || [],
-        });
-      }
-
-      props.setProgress(1);
-    } else {
+    if (!timetable.result.success) {
       toast.showToast(
         "Error",
         timetable.result.error ?? "Unknown error",
         "error",
       );
       props.setProgress(0);
+      return;
     }
+
+    props.setProgress(0.8);
+
+    const currentWeekData =
+      timetable.result.weeks.find((w) => (w.is_current === true || w.name === "Current")) ||
+      timetable.result.weeks[0] ||
+      { days: [], name: "Unknown" };
+
+    batch(() => {
+      setState({
+        weeks: timetable.result.weeks,
+        currentWeek: currentWeekData,
+        currentDay:
+          currentWeekData.days.find((d) => d.is_current) || currentWeekData.days[0],
+      });
+    });
+
+    if ((state.currentWeek?.days?.length ?? 0) > 0 && Object.keys(currentWeeksClubs()).length > 0) await insertClubs()
+
+    props.setProgress(1);
+
+    const examTimetable = await waitExamTimetable;
+    if ((state.currentWeek?.days?.length ?? 0) > 0 && examTimetable.result.timetable.length > 0) await insertExams(examTimetable.result.timetable)
   });
 
   onCleanup(() => {
@@ -332,17 +440,18 @@ function Timetable(props: {
                             if (week.name === state.currentWeek?.name)
                               return setState("weekDropdown", false);
 
-                            const validDays = week.days.filter(
-                              (d) => d.lessons?.length || d.periods?.length,
-                            );
-                            return setState({
-                              weekDropdown: false,
-                              currentWeek: {
-                                ...week,
-                                days: validDays.length ? validDays : [],
-                              },
-                              currentDay: week.days?.[0],
-                            });
+                            const validDays = week?.days?.filter((d: TimetableResponse.Day) => d.lessons?.length || d.periods?.length) ?? []
+                            batch(() => {
+                              setState(
+                                produce((state) => {
+                                  state.weekDropdown = false;
+                                  state.currentWeek = {
+                                    ...week,
+                                    days: validDays.length ? validDays : [],
+                                  };
+                                  state.currentDay = week.days?.[0];
+                                }))
+                            })
                           }}
                           class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                         >
@@ -360,162 +469,23 @@ function Timetable(props: {
                   <button
                     type="button"
                     onClick={async () => {
-                      const currentDay = day;
-                      setState({
-                        currentDay: {
-                          ...currentDay,
-                          periods: currentDay.periods,
-                          lessons: currentDay.lessons,
-                        },
-                      });
-                      const updatedLessons = [...currentDay.lessons];
-                      const updatedPeriods = [...currentDay.periods];
-                      const dayShort = currentDay.date
-                        ? new Date(currentDay.date).toLocaleDateString(
-                          "en-US",
-                          { weekday: "short" },
-                        )
-                        : "Day";
+                      batch(() => {
+                        setState(
+                          produce((state) => {
+                            if (!state.currentWeek) return;
 
-                      const todaysClubs = Array.isArray(props.clubData)
-                        ? props.clubData.filter((club) => {
-                          if (!club?.next_session) return false;
-                          const clubDateStr = new Date(club.next_session)
-                            .toISOString()
-                            .split("T")[0];
-                          return clubDateStr === currentDay.date;
-                        })
-                        : [];
-
-                      if (todaysClubs.length > 0) {
-                        for (const club of todaysClubs) {
-                          const clubDetails: ClubResponse =
-                            await props.edulink.getClub(
-                              club.id,
-                              props.sessionData()?.authtoken,
-                              props.sessionData()?.apiUrl,
+                            state.currentWeek.days = state.currentWeek.days.map((d) =>
+                              d.date === day.date
+                                ? { ...d }
+                                : d
                             );
 
-                          const clubTime = club.next_session
-                            .split(" ")[1]
-                            .slice(0, 5);
-
-                          let matchingPeriod = updatedPeriods.find(
-                            (p) => p.start_time === clubTime,
-                          );
-                          if (!matchingPeriod) {
-                            let inserted = false;
-
-                            let endTime = "-";
-                            const session = clubDetails.result.club.sessions?.find(session => session.start_time === club.next_session);
-
-                            for (let i = 0; i < updatedPeriods.length; i++) {
-                              const periodStart = updatedPeriods[i].start_time;
-                              const nextPeriodStart =
-                                updatedPeriods[i + 1]?.start_time;
-
-                              if (session) {
-                                endTime = session.end_time.split(" ")[1].slice(0, 5);
-                              } else if (nextPeriodStart) {
-                                endTime = nextPeriodStart;
-                              }
-
-                              if (clubTime < periodStart) {
-                                const end = endTime === "-" || endTime === nextPeriodStart ? periodStart : endTime;
-
-                                matchingPeriod = {
-                                  id: club.id,
-                                  name: `${dayShort}:Club`,
-                                  start_time: clubTime,
-                                  end_time: end
-                                };
-                                updatedPeriods.splice(i, 0, matchingPeriod);
-                                inserted = true;
-                                break;
-                              }
-                              if (endTime !== "-") {
-                                if (
-                                  clubTime > periodStart &&
-                                  clubTime < endTime
-                                ) {
-                                  matchingPeriod = {
-                                    id: club.id,
-                                    name: `${dayShort}:Club`,
-                                    start_time: clubTime,
-                                    end_time: endTime,
-                                  };
-                                  updatedPeriods.splice(i + 1, 0, matchingPeriod);
-                                  inserted = true;
-                                  break;
-                                }
-                              }
-                            }
-
-                            if (!inserted) {
-                              matchingPeriod = {
-                                id: club.id,
-                                name: `${dayShort}:Club`,
-                                start_time: clubTime,
-                                end_time: endTime,
-                              };
-                              updatedPeriods.push(matchingPeriod);
-                            }
-                          }
-
-                          const lessonIndex = updatedLessons.findIndex(
-                            (l) => l.period_id === matchingPeriod?.id,
-                          );
-                          const leaders: string[] = Array.isArray(
-                            clubDetails.result.club.leaders_names,
-                          )
-                            ? clubDetails.result.club.leaders_names.filter(
-                              (n): n is string => !!n,
-                            )
-                            : clubDetails.result.club.leaders_names
-                              ? [clubDetails.result.club.leaders_names]
-                              : [];
-
-                          const clubLesson = {
-                            description: club.name,
-                            period_id: Number(matchingPeriod?.id),
-                            room: { id: 1, name: club.location || "TBD" },
-                            room_id: 1,
-                            teacher: leaders,
-                            teaching_group: {
-                              id: 1,
-                              name: "",
-                              subject: club.name,
-                            },
-                          };
-
-                          if (lessonIndex !== -1)
-                            updatedLessons[lessonIndex] = clubLesson;
-                          else updatedLessons.push(clubLesson);
-                        }
-                      }
-
-                      setState({
-                        currentDay: {
-                          ...currentDay,
-                          periods: updatedPeriods,
-                          lessons: updatedLessons,
-                        },
-                        currentWeek: {
-                          ...state.currentWeek,
-                          name: state.currentWeek?.name ?? "Unknown",
-                          is_current: state.currentWeek?.is_current ?? false,
-                          days: (state.currentWeek?.days || []).map((day) =>
-                            day.date === currentDay.date
-                              ? {
-                                ...day,
-                                periods: updatedPeriods,
-                                lessons: updatedLessons,
-                              }
-                              : day,
-                          ),
-                        },
+                            state.currentDay = { ...day };
+                          })
+                        );
                       });
                     }}
+
                     class={`text-sm text-white cursor-pointer ${day.name === state.currentDay?.name
                       ? "border-b border-blue-400"
                       : ""
@@ -617,7 +587,7 @@ function Timetable(props: {
           </div>
         </div>
       </Show>
-    </Transition>
+    </Transition >
   );
 }
 

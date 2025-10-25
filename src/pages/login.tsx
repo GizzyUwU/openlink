@@ -20,31 +20,27 @@ let keyring: typeof import("tauri-plugin-keyring-api") | null = null;
 async function getKeyring(): Promise<
   typeof import("tauri-plugin-keyring-api") | null
 > {
-  if (!window.__TAURI__) return null;
-  if (!keyring) {
-    keyring = await import("tauri-plugin-keyring-api");
-  }
+  if (!globalThis.__TAURI__) return null;
+  keyring ??= await import("tauri-plugin-keyring-api");
   return keyring;
 }
 
 async function getStore(): Promise<
   typeof import("@tauri-apps/plugin-store") | null
 > {
-  if (!window.__TAURI__) return null;
-  if (!storeModule) {
-    storeModule = await import("@tauri-apps/plugin-store");
-  }
+  if (!globalThis.__TAURI__) return null;
+  storeModule ??= await import("@tauri-apps/plugin-store");
   return storeModule;
 }
 
 async function getTheme() {
-  if (window.__TAURI__) {
+  if (globalThis.__TAURI__) {
     const loadStore = await getStore();
     if (!loadStore) {
       return;
     }
     const { load } = loadStore;
-    const store = await load("users.json", { autoSave: false, defaults: {} });
+    const store = await load("config.json", { autoSave: false, defaults: {} });
     const theme = await store.get("theme");
     if (typeof theme !== "string" || theme.length === 0) return "default";
     return theme;
@@ -56,6 +52,47 @@ async function getTheme() {
     if (typeof theme() !== "string" || theme().length === 0) return "default";
     return theme();
   }
+}
+
+
+async function encryptUserData(state: { username: string; data: string }) {
+  const keyring = await getKeyring();
+  if (!keyring) {
+    return;
+  }
+  const { getPassword, setPassword } = keyring;
+  const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
+    const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
+    return Array.from(arr)
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  };
+  const hexToBytes = (hex: string) =>
+    new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => Number.parseInt(b, 16)));
+  let encryptKey = await getPassword("edulinkKey", state.username);
+  if (!encryptKey) {
+    const keyArray = crypto.getRandomValues(new Uint8Array(32));
+    encryptKey = bytesToHex(keyArray);
+    await setPassword("edulinkKey", state.username, encryptKey);
+  }
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw",
+    hexToBytes(encryptKey),
+    "AES-GCM",
+    false,
+    ["encrypt", "decrypt"],
+  );
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const encoded = new TextEncoder().encode(state.data);
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv },
+    cryptoKey,
+    encoded,
+  );
+  const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+  combined.set(iv, 0);
+  combined.set(new Uint8Array(ciphertext), iv.byteLength);
+  return bytesToHex(combined);
 }
 
 function Login() {
@@ -91,45 +128,6 @@ function Login() {
     name: "sessionData",
   });
 
-  async function encryptUserData(state: { username: string; data: string }) {
-    const keyring = await getKeyring();
-    if (!keyring) {
-      return;
-    }
-    const { getPassword, setPassword } = keyring;
-    const bytesToHex = (bytes: Uint8Array | ArrayBuffer) => {
-      const arr = bytes instanceof ArrayBuffer ? new Uint8Array(bytes) : bytes;
-      return Array.from(arr)
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
-    };
-    const hexToBytes = (hex: string) =>
-      new Uint8Array(hex.match(/.{1,2}/g)!.map((b) => parseInt(b, 16)));
-    let encryptKey = await getPassword("edulinkKey", state.username);
-    if (!encryptKey) {
-      const keyArray = crypto.getRandomValues(new Uint8Array(32));
-      encryptKey = bytesToHex(keyArray);
-      await setPassword("edulinkKey", state.username, encryptKey);
-    }
-    const cryptoKey = await crypto.subtle.importKey(
-      "raw",
-      hexToBytes(encryptKey),
-      "AES-GCM",
-      false,
-      ["encrypt", "decrypt"],
-    );
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const encoded = new TextEncoder().encode(state.data);
-    const ciphertext = await crypto.subtle.encrypt(
-      { name: "AES-GCM", iv },
-      cryptoKey,
-      encoded,
-    );
-    const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
-    combined.set(iv, 0);
-    combined.set(new Uint8Array(ciphertext), iv.byteLength);
-    return bytesToHex(combined);
-  }
 
   async function decryptUserData(state: {
     username: string;
@@ -144,7 +142,7 @@ function Login() {
       if (!hex) throw new Error("Invalid hex string");
       const matches = hex.match(/.{1,2}/g);
       if (!matches) throw new Error("Hex string has invalid format");
-      return new Uint8Array(matches.map((b) => parseInt(b, 16)));
+      return new Uint8Array(matches.map((b) => Number.parseInt(b, 16)));
     };
 
     const encryptKey = await getPassword("edulinkKey", state.username);
@@ -179,6 +177,53 @@ function Login() {
     }
   }
 
+
+  async function autoLogin() {
+    await Promise.all([getStore(), getKeyring()]);
+    const loadStore = await getStore();
+    if (!loadStore) return;
+    const { load } = loadStore;
+    const store = await load("users.json", { autoSave: false, defaults: {} });
+    const users = (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
+    const isLogout = new URLSearchParams(globalThis.location.search).has("logout");
+    if (isLogout) {
+      await store.set("users", {});
+      await store.save();
+      return;
+    }
+    if (users?.length > 0) {
+      const user = users[0];
+      const userData = await decryptUserData({
+        username: user.name,
+        encryptedData: user.userData,
+      });
+      if (userData) {
+        const data = JSON.parse(userData);
+        if (data.apiUrl && data.id && data.password) {
+          const accountData = await edulink.accountSignin(
+            user.name,
+            data.password,
+            data.id,
+            data.apiUrl,
+          );
+
+          if (accountData.result.success) {
+            setSession({
+              ...accountData.result,
+              apiUrl: data.apiUrl
+            })
+            navigate("/", { replace: true });
+            return;
+          }
+        }
+      } else return toast.showToast(
+        "Error",
+        "Decrypted Data contains no data on the end user.",
+        "error",
+      );
+    }
+  }
+
   onMount(async () => {
     const cssModule = await import(
       `../public/assets/css/${await getTheme()}/login.module.css`
@@ -189,7 +234,7 @@ function Login() {
     };
     setState("styles", normalized);
 
-    if (!navigator.onLine) {
+    if (navigator.onLine === false) {
       setState({
         "noInternet": true,
         "demo": true,
@@ -201,7 +246,7 @@ function Login() {
       );
     } else {
       const checkNetwork = await edulink.checkNetwork();
-      if (!checkNetwork) {
+      if (checkNetwork === false) {
         setState({
           "noInternet": true,
           "demo": true,
@@ -211,71 +256,12 @@ function Login() {
           "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
           "error",
         );
-      } else {
-        if (window.__TAURI__) {
-          await Promise.all([getStore(), getKeyring()]);
-          const loadStore = await getStore();
-          if (!loadStore) {
-            return;
-          }
-          const { load } = loadStore;
-          const store = await load("users.json", { autoSave: false, defaults: {} });
-          const users =
-            (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
-          if (!new URLSearchParams(window.location.search).has("logout")) {
-            if (users?.length > 0) {
-              const user = users[0];
-              const userData = await decryptUserData({
-                username: user.name,
-                encryptedData: user.userData,
-              });
-              if (userData) {
-                const data = JSON.parse(userData);
-                if (data.apiUrl && data.id && data.password) {
-                  const accountData = await edulink.accountSignin(
-                    user.name,
-                    data.password,
-                    data.id,
-                    data.apiUrl,
-                  );
-
-                  if (accountData.result.success) {
-                    setSession({
-                      ...accountData.result,
-                      apiUrl: data.apiUrl
-                    })
-                    navigate("/", { replace: true });
-                    return;
-                  }
-                }
-              } else {
-                toast.showToast(
-                  "Error",
-                  "Decrypted Data contains no data on the end user.",
-                  "error",
-                );
-              }
-            }
-          } else {
-            if (users?.length > 0) {
-              await store.set("users", {});
-              await store.save();
-            }
-          }
-        }
-        if (new URLSearchParams(window.location.search).has("code")) {
-          const code = new URLSearchParams(window.location.search).get("code") ?? "";
-
-          setState({
-            code,
-            hasText: code.trim().length > 0,
-          });
-          findCode();
-        }
+      } else if (globalThis.__TAURI__) {
+        await autoLogin()
       }
     }
 
-    window.addEventListener('online', async () => {
+    globalThis.addEventListener('online', async () => {
       const checkNetwork = await edulink.checkNetwork();
       if (!checkNetwork) {
         if (!state.demo) {
@@ -293,70 +279,11 @@ function Login() {
           "noInternet": false,
           "demo": true,
         });
-        if (window.__TAURI__) {
-          await Promise.all([getStore(), getKeyring()]);
-          const loadStore = await getStore();
-          if (!loadStore) {
-            return;
-          }
-          const { load } = loadStore;
-          const store = await load("users.json", { autoSave: false, defaults: {} });
-          const users =
-            (await store.get<{ name: string; userData: string }[]>("users")) ?? [];
-          if (!new URLSearchParams(window.location.search).has("logout")) {
-            if (users?.length > 0) {
-              const user = users[0];
-              const userData = await decryptUserData({
-                username: user.name,
-                encryptedData: user.userData,
-              });
-              if (userData) {
-                const data = JSON.parse(userData);
-                if (data.apiUrl && data.id && data.password) {
-                  const accountData = await edulink.accountSignin(
-                    user.name,
-                    data.password,
-                    data.id,
-                    data.apiUrl,
-                  );
-
-                  if (accountData.result.success) {
-                    setSession({
-                      ...accountData.result,
-                      apiUrl: data.apiUrl
-                    })
-                    navigate("/", { replace: true });
-                    return;
-                  }
-                }
-              } else {
-                toast.showToast(
-                  "Error",
-                  "Decrypted Data contains no data on the end user.",
-                  "error",
-                );
-              }
-            }
-          } else {
-            if (users?.length > 0) {
-              await store.set("users", {});
-              await store.save();
-            }
-          }
-        }
-        if (new URLSearchParams(window.location.search).has("code")) {
-          const code = new URLSearchParams(window.location.search).get("code") ?? "";
-
-          setState({
-            code,
-            hasText: code.trim().length > 0,
-          });
-          findCode();
-        }
+        await autoLogin();
       }
     });
 
-    window.addEventListener('offline', () => {
+    globalThis.addEventListener('offline', () => {
       setState({
         "demo": true,
       });
@@ -387,15 +314,6 @@ function Login() {
         data.result.school.server,
       );
       if (school.result.success) {
-        // if (school.result.establishment.idp_login.microsoftonline) {
-        //   if (window.__TAURI__) {
-        //     const data = await window.__TAURI__.core.invoke("run_oauth", {
-        //       url: school.result.establishment.idp_login.microsoftonline,
-        //     });
-
-        //     console.log(data);
-        //   }
-        // }
         setState("schoolData", school);
       } else {
         toast.showToast("Error", "Failed to fetch school details", "error");
@@ -435,7 +353,7 @@ function Login() {
         apiUrl: session().apiUrl,
         password: state.password,
       };
-      if (window.__TAURI__) {
+      if (globalThis.__TAURI__) {
         if (remember) {
           const loadStore = await getStore();
           if (!loadStore) {
@@ -460,8 +378,7 @@ function Login() {
         ...prev,
         ...account.result
       }));
-      navigate("/", { replace: true });
-      return;
+      return navigate("/", { replace: true });
     } else {
       setState("loading", false);
       toast.showToast(
@@ -486,12 +403,14 @@ function Login() {
     const idpUrl = state.schoolData?.result?.establishment?.idp_login?.[idp_id];
     setState("loading", true);
 
+    const rawIdpData: string = await globalThis.__TAURI__.core.invoke("run_oauth", {
+      url: idpUrl,
+    });
+
     const idpData: {
       idp_token: string;
       server: string;
-    } = await window.__TAURI__.core.invoke("run_oauth", {
-      url: idpUrl,
-    });
+    } = JSON.parse(rawIdpData)
 
     const account = await edulink.loginFromIDP(idpData.idp_token, session().apiUrl);
 
@@ -500,8 +419,7 @@ function Login() {
         ...prev,
         ...account.result
       }));
-      navigate("/", { replace: true });
-      return;
+      return navigate("/", { replace: true });
     } else {
       setState("loading", false);
       toast.showToast(
@@ -537,8 +455,7 @@ function Login() {
       ...account.demo.result,
       apiUrl: `demo/${type}`
     });
-    navigate("/", { replace: true });
-    return;
+    return navigate("/", { replace: true });
   };
 
   return (
@@ -673,10 +590,10 @@ function Login() {
                       </label>
                     </div>
                     <div class={state.styles!["__row"]}>
-                      <label class={state.styles!["__label"]}>
+                      <div class={state.styles!["__label"]}>
                         <div class={state.styles!["__checkbox"]}>
-                          <label class={state.styles!["__checkbox-wrapper"]}>
-                            <label class="flex items-center cursor-pointer relative">
+                          <label for="check" class={state.styles!["__checkbox-wrapper"] + " flex items-center cursor-pointer relative"}>
+                            <label aria-label="Remember me" class="flex items-center cursor-pointer relative">
                               <input type="checkbox" name="remember" class="peer h-6 w-6 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800" id="check" />
                               <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
@@ -691,17 +608,19 @@ function Login() {
                               Remember me
                             </span>
                           </label>
-                          <label class={state.styles!["__checkbox-wrapper"]}>
+                          <div class={state.styles!["__checkbox-wrapper"]}>
                             <button
+                              id="disabled-reset-login"
                               type="button"
-                              class={state.styles!["__checkbox-label"]}
+                              class={state.styles!["__checkbox-label"] + " text-white"}
+                              aria-label="Disabled reset login"
                               disabled
                             >
                               Reset Login
                             </button>
-                          </label>
+                          </div>
                         </div>
-                      </label>
+                      </div>
                     </div>
                     <Show
                       when={
@@ -709,7 +628,7 @@ function Login() {
                         Object.keys(
                           state.schoolData.result.establishment.idp_login,
                         ).length > 0 &&
-                        window.__TAURI__
+                        globalThis.__TAURI__
                       }
                     >
                       <div class={state.styles!["__idp-row"]}>

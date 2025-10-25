@@ -1,30 +1,30 @@
+use nanoserde::SerJson;
 use tauri::Manager;
 use tauri::{
     menu::{Menu, MenuItem},
-    tray::TrayIconBuilder,
-    WebviewUrl, WebviewWindowBuilder
+    tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
+    WebviewUrl, WebviewWindowBuilder,
 };
-use tokio::sync::oneshot;
 use url::form_urlencoded;
 use url::Url;
 
-#[derive(Debug, serde::Serialize, Clone)]
+#[derive(Debug, SerJson)]
 struct OAuthRedirect {
     idp_token: String,
     server: String,
 }
 
 #[tauri::command]
-async fn run_oauth(app_handle: tauri::AppHandle, url: String) -> Result<OAuthRedirect, String> {
+async fn run_oauth(app_handle: tauri::AppHandle, url: String) -> Result<String, String> {
     let parsed_url = Url::parse(&url).map_err(|e| e.to_string())?;
-    let (tx, rx) = oneshot::channel();
+    let (tx, rx) = tokio::sync::oneshot::channel::<String>();
     let tx = std::sync::Mutex::new(Some(tx));
     let app = app_handle.clone();
 
     WebviewWindowBuilder::new(&app_handle, "oauth", WebviewUrl::External(parsed_url))
         .on_navigation(move |url| {
             if let Some(host) = url.host_str() {
-                if host.ends_with("edulinkone.com") {
+            if host.ends_with("edulinkone.com") {
                     let parse_kv = |pairs: url::form_urlencoded::Parse<'_>| -> (Option<String>, Option<String>) {
                         let mut idp_token = None;
                         let mut server = None;
@@ -51,11 +51,10 @@ async fn run_oauth(app_handle: tauri::AppHandle, url: String) -> Result<OAuthRed
                     }
 
                     if let (Some(idp_token), Some(server)) = (idp_token, server) {
-                        if let Some(tx) = tx.lock().unwrap().take() {
-                            let _ = tx.send(OAuthRedirect { idp_token, server });
-                            if let Some(window) = app.get_webview_window("oauth") {
-                                let _ = window.close();
-                            }
+                        let redirect = OAuthRedirect { idp_token, server };
+                        let _ = tx.lock().unwrap().take().unwrap().send(redirect.serialize_json());
+                        if let Some(window) = app.get_webview_window("oauth") {
+                            let _ = window.close();
                         }
                     }
                 }
@@ -65,8 +64,10 @@ async fn run_oauth(app_handle: tauri::AppHandle, url: String) -> Result<OAuthRed
         .build()
         .map_err(|e| e.to_string())?;
 
-    rx.await
-        .map_err(|_| "OAuth redirect not captured".to_string())
+    let redirect = rx
+        .await
+        .map_err(|_| "OAuth redirect not captured".to_string())?;
+    Ok(redirect)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -106,6 +107,25 @@ pub fn run() {
                     }
                     _ => {
                         println!("menu item {:?} not handled", event.id);
+                    }
+                })
+                .on_tray_icon_event(|tray, event| match event {
+                    TrayIconEvent::Click {
+                        button: MouseButton::Left,
+                        button_state: MouseButtonState::Up,
+                        ..
+                    } => {
+                        println!("left click pressed and released");
+                        // in this example, let's show and focus the main window when the tray is clicked
+                        let app = tray.app_handle();
+                        if let Some(window) = app.get_webview_window("main") {
+                            let _ = window.unminimize();
+                            let _ = window.show();
+                            let _ = window.set_focus();
+                        }
+                    }
+                    _ => {
+                        println!("unhandled event {event:?}");
                     }
                 })
                 .build(app)?;

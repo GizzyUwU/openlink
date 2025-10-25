@@ -1,4 +1,4 @@
-import { onMount, createSignal, For, Show } from "solid-js";
+import { onMount, createSignal, For, Show, onCleanup } from "solid-js";
 import { createStore } from "solid-js/store";
 import type { ExamsResponse } from "../../types/api/exams";
 import { useToast } from "../toast";
@@ -7,13 +7,35 @@ import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
 
-function Exams(props: {
+function formatDate({
+  date,
+  time = false,
+}: {
+  date: string | Date;
+  time?: boolean;
+}): string {
+  const d = new Date(date);
+  if (time) {
+    return d.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
+  return d.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function Exams(props: Readonly<{
   setProgress: (value: number) => void;
   sessionData: () => SessionData;
   progress: () => number;
   edulink: EdulinkAPI;
   theme: string;
-}) {
+}>) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -47,9 +69,6 @@ function Exams(props: {
     },
     activePage: "Exam Timetable",
   });
-
-
-
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -125,60 +144,45 @@ function Exams(props: {
     }
   });
 
-  function formatDate({
-    date,
-    time = false,
-  }: {
-    date: string | Date;
-    time?: boolean;
-  }): string {
-    const d = new Date(date);
-
-    if (time) {
-      return d.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-
-    return d.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  }
-
-  function useTemplate(): string {
+  const start = Date.now();
+  function useTemplate() {
     const countdown = state.countdown;
-    if (
-      !countdown ||
-      countdown.minutes_to_go === undefined ||
-      !countdown.template ||
-      !countdown.exam
-    ) {
-      return "";
+    const [text, setText] = createSignal("");
+    const initialMinutes = state.countdown?.minutes_to_go ? Number(state.countdown.minutes_to_go) : 0;
+
+    function update() {
+      if (!countdown?.template || !countdown?.exam) {
+        setText("");
+        return;
+      }
+
+      const elapsedMinutes = Math.floor((Date.now() - start) / 60_000);
+      const minutesLeft = Math.max(initialMinutes - elapsedMinutes, 0);
+
+      const days = Math.floor(minutesLeft / (60 * 24));
+      const hours = Math.floor((minutesLeft % (60 * 24)) / 60);
+      const minutes = minutesLeft % 60;
+
+      const data: Record<string, string | number> = {
+        exam: countdown.exam,
+        days,
+        hours,
+        minutes,
+      };
+
+      const formatted = countdown.template.replaceAll(/\{(?:a\.)?(\w+)\}/g, (_, key: string) =>
+        key in data ? String(data[key]) : `{${key}}`,
+      );
+
+      setText(formatted);
     }
 
-    const template = countdown.template;
+    update();
 
-    const days = Math.floor(Number(countdown.minutes_to_go) / (60 * 24));
-    const hours = Math.floor(
-      (Number(countdown.minutes_to_go) % (60 * 24)) / 60,
-    );
-    const minutes = Number(countdown.minutes_to_go) % 60;
-
-    const data: Record<string, string | number> = {
-      exam: countdown.exam,
-      days,
-      hours,
-      minutes,
-    };
-
-    return template.replace(/\{(?:a\.)?(\w+)\}/g, (_, key: string) =>
-      key in data ? String(data[key]) : `{${key}}`,
-    );
+    const interval = setInterval(update, 1000);
+    onCleanup(() => clearInterval(interval))
+    return text;
   }
-
   return (
     <Transition
       onEnter={(el, done) => {
@@ -246,94 +250,92 @@ function Exams(props: {
                   }
                 >
                   <div class={styles()!["t-countdown"]}>
-                    <span>{useTemplate()}</span>
+                    <span>{useTemplate()()}</span>
                   </div>
                 </Show>
-                <div class={styles()!["t-timetable"]}>
-                  <div class={styles()!["t-header"]}>
-                    <div>Date & Start Time</div>
-                    <div>Board & Level</div>
-                    <div>Code & Exam</div>
-                    <div>Room</div>
-                    <div>Seat</div>
-                    <div>Duration</div>
-                  </div>
-                  <Show when={state.timetable.length > 0}>
-                    <div class={styles()!["t-body"]}>
-                      <For each={state.timetable}>
-                        {(data: ExamsResponse.TimetableType) => (
-                          <div class={styles()!["t-row"]}>
-                            <div class={styles()!["_date_start"]}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  "flex-direction": "column",
-                                }}
-                              >
-                                {data.datetime === "TBA" ? (
-                                  <span>TBA</span>
-                                ) : (
-                                  <>
-                                    <div class={styles()!["_grey"]}>
-                                      {formatDate({ date: data.datetime })}
-                                    </div>
-                                    <span>
-                                      {formatDate({
-                                        time: true,
-                                        date: data.datetime,
-                                      })}
-                                    </span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                            <div class={styles()!["_board_level"]}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  "flex-direction": "column",
-                                }}
-                              >
-                                {data.datetime === "TBA" ? (
-                                  <span>TBA</span>
-                                ) : (
-                                  <>
-                                    <div class={styles()!["_grey"]}>
-                                      {data.board || "-"}
-                                    </div>
-                                    <span>{data.level || "-"}</span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                            <div class={styles()!["_code_exam"]}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  "flex-direction": "column",
-                                }}
-                              >
-                                {data.datetime === "TBA" ? (
-                                  <span>TBA</span>
-                                ) : (
-                                  <>
-                                    <div class={styles()!["_grey"]}>
-                                      {data.code || "-"}
-                                    </div>
-                                    <span>{data.title}</span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                            <div class={styles()!["_room"]}>{data.room}</div>
-                            <div>{data.seat}</div>
-                            <div>{data.duration}</div>
-                          </div>
-                        )}
-                      </For>
-                    </div>
-                  </Show>
+                <div class={styles()!["t-header"]}>
+                  <div>Date & Start Time</div>
+                  <div>Board & Level</div>
+                  <div>Code & Exam</div>
+                  <div>Room</div>
+                  <div>Seat</div>
+                  <div>Duration</div>
                 </div>
+                <Show when={state.timetable.length > 0}>
+                  <div class={styles()!["t-body"]}>
+                    <For each={state.timetable}>
+                      {(data: ExamsResponse.TimetableType) => (
+                        <div class={styles()!["t-row"]}>
+                          <div class={styles()!["_date_start"]}>
+                            <div
+                              style={{
+                                display: "flex",
+                                "flex-direction": "column",
+                              }}
+                            >
+                              {data.datetime === "TBA" ? (
+                                <span>TBA</span>
+                              ) : (
+                                <>
+                                  <div class={styles()!["_grey"]}>
+                                    {formatDate({ date: data.datetime })}
+                                  </div>
+                                  <span>
+                                    {formatDate({
+                                      time: true,
+                                      date: data.datetime,
+                                    })}
+                                  </span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <div class={styles()!["_board_level"]}>
+                            <div
+                              style={{
+                                display: "flex",
+                                "flex-direction": "column",
+                              }}
+                            >
+                              {data.datetime === "TBA" ? (
+                                <span>TBA</span>
+                              ) : (
+                                <>
+                                  <div class={styles()!["_grey"]}>
+                                    {data.board || "-"}
+                                  </div>
+                                  <span>{data.level || "-"}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <div class={styles()!["_code_exam"]}>
+                            <div
+                              style={{
+                                display: "flex",
+                                "flex-direction": "column",
+                              }}
+                            >
+                              {data.datetime === "TBA" ? (
+                                <span>TBA</span>
+                              ) : (
+                                <>
+                                  <div class={styles()!["_grey"]}>
+                                    {data.code || "-"}
+                                  </div>
+                                  <span>{data.title}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          <div class={styles()!["_room"]}>{data.room}</div>
+                          <div>{data.seat}</div>
+                          <div>{data.duration}</div>
+                        </div>
+                      )}
+                    </For>
+                  </div>
+                </Show>
               </Show>
               <Show when={state.activePage === "Exam Entries"}>
                 <div class={styles()!["t-entries"]}>

@@ -1,9 +1,9 @@
 import { makePersisted } from "@solid-primitives/storage";
-import { createSignal, JSXElement, Setter } from "solid-js";
+import { createSignal, JSXElement, Setter, Show, onMount, createMemo, onCleanup } from "solid-js";
 import { useEdulink } from "../api/edulink";
-import { Show, onMount, createMemo, onCleanup } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { createStore } from "solid-js/store";
+import type { Accessor } from "solid-js";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Settings from "../components/settings";
@@ -13,7 +13,36 @@ import type { ClubsResponse } from "../types/api/clubs";
 import { StatusResponse } from "../types/auth";
 import type { SessionData } from "../types/auth";
 
-function Main(props: { status: StatusResponse["result"] | null }) {
+function waitForWheelTransition() {
+  return new Promise<void>((resolve) => {
+    const navWheelRef = document.getElementById("nav-wheel");
+    if (!navWheelRef) return resolve();
+
+    const computed = getComputedStyle(navWheelRef);
+    const duration = Number.parseFloat(computed.transitionDuration) * 1000;
+    const delay = Number.parseFloat(computed.transitionDelay) * 1000;
+    const total = duration + delay;
+
+    if (total === 0) {
+      return resolve();
+    }
+
+    const handler = () => {
+      clearTimeout(fallback);
+      navWheelRef.removeEventListener("transitionend", handler);
+      resolve();
+    };
+
+    const fallback = setTimeout(() => {
+      navWheelRef.removeEventListener("transitionend", handler);
+      resolve();
+    }, total + 50);
+
+    navWheelRef.addEventListener("transitionend", handler, { once: true });
+  });
+}
+
+function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   const [LoadedComponent, setLoadedComponent] = createSignal<any>(null);
   const edulink = useEdulink();
   const toast = useToast();
@@ -25,9 +54,9 @@ function Main(props: { status: StatusResponse["result"] | null }) {
   );
 
   async function getTheme() {
-    if (window.__TAURI__) {
+    if (globalThis.__TAURI__) {
       const { load } = await import("@tauri-apps/plugin-store");
-      const store = await load("users.json", { autoSave: false, defaults: {} });
+      const store = await load("config.json", { autoSave: false, defaults: {} });
       const theme = await store.get("theme");
       if (typeof theme !== "string" || theme.length === 0) return "default";
       return theme;
@@ -62,41 +91,10 @@ function Main(props: { status: StatusResponse["result"] | null }) {
     clubData: [],
     prevPos: null
   });
-
   const [sessionData, setSession] = makePersisted(createSignal<SessionData | null>(null), {
     storage: sessionStorage,
     name: "sessionData",
   });
-
-  function waitForWheelTransition() {
-    return new Promise<void>((resolve) => {
-      const navWheelRef = document.getElementById("nav-wheel");
-      if (!navWheelRef) return resolve();
-
-      const computed = getComputedStyle(navWheelRef);
-      const duration = parseFloat(computed.transitionDuration) * 1000;
-      const delay = parseFloat(computed.transitionDelay) * 1000;
-      const total = duration + delay;
-
-      if (total === 0) {
-        return resolve();
-      }
-
-      const handler = () => {
-        clearTimeout(fallback);
-        navWheelRef.removeEventListener("transitionend", handler);
-        resolve();
-      };
-
-      const fallback = setTimeout(() => {
-        navWheelRef.removeEventListener("transitionend", handler);
-        resolve();
-      }, total + 50);
-
-      navWheelRef.addEventListener("transitionend", handler, { once: true });
-    });
-  }
-
 
   async function loadItemPage(
     id: string,
@@ -133,13 +131,12 @@ function Main(props: { status: StatusResponse["result"] | null }) {
         setState("prevPos", targetPos)
       }
       setState("navWheelAnim", true);
-      const url = new URL(window.location.href);
+      const url = new URL(globalThis.location.href);
       url.searchParams.set("page", id);
-      window.history.pushState({}, "", url.toString());
+      globalThis.history.pushState({}, "", url.toString());
     } catch (err) {
       console.error(
-        "Failed to load component: ../components/items/%s.tsx",
-        id.replace(/%/g, "%%"),
+        `Failed to load component: ../components/items/${id}tsx`,
         err,
       );
 
@@ -155,10 +152,10 @@ function Main(props: { status: StatusResponse["result"] | null }) {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
     onCleanup(() => window.removeEventListener("resize", handleResize));
-    if (!navigator.onLine) {
-      const parsedUrl = new URL(window.location.href);
-      const pathname = parsedUrl.pathname.split("/").filter(Boolean);
-      if (pathname[0] !== "demo") {
+    if (navigator.onLine === false) {
+      const parsedUrl = new URL(globalThis.location.href);
+      const pathname = parsedUrl.pathname.split("/").find(Boolean);
+      if (pathname![0].startsWith("demo")) {
         toast.showToast(
           "No Network Connection",
           "There is no active network connection! Please connect to a network to be able to use all the features.",
@@ -169,15 +166,15 @@ function Main(props: { status: StatusResponse["result"] | null }) {
     } else {
       (async () => {
         const checkNetwork = await edulink.checkNetwork();
-        if (!checkNetwork) {
+        if (checkNetwork === false) {
           toast.showToast(
             "No Internet Access",
             "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
             "error",
           );
-          const parsedUrl = new URL(window.location.href);
-          const pathname = parsedUrl.pathname.split("/").filter(Boolean);
-          if (pathname[0] !== "demo") {
+          const parsedUrl = new URL(globalThis.location.href);
+          const pathname = parsedUrl.pathname.split("/").find(Boolean);
+          if (pathname![0].startsWith("demo")) {
             toast.showToast(
               "No Internet Access",
               "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
@@ -198,7 +195,7 @@ function Main(props: { status: StatusResponse["result"] | null }) {
           };
           setStyles(normalized);
 
-          if (window.__TAURI__) {
+          if (globalThis.__TAURI__) {
             try {
               const { check } = await import("@tauri-apps/plugin-updater");
               const update = await check();
@@ -220,7 +217,7 @@ function Main(props: { status: StatusResponse["result"] | null }) {
             console.error("Failed to fetch clubs:", err);
           }
 
-          const url = new URL(window.location.href);
+          const url = new URL(globalThis.location.href);
           const page = url.searchParams.get("page");
           if (page !== null) {
             const loadHandler = async () => {
@@ -239,10 +236,10 @@ function Main(props: { status: StatusResponse["result"] | null }) {
       })();
     }
 
-    window.addEventListener('offline', () => {
-      const parsedUrl = new URL(window.location.href);
-      const pathname = parsedUrl.pathname.split("/").filter(Boolean);
-      if (pathname[0] !== "demo") {
+    globalThis.addEventListener('offline', () => {
+      const parsedUrl = new URL(globalThis.location.href);
+      const pathname = parsedUrl.pathname.split("/").find(Boolean);
+      if (pathname![0].startsWith("demo")) {
         toast.showToast(
           "No Network Connection",
           "There is no active network connection! Please connect to a network to be able to use all the features.",
@@ -293,7 +290,7 @@ function Main(props: { status: StatusResponse["result"] | null }) {
           />
         </Show>
         <Navigation
-          sessionData={sessionData}
+          sessionData={sessionData as Accessor<SessionData>}
           setProgress={(value: number) => setState("progress", value)}
           setPrevPos={(value: number | null) => setState("prevPos", value)}
           progress={() => state.progress}
@@ -388,17 +385,21 @@ function Main(props: { status: StatusResponse["result"] | null }) {
         <Show when={state.overlay !== null}>
           <div
             class={`${styles()?.["t-overlay"]} flex justify-center`}
-            onMouseUp={() => {
+            // open
+            // ref={(el) => el?.showModal()}
+            onClose={() => {
               changeSettingsState(false);
               setState("overlay", null);
             }}
           >
-            <div onMouseUp={(e) => e.stopPropagation()}>{state.overlay}</div>
+            <div>
+              {state.overlay}
+            </div>
           </div>
         </Show>
 
         <Footer
-          sessionData={sessionData}
+          sessionData={sessionData as Accessor<SessionData>}
           setSession={setSession}
           edulink={edulink}
           loadItemPage={loadItemPage}

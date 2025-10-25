@@ -1,11 +1,13 @@
-import { Show, For, onMount, onCleanup } from "solid-js";
+import { Show, For, onMount, onCleanup, createMemo } from "solid-js";
+import type { Accessor } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
 import { items } from "../api/items";
 import type { EdulinkAPI } from "../api/main";
+import type { SessionData } from "../types/auth";
 
-export default function Navigation(props: {
-  sessionData: any;
+export default function Navigation(props: Readonly<{
+  sessionData: Accessor<SessionData>;
   setProgress: (value: number) => void;
   setPrevPos: (value: number | null) => void;
   progress: () => number;
@@ -17,7 +19,7 @@ export default function Navigation(props: {
   onResetNav?: (fn: () => void) => void;
   openNav?: (fn: (idx: number) => void) => void;
   styles: { [key: string]: string } | null;
-}) {
+}>) {
   let navWheelRef: HTMLDivElement | undefined;
 
   const [state, setState] = createStore<{
@@ -47,6 +49,17 @@ export default function Navigation(props: {
     setState("wheelRotation", (idx * 360) / state.userMenu.length);
   };
 
+
+  let debounce = (callback: Function, delay: number) => {
+    let myTimeout: ReturnType<typeof setTimeout>;
+    return () => {
+      clearTimeout(myTimeout);
+      myTimeout = setTimeout(() => {
+        callback();
+      }, delay);
+    };
+  };
+
   onMount(async () => {
     props.onResetNav?.(resetNav);
     props.openNav?.(openItem);
@@ -54,7 +67,7 @@ export default function Navigation(props: {
     const personalMenu = props.sessionData()?.personal_menu || [];
     if (
       personalMenu.length > 0 &&
-      !props.sessionData().apiUrl.trim().toLowerCase().includes("demo")
+      props.sessionData()?.apiUrl?.trim().toLowerCase().includes("demo") === false
     ) {
       const orderMap = new Map(
         personalMenu.map((menuItem: any, index: number) => [
@@ -80,17 +93,7 @@ export default function Navigation(props: {
       }
     };
 
-    let debounce = (callback: Function, delay: number) => {
-      let myTimeout: ReturnType<typeof setTimeout>;
-      return () => {
-        clearTimeout(myTimeout);
-        myTimeout = setTimeout(() => {
-          callback();
-        }, delay);
-      };
-    };
-
-    window.addEventListener("popstate", () => {
+    globalThis.addEventListener("popstate", () => {
       resetNav(true);
     });
 
@@ -211,9 +214,9 @@ export default function Navigation(props: {
     props.setLoadedComponent(null);
 
     if (fromBack) {
-      const url = new URL(window.location.href);
+      const url = new URL(globalThis.location.href);
       url.searchParams.delete("page");
-      window.history.pushState({}, "", url.toString());
+      globalThis.history.pushState({}, "", url.toString());
     }
   }
 
@@ -281,82 +284,89 @@ export default function Navigation(props: {
               style={navWheelListStyle()}
             >
               <For each={state.userMenu}>
-                {(item, i) => (
-                  <li
-                    class={props.styles!["openlink__item"]}
-                    style={getItemStyle(
-                      166 *
-                      Math.cos(
-                        0 - i() * ((2 * Math.PI) / state.userMenu.length),
-                      ),
-                      166 *
-                      Math.sin(
-                        0 - i() * ((2 * Math.PI) / state.userMenu.length),
-                      ),
-                    )}
-                  >
-                    <div class={props.styles!["openlink__inner"]}>
-                      <a
-                        id={
-                          state.activeIdx !== i() && state.isSlid
-                            ? ""
-                            : "nav-back"
-                        }
-                        class={`
+                {(item, i) => {
+                  const icon = createMemo(() => {
+                    if (!state.isSlid) {
+                      return (
+                        <span
+                          style={{
+                            transition: "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
+                          }}
+                        >
+                          <item.icon />
+                        </span>
+                      );
+                    } else if (state.activeIdx === i()) {
+                      return (
+                        <svg
+                          width="36"
+                          height="36"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          style={{
+                            opacity: 1,
+                            transition:
+                              "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
+                          }}
+                        >
+                          <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                      );
+                    } else {
+                      return null;
+                    }
+                  });
+                  return (
+                    <li
+                      class={props.styles!["openlink__item"]}
+                      style={getItemStyle(
+                        166 *
+                        Math.cos(
+                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                        ),
+                        166 *
+                        Math.sin(
+                          0 - i() * ((2 * Math.PI) / state.userMenu.length),
+                        ),
+                      )}
+                    >
+                      <div class={props.styles!["openlink__inner"]}>
+                        <a
+                          id={
+                            state.activeIdx !== i() && state.isSlid
+                              ? ""
+                              : "nav-back"
+                          }
+                          class={`
                           ${props.styles!["openlink__item-link"]} ${props.styles![item.class]}
                         `}
-                        href={`/dash/#${item.id}`}
-                        title={item.name}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (state.isSlid && state.activeIdx === i()) {
-                            resetNav(true);
-                            props.setLoadedComponent(null);
-                            props.setProgress(0);
-                            const prev = document.getElementById("item-box");
-                            if (prev) prev.remove();
-                          } else {
-                            openItem(i());
-                            spinToIndex(i());
-                            props.loadItemPage(item.id, item.name);
-                          }
-                        }}
-                      >
-                        {!state.isSlid ? (
-                          <span
-                            style={{
-                              transition:
-                                "opacity 0.1s cubic-bezier(0.77,0,0.175,1)",
-                            }}
-                          >
-                            <item.icon />
-                          </span>
-                        ) : state.activeIdx !== i() && state.isSlid ? null : (
-                          <>
-                            {/*<div id="nav-back"></div>*/}
-                            <svg
-                              width="36"
-                              height="36"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              style={{
-                                opacity: 1,
-                                transition:
-                                  "opacity 0.2s cubic-bezier(0.77,0,0.175,1)",
-                              }}
-                            >
-                              <path d="M15 18l-6-6 6-6" />
-                            </svg>
-                          </>
-                        )}
-                      </a>
-                    </div>
-                  </li>
-                )}
+                          href={`/dash/#${item.id}`}
+                          title={item.name}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (state.isSlid && state.activeIdx === i()) {
+                              resetNav(true);
+                              props.setLoadedComponent(null);
+                              props.setProgress(0);
+                              const prev = document.getElementById("item-box");
+                              if (prev) prev.remove();
+                            } else {
+                              openItem(i());
+                              spinToIndex(i());
+                              props.loadItemPage(item.id, item.name);
+                            }
+                          }}
+                        >
+                          {icon()}
+                        </a>
+                      </div>
+                    </li>
+                  )
+                }}
               </For>
             </ul>
           </TransitionGroup>
