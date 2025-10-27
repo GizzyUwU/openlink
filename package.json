@@ -15,11 +15,8 @@
   "license": "MIT",
   "dependencies": {
     "@iconify-icon/solid": "^3.0.0",
-    "@iconify/tailwind4": "^1.0.6",
     "@solid-primitives/storage": "^4.3.3",
-    "@solidjs/meta": "^0.29.4",
     "@solidjs/router": "^0.15.3",
-    "@solidjs/start": "^1.1.7",
     "@tailwindcss/vite": "^4.1.12",
     "@tauri-apps/api": "^2.8.0",
     "@tauri-apps/plugin-fs": "~2.4.2",
@@ -44,7 +41,6 @@
     "typescript": "~5.8.3",
     "vite": "^7.1.4",
     "@types/bun": "^1.2.21",
-    "vite-plugin-solid": "^2.11.8",
-    "vite-plugin-svgr": "^4.5.0"
+    "vite-plugin-solid": "^2.11.8"
   }
 }

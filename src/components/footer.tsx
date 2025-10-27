@@ -106,39 +106,39 @@ export default function Footer(props: Readonly<{
   };
 
   const fetchStatus = async () => {
-    if(props.sessionData() === null) return;
-    const result: StatusResponse = await props.edulink.getStatus(
-      props.sessionData().authtoken,
-      props.sessionData().apiUrl,
-    );
-    if (result.result.success) {
-      setStatus(result.result);
-      if (globalThis.__TAURI__ && await isPermissionGranted()) {
-        const { load } = await import("@tauri-apps/plugin-store");
-        const store = await load("config.json", { autoSave: false, defaults: {} });
-        const configNotifications = await store.get("notifications");
-        if (configNotifications) {
-          handleNotifications(result.result)
-        }
-      }
+    if (props.sessionData() === null) return;
+    props.edulink
+      .getStatus(props.sessionData().authtoken, props.sessionData().apiUrl)
+      .then(async (result: StatusResponse) => {
+        if (result.result.success) {
+          setStatus(result.result);
+          if (globalThis.__TAURI__ && await isPermissionGranted()) {
+            const { load } = await import("@tauri-apps/plugin-store");
+            const store = await load("config.json", { autoSave: false, defaults: {} });
+            const configNotifications = await store.get("notifications");
+            if (configNotifications) {
+              handleNotifications(result.result)
+            }
+          }
 
-      if (!sessionTimeout && result.result.session?.expires) {
-        const expiresInMs = result.result.session.expires * 1000;
-        sessionTimeout = setTimeout(() => {
+          if (!sessionTimeout && result.result.session?.expires) {
+            const expiresInMs = result.result.session.expires * 1000;
+            sessionTimeout = setTimeout(() => {
+              props.setSession(null);
+              sessionTimeout = null;
+              return navigate("/login");
+            }, expiresInMs);
+          }
+          sessionTimeout ??= setTimeout(() => {
+            props.setSession(null);
+            sessionTimeout = null;
+            return navigate("/login");
+          }, 3600 * 1000);
+        } else {
           props.setSession(null);
-          sessionTimeout = null;
           return navigate("/login");
-        }, expiresInMs);
-      }
-      sessionTimeout ??= setTimeout(() => {
-        props.setSession(null);
-        sessionTimeout = null;
-        return navigate("/login");
-      }, 3600 * 1000);
-    } else {
-      props.setSession(null);
-      return navigate("/login");
-    }
+        }
+      });
   };
 
   onMount(async () => {

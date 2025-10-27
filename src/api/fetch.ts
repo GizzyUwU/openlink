@@ -172,7 +172,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       memoryCache.set(key, { data: cachedResponse, timestamp: Date.now(), ttl: cacheTtl, isResponse: true });
     }
 
-    return response;
+    return response.clone();
   })();
 
   inflight.set(key, promise);

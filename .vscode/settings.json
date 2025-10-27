@@ -1,0 +1,7 @@
+{
+    "rust-analyzer.files.exclude": [
+        "src",
+        "dist",
+        "node_modules",
+    ],
+}

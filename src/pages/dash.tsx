@@ -1,17 +1,17 @@
 import { makePersisted } from "@solid-primitives/storage";
-import { createSignal, JSXElement, Setter, Show, onMount, createMemo, onCleanup } from "solid-js";
+import { createSignal, Setter, Show, onMount, createMemo, onCleanup } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { useNavigate } from "@solidjs/router";
 import { createStore } from "solid-js/store";
-import type { Accessor } from "solid-js";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Settings from "../components/settings";
 import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 import type { ClubsResponse } from "../types/api/clubs";
-import { StatusResponse } from "../types/auth";
+import type { StatusResponse } from "../types/auth";
 import type { SessionData } from "../types/auth";
+import type { Accessor, JSXElement } from "solid-js";
 
 function waitForWheelTransition() {
   return new Promise<void>((resolve) => {
@@ -148,7 +148,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     }
   }
 
-  onMount(() => {
+  onMount(async () => {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
     onCleanup(() => window.removeEventListener("resize", handleResize));
@@ -164,76 +164,53 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         return navigate("/login");
       }
     } else {
-      (async () => {
-        const checkNetwork = await edulink.checkNetwork();
-        if (checkNetwork === false) {
-          toast.showToast(
-            "No Internet Access",
-            "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
-            "error",
-          );
-          const parsedUrl = new URL(globalThis.location.href);
-          const pathname = parsedUrl.pathname.split("/").find(Boolean);
-          if (pathname![0].startsWith("demo")) {
-            toast.showToast(
-              "No Internet Access",
-              "The network you are on doesn't have internet access! Demo Mode activated until there is a active internet connection.",
-              "error",
-            );
-            return navigate("/login");
-          }
-        } else {
-          const theme = await getTheme();
-          setState("theme", theme);
+      const theme = await getTheme();
+      setState("theme", theme);
 
-          const cssModule = await import(
-            `../public/assets/css/${state.theme}/main.module.css`
-          );
-          const normalized: { [key: string]: string } = {
-            ...cssModule.default,
-            ...cssModule,
-          };
-          setStyles(normalized);
+      const cssModule = await import(
+        `../public/assets/css/${state.theme}/main.module.css`
+      );
+      const normalized: { [key: string]: string } = {
+        ...cssModule.default,
+        ...cssModule,
+      };
+      setStyles(normalized);
 
-          if (globalThis.__TAURI__) {
-            try {
-              const { check } = await import("@tauri-apps/plugin-updater");
-              const update = await check();
-              if (update) setState("updateAvailable", true);
-            } catch { }
-          }
+      if (globalThis.__TAURI__) {
+        try {
+          const { check } = await import("@tauri-apps/plugin-updater");
+          const update = await check();
+          if (update) setState("updateAvailable", true);
+        } catch { }
+      }
 
-          try {
-            const clubData = await edulink.getClubs(
-              true,
-              sessionData()?.user?.id,
-              sessionData()?.authtoken,
-              sessionData()?.apiUrl,
-            );
-            if (clubData.result.success) {
-              setState("clubData", clubData.result.clubs);
-            }
-          } catch (err) {
-            console.error("Failed to fetch clubs:", err);
-          }
-
-          const url = new URL(globalThis.location.href);
-          const page = url.searchParams.get("page");
-          if (page !== null) {
-            const loadHandler = async () => {
-              await loadItemPage(page, page, true);
-              window.removeEventListener("load", loadHandler);
-            };
-
-            if (document.readyState === "complete") {
-              loadHandler();
-            } else {
-              window.addEventListener("load", loadHandler);
-            }
-          }
-
+      edulink.getClubs(
+        true,
+        sessionData()?.user?.id,
+        sessionData()?.authtoken,
+        sessionData()?.apiUrl,
+      ).then((clubData: ClubsResponse) => {
+        if (clubData.result.success) {
+          setState("clubData", clubData.result.clubs);
         }
-      })();
+      }).catch((err: Error) => {
+        console.error("Failed to fetch clubs:", err);
+      });
+
+      const url = new URL(globalThis.location.href);
+      const page = url.searchParams.get("page");
+      if (page !== null) {
+        const loadHandler = async () => {
+          await loadItemPage(page, page, true);
+          window.removeEventListener("load", loadHandler);
+        };
+
+        if (document.readyState === "complete") {
+          loadHandler();
+        } else {
+          window.addEventListener("load", loadHandler);
+        }
+      }
     }
 
     globalThis.addEventListener('offline', () => {
@@ -370,7 +347,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
                   left: "50%",
                   transform: setTransform(),
                   height: "100%",
-                  "max-height": `calc(100vh - ${footerHeight() + 140}px)`, // <- 10px gap
+                  "max-height": `calc(100vh - ${footerHeight() + 140}px)`,
                   "max-width": maxWidth(),
                   "margin-top": "20px",
                   width: "100%",

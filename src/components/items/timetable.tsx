@@ -103,9 +103,25 @@ function Timetable(props: Readonly<{
           const dayIndex = state.weeks[weekIndex].days.findIndex((d) => d.date === day.date);
           if (dayIndex === -1) return;
 
-          let newPeriods = day.periods.map((p) => ({ ...p }));
+          let newPeriods: TimetableResponse.Period[] = [];
           const newStart = toMinutes(periodData.start_time);
           const newEnd = toMinutes(periodData.end_time);
+
+          for (const p of day.periods) {
+            const start = toMinutes(p.start_time);
+            const end = toMinutes(p.end_time);
+
+            if (end <= newStart || start >= newEnd) {
+              newPeriods.push({ ...p });
+            } else if (start < newStart && end > newEnd) {
+              newPeriods.push({ ...p, end_time: periodData.start_time });
+              newPeriods.push({ ...p, start_time: periodData.end_time });
+            } else if (start < newStart && end <= newEnd) {
+              newPeriods.push({ ...p, end_time: periodData.start_time });
+            } else if (start >= newStart && end > newEnd) {
+              newPeriods.push({ ...p, start_time: periodData.end_time });
+            }
+          }
 
           let inserted = false;
           for (let i = 0; i < newPeriods.length; i++) {
@@ -353,15 +369,25 @@ function Timetable(props: Readonly<{
     }
 
     props.setProgress(0.8);
+    const validWeeks = timetable.result.weeks.map((week) => ({
+      ...week,
+      days: week.days.filter(
+        (d) =>
+          d &&
+          Array.isArray(d.periods) &&
+          Array.isArray(d.lessons) &&
+          (d.periods.length > 0 || d.lessons.length > 0)
+      ),
+    })).filter(week => week.days.length > 0);
 
     const currentWeekData =
-      timetable.result.weeks.find((w) => (w.is_current === true || w.name === "Current")) ||
-      timetable.result.weeks[0] ||
+      validWeeks.find((w) => w.is_current === true || w.name === "Current") ||
+      validWeeks[0] ||
       { days: [], name: "Unknown" };
 
     batch(() => {
       setState({
-        weeks: timetable.result.weeks,
+        weeks: validWeeks,
         currentWeek: currentWeekData,
         currentDay:
           currentWeekData.days.find((d) => d.is_current) || currentWeekData.days[0],

@@ -1,16 +1,17 @@
 /* @refresh reload */
 
-import { lazy, Suspense } from "solid-js";
+import { Suspense } from "solid-js";
 import { render } from "solid-js/web";
 import { Router, Route } from "@solidjs/router";
 import { ParentComponent } from "solid-js";
-import "./public/assets/css/index.css";
 import { Edulink } from "./api/edulink.tsx";
 import { Toast } from "./components/toast.tsx";
 import type { StatusResponse } from "./types/auth.ts";
-const ProtectedRoute = lazy(() => import("./protectRoute.tsx"));
-const Login = lazy(() => import("./pages/login.tsx"));
-const Main = lazy(() => import("./pages/dash.tsx"));
+import Login from "./pages/login.tsx";
+import Main from "./pages/dash.tsx";
+import ProtectedRoute from "./protectRoute.tsx";
+import "./public/assets/css/index.css";
+
 const App: ParentComponent = (props) => <>{props.children}</>;
 const LoadingFallback = () => (
   <div
@@ -48,7 +49,7 @@ render(
     <Toast>
       <Edulink>
         <Suspense fallback={<LoadingFallback />}>
-          <Router root={App} preload={true}>
+          <Router root={App}>
             <Route
               path="/"
               component={() => (

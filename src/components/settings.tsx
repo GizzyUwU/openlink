@@ -25,6 +25,7 @@ async function setTheme(theme: string) {
     });
     if (currentTheme() === theme) return;
     themeSet(theme);
+    console.log(theme)
     globalThis.location.reload();
   }
 }
@@ -184,11 +185,10 @@ export default function Settings(props: Readonly<{
         <Show when={state.themeSelection}>
           <ul class={props.styles!["dropdown-menu"]}>
             {themes.map((theme) => (
-              <li class={props.styles!["item"]}>
+              <li onClick={() => setTheme(theme)} class={props.styles!["item"]}>
                 <button
                   type="button"
                   class={props.styles!["button"]}
-                  onClick={() => setTheme(theme)}
                 >
                   {theme}
                 </button>

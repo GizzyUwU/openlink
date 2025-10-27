@@ -105,6 +105,7 @@
     width: calc(100% - 330px);
     flex-grow: 1;
     min-height: 0;
+    overflow-y: hidden;
 }
 
 .t-header {
@@ -113,6 +114,7 @@
     min-height: 40px;
     font-size: 12px;
     font-weight: 400;
+    position: sticky;
 }
 
 .t-body {
@@ -126,13 +128,12 @@
 .t-row {
     display: grid;
     grid-template-columns:
-        1fr 100px 1fr
-        1fr;
+        1fr 100px 1fr 1fr;
     border-bottom: 1px solid #e3e9ea;
     text-align: center;
 }
 
-.t-header > div {
+.t-header>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,7 +143,7 @@
     min-width: 0;
 }
 
-.t-row > div {
+.t-row>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,9 +160,9 @@
     background-color: #ececec;
 }
 
-.t-row > ._description,
-.t-row > ._type,
-.t-row > ._period {
+.t-row>._description,
+.t-row>._type,
+.t-row>._period {
     justify-content: flex-start !important;
     padding-left: 10px;
     text-align: left;

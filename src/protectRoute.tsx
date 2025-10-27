@@ -1,4 +1,4 @@
-import { onMount, createSignal } from "solid-js";
+import { createResource, createSignal, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import { makePersisted } from "@solid-primitives/storage";
 import { useEdulink } from "./api/edulink";
@@ -7,43 +7,41 @@ import type { StatusResponse } from "./types/auth";
 const ProtectedRoute = (props: any) => {
   const navigate = useNavigate();
   const edulink = useEdulink();
-  const [status, setStatus] = createSignal<StatusResponse["result"] | null>(null);
-  const [check, setCheck] = createSignal<boolean>(false);
-  const [sessionData, setSession] = makePersisted(createSignal<any>({}), {
+
+  const [sessionData, setSession] = makePersisted(createSignal<any>(null), {
     storage: sessionStorage,
     name: "sessionData",
   });
 
-  onMount(async () => {
-    if (
-      sessionData() &&
-      Object.keys(sessionData()).length > 0 &&
-      sessionData()?.apiUrl &&
-      typeof sessionData()?.apiUrl === "string" &&
-      sessionData()?.apiUrl.length > 0
-    ) {
-      const result = await edulink.getStatus(sessionData()?.authtoken, sessionData()?.apiUrl);
-      if (!result.result.success) {
-        console.log("[INFO] Authentication Check failed. Redirecting to /login");
-        navigate("/login", { replace: true });
-        return;
-      }
-      setStatus(result.result);
-      setCheck(true)
-    } else {
+  const session = sessionData();
+  const validSession =
+    session &&
+    typeof session.apiUrl === "string" &&
+    session.apiUrl.length > 0 &&
+    typeof session.authtoken === "string" &&
+    session.authtoken.length > 0;
+
+  if (!validSession) {
+    setSession(null);
+    navigate("/login", { replace: true });
+    return null;
+  }
+
+  const [status] = createResource(async () => {
+    const result = await edulink.getStatus(session.authtoken, session.apiUrl);
+    if (!result.result.success) {
+      console.log("[INFO] Authentication Check failed. Redirecting to /login");
       setSession(null);
       navigate("/login", { replace: true });
-      return
+      return null;
     }
+    return result.result as StatusResponse["result"];
   });
 
   return (
-    <>
-      {check()
-        ? props.children({ status: status() })
-        : null
-      }
-    </>
+    <Show when={status()}>
+      {props.children({ status: status()! })}
+    </Show>
   );
 };
 
