@@ -1,4 +1,4 @@
-import { Show, For, onMount, createMemo } from "solid-js";
+import { Show, For, onMount, createSignal, createMemo } from "solid-js";
 import type { Accessor } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
@@ -18,10 +18,13 @@ export default function Navigation(props: Readonly<{
   navAnimFinished: (value: boolean) => void;
   onResetNav?: (fn: () => void) => void;
   openNav?: (fn: (idx: number) => void) => void;
-  styles: { [key: string]: string } | null;
+  navInitialLoad: (value: boolean) => void;
+  theme: string;
 }>) {
   let navWheelRef: HTMLDivElement | undefined;
-
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
   const [state, setState] = createStore<{
     activeIdx: number | null;
     isSlid: boolean;
@@ -123,6 +126,14 @@ export default function Navigation(props: Readonly<{
   onMount(async () => {
     props.onResetNav?.(resetNav);
     props.openNav?.(openItem);
+    const cssModule = await import(
+      `../public/assets/css/${props.theme}/navigation.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
+    };
+    setStyles(normalized);
 
     const personalMenu = props.sessionData()?.personal_menu || [];
     if (
@@ -161,6 +172,7 @@ export default function Navigation(props: Readonly<{
     let doDebounce = debounce(() => updateSlideX(), 300);
 
     window.addEventListener("resize", () => doDebounce());
+    props.navInitialLoad(true)
   });
 
   const navWheelContainerStyle = () =>
@@ -219,15 +231,15 @@ export default function Navigation(props: Readonly<{
   }
 
   return (
-    <Show when={props.styles}>
-      <div class={props.styles!["openlink-nav-wheel"]}>
+    <Show when={styles()}>
+      <div class={styles()!["nav-wheel"]}>
         <div
-          class={`${props.styles!["openlink__container"]} ${props.styles!["openlink__loaded"]}`}
+          class={`${styles()!["__container"]} ${styles()!["__loaded"]}`}
           id="nav-wheel"
           ref={(el) => (navWheelRef = el)}
           style={navWheelContainerStyle()}
         >
-          <div class={props.styles!["openlink__artboard"]}></div>
+          <div class={styles()!["__artboard"]}></div>
 
           <Transition
             appear={false}
@@ -256,11 +268,11 @@ export default function Navigation(props: Readonly<{
           >
             <Show when={!state.isSlid}>
               <div
-                class={props.styles!["openlink__logo-wrap"]}
+                class={styles()!["__logo-wrap"]}
                 style={{ "background-color": state.logoBG }}
               >
                 <div
-                  class={props.styles!["openlink__logo"]}
+                  class={styles()!["__logo"]}
                   style={{
                     "background-image": `url(data:image/webp;base64,${props.sessionData().establishment?.logo || ""})`,
                   }}
@@ -270,15 +282,15 @@ export default function Navigation(props: Readonly<{
           </Transition>
 
           <TransitionGroup
-            enterActiveClass={props.styles!["transition-enter-active"]}
-            exitActiveClass={props.styles!["transition-exit-active"]}
-            enterClass={props.styles!["transition-enter"]}
-            enterToClass={props.styles!["transition-enter-to"]}
-            exitClass={props.styles!["transition-exit"]}
-            exitToClass={props.styles!["transition-exit-to"]}
+            enterActiveClass={styles()!["transition-enter-active"]}
+            exitActiveClass={styles()!["transition-exit-active"]}
+            enterClass={styles()!["transition-enter"]}
+            enterToClass={styles()!["transition-enter-to"]}
+            exitClass={styles()!["transition-exit"]}
+            exitToClass={styles()!["transition-exit-to"]}
           >
             <ul
-              class={props.styles!["openlink__list"]}
+              class={styles()!["__list"]}
               style={navWheelListStyle()}
             >
               <For each={state.userMenu}>
@@ -320,7 +332,7 @@ export default function Navigation(props: Readonly<{
                   });
                   return (
                     <li
-                      class={props.styles!["openlink__item"]}
+                      class={styles()!["__item"]}
                       style={getItemStyle(
                         166 *
                         Math.cos(
@@ -332,7 +344,7 @@ export default function Navigation(props: Readonly<{
                         ),
                       )}
                     >
-                      <div class={props.styles!["openlink__inner"]}>
+                      <div class={styles()!["__inner"]}>
                         <a
                           id={
                             state.activeIdx !== i() && state.isSlid
@@ -340,7 +352,7 @@ export default function Navigation(props: Readonly<{
                               : "nav-back"
                           }
                           class={`
-                          ${props.styles!["openlink__item-link"]} ${props.styles![item.class]}
+                          ${styles()!["__item-link"]} ${styles()![item.class]}
                         `}
                           href={`/dash/#${item.id}`}
                           title={item.name}

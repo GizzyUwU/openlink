@@ -26,7 +26,7 @@ export const items: Item[] = Object.entries(modules)
         .replace(/\.[tj]sx?$/, ""),
       name: def.name,
       icon: def.icon,
-      class: `openlink_${def.name.toLowerCase().replace(/\s+/g, "")}`,
+      class: "_" + def.name.toLowerCase().replace(/\s+/g, ""),
       pos: def.pos,
     };
   })

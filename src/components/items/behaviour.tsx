@@ -16,6 +16,7 @@ function BehaviourComponent(props: {
   edulink: EdulinkAPI;
   theme: string;
 }) {
+  const toast = useToast();
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -40,10 +41,6 @@ function BehaviourComponent(props: {
     behaviourStatuses: [],
     behaviourActions: [],
   });
-
-
-
-  const toast = useToast();
 
   const getLookupName = (
     id: string | number | undefined,

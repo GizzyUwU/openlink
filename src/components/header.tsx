@@ -1,4 +1,4 @@
-import { onMount, onCleanup, createSignal, Show, Setter } from "solid-js";
+import { onMount, createSignal, Show, Setter } from "solid-js";
 import { HiOutlineCog6Tooth } from "solid-icons/hi";
 import { useNavigate } from "@solidjs/router";
 
@@ -8,7 +8,7 @@ export default function Header(props: {
   sessionData: any;
   setSession: any;
   showSettings: Setter<boolean>;
-  styles: { [key: string]: string } | null;
+  theme: string;
 }) {
   let dropdownRef: HTMLDivElement | undefined;
   let buttonRef: HTMLButtonElement | undefined;
@@ -17,6 +17,9 @@ export default function Header(props: {
   const navigate = useNavigate();
   const [fadeOut, setFadeOut] = createSignal<boolean>(false);
   const [update, setUpdate] = createSignal<boolean>(false);
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
 
   const handleClick = (event: MouseEvent) => {
     if (!open()) return;
@@ -30,6 +33,10 @@ export default function Header(props: {
 
   onMount(async () => {
     document.addEventListener("mouseup", handleClick);
+    const cssModule = await import(
+      `../public/assets/css/${props.theme}/header.module.css`
+    );
+    setStyles({ ...cssModule.default, ...cssModule });
     const handleTransitionEnd = (e: TransitionEvent) => {
       if (e.propertyName === "transform" && props.progress() === 1) {
         setFadeOut(true);
@@ -41,22 +48,10 @@ export default function Header(props: {
 
     if (progressBarRef) {
       progressBarRef.addEventListener("transitionend", handleTransitionEnd);
-      onCleanup(
-        () => {
-          document.removeEventListener("click", handleClick);
-          if (progressBarRef) {
-            progressBarRef.removeEventListener(
-              "transitionend",
-              handleTransitionEnd,
-            )
-          }
-        }
-      );
     }
 
     if (window.__TAURI__) {
       const { check } = await import("@tauri-apps/plugin-updater");
-      // const { relaunch } = await import("@tauri-apps/plugin-process");
       const update = await check();
       if (update) {
         setUpdate(true);
@@ -68,30 +63,30 @@ export default function Header(props: {
   });
 
   return (
-    <Show when={props.styles}>
-      <div class={props.styles!["openlink-s-header"]}>
-        <div class={props.styles!["openlink__inner"]}>
-          <div class={props.styles!["openlink__gradient"]}></div>
+    <Show when={styles()}>
+      <div class={styles()!["s-header"]}>
+        <div class={styles()!["__inner"]}>
+          <div class={styles()!["__gradient"]}></div>
         </div>
-        <div class={props.styles!["openlink__container"]}>
+        <div class={styles()!["__container"]}>
           <div
-            class={`${props.styles!["openlink-pr-user"]} ${props.styles!["_animated"]}`}
+            class={`${styles()!["pr-user"]} ${styles()!["_animated"]}`}
           >
             <div class="relative inline-block text-left">
               <button
                 ref={buttonRef}
                 type="button"
-                class={`${props.styles!["openlink__settings"]} cursor-pointer`}
+                class={`${styles()!["__settings"]} cursor-pointer`}
                 onClick={() => setOpen((prev) => !prev)}
               >
-                <HiOutlineCog6Tooth class={props.styles!["icon"]} />
+                <HiOutlineCog6Tooth class={styles()!["icon"]} />
                 {update() && (
                   <span class="absolute bottom-1 z-50 right-4 h-2 w-2 rounded-full bg-red-500"></span>
                 )}
               </button>
               <Show when={open()}>
                 <div
-                  class={`${props.styles!["dropdown"]} absolute mt-2 border left-1 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max`}
+                  class={`${styles()!["dropdown"]} absolute mt-2 border left-1 divide-y divide-gray-100 rounded-md shadow-lg min-h-max min-w-max`}
                   ref={dropdownRef}
                 >
                   <div class="py-1 z-40">
@@ -114,18 +109,18 @@ export default function Header(props: {
                 </div>
               </Show>
             </div>
-            <div class={props.styles!["openlink__info"]}>
+            <div class={styles()!["__info"]}>
               <div
-                class={props.styles!["openlink__avatar"]}
+                class={styles()!["__avatar"]}
                 style={{
                   "background-image": `url(data:image/webp;base64,${props.sessionData()?.user?.avatar?.photo ||
                     "default-avatar-data"
                     })`,
                 }}
               ></div>
-              <div class={props.styles!["openlink__text"]}>
+              <div class={styles()!["__text"]}>
                 Hello,{" "}
-                <span class={props.styles!["openlink__name"]}>
+                <span class={styles()!["__name"]}>
                   {props.sessionData()?.user?.forename +
                     " " +
                     props.sessionData()?.user?.surname || ""}
@@ -134,10 +129,10 @@ export default function Header(props: {
             </div>
           </div>
         </div>
-        <div class={props.styles!["openlink-progress-wrapper"]}>
+        <div class={styles()!["progress-wrapper"]}>
           <div
             ref={(el) => (progressBarRef = el)}
-            class={props.styles!["openlink-progress-bar"]}
+            class={styles()!["progress-bar"]}
             style={{
               transform: `translateX(${((props.progress() ?? 0) - 1) * 100}%)`,
               opacity: fadeOut() ? 0 : 1,

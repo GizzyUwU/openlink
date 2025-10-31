@@ -15,9 +15,9 @@ export default function Footer(props: Readonly<{
   setSession: Setter<SessionData | null>;
   edulink: EdulinkAPI;
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
-  styles: { [key: string]: string } | null;
   clubData: ClubsResponse.ClubType[];
   status: StatusResponse["result"] | null;
+  theme: string;
 }>) {
   const navigate = useNavigate();
   const [status, setStatus] = createSignal<any>({});
@@ -27,6 +27,9 @@ export default function Footer(props: Readonly<{
   let sessionTimeout: ReturnType<typeof setTimeout> | null = null;
   const notifiedEvents = new Set<string>();
   const plural = (n?: number) => (n && n > 1 ? "s" : "");
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
 
   const isWithinFiveMinutes = (date: Date) => {
     const diff = date.getTime() - Date.now();
@@ -143,6 +146,10 @@ export default function Footer(props: Readonly<{
 
   onMount(async () => {
     const hasStatus = props.status != null;
+    const cssModule = await import(
+      `../public/assets/css/${props.theme}/footer.module.css`
+    );
+    setStyles({ ...cssModule.default, ...cssModule });
     if (hasStatus) {
       setStatus(props.status);
       if (globalThis.__TAURI__ && await isPermissionGranted()) {
@@ -166,11 +173,11 @@ export default function Footer(props: Readonly<{
   });
 
   return (
-    <Show when={props.styles}>
-      <div id="footer" class={props.styles!["openlink-s-footer"]}>
-        <div class={props.styles!["openlink__footer-container"]}>
+    <Show when={styles()}>
+      <div id="footer" class={styles()!["s-footer"]}>
+        <div class={styles()!["__footer-container"]}>
           <button
-            class={props.styles!["openlink__footer-item"] + " text-left"}
+            class={styles()!["__footer-item"] + " text-left"}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
             {(() => {
@@ -209,21 +216,21 @@ export default function Footer(props: Readonly<{
 
                 if (currentClub) {
                   return (
-                    <div class={props.styles!["openlink-pr-couple"]}>
+                    <div class={styles()!["pr-couple"]}>
                       <span
-                        class={props.styles!["openlink__footer-icon"]}
+                        class={styles()!["__footer-icon"]}
                         style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
                       >
                         <Icon icon="mdi:clock-outline" width="24" height="24" />
                       </span>
-                      <span class={props.styles!["openlink__footer-content"]}>
-                        <span class={props.styles!["openlink__footer-title"]}>
+                      <span class={styles()!["__footer-content"]}>
+                        <span class={styles()!["__footer-title"]}>
                           Current Club
                         </span>
-                        <span class={props.styles!["openlink__footer-body"]}>
+                        <span class={styles()!["__footer-body"]}>
                           {currentClub.name}
                         </span>
-                        <span class={props.styles!["openlink__footer"]}>
+                        <span class={styles()!["__footer"]}>
                           Location: {currentClub.location}
                         </span>
                       </span>
@@ -255,21 +262,21 @@ export default function Footer(props: Readonly<{
                 }
 
                 return (
-                  <div class={props.styles!["openlink-pr-couple"]}>
+                  <div class={styles()!["pr-couple"]}>
                     <span
-                      class={props.styles!["openlink__footer-icon"]}
+                      class={styles()!["__footer-icon"]}
                       style="background-image: linear-gradient(135deg, rgb(30, 175, 178), rgb(30, 179, 158));"
                     >
                       <Icon icon="mdi:clock-outline" width="24" height="24" />
                     </span>
-                    <span class={props.styles!["openlink__footer-content"]}>
-                      <span class={props.styles!["openlink__footer-title"]}>
+                    <span class={styles()!["__footer-content"]}>
+                      <span class={styles()!["__footer-title"]}>
                         Current Lesson
                       </span>
-                      <span class={props.styles!["openlink__footer-body"]}>
+                      <span class={styles()!["__footer-body"]}>
                         {lesson.teaching_group.subject} – {lesson.teaching_group.name}
                       </span>
-                      <span class={props.styles!["openlink__footer"]}>
+                      <span class={styles()!["__footer"]}>
                         {lesson.room.name} / {teacherNames}
                       </span>
                     </span>
@@ -282,7 +289,7 @@ export default function Footer(props: Readonly<{
           </button>
 
           <button
-            class={props.styles!["openlink__footer-item"] + " text-left"}
+            class={styles()!["__footer-item"] + " text-left"}
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
             {(() => {
@@ -310,9 +317,9 @@ export default function Footer(props: Readonly<{
 
               if (currentClub) {
                 return (
-                  <div class={props.styles!["openlink-pr-couple"]}>
+                  <div class={styles()!["pr-couple"]}>
                     <span
-                      class={props.styles!["openlink__footer-icon"]}
+                      class={styles()!["__footer-icon"]}
                       style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
                     >
                       <Icon
@@ -321,14 +328,14 @@ export default function Footer(props: Readonly<{
                         height="20"
                       />
                     </span>
-                    <span class={props.styles!["openlink__footer-content"]}>
-                      <span class={props.styles!["openlink__footer-title"]}>
+                    <span class={styles()!["__footer-content"]}>
+                      <span class={styles()!["__footer-title"]}>
                         Next Club
                       </span>
-                      <span class={props.styles!["openlink__footer-body"]}>
+                      <span class={styles()!["__footer-body"]}>
                         {currentClub.name}
                       </span>
-                      <span class={props.styles!["openlink__footer"]}>
+                      <span class={styles()!["__footer"]}>
                         Location: {currentClub.location}
                       </span>
                     </span>
@@ -357,9 +364,9 @@ export default function Footer(props: Readonly<{
                 }
 
                 return (
-                  <div class={props.styles!["openlink-pr-couple"]}>
+                  <div class={styles()!["pr-couple"]}>
                     <span
-                      class={props.styles!["openlink__footer-icon"]}
+                      class={styles()!["__footer-icon"]}
                       style="background-image: linear-gradient(to top left, #ebb326, #eb9e3d);"
                     >
                       <Icon
@@ -368,15 +375,15 @@ export default function Footer(props: Readonly<{
                         height="20"
                       />
                     </span>
-                    <span class={props.styles!["openlink__footer-content"]}>
-                      <span class={props.styles!["openlink__footer-title"]}>
+                    <span class={styles()!["__footer-content"]}>
+                      <span class={styles()!["__footer-title"]}>
                         Next Lesson
                       </span>
-                      <span class={props.styles!["openlink__footer-body"]}>
+                      <span class={styles()!["__footer-body"]}>
                         {nextLesson.teaching_group.subject} –{" "}
                         {nextLesson.teaching_group.name}
                       </span>
-                      <span class={props.styles!["openlink__footer"]}>
+                      <span class={styles()!["__footer"]}>
                         {nextLesson.room.name} / {teacherNames}
                       </span>
                     </span>
@@ -389,21 +396,21 @@ export default function Footer(props: Readonly<{
           </button>
 
           <button
-            class={props.styles!["openlink__footer-item"] + " text-left"}
+            class={styles()!["__footer-item"] + " text-left"}
             onClick={() => props.loadItemPage("messages", "Messages", true)}
           >
-            <div class={props.styles!["openlink-pr-couple"]}>
+            <div class={styles()!["pr-couple"]}>
               <span
-                class={props.styles!["openlink__footer-icon"]}
+                class={styles()!["__footer-icon"]}
                 style="background-image: linear-gradient(135deg, rgb(253, 107, 92), rgb(235, 87, 86));"
               >
                 <Icon icon="ic:outline-email" width="24" height="24" />
               </span>
-              <span class={props.styles!["openlink__footer-content"]}>
-                <span class={props.styles!["openlink__footer-title"]}>
+              <span class={styles()!["__footer-content"]}>
+                <span class={styles()!["__footer-title"]}>
                   Messages
                 </span>
-                <span class={props.styles!["openlink__footer-body"]}>
+                <span class={styles()!["__footer-body"]}>
                   {status().new_messages === 0 ? "No new messages" : `${status().new_messages} new messages`}
                 </span>
               </span>

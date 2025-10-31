@@ -48,7 +48,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   const toast = useToast();
   const navigate = useNavigate();
   let resetNavFn: () => void = () => { };
-  let openNavFn: (idx: number) => void;
+  let openNavFn: ((idx: number) => void) | null = null;
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -80,6 +80,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     updateAvailable: boolean;
     clubData: ClubsResponse.ClubType[];
     prevPos: number | null;
+    navInitalLoadDone: boolean;
   }>({
     progress: 0,
     navWheelAnim: false,
@@ -89,7 +90,8 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     theme: "default",
     updateAvailable: false,
     clubData: [],
-    prevPos: null
+    prevPos: null,
+    navInitalLoadDone: false
   });
   const [sessionData, setSession] = makePersisted(createSignal<SessionData | null>(null), {
     storage: sessionStorage,
@@ -110,7 +112,10 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       const targetPos = mod.default.pos - 1;
 
       if (forceOpenNav) {
-        openNavFn?.(targetPos);
+        while (state.navInitalLoadDone === false) {
+          await new Promise((resolve) => setTimeout(resolve, 10));
+        }
+        openNavFn?.(targetPos)
       }
       setState("progress", 0.3);
       setLoadedComponent(() => (childProps: any) => (
@@ -247,15 +252,15 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   };
 
   return (
-    <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0}>
-      <div class="openlink-container">
+    <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0 && styles()}>
+      <div>
         <Header
           progress={() => state.progress}
           setSession={setSession}
           sessionData={sessionData}
           setProgress={(value: number) => setState("progress", value)}
           showSettings={changeSettingsState}
-          styles={styles() || {}}
+          theme={state.theme}
         />
         <Show when={state.showSettings}>
           <Settings
@@ -263,7 +268,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
             sessionData={sessionData}
             setOverlay={(value: JSXElement) => setState("overlay", value)}
             showSettings={changeSettingsState}
-            styles={styles() || {}}
+            theme={state.theme}
           />
         </Show>
         <Navigation
@@ -278,7 +283,8 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           navAnimFinished={(value: boolean) => setState("navWheelAnim", value)}
           onResetNav={(fn) => (resetNavFn = fn)}
           openNav={(fn) => (openNavFn = fn)}
-          styles={styles()}
+          navInitialLoad={(value: boolean) => setState("navInitalLoadDone", value)}
+          theme={state.theme}
         />
         <Show when={state.navWheelAnim && LoadedComponent()}>
           {(Comp) => {
@@ -378,9 +384,9 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           setSession={setSession}
           edulink={edulink}
           loadItemPage={loadItemPage}
-          styles={styles()}
           clubData={state.clubData}
           status={props.status}
+          theme={state.theme}
         />
       </div>
     </Show>
