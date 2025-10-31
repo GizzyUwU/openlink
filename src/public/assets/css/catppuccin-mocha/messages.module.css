@@ -4,18 +4,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    flex-grow: 1;
-    min-height: 0;
+    max-width: calc(100vw - 185px);
 }
 
 .t-container {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    width: 100%;
-    max-width: calc(100vw - 185px);
-    margin-bottom: 10px;
 }
 
 .b-message {

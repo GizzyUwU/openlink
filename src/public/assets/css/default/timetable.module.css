@@ -25,14 +25,13 @@
 
 .t-container {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
-    width: 100%;
-    max-width: calc(100vw - 185px);
     min-height: 0;
 }
 
 .t-timetable {
+        display: flex;
+    flex-grow: 1;
     background: #fff;
     border-radius: 5px;
     flex-grow: 1;
