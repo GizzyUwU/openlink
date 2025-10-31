@@ -549,7 +549,7 @@ function Timetable(props: Readonly<{
                     return (
                       <div class={styles()!["t-row"]}>
                         <div class={styles()!["_grey"]}>{period.name}</div>
-                        <div class={styles()!["_subject"]}>
+                        <div class={styles()!["_left"]}>
                           <div
                             style={{
                               display: "flex",
@@ -567,13 +567,11 @@ function Timetable(props: Readonly<{
                           </div>
                         </div>
                         <div
-                          class={`
-                            ${styles()!["_room"]},
-                          `}
+                          class={styles()!["_left"]}
                         >
                           {lesson()?.room?.name || "-"}
                         </div>
-                        <div class={styles()!["_teacher"]}>
+                        <div class={styles()!["_left"]}>
                           {(() => {
                             const tRaw =
                               lesson()?.teacher ?? lesson()?.teachers;
@@ -612,7 +610,7 @@ function Timetable(props: Readonly<{
             </div>
           </div>
         </div>
-      </Show>
+      </Show >
     </Transition >
   );
 }

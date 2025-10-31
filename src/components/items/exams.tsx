@@ -6,28 +6,7 @@ import { TbCertificate } from "solid-icons/tb";
 import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
-
-function formatDate({
-  date,
-  time = false,
-}: {
-  date: string | Date;
-  time?: boolean;
-}): string {
-  const d = new Date(date);
-  if (time) {
-    return d.toLocaleTimeString("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  }
-
-  return d.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-}
+import { formatDate } from "../../lib/formatDate";
 
 function Exams(props: Readonly<{
   setProgress: (value: number) => void;
@@ -266,7 +245,7 @@ function Exams(props: Readonly<{
                     <For each={state.timetable}>
                       {(data: ExamsResponse.TimetableType) => (
                         <div class={styles()!["t-row"]}>
-                          <div class={styles()!["_date_start"]}>
+                          <div class={styles()!["_left"]}>
                             <div
                               style={{
                                 display: "flex",
@@ -278,19 +257,22 @@ function Exams(props: Readonly<{
                               ) : (
                                 <>
                                   <div class={styles()!["_grey"]}>
-                                    {formatDate({ date: data.datetime })}
+                                    {formatDate({
+                                      date: data.datetime,
+                                      short: true
+                                    })}
                                   </div>
                                   <span>
                                     {formatDate({
-                                      time: true,
                                       date: data.datetime,
+                                      time: true
                                     })}
                                   </span>
                                 </>
                               )}
                             </div>
                           </div>
-                          <div class={styles()!["_board_level"]}>
+                          <div class={styles()!["_left"]}>
                             <div
                               style={{
                                 display: "flex",
@@ -309,7 +291,7 @@ function Exams(props: Readonly<{
                               )}
                             </div>
                           </div>
-                          <div class={styles()!["_code_exam"]}>
+                          <div class={styles()!["_left"]}>
                             <div
                               style={{
                                 display: "flex",
@@ -328,7 +310,7 @@ function Exams(props: Readonly<{
                               )}
                             </div>
                           </div>
-                          <div class={styles()!["_room"]}>{data.room}</div>
+                          <div class={styles()!["_left"]}>{data.room}</div>
                           <div>{data.seat}</div>
                           <div>{data.duration}</div>
                         </div>
@@ -340,7 +322,7 @@ function Exams(props: Readonly<{
               <Show when={state.activePage === "Exam Entries"}>
                 <div class={styles()!["t-entries"]}>
                   <div class={styles()!["t-header"]}>
-                    <div>Date & Start Time</div>
+                    <div>Name</div>
                     <div>Board & Level</div>
                     <div>Code & Exam</div>
                   </div>
@@ -349,10 +331,10 @@ function Exams(props: Readonly<{
                       <For each={state.entries}>
                         {(data: ExamsResponse.EntryType) => (
                           <div class={styles()!["t-row"]}>
-                            <div class={styles()!["_date_start"]}>
+                            <div>
                               {data.season}
                             </div>
-                            <div class={styles()!["_board_level"]}>
+                            <div>
                               <div
                                 style={{
                                   display: "flex",
@@ -365,7 +347,7 @@ function Exams(props: Readonly<{
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
-                            <div class={styles()!["_code_exam"]}>
+                            <div>
                               <div
                                 style={{
                                   display: "flex",
@@ -400,7 +382,7 @@ function Exams(props: Readonly<{
                         {(data: ExamsResponse.ResultType) => (
                           <div class={styles()!["t-row"]}>
                             <div>{data.date}</div>
-                            <div class={styles()!["_board_level"]}>
+                            <div>
                               <div
                                 style={{
                                   display: "flex",
@@ -413,7 +395,7 @@ function Exams(props: Readonly<{
                                 <span>{data.level || "-"}</span>
                               </div>
                             </div>
-                            <div class={styles()!["_code_exam"]}>
+                            <div>
                               <div
                                 style={{
                                   display: "flex",

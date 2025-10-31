@@ -1,4 +1,9 @@
 @import "./colors.css";
+@import url("/src/public/assets/css/catppuccin-mocha/table.css");
+
+:root {
+  --table-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 105px) minmax(0, 105px); 
+}
 
 .box-container {
     display: flex;
@@ -32,78 +37,4 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
-}
-
-.t-header {
-    color: #3090c7;
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-    background: var(--surface1);
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-}
-
-.t-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 0;
-    max-height: 100%;
-    color: var(--text);
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns:
-        1fr 1fr
-        105px 105px;
-    text-align: center;
-}
-
-.t-header > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-row > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px;
-    min-width: 0;
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-    height: 54px;
-}
-
-.t-row:nth-child(even) {
-    background: var(--surface1);
-}
-
-.t-row > ._name,
-.t-row > ._type,
-.t-row > ._date {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
-    font-weight: 400;
-}
-
-.t-documents__text {
-    width: 100%;
-    font-size: 14px;
-}
-
-._grey {
-    color: #888;
 }

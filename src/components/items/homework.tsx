@@ -165,11 +165,11 @@ function Homework(props: {
                   <div
                     class={`${styles()!["t-row"]} ${data.completed ? `${styles()!["completed"]}` : ""} ${!data.completed && data.due_date === new Date().toISOString().split("T")[0] ? styles()!["due-today"] : ""}`}
                     style={{
-                      "padding-top": `${ Math.min(12 + data.activity.length * 0.15, 6) }px`,
-                      "padding-bottom": `${ Math.min(12 + data.activity.length * 0.15, 6) }px`,
+                      "padding-top": `${Math.min(12 + data.activity.length * 0.15, 6) }px`,
+                      "padding-bottom": `${Math.min(12 + data.activity.length * 0.15, 6) }px`,
                     }}
                   >
-                    <div class={styles()!["_due"]}>
+                    <div class={styles()!["_left"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -179,17 +179,17 @@ function Homework(props: {
                             data.due_text.slice(1)
                             : "-"}
                         </span>
-                        <span>{data.due_date}</span>
+                        <span class={styles()!["_grey"]}>{data.due_date}</span>
                       </div>
                     </div>
-                    <div class={styles()!["_name"]}>{data.activity || "-"}</div>
-                    <div class={styles()!["_sub_class"]}>
+                    <div class={styles()!["_left"]}>{data.activity || "-"}</div>
+                    <div class={styles()!["_left"]}>
                       {data.subject || "-"}
                     </div>
-                    <div class={styles()!["_available"]}>
+                    <div class={styles()!["_left"]}>
                       {data.available_date || "-"}
                     </div>
-                    <div class={styles()!["_submission"]}>
+                    <div class={styles()!["_left"]}>
                       {data.status || "-"}
                     </div>
                     <div class={styles()!["_status"]}>

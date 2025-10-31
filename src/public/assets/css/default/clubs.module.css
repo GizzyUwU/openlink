@@ -1,3 +1,9 @@
+@import url("/src/public/assets/css/default/table.css");
+
+:root {
+  --table-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
+}
+
 .box-container {
     display: flex;
     flex-direction: column;
@@ -33,105 +39,4 @@
         sans-serif;
     font-size: 14px;
     position: relative;
-}
-
-.t-header {
-    color: #3090c7;
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-}
-
-.t-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 0;
-    max-height: 100%;
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-club-header,
-.t-club-row {
-    display: grid;
-    grid-template-columns: 1fr 100px 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-header > div,
-.t-club-header > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-row > div,
-.t-club-row > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px;
-    min-width: 0;
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-}
-
-.t-row:nth-child(even) {
-    background-color: #ececec;
-}
-
-.t-row > ._name,
-.t-club-row > ._date {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
-    font-weight: 400;
-}
-
-.t-timetable__text {
-    width: 100%;
-    font-size: 14px;
-}
-
-._grey {
-    color: #888;
-}
-
-.club {
-    background: white;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.attending {
-    border-radius: 5px;
-    max-height: 95px;
-    padding: 6px 14px 6px 14px;
-    text-align: center;
-    transition: background-color 0.25s;
-    background-color: green;
-    cursor: pointer;
-}
-
-.attend {
-    background-color: green;
-}
-
-.unbook {
-    background-color: red;
 }

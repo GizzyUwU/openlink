@@ -8,6 +8,7 @@ import { ImCross } from "solid-icons/im";
 import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { formatDate } from "../../lib/formatDate";
 
 function Forms(props: {
   setProgress: (value: number) => void;
@@ -25,9 +26,6 @@ function Forms(props: {
   }>({
     forms: [],
   });
-
-
-
 
   onMount(async () => {
     props.setProgress(0.6);
@@ -58,29 +56,6 @@ function Forms(props: {
       props.setProgress(0);
     }
   });
-
-  function formatDate({
-    date,
-    time = false,
-  }: {
-    date: string | Date;
-    time?: boolean;
-  }): string {
-    const d = new Date(date);
-
-    if (time) {
-      return d.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-
-    return d.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  }
 
   return (
     <Transition
@@ -119,7 +94,7 @@ function Forms(props: {
                   <For each={state.forms}>
                     {(data: FormsResponse.FormType) => (
                       <div class={styles()!["t-row"]}>
-                        <div class={styles()!["_name"]}>
+                        <div class={styles()!["_left"]}>
                           {data.subject || "-"}
                         </div>
                         <div>
@@ -130,10 +105,16 @@ function Forms(props: {
                             }}
                           >
                             <span class={styles()!["_grey"]}>
-                              {formatDate({ date: data.due })}
+                              {formatDate({
+                                date: data.due,
+                                short: true
+                              })}
                             </span>
                             <span>
-                              {formatDate({ time: true, date: data.due })}
+                              {formatDate({
+                                date: data.due,
+                                time: true
+                              })}
                             </span>
                           </div>
                         </div>

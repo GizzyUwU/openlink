@@ -1,4 +1,4 @@
-import { Show, For, onMount, onCleanup, createMemo } from "solid-js";
+import { Show, For, onMount, createMemo } from "solid-js";
 import type { Accessor } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Transition, TransitionGroup } from "solid-transition-group";
@@ -49,7 +49,6 @@ export default function Navigation(props: Readonly<{
     setState("wheelRotation", (idx * 360) / state.userMenu.length);
   };
 
-
   let debounce = (callback: Function, delay: number) => {
     let myTimeout: ReturnType<typeof setTimeout>;
     return () => {
@@ -59,6 +58,67 @@ export default function Navigation(props: Readonly<{
       }, delay);
     };
   };
+
+  async function getCachedLogoColor(base64: string, name: string) {
+    const cacheKey = `logo-color:${name}`;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return cached;
+
+    const dominantColor = await new Promise<string>((resolve) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = `data:*;base64,${base64}`;
+
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return resolve("rgb(255,255,255)");
+
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const colorCounts: Record<string, number> = {};
+        let maxColor = "";
+        let maxCount = 0;
+        let transparentCount = 0;
+        const totalPixels = data.length / 4;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const a = data[i + 3];
+          if (a === 0) {
+            transparentCount++;
+            continue;
+          }
+          const key = `${r},${g},${b}`;
+          colorCounts[key] = (colorCounts[key] || 0) + 1;
+          if (colorCounts[key] > maxCount) {
+            maxCount = colorCounts[key];
+            maxColor = key;
+          }
+        }
+
+        const transparencyRatio = transparentCount / totalPixels;
+        const finalColor =
+          transparencyRatio > 0.5
+            ? "rgb(255,255,255)"
+            : maxColor
+              ? `rgb(${maxColor})`
+              : "rgb(255,255,255)";
+
+        localStorage.setItem(cacheKey, finalColor);
+        resolve(finalColor);
+      };
+
+      img.onerror = () => resolve("rgb(255,255,255)");
+    });
+
+    return dominantColor;
+  }
 
   onMount(async () => {
     props.onResetNav?.(resetNav);
@@ -87,11 +147,12 @@ export default function Navigation(props: Readonly<{
       setState("userMenu", items);
     }
 
-    const handleResize = () => {
-      if (state.isSlid) {
-        updateSlideX();
-      }
-    };
+    const logoBase64 = props.sessionData().establishment?.logo;
+    const estName = props.sessionData().establishment?.name;
+    if (logoBase64 && estName) {
+      const color = await getCachedLogoColor(logoBase64, estName);
+      setState("logoBG", color);
+    }
 
     globalThis.addEventListener("popstate", () => {
       resetNav(true);
@@ -100,69 +161,6 @@ export default function Navigation(props: Readonly<{
     let doDebounce = debounce(() => updateSlideX(), 300);
 
     window.addEventListener("resize", () => doDebounce());
-
-    onCleanup(() => {
-      window.removeEventListener("resize", handleResize);
-    });
-
-    const logoBase64 = props.sessionData().establishment?.logo;
-    if (!logoBase64) return;
-
-    const dominantColor = await new Promise<string>((resolve) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = `data:*;base64,${logoBase64}`;
-
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return resolve("rgb(255,255,255)");
-
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-
-        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const colorCounts: Record<string, number> = {};
-        let maxColor = "";
-        let maxCount = 0;
-
-        let transparentCount = 0;
-        let totalPixels = data.length / 4;
-
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          const a = data[i + 3];
-
-          if (a === 0) {
-            transparentCount++;
-            continue;
-          }
-
-          const key = `${r},${g},${b}`;
-          colorCounts[key] = (colorCounts[key] || 0) + 1;
-
-          if (colorCounts[key] > maxCount) {
-            maxCount = colorCounts[key];
-            maxColor = key;
-          }
-        }
-
-        const transparencyRatio = transparentCount / totalPixels;
-
-        if (transparencyRatio > 0.5) {
-          resolve("rgb(255,255,255)");
-        } else {
-          resolve(maxColor ? `rgb(${maxColor})` : "rgb(255,255,255)");
-        }
-      };
-
-      img.onerror = () => resolve("rgb(255,255,255)");
-    });
-
-    if (dominantColor) setState("logoBG", dominantColor);
   });
 
   const navWheelContainerStyle = () =>
@@ -202,14 +200,14 @@ export default function Navigation(props: Readonly<{
     spinToIndex(idx);
   }
 
-  function resetNav(fromBack?: boolean) {
+  async function resetNav(fromBack?: boolean) {
     props.navAnimFinished(false);
     props.setPrevPos(null)
     props.setProgress(0);
     setState({
       activeIdx: null,
       isSlid: false,
-      wheelRotation: 0,
+      wheelRotation: 0
     });
     props.setLoadedComponent(null);
 

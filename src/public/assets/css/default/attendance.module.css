@@ -1,3 +1,5 @@
+@import url("/src/public/assets/css/default/table.css");
+
 .box-container {
     display: flex;
     flex-direction: column;
@@ -106,76 +108,7 @@
     flex-grow: 1;
     min-height: 0;
     overflow-y: hidden;
-}
-
-.t-header {
-    color: #3090c7;
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-    position: sticky;
-}
-
-.t-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 0;
-    max-height: 100%;
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns:
-        1fr 100px 1fr 1fr;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-header>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-row>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px;
-    min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: center;
-    max-height: 54px;
-}
-
-.t-row:nth-child(even) {
-    background-color: #ececec;
-}
-
-.t-row>._description,
-.t-row>._type,
-.t-row>._period {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
-    font-weight: 400;
-}
-
-.t-timetable__text {
-    width: 100%;
-    font-size: 14px;
-}
-
-._grey {
-    color: #888;
+    --table-columns: minmax(0, 1fr) minmax(0, 100px) repeat(2, minmax(0, 1fr));
 }
 
 .progress-attendance {

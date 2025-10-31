@@ -1,12 +1,12 @@
 import { makePersisted } from "@solid-primitives/storage";
-import { createSignal, Setter, Show, onMount, createMemo, onCleanup } from "solid-js";
+import { createSignal, Setter, Show, lazy, onMount, createMemo, onCleanup } from "solid-js";
 import { useEdulink } from "../api/edulink";
 import { useNavigate } from "@solidjs/router";
 import { createStore } from "solid-js/store";
+const Navigation = lazy(() => import("../components/navigation"));
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Settings from "../components/settings";
-import Navigation from "../components/navigation";
 import { useToast } from "../components/toast";
 import type { ClubsResponse } from "../types/api/clubs";
 import type { StatusResponse } from "../types/auth";
@@ -325,7 +325,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
 
               const resizeHandler = async () => {
                 await waitForWheelTransition();
-                handle();
+                requestAnimationFrame(handle);
               };
               window.addEventListener("resize", resizeHandler);
 
@@ -362,8 +362,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         <Show when={state.overlay !== null}>
           <div
             class={`${styles()?.["t-overlay"]} flex justify-center`}
-            // open
-            // ref={(el) => el?.showModal()}
             onClose={() => {
               changeSettingsState(false);
               setState("overlay", null);

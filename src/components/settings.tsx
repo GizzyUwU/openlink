@@ -5,9 +5,6 @@ import {
   isPermissionGranted,
   requestPermission,
 } from '@tauri-apps/plugin-notification';
-const themeImports = import.meta.glob("../public/assets/css/*/*.css", {
-  eager: true,
-});
 
 async function setTheme(theme: string) {
   if (globalThis.__TAURI__) {
@@ -32,14 +29,10 @@ async function setTheme(theme: string) {
 
 const themes = Array.from(
   new Set(
-    Object.keys(themeImports)
-      .map((path) => {
-        const regex = /\/css\/([^/]+)\//;
-        const match = regex.exec(path);
-        return match ? match[1] : undefined;
-      })
-      .filter((t): t is string => !!t),
-  ),
+    Object.keys(import.meta.glob("../public/assets/css/*/*.css"))
+      .map(path => path.match(/\/css\/([^/]+)\//)?.[1])
+      .filter((t): t is string => Boolean(t))
+  )
 );
 
 const updateToLatest = async () => {
@@ -188,7 +181,7 @@ export default function Settings(props: Readonly<{
               <li onClick={() => setTheme(theme)} class={props.styles!["item"]}>
                 <button
                   type="button"
-                  class={props.styles!["button"]}
+                  class={props.styles!["button"] + " cursor-pointer"}
                 >
                   {theme}
                 </button>

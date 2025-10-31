@@ -1,0 +1,50 @@
+@import "./colors.css";
+@import url("/src/public/assets/css/catppuccin-mocha/table.css");
+
+.t-club {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: var(--surface0);
+    border-radius: 5px;
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    position: relative;
+    --table-columns: 1fr 100px 75px 75px;
+}
+
+.t-club .t-body {
+    max-height: 40vh;
+}
+
+.club {
+    background: var(--surface0);
+    color: var(--text);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.attending {
+    border-radius: 5px;
+    max-height: 95px;
+    padding: 6px 14px 6px 14px;
+    text-align: center;
+    background-color: green;
+    cursor: pointer;
+}
+
+.attend {
+    background-color: green;
+    color: var(--text);
+}
+
+.unbook {
+    background-color: red;
+    color: var(--text);
+}

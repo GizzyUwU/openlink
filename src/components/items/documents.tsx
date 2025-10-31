@@ -152,17 +152,18 @@ function Documents(props: {
               <div class={styles()!["t-body"]}>
                 {documents().map((doc) => (
                   <div class={styles()!["t-row"]}>
-                    <div class={`${styles()!["_name"]} ${styles()!["_grey"]}"`}>
+                    <div class={styles()!["_left"]}>
                       {doc.attachments?.[0]?.name ||
                         doc.summary ||
                         doc.filename ||
                         "-"}
                     </div>
-                    <div class={styles()!["_type"]}>{doc.type || "-"}</div>
-                    <div class={styles()!["_date"]}>{doc.date || "-"}</div>
-                    <div class={`${styles()!["_download"]} cursor-pointer`}>
+                    <div class={styles()!["_left"]}>{doc.type || "-"}</div>
+                    <div class={styles()!["_left"]}>{doc.date || "-"}</div>
+                    <div class="cursor-pointer">
                       {doc.attachments?.[0]?.identifier ? (
                         <a
+                          title="Download"
                           onClick={() =>
                             handleDownload(
                               doc.attachments?.[0]?.identifier,

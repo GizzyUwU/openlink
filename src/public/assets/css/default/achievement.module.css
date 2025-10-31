@@ -1,3 +1,5 @@
+@import url("/src/public/assets/css/default/table.css");
+
 .box-container {
     display: flex;
     flex-direction: column;
@@ -32,70 +34,7 @@
         sans-serif;
     font-size: 14px;
     max-width: calc(100vw - 185px);
-}
-
-.t-header {
-    color: #3090c7;
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-    border-bottom: 1px solid #e3e9ea;
-}
-
-.t-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 0;
-    max-height: 100%;
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns:
-        230px 1fr 1fr 200px 105px;
-}
-
-.t-header>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-row:not(:last-child) {
-    border-bottom: 1px solid #e3e9ea;
-}
-
-.t-row>div {
-    display: flex;
-    align-items: center;
-    padding: 10px 10px;
-    min-width: 0;
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    min-height: 85px;
-    font-weight: 400;
-    font-size: 15px;
-}
-
-.t-row:nth-child(even) {
-    background-color: #ececec;
-}
-
-.t-row>._comment_teacher,
-.t-row>._action_info,
-.t-row>._award {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
+    --table-columns: minmax(0, 230px) repeat(2, minmax(0, 1fr)) minmax(0, 200px) minmax(0, 105px);
 }
 
 ._points {
@@ -111,19 +50,6 @@
     line-height: 1;
     margin-left: auto;
     margin-right: auto;
-}
-
-.t-achievement__text {
-    width: 100%;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-._grey {
-    color: #888;
 }
 
 .b-points-badge {

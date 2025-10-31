@@ -7,6 +7,7 @@ import { AchievementResponse } from "../../types/api/achievement";
 import { ABLookupResponse } from "../../types/api/ablookup";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { formatDate } from "../../lib/formatDate";
 
 function AchievementComponent(props: {
   setProgress: (value: number) => void;
@@ -35,16 +36,6 @@ function AchievementComponent(props: {
     achievementActivities: [],
   });
   const toast = useToast();
-
-  const formatDate = (dateString: string | null): string => {
-    if (!dateString) return "-";
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "-";
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
 
   const getLookupName = (
     id: string | number | undefined,
@@ -168,7 +159,7 @@ function AchievementComponent(props: {
                 <For each={state.achievements}>
                   {(achievement: any) => (
                     <div class={styles()!["t-row"]}>
-                      <div>
+                      <div  class={styles()!["_left"]}>
                         <div
                           style={{
                             display: "flex",
@@ -176,7 +167,7 @@ function AchievementComponent(props: {
                           }}
                         >
                           <div class={styles()!["_grey"]}>
-                            {formatDate(achievement.date)}
+                            {formatDate({ date: achievement.date, short: true })}
                           </div>
                           <div>
                             {getLookupName(
@@ -186,7 +177,7 @@ function AchievementComponent(props: {
                           </div>
                         </div>
                       </div>
-                      <div class={styles()!["_comment_teacher"]}>
+                      <div class={styles()!["_left"]}>
                         <div
                           style={{
                             display: "flex",
@@ -211,7 +202,7 @@ function AchievementComponent(props: {
                           <div>{achievement.comments || "-"}</div>
                         </div>
                       </div>
-                      <div class={styles()!["_action_info"]}>
+                      <div class={styles()!["_left"]}>
                         <div
                           style={{
                             display: "flex",
@@ -227,7 +218,7 @@ function AchievementComponent(props: {
                           <div>{achievement.lesson_information || "-"}</div>
                         </div>
                       </div>
-                      <div class={styles()!["_award"]}>
+                      <div class={styles()!["_left"]}>
                         <div
                           style={{
                             display: "flex",

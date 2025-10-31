@@ -10,6 +10,7 @@ import { Transition } from "solid-transition-group";
 import DOMPurify from "dompurify";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { formatDate } from "../../lib/formatDate";
 
 function Messages(props: {
   setProgress: (value: number) => void;
@@ -137,17 +138,6 @@ function Messages(props: {
       }
     })();
   });
-
-
-  const formatDate = (dateString: string | null): string => {
-    if (!dateString) return "-";
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "-";
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
 
   return (
     <Transition
@@ -308,7 +298,7 @@ function Messages(props: {
                         </div>
                         <div class={styles()!["l-messages__description"]}>
                           <div class={styles()!["l-messages__date"]}>
-                            {formatDate(message.date) || "-"}
+                            {formatDate({ date: message.date, short: true }) || "-"}
                           </div>
                           <div class={styles()!["l-messages__type"]}>
                             {message.type || "-"}

@@ -1,3 +1,5 @@
+@import url("/src/public/assets/css/default/table.css");
+
 .box-container {
     display: flex;
     flex-direction: column;
@@ -33,64 +35,24 @@
         sans-serif;
     font-size: 14px;
     overflow: hidden;
-}
-
-.t-header {
-    color: #3090c7;
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-    overflow: hidden;
-}
-
-.t-body {
-    overflow-y: auto;
-    flex: 1 1 0;
-    min-height: 0;
+    --table-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
 .t-entries,
 .t-results {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-entries .t-header,
-.t-entries .t-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-results .t-header,
-.t-results .t-row {
-    display: grid;
-    grid-template-columns: 100px 1fr 1fr 75px 75px;
-    border-bottom: 1px solid #e3e9ea;
-    text-align: center;
-}
-
-.t-header > div {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    text-transform: capitalize;
-    min-width: 0;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.t-entries {
+    --table-columns: repeat(3, minmax(0, 1fr))
+}
+
+.t-results {
+    --table-columns: repeat(5, minmax(0, 1fr))
 }
 
 .t-countdown {
@@ -104,41 +66,4 @@
     min-width: 0;
     z-index: 10;
     border: 0;
-}
-
-.t-row > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 10px;
-    min-width: 0;
-    text-align: center;
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.t-row:nth-child(even) {
-    background-color: #ececec;
-}
-
-.t-row > ._date_start,
-.t-row > ._board_level,
-.t-row > ._code_exam,
-.t-row > ._room {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
-    font-weight: 400;
-    word-wrap: break-word;
-}
-
-.t-timetable__text {
-    width: 100%;
-    font-size: 14px;
-}
-
-._grey {
-    color: #888;
 }

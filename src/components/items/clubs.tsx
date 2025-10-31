@@ -1,4 +1,4 @@
-import { onMount, createSignal, For, Show } from "solid-js";
+import { onMount, createSignal, For, Show, Accessor, createResource } from "solid-js";
 import { createStore } from "solid-js/store";
 import type { ClubsResponse } from "../../types/api/clubs";
 import { useToast } from "../toast";
@@ -9,6 +9,154 @@ import { IoCheckmarkCircleOutline } from "solid-icons/io";
 import { ImCross } from "solid-icons/im";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { formatDate } from "../../lib/formatDate";
+import type { ToastContextType } from "../toast";
+
+function ClubOverlay(props: Readonly<{
+  sessionData: () => SessionData;
+  edulink: EdulinkAPI;
+  club_id: number;
+  close: () => void;
+  activePage: string;
+  toast: ToastContextType;
+  setActivePage: (page: "My Clubs" | "All Clubs") => void;
+  theme: string;
+}>) {
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
+  const [clubData] = createResource(
+    () => props.club_id,
+    async (id) =>
+      (await props.edulink.getClub(id, props.sessionData()?.authtoken, props.sessionData()?.apiUrl))
+  );
+
+  onMount(async () => {
+    const cssModule = await import(
+      `../../public/assets/css/${props.theme}/club.module.css`
+    );
+    const normalized: { [key: string]: string } = {
+      ...cssModule.default,
+      ...cssModule,
+    };
+    setStyles(normalized);
+  })
+
+  async function attendClub(club_id: string | number, attend: boolean) {
+    if (!club_id) throw new Error("Club ID needed to identify the club");
+    console.log(attend);
+    if (attend === undefined || attend === null)
+      throw new Error(
+        "Attend Bool needed to see if should leave or join a club",
+      );
+
+    const res = await props.edulink.attendClub(
+      club_id,
+      props.sessionData()?.user?.id,
+      attend,
+      props.sessionData()?.authtoken,
+      props.sessionData()?.apiUrl,
+    );
+
+    if (res.result.success) {
+      props.toast.showToast(
+        "Success",
+        `${props.activePage === "My Clubs" ? "Left" : "Joined"} the club.`,
+        "success",
+      );
+      props.setActivePage("My Clubs");
+    }
+  }
+
+  return (
+    <Show when={styles()}>
+      <div
+        class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-lg relative`}
+      >
+        <button
+          type="button"
+          onClick={() => props.close()}
+          class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
+        >
+          ✕
+        </button>
+        <Show
+          when={clubData()}
+          fallback={<h2 class="text-xl text-center">Loading...</h2>}
+        >
+          {(data) => {
+            if (!data().result.success) {
+              return (
+                <h2 class="text-xl text-center text-red-500">
+                  Failed to load club data. Please try again later.
+                </h2>
+              );
+            }
+
+            return (
+              <>
+                <h2 class={`absolute top-4 left-4 text-xs text-capitalise ${styles()!["overlay-title"]}`}>
+                  CLUB DETAILS
+                </h2>
+                <div class="mt-6 flex-1 min-h-0 overflow-y-auto">
+                  <h2 class="text-center text-xl">{data().result.club.name}</h2>
+                  <h2 class="text-center text-sm">
+                    {data().result.club.location} -{" "}
+                    {Array.isArray(data().result.club.leaders_names)
+                      ? data().result.club.leaders_names.join(", ")
+                      : data().result.club.leaders_names}
+                  </h2>
+                  <Show when={data().result.club.description}>
+                    <h2 class="text-sm">
+                      <div class="font-bold">Description:</div>
+                      <div innerHTML={DOMPurify.sanitize(data().result.club.description)}></div>
+                    </h2>
+                  </Show>
+                  <div class={styles()!["t-club"]} style={{ display: "flex", "flex-direction": "column" }}>
+                    <div class={styles()!["t-header"]}>
+                      <div>Date</div>
+                      <div>Attendance</div>
+                      <div>Start</div>
+                      <div>End</div>
+                    </div>
+                    <div class={styles()!["t-body"]}>
+                      <For each={data().result.club.sessions}>
+                        {(session) => (
+                          <div class={styles()!["t-row"]}>
+                            <div class={styles()!["_left"]}>
+                              {formatDate({ date: session.start_time }) || "-"}
+                            </div>
+                            <div>
+                              {session.attended ? (
+                                <IoCheckmarkCircleOutline size="32" color="green" />
+                              ) : (
+                                <ImCross color="red" size="20" />
+                              )}
+                            </div>
+                            <div>{formatDate({ date: session.start_time, time: true })}</div>
+                            <div>{formatDate({ date: session.end_time, time: true })}</div>
+                          </div>
+                        )}
+                      </For>
+                    </div>
+                  </div>
+                  <div class="mt-4 flex flex-1 min-h-0 items-center justify-center">
+                    <button
+                      class={`${styles()!["attending"]} ${props.activePage === "My Clubs" ? styles()!["unbook"] : styles()!["attend"]}`}
+                      onClick={() => attendClub(props.club_id, props.activePage === "My Clubs" ? false : true)}
+                    >
+                      {props.activePage === "My Clubs" ? "Unbook" : "Attend"}
+                    </button>
+                  </div>
+                </div>
+              </>
+            );
+          }}
+        </Show>
+      </div>
+    </Show>
+  );
+}
 
 function Clubs(props: {
   setProgress: (value: number) => void;
@@ -89,184 +237,147 @@ function Clubs(props: {
     }
   });
 
-  function formatDate({
-    date,
-    time = false,
-    fullFormat = false,
-  }: {
-    date: string | Date;
-    time?: boolean;
-    fullFormat?: boolean;
-  }): string {
-    const d = new Date(
-      typeof date === "string" ? date.replace(" ", "T") : date,
-    );
+  // async function attendClub(club_id: string | number, attend: boolean) {
+  //   if (!club_id) throw new Error("Club ID needed to identify the club");
+  //   console.log(attend);
+  //   if (attend === undefined || attend === null)
+  //     throw new Error(
+  //       "Attend Bool needed to see if should leave or join a club",
+  //     );
 
-    const weekday = d.toLocaleDateString(undefined, { weekday: "long" });
-    const day = d.getDate().toString().padStart(2, "0");
-    const month = d.toLocaleDateString(undefined, { month: "long" });
+  //   const res = await props.edulink.attendClub(
+  //     club_id,
+  //     props.sessionData()?.user?.id,
+  //     attend,
+  //     props.sessionData()?.authtoken,
+  //     props.sessionData()?.apiUrl,
+  //   );
 
-    if (fullFormat) {
-      const timeString = d.toLocaleTimeString(undefined, {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-      return `${timeString} ${weekday}, ${day} ${month}`;
-    }
+  //   if (res.result.success) {
+  //     toast.showToast(
+  //       "Success",
+  //       `${state.activePage === "My Clubs" ? "Left" : "Joined"} the club.`,
+  //       "success",
+  //     );
+  //     setState("activePage", "My Clubs");
+  //   }
+  // }
 
-    if (time) {
-      return d.toLocaleTimeString(undefined, {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    }
+  // const handleClubPreview = async (club_id: number | string) => {
+  //   props.setOverlay(
+  //     <div
+  //       class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-lg relative`}
+  //     >
+  //       <button
+  //         type="button"
+  //         onClick={() => props.setOverlay(null)}
+  //         class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
+  //       >
+  //         ✕
+  //       </button>
+  //       <h2 class="text-xl text-center">Loading...</h2>
+  //     </div>,
+  //   );
 
-    return `${weekday}, ${day} ${month}`;
-  }
+  //   const clubData = await props.edulink.getClub(
+  //     club_id,
+  //     props.sessionData()?.authtoken,
+  //     props.sessionData()?.apiUrl,
+  //   );
 
-  async function attendClub(club_id: string | number, attend: boolean) {
-    if (!club_id) throw new Error("Club ID needed to identify the club");
-    console.log(attend);
-    if (attend === undefined || attend === null)
-      throw new Error(
-        "Attend Bool needed to see if should leave or join a club",
-      );
-
-    const res = await props.edulink.attendClub(
-      club_id,
-      props.sessionData()?.user?.id,
-      attend,
-      props.sessionData()?.authtoken,
-      props.sessionData()?.apiUrl,
-    );
-
-    if (res.result.success) {
-      toast.showToast(
-        "Success",
-        `${state.activePage === "My Clubs" ? "Left" : "Joined"} the club.`,
-        "success",
-      );
-      setState("activePage", "My Clubs");
-    }
-  }
-
-  const handleClubPreview = async (club_id: number | string) => {
-    props.setOverlay(
-      <div
-        class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-lg relative`}
-      >
-        <button
-          type="button"
-          onClick={() => props.setOverlay(null)}
-          class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
-        >
-          ✕
-        </button>
-        <h2 class="text-xl text-center">Loading...</h2>
-      </div>,
-    );
-
-    const clubData = await props.edulink.getClub(
-      club_id,
-      props.sessionData()?.authtoken,
-      props.sessionData()?.apiUrl,
-    );
-
-    if (clubData.result.success) {
-      props.setOverlay(
-        <div
-          class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-xl relative max-h-[50vh] flex flex-col`}
-        >
-          <button
-            type="button"
-            onClick={() => props.setOverlay(null)}
-            class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
-          >
-            ✕
-          </button>
-          <h2
-            class={`absolute top-4 left-4 text-xs text-capitalise ${styles()!["overlay-title"]}`}
-          >
-            CLUB DETAILS
-          </h2>
-          <div class="mt-6 flex-1 min-h-0 overflow-y-auto">
-            <h2 class="text-center text-xl">{clubData.result.club.name}</h2>
-            <h2 class="text-center text-sm">
-              {clubData.result.club.location} -{" "}
-              {Array.isArray(clubData.result.club.leaders_names)
-                ? clubData.result.club.leaders_names.join(", ")
-                : clubData.result.club.leaders_names}{" "}
-            </h2>
-            <Show when={clubData.result.club.description !== null}>
-              <h2 class="text-sm">
-                <div class="font-bold">Description:</div>
-                <div
-                  innerHTML={DOMPurify.sanitize(
-                    clubData.result.club.description,
-                  )}
-                ></div>
-              </h2>
-            </Show>
-            <br />
-            <div
-              class={styles()!["t-clubs"]}
-              style={{ display: "flex", "flex-direction": "column" }}
-            >
-              <div class={styles()!["t-club-header"]}>
-                <div>Name</div>
-                <div>Attendance</div>
-                <div>Start</div>
-                <div>End</div>
-              </div>
-              <div class={`${styles()!["t-body"]} mt-2`}>
-                <For each={clubData.result.club.sessions}>
-                  {(data) => (
-                    <div class={`${styles()!["t-club-row"]} cursor-pointer`}>
-                      <div class={styles()!["_date"]}>
-                        {formatDate({ date: data.start_time }) || "-"}
-                      </div>
-                      <div>
-                        {data.attended ? (
-                          data.attended ? (
-                            <IoCheckmarkCircleOutline size="32" color="green" />
-                          ) : (
-                            <ImCross color="red" size="20" />
-                          )
-                        ) : (
-                          <ImCross color="red" size="20" />
-                        )}
-                      </div>
-                      <div>
-                        {formatDate({ date: data.start_time, time: true })}
-                      </div>
-                      <div>
-                        {formatDate({ date: data.end_time, time: true })}
-                      </div>
-                    </div>
-                  )}
-                </For>
-              </div>
-            </div>
-          </div>
-          <div class="mt-4 flex flex-1 min-h-0 items-center justify-center">
-            <button
-              class={`${styles()!["attending"]} ${state.activePage === "My Clubs" ? styles()!["unbook"] : styles()!["attend"]}`}
-              onClick={() =>
-                attendClub(
-                  club_id,
-                  state.activePage === "My Clubs" ? false : true,
-                )
-              }
-            >
-              {state.activePage === "My Clubs" ? "Unbook" : "Attend"}
-            </button>
-          </div>
-        </div>,
-      );
-    }
-  };
+  //   if (clubData.result.success) {
+  //     props.setOverlay(
+  //       <div
+  //         class={`${styles()!["club"]} rounded-2xl p-6 w-[90%] max-w-xl relative max-h-[50vh] flex flex-col`}
+  //       >
+  //         <button
+  //           type="button"
+  //           onClick={() => props.setOverlay(null)}
+  //           class={`${styles()!["club-cross"]} absolute top-2 right-2 cursor-pointer`}
+  //         >
+  //           ✕
+  //         </button>
+  //         <h2
+  //           class={`absolute top-4 left-4 text-xs text-capitalise ${styles()!["overlay-title"]}`}
+  //         >
+  //           CLUB DETAILS
+  //         </h2>
+  //         <div class="mt-6 flex-1 min-h-0 overflow-y-auto">
+  //           <h2 class="text-center text-xl">{clubData.result.club.name}</h2>
+  //           <h2 class="text-center text-sm">
+  //             {clubData.result.club.location} -{" "}
+  //             {Array.isArray(clubData.result.club.leaders_names)
+  //               ? clubData.result.club.leaders_names.join(", ")
+  //               : clubData.result.club.leaders_names}{" "}
+  //           </h2>
+  //           <Show when={clubData.result.club.description !== null}>
+  //             <h2 class="text-sm">
+  //               <div class="font-bold">Description:</div>
+  //               <div
+  //                 innerHTML={DOMPurify.sanitize(
+  //                   clubData.result.club.description,
+  //                 )}
+  //               ></div>
+  //             </h2>
+  //           </Show>
+  //           <br />
+  //           <div
+  //             class={styles()!["t-clubs"]}
+  //             style={{ display: "flex", "flex-direction": "column" }}
+  //           >
+  //             <div class={styles()!["t-club-header"]}>
+  //               <div>Name</div>
+  //               <div>Attendance</div>
+  //               <div>Start</div>
+  //               <div>End</div>
+  //             </div>
+  //             <div class={`${styles()!["t-body"]} mt-2`}>
+  //               <For each={clubData.result.club.sessions}>
+  //                 {(data) => (
+  //                   <div class={`${styles()!["t-club-row"]} cursor-pointer`}>
+  //                     <div class={styles()!["_date"]}>
+  //                       {formatDate({ date: data.start_time }) || "-"}
+  //                     </div>
+  //                     <div>
+  //                       {data.attended ? (
+  //                         data.attended ? (
+  //                           <IoCheckmarkCircleOutline size="32" color="green" />
+  //                         ) : (
+  //                           <ImCross color="red" size="20" />
+  //                         )
+  //                       ) : (
+  //                         <ImCross color="red" size="20" />
+  //                       )}
+  //                     </div>
+  //                     <div>
+  //                       {formatDate({ date: data.start_time, time: true })}
+  //                     </div>
+  //                     <div>
+  //                       {formatDate({ date: data.end_time, time: true })}
+  //                     </div>
+  //                   </div>
+  //                 )}
+  //               </For>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div class="mt-4 flex flex-1 min-h-0 items-center justify-center">
+  //           <button
+  //             class={`${styles()!["attending"]} ${state.activePage === "My Clubs" ? styles()!["unbook"] : styles()!["attend"]}`}
+  //             onClick={() =>
+  //               attendClub(
+  //                 club_id,
+  //                 state.activePage === "My Clubs" ? false : true,
+  //               )
+  //             }
+  //           >
+  //             {state.activePage === "My Clubs" ? "Unbook" : "Attend"}
+  //           </button>
+  //         </div>
+  //       </div>,
+  //     );
+  //   }
+  // };
 
   return (
     <Transition
@@ -317,14 +428,14 @@ function Clubs(props: {
               style={{ display: "flex", "flex-direction": "column" }}
             >
               <div class={styles()!["t-header"]}>
-                <div class={styles()!["t-header__title"] + " _name"}>Name</div>
-                <div class={styles()!["t-header__title"] + " _location"}>
+                <div class={styles()!["_left"]}>Name</div>
+                <div>
                   Location
                 </div>
-                <div class={styles()!["t-header__title"] + " _capacity"}>
+                <div>
                   Capacity
                 </div>
-                <div class={styles()!["t-header__title"] + " _session"}>
+                <div>
                   Next Session
                 </div>
               </div>
@@ -335,18 +446,29 @@ function Clubs(props: {
                 )?.map((club) => (
                   <div
                     class={`${styles()!["t-row"]} cursor-pointer`}
-                    onClick={() => handleClubPreview(club.id)}
+                    onClick={() => props.setOverlay(
+                      <ClubOverlay
+                        sessionData={props.sessionData as Accessor<SessionData>}
+                        edulink={props.edulink}
+                        club_id={Number(club.id)}
+                        close={() => props.setOverlay(null)}
+                        activePage={state.activePage}
+                        toast={toast}
+                        theme={props.theme}
+                        setActivePage={(page: "My Clubs" | "All Clubs") => setState("activePage", page)}
+                      />
+                    )}
                   >
-                    <div class={styles()!["_name"]}>{club.name || "-"}</div>
-                    <div class={styles()!["_location"]}>
+                    <div class={styles()!["_left"]}>{club.name || "-"}</div>
+                    <div>
                       {club.location || "-"}
                     </div>
-                    <div class={styles()!["_capacity"]}>
+                    <div>
                       {club.capacity?.maximum
                         ? `${club.capacity.bookings}/${club.capacity.maximum}`
                         : "-"}
                     </div>
-                    <div class={styles()!["_session"]}>
+                    <div>
                       {club.next_session === null
                         ? "-"
                         : formatDate({

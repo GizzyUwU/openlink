@@ -1,4 +1,5 @@
 @import "./colors.css";
+@import url("/src/public/assets/css/catppuccin-mocha/table.css");
 
 .box-container {
     display: flex;
@@ -33,71 +34,7 @@
         sans-serif;
     font-size: 14px;
     max-width: calc(100vw - 185px);
-}
-
-.t-header {
-    color: var(--text);
-    text-align: center;
-    min-height: 40px;
-    font-size: 12px;
-    font-weight: 400;
-    background: var(--surface1);
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-}
-
-.t-body {
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 0;
-    max-height: 100%;
-}
-
-.t-header,
-.t-row {
-    display: grid;
-    grid-template-columns:
-        230px
-        1fr 1fr
-        200px 105px;
-    color: var(--text);
-}
-
-.t-header > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-transform: capitalize;
-    min-width: 0;
-}
-
-.t-row > div {
-    display: flex;
-    align-items: center;
-    padding: 10px 10px;
-    min-width: 0;
-    overflow: visible;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    min-height: 85px;
-    font-weight: 400;
-    font-size: 15px;
-}
-
-.t-row:nth-child(even) {
-    background-color: var(--surface1);
-}
-
-.t-row > ._comment_teacher,
-.t-row > ._action_info,
-.t-row > ._award {
-    justify-content: flex-start !important;
-    padding-left: 10px;
-    text-align: left;
+    --table-columns: minmax(0, 230px) repeat(2, minmax(0, 1fr)) minmax(0, 200px) minmax(0, 105px);
 }
 
 ._points {
@@ -112,10 +49,6 @@
     justify-content: center;
     line-height: 1;
     margin: 0 auto;
-}
-
-._grey {
-    color: #888;
 }
 
 .b-points-badge {

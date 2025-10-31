@@ -310,32 +310,20 @@ function Attendance(props: {
                                   {(exception) => (
                                     <div class={styles()!["t-row"]}>
                                       <div
-                                        class={
-                                          styles()!["_description"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.description}
                                       </div>
-                                      <div class={styles()!["_grey"]}>
+                                      <div>
                                         {exception.date}
                                       </div>
                                       <div
-                                        class={
-                                          styles()!["_type"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.type}
                                       </div>
                                       <div
-                                        class={
-                                          styles()!["_period"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.period}
                                       </div>
@@ -485,32 +473,20 @@ function Attendance(props: {
                                   {(exception) => (
                                     <div class={styles()!["t-row"]}>
                                       <div
-                                        class={
-                                          styles()!["_description"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.description}
                                       </div>
-                                      <div class={styles()!["_grey"]}>
+                                      <div>
                                         {exception.date}
                                       </div>
                                       <div
-                                        class={
-                                          styles()!["_type"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.type}
                                       </div>
                                       <div
-                                        class={
-                                          styles()!["_period"] +
-                                          " " +
-                                          styles()!["_grey"]
-                                        }
+                                        class={styles()!["_left"]}
                                       >
                                         {exception.period}
                                       </div>

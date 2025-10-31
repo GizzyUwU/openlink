@@ -7,6 +7,7 @@ import { BehaviourResponse } from "../../types/api/behaviour";
 import { ABLookupResponse } from "../../types/api/ablookup";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
+import { formatDate } from "../../lib/formatDate";
 
 function BehaviourComponent(props: {
   setProgress: (value: number) => void;
@@ -43,15 +44,6 @@ function BehaviourComponent(props: {
 
 
   const toast = useToast();
-  const formatDate = (dateString: string | null): string => {
-    if (!dateString) return "-";
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "-";
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
 
   const getLookupName = (
     id: string | number | undefined,
@@ -191,7 +183,6 @@ function BehaviourComponent(props: {
               </button>
             </div>
           </div>
-
           <Show when={state.activePage === "behaviour"}>
             <div class={styles()!["t-behaviour"]}>
               <div class={styles()!["t-header"]}>
@@ -204,12 +195,12 @@ function BehaviourComponent(props: {
               <div class={styles()!["t-body"]}>
                 {state.behaviour.map((behaviour: any) => (
                   <div class={styles()!["t-row"]}>
-                    <div>
+                    <div class={styles()!["_left"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
                         <div class={styles()!["_grey"]}>
-                          {formatDate(behaviour.date)}
+                          {formatDate({ date: behaviour.date, short: true })}
                         </div>
                         <div>
                           {getLookupName(
@@ -219,7 +210,7 @@ function BehaviourComponent(props: {
                         </div>
                       </div>
                     </div>
-                    <div class={styles()!["_comment_teacher"]}>
+                    <div class={styles()!["_left"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -239,7 +230,7 @@ function BehaviourComponent(props: {
                         <div>{behaviour.comments || "-"}</div>
                       </div>
                     </div>
-                    <div class={styles()!["_action_info"]}>
+                    <div class={styles()!["_left"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -252,7 +243,7 @@ function BehaviourComponent(props: {
                         <div>{behaviour.lesson_information}</div>
                       </div>
                     </div>
-                    <div class={styles()!["_loc_status"]}>
+                    <div class={styles()!["_left"]}>
                       <div
                         style={{ display: "flex", "flex-direction": "column" }}
                       >
@@ -270,7 +261,7 @@ function BehaviourComponent(props: {
                         </div>
                       </div>
                     </div>
-                    <div class={styles()!["t-behaviour__text"]}>
+                    <div>
                       <div class={styles()!["_points"]}>
                         {behaviour.points || "-"}
                       </div>
@@ -291,35 +282,35 @@ function BehaviourComponent(props: {
             </div>
           </Show>
           <Show when={state.activePage === "detentions"}>
-            <div class={styles()!["t-behaviour"]}>
-              <div class={styles()!["t-detentions-header"]}>
-                <div class={styles()!["_date"]}>Date</div>
-                <div class={styles()!["_type"]}>Type</div>
-                <div class={styles()!["_loc"]}>Location</div>
-                <div class={styles()!["_start"]}>Start time</div>
-                <div class={styles()!["_end"]}>End time</div>
-                <div class={styles()!["_attended"]}>Attended</div>
+            <div class={styles()!["t-detentions"]}>
+              <div class={styles()!["t-header"]}>
+                <div class={styles()!["_left"]}>Date</div>
+                <div class={styles()!["_left"]}>Type</div>
+                <div class={styles()!["_left"]}>Location</div>
+                <div>Start time</div>
+                <div>End time</div>
+                <div>Attended</div>
               </div>
               <div class={styles()!["t-body"]}>
                 {state.detentions.map(
                   (detention: BehaviourResponse.DetentionsType) => (
-                    <div class={styles()!["t-detentions-row"]}>
-                      <div class={styles()!["_date"]}>
-                        {formatDate(detention.date)}
+                    <div class={styles()!["t-row"]}>
+                      <div class={styles()!["_left"]}>
+                        {formatDate({ date: detention.date, short: true })}
                       </div>
-                      <div class={styles()!["_type"]}>
+                      <div class={styles()!["_left"]}>
                         {detention.description || "-"}
                       </div>
-                      <div class={styles()!["_loc"]}>
+                      <div class={styles()!["_left"]}>
                         {detention.location || "-"}
                       </div>
-                      <div class={styles()!["_start"]}>
+                      <div>
                         {detention.start_time || "-"}
                       </div>
-                      <div class={styles()!["_end"]}>
+                      <div>
                         {detention.end_time || "-"}
                       </div>
-                      <div class={styles()!["_attended"]}>
+                      <div>
                         {detention.attended || "-"}
                       </div>
                     </div>

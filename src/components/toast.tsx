@@ -16,7 +16,7 @@ interface ToastState {
   fadingOut: boolean;
 }
 
-interface ToastContextType {
+export interface ToastContextType {
   showToast: (title: string, message: string, type?: ToastType) => void;
   hideToast: () => void;
   pauseTimeout: () => void;

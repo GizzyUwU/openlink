@@ -4,4 +4,12 @@
         "dist",
         "node_modules",
     ],
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    "files.exclude": {
+        "**/target": true
+    }
 }
