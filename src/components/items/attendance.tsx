@@ -14,9 +14,7 @@ function Attendance(props: {
   edulink: EdulinkAPI;
   theme: string;
 }) {
-  const [SolidApexCharts, setSolidApexCharts] = createSignal<
-    typeof import("solid-apexcharts").SolidApexCharts | null
-  >(null);
+  const [ChartModule, setChartModule] = createSignal<typeof import('chart.js').Chart | null>(null);
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
@@ -41,7 +39,6 @@ function Attendance(props: {
 
   onMount(async () => {
     props.setProgress(0.6);
-
     const cssModule = await import(
       `../../public/assets/css/${props.theme}/attendance.module.css`
     );
@@ -50,9 +47,11 @@ function Attendance(props: {
       ...cssModule,
     };
     setStyles(normalized);
+    const module = await import('chart.js');
+    const { Chart, DoughnutController, ArcElement, Tooltip } = module;
+    Chart.register(DoughnutController, ArcElement, Tooltip);
 
-    const module = await import("solid-apexcharts");
-    setSolidApexCharts(() => module.SolidApexCharts);
+    setChartModule(() => Chart);
     const response = await props.edulink.getAttendance(
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
@@ -147,12 +146,12 @@ function Attendance(props: {
         when={
           props.progress() === 1 &&
           state.statutory &&
-          SolidApexCharts() &&
+          ChartModule() &&
           styles()
         }
       >
         {({ }) => {
-          const Chart = SolidApexCharts()!;
+          const Chart = ChartModule()
           return (
             <div class={styles()!["box-container"]}>
               <div class="flex items-center text-white justify-end w-full pr-[10px]">
@@ -219,41 +218,30 @@ function Attendance(props: {
                               ) : (
                                 <div class={styles()!["b-graph"]}>
                                   <div class={styles()!["b-graph__graph"]}>
-                                    <Chart
-                                      type="donut"
-                                      width={210}
-                                      height={210}
-                                      series={[
-                                        percent.present ?? 0,
-                                        percent.unauthorised ?? 0,
-                                        percent.absent ?? 0,
-                                      ]}
-                                      options={{
-                                        chart: {
-                                          animations: { enabled: false },
-                                        },
-                                        labels: [
-                                          "Present",
-                                          "Unauthorized",
-                                          "Absent",
-                                        ],
-                                        colors: [
-                                          "rgb(44, 201, 145)",
-                                          "rgb(238, 84, 59)",
-                                          "rgb(252, 185, 66)",
-                                        ],
-                                        dataLabels: { enabled: false },
-                                        markers: { size: 0 },
-                                        plotOptions: {
-                                          pie: {
-                                            donut: {
-                                              size: "54%",
-                                              labels: { show: false },
+                                    <canvas
+                                      ref={(el) => {
+                                        if (!el || !Chart) return;
+                                        queueMicrotask(() => {
+                                          new Chart(el.getContext("2d")!, {
+                                            type: "doughnut",
+                                            data: {
+                                              labels: ["Present", "Unauthorized", "Absent"],
+                                              datasets: [
+                                                {
+                                                  data: [
+                                                    percent.present ?? 0,
+                                                    percent.unauthorised ?? 0,
+                                                    percent.absent ?? 0,
+                                                  ],
+                                                  backgroundColor: ["rgb(44, 201, 145)", "rgb(238, 84, 59)", "rgb(252, 185, 66)"],
+                                                  borderWidth: 0,
+                                                  borderColor: "transparent",
+                                                }
+                                              ]
                                             },
-                                            expandOnClick: false,
-                                          },
-                                        },
-                                        legend: { show: false },
+                                            options: { responsive: true }
+                                          });
+                                        });
                                       }}
                                     />
                                   </div>
@@ -372,51 +360,30 @@ function Attendance(props: {
                               ) : (
                                 <div class={styles()!["b-graph"]}>
                                   <div class={styles()!["b-graph__graph"]}>
-                                    <Chart
-                                      type="donut"
-                                      width={210}
-                                      height={210}
-                                      series={[
-                                        percent.present,
-                                        percent.unauthorised,
-                                        percent.absent,
-                                      ]}
-                                      options={{
-                                        chart: {
-                                          animations: {
-                                            enabled: false,
-                                          },
-                                        },
-                                        labels: [
-                                          "Present",
-                                          "Unauthorized",
-                                          "Absent",
-                                        ],
-                                        colors: [
-                                          "rgb(44, 201, 145)",
-                                          "rgb(238, 84, 59)",
-                                          "rgb(252, 185, 66)",
-                                        ],
-                                        dataLabels: {
-                                          enabled: false,
-                                        },
-                                        markers: {
-                                          size: 0,
-                                        },
-                                        plotOptions: {
-                                          pie: {
-                                            donut: {
-                                              size: "54%",
-                                              labels: {
-                                                show: false,
-                                              },
+                                    <canvas
+                                      ref={(el) => {
+                                        if (!el || !Chart) return;
+                                        queueMicrotask(() => {
+                                          new Chart(el.getContext("2d")!, {
+                                            type: "doughnut",
+                                            data: {
+                                              labels: ["Present", "Unauthorized", "Absent"],
+                                              datasets: [
+                                                {
+                                                  data: [
+                                                    percent.present ?? 0,
+                                                    percent.unauthorised ?? 0,
+                                                    percent.absent ?? 0,
+                                                  ],
+                                                  backgroundColor: ["rgb(44, 201, 145)", "rgb(238, 84, 59)", "rgb(252, 185, 66)"],
+                                                  borderWidth: 0,
+                                                  borderColor: "transparent",
+                                                }
+                                              ]
                                             },
-                                            expandOnClick: false,
-                                          },
-                                        },
-                                        legend: {
-                                          show: false,
-                                        },
+                                            options: { responsive: true }
+                                          });
+                                        });
                                       }}
                                     />
                                   </div>
@@ -521,44 +488,52 @@ function Attendance(props: {
                                 </div>
                                 <div class={styles()!["b-graph"]}>
                                   <div class={styles()!["b-graph__graph"]}>
-                                    <Chart
-                                      type="donut"
-                                      width={210}
-                                      height={210}
-                                      series={[
-                                        percent.present,
-                                        percent.unauthorised,
-                                        percent.absent,
-                                        percent.late ?? 0,
-                                      ]}
-                                      options={{
-                                        chart: {
-                                          animations: { enabled: false },
-                                        },
-                                        labels: [
-                                          "Present",
-                                          "Unauthorized",
-                                          "Absent",
-                                          "Late",
-                                        ],
-                                        colors: [
-                                          "rgb(44, 201, 145)",
-                                          "rgb(238, 84, 59)",
-                                          "rgb(252, 185, 66)",
-                                          "rgb(133, 209, 253)",
-                                        ],
-                                        dataLabels: { enabled: false },
-                                        markers: { size: 0 },
-                                        plotOptions: {
-                                          pie: {
-                                            donut: {
-                                              size: "54%",
-                                              labels: { show: false },
+                                    <canvas
+                                      ref={(el) => {
+                                        if (!el || !Chart) return;
+                                        queueMicrotask(() => {
+                                          new Chart(el.getContext("2d")!, {
+                                            type: "doughnut",
+                                            data: {
+                                              labels: ["Present", "Unauthorized", "Absent", "Late"],
+                                              datasets: [
+                                                {
+                                                  data: [
+                                                    percent.present ?? 0,
+                                                    percent.unauthorised ?? 0,
+                                                    percent.absent ?? 0,
+                                                    percent.late ?? 0,
+                                                  ],
+                                                  backgroundColor: [
+                                                    "rgb(44, 201, 145)",
+                                                    "rgb(238, 84, 59)",
+                                                    "rgb(252, 185, 66)",
+                                                    "rgb(133, 209, 253)"
+                                                  ],
+                                                  borderWidth: 0,
+                                                  borderColor: "transparent",
+                                                }
+                                              ]
                                             },
-                                            expandOnClick: false,
-                                          },
-                                        },
-                                        legend: { show: false },
+                                            options: {
+                                              responsive: true,
+                                              plugins: {
+                                                tooltip: {
+                                                  enabled: true,
+                                                  titleColor: "#fff",
+                                                  bodyColor: "#fff",
+                                                  padding: 10,
+                                                  cornerRadius: 6,
+                                                  callbacks: {
+                                                    label: (context) => {
+                                                      return " " + `${context.parsed}%`;
+                                                    }
+                                                  },
+                                                },
+                                              },
+                                            }
+                                          });
+                                        })
                                       }}
                                     />
                                   </div>
