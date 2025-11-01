@@ -1,0 +1,135 @@
+.s-header {
+    max-height: 65px;
+    width: 100%;
+    padding: 15px 16px;
+    position: relative;
+}
+
+.s-header .__inner {
+    background-color: #c56d0e;
+    content: "";
+    display: block;
+    z-index: 3;
+    position: relative;
+}
+.s-header .__inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../../img/spooky_header.png") 0 0 repeat-x;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.s-header .__inner,
+.s-header .__inner:before {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.s-header .__container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1024px;
+    position: relative;
+    z-index: 6;
+}
+
+.s-header:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: translate3d(-100%, 0, 0);
+    width: 100%;
+    z-index: 6;
+}
+
+.progress-wrapper {
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #00bcd4;
+    width: 100%;
+    transform: translateX(-100%);
+    transition: transform 1000ms ease;
+    z-index: 10;
+}
+
+.pr-user ._animated {
+    opacity: 1;
+}
+
+.pr-user {
+    align-items: center;
+    display: flex;
+    position: relative;
+    transition: opacity 0.2s ease-out;
+    justify-content: flex-end;
+}
+
+.pr-user .__info,
+.pr-user .__info:after {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.pr-user .__info {
+    cursor: pointer;
+    font-size: 0;
+}
+
+.pr-user .__avatar {
+    background: #3c424e;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 50%;
+    display: inline-block;
+    height: 35px;
+    position: relative;
+    vertical-align: middle;
+    width: 35px;
+    z-index: 100;
+}
+
+.pr-user .__text {
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 9px;
+    vertical-align: middle;
+}
+
+.pr-user .__name {
+    font-weight: 700;
+}
+
+.pr-user .__settings {
+    display: block;
+    height: 40px;
+    position: relative;
+    width: 40px;
+    font-size: 22px;
+    margin-right: -12px;
+    color: white;
+}
+
+.pr-user .dropdown {
+    background: #fff;
+    color: #000;
+    border: 0;
+}

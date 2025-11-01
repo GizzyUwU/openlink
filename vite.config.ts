@@ -5,16 +5,17 @@ import checker from "vite-plugin-checker"
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
-export default defineConfig(async () => ({
-  plugins: [tailwindcss(), solid(), checker({ typescript: true /** or an object config */ })],
+export default defineConfig({
+  plugins: [
+    tailwindcss(),
+    solid(),
+    checker({ typescript: true }),
+  ],
   resolve: {
     alias: {
       "@": "/src",
     },
   },
-  setupFiles: [
-    './src/setup.ts'
-  ],
   optimizeDeps: {
     include: ["@tauri-apps/api"],
   },
@@ -33,14 +34,28 @@ export default defineConfig(async () => ({
   },
   build: {
     target: "esnext",
+    minify: "esbuild",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    },
     cssCodeSplit: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          apexcharts: ["apexcharts"],
+        manualChunks(id: string) {
+          if (id.includes('node_modules')) {
+            if (id.includes("solid-apexcharts")) return "solid-apexcharts";
+            if (id.includes("apexcharts")) return "apexcharts";
+            if (id.includes('solid-js')) return 'solid';
+            if (id.includes('tailwindcss')) return 'tailwind';
+            return 'vendor';
+          }
+          if (id.includes('src/components/')) return 'components';
         },
       },
     },
     chunkSizeWarningLimit: 700,
   },
-}));
+});

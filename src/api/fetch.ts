@@ -108,21 +108,28 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       return null;
     };
 
-    const fetchDemoJsonWeb = () => {
-      const demoJsons = import.meta.glob("../public/assets/jsons/**/*.json", { eager: true });
+    const fetchDemoJsonWeb = async () => {
       const paths = [
-        `../public/assets/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
-        `../public/assets/jsons/${folder}/${apiMethod}.json`,
+        `/jsons/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
+        `/jsons/${folder}/${apiMethod}.json`,
       ];
 
       for (const path of paths) {
-        const jsonModule = demoJsons[path] as { default: any } | undefined;
-        if (jsonModule) return { demo: jsonModule.default };
+        try {
+          const res = await fetch(path);
+          if (res.ok) {
+            const data = await res.json();
+            return { demo: data };
+          }
+        } catch {
+          continue; // try next path
+        }
       }
+
       return null;
     };
 
-    const res = globalThis.__TAURI__ ? await fetchDemoJsonTauri() : fetchDemoJsonWeb();
+    const res = globalThis.__TAURI__ ? await fetchDemoJsonTauri() : await fetchDemoJsonWeb();
     if (!res) throw new Error(`Failed to fetch demo JSON for method: ${apiMethod}`);
 
     memoryCache.set(key, {

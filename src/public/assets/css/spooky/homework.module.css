@@ -1,0 +1,52 @@
+@import url("/src/public/assets/css/default/table.css");
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-container {
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-homework {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    --table-columns: repeat(5, minmax(0, 1fr)) repeat(2, minmax(0, 105px));
+}
+
+.due-today {
+    background-color: rgba(255, 0, 0, 0.4) !important;
+    background-blend-mode: multiply;
+}
+
+.completed {
+    background-color: rgba(0, 255, 0, 0.22) !important;
+}
+
+._grey {
+    color: #888;
+}
+
+.check-color {
+    color: #6bb842;
+}
+
+.cross-color {
+    color: #bd362f;
+}

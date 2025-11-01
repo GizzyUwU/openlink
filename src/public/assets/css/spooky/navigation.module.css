@@ -1,0 +1,267 @@
+.nav-wheel {
+    display: block;
+    height: 100vh;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #1C1C1C;
+}
+
+.nav-wheel .__container {
+    bottom: 0;
+    bottom: 11px;
+    display: block;
+    height: 332px;
+    left: 0;
+    margin: auto;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 332px;
+}
+
+.nav-wheel .__loaded {
+    pointer-events: all;
+}
+
+.nav-wheel .__container .__artboard {
+    background: rgba(244, 131, 27, 0.1);
+    height: 332px;
+    width: 332px;
+}
+
+.nav-wheel .__container .__artboard,
+.nav-wheel .__container .__logo-wrap {
+    border-radius: 50%;
+    position: absolute;
+}
+
+.nav-wheel .__container .__logo-wrap {
+    background: #333;
+    bottom: 0;
+    display: block;
+    height: 190px;
+    left: 0;
+    margin: auto;
+    right: 0;
+    top: 0;
+    width: 190px;
+}
+
+.nav-wheel .__container .__logo-wrap .__logo {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 70%;
+    border-radius: 50%;
+    height: 190px;
+    width: 190px;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav-wheel .__container .__list {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+}
+
+.nav-wheel .__container .__list .__item {
+    cursor: pointer;
+    padding: 8px;
+    position: absolute;
+    transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 166, 0);
+}
+
+.nav-wheel .__item .__inner {
+    position: relative;
+}
+
+.nav-wheel .__item .__inner .__item-name {
+    color: #fff;
+    line-height: 64px;
+    position: absolute;
+    text-transform: uppercase;
+    white-space: nowrap;
+    inset: auto auto auto 120%;
+    width: auto;
+    text-align: center;
+    opacity: 1;
+    visibility: visible;
+    font-size: 10px;
+}
+
+.nav-wheel .__item .__inner .__item-link {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    width: 64px;
+    color: white;
+}
+
+.nav-wheel .__item .__inner .__timetable {
+    background-color: #ea6767;
+    background-image: linear-gradient(to top left, #e85858, #eb6f6f);
+}
+
+.nav-wheel .__item .__inner ._clubs {
+    background-color: #ecab39;
+    background-image: linear-gradient(to top left, #ebb326, #eb9e3d);
+}
+
+.nav-wheel .__item .__inner ._attendance,
+.nav-wheel .__item .__inner ._parentevent {
+    background-color: #ec9443;
+    background-image: linear-gradient(to top left, #eb913d, #eb9e3d);
+}
+
+.nav-wheel .__item .__inner ._medical,
+.nav-wheel .__item .__inner ._youhq_studentsnapshotreport {
+    background-color: #d74190;
+    background-image: linear-gradient(to top left, #d63b77, #d63b8d);
+}
+
+.nav-wheel .__item .__inner ._calendar {
+    background-color: #20c1ae;
+    background-image: linear-gradient(to top left, #1db09f, #21c6b2);
+}
+
+.nav-wheel .__item .__inner ._behaviour_detentionmanagement,
+.nav-wheel .__item .__inner ._communicator,
+.nav-wheel .__item .__inner ._marksheets,
+.nav-wheel .__item .__inner ._timetable {
+    background-color: #ea6767;
+    background-image: linear-gradient(to top left, #e85858, #eb6f6f);
+}
+
+.nav-wheel .__item .__inner ._catering {
+    background-color: #ff7662;
+    background-image: linear-gradient(to top left, #368242, #66af4e);
+}
+
+.nav-wheel .__item .__inner ._account {
+    background-color: #7b60d8;
+    background-image: linear-gradient(to top left, #5f62d8, #845fd8);
+}
+
+.nav-wheel .__item .__inner ._medicaltest {
+    background-color: #dd4732;
+    background-image: linear-gradient(to top left, #d73924, #de4b37);
+}
+
+.nav-wheel .__item .__inner ._attendance-reporting {
+    background-color: #8b77d2;
+    background-image: linear-gradient(to top left, #585984, #7965a9);
+}
+
+.nav-wheel .__item .__inner ._contact,
+.nav-wheel .__item .__inner ._profiles {
+    background-color: #51c288;
+    background-image: linear-gradient(to top left, #42bc7d, #55c38a);
+}
+
+.nav-wheel .__item .__inner ._employeecallout,
+.nav-wheel .__item .__inner ._links {
+    background-color: #1fd6f3;
+    background-image: linear-gradient(to top left, #3f8662, #18d5f3);
+}
+
+.nav-wheel .__item .__inner ._documents {
+    background-color: #ab599a;
+    background-image: linear-gradient(to top left, #a0518f, #ad5d9d);
+}
+
+.nav-wheel .__item .__inner ._analytics,
+.nav-wheel .__item .__inner ._assessment {
+    background-color: #d74188;
+    background-image: linear-gradient(to top left, #d4307d, #d8458a);
+}
+
+.nav-wheel .__item .__inner ._documents_message,
+.nav-wheel .__item .__inner ._learners {
+    background-color: #55aed6;
+    background-image: linear-gradient(to top left, #44a5d2, #59afd7);
+}
+
+.nav-wheel .__item .__inner ._achievement,
+.nav-wheel .__item .__inner ._exams {
+    background-color: #fb6d60;
+    background-image: linear-gradient(to top left, #509dd5, #50b2d5);
+}
+
+.nav-wheel .__item .__inner ._attainment,
+.nav-wheel .__item .__inner ._behaviour,
+.nav-wheel .__item .__inner ._resourcebooking {
+    background-color: #a7589c;
+    background-image: linear-gradient(to top left, #985599, #ab5596);
+}
+
+.nav-wheel .__item .__inner ._childprotection,
+.nav-wheel .__item .__inner ._exam,
+.nav-wheel .__item .__inner ._homework,
+.nav-wheel .__item .__inner ._noticeboard,
+.nav-wheel .__item .__inner ._registers {
+    background-color: #5883c5;
+    background-image: linear-gradient(to top left, #6e76c0, #3988c6);
+}
+
+.nav-wheel .__item .__inner ._sen {
+    background-color: #7b60d8;
+    background-image: linear-gradient(to top left, #5f62d8, #3988c6);
+}
+
+.nav-wheel .__item .__inner ._forms {
+    background-color: #02af71;
+    background-image: linear-gradient(to top left, #029661, #02af71);
+}
+
+.nav-wheel .__item .__inner ._back button,
+.nav-wheel .__item .__inner ._submenu button {
+    background-color: #7b60d8;
+    background-image: linear-gradient(to top left, #dca424, #ffc33b);
+}
+
+.nav-wheel .__item .__inner ._datacollection,
+.nav-wheel .__item .__inner ._datacollection_manage {
+    background-color: #8b56ad;
+}
+
+.nav-wheel .__item .__inner ._seating_viewall {
+    background-color: #8282c6;
+}
+
+.nav-wheel .__item .__inner ._payments_squid {
+    background-color: #e07;
+}
+
+.nav-wheel .__item .__inner ._payments_ipayimpact {
+    background-color: #5b7cc2;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transition: opacity 0.2s cubic-bezier(0.77, 0, 0.175, 1) !important;
+}
+
+@keyframes growIn {
+    from {
+        transform: translateX(-50%) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}

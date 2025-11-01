@@ -436,7 +436,7 @@ function Timetable(props: Readonly<{
                 ref={buttonRef}
                 type="button"
                 onClick={() => setState("weekDropdown", !state.weekDropdown)}
-                class={`${styles()!["__nav"]} inline-flex justify-between min-w-[4rem] max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer`}
+                class={`${styles()!["__nav"]} inline-flex justify-between min-w-16 max-w-xs px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none cursor-pointer`}
               >
                 <div>{state.currentWeek?.name}</div>
                 <svg

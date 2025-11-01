@@ -1,0 +1,49 @@
+@import url("/src/public/assets/css/default/table.css");
+
+.t-club {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    position: relative;
+    --table-columns: 1fr 100px 75px 75px;
+}
+
+.t-club .t-body {
+    max-height: 40vh;
+}
+
+.club {
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.attending {
+    border-radius: 5px;
+    max-height: 95px;
+    padding: 6px 14px 6px 14px;
+    text-align: center;
+    transition: background-color 0.25s;
+    background-color: green;
+    cursor: pointer;
+}
+
+.attend {
+    background-color: green;
+    color: white;
+}
+
+.unbook {
+    background-color: red;
+    color: white;
+}

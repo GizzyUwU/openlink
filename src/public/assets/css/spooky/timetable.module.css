@@ -1,0 +1,46 @@
+@import url("/src/public/assets/css/default/table.css");
+
+:root {
+  --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
+}
+
+.__dropdown {
+    background: white;
+}
+
+.__nav {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    margin-bottom: 10px;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-container {
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-timetable {
+        display: flex;
+    flex-grow: 1;
+    background: #fff;
+    border-radius: 5px;
+    flex-grow: 1;
+    z-index: 2;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    min-height: 0;
+}

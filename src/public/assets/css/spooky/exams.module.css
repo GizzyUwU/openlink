@@ -1,0 +1,63 @@
+@import url("/src/public/assets/css/default/table.css");
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-container {
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.t-exams {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 2;
+    height: 100%;
+    font-family:
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    --table-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.t-entries,
+.t-results {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.t-entries {
+    --table-columns: repeat(3, minmax(0, 1fr))
+}
+
+.t-results {
+    --table-columns: repeat(5, minmax(0, 1fr))
+}
+
+.t-countdown {
+    display: flex;
+    color: #3090c7;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+    min-width: 0;
+    z-index: 10;
+    border: 0;
+}
