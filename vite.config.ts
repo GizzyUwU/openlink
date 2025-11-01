@@ -35,11 +35,6 @@ export default defineConfig({
   build: {
     target: "esnext",
     minify: "esbuild",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
     cssCodeSplit: true,
     sourcemap: false,
     rollupOptions: {
