@@ -94,7 +94,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
     const fetchDemoJsonTauri = async () => {
       const { exists, readTextFile } = await import("@tauri-apps/plugin-fs");
       const { resourceDir } = await import("@tauri-apps/api/path");
-      const baseDir = await resourceDir() + "/_up_/src/public/assets/jsons";
+      const baseDir = await resourceDir() + "/_up_/public/jsons";
       const paths = [
         `${baseDir}/${folder}/${subfolderCandidate}/${accountType}/${apiMethod}.json`,
         `${baseDir}/${folder}/${apiMethod}.json`,

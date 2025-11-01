@@ -10,6 +10,6 @@
         "**/.hg/store/**": true
     },
     "files.exclude": {
-        "**/target": true
+        "target": true
     }
 }
