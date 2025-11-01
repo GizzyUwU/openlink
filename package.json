@@ -26,6 +26,7 @@
     "@tauri-apps/plugin-process": "~2",
     "@tauri-apps/plugin-store": "~2.4.0",
     "@tauri-apps/plugin-updater": "~2",
+    "apexcharts": "^5.3.5",
     "dompurify": "^3.2.6",
     "solid-apexcharts": "^0.6.0",
     "solid-icons": "^1.1.0",
