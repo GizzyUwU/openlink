@@ -1,4 +1,4 @@
-import { onMount, createSignal, Show } from "solid-js";
+import { onMount, createSignal, Show, onCleanup } from "solid-js";
 import { Icon } from "@iconify-icon/solid";
 import { useNavigate } from "@solidjs/router";
 import type { ClubsResponse } from "../types/api/clubs";
@@ -9,6 +9,15 @@ import {
   isPermissionGranted,
   sendNotification
 } from '@tauri-apps/plugin-notification'
+
+async function getNotificationConfig() {
+  if (!globalThis.__TAURI__) return null;
+  if (!(await isPermissionGranted())) return null;
+
+  const { load } = await import("@tauri-apps/plugin-store");
+  const store = await load("config.json", { autoSave: false, defaults: {} });
+  return store.get("notifications");
+}
 
 export default function Footer(props: Readonly<{
   sessionData: Accessor<SessionData>;
@@ -30,6 +39,7 @@ export default function Footer(props: Readonly<{
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
+  let statusInterval: ReturnType<typeof setTimeout> | null = null;
 
   const isWithinFiveMinutes = (date: Date) => {
     const diff = date.getTime() - Date.now();
@@ -116,11 +126,9 @@ export default function Footer(props: Readonly<{
         if (result.result.success) {
           setStatus(result.result);
           if (globalThis.__TAURI__ && await isPermissionGranted()) {
-            const { load } = await import("@tauri-apps/plugin-store");
-            const store = await load("config.json", { autoSave: false, defaults: {} });
-            const configNotifications = await store.get("notifications");
+            const configNotifications = await getNotificationConfig();
             if (configNotifications) {
-              handleNotifications(result.result)
+              requestIdleCallback(() => handleNotifications(result.result));
             }
           }
 
@@ -153,24 +161,25 @@ export default function Footer(props: Readonly<{
     if (hasStatus) {
       setStatus(props.status);
       if (globalThis.__TAURI__ && await isPermissionGranted()) {
-        if (globalThis.__TAURI__ && await isPermissionGranted()) {
-          const { load } = await import("@tauri-apps/plugin-store");
-          const store = await load("config.json", { autoSave: false, defaults: {} });
-          const configNotifications = await store.get("notifications");
-          if (configNotifications) {
-            setNotifPermission(true)
-            handleNotifications(props.status)
-          }
+        const configNotifications = await getNotificationConfig();
+        if (configNotifications) {
+          setNotifPermission(true)
+          handleNotifications(props.status)
         }
       }
     } else {
-      fetchStatus();
+      queueMicrotask(() => fetchStatus());
     }
-    setInterval(
+    statusInterval = setInterval(
       fetchStatus,
       (props.sessionData().miscellaneous.status_interval ?? 60) * 1000,
     );
   });
+
+  onCleanup(() => {
+    if(sessionTimeout !== null) clearInterval(sessionTimeout)
+    if(statusInterval !== null) clearInterval(statusInterval)
+  })
 
   return (
     <Show when={styles()}>

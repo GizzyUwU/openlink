@@ -53,10 +53,10 @@ export default function Navigation(props: Readonly<{
   };
 
   let debounce = (callback: Function, delay: number) => {
-    let myTimeout: ReturnType<typeof setTimeout>;
+    let dTimeout: ReturnType<typeof setTimeout>;
     return () => {
-      clearTimeout(myTimeout);
-      myTimeout = setTimeout(() => {
+      clearTimeout(dTimeout);
+      dTimeout = setTimeout(() => {
         callback();
       }, delay);
     };
@@ -161,8 +161,10 @@ export default function Navigation(props: Readonly<{
     const logoBase64 = props.sessionData().establishment?.logo;
     const estName = props.sessionData().establishment?.name;
     if (logoBase64 && estName) {
-      const color = await getCachedLogoColor(logoBase64, estName);
-      setState("logoBG", color);
+      requestIdleCallback(async () => {
+        const color = await getCachedLogoColor(logoBase64, estName);
+        setState("logoBG", color);
+      });
     }
 
     globalThis.addEventListener("popstate", () => {

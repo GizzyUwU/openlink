@@ -3,6 +3,7 @@ import {
   useContext,
   ParentComponent,
   createSignal,
+  onCleanup,
 } from "solid-js";
 import { HiSolidShieldExclamation } from "solid-icons/hi";
 
@@ -102,6 +103,9 @@ export const Toast: ParentComponent = (props) => {
     }, 300);
   };
 
+  onCleanup(() => {
+    if(timeoutId) clearTimeout(timeoutId)
+  })
   const value = {
     showToast,
     hideToast,
