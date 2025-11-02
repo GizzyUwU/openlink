@@ -1,8 +1,4 @@
-@import url("/src/public/assets/css/default/table.css");
-
-:root {
-  --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
-}
+@import url("/src/public/assets/css/spooky/table.css");
 
 .__dropdown {
     background: white;
@@ -30,9 +26,9 @@
 }
 
 .t-timetable {
-        display: flex;
+    display: flex;
     flex-grow: 1;
-    background: #fff;
+    background: #8B4513;
     border-radius: 5px;
     flex-grow: 1;
     z-index: 2;
@@ -43,4 +39,5 @@
         sans-serif;
     font-size: 14px;
     min-height: 0;
+    --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
 }

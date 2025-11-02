@@ -1,3 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/monster-pumpkin');
+@import url('https://fonts.googleapis.com/css2?family=Eater&display=swap');
+
+* {
+    font-family: "Eater", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
 .t-overlay {
     position: absolute;
     top: 0;
@@ -20,7 +29,7 @@
     font-size: 14px;
 }
 
-.t-overlay > * {
+.t-overlay>* {
     min-height: 0;
     flex-shrink: 1;
 }

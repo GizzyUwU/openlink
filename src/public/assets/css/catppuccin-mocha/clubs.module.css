@@ -1,10 +1,6 @@
 @import "./colors.css";
 @import url("/src/public/assets/css/catppuccin-mocha/table.css");
 
-:root {
-  --table-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
-}
-
 .box-container {
     display: flex;
     flex-direction: column;
@@ -33,4 +29,5 @@
         sans-serif;
     font-size: 14px;
     position: relative;
+    --table-columns: 0.8fr 0.8fr 0.8fr 0.8fr;
 }

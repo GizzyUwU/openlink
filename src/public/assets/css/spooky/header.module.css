@@ -12,6 +12,7 @@
     z-index: 3;
     position: relative;
 }
+
 .s-header .__inner::before {
   content: "";
   position: absolute;

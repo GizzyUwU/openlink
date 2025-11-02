@@ -1,10 +1,6 @@
 @import "./colors.css";
 @import url("/src/public/assets/css/catppuccin-mocha/table.css");
 
-:root {
-    --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
-}
-
 .__dropdown {
     background: var(--surface0);
     color: var(--text);
@@ -52,4 +48,5 @@
     font-size: 14px;
     border: 0;
     min-height: 0;
+    --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
 }

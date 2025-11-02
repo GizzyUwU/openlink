@@ -1,9 +1,5 @@
 @import url("/src/public/assets/css/default/table.css");
 
-:root {
-  --table-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 105px) minmax(0, 105px); 
-}
-
 .box-container {
     display: flex;
     flex-direction: column;
@@ -31,4 +27,5 @@
         Helvetica,
         sans-serif;
     font-size: 14px;
+     --table-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 105px) minmax(0, 105px); 
 }
