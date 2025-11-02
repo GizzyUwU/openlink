@@ -17,7 +17,7 @@
     grid-template-columns: repeat(4, minmax(250px, 1fr));
     overflow-x: hidden;
     overflow-y: auto;
-    background: #fff;
+    background: #8B4513;
     font-family:
         Helvetica Neue,
         Arial,
@@ -29,7 +29,6 @@
 }
 
 .__links-item {
-    border-bottom: 1px solid #e3e9ea;
     display: flex;
     flex-direction: column;
     padding: 25px 10px;
@@ -38,7 +37,7 @@
 }
 
 .__links-item .__title {
-    color: #8c97a5;
+    color: white;
     flex-shrink: 0;
     font-weight: 500;
     margin-bottom: 25px;

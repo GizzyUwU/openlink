@@ -1,4 +1,4 @@
-@import url("/src/public/assets/css/default/table.css");
+@import url("/src/public/assets/css/spooky/table.css");
 
 .box-container {
     display: flex;
@@ -19,7 +19,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -37,7 +37,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -53,9 +53,9 @@
     border-radius: 50%;
     height: 42px;
     width: 42px;
-    border: 1.2px solid red;
-    color: red;
-    font-size: 14px;
+    border: 1.2px solid #FF8C00;
+    color: #FF8C00;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -16,7 +16,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -34,7 +34,7 @@
 }
 
 .b-student-info__left {
-    background-color: #7061d8;
+    background-color: #c56d0e;
     height: 100%;
     width: 330px;
     flex-grow: 1;
@@ -71,7 +71,7 @@
 }
 
 .b-student-info__right {
-    background: #fff;
+    background: #8B4513;
     height: 100%;
     width: calc(100% - 330px);
     flex-grow: 1;
@@ -110,17 +110,18 @@
     width: 52%;
 }
 
-.__col:last-child {
+.__col:last-child:not(:only-child) {
     border-left: 1px solid #e3e9ea;
     width: 48%;
 }
 
 .__col .__title {
-    color: #8c97a5;
+    color: white;
     font-size: 14px;
 }
 .__col .__data {
-    color: #404652;
+    color: white;
     font-size: 17px;
     padding: 5px 0;
 }
+

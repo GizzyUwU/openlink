@@ -1,35 +1,35 @@
 .settings {
-    background: #fff;
+    background: #8B4513;
     border-radius: 5px;
-    color: #000;
+    color: white;
     margin-left: auto;
     margin-right: auto;
 }
 
 .settings .close {
-    color: var(--color-gray-500);
+    color: white;
     cursor: pointer;
 }
 
 .settings .close:hover {
-    color: var(--color-gray-600);
+    color: lightslategray;
 }
 
 .settings .theme-selector .theme-button {
     position: relative;
-    background: oklch(76.2% 0.01 258.338);
+    background: #c56d0e;
     width: 100%;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
-    color: black;
+    color: white;
     border: 0;
     font-weight: 400;
 }
 
 .update-button {
     position: relative;
-    background: oklch(76.2% 0.01 258.338);
+    background: #c56d0e;
     width: 100%;
     padding: 5px;
     border-radius: 10px;
@@ -57,14 +57,15 @@
     margin-top: 2px;
     border-radius: 5px;
     overflow-y: scroll;
-    background: oklch(76.2% 0.01 258.338);
+    background: #c56d0e;
 }
 
 .dropdown-menu .item {
     padding: 10px;
     cursor: pointer;
+    color: black;
 }
 
 .dropdown-menu .item:hover {
-    background: var(--color-gray-400);
+    background: #F5DEB3;
 }

@@ -130,7 +130,13 @@
 }
 
 .pr-user .dropdown {
-    background: #fff;
-    color: #000;
+    background: #c56d0e;
+    color: white;
+    border: 0;
+}
+
+.pr-user .dropdown button:hover {
+    background: #F5DEB3;
+    color: black;
     border: 0;
 }

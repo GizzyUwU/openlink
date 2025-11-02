@@ -1,4 +1,4 @@
-@import url("/src/public/assets/css/default/table.css");
+@import url("/src/public/assets/css/spooky/table.css");
 
 .box-container {
     display: flex;
@@ -18,8 +18,9 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     border-radius: 5px;
+    color: white;
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -28,4 +29,8 @@
         sans-serif;
     font-size: 14px;
      --table-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 105px) minmax(0, 105px); 
+}
+
+.t-row:nth-child(even) {
+    color: #000000;
 }

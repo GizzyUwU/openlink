@@ -59,5 +59,9 @@
 }
 
 ._grey {
-    color: #888;
+    color: #ffffff;
+}
+
+.t-row:nth-child(even) ._grey {
+    color: #000000;
 }

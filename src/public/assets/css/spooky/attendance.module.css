@@ -1,4 +1,4 @@
-@import url("/src/public/assets/css/default/table.css");
+@import url("/src/public/assets/css/spooky/table.css");
 
 .box-container {
     display: flex;
@@ -17,7 +17,7 @@
     display: flex;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -63,7 +63,7 @@
 }
 
 .__alias {
-    color: #404652;
+    color: white;
     flex-shrink: 0;
     font-weight: bold;
     margin-bottom: 10px;
@@ -97,7 +97,7 @@
 }
 
 .attendance__statutory-right {
-    background: #fff;
+    background: #8B4513;
     height: 100%;
     width: calc(100% - 330px);
     flex-grow: 1;
@@ -112,7 +112,7 @@
     grid-template-columns: repeat(3, minmax(250px, 1fr));
     overflow-x: hidden;
     overflow-y: auto;
-    background: #fff;
+    background: #8B4513;
     font-family:
         Helvetica Neue,
         Arial,
@@ -133,14 +133,10 @@
 }
 
 .__progress-item .__title {
-    color: #8c97a5;
+    color: white;
     flex-shrink: 0;
     font-weight: 500;
     margin-bottom: 25px;
     text-align: center;
     font-size: 16px;
-}
-
-.apexcharts-tooltip div {
-    color: #000000;
 }

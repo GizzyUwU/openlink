@@ -1,7 +1,14 @@
 @import url("/src/public/assets/css/spooky/table.css");
 
 .__dropdown {
-    background: white;
+    background: #c56d0e;
+    border: none;
+    color: white;
+}
+
+.__dropdown button:hover {
+    background: #F5DEB3;
+    color: black;
 }
 
 .__nav {
@@ -9,7 +16,11 @@
     display: flex;
     flex-shrink: 0;
     height: 32px;
+    font-size: 12px;
     margin-bottom: 10px;
+    background: #c56d0e;
+    color: white;
+    border: none;
 }
 
 .box-container {

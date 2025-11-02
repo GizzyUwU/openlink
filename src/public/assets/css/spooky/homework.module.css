@@ -1,4 +1,4 @@
-@import url("/src/public/assets/css/default/table.css");
+@import url("/src/public/assets/css/spooky/table.css");
 
 .box-container {
     display: flex;
@@ -18,7 +18,8 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
+    color: white;
     border-radius: 5px;
     z-index: 2;
     font-family:
@@ -36,11 +37,15 @@
 }
 
 .completed {
-    background-color: rgba(0, 255, 0, 0.22) !important;
+    background-color: rgba(0, 255, 0, 0.418) !important;
 }
 
-._grey {
-    color: #888;
+.t-row.completed:nth-child(even) ._grey {
+  color: #ffffff;
+}
+
+.t-row.due-today:nth-child(even) ._grey {
+  color: #ffffff;
 }
 
 .check-color {

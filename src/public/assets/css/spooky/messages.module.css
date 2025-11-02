@@ -16,7 +16,7 @@
     flex-direction: column;
     flex-grow: 1;
     min-height: 0;
-    background: #fff;
+    background: #8B4513;
     z-index: 2;
     font-family:
         Helvetica Neue,
@@ -36,7 +36,7 @@
 }
 
 .l-messages__items {
-    background-color: white;
+    background: #c56d0e;
     border-right: 0.1px dashed #404652;
     height: 100%;
     width: 330px;
@@ -44,6 +44,7 @@
     min-height: 0;
     list-style: none;
     overflow-y: auto;
+    color: white;
 }
 
 .l-messages__items .__item {
@@ -113,7 +114,6 @@
 }
 
 .l-messages__text {
-    color: #99a5b4;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -121,18 +121,16 @@
 }
 
 .l-messages__date {
-    color: #99a5b4;
     text-align: right;
     text-transform: uppercase;
 }
 
 .l-messages__type {
-    color: #76a1ce;
     text-align: right;
 }
 
 .l-messages__content {
-    background: #fff;
+    background: #8B4513;
     height: 100%;
     width: calc(100% - 330px);
     flex-grow: 1;
@@ -140,6 +138,7 @@
     padding: 10px 20px 15px;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 .__content .__header {
@@ -172,24 +171,14 @@
     display: flex;
 }
 
-.__info-item .__name {
-    color: #404652;
-}
-
 .__info-item .__time {
-    color: #99a5b4;
     max-width: 130px;
     text-align: right;
     font-size: 14px;
     width: 130px;
 }
 
-.__info-item .__subject {
-    color: #99a5b4;
-}
-
 .__content .__body {
-    color: #404652;
     flex-grow: 1;
     overflow-y: auto;
     padding: 20px 30px 0 60px;
