@@ -87,6 +87,13 @@ jobs:
       - name: install frontend dependencies
         run: yarn install
 
+      - name: Set release notes
+        id: release_notes
+        run: |
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          git log --no-merges -1 --pretty=format:%s >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -95,7 +102,7 @@ jobs:
         with:
           tagName: v__VERSION__
           releaseName: "Openlink v__VERSION__"
-          releaseBody: ${{ github.event.head_commit.message }}
+          releaseBody: ${{ env.RELEASE_BODY }}
           includeUpdaterJson: true
           releaseDraft: true
           prerelease: false
