@@ -122,7 +122,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
             return { demo: data };
           }
         } catch {
-          continue; // try next path
+          continue;
         }
       }
 
@@ -141,7 +141,6 @@ export async function callApi(url: string, options: ApiOptions = {}) {
 
     return res;
   };
-
 
   const promise = (async () => {
     if (pathname[0] === "demo" && !url.includes("?networkCheck=true")) {
@@ -164,7 +163,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
     let shouldCache = false;
     const cloned = response.clone();
     const jsonBody = await cloned.json();
-    if (jsonBody?.result?.success === true) shouldCache = true;
+    if (jsonBody?.result?.success === true && !url.includes("?networkCheck=true")) shouldCache = true;
 
     if (shouldCache) {
       const bodyBuffer = await response.clone().arrayBuffer();

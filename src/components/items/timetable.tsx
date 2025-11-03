@@ -74,15 +74,14 @@ function Timetable(props: Readonly<{
   }) {
     if (!day || !periodData) {
       console.error("[Insert New Period] Missing day or periodData");
-      return;
+      return false;
     }
     const existing = day.periods.find(
       (p) => p.start_time === periodData.start_time && p.end_time === periodData.end_time
     );
-    ;
     if (existing) {
       console.warn("[Insert New Period] Period already exists at this time");
-      return;
+      return false;
     }
 
     const toMinutes = (t: string) => {
@@ -94,12 +93,10 @@ function Timetable(props: Readonly<{
       setState(
         produce((state) => {
           if (!state.weeks) return;
-
           const weekIndex = state.weeks.findIndex((w) =>
             w.days.some((d) => d.date === day.date)
           );
           if (weekIndex === -1) return;
-
           const dayIndex = state.weeks[weekIndex].days.findIndex((d) => d.date === day.date);
           if (dayIndex === -1) return;
 
@@ -156,21 +153,22 @@ function Timetable(props: Readonly<{
   }) {
     if (!day || !lessonData) {
       console.error("[Insert New Lesson] Missing day or lessonData");
-      return;
+      return false;
     }
 
-    const periodExists = day.periods.some((p) => p.id === lessonData.period_id);
+    const periodExists = day.periods.some((p) => Number(p.id) === Number(lessonData.period_id));
     if (!periodExists) {
       console.error("[Insert New Lesson] Cannot insert into non-existent period");
-      return;
+      return false;
     }
 
     const existingLesson = day.lessons.find(
-      (l) => l.period_id === lessonData.period_id
+      (l) => Number(l.period_id) === Number(lessonData.period_id)
     );
+
     if (existingLesson && !overwrite) {
       console.warn("[Insert New Lesson] Lesson already exists and overwrite=false");
-      return;
+      return false;
     }
 
     batch(() => {
@@ -203,6 +201,13 @@ function Timetable(props: Readonly<{
     });
   }
 
+  function updatedDay(day: TimetableResponse.Day) {
+    return state.weeks
+      ?.find(w => w.days.some(d => d.date === day.date))
+      ?.days.find(d => d.date === day.date);
+  }
+
+
   async function insertClubs() {
     if (state.weeks === undefined) return;
     for (const week of state.weeks) {
@@ -210,11 +215,6 @@ function Timetable(props: Readonly<{
         const dayClubs = currentWeeksClubs()[day.date] ?? [];
         if (!dayClubs.length || !day.periods || !day.lessons) continue;
         const updatedPeriods = [...day.periods];
-        function updatedDay() {
-          return state.weeks
-            ?.find(w => w.days.some(d => d.date === day.date))
-            ?.days.find(d => d.date === day.date);
-        }
 
         const clubDetailsList: ClubResponse[] = await Promise.all(
           dayClubs.map((club) =>
@@ -242,6 +242,7 @@ function Timetable(props: Readonly<{
             (p) => p.start_time === startTime && p.end_time === endTime
           );
 
+
           if (alreadyExists === false) {
             const newPeriod: TimetableResponse.Period = {
               id: club.id,
@@ -250,7 +251,7 @@ function Timetable(props: Readonly<{
               end_time: endTime,
             };
 
-            await insertNewPeriod({ day: updatedDay(), periodData: newPeriod });
+            await insertNewPeriod({ day: updatedDay(day), periodData: newPeriod });
             updatedPeriods.push(newPeriod);
           }
 
@@ -269,14 +270,14 @@ function Timetable(props: Readonly<{
 
           const clubLesson: TimetableResponse.Lesson = {
             description: club.name,
-            period_id: Number(matchingPeriod?.id ?? club.id),
+            period_id:  Number(matchingPeriod?.id),
             room: { id: 1, name: club.location || "TBD" },
             room_id: 1,
             teacher: leaders,
             teaching_group: { id: 1, name: "", subject: club.name },
           };
 
-          await insertNewLesson({ day: updatedDay(), lessonData: clubLesson, overwrite: true });
+          await insertNewLesson({ day: updatedDay(day), lessonData: clubLesson, overwrite: true });
         }
       }
     }
@@ -289,11 +290,6 @@ function Timetable(props: Readonly<{
         const dayExams = (data.filter(item => item.datetime.startsWith(day.date))) ?? [];
         if (!dayExams.length || !day.periods || !day.lessons) continue;
         const updatedPeriods = [...day.periods];
-        function updatedDay() {
-          return state.weeks
-            ?.find(w => w.days.some(d => d.date === day.date))
-            ?.days.find(d => d.date === day.date);
-        }
 
         for (const exam of dayExams) {
           const hoursMatch = /(\d+)\s*hr/.exec(exam.duration);
@@ -315,7 +311,7 @@ function Timetable(props: Readonly<{
               start_time: startTime,
               end_time: endTime,
             };
-            await insertNewPeriod({ day: updatedDay(), periodData: newPeriod });
+            await insertNewPeriod({ day: updatedDay(day), periodData: newPeriod });
             updatedPeriods.push(newPeriod);
           }
 
@@ -326,12 +322,12 @@ function Timetable(props: Readonly<{
           const clubLesson: TimetableResponse.Lesson = {
             description: "",
             period_id: Number(matchingPeriod?.id ?? periodId),
-            room: { id: 1, name: exam.room || "TBD" },
+            room: { id: 1, name: `${exam.room} - ${exam.seat}` || "TBD" },
             room_id: 1,
             teacher: ["EXAMINATION"],
             teaching_group: { id: 1, name: String(exam.code), subject: String(exam.title) },
           };
-          await insertNewLesson({ day: updatedDay(), lessonData: clubLesson, overwrite: true });
+          await insertNewLesson({ day: updatedDay(day), lessonData: clubLesson, overwrite: true });
         }
       }
     }
@@ -394,10 +390,8 @@ function Timetable(props: Readonly<{
       });
     });
 
-    if ((state.currentWeek?.days?.length ?? 0) > 0 && Object.keys(currentWeeksClubs()).length > 0) await insertClubs()
-
     props.setProgress(1);
-
+    if ((state.currentWeek?.days?.length ?? 0) > 0 && Object.keys(currentWeeksClubs()).length > 0) await insertClubs()
     const examTimetable = await waitExamTimetable;
     if ((state.currentWeek?.days?.length ?? 0) > 0 && examTimetable.result.timetable.length > 0) await insertExams(examTimetable.result.timetable)
   });
