@@ -11,7 +11,7 @@
     Custom Desktop/Web Client for the EdulinkOne API built with Rust & Solidjs
     <br />
     <br />
-    <a href="https://open.gizzy.pro">Web App</a>
+    <a href="https://open.potatowo.me">Web App</a>
     ·
     <a href="https://github.com/GizzyUwU/openlink/issues/new?labels=bug">Report Bug</a>
     ·
