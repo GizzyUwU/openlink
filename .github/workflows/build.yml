@@ -11,7 +11,8 @@ on:
       - ".gitignore"
       - ".wakatime-project"
       - ".vscode"
-      - ".github/workflows/deploy.yml"
+      - ".github/**"
+      - "!.github/workflows/deploy.yml"
 
 jobs:
   version-bump:
@@ -89,10 +90,10 @@ jobs:
 
       - name: Set release notes
         id: release_notes
+        shell: bash
         run: |
-          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          git log --no-merges -1 --pretty=format:%s >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          RELEASE_BODY=$(git log --no-merges -1 --pretty=format:%s)
+          echo "RELEASE_BODY=$RELEASE_BODY" >> $GITHUB_ENV
 
       - uses: tauri-apps/tauri-action@v0
         env:
