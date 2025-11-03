@@ -12,7 +12,7 @@ on:
       - ".wakatime-project"
       - ".vscode"
       - ".github/**"
-      - "!.github/workflows/deploy.yml"
+      - "!.github/workflows/build.yml"
 
 jobs:
   version-bump:
