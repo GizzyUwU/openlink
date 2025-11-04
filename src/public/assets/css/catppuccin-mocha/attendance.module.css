@@ -38,6 +38,7 @@
     padding: 30px 10px 15px;
     width: 320px;
     background: var(--surface0);
+    overflow: hidden;
 }
 
 .attendance__statutory-right {

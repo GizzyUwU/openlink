@@ -86,6 +86,8 @@
     overflow-y: auto;
     flex-grow: 1;
     min-height: 0;
+    will-change: transform;
+    contain: layout paint style;
 }
 
 .__content .__row {

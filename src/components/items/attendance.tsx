@@ -205,9 +205,7 @@ function Attendance(props: {
                             <div
                               class={styles()!["attendance__statutory-left"]}
                             >
-                              {Object.values(
-                                state.currentMonthStatutory[0].values,
-                              ).every((v) => v === 0) ? (
+                              {state.currentMonthStatutory.length === 0 ? (
                                 <div
                                   class={`${styles()!["t-attendance"]} flex items-center justify-center h-full`}
                                 >
@@ -351,9 +349,8 @@ function Attendance(props: {
                             <div
                               class={styles()!["attendance__statutory-left"]}
                             >
-                              {Object.values(
-                                state.currentMonthStatutory[0].values,
-                              ).every((v) => v === 0) ? (
+                              {state.currentMonthStatutory.length === 0
+                               ? (
                                 <div class="w-full h-full flex items-center justify-center">
                                   <h1 class="font-bold text-xl">No Data</h1>
                                 </div>

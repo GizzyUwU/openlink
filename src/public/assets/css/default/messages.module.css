@@ -140,6 +140,7 @@
     padding: 10px 20px 15px;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .__content .__header {

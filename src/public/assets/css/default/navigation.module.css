@@ -75,6 +75,8 @@ ul {
     padding: 8px;
     position: absolute;
     transform: translate(-50%, -50%) matrix(1, 0, 0, 1, 166, 0);
+    will-change: transform;
+    contain: layout paint style;
 }
 
 .nav-wheel .__item .__inner {
