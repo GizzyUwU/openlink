@@ -77,12 +77,21 @@ jobs:
       - name: install frontend dependencies
         run: yarn install
 
-      - name: Set release notes
-        id: release_notes
-        shell: bash
+      - name: Generate release notes
+        id: notes
         run: |
-          RELEASE_BODY=$(git log --no-merges -1 --pretty=format:%s)
-          echo "RELEASE_BODY=$RELEASE_BODY" >> $GITHUB_ENV
+          PREV_TAG=$(git describe --tags --abbrev=0)
+          NEW_TAG=${{ needs.version-bump.outputs.new-tag }}
+    
+          echo "## What's Changed" > release_notes.md
+          git log $PREV_TAG..HEAD --pretty=format:"- %s (#%h)" >> release_notes.md
+          echo "" >> release_notes.md
+          REPO_URL="https://github.com/${{ github.repository }}/compare"
+          echo "## Full Changelog: [$PREV_TAG...$NEW_TAG]($REPO_URL/$PREV_TAG...$NEW_TAG)" >> release_notes.md
+
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          cat release_notes.md >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - uses: tauri-apps/tauri-action@v0
         env:
@@ -94,6 +103,6 @@ jobs:
           releaseName: "Openlink v__VERSION__"
           releaseBody: ${{ env.RELEASE_BODY }}
           includeUpdaterJson: true
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
