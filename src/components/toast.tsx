@@ -53,7 +53,6 @@ export const Toast: ParentComponent = (props) => {
 
     const toastContainer = document.querySelector<HTMLElement>("#toast-container");
     if (toastContainer) {
-      console.log("beeep")
       toastContainer.style.top = topOffset;
     }
 

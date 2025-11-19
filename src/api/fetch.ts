@@ -160,13 +160,16 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       })()
       : fetch(url, fetchOptions));
 
+    const bodyBuffer = await response.arrayBuffer();
+    const text = new TextDecoder().decode(bodyBuffer);
+    const jsonBody = JSON.parse(text);
+
     let shouldCache = false;
-    const cloned = response.clone();
-    const jsonBody = await cloned.json();
-    if (jsonBody?.result?.success === true && !url.includes("?networkCheck=true")) shouldCache = true;
+    if (jsonBody?.result?.success === true && !url.includes("?networkCheck=true") && !url.includes("login")) {
+      shouldCache = true;
+    }
 
     if (shouldCache) {
-      const bodyBuffer = await response.clone().arrayBuffer();
       const cachedResponse = {
         body: bodyBuffer,
         init: {
@@ -178,7 +181,11 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       memoryCache.set(key, { data: cachedResponse, timestamp: Date.now(), ttl: cacheTtl, isResponse: true });
     }
 
-    return response.clone();
+    return new Response(bodyBuffer, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+    });
   })();
 
   inflight.set(key, promise);

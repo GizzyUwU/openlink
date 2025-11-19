@@ -19,11 +19,6 @@
     min-height: 0;
     background: #8B4513;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
 }
 
@@ -114,11 +109,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: #8B4513;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     will-change: transform;
     scroll-behavior: smooth;

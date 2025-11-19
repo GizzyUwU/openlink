@@ -9,7 +9,9 @@ export default defineConfig({
   plugins: [
     tailwindcss() as PluginOption,
     solid() as PluginOption,
-    checker({ typescript: true }) as PluginOption
+    checker({ typescript: true, overlay: {
+      initialIsOpen: false
+    } }) as PluginOption
   ],
   resolve: {
     alias: {

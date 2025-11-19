@@ -233,7 +233,7 @@ function Login() {
       ...cssModule,
     };
     setState("styles", normalized);
-    
+
     if (navigator.onLine === false) {
       setState({
         "noInternet": true,
@@ -398,35 +398,93 @@ function Login() {
       );
       return;
     }
-    console.log("a");
 
     const idpUrl = state.schoolData?.result?.establishment?.idp_login?.[idp_id];
     setState("loading", true);
+    if (window.__TAURI__) {
+      const rawIdpData: string = await globalThis.__TAURI__.core.invoke("run_oauth", {
+        url: idpUrl,
+      });
 
-    const rawIdpData: string = await globalThis.__TAURI__.core.invoke("run_oauth", {
-      url: idpUrl,
-    });
+      const idpData: {
+        idp_token: string;
+        server: string;
+      } = JSON.parse(rawIdpData)
 
-    const idpData: {
-      idp_token: string;
-      server: string;
-    } = JSON.parse(rawIdpData)
+      const account = await edulink.loginFromIDP(idpData.idp_token, session().apiUrl);
 
-    const account = await edulink.loginFromIDP(idpData.idp_token, session().apiUrl);
+      if (account.result.success) {
+        setSession(prev => ({
+          ...prev,
+          ...account.result
+        }));
+        return navigate("/", { replace: true });
+      } else {
+        setState("loading", false);
+        toast.showToast(
+          `Request Id ${account.result.metrics.uniqid}`,
+          account.result.error ?? "Unknown error",
+          "error",
+        );
+      }
+      // } else {
+      //   const popup = window.open(idpUrl, "Openlink OAuth - " + idp_id === "microsoftonline" ? "Microsoft" : "Google", `width=500,height=500`);
+      //   if (!popup) throw new Error('Popup blocked by browser');
+      //   let resolved = false;
 
-    if (account.result.success) {
-      setSession(prev => ({
-        ...prev,
-        ...account.result
-      }));
-      return navigate("/", { replace: true });
-    } else {
-      setState("loading", false);
-      toast.showToast(
-        `Request Id ${account.result.metrics.uniqid}`,
-        account.result.error ?? "Unknown error",
-        "error",
-      );
+      //   async function onMessage(e?: any, aToken?: string) {
+      //     const token = e?.data?.aToken || aToken;
+      //     if (token) {
+      //       resolved = true;
+      //       const account = await edulink.loginContext(token, session().apiUrl);
+
+      //       if (account.result.success) {
+      //         setSession(prev => ({
+      //           ...prev,
+      //           ...account.result
+      //         }));
+      //         return navigate("/", { replace: true });
+      //       } else {
+      //         setState("loading", false);
+      //         toast.showToast(
+      //           `Request Id ${account.result.metrics.uniqid}`,
+      //           account.result.error ?? "Unknown error",
+      //           "error",
+      //         );
+      //       }
+      //     }
+      //   }
+
+      //   addEventListener('message', onMessage, false);
+      //   const poll = setInterval(() => {
+      //     if (popup.closed) {
+      //       clearInterval(poll);
+      //       if (!resolved) {
+      //         cleanup();
+      //         throw new Error('Popup closed before token received');
+      //       }
+      //     }
+      //   }, 300);
+
+      //   // const userAToken = alert("Bookmark method failed? Run \nconsole.log(sessionStorage.getItem('aToken'))\nin the inspect console and paste contents here.")
+      //   // if(userAToken) { 
+      //   //   onMessage(undefined, userAToken)
+      //   // }
+
+      //   const timeoutPopup = setTimeout(() => {
+      //     if (!resolved) {
+      //       cleanup();
+      //       throw new Error('Timxed out waiting for token')
+      //     }
+      //   }, 120_000);
+
+      //   function cleanup() {
+      //     clearInterval(poll);
+      //     clearTimeout(timeoutPopup);
+      //     window.removeEventListener('message', onMessage);
+      //     try { popup?.close(); } catch (e) { }
+      //     setState("loading", false);
+      //   }
     }
   }
 
@@ -503,7 +561,7 @@ function Login() {
                     </button>
                   </div>
                 </form>
-                <div class={state.styles!["__button"]}>
+                <div class={state.styles!["__buttn"]}>
                   <button
                     class={state.styles!["__demo"]}
                     type="button"

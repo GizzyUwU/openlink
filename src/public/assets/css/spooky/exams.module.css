@@ -27,11 +27,6 @@
     z-index: 2;
     height: 100%;
     color: white;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     overflow: hidden;
     --table-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);

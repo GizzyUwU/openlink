@@ -52,6 +52,10 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
+  const [userThemes, setUserThemes] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+    storage: localStorage,
+    name: "themeUrls",
+  });
 
   async function getTheme() {
     if (globalThis.__TAURI__) {
@@ -97,6 +101,10 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     storage: sessionStorage,
     name: "sessionData",
   });
+  const [currentFont] = makePersisted(createSignal<any>({}), {
+    storage: localStorage,
+    name: "font",
+  });
 
   async function loadItemPage(
     id: string,
@@ -108,15 +116,27 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         setLoadedComponent(null);
       }
       if (state.navWheelAnim) setState("navWheelAnim", false);
-      const mod = await import(`../components/items/${id}.tsx`);
+      const modules = import.meta.glob("../components/items/*.tsx");
+      let mod: any = null;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          mod = await modules[`../components/items/${id}.tsx`]();
+          break;
+        } catch (e) {
+          if (attempt === 3) throw e;
+          await new Promise((r) => setTimeout(r, 150));
+        }
+      }
+
       const targetPos = mod.default.pos - 1;
 
       if (forceOpenNav) {
         while (state.navInitalLoadDone === false) {
           await new Promise((resolve) => setTimeout(resolve, 10));
         }
-        openNavFn?.(targetPos)
+        openNavFn?.(targetPos);
       }
+
       setState("progress", 0.3);
       setLoadedComponent(() => (childProps: any) => (
         <mod.default.component
@@ -128,13 +148,16 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           setOverlay={(value: JSXElement) => setState("overlay", value)}
           theme={state.theme}
           clubData={state.clubData}
+          setUserThemes={setUserThemes}
+          userThemes={userThemes}
         />
       ));
 
       if (state.prevPos !== targetPos) {
         await waitForWheelTransition();
-        setState("prevPos", targetPos)
+        setState("prevPos", targetPos);
       }
+
       setState("navWheelAnim", true);
       const url = new URL(globalThis.location.href);
       url.searchParams.set("page", id);
@@ -156,7 +179,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   onMount(async () => {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
-    onCleanup(() => window.removeEventListener("resize", handleResize));
     if (navigator.onLine === false) {
       const parsedUrl = new URL(globalThis.location.href);
       const pathname = parsedUrl.pathname.split("/").find(Boolean);
@@ -180,6 +202,27 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         ...cssModule,
       };
       setStyles(normalized);
+
+      const font: string = currentFont()?.family;
+      const fontUrl: string = currentFont()?.url;
+
+      if (font && fontUrl) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = fontUrl;
+        link.dataset.userFont = fontUrl;
+        document.head.appendChild(link);
+      }
+
+      userThemes()
+        .filter((theme) => theme.enabled)
+        .forEach((theme) => {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = theme.url;
+          link.dataset.userTheme = theme.url;
+          document.head.appendChild(link);
+        });
 
       if (globalThis.__TAURI__) {
         try {
@@ -253,13 +296,23 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
 
   return (
     <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0 && styles()}>
-      <div>
+      <div id="ol-container" ref={el => {
+        if (el) {
+          const font = currentFont().family;
+          if (font) {
+            el.style.cssText = `font-family: ${font} !important;`;
+          } else {
+            el.style.cssText = `font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;`;
+          }
+        }
+      }}>
         <Header
           progress={() => state.progress}
           setSession={setSession}
           sessionData={sessionData}
           setProgress={(value: number) => setState("progress", value)}
           showSettings={changeSettingsState}
+          loadItemPage={loadItemPage}
           theme={state.theme}
         />
         <Show when={state.showSettings}>
@@ -364,7 +417,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
             );
           }}
         </Show>
-
         <Show when={state.overlay !== null}>
           <div
             class={`${styles()?.["t-overlay"]} flex justify-center`}
@@ -378,7 +430,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
             </div>
           </div>
         </Show>
-
         <Footer
           sessionData={sessionData as Accessor<SessionData>}
           setSession={setSession}

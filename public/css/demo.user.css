@@ -1,0 +1,11 @@
+/**
+ * @name DEMO
+ * @version 1.0.0
+ * @description DEMO for User CSS
+ * @author Gizzy
+ * @website https://gizzy.is-a.dev
+*/
+
+* {
+    background-color: green !important;
+}

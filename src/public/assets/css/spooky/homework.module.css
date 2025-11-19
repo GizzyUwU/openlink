@@ -22,11 +22,6 @@
     color: white;
     border-radius: 5px;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     --table-columns: repeat(5, minmax(0, 1fr)) repeat(2, minmax(0, 105px));
 }

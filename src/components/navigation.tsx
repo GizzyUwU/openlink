@@ -161,10 +161,8 @@ export default function Navigation(props: Readonly<{
     const logoBase64 = props.sessionData().establishment?.logo;
     const estName = props.sessionData().establishment?.name;
     if (logoBase64 && estName) {
-      requestIdleCallback(async () => {
-        const color = await getCachedLogoColor(logoBase64, estName);
-        setState("logoBG", color);
-      });
+      const color = await getCachedLogoColor(logoBase64, estName);
+      setState("logoBG", color);
     }
 
     globalThis.addEventListener("popstate", () => {

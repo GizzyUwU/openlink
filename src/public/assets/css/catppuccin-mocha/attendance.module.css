@@ -20,11 +20,6 @@
     flex-grow: 1;
     min-height: 0;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     color: var(--text);
     height: 100%;
@@ -58,11 +53,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: var(--surface0);
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     will-change: transform;
     scroll-behavior: smooth;

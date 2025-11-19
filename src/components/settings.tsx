@@ -22,7 +22,6 @@ async function setTheme(theme: string) {
     });
     if (currentTheme() === theme) return;
     themeSet(theme);
-    console.log(theme)
     globalThis.location.reload();
   }
 }

@@ -270,7 +270,7 @@ function Timetable(props: Readonly<{
 
           const clubLesson: TimetableResponse.Lesson = {
             description: club.name,
-            period_id:  Number(matchingPeriod?.id),
+            period_id: Number(matchingPeriod?.id),
             room: { id: 1, name: club.location || "TBD" },
             room_id: 1,
             teacher: leaders,

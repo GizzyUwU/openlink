@@ -44,7 +44,6 @@ function ClubOverlay(props: Readonly<{
 
   async function attendClub(club_id: string | number, attend: boolean) {
     if (!club_id) throw new Error("Club ID needed to identify the club");
-    console.log(attend);
     if (attend === undefined || attend === null)
       throw new Error(
         "Attend Bool needed to see if should leave or join a club",

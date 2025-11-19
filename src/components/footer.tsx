@@ -52,7 +52,6 @@ export default function Footer(props: Readonly<{
     notifiedEvents.add(key);
   };
 
-  // eslint-disable-next-line sonarjs/cognitive-complexity
   const handleNotifications = async (data: StatusResponse["result"]) => {
     if (!data) return;
     if (notificationPermission() === false) return;
@@ -128,7 +127,7 @@ export default function Footer(props: Readonly<{
           if (globalThis.__TAURI__ && await isPermissionGranted()) {
             const configNotifications = await getNotificationConfig();
             if (configNotifications) {
-              requestIdleCallback(() => handleNotifications(result.result));
+              handleNotifications(result.result);
             }
           }
 

@@ -41,6 +41,10 @@ export type SchoolDetailsRequest = ApiRequest<
   SchoolDetailsParams
 >;
 export type LoginRequest = ApiRequest<"EduLink.Login", LoginParams>;
+export type LoginContextRequest = ApiRequest<"EduLink.LoginContext", {
+  from_app: boolean;
+}>;
+
 export type LoginFromIDPRequest = ApiRequest<
   "EduLink.LoginFromIDP",
   LoginFromIDPParams

@@ -8,6 +8,7 @@ export default function Header(props: {
   sessionData: any;
   setSession: any;
   showSettings: Setter<boolean>;
+  loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   theme: string;
 }) {
   let dropdownRef: HTMLDivElement | undefined;
@@ -91,7 +92,8 @@ export default function Header(props: {
                 >
                   <div class="py-1 z-40">
                     <button
-                      onClick={() => props.showSettings((prev) => !prev)}
+                      // onClick={() => props.showSettings((prev) => !prev)}
+                      onClick={() => props.loadItemPage("settings", "Sessages", true)}
                       class="block w-full text-left px-4 py-1 text-sm cursor-pointer"
                     >
                       Settings

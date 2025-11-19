@@ -1,7 +1,3 @@
-/**
- * Universal date formatter utility for consistent formatting across the app.
- */
-
 export interface FormatDateOptions {
     date: string | Date | null;
     time?: boolean;

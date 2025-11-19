@@ -8,11 +8,6 @@
     background: #fff;
     border-radius: 5px;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     position: relative;
     --table-columns: 1fr 100px 75px 75px;

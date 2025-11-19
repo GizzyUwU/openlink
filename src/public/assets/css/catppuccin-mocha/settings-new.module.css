@@ -1,7 +1,10 @@
-@import url("/src/public/assets/css/default/table.css");
+@import "./colors.css";
+@import url("/src/public/assets/css/catppuccin-mocha/table.css");
 
 .__dropdown {
-    background: white;
+    background: var(--surface0);
+    color: var(--text);
+    border: 0;
 }
 
 .__nav {
@@ -10,6 +13,13 @@
     flex-shrink: 0;
     height: 32px;
     margin-bottom: 10px;
+    background: var(--surface0);
+    color: var(--text);
+    border: 0;
+}
+
+._nav-items {
+    flex-grow: 1;
 }
 
 .box-container {
@@ -25,14 +35,13 @@
     min-height: 0;
 }
 
-.t-timetable {
-    display: flex;
-    flex-grow: 1;
-    background: #fff;
+.settings-container {
+    background: var(--surface0);
     border-radius: 5px;
-    flex-grow: 1;
     z-index: 2;
+    flex-grow: 1;
     font-size: 14px;
+    border: 0;
     min-height: 0;
     --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
 }

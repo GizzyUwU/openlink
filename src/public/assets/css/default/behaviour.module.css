@@ -22,11 +22,6 @@
     background: #fff;
     border-radius: 5px;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     --table-columns: minmax(0, 230px) repeat(2, minmax(0, 1fr)) minmax(0, 200px) minmax(0, 105px);
 }
@@ -40,11 +35,6 @@
     background: #fff;
     border-radius: 5px;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     --table-columns: minmax(0, 100px) repeat(2, minmax(0, 1fr)) repeat(2, minmax(0, 100px)) minmax(0, 130px)
 }

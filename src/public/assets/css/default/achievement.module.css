@@ -22,11 +22,6 @@
     background: #fff;
     border-radius: 5px;
     z-index: 2;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     max-width: calc(100vw - 185px);
     --table-columns: minmax(0, 230px) repeat(2, minmax(0, 1fr)) minmax(0, 200px) minmax(0, 105px);
@@ -88,9 +83,4 @@
     top: 50%;
     transform: translateY(-50%);
     width: 56px;
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
 }

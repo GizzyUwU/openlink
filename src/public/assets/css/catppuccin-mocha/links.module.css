@@ -20,11 +20,6 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: var(--surface0);
-    font-family:
-        Helvetica Neue,
-        Arial,
-        Helvetica,
-        sans-serif;
     font-size: 14px;
     will-change: transform;
     scroll-behavior: smooth;

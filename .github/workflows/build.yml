@@ -2,17 +2,6 @@ name: "publish"
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - "screenshots/**"
-      - "README.md"
-      - ".gitignore"
-      - ".wakatime-project"
-      - ".vscode"
-      - ".github/**"
-      - "!.github/workflows/build.yml"
 
 jobs:
   version-bump:
