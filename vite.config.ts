@@ -9,9 +9,11 @@ export default defineConfig({
   plugins: [
     tailwindcss() as PluginOption,
     solid() as PluginOption,
-    checker({ typescript: true, overlay: {
-      initialIsOpen: false
-    } }) as PluginOption
+    checker({
+      typescript: true, overlay: {
+        initialIsOpen: false
+      }
+    }) as PluginOption
   ],
   resolve: {
     alias: {
@@ -33,12 +35,15 @@ export default defineConfig({
         port: 1421,
       }
       : undefined,
+    watch: {
+      ignored: ['**/src-tauri/**'],
+    },
   },
   build: {
     target: "esnext",
     minify: "esbuild",
     cssCodeSplit: true,
-    sourcemap: false,
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks(id: string) {

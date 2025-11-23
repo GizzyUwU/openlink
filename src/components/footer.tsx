@@ -6,18 +6,8 @@ import type { StatusResponse, SessionData } from "../types/auth";
 import type { EdulinkAPI } from "../api/main";
 import type { Setter, Accessor } from "solid-js";
 import {
-  isPermissionGranted,
   sendNotification
 } from '@tauri-apps/plugin-notification'
-
-async function getNotificationConfig() {
-  if (!globalThis.__TAURI__) return null;
-  if (!(await isPermissionGranted())) return null;
-
-  const { load } = await import("@tauri-apps/plugin-store");
-  const store = await load("config.json", { autoSave: false, defaults: {} });
-  return store.get("notifications");
-}
 
 export default function Footer(props: Readonly<{
   sessionData: Accessor<SessionData>;
@@ -27,12 +17,25 @@ export default function Footer(props: Readonly<{
   clubData: ClubsResponse.ClubType[];
   status: StatusResponse["result"] | null;
   theme: string;
+  notificationPermission: Accessor<{
+    in_app: boolean; desktop: boolean, type: "Immediately even when window/tab is focused" |
+    "As soon as window/tab is unfocused" |
+    "No Mouse/Keyboard input or unfocused for 1 minute" |
+    "No Mouse/Keyboard input or unfocused for 2 minutes" |
+    "No Mouse/Keyboard input or unfocused for 5 minutes" |
+    "No Mouse/Keyboard input or unfocused for 10 minutes" |
+    "No Mouse/Keyboard input or unfocused for 15 minutes" |
+    "No Mouse/Keyboard input or unfocused for 20 minutes" |
+    "No Mouse/Keyboard input or unfocused for 25 minutes" |
+    "No Mouse/Keyboard input or unfocused for 30 minutes";
+    allowlist: { id: string; enabled: boolean }[];
+  }>;
 }>) {
   const navigate = useNavigate();
   const [status, setStatus] = createSignal<any>({});
-  const [notificationPermission, setNotifPermission] = createSignal<boolean>(false);
   let lastMessageCount = 0;
   let lastFormCount = 0;
+  let lastNoticeCount = 0;
   let sessionTimeout: ReturnType<typeof setTimeout> | null = null;
   const notifiedEvents = new Set<string>();
   const plural = (n?: number) => (n && n > 1 ? "s" : "");
@@ -41,27 +44,34 @@ export default function Footer(props: Readonly<{
   );
   let statusInterval: ReturnType<typeof setTimeout> | null = null;
 
-  const isWithinFiveMinutes = (date: Date) => {
-    const diff = date.getTime() - Date.now();
-    return diff > 0 && diff <= 5 * 60 * 1000;
+  const isWithinFiveMinutes = (date: Date): boolean => {
+    const differenceInMilliseconds: number = date.getTime() - Date.now();
+    const absoluteDifference: number = Math.abs(differenceInMilliseconds);
+    const fiveMinutesInMilliseconds: number = 5 * 60 * 1000;
+    return absoluteDifference <= fiveMinutesInMilliseconds;
   };
 
-  const notifyOnce = (key: string, title: string, body: string) => {
-    if (notifiedEvents.has(key)) return;
-    sendNotification({ title, body });
-    notifiedEvents.add(key);
-  };
+  const isAllowed = (id: string) =>
+    props.notificationPermission()
+      .allowlist
+      .some(item => item.id === id && item.enabled);
 
   const handleNotifications = async (data: StatusResponse["result"]) => {
     if (!data) return;
-    if (notificationPermission() === false) return;
+    if (props.notificationPermission().desktop === false && props.notificationPermission().in_app === false) return;
 
-    const hasNewMessages = !!(data.new_messages && data.new_messages !== lastMessageCount);
-    const hasNewForms = !!(data.new_forms && data.new_forms !== lastFormCount);
+    const hasNewMessages = isAllowed("messages") && !!(data.new_messages && data.new_messages !== lastMessageCount);
+    const hasNewForms = isAllowed("forms") && !!(data.new_forms && data.new_forms !== lastFormCount);
+    const hasNoticeboardUpdate = isAllowed("noticeboard") && !!(
+      ((data.noticeboard?.new_items ?? 0) + (data.noticeboard?.new_snippets ?? 0)) !== lastNoticeCount
+    );
 
-    if (hasNewMessages || hasNewForms) {
-      const msgCount = data.new_messages ?? 0;
-      const formCount = data.new_forms ?? 0;
+    if (hasNewMessages || hasNewForms || hasNoticeboardUpdate) {
+      const msgCount = isAllowed("messages") ? data.new_messages ?? 0 : 0;
+      const formCount = isAllowed("forms") ? data.new_forms ?? 0 : 0;
+      const noticeboardCount = isAllowed("noticeboard")
+        ? (data.noticeboard?.new_snippets ?? 0) + (data.noticeboard?.new_items ?? 0)
+        : 0;
 
       const msgPart = hasNewMessages
         ? `${msgCount} unread message${plural(msgCount)}`
@@ -69,13 +79,17 @@ export default function Footer(props: Readonly<{
       const formPart = hasNewForms
         ? `${formCount} undone form${plural(formCount)}`
         : "";
+      const noticePart = hasNoticeboardUpdate
+        ? `${noticeboardCount} unread noticeboard update${plural(noticeboardCount)}`
+        : "";
 
-      const joinedParts = [msgPart, formPart].filter(Boolean).join(" and ");
+      const joinedParts = [msgPart, formPart, noticePart].filter(Boolean).join(" and ");
       const body = `You have ${joinedParts}.`;
 
       const titleParts = [];
       if (hasNewMessages) titleParts.push(`Message${plural(msgCount)}`);
       if (hasNewForms) titleParts.push(`Form${plural(formCount)}`);
+      if (hasNoticeboardUpdate) titleParts.push(`Noticeboard`);
 
       sendNotification({
         title: `Openlink - New ${titleParts.join(" and ")}!`,
@@ -84,6 +98,7 @@ export default function Footer(props: Readonly<{
 
       if (hasNewMessages) lastMessageCount = msgCount;
       if (hasNewForms) lastFormCount = formCount;
+      if (hasNoticeboardUpdate) lastNoticeCount = noticeboardCount;
     }
 
     const nextLesson = data.lessons?.next;
@@ -92,13 +107,15 @@ export default function Footer(props: Readonly<{
       const [h, m] = startTime.split(":").map(Number);
       const lessonDate = new Date();
       lessonDate.setHours(h, m, 0, 0);
-
-      if (isWithinFiveMinutes(lessonDate)) {
-        notifyOnce(
-          `lesson-${lessonDate.toISOString()}`,
-          nextLesson.teaching_group.subject,
-          `${nextLesson.teaching_group.subject} / ${nextLesson.room.name} in 5 minutes.`,
-        );
+      console.log(isAllowed("lesson"))
+      if (isWithinFiveMinutes(lessonDate) && isAllowed("lessons")) {
+        console.log("meow")
+        if (notifiedEvents.has("lesson-" + lessonDate.toISOString())) return;
+        sendNotification({
+          title: `Openlink - Next Subject soon.`,
+          body: `${nextLesson.teaching_group.subject} / ${nextLesson.room.name} in 5 minutes.`,
+        });
+        notifiedEvents.add("lesson-" + lessonDate.toISOString());
       }
     }
 
@@ -109,11 +126,12 @@ export default function Footer(props: Readonly<{
       const sessionDate = new Date(session);
       if (!isWithinFiveMinutes(sessionDate)) continue;
 
-      notifyOnce(
-        `club-${sessionDate.toISOString()}`,
-        club.name,
-        `${club.name} / ${club.location} starts in 5 minutes.`,
-      );
+      if (notifiedEvents.has("club-" + sessionDate.toISOString())) return;
+      sendNotification({
+        title: `Openlink - ${club.name} starts soon.`,
+        body: `${club.name} / ${club.location} starts in 5 minutes.`,
+      });
+      notifiedEvents.add("club-" + sessionDate.toISOString());
     }
   };
 
@@ -124,12 +142,7 @@ export default function Footer(props: Readonly<{
       .then(async (result: StatusResponse) => {
         if (result.result.success) {
           setStatus(result.result);
-          if (globalThis.__TAURI__ && await isPermissionGranted()) {
-            const configNotifications = await getNotificationConfig();
-            if (configNotifications) {
-              handleNotifications(result.result);
-            }
-          }
+          handleNotifications(result.result);
 
           if (!sessionTimeout && result.result.session?.expires) {
             const expiresInMs = result.result.session.expires * 1000;
@@ -159,13 +172,7 @@ export default function Footer(props: Readonly<{
     setStyles({ ...cssModule.default, ...cssModule });
     if (hasStatus) {
       setStatus(props.status);
-      if (globalThis.__TAURI__ && await isPermissionGranted()) {
-        const configNotifications = await getNotificationConfig();
-        if (configNotifications) {
-          setNotifPermission(true)
-          handleNotifications(props.status)
-        }
-      }
+      handleNotifications(props.status)
     } else {
       queueMicrotask(() => fetchStatus());
     }
@@ -176,8 +183,8 @@ export default function Footer(props: Readonly<{
   });
 
   onCleanup(() => {
-    if(sessionTimeout !== null) clearInterval(sessionTimeout)
-    if(statusInterval !== null) clearInterval(statusInterval)
+    if (sessionTimeout !== null) clearInterval(sessionTimeout)
+    if (statusInterval !== null) clearInterval(statusInterval)
   })
 
   return (
@@ -402,7 +409,6 @@ export default function Footer(props: Readonly<{
               return null;
             })()}
           </button>
-
           <button
             class={styles()!["__footer-item"] + " text-left"}
             onClick={() => props.loadItemPage("messages", "Messages", true)}

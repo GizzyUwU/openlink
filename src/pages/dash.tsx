@@ -56,6 +56,34 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     storage: localStorage,
     name: "themeUrls",
   });
+  const [plugins, setPlugins] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+    storage: localStorage,
+    name: "plugins",
+  });
+  const [notificationPermission, setNotificationPermission] = makePersisted(createSignal<{
+    in_app: boolean; desktop: boolean;
+    type: "Immediately even when window/tab is focused" |
+    "As soon as window/tab is unfocused" |
+    "No Mouse/Keyboard input or unfocused for 1 minute" |
+    "No Mouse/Keyboard input or unfocused for 2 minutes" |
+    "No Mouse/Keyboard input or unfocused for 5 minutes" |
+    "No Mouse/Keyboard input or unfocused for 10 minutes" |
+    "No Mouse/Keyboard input or unfocused for 15 minutes" |
+    "No Mouse/Keyboard input or unfocused for 20 minutes" |
+    "No Mouse/Keyboard input or unfocused for 25 minutes" |
+    "No Mouse/Keyboard input or unfocused for 30 minutes";
+    allowlist: { id: string; enabled: boolean }[];
+  }>({ in_app: false, desktop: false, type: "No Mouse/Keyboard input or unfocused for 30 minutes",
+    allowlist: [
+      { id: "messages", enabled: true },
+      { id: "forms", enabled: true },
+      { id: "lessons", enabled: true },
+      { id: "noticeboard", enabled: true },
+    ]
+   }), {
+    storage: localStorage,
+    name: "notificationPermission",
+  });
 
   async function getTheme() {
     if (globalThis.__TAURI__) {
@@ -150,6 +178,10 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           clubData={state.clubData}
           setUserThemes={setUserThemes}
           userThemes={userThemes}
+          setPlugins={setPlugins}
+          plugins={plugins}
+          setNotificationPermission={setNotificationPermission}
+          notificationPermission={notificationPermission}
         />
       ));
 
@@ -179,6 +211,14 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   onMount(async () => {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
+    window.toast = toast;
+    window.sessionData = sessionData();
+    window.loadItemPage = loadItemPage;
+    window.edulink = edulink;
+    window.setOverlay = async (value: JSXElement) => {
+      setState("overlay", value);
+    };
+
     if (navigator.onLine === false) {
       const parsedUrl = new URL(globalThis.location.href);
       const pathname = parsedUrl.pathname.split("/").find(Boolean);
@@ -223,6 +263,16 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           link.dataset.userTheme = theme.url;
           document.head.appendChild(link);
         });
+
+      plugins()
+        .filter(p => p.enabled)
+        .reduce(async (prev, plugin) => {
+          await prev;
+          const module = await import(plugin.url);
+          if (module.default?.execute) {
+            await module.default.execute();
+          }
+        }, Promise.resolve());
 
       if (globalThis.__TAURI__) {
         try {
@@ -438,6 +488,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           clubData={state.clubData}
           status={props.status}
           theme={state.theme}
+          notificationPermission={notificationPermission}
         />
       </div>
     </Show>

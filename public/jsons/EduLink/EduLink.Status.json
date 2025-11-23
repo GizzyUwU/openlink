@@ -4,9 +4,9 @@
       "method": "EduLink.Status",
       "success": true,
       "new_forms": 1,
-	  "datacollection": {
+	   "datacollection": {
             "submissions": 4
-        },
+      },
       "lessons": {
          "current": {
             "description": "09:15: Science in Science Lab 1 with 9y/Sc1",
@@ -47,12 +47,16 @@
                "forename": "Anita",
                "surname": "Abell"
             },
-            "start_time": "10:15",
+            "start_time": "22:37",
             "end_time": "11:15",
             "period_name": "Tue:2"
          }
       },
-      "new_messages": 1
+      "new_messages": 1,
+      "noticeboard": {
+         "new_items": 1,
+         "new_snippets": 1
+      }
    },
    "id": "4"
 }

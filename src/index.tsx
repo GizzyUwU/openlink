@@ -11,6 +11,7 @@ import Login from "./pages/login.tsx";
 import Main from "./pages/dash.tsx";
 import ProtectedRoute from "./protectRoute.tsx";
 import "./public/assets/css/index.css";
+import { logger } from "./lib/logger";
 
 const App: ParentComponent = (props) => <>{props.children}</>;
 const LoadingFallback = () => (
@@ -24,25 +25,33 @@ const LoadingFallback = () => (
       "font-size": "1.5rem",
     }}
   >
-    <img
-      src="data:image/svg+xml,%3csvg%20width='24'%20height='24'%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3e%3cstyle%3e.spinner_qM83{animation:spinner_8HQG%201.05s%20infinite}.spinner_oXPr{animation-delay:.1s}.spinner_ZTLf{animation-delay:.2s}@keyframes%20spinner_8HQG{0%25,57.14%25{animation-timing-function:cubic-bezier(0.33,.66,.66,1);transform:translate(0)}28.57%25{animation-timing-function:cubic-bezier(0.33,0,.66,.33);transform:translateY(-6px)}100%25{transform:translate(0)}}%3c/style%3e%3ccircle%20class='spinner_qM83'%20cx='4'%20cy='12'%20r='3'/%3e%3ccircle%20class='spinner_qM83%20spinner_oXPr'%20cx='12'%20cy='12'%20r='3'/%3e%3ccircle%20class='spinner_qM83%20spinner_ZTLf'%20cx='20'%20cy='12'%20r='3'/%3e%3c/svg%3e"
-      alt="Loading..."
-      style={{
-        width: "64px",
-        height: "64px",
-        filter: "invert(1)",
-      }}
-    />
+    <svg
+      width="64"
+      height="64"
+      viewBox="0 0 24 24"
+      style={{ filter: "invert(1)" }}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        {`
+      .spinner { animation: spin 1.05s infinite; }
+      .spinner.delay1 { animation-delay: 0.1s; }
+      .spinner.delay2 { animation-delay: 0.2s; }
+      @keyframes spin {
+        0%, 57.14% { animation-timing-function: cubic-bezier(0.33,.66,.66,1); transform: translate(0); }
+        28.57% { animation-timing-function: cubic-bezier(0.33,0,.66,.33); transform: translateY(-6px); }
+        100% { transform: translate(0); }
+      }
+    `}
+      </style>
+      <circle class="spinner" cx="4" cy="12" r="3" />
+      <circle class="spinner delay1" cx="12" cy="12" r="3" />
+      <circle class="spinner delay2" cx="20" cy="12" r="3" />
+    </svg>
   </div>
 );
 
-const originalWarn = console.warn;
-
-console.warn = (...args: any[]) => {
-  const message = args.join(" ");
-  const err = new Error(message);
-  originalWarn.call(console, err);
-};
+window.logger = logger;
 
 render(
   () => (

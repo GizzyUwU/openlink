@@ -44,6 +44,9 @@
     "keyring:allow-set-password",
     "fs:allow-resource-read-recursive",
     "fs:allow-exists",
+    "fs:allow-write-text-file",
+    "fs:allow-appdata-read",
+    "fs:allow-appdata-write",
     "store:allow-get",
     "store:allow-set",
     "store:allow-delete",
@@ -53,6 +56,7 @@
     "notification:allow-request-permission",
     "notification:allow-notify",
     "core:window:allow-hide",
-    "core:window:allow-show"
+    "core:window:allow-show",
+    "log:default"
   ]
 }

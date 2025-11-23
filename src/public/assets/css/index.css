@@ -83,6 +83,14 @@ body,
     background-color: #bd362f;
 }
 
+.toast-warning {
+    background-color: #979502;
+}
+
+.toast-info {
+    background-color: #1a80a8;
+}
+
 .toast-success {
     background-color: #6bb842;
 }

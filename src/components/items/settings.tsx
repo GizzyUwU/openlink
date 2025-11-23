@@ -1,11 +1,12 @@
 import { onMount, createSignal, Show, For, onCleanup, Setter, Accessor } from "solid-js";
 import { createStore } from "solid-js/store";
-// import { useToast } from "../toast";
 import { Transition } from "solid-transition-group";
 import type { SessionData } from "../../types/auth";
 import type { EdulinkAPI } from "../../api/main";
 import { makePersisted } from "@solid-primitives/storage";
 import { FaSolidTrashCan } from 'solid-icons/fa'
+import { logger } from "../../lib/logger";
+import { parse } from "acorn";
 
 async function setTheme(theme: string) {
     if (globalThis.__TAURI__) {
@@ -43,9 +44,35 @@ function Settings(props: {
     theme: string;
     setUserThemes: Setter<{ url: string; enabled: boolean; }[]>;
     userThemes: Accessor<{ url: string; enabled: boolean; }[]>;
+    setPlugins: Setter<{ url: string; enabled: boolean; }[]>;
+    plugins: Accessor<{ url: string; enabled: boolean; }[]>;
+    setNotificationPermission: Setter<{
+        in_app: boolean; desktop: boolean, type: "Immediately even when window/tab is focused" |
+        "As soon as window/tab is unfocused" |
+        "No Mouse/Keyboard input or unfocused for 1 minute" |
+        "No Mouse/Keyboard input or unfocused for 2 minutes" |
+        "No Mouse/Keyboard input or unfocused for 5 minutes" |
+        "No Mouse/Keyboard input or unfocused for 10 minutes" |
+        "No Mouse/Keyboard input or unfocused for 15 minutes" |
+        "No Mouse/Keyboard input or unfocused for 20 minutes" |
+        "No Mouse/Keyboard input or unfocused for 25 minutes" |
+        "No Mouse/Keyboard input or unfocused for 30 minutes",
+        allowlist: { id: string; enabled: boolean }[];
+    }>;
+    notificationPermission: Accessor<{
+        in_app: boolean; desktop: boolean, type: "Immediately even when window/tab is focused" |
+        "As soon as window/tab is unfocused" |
+        "No Mouse/Keyboard input or unfocused for 1 minute" |
+        "No Mouse/Keyboard input or unfocused for 2 minutes" |
+        "No Mouse/Keyboard input or unfocused for 5 minutes" |
+        "No Mouse/Keyboard input or unfocused for 10 minutes" |
+        "No Mouse/Keyboard input or unfocused for 15 minutes" |
+        "No Mouse/Keyboard input or unfocused for 20 minutes" |
+        "No Mouse/Keyboard input or unfocused for 25 minutes" |
+        "No Mouse/Keyboard input or unfocused for 30 minutes",
+        allowlist: { id: string; enabled: boolean }[];
+    }>;
 }) {
-    let dropdownRef: HTMLDivElement | undefined;
-    const [open, setOpen] = createSignal(false);
     const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
         null,
     );
@@ -54,21 +81,81 @@ function Settings(props: {
         name: "font",
     });
     const [cssMetadata, setCSSMetadata] = createSignal<
-        { url: string; metadata: Record<string, string> | null }[]
+        { url: string; metadata: Record<string, string | boolean> | null }[]
+    >([]);
+    const [jsMetadata, setJSMetadata] = createSignal<
+        { url: string; metadata: Record<string, string | boolean> | null }[]
     >([]);
     // const toast = useToast();
     // const [state, setState] = createStore<{
     // }>({
     // });
 
-    const pageList = ["Appearance", "Plugins", "Notifications", "Advanced"] as const;
+    const pageList = ["Appearance", "Plugins", "Notifications", "Advanced", "Credits"] as const;
     const [state, setState] = createStore<{
         themeSelection: boolean;
         activePage: (typeof pageList)[number];
+        deskNotifications: boolean;
+        inAppNotifications: boolean;
     }>({
         themeSelection: false,
-        activePage: "Appearance",
+        activePage: "Notifications",
+        deskNotifications: false,
+        inAppNotifications: false
     });
+
+    async function toggleDesktopNotifications() {
+        if (globalThis.__TAURI__) {
+            const [{ load }, { isPermissionGranted, requestPermission }] = await Promise.all([
+                import("@tauri-apps/plugin-store"),
+                import("@tauri-apps/plugin-notification")
+            ]);
+            const store = await load("config.json", { autoSave: false, defaults: {} });
+            const configNotifications = await store.get("deskNotifications");
+            const permissionGranted = await isPermissionGranted();
+            if (Boolean(configNotifications) && Boolean(permissionGranted)) {
+                setState("deskNotifications", false)
+                store.set("deskNotifications", false);
+                store.save();
+                return;
+            }
+            const permission = await requestPermission();
+            setState("deskNotifications", permission === "granted")
+            store.set("deskNotifications", permission === "granted");
+            store.save();
+            globalThis.location.reload();
+        } else {
+            if (!('Notification' in window)) {
+                (window as Window).logger.error({ msg: 'This browser does not support notifications.', toast: true });
+                return false;
+            }
+
+            if (Notification.permission === "granted" && state.deskNotifications === true) {
+                setState("deskNotifications", false)
+                props.setNotificationPermission(prev => ({
+                    ...prev,
+                    desktop: false,
+                }));
+                globalThis.location.reload();
+                return;
+            }
+
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    setState("deskNotifications", true)
+                    props.setNotificationPermission(prev => ({
+                        ...prev,
+                        desktop: true,
+                    }));
+                    globalThis.location.reload();
+                    return;
+                } else {
+                    (window as Window).logger.warn({ msg: 'Desktop Notifications wasn\'t granted by user/browser.', toast: true });
+                    return false;
+                }
+            });
+        }
+    }
 
     async function setFont(font: string, family: string, url?: string) {
         if (globalThis.__TAURI__) {
@@ -127,12 +214,32 @@ function Settings(props: {
         e.preventDefault();
         const form = e.currentTarget;
         const url = new FormData(form).get("cssURL") as string;
+        const urlField = document.getElementById("cssUrl") as HTMLInputElement;
         if (globalThis.__TAURI__) {
 
         } else {
             props.setUserThemes((prev) => [...(prev ?? []), { url, enabled: false }]);
             const metadata = await parseCSSMetadata(url);
+            if (metadata === null) return;
             setCSSMetadata((prev) => [...prev, { url: url, metadata }]);
+            urlField!.value = "";
+        }
+    }
+
+    async function addPluginJS(e: Event & { currentTarget: HTMLFormElement }) {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const url = new FormData(form).get("jsURL") as string;
+        const urlField = document.getElementById("jsUrl") as HTMLInputElement;
+        if (globalThis.__TAURI__) {
+
+        } else {
+            props.setPlugins((prev) => [...(prev ?? []), { url, enabled: false }]);
+            const metadata = await parseJSMetadata(url);
+            if (metadata === null) return;
+            const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+            setJSMetadata((prev) => [...prev, { url, metadata: jsonMetadata }]);
+            urlField!.value = "";
         }
     }
 
@@ -162,6 +269,46 @@ function Settings(props: {
         }
     }
 
+    async function togglePlugin(url: string, e: InputEvent) {
+        e.preventDefault();
+        const input = e.currentTarget as HTMLInputElement;
+        if (globalThis.__TAURI__) {
+
+        } else {
+            props.setPlugins((plugins) =>
+                plugins.map((plugin) =>
+                    plugin.url === url ? { ...plugin, enabled: input.checked } : plugin
+                )
+            );
+            const existingLink = document.querySelector<HTMLLinkElement>(`link[data-plugin-url="${url}"]`);
+            if (input.checked) {
+                /* @vite-ignore */
+                const module = await import(url);
+                if (!module) return;
+                if (module.default?.execute) {
+                    try {
+                        await module.default.execute();
+                    } catch (err) {
+                        logger.error(`Plugin execution failed: ${url}`);
+                        logger.error(
+                            err instanceof Error ? err.message : String(err)
+                        );
+
+                        window.toast?.showToast(
+                            "Plugin Error",
+                            `Plugin threw an exception: ${url}`,
+                            "error"
+                        );
+                    }
+                } else {
+                    logger.info(`No default export with execute() found in: ${url}`);
+                }
+            } else {
+                existingLink?.remove();
+            }
+        }
+    }
+
     async function removeUserCSS(url: string) {
         if (globalThis.__TAURI__) {
 
@@ -177,6 +324,35 @@ function Settings(props: {
         }
     }
 
+
+    async function removePluginJS(url: string) {
+        if (globalThis.__TAURI__) {
+
+        } else {
+            props.setPlugins((plugins) =>
+                plugins.filter((plugin) => plugin.url !== url)
+            );
+            const existingScript = document.querySelector<HTMLLinkElement>(`script[data-plugin-js="${url}"]`);
+            if (existingScript) {
+                existingScript?.remove();
+            }
+            setJSMetadata((prev) => prev.filter((item) => item.url !== url));
+        }
+    }
+
+    async function toggleNotificationAllow(item: { id: string; enabled: boolean }) {
+        const allowlist = props.notificationPermission().allowlist;
+
+        const entry = allowlist.find((x) => x.id === item.id);
+        if (!entry) return;
+        entry.enabled = !entry.enabled;
+
+        props.setNotificationPermission({
+            ...props.notificationPermission(),
+            allowlist: [...allowlist],
+        });
+    }
+
     onMount(async () => {
         props.setProgress(0.6);
         const cssModule = await import(
@@ -189,13 +365,45 @@ function Settings(props: {
         setStyles(normalized);
         props.setProgress(1)
         const themes = props.userThemes?.() ?? [];
-        console.log(themes)
+        const plugins = props.plugins?.() ?? [];
+        if (props.notificationPermission().desktop) setState("deskNotifications", true)
+        if (props.notificationPermission().in_app) setState("inAppNotifications", true)
         for (const theme of themes) {
             try {
                 const metadata = await parseCSSMetadata(theme.url);
-                setCSSMetadata((prev) => [...prev, { url: theme.url, metadata }]);
+                if (metadata === null) {
+                    setCSSMetadata((prev) => [...prev, {
+                        url: theme.url, metadata: {
+                            name: "Unknown",
+                            blockEnable: true,
+                            author: "Unknown",
+                            description: "Failed to grab metadata for item"
+                        }
+                    }]);
+                } else {
+                    setCSSMetadata((prev) => [...prev, { url: theme.url, metadata }]);
+                }
             } catch {
                 setCSSMetadata((prev) => [...prev, { url: theme.url, metadata: null }]);
+            }
+        }
+        for (const plugin of plugins) {
+            try {
+                const metadata = await parseJSMetadata(plugin.url);
+                if (metadata === null) {
+                    setJSMetadata((prev) => [...prev, {
+                        url: plugin.url, metadata: {
+                            name: "Unknown",
+                            blockEnable: true,
+                            author: "Unknown",
+                            description: "Failed to grab metadata for item"
+                        }
+                    }]);
+                } else {
+                    setJSMetadata((prev) => [...prev, { url: plugin.url, metadata }]);
+                }
+            } catch {
+                setJSMetadata((prev) => [...prev, { url: plugin.url, metadata: null }]);
             }
         }
     });
@@ -216,27 +424,84 @@ function Settings(props: {
     }
 
     async function parseCSSMetadata(url: string) {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-        const text = await res.text();
-        const match = text.match(/\/\*\*([\s\S]*?)\*\//);
-        if (!match) {
-            console.log("No metadata block found.");
+        try {
+            const res = await fetch(url);
+            if (!res.ok) {
+                logger.warn(`Failed to fetch: ${res.status}`);
+                return null;
+            }
+            const text = await res.text();
+
+            const match = text.match(/\/\*\*([\s\S]*?)\*\//);
+            if (!match) {
+                return null;
+            }
+
+            const block = match[1];
+            const metadata: Record<string, string> = {};
+            const regex = /^\s*\*\s*@(\w+)\s+(.*)$/gm;
+
+            let line;
+            while ((line = regex.exec(block)) !== null) {
+                const key = line[1];
+                const value = line[2].trim();
+                metadata[key] = value;
+            }
+
+            return metadata;
+        } catch (err) {
             return null;
         }
+    }
 
-        const block = match[1];
-        const metadata: Record<string, string> = {};
-        const regex = /^\s*\*\s*@(\w+)\s+(.*)$/gm;
 
-        let line;
-        while ((line = regex.exec(block)) !== null) {
-            const key = line[1];
-            const value = line[2].trim();
-            metadata[key] = value;
+    function evaluateLiteral(node: any): any {
+        switch (node.type) {
+            case "ObjectExpression":
+                const obj: Record<string, any> = {};
+                for (const prop of node.properties) {
+                    const key = prop.key.name ?? prop.key.value;
+                    obj[key] = evaluateLiteral(prop.value);
+                }
+                return obj;
+            case "ArrayExpression":
+                return node.elements.map(evaluateLiteral);
+            case "Literal":
+                return node.value;
+            case "TemplateLiteral":
+                return node.quasis.map((q: any) => q.value.cooked).join("");
+            case "Identifier":
+                return node.name;
+            default:
+                return null;
         }
+    }
 
-        return metadata;
+    async function parseJSMetadata(url: string) {
+        try {
+            const res = await fetch(url);
+            if (!res.ok) {
+                logger.warn(`Failed to fetch JS: ${res.status}`);
+                return null;
+            }
+            const code = await res.text();
+            const ast = parse(code, { ecmaVersion: "latest", sourceType: "module" }) as any;
+
+            for (const node of ast.body) {
+                if (node.type === "ExportDefaultDeclaration") {
+                    const decl = node.declaration;
+                    if (decl.type === "ObjectExpression") {
+                        return evaluateLiteral(decl);
+                    }
+                }
+            }
+
+            logger.info("No default export object found.");
+            return null;
+        } catch (err) {
+            logger.warn(`Failed to parse JS metadata: ${err}`);
+            return null;
+        }
     }
 
     return (
@@ -287,100 +552,199 @@ function Settings(props: {
                     <div class={styles()!["t-container"]}>
                         <div class={styles()!["settings-container"]}>
                             <Show when={state.activePage === "Appearance"}>
-                                <div class={`p-4`}>
-                                    <h1 class="text-white text-left text-base font-bold">Font</h1>
-                                    <button
-                                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
-                                        ref={el => {
-                                            if (el) {
-                                                const font = getButtonFont().family;
-                                                el.style.cssText = `font-family: ${font} !important;`;
-                                            }
-                                        }}
-                                        onClick={() => setOpen(!open())}
-                                    >
-                                        {getButtonFont().font}
-                                        <svg
-                                            aria-hidden="true"
-                                            viewBox="0 0 20 20"
-                                            class="ml-1 h-auto w-[1.5em] inline-block"
-                                            fill="currentColor"
-                                        >
-                                            <path fill="currentColor" fill-rule="evenodd" d="M5.72 7.47a.75.75 0 0 1 1.06 0L10 10.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0L5.72 8.53a.75.75 0 0 1 0-1.06" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <Show when={open()}>
-                                        <div ref={el => {
-                                            dropdownRef = el;
+                                {((_) => {
+                                    const [open, setOpen] = createSignal<boolean>(false);
+                                    let buttonRef: HTMLButtonElement | undefined;
+                                    let dropdownRef: HTMLDivElement | undefined;
 
-                                            const handleClickOutside = (event: MouseEvent) => {
-                                                if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
-                                                    setOpen(false);
-                                                }
-                                            };
+                                    return (
+                                        <div class={`p-4`}>
+                                            <h1 class="text-white text-left text-base font-bold">Font</h1>
+                                            <button
+                                                class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
+                                                ref={el => {
+                                                    if (el) {
+                                                        buttonRef = el
+                                                        const font = getButtonFont().family;
+                                                        el.style.cssText = `font-family: ${font} !important;`;
+                                                    }
+                                                }}
+                                                onClick={() => setOpen((prev) => !prev)}
+                                            >
+                                                {getButtonFont().font}
+                                                <svg
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 20 20"
+                                                    class="ml-1 h-auto w-[1.5em] inline-block"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fill="currentColor" fill-rule="evenodd" d="M5.72 7.47a.75.75 0 0 1 1.06 0L10 10.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0L5.72 8.53a.75.75 0 0 1 0-1.06" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                            <Show when={open()}>
+                                                <div ref={el => {
+                                                    dropdownRef = el;
 
-                                            document.addEventListener("mousedown", handleClickOutside);
-                                            onCleanup(() => {
-                                                document.removeEventListener("mousedown", handleClickOutside);
-                                            });
-                                        }} class="fixed p-2 mt-2 w-40 rounded-md border-gray-600 bg-gray-700 text-white z-50">
-                                            <ul class="p-1">
-                                                {items.map(({ font, family, url }) => (
-                                                    <li>
-                                                        <button
-                                                            class="w-full text-left p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer"
-                                                            ref={el => {
-                                                                if (!el) return
-                                                                el.style.cssText = `font-family: ${family} !important;`;
-                                                                if (url) {
-                                                                    const link = document.createElement("link");
-                                                                    link.rel = "stylesheet";
-                                                                    link.href = url;
-                                                                    document.head.appendChild(link);
-                                                                    onCleanup(() => document.head.removeChild(link));
-                                                                }
-                                                            }}
-                                                            onClick={() => {
-                                                                setFont(font, family, url)
-                                                                setOpen(false);
-                                                            }}
-                                                        >
-                                                            {font}
-                                                        </button>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                                    const handleClickOutside = (event: MouseEvent) => {
+                                                        if (dropdownRef && !dropdownRef.contains(event.target as Node) && buttonRef &&
+                                                            !buttonRef.contains(event.target as Node)) {
+                                                            setOpen(false);
+                                                        }
+                                                    };
+
+                                                    document.addEventListener("mousedown", handleClickOutside);
+                                                    onCleanup(() => {
+                                                        document.removeEventListener("mousedown", handleClickOutside);
+                                                    });
+                                                }} class="fixed p-2 mt-2 w-40 rounded-md border-gray-600 bg-gray-700 text-white z-50">
+                                                    <ul class="p-1">
+                                                        {items.map(({ font, family, url }) => (
+                                                            <li>
+                                                                <button
+                                                                    class="w-full text-left p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer"
+                                                                    ref={el => {
+                                                                        if (!el) return
+                                                                        el.style.cssText = `font-family: ${family} !important;`;
+                                                                        if (url) {
+                                                                            const link = document.createElement("link");
+                                                                            link.rel = "stylesheet";
+                                                                            link.href = url;
+                                                                            document.head.appendChild(link);
+                                                                            onCleanup(() => document.head.removeChild(link));
+                                                                        }
+                                                                    }}
+                                                                    onClick={() => {
+                                                                        setFont(font, family, url)
+                                                                        setOpen(false);
+                                                                    }}
+                                                                >
+                                                                    {font}
+                                                                </button>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </Show>
+                                            <div class="my-4 w-90"></div>
+                                            <h1 class="text-white text-left text-base font-bold">Offical Themes</h1>
+                                            <p class="text-gray-300 text-left text-base">Choose an offical built in theme for Openlink.</p>
+                                            <For each={themes}>
+                                                {(theme) => (
+                                                    <div onClick={() => setTheme(theme)} class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                        {theme}
+                                                    </div>
+                                                )}
+                                            </For>
+                                            <div class="my-4 w-90"></div>
+                                            <h1 class="text-white text-left text-base font-bold">Custom Themes</h1>
+                                            <Show when={Boolean(!window.__TAURI__)}>
+                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                    Open Quick CSS file
+                                                </button>
+                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                    Open in Themes folder
+                                                </button>
+                                                <div class="my-4 w-90"></div>
+                                            </Show>
+                                            <p class="text-gray-300 text-left text-base">Enter a URL below to import an unoffical theme style.</p>
+                                            <form
+                                                onSubmit={(e) => addUserCSS(e)}
+                                            >
+                                                <input
+                                                    class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 hover:bg-gray-600 text-white inline-block"
+                                                    name="cssURL"
+                                                    id="cssUrl"
+                                                    placeholder="https://raw.githubusercontent.com/...[.theme.css]"
+                                                />
+                                                <button
+                                                    type="submit"
+                                                    class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
+                                                >
+                                                    Import
+                                                </button>
+                                            </form>
+                                            <Show when={cssMetadata().length > 0}>
+                                                <For each={cssMetadata()}>
+                                                    {(item) => {
+                                                        const theme = props.userThemes().find((t) => t.url === item.url)!;
+                                                        const metadata = item.metadata;
+
+                                                        return (
+                                                            <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                                {metadata ? (
+                                                                    <>
+                                                                        <div class="flex items-center justify-between w-full">
+                                                                            <span>{metadata.name || theme.url}</span>
+                                                                            <div class="flex items-center gap-x-1.5">
+                                                                                <FaSolidTrashCan
+                                                                                    class="cursor-pointer text-red-500"
+                                                                                    size={16}
+                                                                                    onClick={() => removeUserCSS(theme.url)}
+                                                                                />
+                                                                                <label class="inline-flex items-center cursor-pointer">
+                                                                                    <input
+                                                                                        type="checkbox"
+                                                                                        disabled={Boolean(metadata.blockEnable)}
+                                                                                        checked={theme.enabled}
+                                                                                        class="sr-only peer"
+                                                                                        onInput={(e: InputEvent) => toggleUserCSS(theme.url, e)}
+                                                                                    />
+                                                                                    <div
+                                                                                        class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full 
+                 peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
+                 peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] 
+                 after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 
+                 after:transition-all peer-checked:bg-brand"
+                                                                                    ></div>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        by {metadata.author}
+                                                                        <br />
+                                                                        <p>{metadata.description}</p>
+                                                                    </>
+                                                                ) : (
+                                                                    "Loading…"
+                                                                )}
+                                                            </div>
+                                                        );
+                                                    }}
+                                                </For>
+                                            </Show>
                                         </div>
-                                    </Show>
-                                    <div class="my-4 w-90"></div>
-                                    <h1 class="text-white text-left text-base font-bold">Offical Themes</h1>
-                                    <p class="text-gray-300 text-left text-base">Choose an offical built in theme for Openlink.</p>
-                                    <For each={themes}>
-                                        {(theme) => (
-                                            <div onClick={() => setTheme(theme)} class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                                {theme}
-                                            </div>
-                                        )}
-                                    </For>
-                                    <div class="my-4 w-90"></div>
-                                    <h1 class="text-white text-left text-base font-bold">Custom Themes</h1>
+                                    )
+                                })}
+                            </Show>
+                            <Show when={state.activePage === "Plugins"}>
+                                <div class={`p-4`}>
+                                    <h1 class="text-white text-left text-base font-bold">Plugin Management</h1>
+                                    <p class="text-gray-300 text-left text-base">
+                                        Press the cof wheel or info to get more info on a plugin.
+                                        <br />
+                                        Plugins with a cog wheel have settings you can modify!
+                                    </p>
+                                    <div class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                        Enabled Plugins - {props.plugins().filter(p => p.enabled).length} Total Plugins - {props.plugins().length}
+                                    </div>
+                                    <br />
                                     <Show when={Boolean(!window.__TAURI__)}>
                                         <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open Quick CSS file
+                                            Open QuickJS File
                                         </button>
                                         <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open in Themes folder
+                                            Open in Plugins Folder
                                         </button>
                                         <div class="my-4 w-90"></div>
                                     </Show>
-                                    <p class="text-gray-300 text-left text-base">Enter a URL below to import an unoffical theme style.</p>
+                                    <p class="text-gray-300 text-left text-base">Enter a URL below to import an plugin.</p>
                                     <form
-                                        onSubmit={(e) => addUserCSS(e)}
+                                        onSubmit={(e) => addPluginJS(e)}
                                     >
                                         <input
                                             class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 hover:bg-gray-600 text-white inline-block"
-                                            name="cssURL"
-                                            placeholder="https://raw.githubusercontent.com/...[.theme.css]"
+                                            name="jsURL"
+                                            id="jsUrl"
+                                            placeholder="https://raw.githubusercontent.com/...[.plugin.js]"
                                         />
                                         <button
                                             type="submit"
@@ -389,35 +753,42 @@ function Settings(props: {
                                             Import
                                         </button>
                                     </form>
-                                    <Show when={cssMetadata().length > 0}>
-                                        <For each={cssMetadata()}>
+                                    <Show when={jsMetadata().length > 0}>
+                                        <For each={jsMetadata()}>
                                             {(item) => {
-                                                const theme = props.userThemes().find((t) => t.url === item.url)!;
+                                                const plugin = props.plugins().find((p) => p.url === item.url)!;
                                                 const metadata = item.metadata;
-
                                                 return (
                                                     <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
                                                         {metadata ? (
                                                             <>
-                                                                <div class="flex items-center justify-between w-full">
-                                                                    <span>{metadata.name || theme.url}</span>
-                                                                    <FaSolidTrashCan class="cursor-pointer text-red-500 -mr-6" size={16} onClick={() => removeUserCSS(theme.url)} />
-                                                                    <label class="inline-flex items-center cursor-pointer -mr-1">
-                                                                        <input
-                                                                            type="checkbox"
-                                                                            checked={theme.enabled}
-                                                                            class="sr-only peer"
-                                                                            onInput={(e: InputEvent) => toggleUserCSS(theme.url, e)}
+                                                                <div class="flex items-center justify-between w-full gap-x-2">
+                                                                    <span>{metadata.name || plugin.url}</span>
+                                                                    <div class="flex items-center gap-x-1.5">
+                                                                        <FaSolidTrashCan
+                                                                            class="cursor-pointer text-red-500"
+                                                                            size={16}
+                                                                            onClick={() => removePluginJS(plugin.url)}
                                                                         />
-                                                                        <div class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full peer 
-                    peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
-                    peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] 
-                    after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 
-                    after:transition-all peer-checked:bg-brand"></div>
-                                                                    </label>
-
+                                                                        <label class="inline-flex items-center cursor-pointer">
+                                                                            <input
+                                                                                type="checkbox"
+                                                                                disabled={Boolean(metadata.blockEnable)}
+                                                                                checked={plugin.enabled}
+                                                                                class="sr-only peer"
+                                                                                onInput={(e: InputEvent) => togglePlugin(plugin.url, e)}
+                                                                            />
+                                                                            <div
+                                                                                class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full 
+                 peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
+                 peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] 
+                 after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 
+                 after:transition-all peer-checked:bg-brand"
+                                                                            ></div>
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                                by {metadata.author}
+                                                                by {metadata.author || (Array.isArray(metadata.authors) ? metadata.authors.join(", ") : String(metadata.authors))}
                                                                 <br />
                                                                 <p>{metadata.description}</p>
                                                             </>
@@ -431,158 +802,200 @@ function Settings(props: {
                                     </Show>
                                 </div>
                             </Show>
-                            <Show when={false}>
-                                <div class={`p-4`}>
-                                    <h1 class="text-white text-left text-base font-bold">Plugin Management</h1>
-                                    <p class="text-gray-300 text-left text-base">
-                                        Press the cof wheel or info to get more info on a plugin.
-                                        <br />
-                                        Plugins with a cog wheel have settings you can modify!
-                                    </p>
-                                    <button
-                                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
-                                        ref={el => {
-                                            if (el) {
-                                                const font = getButtonFont().family;
-                                                el.style.cssText = `font-family: ${font} !important;`;
-                                            }
-                                        }}
-                                        onClick={() => setOpen(!open())}
-                                    >
-                                        {getButtonFont().font}
-                                        <svg
-                                            aria-hidden="true"
-                                            viewBox="0 0 20 20"
-                                            class="ml-1 h-auto w-[1.5em] inline-block"
-                                            fill="currentColor"
-                                        >
-                                            <path fill="currentColor" fill-rule="evenodd" d="M5.72 7.47a.75.75 0 0 1 1.06 0L10 10.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0L5.72 8.53a.75.75 0 0 1 0-1.06" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </button>
-                                    <div class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                        Enabled Plugins - 0 Total Plugins - 0
-                                    </div>
-                                    <Show when={open()}>
-                                        <div ref={el => {
-                                            dropdownRef = el;
+                            <Show when={state.activePage === "Notifications"}>
+                                {((_) => {
+                                    const [timeDropdownOpen, setTimeDropdownOpen] = createSignal<boolean>(false);
+                                    let timeDropdownButtonRef: HTMLButtonElement | undefined;
+                                    let timeDropdownRef: HTMLDivElement | undefined;
+                                    const [typeDropdownOpen, setTypeDropdownOpen] = createSignal<boolean>(false);
+                                    let typeDropdownButtonRef: HTMLButtonElement | undefined;
+                                    let typeDropdownRef: HTMLDivElement | undefined;
 
-                                            const handleClickOutside = (event: MouseEvent) => {
-                                                if (dropdownRef && !dropdownRef.contains(event.target as Node)) {
-                                                    setOpen(false);
+                                    return (
+                                        <div class={`p-4`}>
+                                            <h1 class="text-white text-left text-base font-bold">Notifications</h1>
+                                            <p class="text-gray-300 text-left text-base">
+                                                Manage the Notifications openlink sends!
+                                            </p>
+                                            <button onClick={toggleDesktopNotifications} class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                {state.deskNotifications ? "Disable" : "Enable"} Desktop Notifications
+                                            </button>
+                                            <button onClick={() => {
+                                                setState("inAppNotifications", ((prev) => !prev))
+                                                props.setNotificationPermission(prev => ({
+                                                    ...prev,
+                                                    in_app: !prev.in_app
+                                                }))
+                                            }} class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                {state.inAppNotifications ? "Disable" : "Enable"} In-App Notifications
+                                            </button>
+                                            <div class="my-4 w-90"></div>
+
+                                            <p class="text-gray-300 text-left text-base">
+                                                When to send Desktop Notifications?
+                                            </p>
+                                            <button
+                                                class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
+                                                ref={el => {
+                                                    if (el) {
+                                                        timeDropdownButtonRef = el
+                                                        const font = getButtonFont().family;
+                                                        el.style.cssText = `font-family: ${font} !important;`;
+                                                    }
+                                                }}
+                                                onClick={() => setTimeDropdownOpen((prev) => !prev)}
+                                            >
+                                                {props.notificationPermission().type}
+                                                <svg
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 20 20"
+                                                    class="ml-1 h-auto w-[1.5em] inline-block"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fill="currentColor" fill-rule="evenodd" d="M5.72 7.47a.75.75 0 0 1 1.06 0L10 10.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0L5.72 8.53a.75.75 0 0 1 0-1.06" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                            <Show when={timeDropdownOpen()}>
+                                                <div ref={el => {
+                                                    timeDropdownRef = el;
+
+                                                    const handleClickOutside = (event: MouseEvent) => {
+                                                        if (timeDropdownRef && !timeDropdownRef.contains(event.target as Node) && timeDropdownButtonRef &&
+                                                            !timeDropdownButtonRef.contains(event.target as Node)) {
+                                                            setTimeDropdownOpen(false);
+                                                        }
+                                                    };
+
+                                                    document.addEventListener("mousedown", handleClickOutside);
+                                                    onCleanup(() => {
+                                                        document.removeEventListener("mousedown", handleClickOutside);
+                                                    });
+                                                }} class="fixed p-2 mt-2 w-80 rounded-md border-gray-600 bg-gray-700 text-white z-50">
+                                                    <ul class="p-1">
+                                                        {["Immediately even when window/tab is focused",
+                                                            "As soon as window/tab is unfocused",
+                                                            "No Mouse/Keyboard input or unfocused for 1 minute",
+                                                            "No Mouse/Keyboard input or unfocused for 2 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 5 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 10 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 15 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 20 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 25 minutes",
+                                                            "No Mouse/Keyboard input or unfocused for 30 minutes"].map((text) => (
+                                                                <li>
+                                                                    <button
+                                                                        class="w-full text-left p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer"
+                                                                    // ref={el => {
+                                                                    //     if (!el) return
+                                                                    //     el.style.cssText = `font-family: ${family} !important;`;
+                                                                    //     if (url) {
+                                                                    //         const link = document.createElement("link");
+                                                                    //         link.rel = "stylesheet";
+                                                                    //         link.href = url;
+                                                                    //         document.head.appendChild(link);
+                                                                    //         onCleanup(() => document.head.removeChild(link));
+                                                                    //     }
+                                                                    // }}
+                                                                    // onClick={() => {
+                                                                    //     setFont(font, family, url)
+                                                                    //     setOpen(false);
+                                                                    // }}
+                                                                    >
+                                                                        {text}
+                                                                    </button>
+                                                                </li>
+                                                            ))}
+                                                    </ul>
+                                                </div>
+                                            </Show>
+                                            <div class="my-4 w-90"></div>
+                                            <p class="text-gray-300 text-left text-base">
+                                                Notify me about...
+                                            </p>
+                                            <button
+                                                class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
+                                                ref={el => {
+                                                    if (el) {
+                                                        timeDropdownButtonRef = el
+                                                        const font = getButtonFont().family;
+                                                        el.style.cssText = `font-family: ${font} !important;`;
+                                                    }
+                                                }}
+                                                onClick={() => setTypeDropdownOpen((prev) => !prev)}
+                                            >
+                                                {
+                                                    (() => {
+                                                        const items = props.notificationPermission()
+                                                            .allowlist
+                                                            .filter(x => x.enabled)
+                                                            .map(x => x.id.charAt(0).toUpperCase() + x.id.slice(1));
+
+                                                        if (items.length === 0) return "";
+                                                        if (items.length === 1) return items[0];
+                                                        return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
+                                                    })()
                                                 }
-                                            };
+                                                <svg
+                                                    aria-hidden="true"
+                                                    viewBox="0 0 20 20"
+                                                    class="ml-1 h-auto w-[1.5em] inline-block"
+                                                    fill="currentColor"
+                                                >
+                                                    <path fill="currentColor" fill-rule="evenodd" d="M5.72 7.47a.75.75 0 0 1 1.06 0L10 10.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-3.75 3.75a.75.75 0 0 1-1.06 0L5.72 8.53a.75.75 0 0 1 0-1.06" clip-rule="evenodd"></path>
+                                                </svg>
+                                            </button>
+                                            <Show when={typeDropdownOpen()}>
+                                                <div ref={el => {
+                                                    typeDropdownRef = el;
 
-                                            document.addEventListener("mousedown", handleClickOutside);
-                                            onCleanup(() => {
-                                                document.removeEventListener("mousedown", handleClickOutside);
-                                            });
-                                        }} class="fixed p-2 mt-2 w-40 rounded-md border-gray-600 bg-gray-700 text-white z-50">
-                                            <ul class="p-1">
-                                                {items.map(({ font, family, url }) => (
-                                                    <li>
-                                                        <button
-                                                            class="w-full text-left p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer"
-                                                            ref={el => {
-                                                                if (!el) return
-                                                                el.style.cssText = `font-family: ${family} !important;`;
-                                                                if (url) {
-                                                                    const link = document.createElement("link");
-                                                                    link.rel = "stylesheet";
-                                                                    link.href = url;
-                                                                    document.head.appendChild(link);
-                                                                    onCleanup(() => document.head.removeChild(link));
-                                                                }
+                                                    const handleClickOutside = (event: MouseEvent) => {
+                                                        if (typeDropdownRef && !typeDropdownRef.contains(event.target as Node) && typeDropdownButtonRef &&
+                                                            !typeDropdownButtonRef.contains(event.target as Node)) {
+                                                            setTimeDropdownOpen(false);
+                                                        }
+                                                    };
+
+                                                    document.addEventListener("mousedown", handleClickOutside);
+                                                    onCleanup(() => {
+                                                        document.removeEventListener("mousedown", handleClickOutside);
+                                                    });
+                                                }} class="fixed p-2 mt-2 w-70 rounded-md border-gray-600 bg-gray-700 text-white z-50">
+                                                    <ul class="p-1">
+                                                        <For each={props.notificationPermission().allowlist}>
+                                                            {(item) => {
+                                                                const text = item.id.charAt(0).toUpperCase() + item.id.slice(1);
+
+                                                                return (
+                                                                    <li>
+                                                                        <button class="w-full flex items-center justify-between p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer">
+                                                                            <span>{text}</span>
+
+                                                                            <label class="inline-flex items-center cursor-pointer">
+                                                                                <input
+                                                                                    type="checkbox"
+                                                                                    class="sr-only peer"
+                                                                                    checked={item.enabled}
+                                                                                    onInput={() => toggleNotificationAllow(item)}
+                                                                                // onChange={() => ...}
+                                                                                />
+                                                                                <div
+                                                                                    class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full
+                  after:content-[''] after:absolute after:top-[2px] after:left-[2px]
+                  after:bg-white after:rounded-full after:h-4 after:w-4
+                  after:transition-all peer-checked:after:translate-x-full"
+                                                                                ></div>
+                                                                            </label>
+                                                                        </button>
+                                                                    </li>
+                                                                );
                                                             }}
-                                                            onClick={() => {
-                                                                setFont(font, family, url)
-                                                                setOpen(false);
-                                                            }}
-                                                        >
-                                                            {font}
-                                                        </button>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                                        </For>
+                                                    </ul>
+                                                </div>
+                                            </Show>
                                         </div>
-                                    </Show>
-                                    <div class="my-4 w-90"></div>
-                                    <h1 class="text-white text-left text-base font-bold">Offical Themes</h1>
-                                    <p class="text-gray-300 text-left text-base">Choose an offical built in theme for Openlink.</p>
-                                    <For each={themes}>
-                                        {(theme) => (
-                                            <div onClick={() => setTheme(theme)} class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                                {theme}
-                                            </div>
-                                        )}
-                                    </For>
-                                    <div class="my-4 w-90"></div>
-                                    <h1 class="text-white text-left text-base font-bold">Custom Themes</h1>
-                                    <Show when={Boolean(!window.__TAURI__)}>
-                                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open Quick CSS file
-                                        </button>
-                                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open in Themes folder
-                                        </button>
-                                        <div class="my-4 w-90"></div>
-                                    </Show>
-                                    <p class="text-gray-300 text-left text-base">Enter a URL below to import an unoffical theme style.</p>
-                                    <form
-                                        onSubmit={(e) => addUserCSS(e)}
-                                    >
-                                        <input
-                                            class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 hover:bg-gray-600 text-white inline-block"
-                                            name="cssURL"
-                                            placeholder="https://raw.githubusercontent.com/...[.theme.css]"
-                                        />
-                                        <button
-                                            type="submit"
-                                            class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block"
-                                        >
-                                            Import
-                                        </button>
-                                    </form>
-                                    <Show when={cssMetadata().length > 0}>
-                                        <For each={cssMetadata()}>
-                                            {(item) => {
-                                                const theme = props.userThemes().find((t) => t.url === item.url)!;
-                                                const metadata = item.metadata;
-
-                                                return (
-                                                    <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                                        {metadata ? (
-                                                            <>
-                                                                <div class="flex items-center justify-between w-full">
-                                                                    <span>{metadata.name || theme.url}</span>
-                                                                    <FaSolidTrashCan class="cursor-pointer text-red-500 -mr-6" size={16} onClick={() => removeUserCSS(theme.url)} />
-                                                                    <label class="inline-flex items-center cursor-pointer -mr-1">
-                                                                        <input
-                                                                            type="checkbox"
-                                                                            checked={theme.enabled}
-                                                                            class="sr-only peer"
-                                                                            onInput={(e: InputEvent) => toggleUserCSS(theme.url, e)}
-                                                                        />
-                                                                        <div class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full peer 
-                    peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
-                    peer-checked:after:border-buffer after:content-[''] after:absolute after:top-[2px] 
-                    after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 
-                    after:transition-all peer-checked:bg-brand"></div>
-                                                                    </label>
-
-                                                                </div>
-                                                                by {metadata.author}
-                                                                <br />
-                                                                <p>{metadata.description}</p>
-                                                            </>
-                                                        ) : (
-                                                            "Loading…"
-                                                        )}
-                                                    </div>
-                                                );
-                                            }}
-                                        </For>
-                                    </Show>
-                                </div>
+                                    )
+                                })}
                             </Show>
                         </div>
                     </div>
