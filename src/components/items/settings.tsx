@@ -86,10 +86,6 @@ function Settings(props: {
     const [jsMetadata, setJSMetadata] = createSignal<
         { url: string; metadata: Record<string, string | boolean> | null }[]
     >([]);
-    // const toast = useToast();
-    // const [state, setState] = createStore<{
-    // }>({
-    // });
 
     const pageList = ["Appearance", "Plugins", "Notifications", "Advanced", "Credits"] as const;
     const [state, setState] = createStore<{
@@ -930,7 +926,7 @@ function Settings(props: {
                                                             .filter(x => x.enabled)
                                                             .map(x => x.id.charAt(0).toUpperCase() + x.id.slice(1));
 
-                                                        if (items.length === 0) return "";
+                                                        if (items.length === 0) return "Nothing";
                                                         if (items.length === 1) return items[0];
                                                         return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
                                                     })()

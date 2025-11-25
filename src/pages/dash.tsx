@@ -12,6 +12,7 @@ import type { ClubsResponse } from "../types/api/clubs";
 import type { StatusResponse } from "../types/auth";
 import type { SessionData } from "../types/auth";
 import type { Accessor, JSXElement } from "solid-js";
+import { handleNotifications } from "../lib/notificationHandler";
 
 function waitForWheelTransition() {
   return new Promise<void>((resolve) => {
@@ -49,17 +50,8 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   const navigate = useNavigate();
   let resetNavFn: () => void = () => { };
   let openNavFn: ((idx: number) => void) | null = null;
-  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
-    null,
-  );
-  const [userThemes, setUserThemes] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
-    storage: localStorage,
-    name: "themeUrls",
-  });
-  const [plugins, setPlugins] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
-    storage: localStorage,
-    name: "plugins",
-  });
+  let sessionTimeout: ReturnType<typeof setTimeout> | null = null;
+  let statusInterval: ReturnType<typeof setTimeout> | null = null;
   const [notificationPermission, setNotificationPermission] = makePersisted(createSignal<{
     in_app: boolean; desktop: boolean;
     type: "Immediately even when window/tab is focused" |
@@ -73,16 +65,30 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     "No Mouse/Keyboard input or unfocused for 25 minutes" |
     "No Mouse/Keyboard input or unfocused for 30 minutes";
     allowlist: { id: string; enabled: boolean }[];
-  }>({ in_app: false, desktop: false, type: "No Mouse/Keyboard input or unfocused for 30 minutes",
+  }>({
+    in_app: false, desktop: false, type: "No Mouse/Keyboard input or unfocused for 30 minutes",
     allowlist: [
       { id: "messages", enabled: true },
       { id: "forms", enabled: true },
       { id: "lessons", enabled: true },
+      { id: "clubs", enabled: true },
       { id: "noticeboard", enabled: true },
     ]
-   }), {
+  }), {
     storage: localStorage,
     name: "notificationPermission",
+  });
+
+  const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
+    null,
+  );
+  const [userThemes, setUserThemes] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+    storage: localStorage,
+    name: "themeUrls",
+  });
+  const [plugins, setPlugins] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+    storage: localStorage,
+    name: "plugins",
   });
 
   async function getTheme() {
@@ -113,6 +119,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     clubData: ClubsResponse.ClubType[];
     prevPos: number | null;
     navInitalLoadDone: boolean;
+    status: StatusResponse["result"] | undefined;
   }>({
     progress: 0,
     navWheelAnim: false,
@@ -123,8 +130,10 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     updateAvailable: false,
     clubData: [],
     prevPos: null,
-    navInitalLoadDone: false
+    navInitalLoadDone: false,
+    status: undefined
   });
+
   const [sessionData, setSession] = makePersisted(createSignal<SessionData | null>(null), {
     storage: sessionStorage,
     name: "sessionData",
@@ -208,6 +217,38 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     }
   }
 
+  const fetchStatus = async () => {
+    if (sessionData() === null) return;
+    edulink
+      .getStatus(sessionData()?.authtoken, sessionData()?.apiUrl)
+      .then(async (result: StatusResponse) => {
+        if (result.result.success) {
+          setState("status", result.result);
+          // handleNotifications(result.result);
+          if (state.status) {
+            handleNotifications(notificationPermission, state.status, state.clubData)
+          }
+
+          if (!sessionTimeout && result.result.session?.expires) {
+            const expiresInMs = result.result.session.expires * 1000;
+            sessionTimeout = setTimeout(() => {
+              setSession(null);
+              sessionTimeout = null;
+              return navigate("/login");
+            }, expiresInMs);
+          }
+          sessionTimeout ??= setTimeout(() => {
+            setSession(null);
+            sessionTimeout = null;
+            return navigate("/login");
+          }, 3600 * 1000);
+        } else {
+          setSession(null);
+          return navigate("/login");
+        }
+      });
+  };
+
   onMount(async () => {
     const handleResize = () => setState("screenWidth", window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -290,6 +331,16 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       ).then((clubData: ClubsResponse) => {
         if (clubData.result.success) {
           setState("clubData", clubData.result.clubs);
+          if (props.status != null) {
+            setState("status", props.status);
+            handleNotifications(notificationPermission, props.status, clubData.result.clubs)
+          } else {
+            fetchStatus();
+          }
+          statusInterval = setInterval(
+            fetchStatus,
+            (sessionData()?.miscellaneous.status_interval ?? 60) * 1000,
+          );
         }
       }).catch((err: Error) => {
         console.error("Failed to fetch clubs:", err);
@@ -323,8 +374,12 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         return navigate("/login");
       }
     })
-
   });
+
+  onCleanup(() => {
+    if (sessionTimeout !== null) clearInterval(sessionTimeout)
+    if (statusInterval !== null) clearInterval(statusInterval)
+  })
 
   const maxWidth = createMemo(() =>
     state.screenWidth >= 1400 ? "1200px" : "1000px",
@@ -345,7 +400,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   };
 
   return (
-    <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0 && styles()}>
+    <Show when={sessionData() !== null && Object.keys(sessionData() ?? {}).length > 0 && styles() && state.status}>
       <div id="ol-container" ref={el => {
         if (el) {
           const font = currentFont().family;
@@ -486,7 +541,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           edulink={edulink}
           loadItemPage={loadItemPage}
           clubData={state.clubData}
-          status={props.status}
+          status={state.status}
           theme={state.theme}
           notificationPermission={notificationPermission}
         />

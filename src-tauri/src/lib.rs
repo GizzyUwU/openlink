@@ -130,7 +130,6 @@ pub fn run() {
                         ..
                     } => {
                         println!("left click pressed and released");
-                        // in this example, let's show and focus the main window when the tray is clicked
                         let app = tray.app_handle();
                         if let Some(window) = app.get_webview_window("main") {
                             let _ = window.unminimize();

@@ -297,7 +297,8 @@ export type StatusResponse = EdulinkApiResponse<{
         name: string;
         subject: string;
       };
-      teachers: string;
+      teachers: string | { id: number; title: string; forename: string; surname: string };
+      teacher: string | { id: number; title: string; forename: string; surname: string };
       start_time: string;
       end_time: string;
       period_name: string;
@@ -314,7 +315,8 @@ export type StatusResponse = EdulinkApiResponse<{
         name: string;
         subject: string;
       };
-      teachers: string;
+      teachers: string | { id: number; title: string; forename: string; surname: string };
+      teacher: string | {  id: number; title: string; forename: string; surname: string };
       start_time: string;
       end_time: string;
       period_name: string;

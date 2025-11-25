@@ -1,13 +1,9 @@
-import { onMount, createSignal, Show, onCleanup } from "solid-js";
+import { onMount, createSignal, Show } from "solid-js";
 import { Icon } from "@iconify-icon/solid";
-import { useNavigate } from "@solidjs/router";
 import type { ClubsResponse } from "../types/api/clubs";
 import type { StatusResponse, SessionData } from "../types/auth";
 import type { EdulinkAPI } from "../api/main";
 import type { Setter, Accessor } from "solid-js";
-import {
-  sendNotification
-} from '@tauri-apps/plugin-notification'
 
 export default function Footer(props: Readonly<{
   sessionData: Accessor<SessionData>;
@@ -15,7 +11,7 @@ export default function Footer(props: Readonly<{
   edulink: EdulinkAPI;
   loadItemPage: (id: string, name: string, forceOpenNav?: boolean) => void;
   clubData: ClubsResponse.ClubType[];
-  status: StatusResponse["result"] | null;
+  status: StatusResponse["result"] | undefined;
   theme: string;
   notificationPermission: Accessor<{
     in_app: boolean; desktop: boolean, type: "Immediately even when window/tab is focused" |
@@ -31,161 +27,16 @@ export default function Footer(props: Readonly<{
     allowlist: { id: string; enabled: boolean }[];
   }>;
 }>) {
-  const navigate = useNavigate();
-  const [status, setStatus] = createSignal<any>({});
-  let lastMessageCount = 0;
-  let lastFormCount = 0;
-  let lastNoticeCount = 0;
-  let sessionTimeout: ReturnType<typeof setTimeout> | null = null;
-  const notifiedEvents = new Set<string>();
-  const plural = (n?: number) => (n && n > 1 ? "s" : "");
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  let statusInterval: ReturnType<typeof setTimeout> | null = null;
-
-  const isWithinFiveMinutes = (date: Date): boolean => {
-    const differenceInMilliseconds: number = date.getTime() - Date.now();
-    const absoluteDifference: number = Math.abs(differenceInMilliseconds);
-    const fiveMinutesInMilliseconds: number = 5 * 60 * 1000;
-    return absoluteDifference <= fiveMinutesInMilliseconds;
-  };
-
-  const isAllowed = (id: string) =>
-    props.notificationPermission()
-      .allowlist
-      .some(item => item.id === id && item.enabled);
-
-  const handleNotifications = async (data: StatusResponse["result"]) => {
-    if (!data) return;
-    if (props.notificationPermission().desktop === false && props.notificationPermission().in_app === false) return;
-
-    const hasNewMessages = isAllowed("messages") && !!(data.new_messages && data.new_messages !== lastMessageCount);
-    const hasNewForms = isAllowed("forms") && !!(data.new_forms && data.new_forms !== lastFormCount);
-    const hasNoticeboardUpdate = isAllowed("noticeboard") && !!(
-      ((data.noticeboard?.new_items ?? 0) + (data.noticeboard?.new_snippets ?? 0)) !== lastNoticeCount
-    );
-
-    if (hasNewMessages || hasNewForms || hasNoticeboardUpdate) {
-      const msgCount = isAllowed("messages") ? data.new_messages ?? 0 : 0;
-      const formCount = isAllowed("forms") ? data.new_forms ?? 0 : 0;
-      const noticeboardCount = isAllowed("noticeboard")
-        ? (data.noticeboard?.new_snippets ?? 0) + (data.noticeboard?.new_items ?? 0)
-        : 0;
-
-      const msgPart = hasNewMessages
-        ? `${msgCount} unread message${plural(msgCount)}`
-        : "";
-      const formPart = hasNewForms
-        ? `${formCount} undone form${plural(formCount)}`
-        : "";
-      const noticePart = hasNoticeboardUpdate
-        ? `${noticeboardCount} unread noticeboard update${plural(noticeboardCount)}`
-        : "";
-
-      const joinedParts = [msgPart, formPart, noticePart].filter(Boolean).join(" and ");
-      const body = `You have ${joinedParts}.`;
-
-      const titleParts = [];
-      if (hasNewMessages) titleParts.push(`Message${plural(msgCount)}`);
-      if (hasNewForms) titleParts.push(`Form${plural(formCount)}`);
-      if (hasNoticeboardUpdate) titleParts.push(`Noticeboard`);
-
-      sendNotification({
-        title: `Openlink - New ${titleParts.join(" and ")}!`,
-        body,
-      });
-
-      if (hasNewMessages) lastMessageCount = msgCount;
-      if (hasNewForms) lastFormCount = formCount;
-      if (hasNoticeboardUpdate) lastNoticeCount = noticeboardCount;
-    }
-
-    const nextLesson = data.lessons?.next;
-    const startTime = nextLesson?.start_time;
-    if (startTime) {
-      const [h, m] = startTime.split(":").map(Number);
-      const lessonDate = new Date();
-      lessonDate.setHours(h, m, 0, 0);
-      console.log(isAllowed("lesson"))
-      if (isWithinFiveMinutes(lessonDate) && isAllowed("lessons")) {
-        console.log("meow")
-        if (notifiedEvents.has("lesson-" + lessonDate.toISOString())) return;
-        sendNotification({
-          title: `Openlink - Next Subject soon.`,
-          body: `${nextLesson.teaching_group.subject} / ${nextLesson.room.name} in 5 minutes.`,
-        });
-        notifiedEvents.add("lesson-" + lessonDate.toISOString());
-      }
-    }
-
-    for (const club of props.clubData ?? []) {
-      const session = club.next_session;
-      if (!session) continue;
-
-      const sessionDate = new Date(session);
-      if (!isWithinFiveMinutes(sessionDate)) continue;
-
-      if (notifiedEvents.has("club-" + sessionDate.toISOString())) return;
-      sendNotification({
-        title: `Openlink - ${club.name} starts soon.`,
-        body: `${club.name} / ${club.location} starts in 5 minutes.`,
-      });
-      notifiedEvents.add("club-" + sessionDate.toISOString());
-    }
-  };
-
-  const fetchStatus = async () => {
-    if (props.sessionData() === null) return;
-    props.edulink
-      .getStatus(props.sessionData().authtoken, props.sessionData().apiUrl)
-      .then(async (result: StatusResponse) => {
-        if (result.result.success) {
-          setStatus(result.result);
-          handleNotifications(result.result);
-
-          if (!sessionTimeout && result.result.session?.expires) {
-            const expiresInMs = result.result.session.expires * 1000;
-            sessionTimeout = setTimeout(() => {
-              props.setSession(null);
-              sessionTimeout = null;
-              return navigate("/login");
-            }, expiresInMs);
-          }
-          sessionTimeout ??= setTimeout(() => {
-            props.setSession(null);
-            sessionTimeout = null;
-            return navigate("/login");
-          }, 3600 * 1000);
-        } else {
-          props.setSession(null);
-          return navigate("/login");
-        }
-      });
-  };
 
   onMount(async () => {
-    const hasStatus = props.status != null;
     const cssModule = await import(
       `../public/assets/css/${props.theme}/footer.module.css`
     );
     setStyles({ ...cssModule.default, ...cssModule });
-    if (hasStatus) {
-      setStatus(props.status);
-      handleNotifications(props.status)
-    } else {
-      queueMicrotask(() => fetchStatus());
-    }
-    statusInterval = setInterval(
-      fetchStatus,
-      (props.sessionData().miscellaneous.status_interval ?? 60) * 1000,
-    );
   });
-
-  onCleanup(() => {
-    if (sessionTimeout !== null) clearInterval(sessionTimeout)
-    if (statusInterval !== null) clearInterval(statusInterval)
-  })
 
   return (
     <Show when={styles()}>
@@ -200,7 +51,7 @@ export default function Footer(props: Readonly<{
                 const currentClub = props.clubData.find(
                   (club: ClubsResponse.ClubType) => {
                     if (!club.next_session) return false;
-                    const nextLesson = status().lessons?.current;
+                    const nextLesson = props.status?.lessons?.current;
                     if (!nextLesson?.start_time) return false;
 
                     const [lessonHour, lessonMinute] = nextLesson.start_time
@@ -254,10 +105,9 @@ export default function Footer(props: Readonly<{
                 }
               }
 
-              if (status().lessons?.current) {
-                const lesson = status().lessons.current;
+              if (props.status?.lessons?.current) {
+                const lesson = props.status?.lessons.current;
                 const teachers = lesson.teachers || lesson.teacher;
-
                 let teacherNames = "";
 
                 if (Array.isArray(teachers)) {
@@ -308,7 +158,7 @@ export default function Footer(props: Readonly<{
             onClick={() => props.loadItemPage("timetable", "Timetable", true)}
           >
             {(() => {
-              const nextLesson = status().lessons?.next;
+              const nextLesson = props.status?.lessons?.next;
 
               let currentClub: ClubsResponse.ClubType | null = null;
               if (props.clubData?.length > 0 && nextLesson?.start_time) {
@@ -425,7 +275,7 @@ export default function Footer(props: Readonly<{
                   Messages
                 </span>
                 <span class={styles()!["__footer-body"]}>
-                  {status().new_messages === 0 ? "No new messages" : `${status().new_messages} new messages`}
+                  {props.status?.new_messages === 0 ? "No new messages" : `${props.status?.new_messages} new messages`}
                 </span>
               </span>
             </div>
