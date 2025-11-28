@@ -1,5 +1,5 @@
 import { FormsRequest, FormsResponse } from "../../types/api/forms";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -8,6 +8,7 @@ export default {
     forType: string,
     key: string,
     serverUrl: string,
+    toast?: ToastContextType,
   ): Promise<FormsResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -31,7 +32,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

@@ -43,6 +43,7 @@ function Documents(props: {
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (response.result.success) {
@@ -66,6 +67,7 @@ function Documents(props: {
         documentId,
         props.sessionData()?.authtoken,
         props.sessionData()?.apiUrl,
+        window.toast
       );
 
       if (!res.result.success) {

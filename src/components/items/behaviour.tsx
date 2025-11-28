@@ -72,11 +72,13 @@ function BehaviourComponent(props: {
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     const lookupPromise = props.edulink.getABLookup(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     behaviourPromise.then((behaviourResponse: BehaviourResponse) => {

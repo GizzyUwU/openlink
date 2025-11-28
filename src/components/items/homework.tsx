@@ -46,6 +46,7 @@ function Homework(props: {
     const response = await props.edulink.getHomework(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (response.result.success) {

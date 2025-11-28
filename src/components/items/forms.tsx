@@ -41,6 +41,7 @@ function Forms(props: {
       "learner",
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (response.result.success) {

@@ -65,8 +65,8 @@ function AchievementComponent(props: {
     const userId = props.sessionData()?.user?.id;
     const token = props.sessionData()?.authtoken;
     const url = props.sessionData()?.apiUrl;
-    const achievementPromise = props.edulink.getAchievement(userId, token, url);
-    const lookupPromise = props.edulink.getABLookup(token, url);
+    const achievementPromise = props.edulink.getAchievement(userId, token, url, window.toast);
+    const lookupPromise = props.edulink.getABLookup(token, url, window.toast);
 
     achievementPromise.then((achievementResponse: AchievementResponse) => {
       if (achievementResponse.result.success) {
@@ -159,7 +159,7 @@ function AchievementComponent(props: {
                 <For each={state.achievements}>
                   {(achievement: any) => (
                     <div class={styles()!["t-row"]}>
-                      <div  class={styles()!["_left"]}>
+                      <div class={styles()!["_left"]}>
                         <div
                           style={{
                             display: "flex",

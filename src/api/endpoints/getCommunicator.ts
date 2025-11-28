@@ -3,7 +3,7 @@ import {
   InboxResponse,
   // OutboxResponse,
 } from "../../types/api/communicator";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -14,6 +14,7 @@ export default {
     per_page: number,
     key: string,
     serverUrl: string,
+    toast?: ToastContextType,
   ): Promise<InboxResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -39,7 +40,7 @@ export default {
           Authorization: `Bearer ${key}`,
         },
         body: JSON.stringify(requestBody),
-      });
+      }, toast);
 
       if (response.demo) {
         return response.demo;

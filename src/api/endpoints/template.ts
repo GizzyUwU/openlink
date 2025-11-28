@@ -1,6 +1,5 @@
 // import { , } from "../../types/api/";
 
-
 export default {
   name: "template",
   handler: async function (

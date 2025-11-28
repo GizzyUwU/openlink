@@ -1,3 +1,6 @@
+import type { ToastContextType } from "../components/toast";
+import { logger } from "../lib/logger";
+
 interface ApiOptions {
   method?: "GET" | "POST";
   data?: any;
@@ -51,7 +54,7 @@ function makeCacheKey(url: string, options: ApiOptions) {
   return `${method}:${url}`;
 }
 
-export async function callApi(url: string, options: ApiOptions = {}) {
+export async function callApi(url: string, options: ApiOptions = {}, toast?: ToastContextType) {
   const { headers } = options;
   const cacheTtl = options.cacheTtl ?? 60_000;
   const forceRefresh = options.forceRefresh ?? false;
@@ -147,7 +150,7 @@ export async function callApi(url: string, options: ApiOptions = {}) {
       return await handleDemo();
     }
 
-    const fetchOptions: RequestInit = {
+    const fetchOptions = {
       method: options.method,
       headers: { ...headers },
       body: options.body ? options.body : undefined,
@@ -165,8 +168,34 @@ export async function callApi(url: string, options: ApiOptions = {}) {
     const jsonBody = JSON.parse(text);
 
     let shouldCache = false;
-    if (jsonBody?.result?.success === true && !url.includes("?networkCheck=true") && !url.includes("login")) {
-      shouldCache = true;
+    if (jsonBody?.result?.success) {
+      if (!url.includes("?networkCheck=true") && !url.includes("login")) {
+        shouldCache = true;
+      }
+    } else {
+      if (!url.includes("?networkCheck=true")) {
+        logger.error(`Server returned error: ${JSON.stringify(jsonBody)}`)
+        let parsedBody: any;
+        console.log(toast)
+        if (typeof fetchOptions.body === "string") {
+          try {
+            parsedBody = JSON.parse(fetchOptions.body);
+          } catch {
+            parsedBody = fetchOptions.body;
+          }
+        } else {
+          parsedBody = fetchOptions.body;
+        }
+        console.log(toast)
+
+        toast?.showToast(
+          "Error",
+          jsonBody?.result?.error,
+          "error",
+          parsedBody,
+          jsonBody
+        );
+      }
     }
 
     if (shouldCache) {

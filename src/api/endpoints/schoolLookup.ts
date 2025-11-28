@@ -1,5 +1,5 @@
 import { SchoolDetailsRequest, SchoolDetailsResponse } from "../../types/auth";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -7,6 +7,7 @@ export default {
   handler: async function (
     schoolId: string,
     serverUrl: string,
+    toast?: ToastContextType,
   ): Promise<SchoolDetailsResponse> {
     if (!serverUrl) throw new Error("API URL is required for school lookup");
     if (!schoolId) throw new Error("School ID is required for school lookup");
@@ -27,7 +28,7 @@ export default {
         "X-API-Method": method,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

@@ -38,6 +38,7 @@ function Links(props: {
     const response = await props.edulink.getExternalLinks(
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (response.result.success) {

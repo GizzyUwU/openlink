@@ -1,5 +1,5 @@
 import { ExamsRequest, ExamsResponse } from "../../types/api/exams";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -9,6 +9,7 @@ export default {
     key: string,
     serverUrl: string,
     page?: string,
+    toast?: ToastContextType,
   ): Promise<ExamsResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -35,7 +36,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

@@ -328,6 +328,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         sessionData()?.user?.id,
         sessionData()?.authtoken,
         sessionData()?.apiUrl,
+        toast
       ).then((clubData: ClubsResponse) => {
         if (clubData.result.success) {
           setState("clubData", clubData.result.clubs);

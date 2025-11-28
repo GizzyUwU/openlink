@@ -2,7 +2,7 @@ import {
   AttendanceRequest,
   AttendanceResponse,
 } from "../../types/api/attendance";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -11,6 +11,7 @@ export default {
     learnerId: string,
     key: string,
     serverUrl: string,
+    toast?: ToastContextType,
   ): Promise<AttendanceResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -37,7 +38,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

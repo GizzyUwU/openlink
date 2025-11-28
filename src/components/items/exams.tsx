@@ -64,6 +64,7 @@ function Exams(props: Readonly<{
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
       "timetable",
+      window.toast
     );
 
     if (response.result.success) {

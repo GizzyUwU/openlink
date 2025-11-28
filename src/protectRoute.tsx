@@ -28,7 +28,7 @@ const ProtectedRoute = (props: any) => {
   }
 
   const [status] = createResource(async () => {
-    const result = await edulink.getStatus(session.authtoken, session.apiUrl);
+    const result = await edulink.getStatus(session.authtoken, session.apiUrl, window.toast);
     if (!result.result.success) {
       console.log("[INFO] Authentication Check failed. Redirecting to /login");
       setSession(null);

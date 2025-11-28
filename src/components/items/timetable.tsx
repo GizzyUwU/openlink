@@ -221,7 +221,8 @@ function Timetable(props: Readonly<{
             props.edulink.getClub(
               club.id,
               props.sessionData()?.authtoken,
-              props.sessionData()?.apiUrl
+              props.sessionData()?.apiUrl,
+              window.toast
             )
           )
         );
@@ -345,6 +346,7 @@ function Timetable(props: Readonly<{
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     const waitExamTimetable: Promise<ExamsResponse> = props.edulink.getExams(
@@ -352,6 +354,7 @@ function Timetable(props: Readonly<{
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
       "timetable",
+      window.toast
     );
 
     if (!timetable.result.success) {

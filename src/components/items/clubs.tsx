@@ -28,7 +28,7 @@ function ClubOverlay(props: Readonly<{
   const [clubData] = createResource(
     () => props.club_id,
     async (id) =>
-      (await props.edulink.getClub(id, props.sessionData()?.authtoken, props.sessionData()?.apiUrl))
+      (await props.edulink.getClub(id, props.sessionData()?.authtoken, props.sessionData()?.apiUrl), window.toast)
   );
 
   onMount(async () => {
@@ -55,6 +55,7 @@ function ClubOverlay(props: Readonly<{
       attend,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (res.result.success) {
@@ -198,6 +199,7 @@ function Clubs(props: {
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     const allClubsPromise = props.edulink.getClubs(
@@ -205,6 +207,7 @@ function Clubs(props: {
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     const [response, allClubsResponse] = await Promise.all([

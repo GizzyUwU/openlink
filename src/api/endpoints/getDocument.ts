@@ -1,5 +1,5 @@
 import { DocumentRequest, DocumentResponse } from "../../types/api/documents";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 /**
@@ -19,6 +19,7 @@ export default {
     document_id: string | number,
     key: string,
     serverUrl?: string,
+    toast?: ToastContextType,
   ): Promise<DocumentResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school first.");
@@ -47,7 +48,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

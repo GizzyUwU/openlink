@@ -58,6 +58,7 @@ function Messages(props: {
         state.pagination.itemsPerPage,
         props.sessionData()?.authtoken,
         props.sessionData()?.apiUrl,
+        window.toast
       );
 
       if (!inboxData.result.success) {
@@ -81,6 +82,7 @@ function Messages(props: {
           uniqueEmployeeIds,
           props.sessionData()?.authtoken,
           props.sessionData()?.apiUrl,
+          window.toast
         );
         photos = photosData.result.employee_photos;
       }
@@ -184,7 +186,8 @@ function Messages(props: {
                               const res = await props.edulink.markAsRead(
                                 state.openedMessage[0].id,
                                 props.sessionData()?.authtoken,
-                                props.sessionData()?.apiUrl
+                                props.sessionData()?.apiUrl,
+                                window.toast
                               );
                               if (res.result?.success) return;
                             } catch (err) {

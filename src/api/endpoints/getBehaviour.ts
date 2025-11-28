@@ -1,5 +1,5 @@
 import { BehaviourRequest, BehaviourResponse } from "../../types/api/behaviour";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 /**
@@ -17,6 +17,7 @@ export default {
     learnerId: string,
     key: string,
     serverUrl?: string,
+    toast?: ToastContextType,
   ): Promise<BehaviourResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school first.");
@@ -43,7 +44,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

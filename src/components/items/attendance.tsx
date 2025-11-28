@@ -56,6 +56,7 @@ function Attendance(props: {
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
+      window.toast
     );
 
     if (response.result.success) {

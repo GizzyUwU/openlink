@@ -2,7 +2,7 @@ import {
   TeacherPhotosRequest,
   TeacherPhotosResponse,
 } from "../../types/api/teacherPhotos";
-
+import { ToastContextType } from "../../components/toast";
 import { callApi } from "../fetch";
 
 export default {
@@ -11,6 +11,7 @@ export default {
     employees: string | string[],
     key: string,
     serverUrl: string,
+    toast?: ToastContextType,
   ): Promise<TeacherPhotosResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school api url.");
@@ -35,7 +36,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

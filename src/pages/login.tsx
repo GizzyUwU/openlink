@@ -205,6 +205,7 @@ function Login() {
             data.password,
             data.id,
             data.apiUrl,
+            toast
           );
 
           if (accountData.result.success) {
@@ -303,7 +304,7 @@ function Login() {
       return;
     }
 
-    const data = await edulink.findSchoolFromCode(state.code);
+    const data = await edulink.findSchoolFromCode(state.code, toast);
     if (data.result.success) {
       setSession(prev => ({
         ...prev,
@@ -312,14 +313,11 @@ function Login() {
       const school: SchoolDetailsResponse = await edulink.schoolLookup(
         data.result.school.school_id,
         data.result.school.server,
+        toast
       );
       if (school.result.success) {
         setState("schoolData", school);
-      } else {
-        toast.showToast("Error", "Failed to fetch school details", "error");
       }
-    } else {
-      toast.showToast("Error", data.result.error ?? "Unknown error", "error");
     }
   }
 
@@ -345,6 +343,7 @@ function Login() {
       state.password,
       state.schoolData.result.establishment.id,
       session().apiUrl,
+      toast
     );
 
     if (account.result.success) {
@@ -381,11 +380,6 @@ function Login() {
       return navigate("/", { replace: true });
     } else {
       setState("loading", false);
-      toast.showToast(
-        `Request Id ${account.result.metrics.uniqid}`,
-        account.result.error ?? "Unknown error",
-        "error",
-      );
     }
   }
 
@@ -411,7 +405,7 @@ function Login() {
         server: string;
       } = JSON.parse(rawIdpData)
 
-      const account = await edulink.loginFromIDP(idpData.idp_token, session().apiUrl);
+      const account = await edulink.loginFromIDP(idpData.idp_token, session().apiUrl, toast);
 
       if (account.result.success) {
         setSession(prev => ({
@@ -421,11 +415,6 @@ function Login() {
         return navigate("/", { replace: true });
       } else {
         setState("loading", false);
-        toast.showToast(
-          `Request Id ${account.result.metrics.uniqid}`,
-          account.result.error ?? "Unknown error",
-          "error",
-        );
       }
       // } else {
       //   const popup = window.open(idpUrl, "Openlink OAuth - " + idp_id === "microsoftonline" ? "Microsoft" : "Google", `width=500,height=500`);

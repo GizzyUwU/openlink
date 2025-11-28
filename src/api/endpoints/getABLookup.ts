@@ -1,6 +1,7 @@
 
 import { ABLookupRequest, ABLookupResponse } from "../../types/api/ablookup";
 import { callApi } from "../fetch";
+import { ToastContextType } from "../../components/toast";
 
 /**
  * Pulls Achievemnt and Behaviour ID match data from API to use in both endpoints to match id's to content.
@@ -15,6 +16,7 @@ export default {
   handler: async function (
     key: string,
     serverUrl?: string,
+    toast?: ToastContextType,
   ): Promise<ABLookupResponse> {
     if (!serverUrl)
       throw new Error("API URL is not set. Please find school first.");
@@ -36,7 +38,7 @@ export default {
         Authorization: `Bearer ${key}`,
       },
       body: JSON.stringify(requestBody),
-    });
+    }, toast);
 
     if (response.demo) {
       return response.demo;

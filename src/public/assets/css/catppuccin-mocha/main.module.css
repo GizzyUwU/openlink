@@ -18,7 +18,14 @@
     min-height: 0;
 }
 
-.t-overlay > * {
+.t-overlay>* {
     flex-shrink: 1;
     min-height: 0;
+}
+
+.basic-overlay {
+    background: var(--surface0);
+    color: var(--text);
+    margin-left: auto;
+    margin-right: auto;
 }
