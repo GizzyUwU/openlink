@@ -20,7 +20,7 @@ jobs:
       - name: "Skip if only workflow file changed"
         id: skip_check
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD || true)
+          CHANGED=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} || true)
           echo "Changed files:"
           echo "$CHANGED"
           WORKFLOW_FILE=".github/workflows/publish.yml"
