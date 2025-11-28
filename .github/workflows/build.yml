@@ -7,10 +7,10 @@ jobs:
   version-bump:
     runs-on: ubuntu-22.04
     permissions:
-      contents: write
+      actions: read
+      contents: read
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -50,7 +50,8 @@ jobs:
   publish-tauri:
     needs: version-bump
     permissions:
-      contents: write
+      actions: read
+      contents: read
     strategy:
       fail-fast: false
       matrix:
