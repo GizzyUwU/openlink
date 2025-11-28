@@ -80,14 +80,23 @@ jobs:
       - name: Generate release notes
         id: notes
         run: |
-          PREV_TAG=$(git describe --tags --abbrev=0)
+          if git describe --tags --abbrev=0 >/dev/null 2>&1; then
+            PREV_TAG=$(git describe --tags --abbrev=0)
+            RANGE="$PREV_TAG..HEAD"
+          else
+            RANGE="HEAD"
+          fi
+
           NEW_TAG=${{ needs.version-bump.outputs.new-tag }}
-    
+
           echo "## What's Changed" > release_notes.md
-          git log $PREV_TAG..HEAD --pretty=format:"- %s (#%h)" >> release_notes.md
+          git log $RANGE --pretty=format:"- %s (#%h)" >> release_notes.md
           echo "" >> release_notes.md
-          REPO_URL="https://github.com/${{ github.repository }}/compare"
-          echo "## Full Changelog: [$PREV_TAG...$NEW_TAG]($REPO_URL/$PREV_TAG...$NEW_TAG)" >> release_notes.md
+
+          if [ -n "$PREV_TAG" ]; then
+            REPO_URL="https://github.com/${{ github.repository }}/compare"
+            echo "## Full Changelog: [$PREV_TAG...$NEW_TAG]($REPO_URL/$PREV_TAG...$NEW_TAG)" >> release_notes.md
+          fi
 
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
           cat release_notes.md >> $GITHUB_ENV
