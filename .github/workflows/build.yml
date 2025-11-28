@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       actions: read
-      contents: wrute
+      contents: write
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
