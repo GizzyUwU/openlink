@@ -5,19 +5,39 @@ on:
 
 jobs:
   version-bump:
-    runs-on: "ubuntu-22.04"
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: main
 
+      - name: "Skip if only workflow file changed"
+        id: skip_check
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD || true)
+          echo "Changed files:"
+          echo "$CHANGED"
+          WORKFLOW_FILE=".github/workflows/publish.yml"
+
+          ONLY_WORKFLOW=true
+          for f in $CHANGED; do
+            if [ "$f" != "$WORKFLOW_FILE" ]; then
+              ONLY_WORKFLOW=false
+              break
+            fi
+          done
+
+          echo "only_workflow=$ONLY_WORKFLOW" >> $GITHUB_OUTPUT
+
       - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
+        if: steps.skip_check.outputs.only_workflow == 'false'
+        uses: phips28/gh-action-bump-version@master
         id: version-bump
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -79,6 +99,7 @@ jobs:
 
       - name: Generate release notes
         id: notes
+        shell: bash
         run: |
           if git describe --tags --abbrev=0 >/dev/null 2>&1; then
             PREV_TAG=$(git describe --tags --abbrev=0)
