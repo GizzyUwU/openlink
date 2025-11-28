@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       actions: read
-      contents: read
+      contents: wrute
     outputs:
       new-tag: ${{ steps.version-bump.outputs.newTag }}
     steps:
@@ -51,7 +51,7 @@ jobs:
     needs: version-bump
     permissions:
       actions: read
-      contents: read
+      contents: write
     strategy:
       fail-fast: false
       matrix:
