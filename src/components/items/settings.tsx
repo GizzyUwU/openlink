@@ -278,8 +278,7 @@ function Settings(props: {
             );
             const existingLink = document.querySelector<HTMLLinkElement>(`link[data-plugin-url="${url}"]`);
             if (input.checked) {
-                /* @vite-ignore */
-                const module = await import(url);
+                const module = await import(/* @vite-ignore */ url);
                 if (!module) return;
                 if (module.default?.execute) {
                     try {
@@ -881,21 +880,6 @@ function Settings(props: {
                                                                 <li>
                                                                     <button
                                                                         class="w-full text-left p-2 rounded-md text-white hover:bg-gray-600 cursor-pointer"
-                                                                    // ref={el => {
-                                                                    //     if (!el) return
-                                                                    //     el.style.cssText = `font-family: ${family} !important;`;
-                                                                    //     if (url) {
-                                                                    //         const link = document.createElement("link");
-                                                                    //         link.rel = "stylesheet";
-                                                                    //         link.href = url;
-                                                                    //         document.head.appendChild(link);
-                                                                    //         onCleanup(() => document.head.removeChild(link));
-                                                                    //     }
-                                                                    // }}
-                                                                    // onClick={() => {
-                                                                    //     setFont(font, family, url)
-                                                                    //     setOpen(false);
-                                                                    // }}
                                                                     >
                                                                         {text}
                                                                     </button>

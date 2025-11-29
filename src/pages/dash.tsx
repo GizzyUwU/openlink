@@ -203,6 +203,19 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       const url = new URL(globalThis.location.href);
       url.searchParams.set("page", id);
       globalThis.history.pushState({}, "", url.toString());
+
+      for (const plugin of plugins()) {
+        if (!plugin.enabled) continue;
+        try {
+          const module = await import(plugin.url);
+          const instance = module.default;
+          if (typeof instance?.onItemLoad === "function") {
+            await instance.onItemLoad(id, mod.default?.api);
+          } else continue;
+        } catch (err) {
+          console.error(`Plugin failed on item load: ${plugin.url}`, err);
+        }
+      }
     } catch (err) {
       console.error(
         `Failed to load component: ../components/items/${id}tsx`,
