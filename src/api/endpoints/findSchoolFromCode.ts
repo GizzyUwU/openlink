@@ -11,7 +11,7 @@ export default {
     const requestBody: FromCodeRequest = {
       jsonrpc: "2.0",
       method: "School.FromCode",
-      params: { code: "0" },
+      params: { code },
       uuid: window.crypto.randomUUID(),
       id: "1",
     };
