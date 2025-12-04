@@ -44,9 +44,72 @@
     "keyring:allow-set-password",
     "fs:allow-resource-read-recursive",
     "fs:allow-exists",
-    "fs:allow-write-text-file",
-    "fs:allow-appdata-read",
-    "fs:allow-appdata-write",
+    {
+      "identifier": "fs:allow-exists",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-write-text-file",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-read-dir",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-read-text-file",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-write",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-read",
+      "allow": [
+        {
+          "path": "$APPDATA/*"
+        },
+        {
+          "path": "$APPDATA/plugins/*"
+        }
+      ]
+    },
     "store:allow-get",
     "store:allow-set",
     "store:allow-delete",

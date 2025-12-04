@@ -7,7 +7,7 @@ import {
 } from '@tauri-apps/plugin-notification';
 
 async function setTheme(theme: string) {
-  if (globalThis.__TAURI__) {
+  if (globalThis.__TAURI__) {''
     const { load } = await import("@tauri-apps/plugin-store");
     const store = await load("config.json", { autoSave: false, defaults: {} });
     const currentTheme = await store.get("theme");

@@ -86,7 +86,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     storage: localStorage,
     name: "themeUrls",
   });
-  const [plugins, setPlugins] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+  const [plugins, setPlugins] = makePersisted(createSignal<{ url?: string; fileName?: string; enabled: boolean; }[]>([]), {
     storage: localStorage,
     name: "plugins",
   });
@@ -207,6 +207,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       for (const plugin of plugins()) {
         if (!plugin.enabled) continue;
         try {
+          if(!plugin.url) continue;
           const module = await import(plugin.url);
           const instance = module.default;
           if (typeof instance?.onItemLoad === "function") {
@@ -322,7 +323,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         .filter(p => p.enabled)
         .reduce(async (prev, plugin) => {
           await prev;
-          const module = await import(plugin.url);
+          const module = await import(plugin.url!);
           if (module.default?.execute) {
             await module.default.execute();
           }

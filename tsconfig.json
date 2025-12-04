@@ -19,7 +19,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["@tauri-apps/api"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

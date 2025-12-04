@@ -44,8 +44,8 @@ function Settings(props: {
     theme: string;
     setUserThemes: Setter<{ url: string; enabled: boolean; }[]>;
     userThemes: Accessor<{ url: string; enabled: boolean; }[]>;
-    setPlugins: Setter<{ url: string; enabled: boolean; }[]>;
-    plugins: Accessor<{ url: string; enabled: boolean; }[]>;
+    setPlugins: Setter<{ url?: string; fileName?: string; enabled: boolean; }[]>;
+    plugins: Accessor<{ url?: string; fileName?: string; enabled: boolean; }[]>;
     setNotificationPermission: Setter<{
         in_app: boolean; desktop: boolean, type: "Immediately even when window/tab is focused" |
         "As soon as window/tab is unfocused" |
@@ -84,7 +84,7 @@ function Settings(props: {
         { url: string; metadata: Record<string, string | boolean> | null }[]
     >([]);
     const [jsMetadata, setJSMetadata] = createSignal<
-        { url: string; metadata: Record<string, string | boolean> | null }[]
+        { url?: string; fileName?: string; metadata: Record<string, string | boolean> | null }[]
     >([]);
 
     const pageList = ["Appearance", "Plugins", "Notifications", "Advanced", "Credits"] as const;
@@ -227,14 +227,51 @@ function Settings(props: {
         const form = e.currentTarget;
         const url = new FormData(form).get("jsURL") as string;
         const urlField = document.getElementById("jsUrl") as HTMLInputElement;
-        if (globalThis.__TAURI__) {
+        if (window.__TAURI__) {
+            try {
+                fetch(url).then(async (res) => {
+                    const { writeTextFile, exists, BaseDirectory } = window.__TAURI__!.fs;
+                    const data = await res.text();
+                    const metadata = await parseJSMetadata(undefined, data);
+                    if (metadata === null) return;
+                    const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+                    const name = jsonMetadata.name.toLowerCase()
+                    const dirExists = await exists('plugins', {
+                        baseDir: BaseDirectory.AppData
+                    })
 
+                    if (dirExists) {
+                        const { readDir } = await import("@tauri-apps/plugin-fs")
+                        const files = await readDir('plugins', { baseDir: BaseDirectory.AppData });
+                        const matchedFile = files.find(f => f.name.startsWith(name + '.plugin.'));
+                        if (matchedFile) return logger.warn("Plugin will not be added because a plugin with same name is already installed.");
+
+                        await writeTextFile("plugins/" + name + ".plugin.enabled.js", data, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                    } else {
+                        const { mkdir } = window.__TAURI__!.fs;
+                        await mkdir("plugins", {
+                            baseDir: BaseDirectory.AppData
+                        })
+
+                        await writeTextFile("plugins/" + name + ".plugin.enabled.js", data, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                    }
+
+                    setJSMetadata((prev) => [...prev, { fileName: name, metadata: jsonMetadata, enabled: true }]);
+                    urlField!.value = "";
+                })
+            } catch (err) {
+                logger.error((err as Error).stack ?? (err as Error).message);
+            }
         } else {
             props.setPlugins((prev) => [...(prev ?? []), { url, enabled: false }]);
             const metadata = await parseJSMetadata(url);
             if (metadata === null) return;
             const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
-            setJSMetadata((prev) => [...prev, { url, metadata: jsonMetadata }]);
+            setJSMetadata((prev) => [...prev, { url, metadata: jsonMetadata, enabled: true }]);
             urlField!.value = "";
         }
     }
@@ -265,12 +302,54 @@ function Settings(props: {
         }
     }
 
-    async function togglePlugin(url: string, e: InputEvent) {
+    async function togglePlugin(url: string | undefined, fileName: string | undefined, e: InputEvent) {
         e.preventDefault();
         const input = e.currentTarget as HTMLInputElement;
-        if (globalThis.__TAURI__) {
+        if (window.__TAURI__) {
+            if (!fileName) return;
+            try {
+                const name = fileName.toLowerCase()
+                const { readDir } = await import("@tauri-apps/plugin-fs")
+                const { readTextFile, BaseDirectory, rename } = window.__TAURI__!.fs;
+                const files = await readDir("plugins", { baseDir: BaseDirectory.AppData });
+                logger.info(String(files))
+                const pluginFile = files.find((f) =>
+                    f.name?.startsWith(name) && f.name.endsWith('.plugin.enabled.js') ||
+                    f.name?.endsWith('.plugin.disabled.js')
+                );
+                if (!pluginFile || !pluginFile.name) return;
+                const isEnabled = pluginFile.name.endsWith('.plugin.enabled.js');
 
+                if (input.checked === isEnabled) return;
+
+                const newName = input.checked
+                    ? `${name}.plugin.enabled.js`
+                    : `${name}.plugin.disabled.js`;
+                await rename(`plugins/${pluginFile.name}`, `plugins/${newName}`, {
+                    oldPathBaseDir: BaseDirectory.AppData,
+                    newPathBaseDir: BaseDirectory.AppData,
+                });
+
+                if (input.checked) {
+                    const fileContents = await readTextFile(`plugins/${newName}`, {
+                        baseDir: BaseDirectory.AppData,
+                    });
+
+                    const pluginModule = new Function('exports', fileContents)({});
+                    if (pluginModule?.default?.execute) {
+                        try {
+                            await pluginModule.default.execute();
+                        } catch (err) {
+                            logger.error(`Plugin execution failed: ${newName}`);
+                            logger.error(err instanceof Error ? err.message : String(err));
+                        }
+                    }
+                }
+            } catch (err) {
+                logger.error((err as Error).stack ?? (err as Error).message);
+            }
         } else {
+            if (!url) return;
             props.setPlugins((plugins) =>
                 plugins.map((plugin) =>
                     plugin.url === url ? { ...plugin, enabled: input.checked } : plugin
@@ -472,27 +551,45 @@ function Settings(props: {
         }
     }
 
-    async function parseJSMetadata(url: string) {
+    async function parseJSMetadata(url?: string, resText?: string) {
+        if (!url && !resText) return;
         try {
-            const res = await fetch(url);
-            if (!res.ok) {
-                logger.warn(`Failed to fetch JS: ${res.status}`);
-                return null;
-            }
-            const code = await res.text();
-            const ast = parse(code, { ecmaVersion: "latest", sourceType: "module" }) as any;
+            if (url) {
+                const res = await fetch(url);
+                if (!res.ok) {
+                    logger.warn(`Failed to fetch JS: ${res.status}`);
+                    return null;
+                }
+                const code = await res.text();
+                const ast = parse(code, { ecmaVersion: "latest", sourceType: "module" }) as any;
 
-            for (const node of ast.body) {
-                if (node.type === "ExportDefaultDeclaration") {
-                    const decl = node.declaration;
-                    if (decl.type === "ObjectExpression") {
-                        return evaluateLiteral(decl);
+                for (const node of ast.body) {
+                    if (node.type === "ExportDefaultDeclaration") {
+                        const decl = node.declaration;
+                        if (decl.type === "ObjectExpression") {
+                            return evaluateLiteral(decl);
+                        }
                     }
                 }
-            }
 
-            logger.info("No default export object found.");
-            return null;
+                logger.info("No default export object found.");
+                return null;
+            } else if (resText) {
+                const code = resText;
+                const ast = parse(code, { ecmaVersion: "latest", sourceType: "module" }) as any;
+
+                for (const node of ast.body) {
+                    if (node.type === "ExportDefaultDeclaration") {
+                        const decl = node.declaration;
+                        if (decl.type === "ObjectExpression") {
+                            return evaluateLiteral(decl);
+                        }
+                    }
+                }
+
+                logger.info("No default export object found.");
+                return null;
+            }
         } catch (err) {
             logger.warn(`Failed to parse JS metadata: ${err}`);
             return null;
@@ -751,7 +848,11 @@ function Settings(props: {
                                     <Show when={jsMetadata().length > 0}>
                                         <For each={jsMetadata()}>
                                             {(item) => {
-                                                const plugin = props.plugins().find((p) => p.url === item.url)!;
+                                                const plugin = props.plugins().find(
+                                                    (p) => p.url === item.url || p.fileName === item.fileName
+                                                )!;
+
+
                                                 const metadata = item.metadata;
                                                 return (
                                                     <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
@@ -763,7 +864,7 @@ function Settings(props: {
                                                                         <FaSolidTrashCan
                                                                             class="cursor-pointer text-red-500"
                                                                             size={16}
-                                                                            onClick={() => removePluginJS(plugin.url)}
+                                                                            onClick={() => removePluginJS(plugin.url!)}
                                                                         />
                                                                         <label class="inline-flex items-center cursor-pointer">
                                                                             <input
@@ -771,7 +872,11 @@ function Settings(props: {
                                                                                 disabled={Boolean(metadata.blockEnable)}
                                                                                 checked={plugin.enabled}
                                                                                 class="sr-only peer"
-                                                                                onInput={(e: InputEvent) => togglePlugin(plugin.url, e)}
+                                                                                onInput={(e: InputEvent) => togglePlugin(
+                                                                                    window.__TAURI__ ? undefined : plugin.url,
+                                                                                    window.__TAURI__ ? metadata.name as string : undefined,
+                                                                                    e
+                                                                                )}
                                                                             />
                                                                             <div
                                                                                 class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full 

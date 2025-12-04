@@ -395,7 +395,7 @@ function Login() {
 
     const idpUrl = state.schoolData?.result?.establishment?.idp_login?.[idp_id];
     setState("loading", true);
-    if (window.__TAURI__) {
+    if (globalThis.__TAURI__) {
       const rawIdpData: string = await globalThis.__TAURI__.core.invoke("run_oauth", {
         url: idpUrl,
       });
