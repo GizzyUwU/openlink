@@ -51,6 +51,19 @@ const LoadingFallback = () => (
   </div>
 );
 
+// Object.defineProperty(window, "location", {
+//   configurable: false,
+//   get() {
+//     return {
+//       assign() {},
+//       replace() {},
+//       reload() {}
+//     };
+//   }
+// });
+
+// block direct reload()
+window.reload = () => {};
 window.logger = logger;
 
 render(

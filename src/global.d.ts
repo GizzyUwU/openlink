@@ -9,7 +9,7 @@ interface globals {
     event: typeof import("@tauri-apps/api/event");
     core: typeof import("@tauri-apps/api/core")
   };
-
+  reload: () => void;
   toast: ReturnType<ToastContextType>;
   sessionData: ReturnType<typeof import("./types/auth").SessionData>;
   logger: ReturnType<typeof import("./lib/logger").logger>;

@@ -4,12 +4,6 @@ export default {
     authors: ["GizzyUwU", "Adryd325"],
     execute: async () => {
         // oneko.js: https://github.com/adryd325/oneko.js
-
-        const isReducedMotion =
-            window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
-            window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
-
-        if (isReducedMotion) return;
         if (document.getElementById("oneko")) return;
 
         const nekoEl = document.createElement("div");

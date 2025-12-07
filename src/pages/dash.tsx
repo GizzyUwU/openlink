@@ -13,6 +13,7 @@ import type { StatusResponse } from "../types/auth";
 import type { SessionData } from "../types/auth";
 import type { Accessor, JSXElement } from "solid-js";
 import { handleNotifications } from "../lib/notificationHandler";
+import { logger } from "../lib/logger";
 
 function waitForWheelTransition() {
   return new Promise<void>((resolve) => {
@@ -115,7 +116,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     overlay: JSXElement | null;
     showSettings: boolean;
     theme: string;
-    updateAvailable: boolean;
     clubData: ClubsResponse.ClubType[];
     prevPos: number | null;
     navInitalLoadDone: boolean;
@@ -127,7 +127,6 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
     overlay: null,
     showSettings: false,
     theme: "default",
-    updateAvailable: false,
     clubData: [],
     prevPos: null,
     navInitalLoadDone: false,
@@ -204,17 +203,62 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       url.searchParams.set("page", id);
       globalThis.history.pushState({}, "", url.toString());
 
-      for (const plugin of plugins()) {
-        if (!plugin.enabled) continue;
-        try {
-          if(!plugin.url) continue;
-          const module = await import(plugin.url);
-          const instance = module.default;
-          if (typeof instance?.onItemLoad === "function") {
-            await instance.onItemLoad(id, mod.default?.api);
-          } else continue;
-        } catch (err) {
-          console.error(`Plugin failed on item load: ${plugin.url}`, err);
+      if (window.__TAURI__) {
+        const { readDir, readTextFile, exists, BaseDirectory } = await import("@tauri-apps/plugin-fs")
+        const dirExists = await exists('plugins', {
+          baseDir: BaseDirectory.AppData
+        })
+
+        if (dirExists) {
+          const files = await readDir('plugins', { baseDir: BaseDirectory.AppData });
+          for (const pluginFile of files) {
+            if (pluginFile.isDirectory) continue;
+            const fileName = pluginFile.name
+              .replace(/\.plugin\.(enabled|disabled)\.js$/, "");
+            const isEnabled = pluginFile.name.endsWith('.plugin.enabled.js');
+            console.log(isEnabled)
+            try {
+              const content = await readTextFile(`plugins/${pluginFile.name}`, {
+                baseDir: BaseDirectory.AppData
+              })
+              if (content.length === 0) continue;
+              setPlugins((prev) => {
+                const exists = prev.some(plugin => plugin.fileName === fileName);
+                if (exists) return prev;
+                return [...prev, { fileName, enabled: isEnabled }];
+              });
+              if (!isEnabled) continue;
+              const wrapped = content.replace(/^export\s+default/, "exports.default =");
+              const pluginModule: any = {};
+              new Function("exports", wrapped)(pluginModule);
+              if (pluginModule?.default?.execute) {
+                try {
+                  await pluginModule.default.execute();
+                } catch (err) {
+                  logger.error(`Plugin execution failed: ${fileName}`);
+                  logger.error(err instanceof Error ? err.message : String(err));
+                }
+              } else {
+                console.log(pluginModule)
+              }
+            } catch (err) {
+              console.error(`Plugin failed on item load: ${fileName}`, err);
+            }
+          }
+        }
+      } else {
+        for (const plugin of plugins()) {
+          if (!plugin.enabled) continue;
+          try {
+            if (!plugin.url) continue;
+            const module = await import(/* @vite-ignore */ plugin.url);
+            const instance = module.default;
+            if (typeof instance?.onItemLoad === "function") {
+              await instance.onItemLoad(id, mod.default?.api);
+            } else continue;
+          } catch (err) {
+            console.error(`Plugin failed on item load: ${plugin.url}`, err);
+          }
         }
       }
     } catch (err) {
@@ -321,21 +365,13 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
 
       plugins()
         .filter(p => p.enabled)
-        .reduce(async (prev, plugin) => {
-          await prev;
-          const module = await import(plugin.url!);
+        .reduce(async (_, plugin) => {
+          if(!plugin.url) return;
+          const module = await import(/* @vite-ignore */ plugin.url);
           if (module.default?.execute) {
             await module.default.execute();
           }
         }, Promise.resolve());
-
-      if (globalThis.__TAURI__) {
-        try {
-          const { check } = await import("@tauri-apps/plugin-updater");
-          const update = await check();
-          if (update) setState("updateAvailable", true);
-        } catch { }
-      }
 
       edulink.getClubs(
         true,

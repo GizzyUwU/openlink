@@ -312,17 +312,16 @@ function Settings(props: {
                 const { readDir } = await import("@tauri-apps/plugin-fs")
                 const { readTextFile, BaseDirectory, rename } = window.__TAURI__!.fs;
                 const files = await readDir("plugins", { baseDir: BaseDirectory.AppData });
-                logger.info(String(files))
                 const pluginFile = files.find((f) =>
                     f.name?.startsWith(name) && f.name.endsWith('.plugin.enabled.js') ||
                     f.name?.endsWith('.plugin.disabled.js')
                 );
                 if (!pluginFile || !pluginFile.name) return;
+                const trimmedFileName = pluginFile.name
+                    .replace(/\.plugin\.(enabled|disabled)\.js$/, "");
                 const isEnabled = pluginFile.name.endsWith('.plugin.enabled.js');
 
-                if (input.checked === isEnabled) return;
-
-                const newName = input.checked
+                const newName = !isEnabled
                     ? `${name}.plugin.enabled.js`
                     : `${name}.plugin.disabled.js`;
                 await rename(`plugins/${pluginFile.name}`, `plugins/${newName}`, {
@@ -330,12 +329,20 @@ function Settings(props: {
                     newPathBaseDir: BaseDirectory.AppData,
                 });
 
-                if (input.checked) {
+                props.setPlugins((plugins) =>
+                    plugins.map((plugin) =>
+                        plugin.fileName === trimmedFileName ? { ...plugin, enabled: !isEnabled ? true : false } : plugin
+                    )
+                );
+
+                if (!isEnabled) {
                     const fileContents = await readTextFile(`plugins/${newName}`, {
                         baseDir: BaseDirectory.AppData,
                     });
 
-                    const pluginModule = new Function('exports', fileContents)({});
+                    const wrapped = fileContents.replace(/^export\s+default/, "exports.default =");
+                    const pluginModule: any = {};
+                    new Function("exports", wrapped)(pluginModule);
                     if (pluginModule?.default?.execute) {
                         try {
                             await pluginModule.default.execute();
@@ -344,12 +351,20 @@ function Settings(props: {
                             logger.error(err instanceof Error ? err.message : String(err));
                         }
                     }
-                }
+                } else return window.location.reload();
             } catch (err) {
-                logger.error((err as Error).stack ?? (err as Error).message);
+                if (err instanceof Error) {
+                    console.error("togglePlugin error:", err.message);
+                    console.error(err.stack ?? "No stack available");
+                } else if (typeof err === "string") {
+                    console.error("togglePlugin error:", err);
+                } else {
+                    console.error("togglePlugin error (object):", JSON.stringify(err, null, 2));
+                }
             }
         } else {
             if (!url) return;
+            console.log("beep")
             props.setPlugins((plugins) =>
                 plugins.map((plugin) =>
                     plugin.url === url ? { ...plugin, enabled: input.checked } : plugin
@@ -442,42 +457,82 @@ function Settings(props: {
         const plugins = props.plugins?.() ?? [];
         if (props.notificationPermission().desktop) setState("deskNotifications", true)
         if (props.notificationPermission().in_app) setState("inAppNotifications", true)
-        for (const theme of themes) {
-            try {
-                const metadata = await parseCSSMetadata(theme.url);
-                if (metadata === null) {
-                    setCSSMetadata((prev) => [...prev, {
-                        url: theme.url, metadata: {
-                            name: "Unknown",
-                            blockEnable: true,
-                            author: "Unknown",
-                            description: "Failed to grab metadata for item"
+        if (window.__TAURI__) {
+            const { readDir, readTextFile, exists, BaseDirectory } = await import("@tauri-apps/plugin-fs")
+            const dirExists = await exists('plugins', {
+                baseDir: BaseDirectory.AppData
+            })
+
+            if (dirExists) {
+                const files = await readDir('plugins', { baseDir: BaseDirectory.AppData });
+                for (const pluginFile of files) {
+                    if (pluginFile.isDirectory) continue;
+                    const fileName = pluginFile.name
+                        .replace(/\.plugin\.(enabled|disabled)\.js$/, "");
+                    const isEnabled = pluginFile.name.match(/\.plugin\.(enabled|disabled)\.js$/)?.[1] === "enabled";
+                    console.log(isEnabled)
+                    try {
+                        const content = await readTextFile(`plugins/${pluginFile.name}`, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                        if (content.length === 0) continue;
+                        const metadata = await parseJSMetadata(undefined, content);
+                        if (metadata === null) {
+                            setJSMetadata((prev) => [...prev, {
+                                fileName, metadata: {
+                                    name: "Unknown",
+                                    blockEnable: true,
+                                    author: "Unknown",
+                                    description: "Failed to grab metadata for item"
+                                }
+                            }]);
+                        } else {
+                            const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+                            setJSMetadata((prev) => [...prev, { fileName, metadata: jsonMetadata, enabled: isEnabled }]);
                         }
-                    }]);
-                } else {
-                    setCSSMetadata((prev) => [...prev, { url: theme.url, metadata }]);
+                    } catch {
+                        setJSMetadata((prev) => [...prev, { fileName, metadata: null, enabled: isEnabled }]);
+                    }
                 }
-            } catch {
-                setCSSMetadata((prev) => [...prev, { url: theme.url, metadata: null }]);
             }
-        }
-        for (const plugin of plugins) {
-            try {
-                const metadata = await parseJSMetadata(plugin.url);
-                if (metadata === null) {
-                    setJSMetadata((prev) => [...prev, {
-                        url: plugin.url, metadata: {
-                            name: "Unknown",
-                            blockEnable: true,
-                            author: "Unknown",
-                            description: "Failed to grab metadata for item"
-                        }
-                    }]);
-                } else {
-                    setJSMetadata((prev) => [...prev, { url: plugin.url, metadata }]);
+        } else {
+            for (const theme of themes) {
+                try {
+                    const metadata = await parseCSSMetadata(theme.url);
+                    if (metadata === null) {
+                        setCSSMetadata((prev) => [...prev, {
+                            url: theme.url, metadata: {
+                                name: "Unknown",
+                                blockEnable: true,
+                                author: "Unknown",
+                                description: "Failed to grab metadata for item"
+                            }
+                        }]);
+                    } else {
+                        setCSSMetadata((prev) => [...prev, { url: theme.url, metadata }]);
+                    }
+                } catch {
+                    setCSSMetadata((prev) => [...prev, { url: theme.url, metadata: null }]);
                 }
-            } catch {
-                setJSMetadata((prev) => [...prev, { url: plugin.url, metadata: null }]);
+            }
+            for (const plugin of plugins) {
+                try {
+                    const metadata = await parseJSMetadata(plugin.url);
+                    if (metadata === null) {
+                        setJSMetadata((prev) => [...prev, {
+                            url: plugin.url, metadata: {
+                                name: "Unknown",
+                                blockEnable: true,
+                                author: "Unknown",
+                                description: "Failed to grab metadata for item"
+                            }
+                        }]);
+                    } else {
+                        setJSMetadata((prev) => [...prev, { url: plugin.url, metadata }]);
+                    }
+                } catch {
+                    setJSMetadata((prev) => [...prev, { url: plugin.url, metadata: null }]);
+                }
             }
         }
     });
@@ -729,14 +784,15 @@ function Settings(props: {
                                             </For>
                                             <div class="my-4 w-90"></div>
                                             <h1 class="text-white text-left text-base font-bold">Custom Themes</h1>
-                                            <Show when={Boolean(!window.__TAURI__)}>
-                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                            <Show when={Boolean(window.__TAURI__)}>
+                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
                                                     Open Quick CSS file
                                                 </button>
-                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
                                                     Open in Themes folder
                                                 </button>
-                                                <div class="my-4 w-90"></div>
+                                                <div class="my-2 w-90"></div>
+
                                             </Show>
                                             <p class="text-gray-300 text-left text-base">Enter a URL below to import an unoffical theme style.</p>
                                             <form
@@ -818,16 +874,30 @@ function Settings(props: {
                                     <div class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
                                         Enabled Plugins - {props.plugins().filter(p => p.enabled).length} Total Plugins - {props.plugins().length}
                                     </div>
-                                    <br />
-                                    <Show when={Boolean(!window.__TAURI__)}>
-                                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open QuickJS File
+                                    <Show when={Boolean(window.__TAURI__)}>
+                                        <button onClick={async () => {
+                                            const [
+                                                { revealItemInDir },
+                                                { appDataDir, join },
+                                                { exists, mkdir, BaseDirectory }
+                                            ] = await Promise.all([
+                                                import("@tauri-apps/plugin-opener"),
+                                                import("@tauri-apps/api/path"),
+                                                import("@tauri-apps/plugin-fs")
+                                            ]);
+                                            const base = await appDataDir();
+                                            const plugins = await join(base, "plugins/");
+                                            if(!(await exists(plugins))) {
+                                                await mkdir("plugins", {
+                                                    baseDir: BaseDirectory.AppData
+                                                })
+                                            }
+                                            await revealItemInDir(plugins);
+                                        }} class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
+                                            Open Plugins Folder
                                         </button>
-                                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                            Open in Plugins Folder
-                                        </button>
-                                        <div class="my-4 w-90"></div>
                                     </Show>
+                                    <div class="my-2 w-90"></div>
                                     <p class="text-gray-300 text-left text-base">Enter a URL below to import an plugin.</p>
                                     <form
                                         onSubmit={(e) => addPluginJS(e)}
@@ -852,7 +922,6 @@ function Settings(props: {
                                                     (p) => p.url === item.url || p.fileName === item.fileName
                                                 )!;
 
-
                                                 const metadata = item.metadata;
                                                 return (
                                                     <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
@@ -870,7 +939,7 @@ function Settings(props: {
                                                                             <input
                                                                                 type="checkbox"
                                                                                 disabled={Boolean(metadata.blockEnable)}
-                                                                                checked={plugin.enabled}
+                                                                                checked={plugin?.enabled}
                                                                                 class="sr-only peer"
                                                                                 onInput={(e: InputEvent) => togglePlugin(
                                                                                     window.__TAURI__ ? undefined : plugin.url,

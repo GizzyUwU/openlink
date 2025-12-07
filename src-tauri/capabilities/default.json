@@ -10,7 +10,6 @@
     "opener:allow-open-url",
     "core:window:default",
     "core:window:allow-start-dragging",
-    "core:window:allow-close",
     "core:window:allow-toggle-maximize",
     "core:window:allow-minimize",
     "core:webview:allow-set-webview-zoom",
@@ -26,6 +25,17 @@
         },
         {
           "path": "blob:**"
+        }
+      ]
+    },
+    {
+      "identifier": "opener:allow-reveal-item-in-dir",
+      "allow": [
+        {
+          "path": "$APPDATA/"
+        },
+        {
+          "path": "$APPDATA/themes"
         }
       ]
     },
@@ -52,6 +62,9 @@
         },
         {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },
@@ -63,6 +76,9 @@
         },
         {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },
@@ -74,6 +90,9 @@
         },
         {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },
@@ -85,17 +104,31 @@
         },
         {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },
     {
-      "identifier": "fs:allow-write",
+      "identifier": "fs:allow-mkdir",
       "allow": [
         {
-          "path": "$APPDATA/*"
+          "path": "$APPDATA/plugins"
         },
         {
+          "path": "$APPDATA/themes"
+        }
+      ]
+    },
+        {
+      "identifier": "fs:allow-remove",
+      "allow": [
+        {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },
@@ -107,6 +140,20 @@
         },
         {
           "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-rename",
+      "allow": [
+        {
+          "path": "$APPDATA/plugins/*"
+        },
+        {
+          "path": "$APPDATA/themes/*"
         }
       ]
     },

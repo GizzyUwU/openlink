@@ -52,13 +52,15 @@ export default function Header(props: {
     }
 
     if (window.__TAURI__) {
-      const { check } = await import("@tauri-apps/plugin-updater");
-      const update = await check();
-      if (update) {
-        setUpdate(true);
-        console.log(
-          `[INFO] Update available! ${update.version} from ${update.date}`,
-        );
+      if (!(window.location.href.includes("localhost") || window.location.href.includes("127.0.0.1"))) {
+        const { check } = await import("@tauri-apps/plugin-updater");
+        const update = await check();
+        if (update) {
+          setUpdate(true);
+          console.log(
+            `[INFO] Update available! ${update.version} from ${update.date}`,
+          );
+        }
       }
     }
   });
