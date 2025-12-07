@@ -367,6 +367,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       plugins()
         .filter(p => p.enabled)
         .reduce(async (_, plugin) => {
+          console.log("RAWR", plugin)
           if (!plugin.url) return;
           const module = await import(/* @vite-ignore */ plugin.url);
           if (module.default?.execute) {

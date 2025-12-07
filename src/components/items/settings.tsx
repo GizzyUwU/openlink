@@ -963,8 +963,12 @@ function Settings(props: {
                                             <Show when={cssMetadata().length > 0}>
                                                 <For each={cssMetadata()}>
                                                     {(item) => {
-                                                        const theme = props.userThemes().find((t) => t.url === item.url || t.fileName === item.fileName)!;
-                                                        console.log(theme)
+                                                        const theme = props.plugins().find((t) => {
+                                                            if (item.url) return t.url === item.url;
+                                                            if (item.fileName) return t.fileName === item.fileName;
+                                                            return false;
+                                                        });
+                                                        if(!theme) return;
                                                         const metadata = item.metadata;
 
                                                         return (
@@ -1071,11 +1075,17 @@ function Settings(props: {
                                     </form>
                                     <Show when={jsMetadata().length > 0}>
                                         <For each={jsMetadata()}>
-                                            {(item) => {
-                                                const plugin = props.plugins().find(
-                                                    (p) => p.url === item.url || p.fileName === item.fileName
-                                                )!;
+                                            {(item, i) => {
+                                                console.log("item index:", i());
+                                                console.log("item:", item);
 
+                                                const plugin = props.plugins().find((p) => {
+                                                    if (item.url) return p.url === item.url;
+                                                    if (item.fileName) return p.fileName === item.fileName;
+                                                    return false;
+                                                });
+
+                                                if (!plugin) return;
                                                 const metadata = item.metadata;
                                                 return (
                                                     <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
