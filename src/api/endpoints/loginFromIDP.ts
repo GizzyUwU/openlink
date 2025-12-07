@@ -20,7 +20,7 @@ export default {
       method,
       params: {
         from_app: false,
-        fcm_token_old: "",
+        fcm_token_old: "none",
         token: idpToken,
       },
       uuid: window.crypto.randomUUID(),

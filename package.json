@@ -9,6 +9,7 @@
     "dev": "bun run tauri dev",
     "build:frontend": "vite build",
     "build": "NO_STRIP=true tauri build",
+    "build:beta": "NO_STRIP=true tauri build --features beta",
     "serve": "vite preview",
     "tauri": "tauri"
   },

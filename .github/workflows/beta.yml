@@ -70,4 +70,4 @@ jobs:
           includeUpdaterJson: false
           releaseDraft: false
           prerelease: true
-          args: ${{ matrix.args }}
+          args: --features beta
