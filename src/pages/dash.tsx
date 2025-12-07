@@ -83,7 +83,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
   const [styles, setStyles] = createSignal<{ [key: string]: string } | null>(
     null,
   );
-  const [userThemes, setUserThemes] = makePersisted(createSignal<{ url: string; enabled: boolean; }[]>([]), {
+  const [userThemes, setUserThemes] = makePersisted(createSignal<{ url?: string; fileName?: string; enabled: boolean; }[]>([]), {
     storage: localStorage,
     name: "themeUrls",
   });
@@ -231,9 +231,9 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
               const wrapped = content.replace(/^export\s+default/, "exports.default =");
               const pluginModule: any = {};
               new Function("exports", wrapped)(pluginModule);
-              if (pluginModule?.default?.execute) {
+              if (pluginModule?.default?.onItemLoad) {
                 try {
-                  await pluginModule.default.execute();
+                  await pluginModule.default.onItemLoad(id, mod.default?.api)
                 } catch (err) {
                   logger.error(`Plugin execution failed: ${fileName}`);
                   logger.error(err instanceof Error ? err.message : String(err));
@@ -356,6 +356,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       userThemes()
         .filter((theme) => theme.enabled)
         .forEach((theme) => {
+          if (!theme.url) return;
           const link = document.createElement("link");
           link.rel = "stylesheet";
           link.href = theme.url;
@@ -366,7 +367,7 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
       plugins()
         .filter(p => p.enabled)
         .reduce(async (_, plugin) => {
-          if(!plugin.url) return;
+          if (!plugin.url) return;
           const module = await import(/* @vite-ignore */ plugin.url);
           if (module.default?.execute) {
             await module.default.execute();
@@ -409,6 +410,84 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
           loadHandler();
         } else {
           window.addEventListener("load", loadHandler);
+        }
+      }
+
+      if (window.__TAURI__) {
+        const { readDir, readTextFile, exists, BaseDirectory } = await import("@tauri-apps/plugin-fs")
+        const pluginDirExists = await exists('plugins', {
+          baseDir: BaseDirectory.AppData
+        })
+
+        const themesDirExists = await exists('themes', {
+          baseDir: BaseDirectory.AppData
+        })
+
+        if (pluginDirExists) {
+          const files = await readDir('plugins', { baseDir: BaseDirectory.AppData });
+          for (const pluginFile of files) {
+            if (pluginFile.isDirectory) continue;
+            const fileName = pluginFile.name
+              .replace(/\.plugin\.(enabled|disabled)\.js$/, "");
+            const isEnabled = pluginFile.name.endsWith('.plugin.enabled.js');
+            console.log(isEnabled)
+            try {
+              const content = await readTextFile(`plugins/${pluginFile.name}`, {
+                baseDir: BaseDirectory.AppData
+              })
+              if (content.length === 0) continue;
+              setPlugins((prev) => {
+                const exists = prev.some(plugin => plugin.fileName === fileName);
+                if (exists) return prev;
+                return [...prev, { fileName, enabled: isEnabled }];
+              });
+              console.log("a", isEnabled)
+              if (!isEnabled) continue;
+              const wrapped = content.replace(/^export\s+default/, "exports.default =");
+              const pluginModule: any = {};
+              new Function("exports", wrapped)(pluginModule);
+              if (pluginModule?.default?.execute) {
+                try {
+                  await pluginModule.default.execute()
+                } catch (err) {
+                  logger.error(`Plugin execution failed: ${fileName}`);
+                  logger.error(err instanceof Error ? err.message : String(err));
+                }
+              } else {
+                console.log(pluginModule)
+              }
+            } catch (err) {
+              console.error(`Plugin failed on item load: ${fileName}`, err);
+            }
+          }
+        }
+
+        if (themesDirExists) {
+          const files = await readDir('themes', { baseDir: BaseDirectory.AppData });
+          for (const themeFile of files) {
+            if (themeFile.isDirectory) continue;
+            const fileName = themeFile.name
+              .replace(/\.theme\.(enabled|disabled)\.css$/, "");
+            const isEnabled = themeFile.name.endsWith('.theme.enabled.css');
+            console.log(isEnabled)
+            try {
+              const content = await readTextFile(`themes/${themeFile.name}`, {
+                baseDir: BaseDirectory.AppData
+              })
+              if (content.length === 0) continue;
+              setUserThemes((prev) => {
+                const exists = prev.some(theme => theme.fileName === fileName);
+                if (exists) return prev;
+                return [...prev, { fileName, enabled: isEnabled }];
+              });
+              if (!isEnabled) continue;
+              const styleSheet = document.createElement("style");
+              styleSheet.textContent = content;
+              document.head.appendChild(styleSheet);
+            } catch (err) {
+              console.error(`Theme failed to load: ${fileName}`, err);
+            }
+          }
         }
       }
     }

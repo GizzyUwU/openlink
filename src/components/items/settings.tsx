@@ -42,8 +42,8 @@ function Settings(props: {
     progress: () => number;
     edulink: EdulinkAPI;
     theme: string;
-    setUserThemes: Setter<{ url: string; enabled: boolean; }[]>;
-    userThemes: Accessor<{ url: string; enabled: boolean; }[]>;
+    setUserThemes: Setter<{ url?: string; fileName?: string; enabled: boolean; }[]>;
+    userThemes: Accessor<{ url?: string; fileName?: string; enabled: boolean; }[]>;
     setPlugins: Setter<{ url?: string; fileName?: string; enabled: boolean; }[]>;
     plugins: Accessor<{ url?: string; fileName?: string; enabled: boolean; }[]>;
     setNotificationPermission: Setter<{
@@ -81,7 +81,7 @@ function Settings(props: {
         name: "font",
     });
     const [cssMetadata, setCSSMetadata] = createSignal<
-        { url: string; metadata: Record<string, string | boolean> | null }[]
+        { url?: string; fileName?: string; metadata: Record<string, string | boolean> | null }[]
     >([]);
     const [jsMetadata, setJSMetadata] = createSignal<
         { url?: string; fileName?: string; metadata: Record<string, string | boolean> | null }[]
@@ -211,13 +211,53 @@ function Settings(props: {
         const form = e.currentTarget;
         const url = new FormData(form).get("cssURL") as string;
         const urlField = document.getElementById("cssUrl") as HTMLInputElement;
-        if (globalThis.__TAURI__) {
+        if (window.__TAURI__) {
+            try {
+                fetch(url).then(async (res) => {
+                    const { writeTextFile, exists, BaseDirectory } = window.__TAURI__!.fs;
+                    const data = await res.text();
+                    const metadata = await parseCSSMetadata(undefined, data);
+                    if (metadata === null) return;
+                    const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+                    const name = jsonMetadata.name.toLowerCase()
+                    const dirExists = await exists('themes', {
+                        baseDir: BaseDirectory.AppData
+                    })
 
+                    if (dirExists) {
+                        const { readDir } = await import("@tauri-apps/plugin-fs")
+                        const files = await readDir('themes', { baseDir: BaseDirectory.AppData });
+                        const matchedFile = files.find(f => f.name.startsWith(name + '.theme.'));
+                        if (matchedFile) return logger.warn("Theme will not be added because a theme with same name is already installed.");
+
+                        await writeTextFile("themes/" + name + ".theme.disabled.css", data, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                    } else {
+                        const { mkdir } = window.__TAURI__!.fs;
+                        await mkdir("themes", {
+                            baseDir: BaseDirectory.AppData
+                        })
+
+                        await writeTextFile("themes/" + name + ".theme.disabled.css", data, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                    }
+
+                    props.setUserThemes((prev) => [...(prev ?? []), { fileName: name, enabled: false }]);
+
+                    setCSSMetadata((prev) => [...prev, { fileName: name!, metadata: jsonMetadata, enabled: false }]);
+                    urlField!.value = "";
+                })
+            } catch (err) {
+                logger.error((err as Error).stack ?? (err as Error).message);
+            }
         } else {
             props.setUserThemes((prev) => [...(prev ?? []), { url, enabled: false }]);
             const metadata = await parseCSSMetadata(url);
             if (metadata === null) return;
-            setCSSMetadata((prev) => [...prev, { url: url, metadata }]);
+            const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+            setCSSMetadata((prev) => [...prev, { url, metadata: jsonMetadata, enabled: false }]);
             urlField!.value = "";
         }
     }
@@ -246,7 +286,7 @@ function Settings(props: {
                         const matchedFile = files.find(f => f.name.startsWith(name + '.plugin.'));
                         if (matchedFile) return logger.warn("Plugin will not be added because a plugin with same name is already installed.");
 
-                        await writeTextFile("plugins/" + name + ".plugin.enabled.js", data, {
+                        await writeTextFile("plugins/" + name + ".plugin.disabled.js", data, {
                             baseDir: BaseDirectory.AppData
                         })
                     } else {
@@ -255,12 +295,13 @@ function Settings(props: {
                             baseDir: BaseDirectory.AppData
                         })
 
-                        await writeTextFile("plugins/" + name + ".plugin.enabled.js", data, {
+                        await writeTextFile("plugins/" + name + ".plugin.disabled.js", data, {
                             baseDir: BaseDirectory.AppData
                         })
                     }
 
-                    setJSMetadata((prev) => [...prev, { fileName: name, metadata: jsonMetadata, enabled: true }]);
+                    props.setPlugins((prev) => [...(prev ?? []), { fileName: name, enabled: false }]);
+                    setJSMetadata((prev) => [...prev, { fileName: name, metadata: jsonMetadata, enabled: false }]);
                     urlField!.value = "";
                 })
             } catch (err) {
@@ -271,16 +312,64 @@ function Settings(props: {
             const metadata = await parseJSMetadata(url);
             if (metadata === null) return;
             const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
-            setJSMetadata((prev) => [...prev, { url, metadata: jsonMetadata, enabled: true }]);
+            setJSMetadata((prev) => [...prev, { url, metadata: jsonMetadata, enabled: false }]);
             urlField!.value = "";
         }
     }
 
-    async function toggleUserCSS(url: string, e: InputEvent) {
+    async function toggleUserCSS(url: string | undefined, fileName: string | undefined, e: InputEvent) {
         e.preventDefault();
         const input = e.currentTarget as HTMLInputElement;
-        if (globalThis.__TAURI__) {
+        if (window.__TAURI__) {
+            if (!fileName) return;
+            try {
+                const name = fileName.toLowerCase()
+                const { readDir } = await import("@tauri-apps/plugin-fs")
+                const { readTextFile, BaseDirectory, rename } = window.__TAURI__!.fs;
+                const files = await readDir("themes", { baseDir: BaseDirectory.AppData });
+                const themeFile = files.find((f) =>
+                    f.name?.startsWith(name) && f.name.endsWith('.theme.enabled.css') ||
+                    f.name?.endsWith('.theme.disabled.css')
+                );
+                console.log(themeFile)
+                if (!themeFile || !themeFile.name) return;
+                const trimmedFileName = themeFile.name
+                    .replace(/\.theme\.(enabled|disabled)\.css$/, "");
+                const isEnabled = themeFile.name.endsWith('.theme.enabled.css');
+                console.log(isEnabled)
+                const newName = !isEnabled
+                    ? `${name}.theme.enabled.css`
+                    : `${name}.theme.disabled.css`;
+                await rename(`themes/${themeFile.name}`, `themes/${newName}`, {
+                    oldPathBaseDir: BaseDirectory.AppData,
+                    newPathBaseDir: BaseDirectory.AppData,
+                });
 
+                props.setUserThemes((themes) =>
+                    themes.map((theme) =>
+                        theme.fileName === trimmedFileName ? { ...theme, enabled: !isEnabled ? true : false } : theme
+                    )
+                );
+
+                if (!isEnabled) {
+                    const fileContents = await readTextFile(`themes/${newName}`, {
+                        baseDir: BaseDirectory.AppData,
+                    });
+
+                    const styleSheet = document.createElement("style");
+                    styleSheet.textContent = fileContents;
+                    document.head.appendChild(styleSheet);
+                } else return window.location.reload();
+            } catch (err) {
+                if (err instanceof Error) {
+                    console.error("togglePlugin error:", err.message);
+                    console.error(err.stack ?? "No stack available");
+                } else if (typeof err === "string") {
+                    console.error("togglePlugin error:", err);
+                } else {
+                    console.error("togglePlugin error (object):", JSON.stringify(err, null, 2));
+                }
+            }
         } else {
             props.setUserThemes((themes) =>
                 themes.map((theme) =>
@@ -292,7 +381,7 @@ function Settings(props: {
                 if (!existingLink) {
                     const link = document.createElement("link");
                     link.rel = "stylesheet";
-                    link.href = url;
+                    link.href = url!;
                     link.dataset.userTheme = url;
                     document.head.appendChild(link);
                 }
@@ -459,11 +548,15 @@ function Settings(props: {
         if (props.notificationPermission().in_app) setState("inAppNotifications", true)
         if (window.__TAURI__) {
             const { readDir, readTextFile, exists, BaseDirectory } = await import("@tauri-apps/plugin-fs")
-            const dirExists = await exists('plugins', {
+            const pluginDirExists = await exists('plugins', {
                 baseDir: BaseDirectory.AppData
             })
 
-            if (dirExists) {
+            const themeDirExists = await exists('plugins', {
+                baseDir: BaseDirectory.AppData
+            })
+
+            if (pluginDirExists) {
                 const files = await readDir('plugins', { baseDir: BaseDirectory.AppData });
                 for (const pluginFile of files) {
                     if (pluginFile.isDirectory) continue;
@@ -495,6 +588,39 @@ function Settings(props: {
                     }
                 }
             }
+
+            if (themeDirExists) {
+                const files = await readDir('themes', { baseDir: BaseDirectory.AppData });
+                for (const themeFile of files) {
+                    if (themeFile.isDirectory) continue;
+                    const fileName = themeFile.name
+                        .replace(/\.theme\.(enabled|disabled)\.css$/, "");
+                    const isEnabled = themeFile.name.match(/\.theme\.(enabled|disabled)\.css$/)?.[1] === "enabled";
+                    console.log(isEnabled)
+                    try {
+                        const content = await readTextFile(`themes/${themeFile.name}`, {
+                            baseDir: BaseDirectory.AppData
+                        })
+                        if (content.length === 0) continue;
+                        const metadata = await parseCSSMetadata(undefined, content);
+                        if (metadata === null) {
+                            setCSSMetadata((prev) => [...prev, {
+                                fileName, metadata: {
+                                    name: "Unknown",
+                                    blockEnable: true,
+                                    author: "Unknown",
+                                    description: "Failed to grab metadata for item"
+                                }
+                            }]);
+                        } else {
+                            const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+                            setCSSMetadata((prev) => [...prev, { fileName, metadata: jsonMetadata, enabled: isEnabled }]);
+                        }
+                    } catch {
+                        setCSSMetadata((prev) => [...prev, { fileName, metadata: null, enabled: isEnabled }]);
+                    }
+                }
+            }
         } else {
             for (const theme of themes) {
                 try {
@@ -509,7 +635,8 @@ function Settings(props: {
                             }
                         }]);
                     } else {
-                        setCSSMetadata((prev) => [...prev, { url: theme.url, metadata }]);
+                        const jsonMetadata = metadata ? JSON.parse(JSON.stringify(metadata)) : null;
+                        setCSSMetadata((prev) => [...prev, { url: theme.url, metadata: jsonMetadata }]);
                     }
                 } catch {
                     setCSSMetadata((prev) => [...prev, { url: theme.url, metadata: null }]);
@@ -552,34 +679,60 @@ function Settings(props: {
         return items[0];
     }
 
-    async function parseCSSMetadata(url: string) {
-        try {
-            const res = await fetch(url);
-            if (!res.ok) {
-                logger.warn(`Failed to fetch: ${res.status}`);
+    async function parseCSSMetadata(url?: string, resText?: string) {
+        if (!url && !resText) return;
+        if (url) {
+            try {
+                const res = await fetch(url);
+                if (!res.ok) {
+                    logger.warn(`Failed to fetch: ${res.status}`);
+                    return null;
+                }
+                const text = await res.text();
+
+                const match = text.match(/\/\*\*([\s\S]*?)\*\//);
+                if (!match) {
+                    return null;
+                }
+
+                const block = match[1];
+                const metadata: Record<string, string> = {};
+                const regex = /^\s*\*\s*@(\w+)\s+(.*)$/gm;
+
+                let line;
+                while ((line = regex.exec(block)) !== null) {
+                    const key = line[1];
+                    const value = line[2].trim();
+                    metadata[key] = value;
+                }
+
+                return metadata;
+            } catch (err) {
                 return null;
             }
-            const text = await res.text();
+        } else if (resText) {
+            try {
+                const text = resText;
+                const match = text.match(/\/\*\*([\s\S]*?)\*\//);
+                if (!match) {
+                    return null;
+                }
 
-            const match = text.match(/\/\*\*([\s\S]*?)\*\//);
-            if (!match) {
+                const block = match[1];
+                const metadata: Record<string, string> = {};
+                const regex = /^\s*\*\s*@(\w+)\s+(.*)$/gm;
+
+                let line;
+                while ((line = regex.exec(block)) !== null) {
+                    const key = line[1];
+                    const value = line[2].trim();
+                    metadata[key] = value;
+                }
+
+                return metadata;
+            } catch (err) {
                 return null;
             }
-
-            const block = match[1];
-            const metadata: Record<string, string> = {};
-            const regex = /^\s*\*\s*@(\w+)\s+(.*)$/gm;
-
-            let line;
-            while ((line = regex.exec(block)) !== null) {
-                const key = line[1];
-                const value = line[2].trim();
-                metadata[key] = value;
-            }
-
-            return metadata;
-        } catch (err) {
-            return null;
         }
     }
 
@@ -786,13 +939,9 @@ function Settings(props: {
                                             <h1 class="text-white text-left text-base font-bold">Custom Themes</h1>
                                             <Show when={Boolean(window.__TAURI__)}>
                                                 <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
-                                                    Open Quick CSS file
-                                                </button>
-                                                <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-600 cursor-pointer inline-block">
                                                     Open in Themes folder
                                                 </button>
                                                 <div class="my-2 w-90"></div>
-
                                             </Show>
                                             <p class="text-gray-300 text-left text-base">Enter a URL below to import an unoffical theme style.</p>
                                             <form
@@ -814,7 +963,8 @@ function Settings(props: {
                                             <Show when={cssMetadata().length > 0}>
                                                 <For each={cssMetadata()}>
                                                     {(item) => {
-                                                        const theme = props.userThemes().find((t) => t.url === item.url)!;
+                                                        const theme = props.userThemes().find((t) => t.url === item.url || t.fileName === item.fileName)!;
+                                                        console.log(theme)
                                                         const metadata = item.metadata;
 
                                                         return (
@@ -827,15 +977,19 @@ function Settings(props: {
                                                                                 <FaSolidTrashCan
                                                                                     class="cursor-pointer text-red-500"
                                                                                     size={16}
-                                                                                    onClick={() => removeUserCSS(theme.url)}
+                                                                                    onClick={() => removeUserCSS(theme.url!)}
                                                                                 />
                                                                                 <label class="inline-flex items-center cursor-pointer">
                                                                                     <input
                                                                                         type="checkbox"
                                                                                         disabled={Boolean(metadata.blockEnable)}
-                                                                                        checked={theme.enabled}
+                                                                                        checked={theme?.enabled}
                                                                                         class="sr-only peer"
-                                                                                        onInput={(e: InputEvent) => toggleUserCSS(theme.url, e)}
+                                                                                        onInput={(e: InputEvent) => toggleUserCSS(
+                                                                                            window.__TAURI__ ? undefined : theme.url,
+                                                                                            window.__TAURI__ ? metadata.name as string : undefined,
+                                                                                            e
+                                                                                        )}
                                                                                     />
                                                                                     <div
                                                                                         class="relative w-9 h-5 bg-gray-500 peer-checked:bg-green-500 rounded-full 
@@ -887,7 +1041,7 @@ function Settings(props: {
                                             ]);
                                             const base = await appDataDir();
                                             const plugins = await join(base, "plugins/");
-                                            if(!(await exists(plugins))) {
+                                            if (!(await exists(plugins))) {
                                                 await mkdir("plugins", {
                                                     baseDir: BaseDirectory.AppData
                                                 })

@@ -502,7 +502,7 @@ function Login() {
       ...account.demo.result,
       apiUrl: `demo/${type}`
     });
-    return navigate("/");
+    return navigate("/", { replace: true });
   };
 
   return (
