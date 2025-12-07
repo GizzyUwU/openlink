@@ -176,7 +176,6 @@ export async function callApi(url: string, options: ApiOptions = {}, toast?: Toa
       if (!url.includes("?networkCheck=true")) {
         logger.error(`Server returned error: ${JSON.stringify(jsonBody)}`)
         let parsedBody: any;
-        console.log(toast)
         if (typeof fetchOptions.body === "string") {
           try {
             parsedBody = JSON.parse(fetchOptions.body);
@@ -186,7 +185,6 @@ export async function callApi(url: string, options: ApiOptions = {}, toast?: Toa
         } else {
           parsedBody = fetchOptions.body;
         }
-        console.log(toast)
 
         toast?.showToast(
           "Error",

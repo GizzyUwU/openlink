@@ -67,7 +67,7 @@ jobs:
           tagName: b__VERSION__
           releaseName: "Beta b__VERSION__"
           releaseBody: ${{ env.RELEASE_BODY }}
-          includeUpdaterJson: true
+          includeUpdaterJson: false
           releaseDraft: false
           prerelease: true
           args: ${{ matrix.args }}

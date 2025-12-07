@@ -379,11 +379,21 @@ function Main(props: Readonly<{ status: StatusResponse["result"] | null }>) {
         true,
         sessionData()?.user?.id,
         sessionData()?.authtoken,
-        sessionData()?.apiUrl,
-        toast
+        sessionData()?.apiUrl
       ).then((clubData: ClubsResponse) => {
         if (clubData.result.success) {
           setState("clubData", clubData.result.clubs);
+          if (props.status != null) {
+            setState("status", props.status);
+            handleNotifications(notificationPermission, props.status, clubData.result.clubs)
+          } else {
+            fetchStatus();
+          }
+          statusInterval = setInterval(
+            fetchStatus,
+            (sessionData()?.miscellaneous.status_interval ?? 60) * 1000,
+          );
+        } else {
           if (props.status != null) {
             setState("status", props.status);
             handleNotifications(notificationPermission, props.status, clubData.result.clubs)
