@@ -353,8 +353,7 @@ function Timetable(props: Readonly<{
       props.sessionData()?.user?.id,
       props.sessionData()?.authtoken,
       props.sessionData()?.apiUrl,
-      "timetable",
-      window.toast
+      "timetable"
     );
 
     if (!timetable.result.success) {
@@ -396,7 +395,7 @@ function Timetable(props: Readonly<{
     props.setProgress(1);
     if ((state.currentWeek?.days?.length ?? 0) > 0 && Object.keys(currentWeeksClubs()).length > 0) await insertClubs()
     const examTimetable = await waitExamTimetable;
-    if ((state.currentWeek?.days?.length ?? 0) > 0 && examTimetable.result.timetable.length > 0) await insertExams(examTimetable.result.timetable)
+    if ((state.currentWeek?.days?.length ?? 0) > 0 && (examTimetable.result.success && examTimetable.result.timetable.length > 0)) await insertExams(examTimetable.result.timetable)
   });
 
   onCleanup(() => {
