@@ -1,7 +1,6 @@
 name: "beta"
-
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   publish-tauri:
