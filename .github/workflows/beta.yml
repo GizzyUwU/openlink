@@ -64,5 +64,10 @@ jobs:
           SCCACHE_GHA_ENABLED: "true"
           RUSTC_WRAPPER: "sccache"
         with:
-          uploadWorkflowArtifacts: true
+          tagName: b__VERSION__
+          releaseName: "Beta b__VERSION__"
+          releaseBody: ${{ env.RELEASE_BODY }}
+          includeUpdaterJson: true
+          releaseDraft: false
+          prerelease: true
           args: ${{ matrix.args }}
