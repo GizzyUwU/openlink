@@ -38,6 +38,7 @@
 .settings-container {
     background: var(--surface0);
     border-radius: 5px;
+    color: white;
     z-index: 2;
     flex-grow: 1;
     font-size: 14px;
@@ -45,4 +46,12 @@
     min-height: 0;
     overflow: scroll;
     --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
+}
+
+.list-options {
+    color: white;
+}
+
+.text-tip {
+    color: lightgrey
 }

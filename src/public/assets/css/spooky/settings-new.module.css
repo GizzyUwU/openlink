@@ -1,0 +1,50 @@
+@import url("/src/public/assets/css/default/table.css");
+
+.__dropdown {
+    background: white;
+    color: black;
+    border: 0;
+}
+
+.__nav {
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    height: 32px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: calc(100vw - 185px);
+}
+
+.t-container {
+    background: #403123;
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.settings-container {
+    border-radius: 5px;
+    color: white;
+    z-index: 2;
+    flex-grow: 1;
+    font-size: 14px;
+    border: 0;
+    min-height: 0;
+    overflow: scroll;
+    --table-columns: minmax(0, 80px) repeat(3, minmax(0, 1fr)) repeat(2, minmax(0, 75px))
+}
+
+.list-options {
+    color: white;
+}
+
+.text-tip {
+    color: lightgrey;
+}
