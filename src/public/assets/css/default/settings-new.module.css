@@ -30,7 +30,6 @@
 }
 
 .settings-container {
-    background: var(--surface0);
     border-radius: 5px;
     z-index: 2;
     flex-grow: 1;
@@ -47,4 +46,8 @@
 
 .text-tip {
     color: #5d5d5d
+}
+
+.dropdown-bg {
+    background: #fff;;
 }

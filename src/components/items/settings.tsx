@@ -1085,7 +1085,7 @@ function Settings(props: {
                     <div class={`p-4`}>
                       <h1 class="text-left text-base font-bold">Font</h1>
                       <button
-                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                         ref={(el) => {
                           if (el) {
                             buttonRef = el;
@@ -1137,13 +1137,13 @@ function Settings(props: {
                               );
                             });
                           }}
-                          class="fixed p-2 mt-2 w-40 rounded-md border-gray-600 bg-gray-700 z-50"
+                          class={`fixed p-2 mt-2 w-40 rounded-md border border-gray-600 ${styles()!["dropdown-bg"]} z-50`}
                         >
                           <ul class="p-1">
                             {items.map(({ font, family, url }) => (
                               <li>
                                 <button
-                                  class="w-full text-left p-2 rounded-md hover:bg-gray-600 cursor-pointer"
+                                  class="w-full text-left p-2 rounded-md cursor-pointer"
                                   ref={(el) => {
                                     if (!el) return;
                                     el.style.cssText = `font-family: ${family} !important;`;
@@ -1181,7 +1181,7 @@ function Settings(props: {
                         {(theme) => (
                           <div
                             onClick={() => setTheme(theme)}
-                            class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                            class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                           >
                             {theme}
                           </div>
@@ -1192,7 +1192,7 @@ function Settings(props: {
                         Custom Themes
                       </h1>
                       <Show when={Boolean(window.__TAURI__)}>
-                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block">
+                        <button class="text-center p-2 pl-4 pr-4 mr-4 mt-1 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block">
                           Open in Themes folder
                         </button>
                         <div class="my-2 w-90"></div>
@@ -1202,14 +1202,14 @@ function Settings(props: {
                       </p>
                       <form onSubmit={(e) => addUserCSS(e)}>
                         <input
-                          class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 hover:bg-gray-600 inline-block"
+                          class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 inline-block"
                           name="cssURL"
                           id="cssUrl"
                           placeholder="https://raw.githubusercontent.com/...[.theme.css]"
                         />
                         <button
                           type="submit"
-                          class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                          class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                         >
                           Import
                         </button>
@@ -1227,7 +1227,7 @@ function Settings(props: {
                             const metadata = item.metadata;
 
                             return (
-                              <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block">
+                              <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block">
                                 {metadata ? (
                                   <>
                                     <div class="flex items-center justify-between w-full">
@@ -1296,7 +1296,7 @@ function Settings(props: {
                     <br />
                     Plugins with a cog wheel have settings you can modify!
                   </p>
-                  <div class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block">
+                  <div class="text-center p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block">
                     Enabled Plugins -{" "}
                     {props.plugins().filter((p) => p.enabled).length} Total
                     Plugins - {props.plugins().length}
@@ -1322,7 +1322,7 @@ function Settings(props: {
                         }
                         await revealItemInDir(plugins);
                       }}
-                      class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                      class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                     >
                       Open Plugins Folder
                     </button>
@@ -1333,14 +1333,14 @@ function Settings(props: {
                   </p>
                   <form onSubmit={(e) => addPluginJS(e)}>
                     <input
-                      class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 hover:bg-gray-600 inline-block"
+                      class="min-w-[400px] p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 inline-block"
                       name="jsURL"
                       id="jsUrl"
                       placeholder="https://raw.githubusercontent.com/...[.plugin.js]"
                     />
                     <button
                       type="submit"
-                      class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                      class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                     >
                       Import
                     </button>
@@ -1361,7 +1361,7 @@ function Settings(props: {
                         if (!plugin) return;
                         const metadata = item.metadata;
                         return (
-                          <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block">
+                          <div class="p-2 pl-4 pr-4 mt-2 mr-4 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block">
                             {metadata ? (
                               <>
                                 <div class="flex items-center justify-between w-full gap-x-2">
@@ -1441,7 +1441,7 @@ function Settings(props: {
                       </p>
                       <button
                         onClick={toggleDesktopNotifications}
-                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                       >
                         {state.deskNotifications ? "Disable" : "Enable"} Desktop
                         Notifications
@@ -1454,7 +1454,7 @@ function Settings(props: {
                             in_app: !prev.in_app,
                           }));
                         }}
-                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                       >
                         {state.inAppNotifications ? "Disable" : "Enable"} In-App
                         Notifications
@@ -1465,7 +1465,7 @@ function Settings(props: {
                         When to send Desktop Notifications?
                       </p>
                       <button
-                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                         ref={(el) => {
                           if (el) {
                             timeDropdownButtonRef = el;
@@ -1521,7 +1521,7 @@ function Settings(props: {
                               );
                             });
                           }}
-                          class="fixed p-2 mt-2 w-80 rounded-md border-gray-600 bg-gray-700 z-50"
+                          class={`fixed p-2 mt-2 w-80 rounded-md border border-gray-600 ${styles()!["dropdown-bg"]} z-50`}
                         >
                           <ul class="p-1">
                             {[
@@ -1537,7 +1537,7 @@ function Settings(props: {
                               "No Mouse/Keyboard input or unfocused for 30 minutes",
                             ].map((text) => (
                               <li>
-                                <button class="w-full text-left p-2 rounded-md hover:bg-gray-600 cursor-pointer">
+                                <button class="w-full text-left p-2 rounded-md cursor-pointer">
                                   {text}
                                 </button>
                               </li>
@@ -1550,7 +1550,7 @@ function Settings(props: {
                         Notify me about...
                       </p>
                       <button
-                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent hover:bg-gray-600 cursor-pointer inline-block"
+                        class="text-center p-2 pl-4 pr-4 mr-4 mt-2 rounded-md border border-gray-600 bg-transparent cursor-pointer inline-block"
                         ref={(el) => {
                           if (el) {
                             timeDropdownButtonRef = el;
@@ -1622,7 +1622,7 @@ function Settings(props: {
                               );
                             });
                           }}
-                          class="fixed p-2 mt-2 w-70 rounded-md border-gray-600 bg-gray-700 z-50"
+                          class={`fixed p-2 mt-2 w-70 rounded-md border border-gray-600 ${styles()!["dropdown-bg"]} z-50`}
                         >
                           <ul class="p-1">
                             <For
@@ -1635,7 +1635,7 @@ function Settings(props: {
 
                                 return (
                                   <li>
-                                    <button class="w-full flex items-center justify-between p-2 rounded-md hover:bg-gray-600 cursor-pointer">
+                                    <button class="w-full flex items-center justify-between p-2 rounded-md cursor-pointer">
                                       <span>{text}</span>
 
                                       <label class="inline-flex items-center cursor-pointer">

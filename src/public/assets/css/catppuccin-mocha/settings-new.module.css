@@ -55,3 +55,7 @@
 .text-tip {
     color: lightgrey
 }
+
+.dropdown-bg {
+    background: var(--surface0);
+}
